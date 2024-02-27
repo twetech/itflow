@@ -45,6 +45,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-8">
+                        <div class="btn-group float-right">
+                            <a href="recurring_tickets.php" class="btn btn-outline-info">
+                                <i class="fa fa-fw fa-envelope-open-text mr-2"></i>Unmatched Emails | <strong> <?php echo $total_unmatched_emails; ?></strong>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="collapse mt-3 <?php if (!empty($_GET['dtf'])) { echo "show"; } ?>" id="advancedFilter">
                     <div class="row">

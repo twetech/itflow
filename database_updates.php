@@ -1615,10 +1615,17 @@ if (LATEST_DATABASE_VERSION > CURRENT_DATABASE_VERSION) {
         mysqli_query($mysqli, "UPDATE `settings` SET `config_current_database_version` = '1.0.7'");
     }
 
-    // if (CURRENT_DATABASE_VERSION == '1.0.7') {
-    //     // Insert queries here required to update to DB version 1.0.8
+    if (CURRENT_DATABASE_VERSION == '1.0.7') {
+        // Insert queries here required to update to DB version 1.0.8
+        mysqli_query($mysqli, "CREATE TABLE unmatched_emails (unmatched_email_id int(11) NOT NULL AUTO_INCREMENT,unmatched_email_from varchar(255) NOT NULL,unmatched_email_subject varchar(255) NOT NULL,unmatched_email_content longtext NOT NULL,unmatched_email_created_at datetime NOT NULL DEFAULT current_timestamp(),PRIMARY KEY (unmatched_email_id))");
+        // Then, update the database to the next sequential version
+        mysqli_query($mysqli, "UPDATE `settings` SET `config_current_database_version` = '1.0.8'");
+    }
+
+    // if (CURRENT_DATABASE_VERSION == '1.0.8') {
+    //     // Insert queries here required to update to DB version 1.0.9
     //     // Then, update the database to the next sequential version
-    //     mysqli_query($mysqli, "UPDATE `settings` SET `config_current_database_version` = '1.0.8'");
+    //     mysqli_query($mysqli, "UPDATE `settings` SET `config_current_database_version` = '1.0.9'");
     // }
 
 } else {

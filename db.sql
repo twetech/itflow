@@ -1658,6 +1658,24 @@ CREATE TABLE `trips` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `unmatched_emails`
+--
+DROP TABLE IF EXISTS `unmatched_emails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `unmatched_emails` (
+  `unmatched_email_id` int(11) NOT NULL AUTO_INCREMENT,
+  `unmatched_email_subject` varchar(255) NOT NULL,
+  `unmatched_email_from` varchar(255) NOT NULL,
+  `unmatched_email_date` datetime NOT NULL,
+  `unmatched_email_body` longtext NOT NULL,
+  `unmatched_email_created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `unmatched_email_updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `unmatched_email_archived_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`unmatched_email_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
 -- Table structure for table `user_settings`
 --
 

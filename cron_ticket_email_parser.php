@@ -504,8 +504,14 @@ if ($emails) {
                 } else {
 
                     // Couldn't match this email to an existing ticket, existing contact or an existing client via the "from" domain
-                    //  In the future we might make a page where these can be nicely viewed / managed, but for now we'll just flag them in the Inbox as needing attention
+                    // Add to the db 'unmatched_emails' table for manual review
+                    mysqli_query($mysqli, "INSERT INTO unmatched_emails SET unmatched_email_from = '$from_email', unmatched_email_subject = '$subject', unmatched_email_body = '$message', unmatched_email_date = '$date'");
+                    
+                    // Logging for unmatched email
+                    mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Email', log_action = 'Unmatched', log_description = 'Email parser: Unmatched email from $from_email', log_client_id = 0");
 
+                    // Notification
+                    mysqli_query($mysqli, "INSERT INTO notifications SET notification_type = 'Email', notification = 'Email parser: Unmatched email from $from_email', notification_action = 'unmatched_emails.php', notification_client_id = 0");
                 }
 
             }
