@@ -295,14 +295,15 @@ if (isset($_GET['ticket_id'])) {
         </div>
         <?php } ?>
     </div>
+            <span class="text-info ml-5" id="ticket_collision_viewing"></span>
 </div>
 
 <div class="row">
 
 
-    <div class="col-md-9">
-        <div class="card card-body">
-            <div class="card card-outline card-primary mb-3">
+            <div class="col-md-9">
+                
+                <div class="card card-outline card-primary mb-3">
 
                 <div class="card-header">
                     <h3 class="card-title text-bold"><?php echo $ticket_subject; ?></h3>
@@ -414,18 +415,18 @@ if (isset($_GET['ticket_id'])) {
                                 // Set the initial ticket response type (private/internal note)
                                 //  Future updates of the wording/icon are done by Javascript
 
-                                // Public responses by default (maybe configurable in future?)
-                                $ticket_reply_button_wording = "Respond";
-                                $ticket_reply_button_check = "checked";
-                                $ticket_reply_button_icon = "paper-plane";
+                            // Public responses by default (maybe configurable in future?)
+                            $ticket_reply_button_wording = "Respond";
+                            $ticket_reply_button_check = "checked";
+                            $ticket_reply_button_icon = "paper-plane";
 
-                                // Internal responses by default if 1) the contact email is empty or 2) the contact email matches the agent responding
-                                if (empty($contact_email) || $contact_email == $session_email) {
-                                    // Internal
-                                    $ticket_reply_button_wording = "Add note";
-                                    $ticket_reply_button_check = "";
-                                    $ticket_reply_button_icon = "sticky-note";
-                                } ?>
+                            // Internal responses by default if 1) the contact email is empty or 2) the contact email matches the agent responding
+                            if (empty($contact_email) || $contact_email == $session_email) {
+                                // Internal
+                                $ticket_reply_button_wording = "Add note";
+                                $ticket_reply_button_check = "";
+                                $ticket_reply_button_icon = "sticky-note";
+                            } ?>
 
 
                     <div class="col-md-3">
@@ -458,36 +459,36 @@ if (isset($_GET['ticket_id'])) {
             <!-- Ticket replies -->
             <?php
 
-                    while ($row = mysqli_fetch_array($sql_ticket_replies)) {
-                        $ticket_reply_id = intval($row['ticket_reply_id']);
-                        $ticket_reply = $purifier->purify($row['ticket_reply']);
-                        $ticket_reply_type = nullable_htmlentities($row['ticket_reply_type']);
-                        $ticket_reply_created_at = nullable_htmlentities($row['ticket_reply_created_at']);
-                        $ticket_reply_updated_at = nullable_htmlentities($row['ticket_reply_updated_at']);
-                        $ticket_reply_by = intval($row['ticket_reply_by']);
+                while ($row = mysqli_fetch_array($sql_ticket_replies)) {
+                    $ticket_reply_id = intval($row['ticket_reply_id']);
+                    $ticket_reply = $purifier->purify($row['ticket_reply']);
+                    $ticket_reply_type = nullable_htmlentities($row['ticket_reply_type']);
+                    $ticket_reply_created_at = nullable_htmlentities($row['ticket_reply_created_at']);
+                    $ticket_reply_updated_at = nullable_htmlentities($row['ticket_reply_updated_at']);
+                    $ticket_reply_by = intval($row['ticket_reply_by']);
 
-                        if ($ticket_reply_type == "Client") {
-                            $ticket_reply_by_display = nullable_htmlentities($row['contact_name']);
-                            $user_initials = initials($row['contact_name']);
-                            $user_avatar = nullable_htmlentities($row['contact_photo']);
-                            $avatar_link = "uploads/clients/$client_id/$user_avatar";
-                        } else {
-                            $ticket_reply_by_display = nullable_htmlentities($row['user_name']);
-                            $user_id = intval($row['user_id']);
-                            $user_avatar = nullable_htmlentities($row['user_avatar']);
-                            $user_initials = initials($row['user_name']);
-                            $avatar_link = "uploads/users/$user_id/$user_avatar";
-                            $ticket_reply_time_worked = date_create($row['ticket_reply_time_worked']);
-                        }
+                    if ($ticket_reply_type == "Client") {
+                        $ticket_reply_by_display = nullable_htmlentities($row['contact_name']);
+                        $user_initials = initials($row['contact_name']);
+                        $user_avatar = nullable_htmlentities($row['contact_photo']);
+                        $avatar_link = "uploads/clients/$client_id/$user_avatar";
+                    } else {
+                        $ticket_reply_by_display = nullable_htmlentities($row['user_name']);
+                        $user_id = intval($row['user_id']);
+                        $user_avatar = nullable_htmlentities($row['user_avatar']);
+                        $user_initials = initials($row['user_name']);
+                        $avatar_link = "uploads/users/$user_id/$user_avatar";
+                        $ticket_reply_time_worked = date_create($row['ticket_reply_time_worked']);
+                    }
 
-                        $sql_ticket_reply_attachments = mysqli_query(
-                            $mysqli,
-                            "SELECT * FROM ticket_attachments
-                            WHERE ticket_attachment_reply_id = $ticket_reply_id
-                            AND ticket_attachment_ticket_id = $ticket_id"
-                        );
+                    $sql_ticket_reply_attachments = mysqli_query(
+                        $mysqli,
+                        "SELECT * FROM ticket_attachments
+                        WHERE ticket_attachment_reply_id = $ticket_reply_id
+                        AND ticket_attachment_ticket_id = $ticket_id"
+                    );
 
-                    ?>
+                ?>
 
             <div class="card card-outline <?php if ($ticket_reply_type == 'Internal') {
                                                             echo "card-dark";
@@ -568,10 +569,10 @@ if (isset($_GET['ticket_id'])) {
 
             <?php
 
-                        require "ticket_reply_edit_modal.php";
-                    }
+                    require "ticket_reply_edit_modal.php";
+                }
 
-                    ?>
+                ?>
 
         </div>
     </div>
@@ -639,17 +640,17 @@ if (isset($_GET['ticket_id'])) {
 
                 <?php
 
-                            // Previous tickets
-                            $prev_ticket_id = $prev_ticket_subject = $prev_ticket_status = ''; // Default blank
+                        // Previous tickets
+                        $prev_ticket_id = $prev_ticket_subject = $prev_ticket_status = ''; // Default blank
 
-                            $sql_prev_ticket = "SELECT ticket_id, ticket_created_at, ticket_subject, ticket_status, ticket_assigned_to FROM tickets WHERE ticket_contact_id = $contact_id AND ticket_id  <> $ticket_id ORDER BY ticket_id DESC LIMIT 1";
-                            $prev_ticket_row = mysqli_fetch_assoc(mysqli_query($mysqli, $sql_prev_ticket));
+                        $sql_prev_ticket = "SELECT ticket_id, ticket_created_at, ticket_subject, ticket_status, ticket_assigned_to FROM tickets WHERE ticket_contact_id = $contact_id AND ticket_id  <> $ticket_id ORDER BY ticket_id DESC LIMIT 1";
+                        $prev_ticket_row = mysqli_fetch_assoc(mysqli_query($mysqli, $sql_prev_ticket));
 
-                            if ($prev_ticket_row) {
-                                $prev_ticket_id = intval($prev_ticket_row['ticket_id']);
-                                $prev_ticket_subject = nullable_htmlentities($prev_ticket_row['ticket_subject']);
-                                $prev_ticket_status = nullable_htmlentities($prev_ticket_row['ticket_status']);
-                            ?>
+                        if ($prev_ticket_row) {
+                            $prev_ticket_id = intval($prev_ticket_row['ticket_id']);
+                            $prev_ticket_subject = nullable_htmlentities($prev_ticket_row['ticket_subject']);
+                            $prev_ticket_status = nullable_htmlentities($prev_ticket_row['ticket_status']);
+                        ?>
 
                 <hr>
                 <div>
@@ -677,7 +678,7 @@ if (isset($_GET['ticket_id'])) {
             <?php
                     $sql_ticket_watchers = mysqli_query($mysqli, "SELECT * FROM ticket_watchers WHERE watcher_ticket_id = $ticket_id ORDER BY watcher_email DESC");
 
-                    if ($ticket_status !== "Closed" || mysqli_num_rows($sql_ticket_watchers) > 0) { ?>
+                if ($ticket_status !== "Closed" || mysqli_num_rows($sql_ticket_watchers) > 0) { ?>
 
             <div class="card card-body card-outline card-dark mb-3">
                 <h5 class="text-secondary">Watchers</h5>
@@ -840,7 +841,7 @@ if (isset($_GET['ticket_id'])) {
                 </div>
                 <?php }
 
-                            if ($ticket_asset_count > 0) { ?>
+                        if ($ticket_asset_count > 0) { ?>
 
                 <button class="btn btn-block btn-secondary mt-2 d-print-none" data-toggle="modal"
                     data-target="#assetTicketsModal">Service History (<?php echo $ticket_asset_count; ?>)</button>
@@ -963,38 +964,40 @@ if (isset($_GET['ticket_id'])) {
                     ?>
 
 
-            <form action="post.php" method="post">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
-                <input type="hidden" name="ticket_status" value="<?php echo $ticket_status; ?>">
-                <div class="form-group">
-                    <label>Assigned to</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
-                        </div>
-                        <select class="form-control select2" name="assigned_to" <?php if ($ticket_status == "Closed") {
-                                                                                            echo "disabled";
-                                                                                        } ?>>
-                            <option value="0">Not Assigned</option>
-                            <?php
 
-                                    while ($row = mysqli_fetch_array($sql_assign_to_select)) {
-                                        $user_id = intval($row['user_id']);
-                                        $user_name = nullable_htmlentities($row['user_name']); ?>
-                            <option <?php if ($ticket_assigned_to == $user_id) {
-                                                    echo "selected";
-                                                } ?> value="<?php echo $user_id; ?>"><?php echo $user_name; ?></option>
-                            <?php } ?>
-                        </select>
-                        <div class="input-group-append d-print-none">
-                            <button type="submit" class="btn btn-primary" name="assign_ticket" <?php if ($ticket_status == "Closed") {
-                                                                                                            echo "disabled";
-                                                                                                        } ?>><i
-                                    class="fas fa-check"></i></button>
+                <!-- Assigned to -->
+                <form action="post.php" method="post">
+                    <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
+                    <input type="hidden" name="ticket_status" value="<?php echo $ticket_status; ?>">
+                    <div class="form-group">
+                        <label>Assigned to</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
+                            </div>
+                            <select class="form-control select2" name="assigned_to" <?php if ($ticket_status == "Closed") {
+                                                                                        echo "disabled";
+                                                                                    } ?>>
+                                <option value="0">Not Assigned</option>
+                                <?php
+
+                                while ($row = mysqli_fetch_array($sql_assign_to_select)) {
+                                    $user_id = intval($row['user_id']);
+                                    $user_name = nullable_htmlentities($row['user_name']); ?>
+                                    <option <?php if ($ticket_assigned_to == $user_id) {
+                                                echo "selected";
+                                            } ?> value="<?php echo $user_id; ?>"><?php echo $user_name; ?></option>
+                                <?php } ?>
+                            </select>
+                            <div class="input-group-append d-print-none">
+                                <button type="submit" class="btn btn-primary" name="assign_ticket" <?php if ($ticket_status == "Closed") {
+                                                                                                        echo "disabled";
+                                                                                                    } ?>><i class="fas fa-check"></i></button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+                <!-- End Assigned to -->
 
             <div class="card card-body card-outline card-dark mb-2 d-print-none">
                 <?php if ($config_module_enable_accounting && $ticket_billable == 1) { ?>
@@ -1045,8 +1048,6 @@ if (isset($_GET['ticket_id'])) {
         }
     }
 }
-
-
 
 require_once "footer.php";
 
