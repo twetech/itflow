@@ -117,10 +117,8 @@ ITFlow is self-hosted. There is a full installation guide in the [docs](https://
   
 <!-- ROADMAP -->
 ## Roadmap / Future to-do
-* Comprehensive API to allow custom third party integration
 * CalDAV to integrate with 3rd party calendars
 * CardDAV to integrate with 3rd party Address books
-* Recent caller toast alerts to click and bring up the clients account right away
 * FIDO2 WebAuthn Support for passwordless auth (TPM Fingerprint), (USB Hardware keys such as Yubikey)
 
 See the [forum](https://forum.itflow.org/d/11-road-map) and the [open issues](https://github.com/itflow-org/itflow/issues) for a full list of proposed features & known issues.
