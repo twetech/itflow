@@ -223,8 +223,11 @@ if (isset($_GET['client_id'])) {
 
     }
 }
+require_once "inc_side_nav.php";
 
 require_once "client_side_nav.php";
+
+require_once "inc_side_nav_close.php";
 
 require_once "inc_wrapper.php";
 

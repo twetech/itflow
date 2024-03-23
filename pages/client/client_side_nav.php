@@ -1,20 +1,13 @@
-<!-- Main Sidebar Container -->
-<aside id="sidebar" class="u-sidebar">
-<div class="u-sidebar-inner">
-        <header class="u-sidebar-header">
-            <a class="u-sidebar-logo" href="index.html">
-                <img class="img-fluid" src="/dist/img/logo.png" width="124" alt="Stream Dashboard">
-            </a>
-        </header>
 
         <!-- Sidebar Menu -->
         <nav class="u-sidebar-nav">
 
             <ul class="u-sidebar-nav-menu u-sidebar-nav-menu--top-level">
 
+                <!-- Dashboard -->
                 <li class="u-sidebar-nav-menu__item">
                     <a class="u-sidebar-nav-menu__link" href="#!" data-target='#detailsSideNav'>
-                        <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
+                        <i class="fa fa-user-circle u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Client Details</span>
                         <span class="u-sidebar-nav-menu__item-arrow">
                             <i class="fa fa-angle-down u-sidebar-nav-menu__item-arrow-icon"></i>
@@ -41,8 +34,11 @@
                         </li>
                     </ul>
                 </li>
+                <!-- End Dashboard -->
 
+                <hr>
 
+                <!-- Support -->
                 <li class="u-sidebar-nav-menu__item">
                     <a class="u-sidebar-nav-menu__link" href="#!" data-target='#supportSideNav'>
                         <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
@@ -72,10 +68,14 @@
                         </li>
                     </ul>
                 </li>
+                <!-- End Support -->
 
+                <hr>
+
+                <!-- Documentation -->
                 <li class="u-sidebar-nav-menu__item">
                     <a class="u-sidebar-nav-menu__link" href="#!" data-target='#documentationSideNav'>
-                        <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
+                        <i class="fa fa-pencil-alt u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Documentation</span>
                         <span class="u-sidebar-nav-menu__item-arrow">
                             <i class="fa fa-angle-down u-sidebar-nav-menu__item-arrow-icon"></i>
@@ -90,58 +90,62 @@
                         </li>
                         <li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="client_software.php?client_id=<?php echo $client_id; ?>">
-                                <i class="fa fa-cube"></i>
+                                <i class="fa fa-cubes u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Licenses</span>
                             </a>
                         </li> 
                         <li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="client_logins.php?client_id=<?php echo $client_id; ?>">
-                                <i class="fa fa-key"></i>
+                                <i class="fa fa-key u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Logins</span>
                             </a>
                         </li>
                         <li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="client_networks.php?client_id=<?php echo $client_id; ?>">
-                                <i class="fa fa-network-wired"></i>
+                                <i class="fa fa-network-wired u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Networks</span>
                             </a>
                         </li>
                         <li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="client_certificates.php?client_id=<?php echo $client_id; ?>">
-                                <i class="fa fa-lock"></i>
+                                <i class="fa fa-lock u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Certificates</span>
                             </a>
                         </li>
                         <li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="client_domains.php?client_id=<?php echo $client_id; ?>">
-                                <i class="fa fa-globe"></i>
+                                <i class="fa fa-globe u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Domains</span>
                             </a>
                         </li>
                         <li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="client_services.php?client_id=<?php echo $client_id; ?>">
-                                <i class="fa fa-stream"></i>
+                                <i class="fa fa-stream u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Services</span>
                             </a>
                         </li>
                         <li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="client_documents.php?client_id=<?php echo $client_id; ?>">
-                                <i class="fa fa-folder"></i>
+                                <i class="fa fa-folder u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Documents</span>
                             </a>
                         </li>
                         <li class="u-sidebar-nav-menu__item">
                             <a class="u-sidebar-nav-menu__link" href="client_files.php?client_id=<?php echo $client_id; ?>">
-                                <i class="fa fa-paperclip"></i>
+                                <i class="fa fa-paperclip u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Files</span>
                             </a>
                         </li>
                     </ul>
                 </li>
+                <!-- End Documentation -->
 
+                <hr>
+
+                <!-- Finance -->
                 <li class="u-sidebar-nav-menu__item">
                     <a class="u-sidebar-nav-menu__link" href="#!" data-target='#financeSideNav'>
-                        <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
+                        <i class="fa fa-money-bill-wave u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Finance</span>
                         <span class="u-sidebar-nav-menu__item-arrow">
                             <i class="fa fa-angle-down u-sidebar-nav-menu__item-arrow-icon"></i>
@@ -180,10 +184,14 @@
                         </li>
                     </ul>
                 </li>
+                <!-- End Finance -->
 
+                <hr>
+
+                <!-- More -->
                 <li class="u-sidebar-nav-menu__item">
                     <a class="u-sidebar-nav-menu__link" href="#!" data-target='#moreSideNav'>
-                        <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
+                        <i class="fa fa-plus-circle u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">More</span>
                         <span class="u-sidebar-nav-menu__item-arrow">
                             <i class="fa fa-angle-down u-sidebar-nav-menu__item-arrow-icon"></i>
@@ -210,10 +218,4 @@
                         </li>
                     </ul>
                 </li>
-
-
-            </ul>
-        </nav>
-        <!-- End Sidebar Menu -->
-    </div>
-</aside>
+                

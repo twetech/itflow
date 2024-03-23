@@ -10,7 +10,11 @@ require_once "header.php";
 
 require_once "top_nav.php";
 
+require_once "inc_side_nav.php";
+
 require_once "side_nav.php";
+
+require_once "inc_side_nav_close.php";
 
 require_once "inc_wrapper.php";
 
