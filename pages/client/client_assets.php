@@ -6,34 +6,7 @@ $order = "ASC";
 
 require_once "inc_all_client.php";
 
-//Get Asset Counts
-//All Asset Count
-$row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) AS count FROM assets WHERE asset_archived_at IS NULL AND asset_client_id = $client_id"));
-$all_count = intval($row['count']);
-//Workstation Count
-$row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) AS count FROM assets WHERE (asset_type = 'laptop' OR asset_type = 'desktop') 
-  AND asset_archived_at IS NULL AND asset_client_id = $client_id"));
-$workstation_count = intval($row['count']);
 
-//Server Count
-$row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) AS count FROM assets WHERE (asset_type = 'server') 
-  AND asset_archived_at IS NULL AND asset_client_id = $client_id"));
-$server_count = intval($row['count']);
-
-//Virtual Server Count
-$row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) AS count FROM assets WHERE (asset_type = 'virtual machine') 
-  AND asset_archived_at IS NULL AND asset_client_id = $client_id"));
-$virtual_count = intval($row['count']);
-
-//Network Device Count
-$row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) AS count FROM assets WHERE (asset_type = 'Firewall/Router' OR asset_type = 'switch' OR asset_type = 'access point')
-  AND asset_archived_at IS NULL AND asset_client_id = $client_id"));
-$network_count = intval($row['count']);
-
-//Other Count
-$row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT(*) AS count FROM assets WHERE (asset_type NOT LIKE 'laptop' AND asset_type NOT LIKE 'desktop' AND asset_type NOT LIKE 'server' AND asset_type NOT LIKE 'virtual machine' AND asset_type NOT LIKE 'firewall/router' AND asset_type NOT LIKE 'switch' AND asset_type NOT LIKE 'access point')
-  AND asset_archived_at IS NULL AND asset_client_id = $client_id"));
-$other_count = intval($row['count']);
 
 //Asset Type from GET
 if (isset($_GET['type']) && ($_GET['type']) == 'workstation') {
@@ -59,6 +32,45 @@ if (isset($_GET['location']) & !empty($_GET['location'])) {
     // Default - any
     $location_query = '';
 }
+
+//Get Asset Counts
+$row = mysqli_fetch_assoc(mysqli_query($mysqli, "
+    SELECT 
+        COUNT(*) AS all_count,
+        SUM(CASE WHEN asset_type IN ('laptop', 'desktop') THEN 1 ELSE 0 END) AS workstation_count,
+        SUM(CASE WHEN asset_type = 'server' THEN 1 ELSE 0 END) AS server_count,
+        SUM(CASE WHEN asset_type = 'virtual machine' THEN 1 ELSE 0 END) AS virtual_count,
+        SUM(CASE WHEN asset_type IN ('Firewall/Router', 'switch', 'access point') THEN 1 ELSE 0 END) AS network_count,
+        SUM(CASE WHEN asset_type NOT IN ('laptop', 'desktop', 'server', 'virtual machine', 'Firewall/Router', 'switch', 'access point') THEN 1 ELSE 0 END) AS other_count
+    FROM (
+        SELECT assets.* FROM assets 
+        LEFT JOIN contacts ON asset_contact_id = contact_id 
+        LEFT JOIN locations ON asset_location_id = location_id 
+        WHERE asset_client_id = $client_id
+        AND asset_$archive_query
+        AND (asset_name LIKE '%$q%' OR asset_description LIKE '%$q%' OR asset_type LIKE '%$q%' OR asset_ip LIKE '%$q%' OR asset_make LIKE '%$q%' OR asset_model LIKE '%$q%' OR asset_serial LIKE '%$q%' OR asset_os LIKE '%$q%' OR contact_name LIKE '%$q%' OR location_name LIKE '%$q%')
+        AND ($type_query)
+        $location_query
+    ) AS filtered_assets;
+"));
+
+//All Asset Count
+$all_count = intval($row['all_count']);
+
+//Workstation Count
+$workstation_count = intval($row['workstation_count']);
+
+//Server Count
+$server_count = intval($row['server_count']);
+
+//Virtual Server Count
+$virtual_count = intval($row['virtual_count']);
+
+//Network Device Count
+$network_count = intval($row['network_count']);
+
+//Other Count
+$other_count = intval($row['other_count']);
 
 //Rebuild URL
 $url_query_strings_sort = http_build_query($get_copy);
@@ -138,7 +150,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     <div class="col-sm-6">
                         <div class="btn-toolbar float-right">
                             <div class="btn-group mr-5">
+                                <?php if($all_count) { ?>
                                 <a href="?<?php echo $url_query_strings_sort; ?>&type=" class="btn <?php if ($_GET['type'] == 'all' || empty($_GET['type'])) { echo 'btn-primary'; } else { echo 'btn-default'; } ?>">All Assets<span class="right badge badge-light ml-2"><?php echo $all_count; ?></span></a>
+                                <?php } ?>
                                 <?php
                                 if ($workstation_count > 0) { ?>
                                     <a href="?<?php echo $url_query_strings_sort; ?>&type=workstation" class="btn <?php if ($_GET['type'] == 'workstation') { echo 'btn-primary'; } else { echo 'btn-default'; } ?>"><i class="fa fa-fw fa-desktop mr-2"></i>Workstations<span class="right badge badge-light ml-2"><?php echo $workstation_count; ?></span></a>
