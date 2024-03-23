@@ -9,7 +9,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 <?php
 
 // Initialize the HTML Purifier to prevent XSS
-require "plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/develop.twe.tech/includes/modals/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);
@@ -569,7 +569,7 @@ if (isset($_GET['ticket_id'])) {
 
             <?php
 
-                    require "ticket_reply_edit_modal.php";
+                    require "/var/www/develop.twe.tech/includes/modals/ticket_reply_edit_modal.php";
                 }
 
                 ?>
@@ -1022,49 +1022,49 @@ if (isset($_GET['ticket_id'])) {
 </div>
 
 <?php
-        require_once "ticket_edit_modal.php";
+        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_modal.php";
 
-        require_once "ticket_edit_contact_modal.php";
+        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_contact_modal.php";
 
-        require_once "ticket_edit_asset_modal.php";
+        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_asset_modal.php";
 
-        require_once "ticket_edit_vendor_modal.php";
+        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_vendor_modal.php";
 
-        require_once "ticket_add_watcher_modal.php";
+        require_once "/var/www/develop.twe.tech/includes/modals/ticket_add_watcher_modal.php";
 
-        require_once "ticket_edit_priority_modal.php";
+        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_priority_modal.php";
 
-        require_once "ticket_change_client_modal.php";
+        require_once "/var/www/develop.twe.tech/includes/modals/ticket_change_client_modal.php";
 
-        require_once "ticket_edit_schedule_modal.php";
+        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_schedule_modal.php";
 
-        require_once "ticket_merge_modal.php";
+        require_once "/var/www/develop.twe.tech/includes/modals/ticket_merge_modal.php";
 
 
         if ($config_module_enable_accounting) {
-            require_once "ticket_edit_billable_modal.php";
-            require_once "ticket_invoice_add_modal.php";
-            require_once "ticket_add_product_modal.php";
+            require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_billable_modal.php";
+            require_once "/var/www/develop.twe.tech/includes/modals/ticket_invoice_add_modal.php";
+            require_once "/var/www/develop.twe.tech/includes/modals/ticket_add_product_modal.php";
         }
     }
 }
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 
 ?>
 
 
 
 
-<script src="js/show_modals.js"></script> <?php
+<script src="/includes/js/show_modals.js"></script> <?php
 
                                             if ($ticket_status !== "Closed") { ?>
 <!-- Ticket Time Tracking JS -->
-<script src="js/ticket_time_tracking.js"></script>
+<script src="/includes/js/ticket_time_tracking.js"></script>
 
 <!-- Ticket collision detect JS (jQuery is called in footer, so collision detection script MUST be below it) -->
-<script src="js/ticket_collision_detection.js"></script>
-<script src="js/ticket_button_respond_note.js"></script>
+<script src="/includes/js/ticket_collision_detection.js"></script>
+<script src="/includes/js/ticket_button_respond_note.js"></script>
 <?php } ?>
 
-<script src="js/pretty_content.js"></script>
+<script src="/includes/js/pretty_content.js"></script>

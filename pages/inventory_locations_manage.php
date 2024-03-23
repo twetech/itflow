@@ -129,7 +129,7 @@ $location_name = sanitizeInput($location_name_row[0]);
                                     </div>
                                 </td>
                             <?php
-                            require "inventory_edit_item_location_modal.php";
+                            require "/var/www/develop.twe.tech/includes/modals/inventory_edit_item_location_modal.php";
                         }
 
                         ?>
@@ -139,7 +139,7 @@ $location_name = sanitizeInput($location_name_row[0]);
                 </div>
 
             </form>
-            <?php require_once "pagination.php";
+            <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
 
  ?>
         </div>
@@ -150,4 +150,4 @@ $location_name = sanitizeInput($location_name_row[0]);
 <?php
 
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';

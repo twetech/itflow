@@ -273,7 +273,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                             <?php
 
-                            require "client_contact_edit_modal.php";
+                            require "/var/www/develop.twe.tech/includes/modals/client_contact_edit_modal.php";
 
                         }
 
@@ -287,7 +287,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <?php require_once "client_contact_bulk_edit_department_modal.php"; ?>
                 <?php require_once "client_contact_bulk_edit_role_modal.php"; ?>
             </form>
-            <?php require_once "pagination.php";
+            <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
 ?>
         </div>
     </div>
@@ -333,12 +333,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 <?php
 
-require_once "client_contact_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_contact_add_modal.php";
 
-require_once "client_contact_invite_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_contact_invite_modal.php";
 
-require_once "client_contact_import_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_contact_import_modal.php";
 
-require_once "client_contact_export_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_contact_export_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';

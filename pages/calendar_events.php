@@ -8,7 +8,7 @@ if (isset($_GET['calendar_id'])) {
 }
 
 ?>
-<link href='plugins/fullcalendar-6.1.10/dist/index.global.js' rel='stylesheet' />
+<link href='/includes/plugins/fullcalendar-6.1.10/dist/index.global.js' rel='stylesheet' />
 
 <!-- So that when hovering over a created event it turns into a hand instead of cursor -->
 <style>
@@ -21,9 +21,9 @@ if (isset($_GET['calendar_id'])) {
 </div>
 <?php
 
-require_once "calendar_event_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/calendar_event_add_modal.php";
 
-require_once "calendar_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/calendar_add_modal.php";
 
 
 //loop through IDs and create a modal for each
@@ -40,15 +40,15 @@ while ($row = mysqli_fetch_array($sql)) {
     $calendar_color = nullable_htmlentities($row['calendar_color']);
     $client_id = intval($row['event_client_id']);
 
-    require "calendar_event_edit_modal.php";
+    require "/var/www/develop.twe.tech/includes/modals//var/www/develop.twe.tech/includes/modals/calendar_event_edit_modal.php";
 }
 
 ?>
 
-<?php require_once "footer.php";
+<?php require_once "/var/www/develop.twe.tech/includes/footer.php";
 ?>
 
-<script src='plugins/fullcalendar-6.1.10/dist/index.global.js'></script>
+<script src='/includes/plugins/fullcalendar-6.1.10/dist/index.global.js'></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

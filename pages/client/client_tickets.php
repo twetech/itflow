@@ -242,13 +242,13 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
                     if ($ticket_status !== "Closed") {
                         // Temp performance boost for closed tickets, until we move to dynamic modals
 
-                        require "ticket_assign_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/ticket_assign_modal.php";
 
-                        require "ticket_edit_priority_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/ticket_edit_priority_modal.php";
 
-                        require "ticket_edit_contact_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/ticket_edit_contact_modal.php";
 
-                        require "ticket_edit_billable_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/ticket_edit_billable_modal.php";
 
                     }
 
@@ -259,16 +259,16 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
                 </tbody>
             </table>
         </div>
-        <?php require_once "pagination.php";
+        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
         ?>
     </div>
 </div>
 
 <?php
-require_once "ticket_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/ticket_add_modal.php";
 
-require_once "client_ticket_export_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_ticket_export_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 
 ?>

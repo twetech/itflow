@@ -11,7 +11,7 @@
                 <hr>
 
                 <!-- Support -->
-                <li class="u-sidebar-nav-menu__item">
+                <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "clients.php" || basename($_SERVER["PHP_SELF"]) == "tickets.php" || basename($_SERVER["PHP_SELF"]) == "ticket.php" || basename($_SERVER["PHP_SELF"]) == "recurring_tickets.php" || basename($_SERVER["PHP_SELF"]) == "calendar_events.php") { echo "u-sidebar-nav--opened"; } ?>">
                     <a class="u-sidebar-nav-menu__link" href="#!" data-target='#supportSideNav'>
                         <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Support</span>
@@ -50,7 +50,7 @@
                 <hr>
 
                 <!-- Sales -->
-                <li class="u-sidebar-nav-menu__item">
+                <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "quotes.php" || basename($_SERVER["PHP_SELF"]) == "quote.php" || basename($_SERVER["PHP_SELF"]) == "invoices.php" || basename($_SERVER["PHP_SELF"]) == "invoice.php" || basename($_SERVER["PHP_SELF"]) == "recurring_invoices.php" || basename($_SERVER["PHP_SELF"]) == "recurring_invoice.php" || basename($_SERVER["PHP_SELF"]) == "products.php") { echo "u-sidebar-nav--opened"; } ?>">
                     <a class="u-sidebar-nav-menu__link" href="#!" data-target='#salesSideNav'>
                         <i class="fa fa-chart-line u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Sales</span>
@@ -89,7 +89,7 @@
                 <hr>
 
                 <!-- Accounting -->
-                <li class="u-sidebar-nav-menu__item">
+                <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "payments.php" || basename($_SERVER["PHP_SELF"]) == "vendors.php" || basename($_SERVER["PHP_SELF"]) == "expenses.php" || basename($_SERVER["PHP_SELF"]) == "recurring_expenses.php" || basename($_SERVER["PHP_SELF"]) == "accounts.php" || basename($_SERVER["PHP_SELF"]) == "transfers.php" || basename($_SERVER["PHP_SELF"]) == "budget.php" || basename($_SERVER["PHP_SELF"]) == "trips.php") { echo "u-sidebar-nav--opened"; } ?>">
                     <a class="u-sidebar-nav-menu__link" href="#!" data-target='#accountingSideNav'>
                         <i class="fa fa-calculator u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Accounting</span>

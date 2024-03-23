@@ -6,9 +6,9 @@
  * Always returns data in JSON format, unless otherwise specified
  */
 
-require_once "config.php";
+require_once "/var/www/develop.twe.tech/includes/config.php";
 
-require_once "functions.php";
+require_once "/var/www/develop.twe.tech/includes/functions.php";
 
 require_once "check_login.php";
 

@@ -180,12 +180,12 @@ if (isset($_GET['archived'])) {
                 </tbody>
             </table>
         </div>
-        <?php require_once "pagination.php";
+        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
  ?>
     </div>
 </div>
 
 <?php
-require_once "admin_category_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/admin_category_add_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';

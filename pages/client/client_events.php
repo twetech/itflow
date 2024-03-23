@@ -41,7 +41,7 @@ while ($row = mysqli_fetch_array($sql)) {
     $calendar_name = nullable_htmlentities($row['calendar_name']);
     $calendar_color = nullable_htmlentities($row['calendar_color']);
 
-    require "calendar_event_edit_modal.php";
+    require "/var/www/develop.twe.tech/includes/modals/calendar_event_edit_modal.php";
 
 
 }
@@ -246,5 +246,5 @@ while ($row = mysqli_fetch_array($sql)) {
 </script>
 
 <?php
-require "footer.php";
+require "/var/www/develop.twe.tech/includes/modals/footer.php";
 

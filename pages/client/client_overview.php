@@ -359,5 +359,5 @@ $sql_asset_retire = mysqli_query(
 
 <?php
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

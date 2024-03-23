@@ -145,5 +145,5 @@ $company_initials = nullable_htmlentities(initials($company_name));
     </div>
 
 <?php
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

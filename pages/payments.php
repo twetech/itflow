@@ -191,11 +191,11 @@ $credits_num_rows = mysqli_num_rows($sql_credits);
                 </tbody>
             </table>
         </div>
-        <?php require_once "pagination.php";
+        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
  ?>
     </div>
 </div>
 
-<?php require_once "footer.php";
+<?php require_once '/var/www/develop.twe.tech/includes/footer.php';
  ?>
  

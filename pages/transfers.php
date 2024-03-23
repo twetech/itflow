@@ -164,7 +164,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         <?php
 
-                        require "transfer_edit_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/transfer_edit_modal.php";
 
 
                     }
@@ -174,13 +174,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </tbody>
                 </table>
             </div>
-            <?php require_once "pagination.php";
+            <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
  ?>
         </div>
     </div>
 
 <?php
-require_once "transfer_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/transfer_add_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

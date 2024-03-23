@@ -84,7 +84,7 @@ $num_rows = mysqli_num_rows($sql);
 
                         <?php
                         
-                        require "admin_inventory_location_edit_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/admin_inventory_location_edit_modal.php";
 
                     }
 
@@ -102,7 +102,7 @@ $num_rows = mysqli_num_rows($sql);
     </div>
 
 <?php
-require_once "admin_inventory_location_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/admin_inventory_location_add_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

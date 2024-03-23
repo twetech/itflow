@@ -4,7 +4,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_client.php";
 
 
 //Initialize the HTML Purifier to prevent XSS
-require "plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/develop.twe.tech/includes/modals/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);
@@ -289,19 +289,19 @@ $document_parent = intval($row['document_parent']);
 
 <?php
 
-require_once "client_document_edit_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_document_edit_modal.php";
 
-require_once "client_document_link_file_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_document_link_file_modal.php";
 
-require_once "client_document_link_contact_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_document_link_contact_modal.php";
 
-require_once "client_document_link_asset_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_document_link_asset_modal.php";
 
-require_once "client_document_link_software_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_document_link_software_modal.php";
 
-require_once "client_document_link_vendor_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_document_link_vendor_modal.php";
 
-require_once "share_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/share_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

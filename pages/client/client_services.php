@@ -194,9 +194,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             WHERE service_id = $service_id"
                         );
 
-                        require "client_service_edit_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/client_service_edit_modal.php";
 
-                        require "client_service_view_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/client_service_view_modal.php";
 
 
                     }
@@ -211,7 +211,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     </div>
 
 <?php
-require_once "client_service_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_service_add_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

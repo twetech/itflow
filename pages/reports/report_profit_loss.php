@@ -433,5 +433,5 @@ $sql_categories_expense = mysqli_query($mysqli, "SELECT * FROM categories WHERE 
         </div>
     </div>
 
-<?php require_once "footer.php";
+<?php require_once '/var/www/develop.twe.tech/includes/footer.php';
 

@@ -154,8 +154,8 @@
 
 <?php
 
-require_once "client_edit_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_edit_modal.php";
 
-require_once "client_delete_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_delete_modal.php";
 
-require_once "client_download_pdf_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_download_pdf_modal.php";

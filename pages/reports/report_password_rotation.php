@@ -71,5 +71,5 @@ $passwords_not_rotated_sql = mysqli_query($mysqli,
     </div>
 
 <?php
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 
