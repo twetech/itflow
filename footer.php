@@ -1,13 +1,15 @@
 <?php require_once "inc_confirm_modal.php";
  ?>
 
+
 </div><!-- /.container-fluid -->
-</div>
-<!-- /.content -->
-</div>
+
 <!-- /.content-wrapper -->
 </div>
 <!-- ./wrapper -->
+
+</main>
+
 
 <!-- REQUIRED SCRIPTS -->
 
@@ -28,11 +30,21 @@
 <script src="js/keepalive.js"></script>
 
 
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-<script src="js/app.js"></script>
-<script src="js/confirm_modal.js"></script>
-</body>
+		<!-- Global Vendor -->
+		<script src="dist/vendor/jquery/dist/jquery.min.js"></script>
+		<script src="dist/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+		<script src="dist/vendor/popper.js/dist/umd/popper.min.js"></script>
+		<script src="dist/vendor/bootstrap/bootstrap.min.js"></script>
+
+		<!-- Plugins -->
+		<script src="dist/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="dist/vendor/chart.js/dist/Chart.min.js"></script>
+
+		<!-- Initialization  -->
+		<script src="dist/js/sidebar-nav.js"></script>
+		<script src="dist/js/main.js"></script>
+		<script src="dist/js/dashboard-page-scripts.js"></script>
+	</body>
 </html>
 
 <?php

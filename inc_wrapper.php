@@ -1,6 +1,6 @@
  <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="u-content">
 
       <!-- Main content -->
-      <div class="content mt-3 p-0 px-md-2">
-        <div class="container-fluid">
+      <div class="u-body">
+
