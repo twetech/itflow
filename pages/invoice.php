@@ -1,6 +1,6 @@
 <?php
 
-require_once "inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 if (isset($_GET['invoice_id'])) {

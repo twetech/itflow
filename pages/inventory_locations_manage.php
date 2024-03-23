@@ -4,7 +4,7 @@
 $sort = "inventory_created_at";
 $order = "DESC";
 
-require_once "inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 $inventory_location_id = intval($_GET["inventory_location_id"]);
 

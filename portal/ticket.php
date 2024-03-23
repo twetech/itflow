@@ -4,7 +4,7 @@
  * Ticket detail page
  */
 
-require_once "inc_portal.php";
+require_once "/var/www/develop.twe.tech/includes/inc_portal.php";
 
 //Initialize the HTML Purifier to prevent XSS
 require "../plugins/htmlpurifier/HTMLPurifier.standalone.php";

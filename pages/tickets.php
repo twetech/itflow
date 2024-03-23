@@ -5,7 +5,7 @@
 $sort = "ticket_number";
 $order = "DESC";
 
-require_once "inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 // Ticket status from GET

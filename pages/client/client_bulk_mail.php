@@ -1,5 +1,5 @@
 <?php
-require_once "inc_all_client.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all_client.php";
 
 $sql = mysqli_query($mysqli, "SELECT * FROM contacts
     WHERE contact_client_id = $client_id

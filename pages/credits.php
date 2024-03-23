@@ -4,7 +4,7 @@
 $sort = "client_id";
 $order = "DESC";
 
-require_once "inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 //Rebuild URL

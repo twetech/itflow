@@ -4,7 +4,7 @@
 $sort = "recurring_last_sent";
 $order = "DESC";
 
-require_once "inc_all_client.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all_client.php";
 
 
 //Rebuild URL

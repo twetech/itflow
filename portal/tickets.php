@@ -6,7 +6,7 @@
 
 header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
 
-require_once "inc_portal.php";
+require_once "/var/www/develop.twe.tech/includes/inc_portal.php";
 
 
 // Ticket status from GET

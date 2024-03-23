@@ -1,5 +1,5 @@
 <?php
-require_once "inc_all_admin.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
  ?>
 
 <div class="card card-dark mb-3">
