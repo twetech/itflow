@@ -30,7 +30,7 @@ $num_rows = mysqli_num_rows($sql);
         </div>
         <div class="card-body">
             <div class="table-responsive-sm">
-                <table class="table table-striped table-borderless table-hover">
+                 <table class="table table-hover">
                     <thead class="text-dark <?php if ($num_rows == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=inventory_location_name&order=<?php echo $disp; ?>">Name</a></th>

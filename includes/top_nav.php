@@ -3,7 +3,7 @@
     <div class="u-header-left">
         <a class="u-header-logo" href="<?php echo $config_start_page; ?>">
             <img class="u-logo-desktop" src="/includes/dist/img/logo.png" width="160" alt="Stream Dashboard">
-            <img class="img-fluid u-logo-mobile" src="dist/img/logo-mobile.png" width="50" alt="Stream Dashboard">
+            <img class="img-fluid u-logo-mobile" src="/includes/dist/img/logo-mobile.png" width="50" alt="Stream Dashboard">
         </a>
     </div>
 
@@ -24,9 +24,10 @@
                         <button class="btn-link input-group-prepend u-header-search__btn" type="submit">
                             <i class="fa fa-search"></i>
                         </button>
-                        <input class="form-control u-header-search__field" type="search" placeholder="Type to search…" name='query' value="<?php if (isset($_GET['query'])) {
-                                                                                                                                                echo nullable_htmlentities($_GET['query']);
-                                                                                                                                            } ?>">
+                        <input class="form-control u-header-search__field" type="search" placeholder="Type to search…" name='query' value="
+                        <?php if (isset($_GET['query'])) {
+                            echo nullable_htmlentities($_GET['query']);
+                        } ?>">
                     </div>
                 </form>
             </div>
@@ -55,7 +56,7 @@
                             <!-- Activity -->
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media align-items-center">
-                                    <img class="u-avatar--sm rounded-circle mr-3" src="dist/img/avatars/img1.jpg" alt="Image description">
+                                    <img class="u-avatar--sm rounded-circle mr-3" src="/includes/dist/img/avatars/img1.jpg" alt="Image description">
 
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
@@ -74,7 +75,7 @@
                             <!-- Activity -->
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media align-items-center">
-                                    <img class="u-avatar--sm rounded-circle mr-3" src="dist/img/avatars/img2.jpg" alt="Image description">
+                                    <img class="u-avatar--sm rounded-circle mr-3" src="/includes/dist/img/avatars/img2.jpg" alt="Image description">
 
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
@@ -93,7 +94,7 @@
                             <!-- Activity -->
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media align-items-center">
-                                    <img class="u-avatar--sm rounded-circle mr-3" src="dist/img/avatars/user-unknown.jpg" alt="Image description">
+                                    <img class="u-avatar--sm rounded-circle mr-3" src="/includes/dist/img/avatars/user-unknown.jpg" alt="Image description">
 
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
@@ -112,7 +113,7 @@
                             <!-- Activity -->
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media align-items-center">
-                                    <img class="u-avatar--sm rounded-circle mr-3" src="dist/img/avatars/img4.jpg" alt="Image description">
+                                    <img class="u-avatar--sm rounded-circle mr-3" src="/includes/dist/img/avatars/img4.jpg" alt="Image description">
 
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
@@ -271,7 +272,7 @@
                             <!-- App -->
                             <div class="col-4 px-2 mb-2">
                                 <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="dist/img/brands-sm/img1.png" alt="">
+                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img1.png" alt="">
                                     <span class="text-center">Assana</span>
                                 </a>
                             </div>
@@ -280,7 +281,7 @@
                             <!-- App -->
                             <div class="col-4 px-2 mb-2">
                                 <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="dist/img/brands-sm/img2.png" alt="">
+                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img2.png" alt="">
                                     <span class="text-center">Slack</span>
                                 </a>
                             </div>
@@ -289,7 +290,7 @@
                             <!-- App -->
                             <div class="col-4 px-2 mb-2">
                                 <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="dist/img/brands-sm/img3.png" alt="">
+                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img3.png" alt="">
                                     <span class="text-center">Cloud</span>
                                 </a>
                             </div>
@@ -298,7 +299,7 @@
                             <!-- App -->
                             <div class="col-4 px-2">
                                 <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="dist/img/brands-sm/img5.png" alt="">
+                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img5.png" alt="">
                                     <span class="text-center">Facebook</span>
                                 </a>
                             </div>
@@ -307,7 +308,7 @@
                             <!-- App -->
                             <div class="col-4 px-2">
                                 <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="dist/img/brands-sm/img4.png" alt="">
+                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img4.png" alt="">
                                     <span class="text-center">Spotify</span>
                                 </a>
                             </div>
@@ -316,7 +317,7 @@
                             <!-- App -->
                             <div class="col-4 px-2">
                                 <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="dist/img/brands-sm/img6.png" alt="">
+                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img6.png" alt="">
                                     <span class="text-center">Twitter</span>
                                 </a>
                             </div>
@@ -335,7 +336,7 @@
         <!-- User Profile -->
         <div class="dropdown ml-2">
             <a class="link-muted d-flex align-items-center" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
-                <img class="u-avatar--xs img-fluid rounded-circle mr-2" src="dist/img/avatars/img1.jpg" alt="User Profile">
+                <img class="u-avatar--xs img-fluid rounded-circle mr-2" src="/includes/dist/img/avatars/img1.jpg" alt="User Profile">
                 <span class="text-dark d-none d-sm-inline-block">
                     <?php echo $session_name ?> <small class="fa fa-angle-down text-muted ml-1"></small>
                 </span>

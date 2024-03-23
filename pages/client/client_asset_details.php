@@ -228,7 +228,7 @@ if (isset($_GET['asset_id'])) {
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm-sm">
-                        <table class="table table-striped table-borderless table-hover">
+                         <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -333,7 +333,7 @@ if (isset($_GET['asset_id'])) {
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
-                        <table class="table table-striped table-borderless table-hover">
+                         <table class="table table-hover">
                             <thead class="text-dark">
                             <tr>
                                 <th>Software</th>
@@ -408,7 +408,7 @@ if (isset($_GET['asset_id'])) {
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
-                        <table class="table table-striped table-borderless table-hover">
+                         <table class="table table-hover">
                             <thead class="text-dark">
                             <tr>
                                 <th>Number</th>

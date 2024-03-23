@@ -5,7 +5,7 @@ function keep_alive() {
 
     //Send a GET request to keepalive.php as keepalive.php?keepalive
     jQuery.get(
-        "keepalive.php",
+        "/includes/keepalive.php",
         {keepalive: 'true'},
         function(data) {
             // Don't care about a response

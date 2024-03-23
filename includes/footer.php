@@ -43,7 +43,6 @@
 		<!-- Initialization  -->
 		<script src="/includes/dist/js/sidebar-nav.js"></script>
 		<script src="/includes/dist/js/main.js"></script>
-		<script src="/includes/dist/js/dashboard-page-scripts.js"></script>
 	</body>
 </html>
 
