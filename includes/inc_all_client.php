@@ -223,17 +223,17 @@ if (isset($_GET['client_id'])) {
 
     }
 }
-require_once "inc_side_nav.php";
+require_once "/var/www/develop.twe.tech/includes/inc_side_nav.php";
 
 require_once "client_side_nav.php";
 
-require_once "inc_side_nav_close.php";
+require_once "/var/www/develop.twe.tech/includes/inc_side_nav_close.php";
 
-require_once "inc_wrapper.php";
+require_once "/var/www/develop.twe.tech/includes/inc_wrapper.php";
 
-require_once "inc_alert_feedback.php";
+require_once "/var/www/develop.twe.tech/includes/inc_alert_feedback.php";
 
-require_once "inc_client_top_head.php";
+require_once "/var/www/develop.twe.tech/includes/inc_client_top_head.php";
 
 require_once "pagination_head.php";
 

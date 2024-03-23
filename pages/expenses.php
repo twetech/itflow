@@ -4,7 +4,7 @@
 $sort = "expense_date";
 $order = "DESC";
 
-require_once "inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 //Rebuild URL
 $url_query_strings_sort = http_build_query($get_copy);

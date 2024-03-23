@@ -1,6 +1,6 @@
 <?php
 
-require_once "inc_all_client.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all_client.php";
 
 
 if (isset($_GET['asset_id'])) {

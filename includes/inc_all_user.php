@@ -12,8 +12,8 @@ require_once "top_nav.php";
 
 require_once "user_side_nav.php";
 
-require_once "inc_wrapper.php";
+require_once "/var/www/develop.twe.tech/includes/inc_wrapper.php";
 
-require_once "inc_alert_feedback.php";
+require_once "/var/www/develop.twe.tech/includes/inc_alert_feedback.php";
 
 require_once "pagination_head.php";

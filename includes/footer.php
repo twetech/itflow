@@ -1,4 +1,4 @@
-<?php require_once "inc_confirm_modal.php";
+<?php require_once "/var/www/develop.twe.tech/includes/inc_confirm_modal.php";
  ?>
 
 

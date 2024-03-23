@@ -4,7 +4,7 @@
 $sort = "invoice_number";
 $order = "DESC";
 
-require_once "inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT('recurring_id') AS num FROM recurring WHERE recurring_archived_at IS NULL"));
 $recurring_invoice_count = $row['num'];
