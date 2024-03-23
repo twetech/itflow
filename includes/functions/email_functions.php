@@ -5,7 +5,7 @@
 // PHP Mailer Libs
 
 $document_root = $_SERVER['DOCUMENT_ROOT'];
-$plugin_path = '/var/www/develop.twe.tech/plugins/PHPMailer/src/';
+$plugin_path = '/var/www/develop.twe.tech/includes/plugins/PHPMailer/src/';
 
 require_once $plugin_path . 'Exception.php';
 require_once $plugin_path . 'PHPMailer.php';

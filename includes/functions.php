@@ -13,12 +13,7 @@ function requireOnceAll($functionsPath) {
 // Load all functions -----------------------------------------
 // Other functions are categorized in different files
 
-// Path to functions folder using the server root path
-if (isset($cron)) { 
-    $functionsPath = $_SERVER['DOCUMENT_ROOT'] . "/functions";
-} else { 
-    $functionsPath = dirname(__FILE__) . "/functions";
-}
+$functionsPath = "/var/www/develop.twe.tech/includes/functions";
 
 // Require Once All in the functions folder
 requireOnceAll($functionsPath);
