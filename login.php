@@ -119,7 +119,7 @@ if (isset($_POST['login'])) {
         }
 
         // Get remember tokens less than 2 days old
-        $remember_tokens = mysqli_query($mysqli, "SELECT remember_token_token FROM remember_tokens WHERE remember_token_user_id = $user_id AND remember_token_created_at > (NOW() - INTERVAL 2 DAY)");
+        $remember_tokens = mysqli_query($mysqli, "SELECT remember_token_token FROM remember_tokens WHERE remember_token_user_id = $user_id AND remember_token_created_at > (NOW() - INTERVAL 5 DAY)");
 
         $bypass_2fa = false;
         if (isset($_COOKIE['rememberme'])) {
@@ -273,118 +273,114 @@ if (isset($_POST['login'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php echo nullable_htmlentities($company_name); ?> | Login</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="keywords" content="Bootstrap Theme, Freebies, Dashboard, MIT license">
+    <meta name="description" content="Stream - Dashboard UI Kit">
+    <meta name="author" content="htmlstream.com">
 
-    <!--
-    Favicon
-    If Fav Icon exists else use the default one
-    -->
-    <?php if(file_exists('uploads/favicon.ico')) { ?>
-        <link rel="icon" type="image/x-icon" href="/uploads/favicon.ico">
-    <?php } ?>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Web Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+    <!-- Components Vendor Styles -->
+    <link rel="stylesheet" href="dist/vendor/font-awesome/css/all.min.css">
+
+    <!-- Theme Styles -->
+    <link rel="stylesheet" href="dist/css/theme.css">
 </head>
+
 <body class="hold-transition login-page">
+		<main class="container-fluid w-100" role="main">
+			<div class="row">
+				<div class="col-lg-6 d-flex flex-column justify-content-center align-items-center bg-white mnh-100vh login-box">
+					<a class="u-login-form py-3 mb-auto login-logo" href="index.html">
+                        <img alt="<?=nullable_htmlentities($company_name)?> logo" height="110" width="380" class="img-fluid" src="<?php echo "uploads/settings/$company_logo"; ?>">
+					</a>
 
-<div class="login-box">
-    <div class="login-logo">
-        <?php if (!empty($company_logo)) { ?>
-            <img alt="<?=nullable_htmlentities($company_name)?> logo" height="110" width="380" class="img-fluid" src="<?php echo "uploads/settings/$company_logo"; ?>">
-        <?php } else { ?>
-            <b>IT</b>Flow
-        <?php } ?>
-    </div>
+                    <?php if(!empty($config_login_message)){ ?>
+                        <p class="login-box-msg px-0"><?php echo nl2br($config_login_message); ?></p>
+                    <?php } ?>
 
-    <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
+                    <?php if (isset($response)) { ?>
+                        <p><?php echo $response; ?></p>
+                    <?php } ?>
 
-            <?php if(!empty($config_login_message)){ ?>
-            <p class="login-box-msg px-0"><?php echo nl2br($config_login_message); ?></p>
-            <?php } ?>
+					<div class="u-login-form">
+						<form class="mb-3" action="/">
+							<div class="mb-3">
+								<h1 class="h2">Welcome Back!</h1>
+								<p class="small">Login with technician email address and password.</p>
+							</div>
 
-            <?php if (isset($response)) { ?>
-            <p><?php echo $response; ?></p>
-            <?php } ?>
+							<div class="form-group mb-4" <?php if (isset($token_field)) { echo "style='display:none;'"; } ?> >
+								<label for="email">Technician Email</label>
+                                <input type="text" class="form-control" placeholder="Agent Email" name="email" value="<?php if (isset($token_field)) { echo $email; }?>" required <?php if (!isset($token_field)) { echo "autofocus"; } ?> >
+							</div>
 
-            <form method="post">
+							<div class="form-group mb-4" <?php if (isset($token_field)) { echo "style='display:none;'"; } ?> >
+								<label for="password">Password</label>
+                                <input type="password" class="form-control" placeholder="Agent Password" name="password" value="<?php if (isset($token_field)) { echo $password; } ?>" required>
+							</div>
 
-                <div class="input-group mb-3" <?php if (isset($token_field)) { echo "hidden"; } ?>>
-                    <input type="text" class="form-control" placeholder="Agent Email" name="email" value="<?php if (isset($token_field)) { echo $email; }?>" required <?php if (!isset($token_field)) { echo "autofocus"; } ?> >
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="input-group mb-3" <?php if (isset($token_field)) { echo "hidden"; } ?>>
-                    <input type="password" class="form-control" placeholder="Agent Password" name="password" value="<?php if (isset($token_field)) { echo $password; } ?>" required>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
+                            <?php if (isset($token_field)) { echo $token_field; ?>
 
-                <?php
-                if (isset($token_field)) {
+                            <div class="form-group d-flex justify-content-between align-items-center mb-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input id="remember_me" class="custom-control-input" name="remember_me" type="checkbox">
+                                    <label class="custom-control-label" for="remember_me">Remember me</label>
+                                </div>
+                            </div>
 
-                    echo $token_field;
-                ?>
+                            <?php } ?>
 
-                <div class="form-group mb-3">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="remember_me" name="remember_me">
-                        <label class="custom-control-label" for="remember_me">Remember Me</label>
-                    </div>
-                </div>
+							<button class="btn btn-primary btn-block" type="submit" name="login">Login</button>
+						</form>
 
-                <?php
+                        <?php if($config_client_portal_enable == 1){ ?>
+                        <hr>
+                        <h5 class="text-center">Looking for the <a href="portal">Client Portal?</a></h5>
+                        <?php } ?>
+					</div>
 
-                }
+					<div class="u-login-form text-muted py-3 mt-auto">
+						<small><i class="far fa-question-circle mr-1"></i> If you are not able to sign in, please <a href="mailto:help@twe.tech">contact us</a>.</small>
+					</div>
+				</div>
 
-                ?>
+				<div class="col-lg-6 d-none d-lg-flex flex-column align-items-center justify-content-center bg-light">
+					<img class="img-fluid position-relative u-z-index-3 mx-5" src="dist/svg/mockups/mockup.svg" alt="Image description">
 
-                <button type="submit" class="btn btn-primary btn-block mb-3" name="login">Sign In</button>
+					<figure class="u-shape u-shape--top-right u-shape--position-5">
+						<img src="dist/svg/shapes/shape-1.svg" alt="Image description">
+					</figure>
+					<figure class="u-shape u-shape--center-left u-shape--position-6">
+						<img src="dist/svg/shapes/shape-2.svg" alt="Image description">
+					</figure>
+					<figure class="u-shape u-shape--center-right u-shape--position-7">
+						<img src="dist/svg/shapes/shape-3.svg" alt="Image description">
+					</figure>
+					<figure class="u-shape u-shape--bottom-left u-shape--position-8">
+						<img src="dist/svg/shapes/shape-4.svg" alt="Image description">
+					</figure>
+				</div>
+			</div>
+		</main>
 
-                <?php if($config_client_portal_enable == 1){ ?>
-                <hr>
-                <h5 class="text-center">Looking for the <a href="portal">Client Portal?<a/></h5>
-                <?php } ?>
+        <!-- jQuery -->
+        <script src="plugins/jquery/jquery.min.js"></script>
 
-            </form>
+        <!-- Bootstrap 4 -->
+        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        </div>
-        <!-- /.login-card-body -->
-    </div>
-</div>
-<!-- /.login-box -->
+        <!-- Prevents resubmit on refresh or back -->
+        <script src="js/login_prevent_resubmit.js"></script>
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-
-<!-- <script src="plugins/Show-Hide-Passwords-Bootstrap-4/bootstrap-show-password.min.js"></script> -->
-
-<!-- Prevents resubmit on refresh or back -->
-<script src="js/login_prevent_resubmit.js"></script>
-
-</body>
+    </body>
 </html>
