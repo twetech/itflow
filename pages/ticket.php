@@ -1058,13 +1058,13 @@ require_once '/var/www/develop.twe.tech/includes/footer.php';
 
 <script src="/includes/js/show_modals.js"></script> <?php
 
-                                            if ($ticket_status !== "Closed") { ?>
-<!-- Ticket Time Tracking JS -->
-<script src="/includes/js/ticket_time_tracking.js"></script>
+if ($ticket_status !== "Closed") { ?>
+    <!-- Ticket Time Tracking JS -->
+    <script src="/includes/js/ticket_time_tracking.js"></script>
 
-<!-- Ticket collision detect JS (jQuery is called in footer, so collision detection script MUST be below it) -->
-<script src="/includes/js/ticket_collision_detection.js"></script>
-<script src="/includes/js/ticket_button_respond_note.js"></script>
+    <!-- Ticket collision detect JS (jQuery is called in footer, so collision detection script MUST be below it) -->
+    <script src="/includes/js/ticket_collision_detection.js"></script>
+    <script src="/includes/js/ticket_button_respond_note.js"></script>
 <?php } ?>
 
 <script src="/includes/js/pretty_content.js"></script>

@@ -876,7 +876,7 @@ if (isset($_POST['add_telemetry'])) {
 <script src='plugins/select2/js/select2.min.js'></script>
 <script src="plugins/Show-Hide-Passwords-Bootstrap-4/bootstrap-show-password.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="/includes/dist/js/adminlte.min.js"></script>
 
 <!-- Custom js-->
 <script src="js/app.js"></script>

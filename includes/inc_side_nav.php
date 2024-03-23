@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside id="sidebar" class="u-sidebar">
+<aside id="sidebar" class="u-sidebar toggled action mini">
     <div class="u-sidebar-inner">
         <header class="u-sidebar-header">
             <a class="u-sidebar-logo" href="/index.html">

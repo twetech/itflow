@@ -54,7 +54,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </form>
         <hr>
         <div class="table-responsive-sm">
-            <table class="table table-striped table-borderless table-hover">
+             <table class="table table-hover">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
                     <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=payment_date&order=<?php echo $disp; ?>">Payment Date</a></th>

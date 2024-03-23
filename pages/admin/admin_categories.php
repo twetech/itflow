@@ -106,7 +106,7 @@ if (isset($_GET['archived'])) {
         </form>
         <hr>
         <div class="table-responsive-sm">
-            <table class="table table-striped table-borderless table-hover">
+             <table class="table table-hover">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) {
                     echo "d-none";
                 } ?>">
