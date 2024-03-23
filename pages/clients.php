@@ -324,7 +324,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         <?php
 
-                        require "var/www/develop.twe.tech/includes/modals/client_edit_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/client_edit_modal.php";
 
 
                     } ?>
@@ -332,15 +332,15 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </tbody>
                 </table>
             </div>
-            <?php require_once "var/www/develop.twe.tech/includes/pagination.php";
+            <?php require_once "/var/www/develop.twe.tech/includes/pagination.php";
  ?>
         </div>
     </div>
 
 <?php
-require_once "var/www/develop.twe.tech/includes/modals/client_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_add_modal.php";
 
-require_once "var/www/develop.twe.tech/includes/modals/client_export_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_export_modal.php";
 
-require_once "var/www/develop.twe.tech/includes/footer.php";
+require_once "/var/www/develop.twe.tech/includes/footer.php";
 
