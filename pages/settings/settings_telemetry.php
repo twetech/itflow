@@ -10,7 +10,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
 
             <p class="text-center">Installation ID: <strong><?php echo $installation_id; ?></strong></p>
 
-            <form action="post.php" method="post" autocomplete="off">
+            <form action="/post/" method="post" autocomplete="off">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
                 <div class="form-group">

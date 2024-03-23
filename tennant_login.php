@@ -22,10 +22,10 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
     <!-- Components Vendor Styles -->
-    <link rel="stylesheet" href="dist/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="/includes/dist/vendor/font-awesome/css/all.min.css">
 
     <!-- Theme Styles -->
-    <link rel="stylesheet" href="dist/css/theme.css">
+    <link rel="stylesheet" href="/includes/dist/css/theme.css">
 </head>
 
 <body class="hold-transition login-page">
@@ -71,32 +71,32 @@
 				</div>
 
 				<div class="col-lg-6 d-none d-lg-flex flex-column align-items-center justify-content-center bg-light">
-					<img class="img-fluid position-relative u-z-index-3 mx-5" src="dist/svg/mockups/mockup.svg" alt="Image description">
+					<img class="img-fluid position-relative u-z-index-3 mx-5" src="/includes/dist/svg/mockups/mockup.svg" alt="Image description">
 
 					<figure class="u-shape u-shape--top-right u-shape--position-5">
-						<img src="dist/svg/shapes/shape-1.svg" alt="Image description">
+						<img src="/includes/dist/svg/shapes/shape-1.svg" alt="Image description">
 					</figure>
 					<figure class="u-shape u-shape--center-left u-shape--position-6">
-						<img src="dist/svg/shapes/shape-2.svg" alt="Image description">
+						<img src="/includes/dist/svg/shapes/shape-2.svg" alt="Image description">
 					</figure>
 					<figure class="u-shape u-shape--center-right u-shape--position-7">
-						<img src="dist/svg/shapes/shape-3.svg" alt="Image description">
+						<img src="/includes/dist/svg/shapes/shape-3.svg" alt="Image description">
 					</figure>
 					<figure class="u-shape u-shape--bottom-left u-shape--position-8">
-						<img src="dist/svg/shapes/shape-4.svg" alt="Image description">
+						<img src="/includes/dist/svg/shapes/shape-4.svg" alt="Image description">
 					</figure>
 				</div>
 			</div>
 		</main>
 
         <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
+        <script src="/includes/plugins/jquery/jquery.min.js"></script>
 
         <!-- Bootstrap 4 -->
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/includes/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Prevents resubmit on refresh or back -->
-        <script src="js/login_prevent_resubmit.js"></script>
+        <script src="/includes/js/login_prevent_resubmit.js"></script>
 
     </body>
 </html>

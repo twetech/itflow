@@ -205,7 +205,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </div>
             </form>
             <hr>
-            <form id="bulkActions" action="post.php" method="post">
+            <form id="bulkActions" action="/post/" method="post">
                 <div class="table-responsive">
                     <table class="table border table-hover">
                         <thead class="thead-light <?php if (!$num_rows[0]) { echo "d-none"; } ?>">
@@ -433,11 +433,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                     <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                                 </a>
                                                 <?php if ($session_user_role > 2) { ?>
-                                                    <a class="dropdown-item text-danger confirm-link" href="post.php?archive_asset=<?php echo $asset_id; ?>">
+                                                    <a class="dropdown-item text-danger confirm-link" href="/post/?archive_asset=<?php echo $asset_id; ?>">
                                                         <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                     </a>
                                                     <?php if ($config_destructive_deletes_enable) { ?>
-                                                    <a class="dropdown-item text-danger text-bold confirm-link" href="post.php?delete_asset=<?php echo $asset_id; ?>">
+                                                    <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?delete_asset=<?php echo $asset_id; ?>">
                                                         <i class="fas fa-fw fa-archive mr-2"></i>Delete
                                                     </a>
                                                     <?php } ?>

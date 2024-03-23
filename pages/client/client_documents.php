@@ -130,7 +130,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                 </a>
                                                 <?php if ($session_user_role == 3 && $num_documents == 0) { ?>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger text-bold confirm-link" href="post.php?delete_folder=<?php echo $folder_id; ?>">
+                                                    <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?delete_folder=<?php echo $folder_id; ?>">
                                                         <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                     </a>
                                                 <?php } ?>
@@ -183,7 +183,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     
                     <hr>
     
-                    <form id="bulkActions" action="post.php" method="post">
+                    <form id="bulkActions" action="/post/" method="post">
 
                         <div class="table-responsive-sm">
                             <table class="table table-striped table-sm table-borderless table-hover">
@@ -257,11 +257,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                     </a>
                                                     <?php if ($session_user_role == 3) { ?>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger confirm-link" href="post.php?archive_document=<?php echo $document_id; ?>">
+                                                        <a class="dropdown-item text-danger confirm-link" href="/post/?archive_document=<?php echo $document_id; ?>">
                                                             <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                         </a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger text-bold confirm-link" href="post.php?delete_document=<?php echo $document_id; ?>">
+                                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?delete_document=<?php echo $document_id; ?>">
                                                             <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                         </a>
                                                     <?php } ?>

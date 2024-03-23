@@ -75,7 +75,7 @@ $num_rows = mysqli_num_rows($sql);
                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editLocationModal<?php echo $inventory_location_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
-                                        <a class="dropdown-item" href="post.php?archive_inventory_location=<?php echo $inventory_location_id; ?>">
+                                        <a class="dropdown-item" href="/post/?archive_inventory_location=<?php echo $inventory_location_id; ?>">
                                             <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                         </a>
                                     </div>

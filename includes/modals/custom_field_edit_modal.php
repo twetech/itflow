@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="post.php" method="post" autocomplete="off">
+            <form action="/post/" method="post" autocomplete="off">
                 <input type="hidden" name="custom_field_id" value="<?php echo $custom_field_id; ?>">
                 <div class="modal-body bg-white">
 

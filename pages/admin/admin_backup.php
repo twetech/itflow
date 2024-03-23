@@ -7,7 +7,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
         <h3 class="card-title"><i class="fas fa-fw fa-database mr-2"></i>Download Database</h3>
     </div>
     <div class="card-body" style="text-align: center;">
-        <a class="btn btn-primary btn-lg p-3" href="post.php?download_database&csrf_token=<?php echo $_SESSION['csrf_token'] ?>"><i class="fas fa-fw fa-4x fa-download"></i><br><br>Download</a>
+        <a class="btn btn-primary btn-lg p-3" href="/post/?download_database&csrf_token=<?php echo $_SESSION['csrf_token'] ?>"><i class="fas fa-fw fa-4x fa-download"></i><br><br>Download</a>
     </div>
 </div>
 
@@ -17,7 +17,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
     </div>
     <div class="card-body">
         <div class="card-body">
-            <form action="post.php" method="POST">
+            <form action="/post/" method="POST">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
                 <div class="row d-flex justify-content-center">
                     <div class="input-group col-4">

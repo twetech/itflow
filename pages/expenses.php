@@ -112,7 +112,7 @@ $recurring_expense_count = $row['num'];
                 </div>
             </form>
             <hr>
-            <form id="bulkActions" action="post.php" method="post">
+            <form id="bulkActions" action="/post/" method="post">
                 <div class="table-responsive-sm">
                     <table class="table table-striped table-borderless table-hover">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
@@ -203,7 +203,7 @@ $recurring_expense_count = $row['num'];
                                                 <i class="fas fa-fw fa-undo-alt mr-2"></i>Refund
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger text-bold confirm-link" href="post.php?delete_expense=<?php echo $expense_id; ?>">
+                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?delete_expense=<?php echo $expense_id; ?>">
                                                 <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                             </a>
                                         </div>

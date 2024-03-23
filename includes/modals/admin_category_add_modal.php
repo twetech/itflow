@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="post.php" method="post" autocomplete="off">
+            <form action="/post/" method="post" autocomplete="off">
                 <input type="hidden" name="type" value="<?php echo nullable_htmlentities($category); ?>">
 
                 <div class="modal-body bg-white">
