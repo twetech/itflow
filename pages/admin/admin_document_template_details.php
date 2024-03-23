@@ -4,7 +4,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
 
 
 //Initialize the HTML Purifier to prevent XSS
-require "plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/develop.twe.tech/includes/modals/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);
@@ -59,7 +59,7 @@ $document_updated_at = nullable_htmlentities($row['document_updated_at']);
 
 <?php
 
-require_once "admin_document_template_edit_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/admin_document_template_edit_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

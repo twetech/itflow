@@ -1,7 +1,7 @@
 <?php
-require_once "config.php";
+require_once "/var/www/develop.twe.tech/includes/config.php";
 
-include_once "functions.php";
+include_once "/var/www/develop.twe.tech/includes/functions.php";
 
 require_once "check_login.php";
 
@@ -69,5 +69,5 @@ require_once "header.php";
 </div>
 
 <?php
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

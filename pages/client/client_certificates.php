@@ -158,23 +158,23 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
             </form>
         </div>
-        <?php require_once "pagination.php";
+        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
  ?>
     </div>
 </div>
 
 <?php
-require_once "client_certificate_edit_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_certificate_edit_modal.php";
 
-require_once "client_certificate_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_certificate_add_modal.php";
 
-require_once "client_certificate_export_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_certificate_export_modal.php";
 
 ?>
 
-<script src="js/certificate_edit_modal.js"></script>
-<script src="js/bulk_actions.js"></script>
-<script src="js/certificate_fetch_ssl.js"></script>
+<script src="/includes/js/certificate_edit_modal.js"></script>
+<script src="/includes/js/bulk_actions.js"></script>
+<script src="/includes/js/certificate_fetch_ssl.js"></script>
 
-<?php require_once "footer.php";
+<?php require_once '/var/www/develop.twe.tech/includes/footer.php';
  ?>

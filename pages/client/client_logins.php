@@ -162,7 +162,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                     <?php
 
-                        require "client_login_edit_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/client_login_edit_modal.php";
                     }
 
                     ?>
@@ -170,7 +170,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </tbody>
             </table>
         </div>
-        <?php require_once "pagination.php";
+        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
         ?>
     </div>
 </div>
@@ -183,12 +183,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 <?php
 
-require_once "client_login_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_login_add_modal.php";
 
-require_once "share_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/share_modal.php";
 
-require_once "client_login_import_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_login_import_modal.php";
 
-require_once "client_login_export_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_login_export_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';

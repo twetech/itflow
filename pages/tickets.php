@@ -443,12 +443,12 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                             if ($ticket_status !== "Closed") {
                                 // Temp performance boost for closed tickets, until we move to dynamic modals
 
-                                require "ticket_assign_modal.php";
+                                require "/var/www/develop.twe.tech/includes/modals//var/www/develop.twe.tech/includes/modals/ticket_assign_modal.php";
 
-                                require "ticket_edit_priority_modal.php";
+                                require "/var/www/develop.twe.tech/includes/modals//var/www/develop.twe.tech/includes/modals/ticket_edit_priority_modal.php";
 
                                 if ($config_module_enable_accounting) {
-                                    require "ticket_edit_billable_modal.php";
+                                    require "/var/www/develop.twe.tech/includes/modals//var/www/develop.twe.tech/includes/modals/ticket_edit_billable_modal.php";
                                 }
                             }
                         }
@@ -458,12 +458,12 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                     </tbody>
                 </table>
             </div>
-            <?php require_once "ticket_bulk_assign_modal.php"; ?>
-            <?php require_once "ticket_bulk_edit_priority_modal.php"; ?>
-            <?php require_once "ticket_bulk_close_modal.php"; ?>
-            <?php require_once "ticket_bulk_reply_modal.php"; ?>
+            <?php require_once "/var/www/develop.twe.tech/includes/modals/ticket_bulk_assign_modal.php"; ?>
+            <?php require_once "/var/www/develop.twe.tech/includes/modals/ticket_bulk_edit_priority_modal.php"; ?>
+            <?php require_once "/var/www/develop.twe.tech/includes/modals/ticket_bulk_close_modal.php"; ?>
+            <?php require_once "/var/www/develop.twe.tech/includes/modals/ticket_bulk_reply_modal.php"; ?>
         </form>
-        <?php require_once "pagination.php";
+        <?php require_once "/var/www/develop.twe.tech/includes/pagination.php";
         ?>
     </div>
 </div>
@@ -471,6 +471,6 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 <script src="js/bulk_actions.js"></script>
 
 <?php
-require_once "ticket_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/ticket_add_modal.php";
 
-require_once "footer.php";
+require_once "/var/www/develop.twe.tech/includes/footer.php";

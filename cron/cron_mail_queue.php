@@ -4,8 +4,8 @@ $cron = true;
 
 $document_root = dirname(__FILE__);
 
-require_once "config.php";
-require_once "functions.php";
+require_once "/var/www/develop.twe.tech/includes/config.php";
+require_once "/var/www/develop.twe.tech/includes/functions.php";
 
 $sql_settings = mysqli_query($mysqli, "SELECT * FROM settings WHERE company_id = 1");
 

@@ -169,8 +169,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <script src="js/bulk_actions.js"></script>
 
 <?php
-require_once "recurring_ticket_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/recurring_ticket_add_modal.php";
 
-require_once "recurring_ticket_edit_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/recurring_ticket_edit_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';

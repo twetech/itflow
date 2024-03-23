@@ -3,9 +3,9 @@
 // Set working directory to the directory this cron script lives at.
 chdir(dirname(__FILE__));
 
-require_once "config.php";
+require_once "/var/www/develop.twe.tech/includes/config.php";
 
-require_once "functions.php";
+require_once "/var/www/develop.twe.tech/includes/functions.php";
 
 
 $sql_companies = mysqli_query($mysqli, "SELECT * FROM companies, settings WHERE companies.company_id = settings.company_id AND companies.company_id = 1");

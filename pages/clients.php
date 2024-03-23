@@ -324,7 +324,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         <?php
 
-                        require "/var/www/develop.twe.tech/includes/modals/client_edit_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals//var/www/develop.twe.tech/includes/modals/client_edit_modal.php";
 
 
                     } ?>

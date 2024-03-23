@@ -92,4 +92,4 @@ $sql_recent_logs = mysqli_query($mysqli, "SELECT * FROM logs
 </div>
 
 <?php
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';

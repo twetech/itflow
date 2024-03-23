@@ -141,13 +141,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </li>
 
                             <?php
-                            require "folder_rename_modal.php";
+                            require "/var/www/develop.twe.tech/includes/modals/folder_rename_modal.php";
 
 
                         }
                         ?>
                     </ul>
-                    <?php require_once "folder_create_modal.php";
+                    <?php require_once "/var/www/develop.twe.tech/includes/modals/folder_create_modal.php";
  ?>
                 </div>
 
@@ -272,9 +272,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                                 <?php
 
-                                require "client_document_move_modal.php";
+                                require "/var/www/develop.twe.tech/includes/modals/client_document_move_modal.php";
 
-                                require "client_document_rename_modal.php";
+                                require "/var/www/develop.twe.tech/includes/modals/client_document_rename_modal.php";
 
 
                                 }
@@ -287,7 +287,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         </div>
                         <?php require_once "client_document_bulk_move_modal.php"; ?>
                     </form>
-                    <?php require_once "pagination.php";
+                    <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
  ?>
                 </div>
             </div>
@@ -297,10 +297,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <script src="js/bulk_actions.js"></script>
 
 <?php
-require_once "share_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/share_modal.php";
 
-require_once "client_document_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_document_add_modal.php";
 
-require_once "client_document_add_from_template_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_document_add_from_template_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';

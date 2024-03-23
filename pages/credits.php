@@ -193,5 +193,5 @@ $num_rows = mysqli_num_rows($sql);
     </div>
 </div>
 
-<?php require_once "footer.php";
+<?php require_once '/var/www/develop.twe.tech/includes/footer.php';
  ?>

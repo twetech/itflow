@@ -132,13 +132,13 @@ $num_of_files = mysqli_num_rows($sql);
                         </li>
 
                         <?php
-                        require "folder_rename_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/folder_rename_modal.php";
 
 
                     }
                     ?>
                 </ul>
-                <?php require_once "folder_create_modal.php";
+                <?php require_once "/var/www/develop.twe.tech/includes/modals/folder_create_modal.php";
  ?>
             </div>
 
@@ -218,7 +218,7 @@ $num_of_files = mysqli_num_rows($sql);
                         </div>
 
                         <?php
-                        require "client_file_view_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/client_file_view_modal.php";
 
                     }
                     ?>
@@ -331,9 +331,9 @@ $num_of_files = mysqli_num_rows($sql);
                                     </td>
                                 </tr>
                                 <?php
-                                require "client_file_rename_modal.php";
+                                require "/var/www/develop.twe.tech/includes/modals/client_file_rename_modal.php";
 
-                                require "client_file_move_modal.php";
+                                require "/var/www/develop.twe.tech/includes/modals/client_file_move_modal.php";
 
                             }
                             ?>
@@ -346,7 +346,7 @@ $num_of_files = mysqli_num_rows($sql);
 
                 <?php } ?>
 
-                <?php require_once "pagination.php";
+                <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
  ?>
 
             </div>
@@ -357,10 +357,10 @@ $num_of_files = mysqli_num_rows($sql);
 <script src="js/bulk_actions.js"></script>
 
 <?php
-require_once "client_file_upload_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_file_upload_modal.php";
 
-require_once "share_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/share_modal.php";
 
-require_once "client_file_delete_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_file_delete_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';

@@ -327,5 +327,5 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
 
     <?php } ?>
 
-<?php require_once "footer.php";
+<?php require_once '/var/www/develop.twe.tech/includes/footer.php';
 

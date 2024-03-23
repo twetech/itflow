@@ -2,8 +2,8 @@
 <aside id="sidebar" class="u-sidebar">
     <div class="u-sidebar-inner">
         <header class="u-sidebar-header">
-            <a class="u-sidebar-logo" href="index.html">
-                <img class="img-fluid" src="/dist/img/logo.png" width="124" alt="Stream Dashboard">
+            <a class="u-sidebar-logo" href="/index.html">
+                <img class="img-fluid" src="/includes/dist/img/logo.png" width="124" alt="<?= $config_app_name; ?>">
             </a>
         </header>
         <nav class="u-sidebar-nav">

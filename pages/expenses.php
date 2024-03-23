@@ -213,13 +213,13 @@ $recurring_expense_count = $row['num'];
 
                             <?php
 
-                            require "expense_edit_modal.php";
+                            require "/var/www/develop.twe.tech/includes/modals/expense_edit_modal.php";
 
-                            require "expense_copy_modal.php";
+                            require "/var/www/develop.twe.tech/includes/modals/expense_copy_modal.php";
 
-                            require "expense_refund_modal.php";
+                            require "/var/www/develop.twe.tech/includes/modals/expense_refund_modal.php";
 
-                            require "expense_export_modal.php";
+                            require "/var/www/develop.twe.tech/includes/modals/expense_export_modal.php";
 
 
                         }
@@ -229,18 +229,19 @@ $recurring_expense_count = $row['num'];
                         </tbody>
                     </table>
                 </div>
-                <?php require_once "expense_bulk_edit_category_modal.php"; ?>
-                <?php require_once "expense_bulk_edit_account_modal.php"; ?>
-                <?php require_once "expense_bulk_edit_client_modal.php"; ?>
+                <?php 
+                    require_once "/var/www/develop.twe.tech/includes/modals/expense_bulk_edit_category_modal.php";
+                    require_once "/var/www/develop.twe.tech/includes/modals/expense_bulk_edit_account_modal.php";
+                    require_once "/var/www/develop.twe.tech/includes/modals/expense_bulk_edit_client_modal.php";
+                ?>
             </form>
-            <?php require_once "pagination.php";
- ?>
+            <?php require_once "/var/www/develop.twe.tech/includes/pagination.php"; ?>
         </div>
     </div>
 
 <script src="js/bulk_actions.js"></script>
 
 <?php
-require_once "expense_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/expense_add_modal.php";
 
-require_once "footer.php";
+require_once "/var/www/develop.twe.tech/includes/footer.php";

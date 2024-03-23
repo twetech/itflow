@@ -147,7 +147,7 @@ $sql_categories = mysqli_query($mysqli, "SELECT * FROM categories WHERE category
     </div>
 </div>
 
-<?php require_once "footer.php";
+<?php require_once '/var/www/develop.twe.tech/includes/footer.php';
  ?>
 
 <script>

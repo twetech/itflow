@@ -176,9 +176,9 @@ $recurring_invoice_count = $row['num'];
 
                     <?php
 
-                        require "invoice_copy_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/invoice_copy_modal.php";
 
-                        require "invoice_edit_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/invoice_edit_modal.php";
                     }
 
                     ?>
@@ -186,16 +186,16 @@ $recurring_invoice_count = $row['num'];
                 </tbody>
             </table>
         </div>
-        <?php require_once "pagination.php";
+        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
         ?>
     </div>
 </div>
 
 <?php
-require_once "invoice_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/invoice_add_modal.php";
 
-require_once "invoice_payment_add_bulk_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/invoice_payment_add_bulk_modal.php";
 
-require_once "client_invoice_export_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_invoice_export_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';

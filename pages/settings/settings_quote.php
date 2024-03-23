@@ -44,5 +44,5 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
     </div>
 
 <?php
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

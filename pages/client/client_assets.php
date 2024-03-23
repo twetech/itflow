@@ -451,9 +451,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                             <?php
 
-                            require "client_asset_edit_modal.php";
+                            require "/var/www/develop.twe.tech/includes/modals/client_asset_edit_modal.php";
 
-                            require "client_asset_copy_modal.php";
+                            require "/var/www/develop.twe.tech/includes/modals/client_asset_copy_modal.php";
 
 
                         }
@@ -463,22 +463,22 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         </tbody>
                     </table>
                 </div>
-                <?php require_once "client_asset_bulk_assign_location_modal.php"; ?>
-                <?php require_once "client_asset_bulk_assign_contact_modal.php"; ?>
-                <?php require_once "client_asset_bulk_edit_status_modal.php"; ?>
+                <?php require_once "/var/www/develop.twe.tech/includes/modals/client_asset_bulk_assign_location_modal.php"; ?>
+                <?php require_once "/var/www/develop.twe.tech/includes/modals/client_asset_bulk_assign_contact_modal.php"; ?>
+                <?php require_once "/var/www/develop.twe.tech/includes/modals/client_asset_bulk_edit_status_modal.php"; ?>
             </form>
-            <?php require_once "pagination.php"; ?>
+            <?php require_once '/var/www/develop.twe.tech/includes/pagination.php'; ?>
         </div>
     </div>
 
 <script src="js/bulk_actions.js"></script>
 
 <?php
-require_once "client_asset_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_asset_add_modal.php";
 
-require_once "client_asset_import_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_asset_import_modal.php";
 
-require_once "client_asset_export_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_asset_export_modal.php";
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

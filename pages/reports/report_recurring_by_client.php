@@ -63,5 +63,5 @@ $sql = mysqli_query($mysqli, "
     </div>
 </div>
 
-<?php require_once "footer.php";
+<?php require_once '/var/www/develop.twe.tech/includes/footer.php';
  ?>

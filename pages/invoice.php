@@ -18,7 +18,7 @@ if (isset($_GET['invoice_id'])) {
 
     if (mysqli_num_rows($sql) == 0) {
         echo '<h1 class="text-secondary mt-5" style="text-align: center">Nothing to see here</h1>';
-        require_once "footer.php";
+        require_once '/var/www/develop.twe.tech/includes/footer.php';
 
         exit();
     }
@@ -367,7 +367,7 @@ if (isset($_GET['invoice_id'])) {
                                     </tr>
                                     <?php
                                     if ($invoice_status !== "Paid" && $invoice_status !== "Cancelled") {
-                                        require "item_edit_modal.php";
+                                        require "/var/www/develop.twe.tech/includes/modals/item_edit_modal.php";
                                     }
                                 }
                                 ?>
@@ -671,7 +671,7 @@ if (isset($_GET['invoice_id'])) {
 
 }
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 
 
 ?>

@@ -72,5 +72,5 @@ $sql = mysqli_query($mysqli, "SELECT * FROM notifications LEFT JOIN clients ON n
     </div>
 
 <?php
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

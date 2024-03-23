@@ -314,7 +314,7 @@ if (isset($_GET['asset_id'])) {
 
                                 <?php
 
-                                require "client_login_edit_modal.php";
+                                require "/var/www/develop.twe.tech/includes/modals/client_login_edit_modal.php";
 
                             }
 
@@ -501,7 +501,7 @@ if (isset($_GET['asset_id'])) {
 
     <?php
 
-    require_once "share_modal.php";
+    require_once "/var/www/develop.twe.tech/includes/modals/share_modal.php";
 
 
     ?>
@@ -540,5 +540,5 @@ if (isset($_GET['asset_id'])) {
 </script>
 
 <?php
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

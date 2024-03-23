@@ -3,7 +3,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
 
 require_once "database_version.php";
 
-require_once "config.php";
+require_once "/var/www/develop.twe.tech/includes/config.php";
 
 
 $folderPath = 'uploads';
@@ -318,5 +318,5 @@ $webServer = $_SERVER['SERVER_SOFTWARE'];
 
 <?php
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

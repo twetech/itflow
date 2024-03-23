@@ -275,7 +275,7 @@ if (isset($_GET['recurring_id'])) {
 
                                     <?php
 
-                                    require "item_edit_modal.php";
+                                    require "/var/www/develop.twe.tech/includes/modals/item_edit_modal.php";
 
 
                                     }
@@ -431,13 +431,13 @@ if (isset($_GET['recurring_id'])) {
 
     <?php
 
-    require_once "recurring_invoice_edit_modal.php";
+    require_once "/var/www/develop.twe.tech/includes/modals/recurring_invoice_edit_modal.php";
 
-    require_once "recurring_invoice_note_modal.php";
+    require_once "/var/www/develop.twe.tech/includes/modals/recurring_invoice_note_modal.php";
 
 }
 
-require_once "footer.php";
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 
 
 ?>

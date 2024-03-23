@@ -26,9 +26,9 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
     }
 }
 
-require_once "config.php";
+require_once "/var/www/develop.twe.tech/includes/config.php";
 
-require_once "functions.php";
+require_once "/var/www/develop.twe.tech/includes/functions.php";
 
 
 // IP & User Agent for logging

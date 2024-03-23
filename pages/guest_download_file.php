@@ -1,8 +1,8 @@
 <?php
 // Not including the guest header as we don't want any HTML output
-require_once "config.php";
+require_once "/var/www/develop.twe.tech/includes/config.php";
 
-require_once "functions.php";
+require_once "/var/www/develop.twe.tech/includes/functions.php";
 
 
 $ip = sanitizeInput(getIP());
