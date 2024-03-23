@@ -63,18 +63,20 @@ $sql_years_select = mysqli_query(
 
         <?php if ($session_user_role == 1 || $session_user_role == 3 && $config_module_enable_accounting == 1) { ?>
             <div class="custom-control custom-switch mr-sm-3">
-                <input type="checkbox" onchange="this.form.submit()" class="custom-control-input" id="customSwitch1" name="enable_financial" value="1" <?php if ($user_config_dashboard_financial_enable == 1) {
-                                                                                                                                                            echo "checked";
-                                                                                                                                                        } ?>>
+                <input type="checkbox" onchange="this.form.submit()" class="custom-control-input" id="customSwitch1" name="enable_financial" value="1"
+                <?php if ($user_config_dashboard_financial_enable == 1) {
+                    echo "checked";
+                } ?>>
                 <label class="custom-control-label" for="customSwitch1">Toggle Financial</label>
             </div>
         <?php } ?>
 
         <?php if ($session_user_role >= 2 && $config_module_enable_ticketing == 1) { ?>
             <div class="custom-control custom-switch">
-                <input type="checkbox" onchange="this.form.submit()" class="custom-control-input" id="customSwitch2" name="enable_technical" value="1" <?php if ($user_config_dashboard_technical_enable == 1) {
-                                                                                                                                                            echo "checked";
-                                                                                                                                                        } ?>>
+                <input type="checkbox" onchange="this.form.submit()" class="custom-control-input" id="customSwitch2" name="enable_technical" value="1" 
+                <?php if ($user_config_dashboard_technical_enable == 1) {
+                    echo "checked";
+                } ?>>
                 <label class="custom-control-label" for="customSwitch2">Toggle Technical</label>
             </div>
         <?php } ?>

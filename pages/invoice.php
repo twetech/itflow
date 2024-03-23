@@ -165,12 +165,12 @@ if (isset($_GET['invoice_id'])) {
                         </button>
                         <div class="dropdown-menu">
                             <?php if (!empty($config_smtp_host) && !empty($contact_email)) { ?>
-                                <a class="dropdown-item" href="post.php?email_invoice=<?php echo $invoice_id; ?>">
+                                <a class="dropdown-item" href="/post/?email_invoice=<?php echo $invoice_id; ?>">
                                     <i class="fas fa-fw fa-paper-plane mr-2"></i>Send Email
                                 </a>
                                 <div class="dropdown-divider"></div>
                             <?php } ?>
-                            <a class="dropdown-item" href="post.php?mark_invoice_sent=<?php echo $invoice_id; ?>">
+                            <a class="dropdown-item" href="/post/?mark_invoice_sent=<?php echo $invoice_id; ?>">
                                 <i class="fas fa-fw fa-check mr-2"></i>Mark Sent
                             </a>
                         </div>
@@ -207,7 +207,7 @@ if (isset($_GET['invoice_id'])) {
                                 <i class="fa fa-fw fa-download text-secondary mr-2"></i>Download PDF
                             </a>
                             <?php if (!empty($config_smtp_host) && !empty($contact_email)) { ?>
-                                <a class="dropdown-item" href="post.php?email_invoice=<?php echo $invoice_id; ?>">
+                                <a class="dropdown-item" href="/post/?email_invoice=<?php echo $invoice_id; ?>">
                                     <i class="fa fa-fw fa-paper-plane text-secondary mr-2"></i>Send Email
                                 </a>
                             <?php } ?>
@@ -216,7 +216,7 @@ if (isset($_GET['invoice_id'])) {
                             </a>
                             <?php if ($invoice_status !== 'Cancelled' && $invoice_status !== 'Paid') { ?>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger text-bold confirm-link" href="post.php?cancel_invoice=<?php echo $invoice_id; ?>">
+                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?cancel_invoice=<?php echo $invoice_id; ?>">
                                     <i class="fa fa-fw fa-times mr-2"></i>Cancel
                                 </a>
                             <?php } ?>
@@ -341,7 +341,7 @@ if (isset($_GET['invoice_id'])) {
                                                         <i class="fas fa-ellipsis-v"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <form action="post.php" method="post">
+                                                        <form action="/post/" method="post">
                                                             <input type="hidden" name="item_invoice_id" value="<?php echo $invoice_id; ?>">
                                                             <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
                                                             <input type="hidden" name="item_order" value="<?php echo $item_order; ?>">
@@ -352,7 +352,7 @@ if (isset($_GET['invoice_id'])) {
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editItemModal<?php echo $item_id; ?>"><i class="fa fa-fw fa-edit mr-2"></i>Edit</a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger confirm-link" href="post.php?delete_invoice_item=<?php echo $item_id; ?>"><i class="fa fa-fw fa-trash mr-2"></i>Delete</a>
+                                                        <a class="dropdown-item text-danger confirm-link" href="/post/?delete_invoice_item=<?php echo $item_id; ?>"><i class="fa fa-fw fa-trash mr-2"></i>Delete</a>
                                                     </div>
                                                 </div>
 
@@ -372,7 +372,7 @@ if (isset($_GET['invoice_id'])) {
                                 }
                                 ?>
                                 <tr class="d-print-none" <?php if ($invoice_status == "Paid" || $invoice_status == "Cancelled") { echo "hidden"; } ?>>
-                                    <form action="post.php" method="post" autocomplete="off">
+                                    <form action="/post/" method="post" autocomplete="off">
                                         <input type="hidden" name="invoice_id" value="<?php echo $invoice_id; ?>">
                                         <input type="hidden" name="item_order" value="<?php echo mysqli_num_rows($sql_invoice_items) + 1; ?>">
                                         <td></td>
@@ -569,7 +569,7 @@ if (isset($_GET['invoice_id'])) {
                                     <td class="text-right"><?php echo numfmt_format_currency($currency_format, $payment_amount, $payment_currency_code); ?></td>
                                     <td><?php echo $payment_reference; ?></td>
                                     <td><?php echo $account_name; ?></td>
-                                    <td class="text-center"><a class="btn btn-light text-danger confirm-link" href="post.php?delete_payment=<?php echo $payment_id; ?>"><i class="fa fa-times"></i></a></td>
+                                    <td class="text-center"><a class="btn btn-light text-danger confirm-link" href="/post/?delete_payment=<?php echo $payment_id; ?>"><i class="fa fa-times"></i></a></td>
                                 </tr>
                                 <?php
                             }
@@ -657,17 +657,17 @@ if (isset($_GET['invoice_id'])) {
         </div>
     </div>
     <?php
-    include_once "invoice_add_ticket_modal.php";
+    include_once "/var/www/develop.twe.tech/includes/modals/invoice_add_ticket_modal.php";
 
-    include_once "invoice_payment_add_modal.php";
+    include_once "/var/www/develop.twe.tech/includes/modals/invoice_payment_add_modal.php";
 
-    include_once "invoice_copy_modal.php";
+    include_once "/var/www/develop.twe.tech/includes/modals/invoice_copy_modal.php";
 
-    include_once "invoice_recurring_add_modal.php";
+    include_once "/var/www/develop.twe.tech/includes/modals/invoice_recurring_add_modal.php";
 
-    include_once "invoice_edit_modal.php";
+    include_once "/var/www/develop.twe.tech/includes/modals/invoice_edit_modal.php";
 
-    include_once "invoice_note_modal.php";
+    include_once "/var/www/develop.twe.tech/includes/modals/invoice_note_modal.php";
 
 }
 

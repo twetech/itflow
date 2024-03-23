@@ -42,7 +42,7 @@
             <header class="u-header">
                 <div class="u-header-left">
                     <a class="u-header-logo" href="index.html">
-                        <img class="u-logo-desktop" src="dist/img/logo.png" width="160" alt="Stream Dashboard">
+                        <img class="u-logo-desktop" src="/includes/dist/img/logo.png" width="160" alt="Stream Dashboard">
                         <img class="img-fluid u-logo-mobile" src="dist/img/logo-mobile.png" width="50" alt="Stream Dashboard">
                     </a>
                 </div>
@@ -439,7 +439,7 @@
                 <div class="u-sidebar-inner">
                     <header class="u-sidebar-header">
                         <a class="u-sidebar-logo" href="index.html">
-                            <img class="img-fluid" src="/dist/img/logo.png" width="124" alt="Stream Dashboard">
+                            <img class="img-fluid" src="/includes/dist/img/logo.png" width="124" alt="Stream Dashboard">
                         </a>
                     </header>
 

@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="post.php" method="post" autocomplete="off">
+            <form action="/post/" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
                     <input type="hidden" name="budget_id" value="<?php echo $budget_id; ?>">
 

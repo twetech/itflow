@@ -15,7 +15,7 @@ require_once "header.php";
     </div>
     <div class="card-body">
 
-        <form action="post.php" method="post" autocomplete="off">
+        <form action="/post/" method="post" autocomplete="off">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
             <?php if (empty($session_token)) { ?>
@@ -50,7 +50,7 @@ require_once "header.php";
         </form>
 
         <?php if (!empty($session_token)) { ?>
-            <form action="post.php" method="post" autocomplete="off">
+            <form action="/post/" method="post" autocomplete="off">
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-prepend">

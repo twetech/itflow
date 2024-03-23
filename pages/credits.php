@@ -179,9 +179,9 @@ $num_rows = mysqli_num_rows($sql);
                             <td><?php echo $credit_reference; ?></td>
                             <td><a href="client_payments.php?client_id=<?php echo $credit_client_id; ?>"><?php echo $payment_invoice_display; ?></a></td>
                             <td>
-                                <a href="post.php?apply_credit=<?php echo $credit_id; ?>" class="btn btn-sm btn-primary"
+                                <a href="/post/?apply_credit=<?php echo $credit_id; ?>" class="btn btn-sm btn-primary"
                                 title="Apply"><i class="fas fa-credit-card"></i></a>
-                                <a href="post.php?delete_credit=<?php echo $credit_id; ?>" class="btn btn-sm btn-danger"
+                                <a href="/post/?delete_credit=<?php echo $credit_id; ?>" class="btn btn-sm btn-danger"
                                 title="Delete"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>

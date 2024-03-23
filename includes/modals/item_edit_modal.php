@@ -7,7 +7,7 @@
           <span>&times;</span>
         </button>
       </div>
-      <form action="post.php" method="post" autocomplete="off">
+      <form action="/post/" method="post" autocomplete="off">
         <?php if (isset($invoice_id)) { ?>
           <input type="hidden" name="invoice_id" value="<?php echo $invoice_id; ?>">
         <?php }elseif (isset($quote_id)) { ?>

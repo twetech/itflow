@@ -40,7 +40,7 @@ while ($row = mysqli_fetch_array($sql)) {
     $calendar_color = nullable_htmlentities($row['calendar_color']);
     $client_id = intval($row['event_client_id']);
 
-    require "/var/www/develop.twe.tech/includes/modals//var/www/develop.twe.tech/includes/modals/calendar_event_edit_modal.php";
+    require "/var/www/develop.twe.tech/includes/modals/calendar_event_edit_modal.php";
 }
 
 ?>

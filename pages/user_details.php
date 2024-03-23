@@ -9,7 +9,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
     </div>
     <div class="card-body">
 
-        <form action="post.php" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="/post/" method="post" enctype="multipart/form-data" autocomplete="off">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
             <center class="mb-3 px-5">

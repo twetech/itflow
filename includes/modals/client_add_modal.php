@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="post.php" method="post" autocomplete="off">
+            <form action="/post/" method="post" autocomplete="off">
                 <input type="hidden" name="lead" value="0">
                 <input type="hidden" name="net_terms" value="0">
                 <input type="hidden" name="currency_code" value="<?php echo $session_company_currency; ?>">

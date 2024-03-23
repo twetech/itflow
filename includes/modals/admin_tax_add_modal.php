@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="post.php" method="post" autocomplete="off">
+      <form action="/post/" method="post" autocomplete="off">
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
         <div class="modal-body bg-white">

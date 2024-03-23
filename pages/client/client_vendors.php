@@ -158,12 +158,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         </a>
                                         <?php if ($session_user_role == 3) { ?>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger confirm-link" href="post.php?archive_vendor=<?php echo $vendor_id; ?>">
+                                            <a class="dropdown-item text-danger confirm-link" href="/post/?archive_vendor=<?php echo $vendor_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                             </a>
                                             <?php if ($config_destructive_deletes_enable) { ?>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger text-bold confirm-link" href="post.php?delete_vendor=<?php echo $vendor_id; ?>">
+                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?delete_vendor=<?php echo $vendor_id; ?>">
                                                 <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                             </a>
                                             <?php } ?>

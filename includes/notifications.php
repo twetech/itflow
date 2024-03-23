@@ -12,7 +12,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM notifications LEFT JOIN clients ON n
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-bell mr-2"></i>Notifications</h3>
             <div class="card-tools">
 
-                <?php if (mysqli_num_rows($sql) > 0) { ?><a href="post.php?dismiss_all_notifications" class="btn btn-primary"><i class="fas fa-fw fa-check mr-2"></i>Dismiss All</a><?php } ?>
+                <?php if (mysqli_num_rows($sql) > 0) { ?><a href="/post/?dismiss_all_notifications" class="btn btn-primary"><i class="fas fa-fw fa-check mr-2"></i>Dismiss All</a><?php } ?>
                 <a href="notifications_dismissed.php" class="btn btn-secondary"><i class="fas fa-fw fa-history mr-2"></i>Dismissed</a>
             </div>
         </div>
@@ -52,7 +52,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM notifications LEFT JOIN clients ON n
                             <td><?php echo $notification_type; ?></td>
                             <td><?php echo $notification; ?></td>
                             <td><?php echo $client_name_display; ?></td>
-                            <td class="text-center"><a class="btn btn-info btn-sm" href="post.php?dismiss_notification=<?php echo $notification_id; ?>"><i class="fas fa-check"></a></td>
+                            <td class="text-center"><a class="btn btn-info btn-sm" href="/post/?dismiss_notification=<?php echo $notification_id; ?>"><i class="fas fa-check"></a></td>
                         </tr>
 
                     <?php } ?>

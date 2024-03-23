@@ -6,13 +6,13 @@
  * Always returns data in JSON format, unless otherwise specified
  */
 
- require_once "/var/www/develop.twe.tech/includes/config.php";
+require_once "/var/www/develop.twe.tech/includes/config.php";
 
 require_once "/var/www/develop.twe.tech/includes/functions.php";
 
-require_once "check_login.php";
+require_once "/var/www/develop.twe.tech/includes/check_login.php";
 
-require_once "rfc6238.php";
+require_once "/var/www/develop.twe.tech/includes/rfc6238.php";
 
 
 /*

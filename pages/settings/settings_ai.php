@@ -8,7 +8,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
         <h3 class="card-title"><i class="fas fa-fw fa-robot mr-2"></i>AI</h3>
     </div>
     <div class="card-body">
-        <form action="post.php" method="post" autocomplete="off">
+        <form action="/post/" method="post" autocomplete="off">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
             <div class="form-group">

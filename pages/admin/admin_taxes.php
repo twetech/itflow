@@ -60,7 +60,7 @@ $num_rows = mysqli_num_rows($sql);
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger confirm-link" href="post.php?archive_tax=<?php echo $tax_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>">
+                                        <a class="dropdown-item text-danger confirm-link" href="/post/?archive_tax=<?php echo $tax_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>">
                                             <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                         </a>
                                     </div>

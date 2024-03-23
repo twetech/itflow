@@ -285,7 +285,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
             </div>
         </form>
         <hr>
-        <form id="bulkActions" action="post.php" method="post">
+        <form id="bulkActions" action="/post/" method="post">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
             <div class="table-responsive-sm">
                 <table class="table table-striped table-borderless table-hover">
@@ -443,12 +443,12 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                             if ($ticket_status !== "Closed") {
                                 // Temp performance boost for closed tickets, until we move to dynamic modals
 
-                                require "/var/www/develop.twe.tech/includes/modals//var/www/develop.twe.tech/includes/modals/ticket_assign_modal.php";
+                                require "/var/www/develop.twe.tech/includes/modals/ticket_assign_modal.php";
 
-                                require "/var/www/develop.twe.tech/includes/modals//var/www/develop.twe.tech/includes/modals/ticket_edit_priority_modal.php";
+                                require "/var/www/develop.twe.tech/includes/modals/ticket_edit_priority_modal.php";
 
                                 if ($config_module_enable_accounting) {
-                                    require "/var/www/develop.twe.tech/includes/modals//var/www/develop.twe.tech/includes/modals/ticket_edit_billable_modal.php";
+                                    require "/var/www/develop.twe.tech/includes/modals/ticket_edit_billable_modal.php";
                                 }
                             }
                         }
