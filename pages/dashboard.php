@@ -855,7 +855,7 @@ if ($user_config_dashboard_technical_enable == 1) {
 
 <!-- End Tech Dashboard -->
 
-<?php require_once "footer.php";
+<?php require_once "/var/www/develop.twe.tech/includes/footer.php";
 ?>
 
 <script>

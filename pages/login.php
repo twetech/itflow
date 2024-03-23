@@ -3,12 +3,12 @@
 // Enforce a Content Security Policy for security against cross-site scripting
 header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
 
-if (!file_exists('config.php')) {
+if (!file_exists('/var/www/develop.twe.tech/includes/config.php')) {
     header("Location: setup.php");
     exit;
 }
 
-require_once "config.php";
+require_once "/var/www/develop.twe.tech/includes/config.php";
 
 
 // Check if the application is configured for HTTPS-only access
@@ -17,9 +17,9 @@ if ($config_https_only && (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'o
     exit;
 }
 
-require_once "functions.php";
+require_once "/var/www/develop.twe.tech/includes/functions.php";
 
-require_once "rfc6238.php";
+require_once "/var/www/develop.twe.tech/includes/rfc6238.php";
 
 
 // IP & User Agent for logging
@@ -275,7 +275,7 @@ if (isset($_POST['login'])) {
 <head>
     <title><?php echo nullable_htmlentities($company_name); ?> | Login</title>
     <meta name="robots" content="noindex">
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/includes/plugins/fontawesome-free/css/all.min.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -290,10 +290,10 @@ if (isset($_POST['login'])) {
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
     <!-- Components Vendor Styles -->
-    <link rel="stylesheet" href="dist/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="/includes/dist/vendor/font-awesome/css/all.min.css">
 
     <!-- Theme Styles -->
-    <link rel="stylesheet" href="dist/css/theme.css">
+    <link rel="stylesheet" href="/includes/dist/css/theme.css">
 </head>
 
 <body class="hold-transition login-page">
@@ -355,32 +355,32 @@ if (isset($_POST['login'])) {
 				</div>
 
 				<div class="col-lg-6 d-none d-lg-flex flex-column align-items-center justify-content-center bg-light">
-					<img class="img-fluid position-relative u-z-index-3 mx-5" src="dist/svg/mockups/mockup.svg" alt="Image description">
+					<img class="img-fluid position-relative u-z-index-3 mx-5" src="/includes/dist/svg/mockups/mockup.svg" alt="Image description">
 
 					<figure class="u-shape u-shape--top-right u-shape--position-5">
-						<img src="dist/svg/shapes/shape-1.svg" alt="Image description">
+						<img src="/includes/dist/svg/shapes/shape-1.svg" alt="Image description">
 					</figure>
 					<figure class="u-shape u-shape--center-left u-shape--position-6">
-						<img src="dist/svg/shapes/shape-2.svg" alt="Image description">
+						<img src="/includes/dist/svg/shapes/shape-2.svg" alt="Image description">
 					</figure>
 					<figure class="u-shape u-shape--center-right u-shape--position-7">
-						<img src="dist/svg/shapes/shape-3.svg" alt="Image description">
+						<img src="/includes/dist/svg/shapes/shape-3.svg" alt="Image description">
 					</figure>
 					<figure class="u-shape u-shape--bottom-left u-shape--position-8">
-						<img src="dist/svg/shapes/shape-4.svg" alt="Image description">
+						<img src="/includes/dist/svg/shapes/shape-4.svg" alt="Image description">
 					</figure>
 				</div>
 			</div>
 		</main>
 
         <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
+        <script src="/includes/plugins/jquery/jquery.min.js"></script>
 
         <!-- Bootstrap 4 -->
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/includes/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Prevents resubmit on refresh or back -->
-        <script src="js/login_prevent_resubmit.js"></script>
+        <script src="/js/login_prevent_resubmit.js"></script>
 
     </body>
 </html>

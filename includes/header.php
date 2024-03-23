@@ -33,21 +33,21 @@ header("X-Frame-Options: DENY");
     <?php } ?>
     
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/includes/plugins/fontawesome-free/css/all.min.css">
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/theme.css">
+    <link rel="stylesheet" href="/includes/dist/css/theme.css">
 
     <!-- Custom Style Sheet -->
-    <link href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" type="text/css">
-    <link href="plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
-    <link href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet" type="text/css">
-    <link href='plugins/daterangepicker/daterangepicker.css' rel='stylesheet' />
-    <link href="plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="/includes/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" type="text/css">
+    <link href="/includes/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="/includes/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <link href='/includes/plugins/daterangepicker/daterangepicker.css' rel='stylesheet' />
+    <link href="/includes/plugins/toastr/toastr.min.css" rel="stylesheet">
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <script src="plugins/toastr/toastr.min.js"></script>
+    <script src="/includes/plugins/jquery/jquery.min.js"></script>
+    <script src="/includes/plugins/toastr/toastr.min.js"></script>
 
 </head>
 <body>

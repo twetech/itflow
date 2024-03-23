@@ -12,7 +12,7 @@ if (!isset($_SESSION)) {
 
 //Check to see if setup is enabled
 if (!isset($config_enable_setup) || $config_enable_setup == 1) {
-    header("Location: setup.php");
+    echo "Setup is enabled, please disable setup in the config.php file to continue.";
     exit;
 }
 
@@ -64,7 +64,7 @@ date_default_timezone_set($session_timezone);
 //Set Currency Format
 $currency_format = numfmt_create($session_company_locale, NumberFormatter::CURRENCY);
 
-require_once "get_settings.php";
+require_once "/var/www/develop.twe.tech/includes/get_settings.php";
 
 
 //Detects if using an Apple device and uses Apple Maps instead of google
@@ -85,8 +85,4 @@ $session_mobile = isMobile();
 $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT('notification_id') AS num FROM notifications WHERE (notification_user_id = $session_user_id OR notification_user_id = 0) AND notification_dismissed_at IS NULL"));
 $num_notifications = $row['num'];
 
-// FORCE MFA Setup
-//if ($session_user_config_force_mfa == 1 && $session_token == NULL) {
-//    header("Location: force_mfa.php");
-//}
 
