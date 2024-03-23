@@ -313,7 +313,7 @@ if (isset($_POST['login'])) {
                     <?php } ?>
 
 					<div class="u-login-form">
-						<form class="mb-3" action="/">
+						<form method="post">
 							<div class="mb-3">
 								<h1 class="h2">Welcome Back!</h1>
 								<p class="small">Login with technician email address and password.</p>

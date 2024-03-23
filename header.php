@@ -30,7 +30,7 @@ header("X-Frame-Options: DENY");
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="dist/css/theme.css">
 
     <!-- Custom Style Sheet -->
     <link href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" type="text/css">
@@ -44,5 +44,5 @@ header("X-Frame-Options: DENY");
     <script src="plugins/toastr/toastr.min.js"></script>
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed accent-<?php echo nullable_htmlentities($config_theme); ?>">
-    <div class="wrapper text-sm">
+<body>
+
