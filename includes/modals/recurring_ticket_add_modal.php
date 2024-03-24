@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <?php if (isset($client_id)) { ?>
                        <input type="hidden" name="client" value="<?php echo $client_id; ?>>">
                 <?php } ?>

@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" enctype="multipart/form-data" autocomplete="off">
+            <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <div class="modal-body bg-white">
 
                     <div class="form-row">

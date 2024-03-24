@@ -11,8 +11,8 @@ if(isset($_POST['add_location'])){
     require_once 'post/client_locations_model.php';
 
 
-    if(!file_exists("uploads/clients/$client_id")) {
-        mkdir("uploads/clients/$client_id");
+    if(!file_exists("/uploads/clients/$client_id")) {
+        mkdir("/uploads/clients/$client_id");
     }
 
     mysqli_query($mysqli,"INSERT INTO locations SET location_name = '$name', location_description = '$description', location_country = '$country', location_address = '$address', location_city = '$city', location_state = '$state', location_zip = '$zip', location_phone = '$phone', location_hours = '$hours', location_notes = '$notes', location_contact_id = $contact, location_client_id = $client_id");
@@ -32,7 +32,7 @@ if(isset($_POST['add_location'])){
             $file_tmp_path = $_FILES['file']['tmp_name'];
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "uploads/clients/$client_id/";
+            $upload_file_dir = "/uploads/clients/$client_id/";
             $dest_path = $upload_file_dir . $new_file_name;
 
             move_uploaded_file($file_tmp_path, $dest_path);
@@ -70,8 +70,8 @@ if(isset($_POST['edit_location'])){
     $existing_file_name = sanitizeInput($row['location_photo']);
 
 
-    if(!file_exists("uploads/clients/$client_id")) {
-        mkdir("uploads/clients/$client_id");
+    if(!file_exists("/uploads/clients/$client_id")) {
+        mkdir("/uploads/clients/$client_id");
     }
 
     mysqli_query($mysqli,"UPDATE locations SET location_name = '$name', location_description = '$description', location_country = '$country', location_address = '$address', location_city = '$city', location_state = '$state', location_zip = '$zip', location_phone = '$phone', location_hours = '$hours', location_notes = '$notes', location_contact_id = $contact WHERE location_id = $location_id");
@@ -90,13 +90,13 @@ if(isset($_POST['edit_location'])){
             $file_tmp_path = $_FILES['file']['tmp_name'];
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "uploads/clients/$client_id/";
+            $upload_file_dir = "/uploads/clients/$client_id/";
             $dest_path = $upload_file_dir . $new_file_name;
 
             move_uploaded_file($file_tmp_path, $dest_path);
 
             //Delete old file
-            unlink("uploads/clients/$client_id/$existing_file_name");
+            unlink("/uploads/clients/$client_id/$existing_file_name");
 
             mysqli_query($mysqli,"UPDATE locations SET location_photo = '$new_file_name' WHERE location_id = $location_id");
 

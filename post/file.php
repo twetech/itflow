@@ -1,7 +1,7 @@
 <?php
 
 /*
- * ITFlow - GET/POST request handler for client files/uploads
+ * ITFlow - GET/POST request handler for client files//uploads
  */
 
 if (isset($_POST['upload_files'])) {
@@ -9,8 +9,8 @@ if (isset($_POST['upload_files'])) {
     $folder_id = intval($_POST['folder_id']);
     $description = sanitizeInput($_POST['description']);
 
-    if (!file_exists("uploads/clients/$client_id")) {
-        mkdir("uploads/clients/$client_id");
+    if (!file_exists("/uploads/clients/$client_id")) {
+        mkdir("/uploads/clients/$client_id");
     }
 
     for ($i = 0; $i < count($_FILES['file']['name']); $i++) {
@@ -32,7 +32,7 @@ if (isset($_POST['upload_files'])) {
             $file_extension = sanitizeInput(strtolower(end($extarr)));
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "uploads/clients/$client_id/";
+            $upload_file_dir = "/uploads/clients/$client_id/";
             $dest_path = $upload_file_dir . $file_reference_name;
 
             move_uploaded_file($file_tmp_path, $dest_path);
@@ -131,7 +131,7 @@ if (isset($_POST['delete_file'])) {
     $file_name = sanitizeInput($row['file_name']);
     $file_reference_name = sanitizeInput($row['file_reference_name']);
 
-    unlink("uploads/clients/$client_id/$file_reference_name");
+    unlink("/uploads/clients/$client_id/$file_reference_name");
 
     mysqli_query($mysqli,"DELETE FROM files WHERE file_id = $file_id");
 

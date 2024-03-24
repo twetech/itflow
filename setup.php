@@ -5,7 +5,7 @@ if (file_exists("/var/www/develop.twe.tech/includes/config.php")) {
 
 }
 
-include "/var/www/develop.twe.tech/includes/functions.php";
+include "/var/www/develop.twe.tech/includes/functions/functions.php";
 
 include "database_version.php";
 

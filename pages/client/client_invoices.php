@@ -154,7 +154,7 @@ $recurring_invoice_count = $row['num'];
                                     </button>
                                     <div class="dropdown-menu">
                                         <?php if (!empty($config_smtp_host)) { ?>
-                                            <a class="dropdown-item" href="/post/?email_invoice=<?php echo $invoice_id; ?>">
+                                            <a class="dropdown-item" href="/post.php?email_invoice=<?php echo $invoice_id; ?>">
                                                 <i class="fas fa-fw fa-paper-plane mr-2"></i>Send
                                             </a>
                                             <div class="dropdown-divider"></div>
@@ -166,7 +166,7 @@ $recurring_invoice_count = $row['num'];
                                             <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?delete_invoice=<?php echo $invoice_id; ?>">
+                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_invoice=<?php echo $invoice_id; ?>">
                                             <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                         </a>
                                     </div>

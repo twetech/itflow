@@ -9,7 +9,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
             <h3 class="card-title"><i class="fas fa-fw fa-bell mr-2"></i>Notifications</h3>
         </div>
         <div class="card-body">
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
                 <input type="hidden" name="config_ticket_client_general_notifications" value="0">
                 <input type="hidden" name="config_enable_cron" value="0">
@@ -32,7 +32,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
                         </div>
                         <input type="text" class="form-control" name="config_cron_key" placeholder="Generate a CRON Key" value="<?php echo nullable_htmlentities($config_cron_key); ?>" readonly>
                         <div class="input-group-append">
-                            <a href="/post/?generate_cron_key" class="btn btn-secondary confirm-link"><i class="fas fa-fw fa-sync mr-2"></i>Generate</a>
+                            <a href="/post.php?generate_cron_key" class="btn btn-secondary confirm-link"><i class="fas fa-fw fa-sync mr-2"></i>Generate</a>
                         </div>
                     </div>
                 </div>

@@ -18,8 +18,8 @@ if (isset($_POST['add_user'])) {
 
     $user_id = mysqli_insert_id($mysqli);
 
-    if (!file_exists("uploads/users/$user_id/")) {
-        mkdir("uploads/users/$user_id");
+    if (!file_exists("/uploads/users/$user_id/")) {
+        mkdir("/uploads/users/$user_id");
     }
 
     // Check for and process image/photo
@@ -30,7 +30,7 @@ if (isset($_POST['add_user'])) {
             $file_tmp_path = $_FILES['file']['tmp_name'];
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "uploads/users/$user_id/";
+            $upload_file_dir = "/uploads/users/$user_id/";
             $dest_path = $upload_file_dir . $new_file_name;
             move_uploaded_file($file_tmp_path, $dest_path);
 
@@ -115,8 +115,8 @@ if (isset($_POST['edit_user'])) {
         $two_fa = $_POST['2fa'];
     }
 
-    if (!file_exists("uploads/users/$user_id/")) {
-        mkdir("uploads/users/$user_id");
+    if (!file_exists("/uploads/users/$user_id/")) {
+        mkdir("/uploads/users/$user_id");
     }
 
     // Check for and process image/photo
@@ -127,12 +127,12 @@ if (isset($_POST['edit_user'])) {
             $file_tmp_path = $_FILES['file']['tmp_name'];
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "uploads/users/$user_id/";
+            $upload_file_dir = "/uploads/users/$user_id/";
             $dest_path = $upload_file_dir . $new_file_name;
             move_uploaded_file($file_tmp_path, $dest_path);
 
             // Delete old file
-            unlink("uploads/users/$user_id/$existing_file_name");
+            unlink("/uploads/users/$user_id/$existing_file_name");
 
             // Set Avatar
             mysqli_query($mysqli, "UPDATE users SET user_avatar = '$new_file_name' WHERE user_id = $user_id");

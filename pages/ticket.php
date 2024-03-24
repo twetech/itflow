@@ -286,7 +286,7 @@ if (isset($_GET['ticket_id'])) {
                     <?php if ($session_user_role == 3) { ?>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger text-bold confirm-link"
-                        href="/post/?delete_ticket=<?php echo $ticket_id; ?>">
+                        href="/post.php?delete_ticket=<?php echo $ticket_id; ?>">
                         <i class="fas fa-fw fa-trash mr-2"></i>Delete
                     </a>
                     <?php } ?>
@@ -316,7 +316,7 @@ if (isset($_GET['ticket_id'])) {
                             while ($ticket_attachment = mysqli_fetch_array($sql_ticket_attachments)) {
                                 $name = nullable_htmlentities($ticket_attachment['ticket_attachment_name']);
                                 $ref_name = nullable_htmlentities($ticket_attachment['ticket_attachment_reference_name']);
-                                echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href='uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href='uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
+                                echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
                             }
                             ?>
                 </div>
@@ -325,7 +325,7 @@ if (isset($_GET['ticket_id'])) {
 
             <!-- Only show ticket reply modal if status is not closed -->
             <?php if ($ticket_status != "Closed") { ?>
-            <form class="mb-3 d-print-none" action="/post/" method="post" autocomplete="off">
+            <form class="mb-3 d-print-none" action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="ticket_id" id="ticket_id" value="<?php echo $ticket_id; ?>">
                 <input type="hidden" name="client_id" id="client_id" value="<?php echo $client_id; ?>">
                 <div class="form-group">
@@ -471,13 +471,13 @@ if (isset($_GET['ticket_id'])) {
                         $ticket_reply_by_display = nullable_htmlentities($row['contact_name']);
                         $user_initials = initials($row['contact_name']);
                         $user_avatar = nullable_htmlentities($row['contact_photo']);
-                        $avatar_link = "uploads/clients/$client_id/$user_avatar";
+                        $avatar_link = "/uploads/clients/$client_id/$user_avatar";
                     } else {
                         $ticket_reply_by_display = nullable_htmlentities($row['user_name']);
                         $user_id = intval($row['user_id']);
                         $user_avatar = nullable_htmlentities($row['user_avatar']);
                         $user_initials = initials($row['user_name']);
-                        $avatar_link = "uploads/users/$user_id/$user_avatar";
+                        $avatar_link = "/uploads/users/$user_id/$user_avatar";
                         $ticket_reply_time_worked = date_create($row['ticket_reply_time_worked']);
                     }
 
@@ -542,7 +542,7 @@ if (isset($_GET['ticket_id'])) {
                                 <?php if ($session_user_role == 3) { ?>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger confirm-link"
-                                    href="/post/?archive_ticket_reply=<?php echo $ticket_reply_id; ?>">
+                                    href="/post.php?archive_ticket_reply=<?php echo $ticket_reply_id; ?>">
                                     <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                 </a>
                                 <?php } ?>
@@ -560,7 +560,7 @@ if (isset($_GET['ticket_id'])) {
                                 while ($ticket_attachment = mysqli_fetch_array($sql_ticket_reply_attachments)) {
                                     $name = nullable_htmlentities($ticket_attachment['ticket_attachment_name']);
                                     $ref_name = nullable_htmlentities($ticket_attachment['ticket_attachment_reference_name']);
-                                    echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href='uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href='uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
+                                    echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
                                 }
                                 ?>
                 </div>
@@ -699,7 +699,7 @@ if (isset($_GET['ticket_id'])) {
                 <div class='mt-1'>
                     <i class="fa fa-fw fa-eye text-secondary ml-1 mr-2"></i><?php echo $ticket_watcher_email; ?>
                     <?php if ($ticket_status !== "Closed") { ?>
-                    <a class="confirm-link" href="/post/?delete_ticket_watcher=<?php echo $watcher_id; ?>">
+                    <a class="confirm-link" href="/post.php?delete_ticket_watcher=<?php echo $watcher_id; ?>">
                         <i class="fas fa-fw fa-times text-secondary ml-1"></i>
                     </a>
                     <?php } ?>
@@ -966,7 +966,7 @@ if (isset($_GET['ticket_id'])) {
 
 
                 <!-- Assigned to -->
-                <form action="/post/" method="post">
+                <form action="/post.php" method="post">
                     <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
                     <input type="hidden" name="ticket_status" value="<?php echo $ticket_status; ?>">
                     <div class="form-group">
@@ -1008,7 +1008,7 @@ if (isset($_GET['ticket_id'])) {
                 <?php }
 
                         if ($ticket_status !== "Closed") { ?>
-                <a href="/post/?close_ticket=<?php echo $ticket_id; ?>"
+                <a href="/post.php?close_ticket=<?php echo $ticket_id; ?>"
                     class="btn btn-secondary btn-block confirm-link" id="ticket_close">
                     <i class="fas fa-fw fa-gavel mr-2"></i>Close Ticket
                 </a>

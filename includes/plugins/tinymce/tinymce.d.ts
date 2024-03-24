@@ -1811,7 +1811,7 @@ interface BaseEditorOptions {
     anchor_bottom?: false | string;
     anchor_top?: false | string;
     auto_focus?: string | true;
-    automatic_uploads?: boolean;
+    automatic_/uploads?: boolean;
     base_url?: string;
     block_formats?: string;
     block_unsupported_drop?: boolean;
@@ -2024,7 +2024,7 @@ interface EditorOptions extends NormalizedEditorOptions {
     allow_unsafe_link_target: boolean;
     anchor_bottom: string;
     anchor_top: string;
-    automatic_uploads: boolean;
+    automatic_/uploads: boolean;
     block_formats: string;
     body_class: string;
     body_id: string;

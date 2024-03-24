@@ -95,7 +95,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </div>
             </form>
             <hr>
-            <form id="bulkActions" action="/post/" method="post">
+            <form id="bulkActions" action="/post.php" method="post">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
                 <div class="table-responsive-sm">
                     <table class="table border">
@@ -215,7 +215,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <div class="media">
                                             <?php if (!empty($contact_photo)) { ?>
                                                 <span class="fa-stack fa-2x mr-3 text-center">
-                                                    <img class="img-size-50 img-circle" src="<?php echo "uploads/clients/$client_id/$contact_photo"; ?>">
+                                                    <img class="img-size-50 img-circle" src="<?php echo "/uploads/clients/$client_id/$contact_photo"; ?>">
                                                 </span>
                                             <?php } else { ?>
 
@@ -252,16 +252,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                             </a>
                                             <?php if ($session_user_role == 3 && $contact_primary == 0) { ?>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger confirm-link" href="/post/?anonymize_contact=<?php echo $contact_id; ?>">
+                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?anonymize_contact=<?php echo $contact_id; ?>">
                                                     <i class="fas fa-fw fa-user-secret mr-2"></i>Anonymize & Archive
                                                 </a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger confirm-link" href="/post/?archive_contact=<?php echo $contact_id; ?>">
+                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_contact=<?php echo $contact_id; ?>">
                                                     <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                 </a>
                                                 <?php if ($config_destructive_deletes_enable) { ?>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?delete_contact=<?php echo $contact_id; ?>">
+                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_contact=<?php echo $contact_id; ?>">
                                                     <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                 </a>
                                                 <?php } ?>

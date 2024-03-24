@@ -74,7 +74,7 @@ if (isset($_GET['contact_id'])) {
 
                     <div class="text-center">
                         <?php if ($contact_photo) { ?>
-                            <img class="img-fluid img-circle p-3" alt="contact_photo" src="<?php echo "uploads/clients/$client_id/$contact_photo"; ?>">
+                            <img class="img-fluid img-circle p-3" alt="contact_photo" src="<?php echo "/uploads/clients/$client_id/$contact_photo"; ?>">
                         <?php } else { ?>
                             <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x text-secondary"></i>
@@ -242,10 +242,10 @@ if (isset($_GET['contact_id'])) {
                                                 </a>
                                                 <?php if ($session_user_role == 3) { ?>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="/post/?archive_asset=<?php echo $asset_id; ?>">
+                                                    <a class="dropdown-item text-danger" href="/post.php?archive_asset=<?php echo $asset_id; ?>">
                                                         <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                     </a>
-                                                    <a class="dropdown-item text-danger text-bold" href="/post/?delete_asset=<?php echo $asset_id; ?>">
+                                                    <a class="dropdown-item text-danger text-bold" href="/post.php?delete_asset=<?php echo $asset_id; ?>">
                                                         <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                     </a>
                                                 <?php } ?>
@@ -355,7 +355,7 @@ if (isset($_GET['contact_id'])) {
                                                 </a>
                                                 <?php if ($session_user_role == 3) { ?>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger text-bold" href="/post/?delete_login=<?php echo $login_id; ?>">
+                                                    <a class="dropdown-item text-danger text-bold" href="/post.php?delete_login=<?php echo $login_id; ?>">
                                                         <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                     </a>
                                                 <?php } ?>

@@ -78,7 +78,7 @@ $client_id = intval($row['item_client_id']);
 
 <?php
     if (!empty($company_logo)) { ?>
-            <img alt="<?=nullable_htmlentities($company_name)?> logo" height="40" width="80" class="img-fluid" src="<?php echo "uploads/settings/$company_logo"; ?>">
+            <img alt="<?=nullable_htmlentities($company_name)?> logo" height="40" width="80" class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>">
         <?php
         } else {
             echo "<h3>$company_name</h3>";

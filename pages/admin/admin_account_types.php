@@ -92,7 +92,7 @@ $num_rows = mysqli_num_rows($sql);
                 </div>
             </div>
         </form>
-        <form action="/post/" method="post" autocomplete="off">
+        <form action="/post.php" method="post" autocomplete="off">
              <table class="table table-hover">
                 <thead>
                     <tr>
@@ -142,12 +142,12 @@ $num_rows = mysqli_num_rows($sql);
                                         <div class="dropdown-divider"></div>
                                         <?php if ($archived == NULL) { ?>
                                             <a class="dropdown-item text-danger confirm-link"
-                                                href="/post/?archive_account_type=<?php echo $account_type_id; ?>">
+                                                href="/post.php?archive_account_type=<?php echo $account_type_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                             </a>
                                         <?php } else { ?>
                                             <a class="dropdown-item text-success confirm-link"
-                                                href="/post/?unarchive_account_type=<?php echo $account_type_id; ?>">
+                                                href="/post.php?unarchive_account_type=<?php echo $account_type_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Unarchive
                                             </a>
                                         <?php } ?>

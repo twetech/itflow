@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
 
                     <?php if (isset($_GET['client_id'])) { ?>

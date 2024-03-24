@@ -92,8 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     Favicon
     If Fav Icon exists else use the default one 
     -->
-    <?php if(file_exists('../uploads/favicon.ico')) { ?>
-        <link rel="icon" type="image/x-icon" href="../uploads/favicon.ico">
+    <?php if(file_exists('..//uploads/favicon.ico')) { ?>
+        <link rel="icon" type="image/x-icon" href="..//uploads/favicon.ico">
     <?php } ?>
 
     <!-- Font Awesome -->
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 <div class="login-box">
     <div class="login-logo">
         <?php if (!empty($company_logo)) { ?>
-            <img alt="<?=$company_name?> logo" height="110" width="380" class="img-fluid" src="<?php echo "../uploads/settings/$company_logo"; ?>">
+            <img alt="<?=$company_name?> logo" height="110" width="380" class="img-fluid" src="<?php echo "..//uploads/settings/$company_logo"; ?>">
         <?php } else { ?>
             <b><?=$company_name?></b> <br>Client Portal Login</h2>
         <?php } ?>

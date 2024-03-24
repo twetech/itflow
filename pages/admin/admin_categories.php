@@ -143,11 +143,11 @@ if (isset($_GET['archived'])) {
                                         if ($category == "Archived") {
                                             ?>
                                             <a class="dropdown-item text-success confirm-link"
-                                                href="/post/?unarchive_category=<?php echo $category_id; ?>">
+                                                href="/post.php?unarchive_category=<?php echo $category_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Unarchive
                                             </a>
                                             <a class="dropdown-item text-danger confirm-link"
-                                                href="/post/?delete_category=<?php echo $category_id; ?>">
+                                                href="/post.php?delete_category=<?php echo $category_id; ?>">
                                                 <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                             </a>
                                             <?php
@@ -158,7 +158,7 @@ if (isset($_GET['archived'])) {
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
                                             <a class="dropdown-item text-danger confirm-link"
-                                                href="/post/?archive_category=<?php echo $category_id; ?>">
+                                                href="/post.php?archive_category=<?php echo $category_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                             </a>
                                             <?php

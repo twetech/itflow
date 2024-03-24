@@ -7,7 +7,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
             <h3 class="card-title"><i class="fas fa-fw fa-envelope mr-2"></i>SMTP Mail Settings <small>(For Sending Email)</small></h3>
         </div>
         <div class="card-body">
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
                 <div class="form-group">
@@ -80,7 +80,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
             <h3 class="card-title"><i class="fas fa-fw fa-envelope mr-2"></i>IMAP Mail Settings <small>(For Monitoring Ticket Inbox)</small></h3>
         </div>
         <div class="card-body">
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
                 <div class="form-group">
@@ -155,7 +155,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
             <h3 class="card-title"><i class="fas fa-fw fa-paper-plane mr-2"></i>Mail From Configuration</h3>
         </div>
         <div class="card-body">
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
                 <p>Each of the "From Email" Addresses need to be able to send email on behalf of the SMTP user configured above
@@ -265,7 +265,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
             <h3 class="card-title"><i class="fas fa-fw fa-paper-plane mr-2"></i>Test Email Sending</h3>
         </div>
         <div class="card-body">
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
                 <div class="input-group">
@@ -315,7 +315,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
             <h3 class="card-title"><i class="fas fa-fw fa-plug mr-2"></i>Test IMAP Connection</h3>
         </div>
         <div class="card-body">
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
                 <div class="input-group-append">

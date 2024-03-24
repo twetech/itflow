@@ -74,7 +74,7 @@ $company_email = nullable_htmlentities($row['company_email']);
 $company_website = nullable_htmlentities($row['company_website']);
 $company_logo = nullable_htmlentities($row['company_logo']);
 if (!empty($company_logo)) {
-    $company_logo_base64 = base64_encode(file_get_contents("uploads/settings/$company_logo"));
+    $company_logo_base64 = base64_encode(file_get_contents("/uploads/settings/$company_logo"));
 }
 $company_locale = nullable_htmlentities($row['company_locale']);
 $config_invoice_footer = nullable_htmlentities($row['config_invoice_footer']);
@@ -152,7 +152,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
         <div class="card-body">
             <div class="row mb-4">
                 <div class="col-2">
-                    <img class="img-fluid" src="<?php echo "uploads/settings/$company_logo"; ?>">
+                    <img class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>">
                 </div>
                 <div class="col-10">
                     <?php if ($invoice_status == "Paid") { ?>

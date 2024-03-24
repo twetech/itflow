@@ -22,7 +22,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM contacts
             </div>
         </div>
         <div class="card-body">
-            <form id="bulkActions" action="/post/" method="post">
+            <form id="bulkActions" action="/post.php" method="post">
 
                 <div class="row">
 

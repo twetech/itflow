@@ -128,12 +128,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                                 <!-- Show force resend if all retries have failed -->
                                 <?php if ($email_status == 2 && $email_attempts > 3) { ?>
-                                    <a class="btn btn-sm btn-success" href="/post/?send_failed_mail=<?php echo $email_id; ?>"><i class="fas fa-fw fa-paper-plane"></i></a>
+                                    <a class="btn btn-sm btn-success" href="/post.php?send_failed_mail=<?php echo $email_id; ?>"><i class="fas fa-fw fa-paper-plane"></i></a>
                                 <?php } ?>
 
                                 <!-- Allow cancelling a message if it hasn't yet been picked up (e.g. stuck/bugged) -->
                                 <?php if ($email_status == 0) { ?>
-                                    <a class="btn btn-sm btn-danger confirm-link" href="/post/?cancel_mail=<?php echo $email_id; ?>"><i class="fas fa-fw fa-trash"></i></a>
+                                    <a class="btn btn-sm btn-danger confirm-link" href="/post.php?cancel_mail=<?php echo $email_id; ?>"><i class="fas fa-fw fa-trash"></i></a>
                                 <?php } ?>
 
                             </td>

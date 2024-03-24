@@ -10,7 +10,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
                     <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
                     <input type="hidden" name="set_billable_status" value="1">

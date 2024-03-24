@@ -109,11 +109,11 @@ if (isset($_GET['recurring_id'])) {
                                 <i class="fa fa-fw fa-edit text-secondary mr-2"></i>Edit
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/post/?force_recurring=<?php echo $recurring_id; ?>">
+                            <a class="dropdown-item" href="/post.php?force_recurring=<?php echo $recurring_id; ?>">
                                 <i class="fa fa-fw fa-paper-plane text-secondary mr-2"></i>Force Send
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger confirm-link" href="/post/?delete_recurring=<?php echo $recurring_id; ?>">
+                            <a class="dropdown-item text-danger confirm-link" href="/post.php?delete_recurring=<?php echo $recurring_id; ?>">
                                 <i class="fa fa-fw fa-trash mr-2"></i>Delete
                             </a>
                         </div>
@@ -126,7 +126,7 @@ if (isset($_GET['recurring_id'])) {
 
             <div class="row mb-4">
                 <div class="col-2">
-                    <img class="img-fluid" alt="Company logo" src="<?php echo "uploads/settings/$company_logo"; ?>">
+                    <img class="img-fluid" alt="Company logo" src="<?php echo "/uploads/settings/$company_logo"; ?>">
                 </div>
                 <div class="col-10">
                     <div class="ribbon-wrapper">
@@ -248,7 +248,7 @@ if (isset($_GET['recurring_id'])) {
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <form action="/post/" method="post">
+                                                    <form action="/post.php" method="post">
                                                         <input type="hidden" name="item_recurring_id" value="<?php echo $recurring_id; ?>">
                                                         <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
                                                         <input type="hidden" name="item_order" value="<?php echo $item_order; ?>">
@@ -259,7 +259,7 @@ if (isset($_GET['recurring_id'])) {
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editItemModal<?php echo $item_id; ?>"><i class="fa fa-fw fa-edit mr-2"></i>Edit</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger confirm-link" href="/post/?delete_recurring_item=<?php echo $item_id; ?>"><i class="fa fa-fw fa-trash mr-2"></i>Delete</a>
+                                                    <a class="dropdown-item text-danger confirm-link" href="/post.php?delete_recurring_item=<?php echo $item_id; ?>"><i class="fa fa-fw fa-trash mr-2"></i>Delete</a>
                                                     
                                                     
                                                 </div>
@@ -283,7 +283,7 @@ if (isset($_GET['recurring_id'])) {
                                     ?>
 
                                     <tr class="d-print-none">
-                                        <form action="/post/" method="post">
+                                        <form action="/post.php" method="post">
                                             <input type="hidden" name="recurring_id" value="<?php echo $recurring_id; ?>">
                                             <input type="hidden" name="item_order" value="<?php 
                                                 //find largest order number and add 1

@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" id="inventory_product_id" name="inventory_product_id" value="<?php echo $inventory_product_id; ?>">
                 <input type="hidden" id="inventory_location_id" name="inventory_location_id" value="<?php echo $inventory_location_id; ?>">
                 <div class="modal-body bg-white">

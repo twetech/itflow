@@ -19,7 +19,7 @@
                             <i class="fas fa-fw fa-file-pdf mr-2"></i>Export Data
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger confirm-link" href="/post/?archive_client=<?php echo $client_id; ?>">
+                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_client=<?php echo $client_id; ?>">
                             <i class="fas fa-fw fa-archive mr-2"></i>Archive Client
                         </a>
                         <?php if ($session_user_role == 3) { ?>

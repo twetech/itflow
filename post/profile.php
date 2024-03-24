@@ -6,6 +6,8 @@
 
 if (isset($_POST['edit_your_user_details'])) {
 
+    global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id, $session_company_name, $config_mail_from_name, $config_mail_from_email, $config_app_name;
+
     // CSRF Check
     validateCSRFToken($_POST['csrf_token']);
 
@@ -55,12 +57,12 @@ if (isset($_POST['edit_your_user_details'])) {
             $file_tmp_path = $_FILES['file']['tmp_name'];
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "uploads/users/$session_user_id/";
+            $upload_file_dir = "/var/www/develop.twe.tech/uploads/users/$session_user_id/";
             $dest_path = $upload_file_dir . $new_file_name;
             move_uploaded_file($file_tmp_path, $dest_path);
 
             // Delete old file
-            unlink("uploads/users/$session_user_id/$existing_file_name");
+            unlink("/uploads/users/$session_user_id/$existing_file_name");
 
             // Set Avatar
             mysqli_query($mysqli,"UPDATE users SET user_avatar = '$new_file_name' WHERE user_id = $session_user_id");
@@ -91,6 +93,8 @@ if (isset($_POST['edit_your_user_details'])) {
 }
 
 if (isset($_POST['edit_your_user_password'])) {
+
+    global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id;
 
     // CSRF Check
     validateCSRFToken($_POST['csrf_token']);
@@ -146,6 +150,8 @@ if (isset($_POST['edit_your_user_password'])) {
 
 if (isset($_POST['edit_your_user_browser_extention'])) {
 
+    global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id;
+
     // CSRF Check
     validateCSRFToken($_POST['csrf_token']);
 
@@ -194,6 +200,8 @@ if (isset($_POST['verify'])) {
 
 if(isset($_POST['enable_2fa'])){
 
+    global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id;
+
     // CSRF Check
     validateCSRFToken($_POST['csrf_token']);
 
@@ -211,6 +219,8 @@ if(isset($_POST['enable_2fa'])){
 }
 
 if(isset($_POST['disable_2fa'])){
+
+    global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id;
 
     // CSRF Check
     validateCSRFToken($_POST['csrf_token']);
@@ -251,6 +261,9 @@ if(isset($_POST['disable_2fa'])){
 }
 
 if (isset($_GET['logout'])) {
+
+    global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id, $config_login_key_secret;
+
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Logout', log_action = 'Success', log_description = '$session_name logged out', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
     mysqli_query($mysqli, "UPDATE users SET user_php_session = '' WHERE user_id = $session_user_id");
 
@@ -266,5 +279,5 @@ if (isset($_GET['logout'])) {
     session_unset();
     session_destroy();
 
-    header('Location: login.php?key=' . $config_login_key_secret);
+    header('Location: /pages/login.php?key=' . $config_login_key_secret);
 }

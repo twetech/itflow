@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" enctype="multipart/form-data" autocomplete="off">
+            <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <input type="hidden" name="location_id" value="<?php echo $location_id; ?>">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 
@@ -61,7 +61,7 @@
 
                             <div class="mb-3" style="text-align: center;">
                                 <?php if (!empty($location_photo)) { ?>
-                                    <img class="img-fluid" src="<?php echo "uploads/clients/$client_id/$location_photo"; ?>">
+                                    <img class="img-fluid" src="<?php echo "/uploads/clients/$client_id/$location_photo"; ?>">
                                 <?php } ?>
                             </div>
 

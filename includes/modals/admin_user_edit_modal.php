@@ -8,14 +8,14 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" enctype="multipart/form-data" autocomplete="off">
+            <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
                 <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
                 <div class="modal-body bg-white">
 
                     <center class="mb-3">
                         <?php if (!empty($user_avatar)) { ?>
-                            <img class="img-fluid" src="<?php echo "uploads/users/$user_id/$user_avatar"; ?>">
+                            <img class="img-fluid" src="<?php echo "/uploads/users/$user_id/$user_avatar"; ?>">
                         <?php } else { ?>
                             <span class="fa-stack fa-4x">
               <i class="fa fa-circle fa-stack-2x text-secondary"></i>

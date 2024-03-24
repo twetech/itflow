@@ -45,9 +45,105 @@ function getTotalTax($tax_name, $year, $mysqli)
     return $row['total_tax'] ?? 0;
 }
 
+function getMonthlyIncome($year, $month)
+{
+    global $mysqli;
+
+    $sql_month_query = $month == 13 ? "" : "AND MONTH(payment_date) = $month";
+
+    $sql = "SELECT SUM(payment_amount) AS total_income FROM payments WHERE YEAR(payment_date) = $year $sql_month_query";
+    $result = mysqli_query($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return floatval($row['total_income']) ?? 0;
+}
+
+function getMonthlyPayments($year, $month)
+{
+    global $mysqli;
+
+    $sql_month_query = $month == 13 ? "" : "AND MONTH(payment_date) = $month";
+
+    $sql = "SELECT COUNT(payment_id) AS number_payments FROM payments WHERE YEAR(payment_date) = $year $sql_month_query";
+    $result = mysqli_query($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return intval($row['number_payments']) ?? 0;
+}
+
+function getMonthlyReceivables($year, $month)
+{
+    global $mysqli;
+
+    $sql_month_query = $month == 13 ? "" : "AND MONTH(invoice_date) = $month";
+
+    $sql = "SELECT SUM(invoice_amount) AS total_receivables FROM invoices WHERE YEAR(invoice_date) = $year $sql_month_query";
+    $result = mysqli_query($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return floatval($row['total_receivables']) ?? 0;
+}
+
+function getMonthlyOutstandingInvoices($year, $month)
+{
+    global $mysqli;
+
+    // Corrected typo in the SQL query for 'invoice status' to 'invoice_status'
+    $sql_month_query = $month == 13 ? "" : "AND MONTH(invoice_date) = $month";
+
+    $sql = "SELECT COUNT(invoice_id) AS number_outstanding_invoices FROM invoices WHERE YEAR(invoice_date) = $year AND (invoice_status = 'Unpaid' OR invoice_status = 'Partial') $sql_month_query";
+    $result = mysqli_query($mysqli, $sql);
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        return intval($row['number_outstanding_invoices']);
+    }
+
+    // Return 0 if the query fails or no result is found
+    return 0;
+}
+
+function getUnbilledHours($year, $month)
+{
+    global $mysqli;
+
+    $sql_month_query = $month == 13 ? "" : "AND MONTH(ticket_created_at) = $month";
+
+    $sql = "SELECT SUM(ticket_reply_time_worked) AS total_unbilled_hours FROM ticket_replies
+        LEFT JOIN tickets ON ticket_replies.ticket_reply_ticket_id = tickets.ticket_id
+        WHERE YEAR(ticket_created_at) = $year
+        AND ticket_status = 'Closed'
+        AND ticket_billable = '1'
+        AND ticket_invoice_id IS NULL $sql_month_query
+    ";
+
+    $result = mysqli_query($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return floatval($row['total_unbilled_hours']) ?? 0;
+}
+
+function getMonthlyProfit($year, $month)
+{
+    global $mysqli;
+
+    $sql_payment_month_query = $month == 13 ? "" : "AND MONTH(payment_date) = $month";
+    $sql_expense_month_query = $month == 13 ? "" : "AND MONTH(expense_date) = $month";
+
+
+    $payment_sql = "SELECT SUM(payment_amount) AS total_income FROM payments WHERE YEAR(payment_date) = $year $sql_payment_month_query";
+    $payment_result = mysqli_query($mysqli, $payment_sql);
+    $payment_row = mysqli_fetch_assoc($payment_result);
+    $total_income = floatval($payment_row['total_income']) ?? 0;
+
+    $expense_sql = "SELECT SUM(expense_amount) AS total_expenses FROM expenses WHERE YEAR(expense_date) = $year $sql_expense_month_query";
+    $expense_result = mysqli_query($mysqli, $expense_sql);
+    $expense_row = mysqli_fetch_assoc($expense_result);
+    $total_expenses = floatval($expense_row['total_expenses']) ?? 0;
+
+    return $total_income - $total_expenses;
+}
+
 //Get account currency code
 function getAccountCurrencyCode($account_id)
 {
+    global $mysqli;
+
     $sql = mysqli_query($mysqli, "SELECT account_currency_code FROM accounts WHERE account_id = $account_id");
     $row = mysqli_fetch_array($sql);
     $account_currency_code = nullable_htmlentities($row['account_currency_code']);
@@ -56,6 +152,7 @@ function getAccountCurrencyCode($account_id)
 
 function calculateAccountBalance($account_id)
 {
+    global $mysqli;
 
     $sql_account = mysqli_query($mysqli, "SELECT * FROM accounts LEFT JOIN account_types ON accounts.account_type = account_types.account_type_id WHERE account_archived_at  IS NULL AND account_id = $account_id ORDER BY account_name ASC; ");
     $row = mysqli_fetch_array($sql_account);
@@ -75,7 +172,7 @@ function calculateAccountBalance($account_id)
     $total_expenses = floatval($row['total_expenses']);
 
     $sql_invoices = mysqli_query($mysqli, "SELECT SUM(invoice_amount) AS total_invoices FROM invoices WHERE invoice_account_id = $account_id");
-    $row = mysqli_fetch_array($sql_invoice_amounts);
+    $row = mysqli_fetch_array($sql_invoices);
     $total_invoices = floatval($row['total_invoices']);
 
     $balance = $opening_balance + $total_payments + $total_revenues - $total_expenses;

@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="transfer_id" value="<?php echo $transfer_id; ?>">
                 <input type="hidden" name="expense_id" value="<?php echo $expense_id; ?>">
                 <input type="hidden" name="revenue_id" value="<?php echo $revenue_id; ?>">

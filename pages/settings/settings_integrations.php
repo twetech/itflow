@@ -7,7 +7,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
         <h3 class="card-title"><i class="fas fa-fw fa-plug mr-2"></i>Integration Settings</h3>
     </div>
     <div class="card-body">
-        <form action="/post/" method="post" autocomplete="off">
+        <form action="/post.php" method="post" autocomplete="off">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
             <h4>Client Portal SSO via Microsoft Azure AD</h4>

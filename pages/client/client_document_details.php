@@ -114,7 +114,7 @@ $document_parent = intval($row['document_parent']);
         ?>
         <div class="ml-2">
           <a href="client_files.php?client_id=<?php echo $client_id; ?>&folder_id=<?php echo $folder_id; ?>&q=<?php echo $file_name; ?>" target="_blank"><?php echo $file_name; ?></a>
-          <a class="confirm-link" href="/post/?unlink_file_from_document&file_id=<?php echo $file_id; ?>&document_id=<?php echo $document_id; ?>">
+          <a class="confirm-link" href="/post.php?unlink_file_from_document&file_id=<?php echo $file_id; ?>&document_id=<?php echo $document_id; ?>">
             <i class="fas fa-fw fa-trash-alt text-secondary float-right"></i>
           </a>
         </div>
@@ -145,7 +145,7 @@ $document_parent = intval($row['document_parent']);
         ?>
         <div class="ml-2">
           <a href="client_contact_details.php?client_id=<?php echo $client_id; ?>&contact_id=<?php echo $contact_id; ?>" target="_blank"><?php echo $contact_name; ?></a>
-          <a class="confirm-link float-right" href="/post/?unlink_contact_from_document&contact_id=<?php echo $contact_id; ?>&document_id=<?php echo $document_id; ?>">
+          <a class="confirm-link float-right" href="/post.php?unlink_contact_from_document&contact_id=<?php echo $contact_id; ?>&document_id=<?php echo $document_id; ?>">
             <i class="fas fa-fw fa-trash-alt text-secondary"></i>
           </a>
         </div>
@@ -176,7 +176,7 @@ $document_parent = intval($row['document_parent']);
         ?>
         <div class="ml-2">
           <a href="client_asset_details.php?client_id=<?php echo $client_id; ?>&asset_id=<?php echo $asset_id; ?>" target="_blank"><?php echo $asset_name; ?></a>
-          <a class="confirm-link float-right" href="/post/?unlink_asset_from_document&asset_id=<?php echo $asset_id; ?>&document_id=<?php echo $document_id; ?>">
+          <a class="confirm-link float-right" href="/post.php?unlink_asset_from_document&asset_id=<?php echo $asset_id; ?>&document_id=<?php echo $document_id; ?>">
             <i class="fas fa-fw fa-trash-alt text-secondary"></i>
           </a>
         </div>
@@ -207,7 +207,7 @@ $document_parent = intval($row['document_parent']);
         ?>
         <div class="ml-2">
           <a href="client_software.php?client_id=<?php echo $client_id; ?>&q=<?php echo $software_name; ?>" target="_blank"><?php echo $software_name; ?></a>
-          <a class="confirm-link float-right" href="/post/?unlink_software_from_document&software_id=<?php echo $software_id; ?>&document_id=<?php echo $document_id; ?>">
+          <a class="confirm-link float-right" href="/post.php?unlink_software_from_document&software_id=<?php echo $software_id; ?>&document_id=<?php echo $document_id; ?>">
             <i class="fas fa-fw fa-trash-alt text-secondary"></i>
           </a>
         </div>
@@ -238,7 +238,7 @@ $document_parent = intval($row['document_parent']);
         ?>
         <div class="ml-2">
           <a href="client_vendors.php?client_id=<?php echo $client_id; ?>&q=<?php echo $vendor_name; ?>" target="_blank"><?php echo $vendor_name; ?></a>
-          <a class="confirm-link float-right" href="/post/?unlink_vendor_from_document&vendor_id=<?php echo $vendor_id; ?>&document_id=<?php echo $document_id; ?>">
+          <a class="confirm-link float-right" href="/post.php?unlink_vendor_from_document&vendor_id=<?php echo $vendor_id; ?>&document_id=<?php echo $document_id; ?>">
             <i class="fas fa-fw fa-trash-alt text-secondary"></i>
           </a>
         </div>
@@ -269,7 +269,7 @@ $document_parent = intval($row['document_parent']);
         <div class="mt-1 <?php if($document_id == $revision_document_id){ echo "text-bold"; } ?>">
           <i class="fas fa-fw fa-history text-secondary mr-2"></i><a href="?client_id=<?php echo $client_id; ?>&document_id=<?php echo $revision_document_id; ?>"><?php echo "  $revision_document_created_date"; ?></a><?php if($document_parent == $revision_document_id){ echo "<span class='float-right'>(Parent)</span>"; 
             } else { ?>
-              <a class="confirm-link float-right" href="/post/?delete_document_version=<?php echo $revision_document_id; ?>">
+              <a class="confirm-link float-right" href="/post.php?delete_document_version=<?php echo $revision_document_id; ?>">
                 <i class="fas fa-fw fa-trash-alt text-secondary"></i>
               </a>
             <?php 

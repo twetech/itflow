@@ -18,7 +18,7 @@ chdir(dirname(__FILE__));
 // Get ITFlow config & helper functions
 require_once "/var/www/develop.twe.tech/includes/config.php";
 
-require_once "/var/www/develop.twe.tech/includes/functions.php";
+require_once "/var/www/develop.twe.tech/includes/functions/functions.php";
 
 // Get settings for the "default" company
 require_once "get_settings.php";

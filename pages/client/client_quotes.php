@@ -140,12 +140,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         </a>
                                         <div class="dropdown-divider"></div>
                                         <?php if (!empty($config_smtp_host)) { ?>
-                                            <a class="dropdown-item" href="/post/?email_quote=<?php echo $quote_id; ?>">
+                                            <a class="dropdown-item" href="/post.php?email_quote=<?php echo $quote_id; ?>">
                                                 <i class="fas fa-fw fa-paper-plane mr-2"></i>Send
                                             </a>
                                             <div class="dropdown-divider"></div>
                                         <?php } ?>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?delete_quote=<?php echo $quote_id; ?>&client_id=<?php echo $client_id; ?>">
+                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_quote=<?php echo $quote_id; ?>&client_id=<?php echo $client_id; ?>">
                                             <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                         </a>
                                     </div>
