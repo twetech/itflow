@@ -21,7 +21,7 @@ $num_rows = mysqli_num_rows($sql);
 
 ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-map-marker-alt mr-2"></i>Inventory Locations</h3>
             <div class="card-tools">

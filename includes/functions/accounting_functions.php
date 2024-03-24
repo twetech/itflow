@@ -171,10 +171,6 @@ function calculateAccountBalance($account_id)
     $row = mysqli_fetch_array($sql_expenses);
     $total_expenses = floatval($row['total_expenses']);
 
-    $sql_invoices = mysqli_query($mysqli, "SELECT SUM(invoice_amount) AS total_invoices FROM invoices WHERE invoice_account_id = $account_id");
-    $row = mysqli_fetch_array($sql_invoices);
-    $total_invoices = floatval($row['total_invoices']);
-
     $balance = $opening_balance + $total_payments + $total_revenues - $total_expenses;
 
     if ($balance == '') {

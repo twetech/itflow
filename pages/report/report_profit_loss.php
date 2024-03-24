@@ -24,7 +24,7 @@ $sql_categories_expense = mysqli_query($mysqli, "SELECT * FROM categories WHERE 
 
 ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-balance-scale mr-2"></i>Profit & Loss</h3>
             <div class="card-tools">

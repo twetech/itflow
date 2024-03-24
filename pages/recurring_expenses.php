@@ -26,7 +26,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><a href="expenses.php"><i class="fas fa-fw fa-shopping-cart mr-2"></i>Expenses</a> / <i class="fas fa-fw fa-clock mr-2"></i>Recurring</h3>
             <div class="card-tools">

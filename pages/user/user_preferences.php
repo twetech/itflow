@@ -3,7 +3,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
 
 ?>
 
-<div class="card card-dark">
+<div class="card">
     <div class="card-header py-3">
         <h3 class="card-title"><i class="fas fa-fw fa-globe mr-2"></i>Browser Extension</h3>
     </div>

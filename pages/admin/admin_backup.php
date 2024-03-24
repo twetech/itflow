@@ -2,7 +2,7 @@
 require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
  ?>
 
-<div class="card card-dark mb-3">
+<div class="card mb-3">
     <div class="card-header py-3">
         <h3 class="card-title"><i class="fas fa-fw fa-database mr-2"></i>Download Database</h3>
     </div>
@@ -11,7 +11,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
     </div>
 </div>
 
-<div class="card card-dark">
+<div class="card">
     <div class="card-header py-3">
         <h3 class="card-title"><i class="fas fa-fw fa-key mr-2"></i>Backup Master Encryption Key</h3>
     </div>

@@ -14,7 +14,7 @@ $sql_recent_logs = mysqli_query($mysqli, "SELECT * FROM logs
 
 ?>
 
-<div class="card card-dark">
+<div class="card">
     <div class="card-header">
         <h3 class="card-title"><i class="fas fa-fw fa-sign-in-alt mr-2"></i>Your Recent Sign ins</h3>
     </div>
@@ -46,7 +46,7 @@ $sql_recent_logs = mysqli_query($mysqli, "SELECT * FROM logs
     </div>
 </div>
 
-<div class="card card-dark">
+<div class="card">
     <div class="card-header">
         <h3 class="card-title"><i class="fas fa-fw fa-history mr-2"></i>Your Recent Activity</h3>
     </div>

@@ -33,7 +33,7 @@ $sql_credits = mysqli_query(
 $credits_num_rows = mysqli_num_rows($sql_credits);
 ?>
 
-<div class="card card-dark">
+<div class="card">
     <div class="card-header py-3">
         <h3 class="card-title"><i class="fas fa-fw fa-credit-card mr-2"></i>Payments</h3>
     </div>

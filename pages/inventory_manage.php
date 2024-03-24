@@ -36,7 +36,7 @@ $product_name = sanitizeInput($product_name_row[0]);
 
 ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-box mr-2"></i>Inventory product: <?php echo $product_name?> </h3>
         </div>

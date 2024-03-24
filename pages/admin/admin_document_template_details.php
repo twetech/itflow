@@ -39,7 +39,7 @@ $document_updated_at = nullable_htmlentities($row['document_updated_at']);
   <li class="breadcrumb-item active"><i class="fas fa-file mr-2"></i><?php echo $document_name; ?></li>
 </ol>
 
-<div class="card card-dark">
+<div class="card">
   <div class="card-header">
 
     <h3 class="card-title mt-2"><i class="fa fa-fw fa-file mr-2"></i><?php echo $document_name; ?></h3>

@@ -62,7 +62,7 @@ if (isset($_GET['contact_id'])) {
 
         <div class="col-md-3">
 
-            <div class="card card-dark">
+            <div class="card">
                 <div class="card-body">
                     <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#editContactModal<?php echo $contact_id; ?>">
                         <i class="fas fa-fw fa-user-edit"></i>
@@ -140,7 +140,7 @@ if (isset($_GET['contact_id'])) {
                 <li class="breadcrumb-item active"><?php echo "$contact_name"; ?></li>
             </ol>
 
-            <div class="card card-dark <?php if ($asset_count == 0) { echo "d-none"; } ?>">
+            <div class="card <?php if ($asset_count == 0) { echo "d-none"; } ?>">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fa fa-fw fa-desktop mr-2"></i>Related Assets</h3>
                 </div>
@@ -274,7 +274,7 @@ if (isset($_GET['contact_id'])) {
                 </div>
             </div>
 
-            <div class="card card-dark <?php if ($login_count == 0) { echo "d-none"; } ?>">
+            <div class="card <?php if ($login_count == 0) { echo "d-none"; } ?>">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fa fa-fw fa-key mr-2"></i>Related Logins</h3>
                 </div>
@@ -379,7 +379,7 @@ if (isset($_GET['contact_id'])) {
                 </div>
             </div>
 
-            <div class="card card-dark <?php if ($software_count == 0) { echo "d-none"; } ?>">
+            <div class="card <?php if ($software_count == 0) { echo "d-none"; } ?>">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fa fa-fw fa-cube mr-2"></i>Related Licenses</h3>
                 </div>
@@ -454,7 +454,7 @@ if (isset($_GET['contact_id'])) {
                 </div>
             </div>
 
-            <div class="card card-dark <?php if ($ticket_count == 0) { echo "d-none"; } ?>">
+            <div class="card <?php if ($ticket_count == 0) { echo "d-none"; } ?>">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fa fa-fw fa-life-ring mr-2"></i>Related Tickets</h3>
                 </div>

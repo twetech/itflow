@@ -1,52 +1,55 @@
-<!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-<?php echo nullable_htmlentities($config_theme); ?> d-print-none">
 
-    <a class="brand-link pb-1 mt-1" href="clients.php">    
-        <p class="h5"><i class="nav-icon fas fa-arrow-left ml-3 mr-2"></i> Go Back</strong></p>
+<!-- Details -->
+<li class="u-sidebar-nav-menu__item">
+    <a class="u-sidebar-nav-menu__link 
+        <?php if (basename($_SERVER["PHP_SELF"]) == "user_details.php") {
+            echo "active";
+        } ?>" href="/pages/user/user_details.php">
+        <i class="fa fa-cubes u-sidebar-nav-menu__item-icon"></i>
+        <span class="u-sidebar-nav-menu__item-title">User Details</span>
     </a>
+</li>
+<!-- End Details-->
 
-    <!-- Sidebar -->
-    <div class="sidebar">
+<hr>
 
-        <!-- Sidebar Menu -->
-        <nav>
+<!-- Security -->
+<li class="u-sidebar-nav-menu__item">
+    <a class="u-sidebar-nav-menu__link 
+        <?php if (basename($_SERVER["PHP_SELF"]) == "user_security.php") {
+            echo "active";
+        } ?>" href="/pages/user/user_security.php">
+        <i class="fa fa-shield-alt u-sidebar-nav-menu__item-icon"></i>
+        <span class="u-sidebar-nav-menu__item-title">Security</span>
+    </a>
+</li>
+<!-- End Security -->
 
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+<hr>
 
-                <li class="nav-item mt-3">
-                    <a href="user_details.php" class="nav-link <?php if (basename($_SERVER["PHP_SELF"]) == "user_details.php") { echo "active"; } ?>">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>Details</p>
-                    </a>
-                </li>
+<!-- Preferences -->
+<li class="u-sidebar-nav-menu__item">
+    <a class="u-sidebar-nav-menu__link 
+        <?php if (basename($_SERVER["PHP_SELF"]) == "user_preferences.php") {
+            echo "active";
+        } ?>" href="/pages/user/user_preferences.php">
+        <i class="fa fa-cogs u-sidebar-nav-menu__item-icon"></i>
+        <span class="u-sidebar-nav-menu__item-title">Preferences</span>
+    </a>
+</li>
+<!-- End Preferences -->
 
-               <li class="nav-item mt-2">
-                    <a href="user_security.php" class="nav-link <?php if (basename($_SERVER["PHP_SELF"]) == "user_security.php") { echo "active"; } ?>">
-                        <i class="nav-icon fas fa-shield-alt"></i>
-                        <p>Security</p>
-                    </a>
-                </li>
+<hr>
 
-                <li class="nav-item mt-2">
-                    <a href="user_preferences.php" class="nav-link <?php if (basename($_SERVER["PHP_SELF"]) == "user_preferences.php") { echo "active"; } ?>">
-                        <i class="nav-icon fas fa-cogs"></i>
-                        <p>Preferences</p>
-                    </a>
-                </li>
+<!-- Activity -->
+<li class="u-sidebar-nav-menu__item">
+    <a class="u-sidebar-nav-menu__link 
+        <?php if (basename($_SERVER["PHP_SELF"]) == "user_activity.php") {
+            echo "active";
+        } ?>" href="/pages/user/user_activity.php">
+        <i class="fa fa-clock u-sidebar-nav-menu__item-icon"></i>
+        <span class="u-sidebar-nav-menu__item-title">Activity</span>
+    </a>
+</li>
+<!-- End Activity -->
 
-                <li class="nav-item mt-2">
-                    <a href="user_activity.php" class="nav-link <?php if (basename($_SERVER["PHP_SELF"]) == "user_activity.php") { echo "active"; } ?>">
-                        <i class="nav-icon fas fa-clock"></i>
-                        <p>Activity</p>
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-
-        <div class="mb-3"></div>
-        
-    </div>
-    <!-- /.sidebar -->
-</aside>

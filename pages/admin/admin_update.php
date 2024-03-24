@@ -21,7 +21,7 @@ $git_log = shell_exec("git log $repo_branch..origin/$repo_branch --pretty=format
 
 ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-3">
             <h3 class="card-title"><i class="fas fa-fw fa-download mr-2"></i>Update</h3>
         </div>

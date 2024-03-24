@@ -41,7 +41,7 @@ $sql_vendor_expenses = mysqli_query($mysqli, "
 
 ?>
 
-<div class="card card-dark">
+<div class="card">
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-building mr-2"></i>Expense By Vendor <small>(With expense amounts of 600 or more)</small></h3>
         <div class="card-tools">

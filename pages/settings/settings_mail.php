@@ -2,7 +2,7 @@
 require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
  ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-3">
             <h3 class="card-title"><i class="fas fa-fw fa-envelope mr-2"></i>SMTP Mail Settings <small>(For Sending Email)</small></h3>
         </div>
@@ -75,7 +75,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
         </div>
     </div>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-3">
             <h3 class="card-title"><i class="fas fa-fw fa-envelope mr-2"></i>IMAP Mail Settings <small>(For Monitoring Ticket Inbox)</small></h3>
         </div>
@@ -150,7 +150,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
         </div>
     </div>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-3">
             <h3 class="card-title"><i class="fas fa-fw fa-paper-plane mr-2"></i>Mail From Configuration</h3>
         </div>
@@ -260,7 +260,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
 
     <?php if (!empty($config_smtp_host) && !empty($config_smtp_port) && !empty($config_mail_from_email) && !empty($config_mail_from_name)) { ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-3">
             <h3 class="card-title"><i class="fas fa-fw fa-paper-plane mr-2"></i>Test Email Sending</h3>
         </div>
@@ -310,7 +310,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
 
     <?php if (!empty($config_imap_username) && !empty($config_imap_password) && !empty($config_imap_host) && !empty($config_imap_port)) { ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-3">
             <h3 class="card-title"><i class="fas fa-fw fa-plug mr-2"></i>Test IMAP Connection</h3>
         </div>

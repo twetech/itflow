@@ -3,7 +3,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
 
 ?>
 
-<div class="card card-dark">
+<div class="card">
     <div class="card-header py-3">
         <h3 class="card-title"><i class="fas fa-fw fa-shield-alt mr-2"></i>Your Password</h3>
     </div>
@@ -30,7 +30,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
     </div>
 </div>
 
-<div class="card card-dark">
+<div class="card">
     <div class="card-header py-3">
         <h3 class="card-title"><i class="fas fa-fw fa-lock mr-2"></i>Mult-Factor Authentication</h3>
     </div>

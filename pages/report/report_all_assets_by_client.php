@@ -15,7 +15,7 @@ $sql_clients = mysqli_query($mysqli, "SELECT client_id, client_name FROM clients
 
 ?>
 
-<div class="card card-dark">
+<div class="card">
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-life-ring mr-2"></i>All Assets by Client</h3>
         <div class="card-tools">

@@ -13,7 +13,7 @@ $timezones = DateTimeZone::listIdentifiers();
 
 ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-3">
             <h3 class="card-title"><i class="fas fa-fw fa-globe mr-2"></i>Localization</h3>
         </div>
