@@ -111,12 +111,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger confirm-link" href="/post/?archive_product=<?php echo $product_id; ?>">
+                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_product=<?php echo $product_id; ?>">
                                             <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                         </a>
                                         <?php if ($config_destructive_deletes_enable) { ?>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?delete_product=<?php echo $product_id; ?>">
+                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_product=<?php echo $product_id; ?>">
                                              <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                          </a>
                                         <?php } ?>
@@ -146,4 +146,4 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 require_once "/var/www/develop.twe.tech/includes/modals/product_add_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/modals/footer.php";
+require_once "/var/www/develop.twe.tech/includes/footer.php";

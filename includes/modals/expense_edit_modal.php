@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" enctype="multipart/form-data" autocomplete="off">
+            <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <div class="modal-body bg-white">
                     <input type="hidden" name="expense_id" value="<?php echo $expense_id; ?>">
 
@@ -191,7 +191,7 @@
 
                     <?php if (!empty($expense_receipt)) { ?>
                         <hr>
-                        <a class="text-secondary" href="<?php echo "uploads/expenses/$expense_receipt"; ?>"
+                        <a class="text-secondary" href="<?php echo "/uploads/expenses/$expense_receipt"; ?>"
                             download="<?php echo "$expense_date-$vendor_name-$category_name-$expense_id.pdf" ?>">
                             <i class="fa fa-fw fa-2x fa-file-pdf text-secondary"></i> <?php echo "$expense_date-$vendor_name-$category_name-$expense_id.pdf" ?>
                         </a>

@@ -9,7 +9,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <input type="hidden" name="lead" value="0">
                 <input type="hidden" name="currency_code" value="<?php if (empty($currency_code)) {

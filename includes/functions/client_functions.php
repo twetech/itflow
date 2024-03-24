@@ -49,9 +49,9 @@ function createClient(
 
     $client_id = mysqli_insert_id($mysqli);
 
-    if (!file_exists("uploads/clients/$client_id")) {
-        mkdir("uploads/clients/$client_id");
-        file_put_contents("uploads/clients/$client_id/index.php", "");
+    if (!file_exists("/uploads/clients/$client_id")) {
+        mkdir("/uploads/clients/$client_id");
+        file_put_contents("/uploads/clients/$client_id/index.php", "");
     }
 
     // Create Referral if it doesn't exist
@@ -359,7 +359,7 @@ function deleteClient(
     mysqli_query($mysqli, "DELETE FROM vendors WHERE vendor_client_id = $client_id");
 
     //Delete Client Files
-    removeDirectory('uploads/clients/$client_id');
+    removeDirectory('/var/www/develop.twe.tech/uploads/clients/' . $client_id);
 
     //Finally Remove the Client
     mysqli_query($mysqli, "DELETE FROM clients WHERE client_id = $client_id");

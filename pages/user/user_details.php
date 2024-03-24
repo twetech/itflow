@@ -9,14 +9,14 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
     </div>
     <div class="card-body">
 
-        <form action="/post/" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
             <center class="mb-3 px-5">
                 <?php if (empty($session_avatar)) { ?>
                     <i class="fas fa-user-circle fa-8x text-secondary"></i>
                 <?php } else { ?>
-                    <img alt="User avatar" src="<?php echo "uploads/users/$session_user_id/" . nullable_htmlentities($session_avatar); ?>" class="img-fluid">
+                    <img alt="User avatar" src="<?php echo "/uploads/users/$session_user_id/" . nullable_htmlentities($session_avatar); ?>" class="img-fluid">
                 <?php } ?>
                 <h4 class="text-secondary mt-2"><?php echo nullable_htmlentities($session_user_role_display); ?></h4>
             </center>

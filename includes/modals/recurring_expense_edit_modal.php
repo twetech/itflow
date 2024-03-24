@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
                     <input type="hidden" name="recurring_expense_id" value="<?php echo $recurring_expense_id; ?>">
 

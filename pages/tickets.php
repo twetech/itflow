@@ -99,19 +99,22 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
     }
 </style>
 <div class="card card-dark">
-    <div class="card-header py-2">
-        <h3 class="card-title mt-2"><i class="fa fa-fw fa-life-ring mr-2"></i>Support Tickets
-            <small class="ml-3">
-                <a href="?status=Open" class="text-white"><strong><?php echo $total_tickets_open; ?></strong> Open</a> |
-                <a href="?status=Closed" class="text-white"><strong><?php echo $total_tickets_closed; ?></strong> Closed</a>
-            </small>
-        </h3>
-        <div class='card-tools'>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTicketModal">
-                <i class="fas fa-plus mr-2"></i>New Ticket
-            </button>
-        </div>
-    </div>
+    <header class="card-header d-flex align-items-center">
+        <h3 class="card-title mt-2"><i class="fa fa-fw fa-life-ring mr-2"></i>Support Tickets</h3>
+        <small class="ml-3">
+                <a href="?status=Open"><strong><?php echo $total_tickets_open; ?></strong> Open</a> |
+                <a href="?status=Closed"><strong><?php echo $total_tickets_closed; ?></strong> Closed</a>
+        </small>
+            <?php if ($session_user_role == 3) { ?>
+                <ul class="list-inline ml-auto mb0">
+                    <li class="list-inline-item mr3">
+                        <a href="#" data-toggle="modal" data-target="#addTicketModal" class="text-dark">
+                            <i class="fa fa-fw fa-plus mr-2"></i>
+                        </a>
+                    </li>
+                </ul>
+            <?php } ?>
+    </header>
     <div class="card-body">
         <form autocomplete="off">
             <div class="row">
@@ -292,165 +295,219 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                     <thead class="text-dark <?php if (!$num_rows[0]) {
                                                 echo "d-none";
                                             } ?>">
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="selectAllCheckbox" type="checkbox" onclick="checkAll(this)">
-                                </div>
-                            </td>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_number&order=<?php echo $disp; ?>">Number</a>
-                            </th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_subject&order=<?php echo $disp; ?>">Subject</a>
-                            </th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">Client / Contact</a>
-                            </th>
-                            <?php if ($config_module_enable_accounting) { ?>
-                                <th class="text-center"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_billable&order=<?php echo $disp; ?>">Billable</a>
+
+                        <?php if (!$session_mobile) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="selectAllCheckbox" type="checkbox" onclick="checkAll(this)">
+                                    </div>
+                                </td>
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_number&order=<?php echo $disp; ?>">Number</a>
                                 </th>
-                            <?php } ?>
-
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_priority&order=<?php echo $disp; ?>">Priority</a>
-                            </th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_status&order=<?php echo $disp; ?>">Status</a>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_name&order=<?php echo $disp; ?>">Assigned</a>
-                            </th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_updated_at&order=<?php echo $disp; ?>">Last Response</a>
-                            </th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_created_at&order=<?php echo $disp; ?>">Created</a>
-                            </th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-
-                        while ($row = mysqli_fetch_array($sql)) {
-                            $ticket_id = intval($row['ticket_id']);
-                            $ticket_prefix = nullable_htmlentities($row['ticket_prefix']);
-                            $ticket_number = intval($row['ticket_number']);
-                            $ticket_subject = nullable_htmlentities($row['ticket_subject']);
-                            $ticket_priority = nullable_htmlentities($row['ticket_priority']);
-                            $ticket_status = nullable_htmlentities($row['ticket_status']);
-                            $ticket_billable = intval($row['ticket_billable']);
-                            $ticket_scheduled_for = nullable_htmlentities($row['ticket_schedule']);
-                            $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_number']);
-                            $ticket_created_at = nullable_htmlentities($row['ticket_created_at']);
-                            $ticket_created_at_time_ago = timeAgo($row['ticket_created_at']);
-                            $ticket_updated_at = nullable_htmlentities($row['ticket_updated_at']);
-                            $ticket_updated_at_time_ago = timeAgo($row['ticket_updated_at']);
-                            if (empty($ticket_updated_at)) {
-                                if ($ticket_status == "Closed") {
-                                    $ticket_updated_at_display = "<p>Never</p>";
-                                } else {
-                                    $ticket_updated_at_display = "<p class='text-danger'>Never</p>";
-                                }
-                            } else {
-                                $ticket_updated_at_display = "$ticket_updated_at_time_ago<br><small class='text-secondary'>$ticket_updated_at</small>";
-                            }
-                            $ticket_closed_at = nullable_htmlentities($row['ticket_closed_at']);
-                            $client_id = intval($row['ticket_client_id']);
-                            $client_name = nullable_htmlentities($row['client_name']);
-                            $contact_id = intval($row['ticket_contact_id']);
-                            $contact_name = nullable_htmlentities($row['contact_name']);
-                            $contact_title = nullable_htmlentities($row['contact_title']);
-                            $contact_email = nullable_htmlentities($row['contact_email']);
-                            $contact_phone = formatPhoneNumber($row['contact_phone']);
-                            $contact_extension = nullable_htmlentities($row['contact_extension']);
-                            $contact_mobile = formatPhoneNumber($row['contact_mobile']);
-
-                            $ticket_status_color = getTicketStatusColor($ticket_status);
-
-                            if ($ticket_priority == "High") {
-                                $ticket_priority_color = "danger";
-                            } elseif ($ticket_priority == "Medium") {
-                                $ticket_priority_color = "warning";
-                            } else {
-                                $ticket_priority_color = "info";
-                            }
-
-                            $ticket_assigned_to = intval($row['ticket_assigned_to']);
-                            if (empty($ticket_assigned_to)) {
-                                if ($ticket_status == "Closed") {
-                                    $ticket_assigned_to_display = "<p>Not Assigned</p>";
-                                } else {
-                                    $ticket_assigned_to_display = "<p class='text-danger'>Not Assigned</p>";
-                                }
-                            } else {
-                                $ticket_assigned_to_display = nullable_htmlentities($row['user_name']);
-                            }
-
-                            if (empty($contact_name)) {
-                                $contact_display = "-";
-                            } else {
-                                $contact_display = "$contact_name<br><small class='text-secondary'>$contact_email</small>";
-                            }
-
-                            $asset_id = intval($row['ticket_asset_id']);
-                            $vendor_id = intval($row['ticket_vendor_id']);
-
-                        ?>
-
-                            <tr class="<?php if (empty($ticket_updated_at)) {
-                                            echo "text-bold";
-                                        } ?>">
-                                <td>
-                                    <?php if ($ticket_status !== "Closed") { ?>
-                                        <div class="form-check">
-                                            <input class="form-check-input bulk-select" type="checkbox" name="ticket_ids[]" value="<?php echo $ticket_id ?>">
-                                        </div>
-                                    <?php } ?>
-                                </td>
-                                <td>
-                                    <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>">
-                                        <span class="badge badge-pill badge-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a>
-                                </td>
-                                <td>
-                                    <a href="client_tickets.php?client_id=<?php echo $client_id; ?>"><strong><?php echo $client_name; ?></strong></a>
-
-                                    <div class="mt-1"><?php echo $contact_display; ?></div>
-                                </td>
-
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_subject&order=<?php echo $disp; ?>">Subject</a>
+                                </th>
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">Client / Contact</a>
+                                </th>
                                 <?php if ($config_module_enable_accounting) { ?>
-                                    <td class="text-center">
-                                        <a href="#" data-toggle="modal" data-target="#editTicketBillableModal<?php echo $ticket_id; ?>">
-                                            <?php
-                                            if ($ticket_billable == 1) {
-                                                echo "<span class='badge badge-pill badge-success'>$</span>";
-                                            } else {
-                                                echo "<span class='badge badge-pill badge-secondary'>X</span>";
-                                            }
-                                            ?>
-                                    </td>
+                                    <th class="text-center"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_billable&order=<?php echo $disp; ?>">Billable</a>
+                                    </th>
                                 <?php } ?>
 
-                                <td><a href="#" data-toggle="modal" data-target="#editTicketPriorityModal<?php echo $ticket_id; ?>"><span class='p-2 badge badge-pill badge-<?php echo $ticket_priority_color; ?>'><?php echo $ticket_priority; ?></span></a></td>
-                                <td><span class='p-2 badge badge-pill badge-<?php echo $ticket_status_color; ?>'><?php echo $ticket_status; ?></span> <?php if ($ticket_status == 'On Hold' && isset ($ticket_scheduled_for)) { echo "<div class=\"mt-1\"> <small class='text-secondary'> $ticket_scheduled_for </small></div>"; } ?></td>
-                                <td><a href="#" data-toggle="modal" data-target="#assignTicketModal<?php echo $ticket_id; ?>"><?php echo $ticket_assigned_to_display; ?></a></td>
-                                <td><?php echo $ticket_updated_at_display; ?></td>
-                                <td>
-                                    <?php echo $ticket_created_at_time_ago; ?>
-                                    <br>
-                                    <small class="text-secondary"><?php echo $ticket_created_at; ?></small>
-                                </td>
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_priority&order=<?php echo $disp; ?>">Priority</a>
+                                </th>
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_status&order=<?php echo $disp; ?>">Status</a>
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_name&order=<?php echo $disp; ?>">Assigned</a>
+                                </th>
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_updated_at&order=<?php echo $disp; ?>">Last Response</a>
+                                </th>
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_created_at&order=<?php echo $disp; ?>">Created</a>
+                                </th>
                             </tr>
+                            <?php } else { ?>
+                            <tr>
+                                <td>
+                                    <div class="form-check
+                                    ">
+                                        <input class="form-check
+                                        -input" id="selectAllCheckbox" type="checkbox" onclick="checkAll(this)">
+                                    </div>
+                                </td>
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_number&order=<?php echo $disp; ?>">Number</a>
+                                </th>
+                                <?php if ($config_module_enable_accounting) { ?>
+                                    <th class="text-center"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_billable&order=<?php echo $disp; ?>">Billable</a>
+                                    </th>
+                                <?php } ?>
+                            <?php } ?>
+                        </thead>
+                        <tbody>
+                            <?php
 
-                        <?php
-
-                            if ($ticket_status !== "Closed") {
-                                // Temp performance boost for closed tickets, until we move to dynamic modals
-
-                                require "/var/www/develop.twe.tech/includes/modals/ticket_assign_modal.php";
-
-                                require "/var/www/develop.twe.tech/includes/modals/ticket_edit_priority_modal.php";
-
-                                if ($config_module_enable_accounting) {
-                                    require "/var/www/develop.twe.tech/includes/modals/ticket_edit_billable_modal.php";
+                            while ($row = mysqli_fetch_array($sql)) {
+                                $ticket_id = intval($row['ticket_id']);
+                                $ticket_prefix = nullable_htmlentities($row['ticket_prefix']);
+                                $ticket_number = intval($row['ticket_number']);
+                                $ticket_subject = nullable_htmlentities($row['ticket_subject']);
+                                $ticket_priority = nullable_htmlentities($row['ticket_priority']);
+                                $ticket_status = nullable_htmlentities($row['ticket_status']);
+                                $ticket_billable = intval($row['ticket_billable']);
+                                $ticket_scheduled_for = nullable_htmlentities($row['ticket_schedule']);
+                                $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_number']);
+                                $ticket_created_at = nullable_htmlentities($row['ticket_created_at']);
+                                $ticket_created_at_time_ago = timeAgo($row['ticket_created_at']);
+                                $ticket_updated_at = nullable_htmlentities($row['ticket_updated_at']);
+                                $ticket_updated_at_time_ago = timeAgo($row['ticket_updated_at']);
+                                if (empty($ticket_updated_at)) {
+                                    if ($ticket_status == "Closed") {
+                                        $ticket_updated_at_display = "<p>Never</p>";
+                                    } else {
+                                        $ticket_updated_at_display = "<p class='text-danger'>Never</p>";
+                                    }
+                                } else {
+                                    $ticket_updated_at_display = "$ticket_updated_at_time_ago<br><small class='text-secondary'>$ticket_updated_at</small>";
                                 }
-                            }
+                                $ticket_closed_at = nullable_htmlentities($row['ticket_closed_at']);
+                                $client_id = intval($row['ticket_client_id']);
+                                $client_name = nullable_htmlentities($row['client_name']);
+                                $contact_id = intval($row['ticket_contact_id']);
+                                $contact_name = nullable_htmlentities($row['contact_name']);
+                                $contact_title = nullable_htmlentities($row['contact_title']);
+                                $contact_email = nullable_htmlentities($row['contact_email']);
+                                $contact_phone = formatPhoneNumber($row['contact_phone']);
+                                $contact_extension = nullable_htmlentities($row['contact_extension']);
+                                $contact_mobile = formatPhoneNumber($row['contact_mobile']);
+
+                                $ticket_status_color = getTicketStatusColor($ticket_status);
+
+                                if ($ticket_priority == "High") {
+                                    $ticket_priority_color = "danger";
+                                } elseif ($ticket_priority == "Medium") {
+                                    $ticket_priority_color = "warning";
+                                } else {
+                                    $ticket_priority_color = "info";
+                                }
+
+                                $ticket_assigned_to = intval($row['ticket_assigned_to']);
+                                if (empty($ticket_assigned_to)) {
+                                    if ($ticket_status == "Closed") {
+                                        $ticket_assigned_to_display = "<p>Not Assigned</p>";
+                                    } else {
+                                        $ticket_assigned_to_display = "<p class='text-danger'>Not Assigned</p>";
+                                    }
+                                } else {
+                                    $ticket_assigned_to_display = nullable_htmlentities($row['user_name']);
+                                }
+
+                                if (empty($contact_name)) {
+                                    $contact_display = "-";
+                                } else {
+                                    $contact_display = "$contact_name<br><small class='text-secondary'>$contact_email</small>";
+                                }
+
+                                $asset_id = intval($row['ticket_asset_id']);
+                                $vendor_id = intval($row['ticket_vendor_id']);
+
+                                if (!$session_mobile) {
+                            ?>
+
+                                <tr class="<?php if (empty($ticket_updated_at)) {
+                                                echo "text-bold";
+                                            } ?>">
+                                    <td>
+                                        <?php if ($ticket_status !== "Closed") { ?>
+                                            <div class="form-check">
+                                                <input class="form-check-input bulk-select" type="checkbox" name="ticket_ids[]" value="<?php echo $ticket_id ?>">
+                                            </div>
+                                        <?php } ?>
+                                    </td>
+                                    <td>
+                                        <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>">
+                                            <span class="badge badge-pill badge-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a>
+                                    </td>
+                                    <td>
+                                        <a href="client_tickets.php?client_id=<?php echo $client_id; ?>"><strong><?php echo $client_name; ?></strong></a>
+
+                                        <div class="mt-1"><?php echo $contact_display; ?></div>
+                                    </td>
+
+                                    <?php if ($config_module_enable_accounting) { ?>
+                                        <td class="text-center">
+                                            <a href="#" data-toggle="modal" data-target="#editTicketBillableModal<?php echo $ticket_id; ?>">
+                                                <?php
+                                                if ($ticket_billable == 1) {
+                                                    echo "<span class='badge badge-pill badge-success'>$</span>";
+                                                } else {
+                                                    echo "<span class='badge badge-pill badge-secondary'>X</span>";
+                                                }
+                                                ?>
+                                        </td>
+                                    <?php } ?>
+
+                                    <td><a href="#" data-toggle="modal" data-target="#editTicketPriorityModal<?php echo $ticket_id; ?>"><span class='p-2 badge badge-pill badge-<?php echo $ticket_priority_color; ?>'><?php echo $ticket_priority; ?></span></a></td>
+                                    <td><span class='p-2 badge badge-pill badge-<?php echo $ticket_status_color; ?>'><?php echo $ticket_status; ?></span> <?php if ($ticket_status == 'On Hold' && isset ($ticket_scheduled_for)) { echo "<div class=\"mt-1\"> <small class='text-secondary'> $ticket_scheduled_for </small></div>"; } ?></td>
+                                    <td><a href="#" data-toggle="modal" data-target="#assignTicketModal<?php echo $ticket_id; ?>"><?php echo $ticket_assigned_to_display; ?></a></td>
+                                    <td><?php echo $ticket_updated_at_display; ?></td>
+                                    <td>
+                                        <?php echo $ticket_created_at_time_ago; ?>
+                                        <br>
+                                        <small class="text-secondary"><?php echo $ticket_created_at; ?></small>
+                                    </td>
+                                </tr>
+
+                            <?php
+
+                                if ($ticket_status !== "Closed") {
+                                    // Temp performance boost for closed tickets, until we move to dynamic modals
+
+                                    require "/var/www/develop.twe.tech/includes/modals/ticket_assign_modal.php";
+
+                                    require "/var/www/develop.twe.tech/includes/modals/ticket_edit_priority_modal.php";
+
+                                    if ($config_module_enable_accounting) {
+                                        require "/var/www/develop.twe.tech/includes/modals/ticket_edit_billable_modal.php";
+                                    }
+                                }
+                            } else {
+                                ?>
+
+                                <tr class="<?php if (empty($ticket_updated_at)) {
+                                                echo "text-bold";
+                                            } ?>">
+                                    <td>
+                                        <?php if ($ticket_status !== "Closed") { ?>
+                                            <div class="form-check
+                                            ">
+                                                <input class="form-check
+                                                -input bulk-select" type="checkbox" name="ticket_ids[]" value="<?php echo $ticket_id ?>">
+                                            </div>
+                                        <?php } ?>
+                                    </td>
+                                    <td>
+                                        <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>">
+                                            <div>
+                                                <h3 class="mb-0"><?php echo "$ticket_prefix$ticket_number"; ?></h3>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <?php if ($config_module_enable_accounting) { ?>
+                                        <td class="text-center">
+                                            <a href="#" data-toggle="modal" data-target="#editTicketBillableModal<?php echo $ticket_id; ?>">
+                                                <?php
+                                                if ($ticket_billable == 1) {
+                                                    echo "<span class='badge badge-pill badge-success'>$</span>";
+                                                } else {
+                                                    echo "<span class='badge badge-pill badge-secondary'>X</span>";
+                                                }
+                                                ?>
+                                        </td>
+                                    <?php } ?>
+                                <?php }
                         }
 
                         ?>

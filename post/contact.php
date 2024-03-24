@@ -19,8 +19,8 @@ if (isset($_POST['add_contact'])) {
         $password_hash = password_hash(randomString(), PASSWORD_DEFAULT);
     }
 
-    if (!file_exists("uploads/clients/$client_id")) {
-        mkdir("uploads/clients/$client_id");
+    if (!file_exists("/uploads/clients/$client_id")) {
+        mkdir("/uploads/clients/$client_id");
     }
 
     mysqli_query($mysqli,"INSERT INTO contacts SET contact_name = '$name', contact_title = '$title', contact_phone = '$phone', contact_extension = '$extension', contact_mobile = '$mobile', contact_email = '$email', contact_pin = '$pin', contact_notes = '$notes', contact_important = $contact_important, contact_billing = $contact_billing, contact_technical = $contact_technical, contact_auth_method = '$auth_method', contact_password_hash = '$password_hash', contact_department = '$department', contact_location_id = $location_id, contact_client_id = $client_id");
@@ -41,7 +41,7 @@ if (isset($_POST['add_contact'])) {
             $file_tmp_path = $_FILES['file']['tmp_name'];
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "uploads/clients/$client_id/";
+            $upload_file_dir = "/uploads/clients/$client_id/";
             $dest_path = $upload_file_dir . $new_file_name;
             move_uploaded_file($file_tmp_path, $dest_path);
 
@@ -76,8 +76,8 @@ if (isset($_POST['edit_contact'])) {
     $row = mysqli_fetch_array($sql);
     $existing_file_name = sanitizeInput($row['contact_photo']);
 
-    if (!file_exists("uploads/clients/$client_id")) {
-        mkdir("uploads/clients/$client_id");
+    if (!file_exists("/uploads/clients/$client_id")) {
+        mkdir("/uploads/clients/$client_id");
     }
 
     mysqli_query($mysqli,"UPDATE contacts SET contact_name = '$name', contact_title = '$title', contact_phone = '$phone', contact_extension = '$extension', contact_mobile = '$mobile', contact_email = '$email', contact_pin = '$pin', contact_notes = '$notes', contact_important = $contact_important, contact_billing = $contact_billing, contact_technical = $contact_technical, contact_auth_method = '$auth_method', contact_department = '$department', contact_location_id = $location_id WHERE contact_id = $contact_id");
@@ -147,13 +147,13 @@ if (isset($_POST['edit_contact'])) {
 
             // Set directory in which the uploaded file will be moved
             $file_tmp_path = $_FILES['file']['tmp_name'];
-            $upload_file_dir = "uploads/clients/$client_id/";
+            $upload_file_dir = "/uploads/clients/$client_id/";
             $dest_path = $upload_file_dir . $new_file_name;
 
             move_uploaded_file($file_tmp_path, $dest_path);
 
             //Delete old file
-            unlink("uploads/clients/$client_id/$existing_file_name");
+            unlink("/uploads/clients/$client_id/$existing_file_name");
 
             mysqli_query($mysqli,"UPDATE contacts SET contact_photo = '$new_file_name' WHERE contact_id = $contact_id");
 

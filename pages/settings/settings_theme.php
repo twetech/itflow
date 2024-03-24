@@ -7,7 +7,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
             <h3 class="card-title"><i class="fas fa-fw fa-paint-brush mr-2"></i>Theme</h3>
         </div>
         <div class="card-body">
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
                 <label>Select a Theme</label>
@@ -49,10 +49,10 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
             <h3 class="card-title"><i class="fas fa-fw fa-image mr-2"></i>Favicon</h3>
         </div>
         <div class="card-body">
-            <form action="/post/" method="post" enctype="multipart/form-data" autocomplete="off">
+            <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
-                <img class="mb-3" src="<?php if(file_exists("uploads/favicon.ico")) { echo "uploads/favicon.ico"; } else { echo "favicon.ico"; } ?>">
+                <img class="mb-3" src="<?php if(file_exists("/uploads/favicon.ico")) { echo "/uploads/favicon.ico"; } else { echo "favicon.ico"; } ?>">
 
                 <div class="form-group">
                     <input type="file" class="form-control-file" name="file" accept=".ico">

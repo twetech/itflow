@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" enctype="multipart/form-data" autocomplete="off">
+            <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <!-- Prevent undefined checkbox errors on submit -->
                 <input type="hidden" name="contact_primary" value="0">
                 <input type="hidden" name="contact_important" value="0">

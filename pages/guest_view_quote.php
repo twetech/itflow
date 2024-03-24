@@ -75,7 +75,7 @@ $company_email = nullable_htmlentities($row['company_email']);
 $company_website = nullable_htmlentities($row['company_website']);
 $company_logo = nullable_htmlentities($row['company_logo']);
 if (!empty($company_logo)) {
-    $company_logo_base64 = base64_encode(file_get_contents("uploads/settings/$company_logo"));
+    $company_logo_base64 = base64_encode(file_get_contents("/uploads/settings/$company_logo"));
 }
 $company_locale = nullable_htmlentities($row['company_locale']);
 $config_quote_footer = nullable_htmlentities($row['config_quote_footer']);
@@ -112,7 +112,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
 
             <div class="row mb-4">
                 <div class="col-sm-2">
-                    <img class="img-fluid" src="<?php echo "uploads/settings/$company_logo"; ?>">
+                    <img class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>">
                 </div>
                 <div class="col-sm-10">
                     <h3 class="text-right"><strong>Quote</strong><br><small class="text-secondary"><?php echo "$quote_prefix$quote_number"; ?></small></h3>

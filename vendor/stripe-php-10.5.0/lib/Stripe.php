@@ -19,7 +19,7 @@ class Stripe
     /** @var string The base URL for the OAuth API. */
     public static $connectBase = 'https://connect.stripe.com';
 
-    /** @var string The base URL for the Stripe API uploads endpoint. */
+    /** @var string The base URL for the Stripe API /uploads endpoint. */
     public static $apiUploadBase = 'https://files.stripe.com';
 
     /** @var null|string The version of the Stripe API to use for requests. */

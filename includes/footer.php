@@ -1,33 +1,27 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_confirm_modal.php";
- ?>
+?>
 
+				</div><!-- /.container-fluid -->
 
-</div><!-- /.container-fluid -->
+			<!-- /.content-wrapper -->
+			</div>
+			<!-- ./wrapper -->
 
-<!-- /.content-wrapper -->
-</div>
-<!-- ./wrapper -->
+		</main>
+		<!-- REQUIRED SCRIPTS -->
 
-</main>
-
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- Bootstrap 4 -->
-<script src="/includes/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Custom js-->
-<script src="/includes/js/header_timers.js"></script>
-<script src="/includes/plugins/moment/moment.min.js"></script>
-<script src="/includes/plugins/chart.js/Chart.min.js"></script>
-<script src="/includes/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<script src='/includes/plugins/daterangepicker/daterangepicker.js'></script>
-<script src='/includes/plugins/select2/js/select2.min.js'></script>
-<script src='/includes/plugins/inputmask/jquery.inputmask.min.js'></script>
-<script src="/includes/plugins/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="/includes/plugins/Show-Hide-Passwords-Bootstrap-4/bootstrap-show-password.min.js"></script>
-<script src="/includes/plugins/clipboardjs/clipboard.min.js"></script>
-<script src="/includes/js/keepalive.js"></script>
+		<!-- Custom js-->
+		<script src="/includes/js/header_timers.js"></script>
+		<script src="/includes/plugins/moment/moment.min.js"></script>
+		<script src="/includes/plugins/chart.js/Chart.min.js"></script>
+		<script src="/includes/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+		<script src='/includes/plugins/daterangepicker/daterangepicker.js'></script>
+		<script src='/includes/plugins/select2/js/select2.min.js'></script>
+		<script src='/includes/plugins/inputmask/jquery.inputmask.min.js'></script>
+		<script src="/includes/plugins/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+		<script src="/includes/plugins/Show-Hide-Passwords-Bootstrap-4/bootstrap-show-password.min.js"></script>
+		<script src="/includes/plugins/clipboardjs/clipboard.min.js"></script>
+		<script src="/includes/js/keepalive.js"></script>
 
 
 		<!-- Global Vendor -->

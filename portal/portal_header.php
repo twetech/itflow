@@ -22,8 +22,8 @@ header("X-Frame-Options: DENY"); // Legacy
     Favicon
     If Fav Icon exists else use the default one 
     -->
-    <?php if(file_exists('../uploads/favicon.ico')) { ?>
-        <link rel="icon" type="image/x-icon" href="../uploads/favicon.ico">
+    <?php if(file_exists('..//uploads/favicon.ico')) { ?>
+        <link rel="icon" type="image/x-icon" href="..//uploads/favicon.ico">
     <?php } ?>
 
     <!-- Font Awesome -->
@@ -93,7 +93,7 @@ header("X-Frame-Options: DENY"); // Legacy
     <div class="row mb-3">
         <div class="col-md-1 text-center">
             <?php if (!empty($session_contact_photo)) { ?>
-                <img src="<?php echo "../uploads/clients/$session_client_id/$session_contact_photo"; ?>" alt="..." height="50" width="50" class="img-circle img-responsive">
+                <img src="<?php echo "..//uploads/clients/$session_client_id/$session_contact_photo"; ?>" alt="..." height="50" width="50" class="img-circle img-responsive">
 
             <?php } else { ?>
 

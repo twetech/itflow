@@ -126,8 +126,8 @@ if (isset($_POST['add_ticket_comment'])) {
         if (!empty($_FILES)) {
 
             // Define & create directories, as required
-            mkdirMissing('../uploads/tickets/');
-            $upload_file_dir = "../uploads/tickets/" . $ticket_id . "/";
+            mkdirMissing('..//uploads/tickets/');
+            $upload_file_dir = "..//uploads/tickets/" . $ticket_id . "/";
             mkdirMissing($upload_file_dir);
 
             for ($i = 0; $i < count($_FILES['file']['name']); $i++) {

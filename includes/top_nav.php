@@ -1,7 +1,7 @@
 <!-- Header (Topbar) -->
 <header class="u-header">
     <div class="u-header-left">
-        <a class="u-header-logo" href="<?php echo $config_start_page; ?>">
+        <a class="u-header-logo" href="/pages/<?php echo $config_start_page; ?>">
             <img class="u-logo-desktop" src="/includes/dist/img/logo.png" width="160" alt="Stream Dashboard">
             <img class="img-fluid u-logo-mobile" src="/includes/dist/img/logo-mobile.png" width="50" alt="Stream Dashboard">
         </a>
@@ -37,14 +37,16 @@
     <div class="u-header-right">
         <!-- Activities -->
         <div class="dropdown mr-4">
-            <a class="link-muted" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+            <a class="link-muted" href="#!" role="button" id="dropdownMenuLinkActivities" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                 <span class="h3">
                     <i class="far fa-envelope"></i>
                 </span>
-                <span class="u-indicator u-indicator-top-right u-indicator--xxs bg-secondary"></span>
+                <?php if(false) { ?>
+                    <span class="u-indicator u-indicator-top-right u-indicator--xxs bg-secondary"></span>
+                <?php } ?>
             </a>
 
-            <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-4" aria-labelledby="dropdownMenuLink" style="width: 360px;">
+            <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-4" aria-labelledby="dropdownMenuLinkActivities" style="width: 360px;">
                 <div class="card">
                     <div class="card-header d-flex align-items-center py-3">
                         <h2 class="h4 card-header-title">Activities</h2>
@@ -141,208 +143,84 @@
 
         <!-- Notifications -->
         <div class="dropdown mr-4">
-            <a class="link-muted" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+            <a class="link-muted" href="#!" role="button" id="dropdownMenuLinkNotifications" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                 <span class="h3">
                     <i class="far fa-bell"></i>
                 </span>
-                <span class="u-indicator u-indicator-top-right u-indicator--xxs bg-info"></span>
+                <?php if($num_notifications > 0) { ?>
+                    <span class="u-indicator u-indicator-top-right u-indicator--xxs bg-danger"></span>
+                <?php } ?>
             </a>
 
-            <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-4" aria-labelledby="dropdownMenuLink" style="width: 360px;">
+            <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-4" aria-labelledby="dropdownMenuLinkNotifications" style="width: 360px;">
                 <div class="card">
                     <div class="card-header d-flex align-items-center py-3">
                         <h2 class="h4 card-header-title">Notifications</h2>
-                        <a class="ml-auto" href="#">Clear all</a>
+                        <a class="ml-auto" href="/post.php?dismiss_all_notifications">Clear all</a>
                     </div>
 
                     <div class="card-body p-0">
                         <div class="list-group list-group-flush">
                             <!-- Notification -->
-                            <a class="list-group-item list-group-item-action" href="#">
-                                <div class="media align-items-center">
-                                    <div class="u-icon u-icon--sm rounded-circle bg-danger text-white mr-3">
-                                        <i class="fab fa-dribbble"></i>
-                                    </div>
+                            <?php
+                            $sql_notifications = mysqli_query($mysqli, "SELECT * FROM notifications 
+                                LEFT JOIN clients ON notification_client_id = client_id 
+                                WHERE notification_dismissed_at IS NULL 
+                                AND (notification_user_id = $session_user_id OR notification_user_id = 0) 
+                                ORDER BY notification_id DESC LIMIT 5"
+                            );
 
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <h4 class="mb-1">Dribbble</h4>
-                                            <small class="text-muted ml-auto">23 Jan 2018</small>
+                            while ($row = mysqli_fetch_array($sql_notifications)) {
+                                $notification_id = intval($row['notification_id']);
+                                $notification_type = nullable_htmlentities($row['notification_type']);
+                                $notification = nullable_htmlentities($row['notification']);
+                                $notification_action = nullable_htmlentities($row['notification_action']);
+                                $notification_timestamp = date('M d g:ia',strtotime($row['notification_timestamp']));
+                                $notification_client_id = intval($row['notification_client_id']);
+                                if(empty($notification_action)) { $notification_action = "#"; }
+                            ?>
+
+                                <a class="list-group-item list-group-item-action" href="<?php echo $notification_action; ?>">
+                                    <div class="media align-items-center">
+                                        <div class="u-icon u-icon--sm rounded-circle bg-danger text-white mr-3">
+                                            <i class="fab fa-dribbble"></i>
                                         </div>
 
-                                        <p class="text-truncate mb-0" style="max-width: 250px;">
-                                            <span class="text-primary">@htmlstream</span> just liked your post!
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <!-- End Notification -->
+                                        <div class="media-body">
+                                            <div class="d-flex align-items-center">
+                                                <h4 class="mb-1"><?php echo $notification_type; ?></h4>
+                                                <small class="text-muted ml-auto"><?php echo $notification_timestamp; ?></small>
+                                            </div>
 
-                            <!-- Notification -->
-                            <a class="list-group-item list-group-item-action" href="#">
-                                <div class="media align-items-center">
-                                    <div class="u-icon u-icon--sm rounded-circle bg-info text-white mr-3">
-                                        <i class="fab fa-twitter"></i>
-                                    </div>
-
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <h4 class="mb-1">Twitter</h4>
-                                            <small class="text-muted ml-auto">18 Jan 2018</small>
+                                            <p class="text-truncate mb-0" style="max-width: 250px;">
+                                                <?php echo $notification; ?>
+                                            </p>
                                         </div>
-
-                                        <p class="text-truncate mb-0" style="max-width: 250px;">
-                                            Someone mentioned you on the tweet.
-                                        </p>
                                     </div>
-                                </div>
-                            </a>
-                            <!-- End Notification -->
-
-                            <!-- Notification -->
-                            <a class="list-group-item list-group-item-action" href="#">
-                                <div class="media align-items-center">
-                                    <div class="u-icon u-icon--sm rounded-circle bg-success text-white mr-3">
-                                        <i class="fab fa-spotify"></i>
-                                    </div>
-
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <h4 class="mb-1">Spotify</h4>
-                                            <small class="text-muted ml-auto">18 Jan 2018</small>
-                                        </div>
-
-                                        <p class="text-truncate mb-0" style="max-width: 250px;">
-                                            You've just recived $25 free gift card.
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <!-- End Notification -->
-
-                            <!-- Notification -->
-                            <a class="list-group-item list-group-item-action" href="#">
-                                <div class="media align-items-center">
-                                    <div class="u-icon u-icon--sm rounded-circle bg-info text-white mr-3">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </div>
-
-                                    <div class="media-body">
-                                        <div class="d-flex align-items-center">
-                                            <h4 class="mb-1">Facebook</h4>
-                                            <small class="text-muted ml-auto">18 Jan 2018</small>
-                                        </div>
-
-                                        <p class="text-truncate mb-0" style="max-width: 250px;">
-                                            <span class="text-primary">@htmlstream</span> commented in your post.
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
+                                </a>
+                            <?php } ?>
                             <!-- End Notification -->
                         </div>
                     </div>
 
                     <div class="card-footer py-3">
-                        <a class="btn btn-block btn-outline-primary" href="#">View all notifications</a>
+                        <a class="btn btn-block btn-outline-primary" href="/pages/notifications_dismissed.php">View all notifications</a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End Notifications -->
 
-        <!-- Apps -->
-        <div class="dropdown mr-4">
-            <a class="link-muted" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
-                <span class="h3">
-                    <i class="far fa-circle"></i>
-                </span>
-                <span class="u-indicator u-indicator-top-right u-indicator--xxs bg-warning"></span>
-            </a>
-
-            <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-4" aria-labelledby="dropdownMenuLink" style="width: 360px;">
-                <div class="card">
-                    <div class="card-header d-flex align-items-center py-3">
-                        <h2 class="h4 card-header-title">Apps</h2>
-                        <a class="ml-auto" href="#">Learn more</a>
-                    </div>
-
-                    <div class="card-body py-3">
-                        <div class="row">
-                            <!-- App -->
-                            <div class="col-4 px-2 mb-2">
-                                <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img1.png" alt="">
-                                    <span class="text-center">Assana</span>
-                                </a>
-                            </div>
-                            <!-- End App -->
-
-                            <!-- App -->
-                            <div class="col-4 px-2 mb-2">
-                                <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img2.png" alt="">
-                                    <span class="text-center">Slack</span>
-                                </a>
-                            </div>
-                            <!-- End App -->
-
-                            <!-- App -->
-                            <div class="col-4 px-2 mb-2">
-                                <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img3.png" alt="">
-                                    <span class="text-center">Cloud</span>
-                                </a>
-                            </div>
-                            <!-- End App -->
-
-                            <!-- App -->
-                            <div class="col-4 px-2">
-                                <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img5.png" alt="">
-                                    <span class="text-center">Facebook</span>
-                                </a>
-                            </div>
-                            <!-- End App -->
-
-                            <!-- App -->
-                            <div class="col-4 px-2">
-                                <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img4.png" alt="">
-                                    <span class="text-center">Spotify</span>
-                                </a>
-                            </div>
-                            <!-- End App -->
-
-                            <!-- App -->
-                            <div class="col-4 px-2">
-                                <a class="u-apps d-flex flex-column rounded" href="#!">
-                                    <img class="img-fluid u-avatar--xs mx-auto mb-2" src="/includes/dist/img/brands-sm/img6.png" alt="">
-                                    <span class="text-center">Twitter</span>
-                                </a>
-                            </div>
-                            <!-- End App -->
-                        </div>
-                    </div>
-
-                    <div class="card-footer py-3">
-                        <a class="btn btn-block btn-outline-primary" href="#">View all apps</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Apps -->
-
         <!-- User Profile -->
         <div class="dropdown ml-2">
-            <a class="link-muted d-flex align-items-center" href="#!" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
-                <img class="u-avatar--xs img-fluid rounded-circle mr-2" src="/includes/dist/img/avatars/img1.jpg" alt="User Profile">
+            <a class="link-muted d-flex align-items-center" href="#!" role="button" id="dropdownMenuLinkUser" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                <img class="u-avatar--xs img-fluid rounded-circle mr-2" src="<?php echo "/uploads/users/$session_user_id/" . nullable_htmlentities($session_avatar); ?>" alt="User Profile">
                 <span class="text-dark d-none d-sm-inline-block">
                     <?php echo $session_name ?> <small class="fa fa-angle-down text-muted ml-1"></small>
                 </span>
             </a>
 
-            <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-3" aria-labelledby="dropdownMenuLink" style="width: 260px;">
+            <div class="dropdown-menu dropdown-menu-right border-0 py-0 mt-3" aria-labelledby="dropdownMenuLinkUser" style="width: 260px;">
                 <div class="card">
                     <div class="card-header py-3">
                         <!-- Storage -->
@@ -363,12 +241,12 @@
                     <div class="card-body">
                         <ul class="list-unstyled mb-0">
                             <li class="mb-4">
-                                <a class="d-flex align-items-center link-dark" href="#!">
+                                <a class="d-flex align-items-center link-dark" href="/pages/user/user_details.php">
                                     <span class="h3 mb-0"><i class="far fa-user-circle text-muted mr-3"></i></span> View Profile
                                 </a>
                             </li>
                             <li class="mb-4">
-                                <a class="d-flex align-items-center link-dark" href="#!">
+                                <a class="d-flex align-items-center link-dark" href="/pages/user/user_settings.php">
                                     <span class="h3 mb-0"><i class="far fa-list-alt text-muted mr-3"></i></span> Settings
                                 </a>
                             </li>
@@ -378,7 +256,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="d-flex align-items-center link-dark" href="#!">
+                                <a class="d-flex align-items-center link-dark" href="/post.php?logout">
                                     <span class="h3 mb-0"><i class="far fa-share-square text-muted mr-3"></i></span> Sign Out
                                 </a>
                             </li>

@@ -8,7 +8,7 @@
                 </button>
             </div>
 
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
 
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <input type="hidden" name="asset_id" value="<?php echo $asset_id; ?>">

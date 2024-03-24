@@ -133,7 +133,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <td class="text-center">
                             <a class="text-dark" href="#" <?php if ($user_id !== $session_user_id) {   // Prevent modifying self ?> data-toggle="modal" data-target="#editUserModal<?php echo $user_id; ?>" <?php } ?>>
                                 <?php if (!empty($user_avatar)) { ?>
-                                    <img class="img-size-50 img-circle" src="<?php echo "uploads/users/$user_id/$user_avatar"; ?>">
+                                    <img class="img-size-50 img-circle" src="<?php echo "/uploads/users/$user_id/$user_avatar"; ?>">
                                 <?php } else { ?>
                                     <span class="fa-stack fa-2x">
                                         <i class="fa fa-circle fa-stack-2x text-secondary"></i>
@@ -161,15 +161,15 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <i class="fas fa-fw fa-user-edit mr-2"></i>Edit
                                     </a>
                                     <?php if ($remember_token_count > 0) { ?>
-                                    <a class="dropdown-item" href="/post/?revoke_remember_me=<?php echo $user_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>"><i class="fas fa-fw fa-ban mr-2"></i>Revoke <?php echo $remmeber_token_count; ?> Remember Tokens
+                                    <a class="dropdown-item" href="/post.php?revoke_remember_me=<?php echo $user_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>"><i class="fas fa-fw fa-ban mr-2"></i>Revoke <?php echo $remmeber_token_count; ?> Remember Tokens
                                     </a>
                                     <?php } ?>
                                     <?php if ($user_status == 0) { ?>
-                                        <a class="dropdown-item text-success" href="/post/?activate_user=<?php echo $user_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>">
+                                        <a class="dropdown-item text-success" href="/post.php?activate_user=<?php echo $user_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>">
                                             <i class="fas fa-fw fa-user-check mr-2"></i>Activate
                                         </a>
                                     <?php }elseif ($user_status == 1) { ?>
-                                        <a class="dropdown-item text-danger" href="/post/?disable_user=<?php echo $user_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>">
+                                        <a class="dropdown-item text-danger" href="/post.php?disable_user=<?php echo $user_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>">
                                             <i class="fas fa-fw fa-user-slash mr-2"></i>Disable
                                         </a>
                                     <?php } ?>

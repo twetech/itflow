@@ -10,7 +10,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
                     <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
 
@@ -35,7 +35,7 @@
 
                 <div class="modal-footer bg-white">
                 <?php if (!empty($ticket_scheduled_for)) { ?>
-                    <a href="/post/?cancel_ticket_schedule=<?php echo htmlspecialchars($ticket_id); ?>" class="btn btn-danger text-bold">
+                    <a href="/post.php?cancel_ticket_schedule=<?php echo htmlspecialchars($ticket_id); ?>" class="btn btn-danger text-bold">
                         <i class="fa fa-trash mr-2"></i>Cancel Scheduled Time
                     </a>
                 <?php } ?>

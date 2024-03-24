@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="document_id" value="<?php if($document_parent == 0){ echo $document_id; } else { echo $document_parent; } ?>">
                 <input type="hidden" name="document_parent" value="<?php echo $document_parent; ?>">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">

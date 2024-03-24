@@ -129,13 +129,13 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
                 $ticket_reply_by_display = nullable_htmlentities($row['contact_name']);
                 $user_initials = initials($row['contact_name']);
                 $user_avatar = $row['contact_photo'];
-                $avatar_link = "../uploads/clients/$session_client_id/$user_avatar";
+                $avatar_link = "..//uploads/clients/$session_client_id/$user_avatar";
             } else {
                 $ticket_reply_by_display = nullable_htmlentities($row['user_name']);
                 $user_id = intval($row['user_id']);
                 $user_avatar = $row['user_avatar'];
                 $user_initials = initials($row['user_name']);
-                $avatar_link = "../uploads/users/$user_id/$user_avatar";
+                $avatar_link = "..//uploads/users/$user_id/$user_avatar";
             }
             ?>
 

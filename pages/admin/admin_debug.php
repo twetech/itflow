@@ -6,7 +6,7 @@ require_once "database_version.php";
 require_once "/var/www/develop.twe.tech/includes/config.php";
 
 
-$folderPath = 'uploads';
+$folderPath = /var/www/develop.twe.tech/uploads';
 
 function countFilesInDirectory($dir) {
     $count = 0;

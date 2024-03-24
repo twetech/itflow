@@ -2,7 +2,7 @@
 // Not including the guest header as we don't want any HTML output
 require_once "/var/www/develop.twe.tech/includes/config.php";
 
-require_once "/var/www/develop.twe.tech/includes/functions.php";
+require_once "/var/www/develop.twe.tech/includes/functions/functions.php";
 
 
 $ip = sanitizeInput(getIP());
@@ -57,7 +57,7 @@ if (isset($_GET['id']) && isset($_GET['key'])) {
     $file_ext = sanitizeInput($file_row['file_ext']);
     $file_reference_name = sanitizeInput($file_row['file_reference_name']);
     $client_id = intval($file_row['file_client_id']);
-    $file_path = "uploads/clients/$client_id/$file_reference_name";
+    $file_path = "/uploads/clients/$client_id/$file_reference_name";
     $file_download_name = str_replace('.', '', $file_name) . '-' . $config_app_name . '-download.' . $file_ext; // Brand the downloaded file name, and also force the original file extension
 
     // Display file as download

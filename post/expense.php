@@ -42,7 +42,7 @@ if (isset($_POST['add_expense'])) {
             $file_tmp_path = $_FILES['file']['tmp_name'];
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "uploads/expenses/";
+            $upload_file_dir = "/uploads/expenses/";
             $dest_path = $upload_file_dir . $new_file_name;
             move_uploaded_file($file_tmp_path, $dest_path);
 
@@ -83,12 +83,12 @@ if (isset($_POST['edit_expense'])) {
             $file_tmp_path = $_FILES['file']['tmp_name'];
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "uploads/expenses/";
+            $upload_file_dir = "/uploads/expenses/";
             $dest_path = $upload_file_dir . $new_file_name;
             move_uploaded_file($file_tmp_path, $dest_path);
 
             //Delete old file
-            unlink("uploads/expenses/$existing_file_name");
+            unlink("/uploads/expenses/$existing_file_name");
 
             mysqli_query($mysqli,"UPDATE expenses SET expense_receipt = '$new_file_name' WHERE expense_id = $expense_id");
             $extended_alert_description = '. File successfully uploaded.';
@@ -116,7 +116,7 @@ if (isset($_GET['delete_expense'])) {
     $row = mysqli_fetch_array($sql);
     $expense_receipt = sanitizeInput($row['expense_receipt']);
 
-    unlink("uploads/expenses/$expense_receipt");
+    unlink("/uploads/expenses/$expense_receipt");
 
     mysqli_query($mysqli,"DELETE FROM expenses WHERE expense_id = $expense_id");
 

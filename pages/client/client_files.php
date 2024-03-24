@@ -121,7 +121,7 @@ $num_of_files = mysqli_num_rows($sql);
                                             </a>
                                             <?php if ($session_user_role == 3 && $num_files == 0) { ?>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?delete_folder=<?php echo $folder_id; ?>">
+                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_folder=<?php echo $folder_id; ?>">
                                                     <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                 </a>
                                             <?php } ?>
@@ -204,10 +204,10 @@ $num_of_files = mysqli_num_rows($sql);
                         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-3">
                             <div class="card">
                                 <a href="#" data-toggle="modal" data-target="#viewFileModal<?php echo $file_id; ?>">
-                                    <img class="img-fluid" src="<?php echo "uploads/clients/$client_id/$file_reference_name"; ?>" alt="<?php echo $file_reference_name ?>">
+                                    <img class="img-fluid" src="<?php echo "/uploads/clients/$client_id/$file_reference_name"; ?>" alt="<?php echo $file_reference_name ?>">
                                 </a>
                                 <div class="card-footer bg-dark text-white p-1" style="text-align: center;">
-                                    <a href="<?php echo "uploads/clients/$client_id/$file_reference_name"; ?>" download="<?php echo $file_name; ?>" class="text-white float-left ml-1"><i class="fa fa-cloud-download-alt"></i></a>
+                                    <a href="<?php echo "/uploads/clients/$client_id/$file_reference_name"; ?>" download="<?php echo $file_name; ?>" class="text-white float-left ml-1"><i class="fa fa-cloud-download-alt"></i></a>
                                     <a href="#" data-toggle="modal" data-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'File', $file_id"; ?>)" class="text-white float-left ml-1"><i class="fa fa-share"></i></a>
 
                                     <small><?php echo $file_name; ?></small>
@@ -226,7 +226,7 @@ $num_of_files = mysqli_num_rows($sql);
 
                 <?php } else { ?>
 
-                <form id="bulkActions" action="/post/" method="post">
+                <form id="bulkActions" action="/post.php" method="post">
 
                     <div class="table-responsive-sm">
                         <table class="table border">
@@ -286,7 +286,7 @@ $num_of_files = mysqli_num_rows($sql);
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="<?php echo "uploads/clients/$client_id/$file_reference_name"; ?>" target="_blank" class="text-secondary">
+                                        <a href="<?php echo "/uploads/clients/$client_id/$file_reference_name"; ?>" target="_blank" class="text-secondary">
                                             <div class="media">
                                                 <i class="fa fa-fw fa-2x fa-<?php echo $file_icon; ?> mr-3"></i>
                                                 <div class="media-body">
@@ -306,7 +306,7 @@ $num_of_files = mysqli_num_rows($sql);
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="<?php echo "uploads/clients/$client_id/$file_reference_name"; ?>" download="<?php echo $file_name; ?>">
+                                                <a class="dropdown-item" href="<?php echo "/uploads/clients/$client_id/$file_reference_name"; ?>" download="<?php echo $file_name; ?>">
                                                     <i class="fas fa-fw fa-cloud-download-alt mr-2"></i>Download
                                                 </a>
                                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'File', $file_id"; ?>)">
@@ -319,7 +319,7 @@ $num_of_files = mysqli_num_rows($sql);
                                                     <i class="fas fa-fw fa-exchange-alt mr-2"></i>Move
                                                 </a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger confirm-link" href="/post/?archive_file=<?php echo $file_id; ?>">
+                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_file=<?php echo $file_id; ?>">
                                                     <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                 </a>
                                                 <div class="dropdown-divider"></div>

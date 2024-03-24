@@ -17,7 +17,7 @@ if ($config_https_only && (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'o
     exit;
 }
 
-require_once "/var/www/develop.twe.tech/includes/functions.php";
+require_once "/var/www/develop.twe.tech/includes/functions/functions.php";
 
 require_once "/var/www/develop.twe.tech/includes/rfc6238.php";
 
@@ -301,7 +301,7 @@ if (isset($_POST['login'])) {
 			<div class="row">
 				<div class="col-lg-6 d-flex flex-column justify-content-center align-items-center bg-white mnh-100vh login-box">
 					<a class="u-login-form py-3 mb-auto login-logo" href="index.html">
-                        <img alt="<?=nullable_htmlentities($company_name)?> logo" height="110" width="380" class="img-fluid" src="<?php echo "uploads/settings/$company_logo"; ?>">
+                        <img alt="<?=nullable_htmlentities($company_name)?> logo" height="110" width="380" class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>">
 					</a>
 
                     <?php if(!empty($config_login_message)){ ?>

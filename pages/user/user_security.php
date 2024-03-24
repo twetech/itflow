@@ -8,7 +8,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
         <h3 class="card-title"><i class="fas fa-fw fa-shield-alt mr-2"></i>Your Password</h3>
     </div>
     <div class="card-body">
-        <form action="/post/" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
             <div class="form-group">
@@ -35,7 +35,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
         <h3 class="card-title"><i class="fas fa-fw fa-lock mr-2"></i>Mult-Factor Authentication</h3>
     </div>
     <div class="card-body">
-        <form action="/post/" method="post" autocomplete="off">
+        <form action="/post.php" method="post" autocomplete="off">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
             <?php if (empty($session_token)) { ?>
@@ -69,7 +69,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
         </form>
 
         <?php if (!empty($session_token)) { ?>
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-prepend">

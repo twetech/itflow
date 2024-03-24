@@ -49,26 +49,24 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 ?>
 
-    <div class="card card-dark">
-        <div class="card-header py-2">
+    <div class="card">
+        <header class="card-header d-flex align-items-center">
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-user-friends mr-2"></i><?php if($leads == 0){ echo "Client"; } else { echo "Lead"; } ?> Management</h3>
-            <div class="card-tools">
                 <?php if ($session_user_role == 3) { ?>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClientModal">
-                            <i class="fas fa-plus mr-2"></i>New
-                            <?php if($leads == 0){ echo "Client"; } else { echo "Lead"; } ?>
-                        </button>
-                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportClientModal">
-                                <i class="fa fa-fw fa-download mr-2"></i>Export
+                    <ul class="list-inline ml-auto mb0">
+                        <li class="list-inline-item mr3">
+                            <a href="#" data-toggle="modal" data-target="#addClientModal" class="text-dark">
+                                <i class="fa fa-fw fa-plus mr-2"></i>
                             </a>
-                        </div>
-                    </div>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" data-toggle="modal" data-target="#exportClientModal" class="text-dark">
+                                <i class="fa fa-fw fa-download mr-2"></i>
+                            </a>
+                        </li>
+                    </ul>
                 <?php } ?>
-            </div>
-        </div>
+        </header>
 
         <div class="card-body p-2 p-md-3">
             <form class="mb-4" autocomplete="off">
@@ -131,11 +129,19 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <table class="table table-hover">
                     <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">Name</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=location_city&order=<?php echo $disp; ?>">Primary Location </a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=contact_name&order=<?php echo $disp; ?>">Primary Contact</a></th>
-                        <?php if (($session_user_role == 3 || $session_user_role == 1) && $config_module_enable_accounting == 1) { ?> <th class="text-right">Billing</th> <?php } ?>
-                        <?php if ($session_user_role == 3) { ?> <th class="text-center">Action</th> <?php } ?>
+                        <?php 
+                            if (!$session_mobile) { ?>
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">Name</a></th>
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=location_city&order=<?php echo $disp; ?>">Primary Location </a></th>
+                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=contact_name&order=<?php echo $disp; ?>">Primary Contact</a></th>
+                                <?php if (($session_user_role == 3 || $session_user_role == 1) && $config_module_enable_accounting == 1) { ?> <th class="text-right">Billing</th> <?php } ?>
+                                <?php if ($session_user_role == 3) { ?> <th class="text-center">Action</th> <?php } ?>
+                            <?php } else {
+                                ?>
+                                <th></th>
+                                <?php
+                            }
+                        ?>
                     </tr>
                     </thead>
                     <tbody>
@@ -226,7 +232,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         $recurring_monthly = $recurring_monthly_total + $recurring_yearly_total;
 
+                        if (!$session_mobile) {
                         ?>
+
                         <tr>
                             <td>
                                 <a class="font-weight-bold" href="client_overview.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?> <i class="fas fa-fw fa-arrow-circle-right"></i></a>
@@ -304,6 +312,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <!-- Show actions for Admin role only -->
                             <?php if ($session_user_role == 3) { ?>
                                 <td>
+                                    <ul
                                     <div class="dropdown dropleft text-center">
                                         <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
@@ -313,7 +322,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger confirm-link" href="/post/?archive_client=<?php echo $client_id; ?>">
+                                            <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_client=<?php echo $client_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                             </a>
                                         </div>
@@ -323,6 +332,45 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         </tr>
 
                         <?php
+                        } else {
+                            ?>
+                            <tr>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <div class="dropdown mr4">
+                                                <a class="ml-auto" href="#!" role="button" id=clientDropdownLink data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa fa-fw fa-user-friends mr-2"></i>
+                                                        <?php echo $client_name; ?>
+                                                    </div>
+                                                    <p class="text-secondary mt-1">
+                                                            <?php echo $client_type;
+                                                            if ($session_user_role == 3 || $session_user_role == 1) { ?>
+                                                                Balance: <?php echo numfmt_format_currency($currency_format, $balance, $session_company_currency); 
+                                                            } else {
+                                                                echo $location_address_display;
+                                                            } ?>
+                                                        </p>
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="clientDropdownLink">
+                                                    <li class="dropdown-item">
+                                                        <a href="client_overview.php?client_id=<?php echo $client_id; ?>">Overview</a>
+                                                    </li>
+                                                    <li class="dropdown-item">
+                                                        <a href="#" data-toggle="modal" data-target="#editClientModal<?php echo $client_id; ?>">Edit</a>
+                                                    </li>
+                                                    <li class="dropdown-item">
+                                                        <a href="/post.php?archive_client=<?php echo $client_id; ?>" class="text-danger confirm-link">Archive</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <?php
+                        }
 
                         require "/var/www/develop.twe.tech/includes/modals/client_edit_modal.php";
 

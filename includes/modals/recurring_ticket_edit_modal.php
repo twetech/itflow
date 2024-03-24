@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post/" method="post" autocomplete="off">
+            <form action="/post.php" method="post" autocomplete="off">
                 <input type="hidden" name="scheduled_ticket_id" id="editTicketId">
                 <input type="hidden" name="client" id="editClientId">
 

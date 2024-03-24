@@ -69,7 +69,7 @@ if (isset($_GET['quote_id'])) {
     $company_website = nullable_htmlentities($row['company_website']);
     $company_logo = nullable_htmlentities($row['company_logo']);
     if (!empty($company_logo)) {
-        $company_logo_base64 = base64_encode(file_get_contents("uploads/settings/$company_logo"));
+        $company_logo_base64 = base64_encode(file_get_contents("/uploads/settings/$company_logo"));
     }
 
     $sql_history = mysqli_query($mysqli, "SELECT * FROM history WHERE history_quote_id = $quote_id ORDER BY history_id DESC");
@@ -123,22 +123,22 @@ if (isset($_GET['quote_id'])) {
                         </button>
                         <div class="dropdown-menu">
                             <?php if (!empty($config_smtp_host) && !empty($contact_email)) { ?>
-                                <a class="dropdown-item" href="/post/?email_quote=<?php echo $quote_id; ?>">
+                                <a class="dropdown-item" href="/post.php?email_quote=<?php echo $quote_id; ?>">
                                     <i class="fas fa-fw fa-paper-plane mr-2"></i>Send Email
                                 </a>
                                 <div class="dropdown-divider"></div>
                             <?php } ?>
-                            <a class="dropdown-item" href="/post/?mark_quote_sent=<?php echo $quote_id; ?>">
+                            <a class="dropdown-item" href="/post.php?mark_quote_sent=<?php echo $quote_id; ?>">
                                 <i class="fas fa-fw fa-check mr-2"></i>Mark Sent
                             </a>
                         </div>
                     <?php } ?>
 
                     <?php if ($quote_status == 'Sent' || $quote_status == 'Viewed') { ?>
-                        <a class="btn btn-primary" href="/post/?accept_quote=<?php echo $quote_id; ?>">
+                        <a class="btn btn-primary" href="/post.php?accept_quote=<?php echo $quote_id; ?>">
                             <i class="fas fa-thumbs-up mr-2"></i>Accept
                         </a>
-                        <a class="btn btn-default" href="/post/?decline_quote=<?php echo $quote_id; ?>">
+                        <a class="btn btn-default" href="/post.php?decline_quote=<?php echo $quote_id; ?>">
                             <i class="fas fa-thumbs-down mr-2"></i>Decline
                         </a>
                     <?php } ?>
@@ -171,7 +171,7 @@ if (isset($_GET['quote_id'])) {
                                 <i class="fa fa-fw fa-download text-secondary mr-2"></i>Download PDF
                             </a>
                             <?php if (!empty($config_smtp_host) && !empty($contact_email)) { ?>
-                                <a class="dropdown-item" href="/post/?email_quote=<?php echo $quote_id; ?>">
+                                <a class="dropdown-item" href="/post.php?email_quote=<?php echo $quote_id; ?>">
                                     <i class="fa fa-fw fa-paper-plane text-secondary mr-2"></i>Send Email
                                 </a>
                             <?php } ?>
@@ -179,7 +179,7 @@ if (isset($_GET['quote_id'])) {
                                 <i class="fa fa-fw fa-link text-secondary mr-2"></i>Guest URL
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post/?delete_quote=<?php echo $quote_id; ?>">
+                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_quote=<?php echo $quote_id; ?>">
                                 <i class="fa fa-fw fa-times mr-2"></i>Delete
                             </a>
                         </div>
@@ -192,7 +192,7 @@ if (isset($_GET['quote_id'])) {
 
             <div class="row mb-4">
                 <div class="col-2">
-                    <img class="img-fluid" src="<?php echo "uploads/settings/$company_logo"; ?>" alt="Company logo">
+                    <img class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>" alt="Company logo">
                 </div>
                 <div class="col-10">
                     <div class="ribbon-wrapper">
@@ -312,7 +312,7 @@ if (isset($_GET['quote_id'])) {
                                                             <i class="fas fa-ellipsis-v"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <form action="/post/" method="post">
+                                                            <form action="/post.php" method="post">
                                                                 <input type="hidden" name="item_quote_id" value="<?php echo $quote_id; ?>">
                                                                 <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
                                                                 <input type="hidden" name="item_order" value="<?php echo $item_order; ?>">
@@ -327,7 +327,7 @@ if (isset($_GET['quote_id'])) {
                                                                 <i class="fa fa-fw fa-edit mr-2"></i>Edit
                                                             </a>
                                                             <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item text-danger confirm-link" href="/post/?delete_quote_item=<?php echo $item_id; ?>">
+                                                            <a class="dropdown-item text-danger confirm-link" href="/post.php?delete_quote_item=<?php echo $item_id; ?>">
                                                                 <i class="fa fa-fw fa-trash mr-2"></i>Delete
                                                             </a>
                                                         </div>
@@ -354,7 +354,7 @@ if (isset($_GET['quote_id'])) {
                                     <tr class="d-print-none" <?php if ($quote_status == "Invoiced" || $quote_status == "Accepted" || $quote_status == "Declined") {
                                                                     echo "hidden";
                                                                 } ?>>
-                                        <form action="/post/" method="post" autocomplete="off">
+                                        <form action="/post.php" method="post" autocomplete="off">
                                             <input type="hidden" name="quote_id" value="<?php echo $quote_id; ?>">
                                             <input type="hidden" name="item_order" value="<?php
                                                                                             //find largest order number and add 1

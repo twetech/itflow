@@ -35,6 +35,8 @@ if (isset($_GET['dismiss_notification'])) {
 
 if (isset($_GET['dismiss_all_notifications'])) {
 
+    global $mysqli, $session_user_id, $session_name, $session_ip, $session_user_agent;
+
     $sql = mysqli_query($mysqli,"SELECT * FROM notifications WHERE notification_dismissed_at IS NULL");
 
     $num_notifications = mysqli_num_rows($sql);

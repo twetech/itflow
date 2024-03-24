@@ -23,13 +23,13 @@ if (isset($_POST['edit_company'])) {
 
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "uploads/settings/";
+            $upload_file_dir = "/uploads/settings/";
             $dest_path = $upload_file_dir . $new_file_name;
 
             move_uploaded_file($file_tmp_path, $dest_path);
 
             // Delete old file
-            unlink("uploads/settings/$existing_file_name");
+            unlink("/uploads/settings/$existing_file_name");
 
             // Set Logo
             mysqli_query($mysqli,"UPDATE companies SET company_logo = '$new_file_name' WHERE company_id = 1");
@@ -337,12 +337,12 @@ if (isset($_POST['edit_favicon_settings'])) {
             $file_tmp_path = $_FILES['file']['tmp_name'];
 
             // Delete old file
-            if(file_exists("uploads/favicon.ico")) {
-                unlink("uploads/favicon.ico");
+            if(file_exists("/uploads/favicon.ico")) {
+                unlink("/uploads/favicon.ico");
             }
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "uploads/";
+            $upload_file_dir = "/uploads/";
             //Force File Name
             $new_file_name = "favicon.ico";
             $dest_path = $upload_file_dir . $new_file_name;
