@@ -8,3 +8,13 @@
         </header>
         <nav class="u-sidebar-nav">
             <ul class="u-sidebar-nav-menu u-sidebar-nav-menu--top-level">
+                <!-- Dashboard -->
+                <li class="u-sidebar-nav-menu__item">
+                    <a class="u-sidebar-nav-menu__link <?php if (basename($_SERVER["PHP_SELF"]) == "dashboard.php") { echo "active"; } ?>" href="/pages/dashboard.php">
+                        <i class="fa fa-home u-sidebar-nav-menu__item-icon"></i>
+                        <span class="u-sidebar-nav-menu__item-title">Dashboard</span>
+                    </a>
+                </li>
+                <!-- End Dashboard -->
+
+                <hr>

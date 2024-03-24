@@ -6,7 +6,7 @@ validateAccountantRole();
 
 ?>
 
-<div class="card card-dark">
+<div class="card">
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-exclamation-triangle mr-2"></i>Clients with a Balance</h3>
         <div class="card-tools">

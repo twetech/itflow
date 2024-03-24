@@ -246,7 +246,7 @@
                                 </a>
                             </li>
                             <li class="mb-4">
-                                <a class="d-flex align-items-center link-dark" href="/pages/user/user_settings.php">
+                                <a class="d-flex align-items-center link-dark" href="/pages/user/user_preferences.php">
                                     <span class="h3 mb-0"><i class="far fa-list-alt text-muted mr-3"></i></span> Settings
                                 </a>
                             </li>

@@ -21,7 +21,7 @@ $passwords_not_rotated_sql = mysqli_query($mysqli,
 
 ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-life-ring mr-2"></i>Login entry passwords not changed/rotated in the last 90 days</h3>
             <div class="card-tools">

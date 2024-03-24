@@ -98,7 +98,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
         max-width: 600px;
     }
 </style>
-<div class="card card-dark">
+<div class="card">
     <header class="card-header d-flex align-items-center">
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-life-ring mr-2"></i>Support Tickets</h3>
         <small class="ml-3">

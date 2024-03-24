@@ -193,7 +193,7 @@ $webServer = $_SERVER['SERVER_SOFTWARE'];
 
 ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-3">
             <h3 class="card-title"><i class="fas fa-fw fa-bug mr-2"></i>Debug</h3>
         </div>

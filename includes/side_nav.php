@@ -1,15 +1,4 @@
 
-                <!-- Dashboard -->
-                <li class="u-sidebar-nav-menu__item">
-                    <a class="u-sidebar-nav-menu__link <?php if (basename($_SERVER["PHP_SELF"]) == "dashboard.php") { echo "active"; } ?>" href="dashboard.php">
-                        <i class="fa fa-cubes u-sidebar-nav-menu__item-icon"></i>
-                        <span class="u-sidebar-nav-menu__item-title">Dashboard</span>
-                    </a>
-                </li>
-                <!-- End Dashboard -->
-
-                <hr>
-
                 <!-- Support -->
                 <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "clients.php" || basename($_SERVER["PHP_SELF"]) == "tickets.php" || basename($_SERVER["PHP_SELF"]) == "ticket.php" || basename($_SERVER["PHP_SELF"]) == "recurring_tickets.php" || basename($_SERVER["PHP_SELF"]) == "calendar_events.php") { echo "u-sidebar-nav--opened"; } ?>">
                     <a class="u-sidebar-nav-menu__link" href="#!" data-target='#supportSideNav'>
@@ -161,7 +150,7 @@
 
                 <!-- Reports -->
                 <li class="u-sidebar-nav-menu__item">
-                    <a class="u-sidebar-nav-menu__link <?php if (basename($_SERVER["PHP_SELF"]) == "report_income_summary.php") { echo "active"; } ?>" href="report_income_summary.php">
+                    <a class="u-sidebar-nav-menu__link <?php if (basename($_SERVER["PHP_SELF"]) == "report_income_summary.php") { echo "active"; } ?>" href="/pages/report/">
                         <i class="fa fa-chart-line u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Reports</span>
                     </a>
@@ -171,7 +160,7 @@
 
                 <!-- Admin -->
                 <li class="u-sidebar-nav-menu__item">
-                    <a class="u-sidebar-nav-menu__link" href="admin_users.php">
+                    <a class="u-sidebar-nav-menu__link" href="/pages/admin/">
                         <i class="fa fa-user-shield u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Admin</span>
                     </a>
@@ -181,7 +170,7 @@
 
                 <!-- Settings -->
                 <li class="u-sidebar-nav-menu__item">
-                    <a class="u-sidebar-nav-menu__link" href="settings_company.php">
+                    <a class="u-sidebar-nav-menu__link" href="/pages/settings">
                         <i class="fa fa-cogs
                         u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Settings</span>

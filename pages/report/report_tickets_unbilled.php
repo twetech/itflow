@@ -3,6 +3,7 @@
 require_once "/var/www/develop.twe.tech/includes/inc_all_reports.php";
 
 validateTechRole();
+validateAccountantRole();
 
 function secondsToTime($inputSeconds) {
     $secondsInAMinute = 60;
@@ -52,11 +53,14 @@ $sql_ticket_years = mysqli_query($mysqli, "SELECT DISTINCT YEAR(ticket_created_a
 
 $sql_clients = mysqli_query($mysqli, "SELECT client_id, client_name FROM clients ORDER BY client_name ASC");
 
+$rows = 0;
+
+
 ?>
 
-    <div class="card card-dark">
+    <div class="card">
         <div class="card-header py-2">
-            <h3 class="card-title mt-2"><i class="fas fa-fw fa-life-ring mr-2"></i>Tickets By Client</h3>
+            <h3 class="card-title mt-2"><i class="fas fa-fw fa-life-ring mr-2"></i>Unbilled Tickets By Client</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-primary d-print-none" onclick="window.print();"><i class="fas fa-fw fa-print mr-2"></i>Print</button>
             </div>
@@ -77,9 +81,9 @@ $sql_clients = mysqli_query($mysqli, "SELECT client_id, client_name FROM clients
                     <thead>
                     <tr>
                         <th>Client</th>
-                        <th class="text-right">Tickets raised</th>
-                        <th class="text-right">Tickets closed</th>
-                        <th class="text-right">Avg time to close</th>
+                        <th class="text-right">Tickets Raised</th>
+                        <th class="text-right">Billable Tickets</th>
+                        <th class="text-right">Unbilled Tickets</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -89,41 +93,83 @@ $sql_clients = mysqli_query($mysqli, "SELECT client_id, client_name FROM clients
                         $client_name = nullable_htmlentities($row['client_name']);
 
                         // Calculate total tickets raised in period
-                        $sql_ticket_raised_count = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS ticket_raised_count FROM tickets WHERE YEAR(ticket_created_at) = $year AND ticket_client_id = $client_id");
+                        $sql_ticket_raised_count = mysqli_query(
+                            $mysqli,
+                            "SELECT
+                                COUNT(ticket_id) AS ticket_raised_count
+                            FROM
+                                tickets
+                            WHERE
+                                YEAR(ticket_created_at) = $year
+                            AND
+                                ticket_client_id = $client_id"
+                        );
                         $row = mysqli_fetch_array($sql_ticket_raised_count);
                         $ticket_raised_count = intval($row['ticket_raised_count']);
 
-                        // Calculate total tickets raised in period that are closed
-                        $sql_ticket_closed_count = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS ticket_closed_count FROM tickets WHERE YEAR(ticket_created_at) = $year AND ticket_client_id = $client_id AND ticket_status = 'Closed'");
+                        // Calculate total tickets raised in period that are closed and billable
+                        $sql_ticket_closed_count = mysqli_query(
+                            $mysqli,
+                            "SELECT
+                                COUNT(ticket_id) AS ticket_closed_count
+                            FROM
+                                tickets
+                            WHERE
+                                YEAR(ticket_created_at) = $year
+                            AND
+                                ticket_client_id = $client_id
+                            AND
+                                ticket_status = 'Closed'
+                            AND
+                                ticket_billable = 1
+                        ");
                         $row = mysqli_fetch_array($sql_ticket_closed_count);
                         $ticket_closed_count = intval($row['ticket_closed_count']);
 
-                        // Used to calculate average time to close tickets that were raised in period specified
-                        $sql_tickets = mysqli_query($mysqli, "SELECT ticket_created_at, ticket_closed_at FROM tickets WHERE YEAR(ticket_created_at) = $year AND ticket_client_id = $client_id AND ticket_status = 'Closed' AND ticket_closed_at IS NOT NULL");
+                        // Calculate total tickets raised in period that are closed and billable, but not invoiced
+                        $sql_ticket_unbilled_count = mysqli_query(
+                            $mysqli,
+                            "SELECT
+                                COUNT(ticket_id) AS ticket_unbilled_count
+                            FROM
+                                tickets
+                            WHERE
+                                YEAR(ticket_created_at) = $year
+                            AND
+                                ticket_client_id = $client_id
+                            AND
+                                ticket_status = 'Closed'
+                            AND
+                                ticket_billable = 1
+                            AND
+                                ticket_invoice_id = 0");
+                        $row = mysqli_fetch_array($sql_ticket_unbilled_count);
+                        $ticket_unbilled_count = intval($row['ticket_unbilled_count']);
 
-                        if ($ticket_raised_count > 0) {
-
-                            // Calculate average time to solve
-                            $count = 0;
-                            $total = 0;
-                            while ($row = mysqli_fetch_array($sql_tickets)) {
-                                $openedTime = new DateTime($row['ticket_created_at']);
-                                $closedTime = new DateTime($row['ticket_closed_at']);
-
-                                $total += ($closedTime->getTimestamp() - $openedTime->getTimestamp());
-                                $count++;
-                            }
+                        if ($ticket_unbilled_count > 0) {
+                            $rows = $rows + 1;
 
                             ?>
 
                             <tr>
-                                <td><?php echo $client_name; ?></td>
+                                <td>
+                                    <a href="client_tickets.php?client_id=<?php echo $client_id; ?>&billable=1&unbilled"><?php echo $client_name; ?></a>
+                                </td>
                                 <td class="text-right"><?php echo $ticket_raised_count; ?></td>
                                 <td class="text-right"><?php echo $ticket_closed_count; ?></td>
-                                <td class="text-right"><?php echo secondsToTime($total); ?></td>
+                                <td class="text-right"><?php echo $ticket_unbilled_count; ?></td>
                             </tr>
                             <?php
                         }
+                    }
+
+                    if ($rows == 0) {
+                        ?>
+                        <tr>
+                            <td colspan="4">You are all caught up! There are no unbilled tickets for this year.
+                            </td>
+                        </tr>
+                        <?php
                     }
                     ?>
                     </tbody>

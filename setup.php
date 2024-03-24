@@ -490,7 +490,7 @@ if (isset($_POST['add_telemetry'])) {
 
                 <?php if (isset($_GET['database'])) { ?>
 
-                    <div class="card card-dark">
+                    <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fas fa-fw fa-database mr-2"></i>Connect your Database</h3>
                         </div>
@@ -560,7 +560,7 @@ if (isset($_POST['add_telemetry'])) {
 
                 <?php } elseif (isset($_GET['user'])) { ?>
 
-                    <div class="card card-dark">
+                    <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fas fa-fw fa-user mr-2"></i>Create your first user</h3>
                         </div>
@@ -614,7 +614,7 @@ if (isset($_POST['add_telemetry'])) {
 
                 <?php } elseif (isset($_GET['company'])) { ?>
 
-                    <div class="card card-dark">
+                    <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fas fa-fw fa-briefcase mr-2"></i>Company Details</h3>
                         </div>
@@ -781,7 +781,7 @@ if (isset($_POST['add_telemetry'])) {
 
                 <?php } elseif (isset($_GET['telemetry'])) { ?>
 
-                    <div class="card card-dark">
+                    <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fas fa-fw fa-broadcast-tower mr-2"></i>Telemetry</h3>
                         </div>
@@ -826,7 +826,7 @@ if (isset($_POST['add_telemetry'])) {
 
                 <?php } else { ?>
 
-                    <div class="card card-dark">
+                    <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fas fa-fw fa-cube mr-2"></i>ITFlow Setup</h3>
                         </div>

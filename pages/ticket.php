@@ -9,7 +9,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 <?php
 
 // Initialize the HTML Purifier to prevent XSS
-require "/var/www/develop.twe.tech/includes/modals/plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/develop.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);
@@ -598,7 +598,7 @@ if (isset($_GET['ticket_id'])) {
             <!-- End Client card -->
 
             <!-- Contact card -->
-            <div class="card card-body card-outline card-dark mb-3">
+            <div class="card card-body card-outline mb-3">
                 <h5 class="text-secondary">Contact</h5>
 
                 <?php if (!empty($contact_id)) { ?>
@@ -680,7 +680,7 @@ if (isset($_GET['ticket_id'])) {
 
                 if ($ticket_status !== "Closed" || mysqli_num_rows($sql_ticket_watchers) > 0) { ?>
 
-            <div class="card card-body card-outline card-dark mb-3">
+            <div class="card card-body card-outline mb-3">
                 <h5 class="text-secondary">Watchers</h5>
 
                 <?php if ($ticket_status !== "Closed") { ?>
@@ -713,7 +713,7 @@ if (isset($_GET['ticket_id'])) {
             <!-- End Ticket watchers card -->
 
             <!-- Ticket Details card -->
-            <div class="card card-body card-outline card-dark mb-3">
+            <div class="card card-body card-outline mb-3">
                 <h5 class="text-secondary">Details</h5>
                 <div>
                     <i class="fa fa-fw fa-thermometer-half text-secondary ml-1 mr-2"></i><a href="#" data-toggle="modal"
@@ -783,7 +783,7 @@ if (isset($_GET['ticket_id'])) {
             <!-- End Ticket details card -->
 
             <!-- Asset card -->
-            <div class="card card-body card-outline card-dark mb-3">
+            <div class="card card-body card-outline mb-3">
                 <h5 class="text-secondary">Asset</h5>
 
                 <?php if ($asset_id == 0) { ?>
@@ -897,7 +897,7 @@ if (isset($_GET['ticket_id'])) {
             <!-- End Asset card -->
 
             <!-- Vendor card -->
-            <div class="card card-body card-outline card-dark mb-3">
+            <div class="card card-body card-outline mb-3">
                 <h5 class="text-secondary">Vendor</h5>
                 <?php if (empty($vendor_id)) { ?>
                 <div class="d-print-none">
@@ -951,7 +951,7 @@ if (isset($_GET['ticket_id'])) {
             <?php 
                     if ($config_module_enable_accounting == 1) {
                         ?>
-            <div class="card card-body card-outline card-dark mb-3">
+            <div class="card card-body card-outline mb-3">
                 <h5 class="text-secondary">Products</h5>
                 <div class="d-print-none">
                     <a href="#" data-toggle="modal" data-target="#addTicketProductModal<?php echo $ticket_id; ?>"><i
@@ -999,7 +999,7 @@ if (isset($_GET['ticket_id'])) {
                 </form>
                 <!-- End Assigned to -->
 
-            <div class="card card-body card-outline card-dark mb-2 d-print-none">
+            <div class="card card-body card-outline mb-2 d-print-none">
                 <?php if ($config_module_enable_accounting && $ticket_billable == 1) { ?>
                 <a href="#" class="btn btn-info btn-block" href="#" data-toggle="modal"
                     data-target="#addInvoiceFromTicketModal">

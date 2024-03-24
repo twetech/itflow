@@ -12,7 +12,11 @@ require_once "/var/www/develop.twe.tech/includes/header.php";
 
 require_once "/var/www/develop.twe.tech/includes/top_nav.php";
 
+require_once "/var/www/develop.twe.tech/includes/inc_side_nav.php";
+
 require_once "/var/www/develop.twe.tech/includes/settings_side_nav.php";
+
+require_once "/var/www/develop.twe.tech/includes/inc_side_nav_close.php";
 
 require_once "/var/www/develop.twe.tech/includes/inc_wrapper.php";
 

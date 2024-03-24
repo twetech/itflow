@@ -148,7 +148,7 @@ if (isset($_GET['asset_id'])) {
                 </div>
             </div>
 
-            <div class="card card-dark">
+            <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">Network</h5>
                 </div>
@@ -172,7 +172,7 @@ if (isset($_GET['asset_id'])) {
             </div>
 
 
-            <div class="card card-dark">
+            <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">Assignment</h5>
                 </div>
@@ -196,7 +196,7 @@ if (isset($_GET['asset_id'])) {
                 </div>
             </div>
 
-            <div class="card card-dark mb-3">
+            <div class="card mb-3">
                 <div class="card-header">
                     <h5 class="card-title">Notes</h5>
                 </div>
@@ -222,7 +222,7 @@ if (isset($_GET['asset_id'])) {
                 <li class="breadcrumb-item active"><?php echo $asset_name; ?></li>
             </ol>
 
-            <div class="card card-dark <?php if ($login_count == 0) { echo "d-none"; } ?>">
+            <div class="card <?php if ($login_count == 0) { echo "d-none"; } ?>">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fa fa-fw fa-key mr-2"></i>Passwords</h3>
                 </div>
@@ -327,7 +327,7 @@ if (isset($_GET['asset_id'])) {
                 </div>
             </div>
 
-            <div class="card card-dark <?php if ($software_count == 0) { echo "d-none"; } ?>">
+            <div class="card <?php if ($software_count == 0) { echo "d-none"; } ?>">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fa fa-fw fa-cube mr-2"></i>Licenses</h3>
                 </div>
@@ -402,7 +402,7 @@ if (isset($_GET['asset_id'])) {
                 </div>
             </div>
 
-            <div class="card card-dark <?php if ($ticket_count == 0) { echo "d-none"; } ?>">
+            <div class="card <?php if ($ticket_count == 0) { echo "d-none"; } ?>">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fa fa-fw fa-life-ring mr-2"></i>Tickets</h3>
                 </div>
