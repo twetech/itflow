@@ -8,8 +8,20 @@ if (!file_exists('/var/www/develop.twe.tech/includes/config.php')) {
     exit;
 }
 
+if (!isset($_GET['tenant_id'])) {
+    header("Location: /");
+    exit;
+}
+
+require_once "/var/www/develop.twe.tech/includes/tenant_db.php";
+
 require_once "/var/www/develop.twe.tech/includes/config.php";
 
+// Check if $mysqli is a valid connection
+if (!$mysqli) {
+    header("Location: /");
+    exit;
+}
 
 // Check if the application is configured for HTTPS-only access
 if ($config_https_only && (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') && (!isset($_SERVER['HTTP_X_FORWARDED_PROTO']) || $_SERVER['HTTP_X_FORWARDED_PROTO'] !== 'https')) {

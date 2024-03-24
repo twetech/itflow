@@ -200,13 +200,13 @@
                             </a>
                         </li>
                         <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link <?php if (basename($_SERVER["PHP_SELF"]) == "client_shared_links.php") { echo 'active'; } ?>" href="client_shared_items.php?client_id=<?php echo $client_id; ?>">
+                            <a class="u-sidebar-nav-menu__link <?php if (basename($_SERVER["PHP_SELF"]) == "client_shared_items.php") { echo 'active'; } ?>" href="client_shared_items.php?client_id=<?php echo $client_id; ?>">
                                 <i class="fa fa-share u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Shared Links</span>
                             </a>
                         </li>
                         <li class="u-sidebar-nav-menu__item">
-                            <a class="u-sidebar-nav-menu__link <?php if (basename($_SERVER["PHP_SELF"]) == "client_audit_logs.php") { echo 'active'; } ?>" href="client_logs.php?client_id=<?php echo $client_id; ?>">
+                            <a class="u-sidebar-nav-menu__link <?php if (basename($_SERVER["PHP_SELF"]) == "client_logs.php") { echo 'active'; } ?>" href="client_logs.php?client_id=<?php echo $client_id; ?>">
                                 <i class="fa fa-history u-sidebar-nav-menu__item-icon"></i>
                                 <span class="u-sidebar-nav-menu__item-title">Audit Logs</span>
                             </a>

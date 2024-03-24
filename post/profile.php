@@ -279,5 +279,5 @@ if (isset($_GET['logout'])) {
     session_unset();
     session_destroy();
 
-    header('Location: /pages/login.php?key=' . $config_login_key_secret);
+    header('Location: /');
 }
