@@ -237,7 +237,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         <tr>
                             <td>
-                                <a class="font-weight-bold" href="client_overview.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?> <i class="fas fa-fw fa-arrow-circle-right"></i></a>
+                                <a class="font-weight-bold" href="/pages/client/client_overview.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?> <i class="fas fa-fw fa-arrow-circle-right"></i></a>
 
                                 <?php
                                 if (!empty($client_type)) {
