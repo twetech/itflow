@@ -1,5 +1,5 @@
 <?php
-// Purpose: Login page for tennants
+// Purpose: Login page for tenants
 ?>
 
 <!DOCTYPE html>
@@ -53,16 +53,11 @@
 
 							<div class="form-group mb-4" <?php if (isset($token_field)) { echo "style='display:none;'"; } ?> >
 								<label for="email">Company ID</label>
-                                <input type="text" class="form-control" placeholder="Company ID" name="tennant_id" autofocus>
+                                <input type="text" class="form-control" placeholder="Company ID" name="tenant_id" autofocus>
 							</div>
 
-							<button class="btn btn-primary btn-block" type="submit" name="next">Next</button>
+							<button class="btn btn-primary btn-block" type="submit">Next</button>
 						</form>
-
-                        <?php if($config_client_portal_enable == 1){ ?>
-                        <hr>
-                        <h5 class="text-center">Looking for the <a href="portal">Client Portal?</a></h5>
-                        <?php } ?>
 					</div>
 
 					<div class="u-login-form text-muted py-3 mt-auto">

@@ -6,6 +6,8 @@
  * Always returns data in JSON format, unless otherwise specified
  */
 
+require_once "/var/www/develop.twe.tech/includes/tenant_db.php";
+
 require_once "/var/www/develop.twe.tech/includes/config.php";
 
 require_once "/var/www/develop.twe.tech/includes/functions/functions.php";
