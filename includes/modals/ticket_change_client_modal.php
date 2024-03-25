@@ -35,7 +35,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="change_client_ticket" class="btn btn-primary text-bold"><i class="fa fa-check mr-2"></i>Change</button>
+                    <button type="submit" name="change_client_ticket" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Change</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

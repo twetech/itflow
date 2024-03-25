@@ -56,7 +56,7 @@
                                 <input type="text" class="form-control" placeholder="Company ID" name="tenant_id" autofocus>
 							</div>
 
-							<button class="btn btn-primary btn-block" type="submit">Next</button>
+							<button class="btn btn-soft-primary btn-block" type="submit">Next</button>
 						</form>
 					</div>
 

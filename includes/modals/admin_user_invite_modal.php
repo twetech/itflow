@@ -1,3 +1,5 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
 <div class="modal" id="userInviteModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -38,7 +40,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="invite_user" class="btn btn-primary text-bold"><i class="fas fa-paper-plane mr-2"></i>Send Invite</button>
+                    <button type="submit" name="invite_user" class="btn btn-soft-primary text-bold"><i class="fas fa-paper-plane mr-2"></i>Send Invite</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

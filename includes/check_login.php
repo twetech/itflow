@@ -10,6 +10,13 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
+if (isset($_GET['tenant_id'])) {
+    $database = $_GET['tenant_id'];
+    if ($database == 'twe') {
+        $database = 'itflow';
+    }
+}
+
 //Check to see if setup is enabled
 if (!isset($config_enable_setup) || $config_enable_setup == 1) {
     echo "Setup is enabled, please disable setup in the config.php file to continue.";
@@ -18,7 +25,7 @@ if (!isset($config_enable_setup) || $config_enable_setup == 1) {
 
 // Check user is logged in with a valid session
 if (!isset($_SESSION['logged']) || !$_SESSION['logged']) {
-    header("Location: login.php");
+    header("Location: /index.php");
     exit;
 }
 
@@ -84,5 +91,4 @@ $session_mobile = isMobile();
 //Get Notification Count for the badge on the top nav
 $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT('notification_id') AS num FROM notifications WHERE (notification_user_id = $session_user_id OR notification_user_id = 0) AND notification_dismissed_at IS NULL"));
 $num_notifications = $row['num'];
-
 

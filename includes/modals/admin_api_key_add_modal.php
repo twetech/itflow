@@ -1,4 +1,6 @@
-<?php
+
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php";
+
 $key = randomString(156);
 ?>
 <div class="modal" id="addApiKeyModal" tabindex="-1">
@@ -72,7 +74,7 @@ $key = randomString(156);
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_api_key" class="btn btn-primary text-bold"><i class="fa fa-check mr-2"></i>Create</button>
+                    <button type="submit" name="add_api_key" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Create</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

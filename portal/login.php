@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
                 <hr>
                 <div class="col text-center">
                     <a href="login_microsoft.php">
-                        <button type="button" class="btn btn-secondary">Login with Microsoft Azure AD</button>
+                        <button type="button" class="btn btn-light">Login with Microsoft Azure AD</button>
                     </a>
                 </div>
             <?php } ?>

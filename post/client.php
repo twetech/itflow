@@ -6,7 +6,7 @@
 
 if (isset($_POST['add_client'])) {
 
-    require_once 'post/client_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/client_model.php';
 
 
     validateAdminRole();
@@ -54,7 +54,7 @@ if (isset($_POST['add_client'])) {
     );
     $client_id = $return_data['client_id'];
     referWithAlert(
-        'Client <strong>' . $name . '</strong> added', 'success', 'clients.php?client_id=' . $client_id
+        'Client <strong>' . $name . '</strong> added', 'success', '/pages/client/client_overview.php?client_id=' . $client_id
     );
 }
 

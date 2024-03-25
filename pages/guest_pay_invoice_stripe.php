@@ -182,7 +182,7 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
                     <!--Stripe.js injects the Payment Element-->
                 </div>
                 <br>
-                <button type="submit" id="submit" class="btn btn-primary btn-lg btn-block text-bold" hidden="hidden">
+                <button type="submit" id="submit" class="btn btn-soft-primary btn-lg btn-block text-bold" hidden="hidden">
                     <div class="spinner hidden" id="spinner"></div>
                     <span id="button-text"><i class="fas fa-check mr-2"></i>Pay Invoice</span>
                 </button>

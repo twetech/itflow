@@ -63,10 +63,10 @@ $num_of_files = mysqli_num_rows($sql);
         
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadFilesModal">
+                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#uploadFilesModal">
                     <i class="fas fa-fw fa-cloud-upload-alt mr-2"></i>Upload
                 </button>
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#createFolderModal">
                         <i class="fa fa-fw fa-folder-plus mr-2"></i>Create Folder
@@ -159,11 +159,11 @@ $num_of_files = mysqli_num_rows($sql);
                         </div>
                         <div class="col-md-8">
                             <div class="btn-group float-right">
-                                <a href="?<?php echo $url_query_strings_sort; ?>&view=0" class="btn <?php if($view == 0){ echo "btn-primary"; } else { echo "btn-outline-secondary"; } ?>"><i class="fas fa-list-ul"></i></a>
-                                <a href="?<?php echo $url_query_strings_sort; ?>&view=1" class="btn <?php if($view == 1){ echo "btn-primary"; } else { echo "btn-outline-secondary"; } ?>"><i class="fas fa-th-large"></i></a>
+                                <a href="?<?php echo $url_query_strings_sort; ?>&view=0" class="btn <?php if($view == 0){ echo "btn-soft-primary"; } else { echo "btn-outline-secondary"; } ?>"><i class="fas fa-list-ul"></i></a>
+                                <a href="?<?php echo $url_query_strings_sort; ?>&view=1" class="btn <?php if($view == 1){ echo "btn-soft-primary"; } else { echo "btn-outline-secondary"; } ?>"><i class="fas fa-th-large"></i></a>
                                 
                                 <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
                                         <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
                                     </button>
                                     <div class="dropdown-menu">
@@ -302,7 +302,7 @@ $num_of_files = mysqli_num_rows($sql);
                                     <td><?php echo $file_created_at; ?></td>
                                     <td>
                                         <div class="dropdown dropleft text-center">
-                                            <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                            <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div class="dropdown-menu">

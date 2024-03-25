@@ -177,7 +177,7 @@
                     </ul>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="export_client_pdf" class="btn btn-primary text-bold"><i class="fa fa-fw fa-download mr-2"></i>Export</button>
+                    <button type="submit" name="export_client_pdf" class="btn btn-soft-primary text-bold"><i class="fa fa-fw fa-download mr-2"></i>Export</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

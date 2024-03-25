@@ -8,7 +8,7 @@ require_once "/var/www/develop.twe.tech/includes/tenant_db.php";
 require_once "/var/www/develop.twe.tech/includes/config.php";
 
 
-$folderPath = /var/www/develop.twe.tech/uploads';
+$folderPath = '/var/www/develop.twe.tech/uploads';
 
 function countFilesInDirectory($dir) {
     $count = 0;

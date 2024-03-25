@@ -43,7 +43,7 @@ if (isset($_GET['archived'])) {
             if (!isset($_GET['archived'])) {
         ?>
         <div class="card-tools">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal"><i
+            <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addCategoryModal"><i
                     class="fas fa-plus mr-2"></i>New <?php echo nullable_htmlentities($category); ?> Category</button>
         </div>
         <?php
@@ -62,7 +62,7 @@ if (isset($_GET['archived'])) {
                             } ?>"
                             placeholder="Search <?php echo nullable_htmlentities($category); ?> Categories ">
                         <div class="input-group-append">
-                            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
@@ -70,32 +70,32 @@ if (isset($_GET['archived'])) {
                     <div class="btn-group float-right">
                         <a href="?category=Expense"
                             class="btn <?php if ($category == 'Expense') {
-                                echo 'btn-primary';
+                                echo 'btn-soft-primary';
                             } else {
                                 echo 'btn-default';
                             } ?>">Expense</a>
                         <a href="?category=Income"
                             class="btn <?php if ($category == 'Income') {
-                                echo 'btn-primary';
+                                echo 'btn-soft-primary';
                             } else {
                                 echo 'btn-default';
                             } ?>">Income</a>
                         <a href="?category=Referral"
                             class="btn <?php if ($category == 'Referral') {
-                                echo 'btn-primary';
+                                echo 'btn-soft-primary';
                             } else {
                                 echo 'btn-default';
                             } ?>">Referral</a>
                         <a href="?category=Payment Method"
                             class="btn <?php if ($category == 'Payment Method') {
-                                echo 'btn-primary';
+                                echo 'btn-soft-primary';
                             } else {
                                 echo 'btn-default';
                             } ?>">Payment
                             Method</a>
                         <a href="?archived=1"
                             class="btn <?php if (isset($_GET['archived'])) {
-                                echo 'btn-primary';
+                                echo 'btn-soft-primary';
                             } else {
                                 echo 'btn-default';
                             } ?>"><i
@@ -135,7 +135,7 @@ if (isset($_GET['archived'])) {
                             <td><i class="fa fa-3x fa-circle" style="color:<?php echo $category_color; ?>;"></i></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">

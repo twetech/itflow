@@ -21,13 +21,15 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 ?>
 
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
     <div class="card">
         <div class="card-header py-2">
             <h3 class="card-title mt-2">
                 <i class="fas fa-fw fa-building mr-2"></i>Vendor Templates
             </h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVendorTemplateModal">
+                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addVendorTemplateModal">
                     <i class="fas fa-plus mr-2"></i>New Vendor Template
                 </button>
             </div>
@@ -127,7 +129,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">

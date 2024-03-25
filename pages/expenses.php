@@ -33,7 +33,7 @@ $recurring_expense_count = $row['num'];
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-shopping-cart mr-2"></i>Expenses</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addExpenseModal"><i class="fas fa-plus mr-2"></i>New Expense</button>
+                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addExpenseModal"><i class="fas fa-plus mr-2"></i>New Expense</button>
             </div>
         </div>
 
@@ -44,16 +44,16 @@ $recurring_expense_count = $row['num'];
                         <div class="input-group">
                             <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search Expenses">
                             <div class="input-group-append">
-                                <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                                <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
+                                <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <div class="btn-group float-right">
-                            <a href="recurring_expenses.php" class="btn btn-outline-primary"><i class="fa fa-fw fa-redo-alt mr-2"></i>Recurring | <b><?php echo $recurring_expense_count; ?></b></a>
+                            <a href="recurring_expenses.php" class="btn btn-soft-primary"><i class="fa fa-fw fa-redo-alt mr-2"></i>Recurring | <b><?php echo $recurring_expense_count; ?></b></a>
                             <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
                                     <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
                                 </button>
                                 <div class="dropdown-menu">
@@ -181,7 +181,7 @@ $recurring_expense_count = $row['num'];
                                 <td><?php echo $client_name_display; ?></td>
                                 <td>
                                     <div class="dropdown dropleft text-center">
-                                        <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                        <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">

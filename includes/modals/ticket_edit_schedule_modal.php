@@ -39,7 +39,7 @@
                         <i class="fa fa-trash mr-2"></i>Cancel Scheduled Time
                     </a>
                 <?php } ?>
-                    <button type="submit" name="edit_ticket_schedule" class="btn btn-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
+                    <button type="submit" name="edit_ticket_schedule" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
                 </div>
 

@@ -31,7 +31,7 @@ if (isset($_GET['ticket_id'])) {
     );
 
     if (mysqli_num_rows($sql) == 0) {
-        echo "<center><h1 class='text-secondary mt-5'>Nothing to see here</h1><a class='btn btn-lg btn-secondary mt-3' href='tickets.php'><i class='fa fa-fw fa-arrow-left'></i> Go Back</a></center>";
+        echo "<center><h1 class='text-secondary mt-5'>Nothing to see here</h1><a class='btn btn-lg btn-light mt-3' href='tickets.php'><i class='fa fa-fw fa-arrow-left'></i> Go Back</a></center>";
 
         include_once "footer.php";
     } else {
@@ -266,7 +266,7 @@ if (isset($_GET['ticket_id'])) {
         <?php if ($ticket_status != "Closed") { ?>
         <div class="col-3">
             <div class="dropdown dropleft text-center d-print-none">
-                <button class="btn btn-secondary btn-sm float-right" type="button" id="dropdownMenuButton"
+                <button class="btn btn-light btn-sm float-right" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown">
                     <i class="fas fa-fw fa-ellipsis-v"></i>
                 </button>
@@ -336,9 +336,9 @@ if (isset($_GET['ticket_id'])) {
                     </div>
 
                     <div class="mb-3">
-                        <button id="rewordButton" class="btn btn-primary" type="button"><i
+                        <button id="rewordButton" class="btn btn-soft-primary" type="button"><i
                                 class="fas fa-fw fa-robot mr-2"></i>Reword</button>
-                        <button id="undoButton" class="btn btn-secondary" type="button" style="display:none;"><i
+                        <button id="undoButton" class="btn btn-light" type="button" style="display:none;"><i
                                 class="fas fa-fw fa-redo-alt mr-2"></i>Undo</button>
                     </div>
                     <?php } else { ?>
@@ -442,7 +442,7 @@ if (isset($_GET['ticket_id'])) {
 
                     <div class="col-md-2">
                         <button type="submit" id="ticket_add_reply" name="add_ticket_reply"
-                            class="btn btn-primary text-bold"><i
+                            class="btn btn-soft-primary text-bold"><i
                                 class="fas fa-<?php echo $ticket_reply_button_icon ?> mr-2"></i><?php echo $ticket_reply_button_wording ?></button>
                     </div>
 
@@ -843,7 +843,7 @@ if (isset($_GET['ticket_id'])) {
 
                         if ($ticket_asset_count > 0) { ?>
 
-                <button class="btn btn-block btn-secondary mt-2 d-print-none" data-toggle="modal"
+                <button class="btn btn-block btn-light mt-2 d-print-none" data-toggle="modal"
                     data-target="#assetTicketsModal">Service History (<?php echo $ticket_asset_count; ?>)</button>
 
                 <div class="modal" id="assetTicketsModal" tabindex="-1">
@@ -880,7 +880,7 @@ if (isset($_GET['ticket_id'])) {
                                                 ?>
                             </div>
                             <div class="modal-footer bg-white">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
                             </div>
 
                         </div>
@@ -990,7 +990,7 @@ if (isset($_GET['ticket_id'])) {
                                 <?php } ?>
                             </select>
                             <div class="input-group-append d-print-none">
-                                <button type="submit" class="btn btn-primary" name="assign_ticket" <?php if ($ticket_status == "Closed") {
+                                <button type="submit" class="btn btn-soft-primary" name="assign_ticket" <?php if ($ticket_status == "Closed") {
                                                                                                         echo "disabled";
                                                                                                     } ?>><i class="fas fa-check"></i></button>
                             </div>
@@ -1009,7 +1009,7 @@ if (isset($_GET['ticket_id'])) {
 
                         if ($ticket_status !== "Closed") { ?>
                 <a href="/post.php?close_ticket=<?php echo $ticket_id; ?>"
-                    class="btn btn-secondary btn-block confirm-link" id="ticket_close">
+                    class="btn btn-light btn-block confirm-link" id="ticket_close">
                     <i class="fas fa-fw fa-gavel mr-2"></i>Close Ticket
                 </a>
                 <?php } ?>

@@ -68,7 +68,7 @@ $timezones = DateTimeZone::listIdentifiers();
 
                 <hr>
 
-                <button type="submit" name="edit_localization" class="btn btn-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
+                <button type="submit" name="edit_localization" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
 
             </form>
         </div>

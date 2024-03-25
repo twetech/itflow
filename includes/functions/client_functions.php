@@ -161,7 +161,7 @@ function readClient(
     $clients = [];
 
     while ($row = mysqli_fetch_assoc($result)) {
-        $clients[$row['client_id']] = $row;
+        $clients[] = $row;
     }
 
     if (empty($clients)) {
@@ -369,4 +369,14 @@ function deleteClient(
 
 
     return ['status' => 'success'];
+}
+
+function getClientInitials($client_id) {
+    global $mysqli;
+
+    $sql = mysqli_query($mysqli, "SELECT client_name FROM clients WHERE client_id = $client_id");
+    $row = mysqli_fetch_array($sql);
+    $client_name = $row['client_name'];
+
+    return initials($client_name);
 }

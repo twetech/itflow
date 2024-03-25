@@ -87,7 +87,7 @@ $total_tickets = intval($row['total_tickets']);
 
     <div class="col-md-2">
 
-        <a href="ticket_add.php" class="btn btn-primary btn-block">New ticket</a>
+        <a href="ticket_add.php" class="btn btn-soft-primary btn-block">New ticket</a>
 
         <hr>
 
@@ -95,7 +95,7 @@ $total_tickets = intval($row['total_tickets']);
 
         <a href="?status=Closed" class="btn btn-success btn-block p-3 mb-3 text-left">Resolved tickets | <strong><?php echo $total_tickets_closed ?></strong></a>
 
-        <a href="?status=%" class="btn btn-secondary btn-block p-3 mb-3 text-left">All my tickets | <strong><?php echo $total_tickets ?></strong></a>
+        <a href="?status=%" class="btn btn-light btn-block p-3 mb-3 text-left">All my tickets | <strong><?php echo $total_tickets ?></strong></a>
         <?php
         if ($session_contact_primary == 1 || $session_contact_is_technical_contact) {
         ?>

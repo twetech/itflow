@@ -482,7 +482,7 @@ if (isset($_POST['add_telemetry'])) {
                                 <li>Upload is readable and writeable</li>
                                 <li>PHP 8.0+ Installed</li>
                             </ul>
-                            <div style="text-align: center;"><a href="?database" class="btn btn-lg btn-primary text-bold mb-5">Install</a></div>
+                            <div style="text-align: center;"><a href="?database" class="btn btn-lg btn-soft-primary text-bold mb-5">Install</a></div>
                         </div>
                     </div>
 
@@ -550,7 +550,7 @@ if (isset($_POST['add_telemetry'])) {
                                     </div>
 
                                     <hr>
-                                    <button type="submit" name="add_database" class="btn btn-primary text-bold">
+                                    <button type="submit" name="add_database" class="btn btn-soft-primary text-bold">
                                         Next<i class="fas fa-fw fa-arrow-circle-right ml-2"></i>
                                     </button>
                                 </form>
@@ -607,7 +607,7 @@ if (isset($_POST['add_telemetry'])) {
 
                                 <hr>
 
-                                <button type="submit" name="add_user" class="btn btn-primary text-bold">Next <i class="fa fa-fw fa-arrow-circle-right"></i></button>
+                                <button type="submit" name="add_user" class="btn btn-soft-primary text-bold">Next <i class="fa fa-fw fa-arrow-circle-right"></i></button>
                             </form>
                         </div>
                     </div>
@@ -770,7 +770,7 @@ if (isset($_POST['add_telemetry'])) {
 
                                 <hr>
 
-                                <button type="submit" name="add_company_settings" class="btn btn-primary text-bold">
+                                <button type="submit" name="add_company_settings" class="btn btn-soft-primary text-bold">
                                     Next<i class="fas fa-fw fa-arrow-circle-right ml-2"></i>
                                 </button>
 
@@ -815,7 +815,7 @@ if (isset($_POST['add_telemetry'])) {
 
                                 <hr>
 
-                                <button type="submit" name="add_telemetry" class="btn btn-primary text-bold">
+                                <button type="submit" name="add_telemetry" class="btn btn-soft-primary text-bold">
                                     Finish and Sign in<i class="fas fa-fw fa-check-circle ml-2"></i>
                                 </button>
 
@@ -849,7 +849,7 @@ if (isset($_POST['add_telemetry'])) {
                             ?>
                             <hr>
                             <div style="text-align: center;">
-                                <a href="?database" class="btn btn-primary text-bold">
+                                <a href="?database" class="btn btn-soft-primary text-bold">
                                     Begin Setup<i class="fas fa-fw fa-arrow-alt-circle-right ml-2"></i>
                                 </a>
                             </div>

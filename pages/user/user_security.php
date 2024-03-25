@@ -24,7 +24,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
                 </div>
             </div>
 
-            <button type="submit" name="edit_your_user_password" class="btn btn-primary btn-block mt-3"><i class="fas fa-check mr-2"></i>Save</button>
+            <button type="submit" name="edit_your_user_password" class="btn btn-soft-primary btn-block mt-3"><i class="fas fa-check mr-2"></i>Save</button>
 
         </form>
     </div>
@@ -48,7 +48,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
             <center>
                 <?php
 
-                require_once 'rfc6238.php';
+                require_once '/var/www/develop.twe.tech/includes/rfc6238.php';
 
                 //Generate a base32 Key
                 $secretkey = key32gen();

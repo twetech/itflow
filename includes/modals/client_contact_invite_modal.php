@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="invite_contact" class="btn btn-primary text-bold"><i class="fas fa-paper-plane mr-2"></i>Send Invite</button>
+                    <button type="submit" name="invite_contact" class="btn btn-soft-primary text-bold"><i class="fas fa-paper-plane mr-2"></i>Send Invite</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
                 </div>
 

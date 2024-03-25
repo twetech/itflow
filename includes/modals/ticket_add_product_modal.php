@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" id="add_ticket_products_btn" name="add_ticket_products" class="btn btn-primary text-bold"><i class="fa fa-plus mr-2"></i>Add</button>
+                    <button type="submit" id="add_ticket_products_btn" name="add_ticket_products" class="btn btn-soft-primary text-bold"><i class="fa fa-plus mr-2"></i>Add</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
                     <!-- Merge button starts disabled. Is enabled by the merge_into_number_get_details Javascript function-->
                 </div>

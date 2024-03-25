@@ -77,14 +77,14 @@ $document_parent = intval($row['document_parent']);
 	<div class="col-md-3 d-print-none">
     <div class="row">
       <div class="col-12 mb-3">
-        <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#editDocumentModal<?php echo $document_id; ?>">
+        <button type="button" class="btn btn-soft-primary mr-2" data-toggle="modal" data-target="#editDocumentModal<?php echo $document_id; ?>">
           <i class="fas fa-fw fa-edit mr-2"></i>Edit
         </button>
-        <button type="button" class="btn btn-secondary mr-2" data-toggle="modal" data-target="#shareModal"
+        <button type="button" class="btn btn-light mr-2" data-toggle="modal" data-target="#shareModal"
           onclick="populateShareModal(<?php echo "$client_id, 'Document', $document_id"; ?>)">
           <i class="fas fa-fw fa-share mr-2"></i>Share
         </button>
-        <button type="button" class="btn btn-secondary" onclick="window.print();"><i class="fas fa-fw fa-print mr-2"></i>Print</button>
+        <button type="button" class="btn btn-light" onclick="window.print();"><i class="fas fa-fw fa-print mr-2"></i>Print</button>
       </div>
     </div>
     <div class="card card-body bg-light">

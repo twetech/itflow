@@ -47,9 +47,9 @@ $credits_num_rows = mysqli_num_rows($sql_credits);
                             value="<?php if (isset($q)) {echo stripslashes(nullable_htmlentities($q));} ?>"
                             placeholder="Search Payments">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button" data-toggle="collapse"
+                            <button class="btn btn-light" type="button" data-toggle="collapse"
                                 data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>

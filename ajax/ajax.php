@@ -668,3 +668,15 @@ if (isset($_GET['get_totp_token_via_id'])) {
 if (isset($_GET['get_readable_pass'])) {
     echo json_encode(GenerateReadablePassword(4));
 }
+
+if (isset($_GET['get_modal'])) {
+    //Assume modal is an array of modals
+    $modal = $_GET['get_modal'];
+    $item_id = $_GET['item_id'];
+    foreach ($modal as $modal_name) {
+
+        require_once "/var/www/develop.twe.tech/includes/modals/$modal_name.php";
+    }
+    
+
+}

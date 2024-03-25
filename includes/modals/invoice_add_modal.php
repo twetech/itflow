@@ -73,7 +73,7 @@
                                 ?>
                             </select>
                             <div class="input-group-append">
-                                <a class="btn btn-secondary" href="admin_categories.php?category=Income" target="_blank"><i class="fas fa-fw fa-plus"></i></a>
+                                <a class="btn btn-light" href="admin_categories.php?category=Income" target="_blank"><i class="fas fa-fw fa-plus"></i></a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_invoice" class="btn btn-primary text-bold"><i class="fa fa-check mr-2"></i>Create</button>
+                    <button type="submit" name="add_invoice" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Create</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

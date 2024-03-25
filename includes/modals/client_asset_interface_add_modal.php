@@ -1,3 +1,5 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
 <div class="modal" id="addAssetInterfaceModal<?php echo $asset_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -113,8 +115,8 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" name="add_asset_interface" class="btn btn-primary"><i class="fa fa-check"></i> Create</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                    <button type="submit" name="add_asset_interface" class="btn btn-soft-primary"><i class="fa fa-check"></i> Create</button>
                 </div>
             </form>
         </div>

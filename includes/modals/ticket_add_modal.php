@@ -1,3 +1,7 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php";
+
+?>
+
 <div class="modal fade" id="addTicketModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content bg-dark">
@@ -50,8 +54,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <button id="rewordButton" class="btn btn-primary" type="button"><i class="fas fa-fw fa-robot mr-2"></i>Reword</button>
-                                <button id="undoButton" class="btn btn-secondary" type="button" style="display:none;"><i class="fas fa-fw fa-redo-alt mr-2"></i>Undo</button>
+                                <button id="rewordButton" class="btn btn-soft-primary" type="button"><i class="fas fa-fw fa-robot mr-2"></i>Reword</button>
+                                <button id="undoButton" class="btn btn-light" type="button" style="display:none;"><i class="fas fa-fw fa-redo-alt mr-2"></i>Undo</button>
                             </div>
                             <?php } else { ?>
                             <div class="form-group">
@@ -268,7 +272,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_ticket" class="btn btn-primary text-bold"><i class="fas fa-check mr-2"></i>Create</button>
+                    <button type="submit" name="add_ticket" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Create</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

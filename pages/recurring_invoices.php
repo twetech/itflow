@@ -26,7 +26,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fa fa-redo-alt mr-2"></i>Recurring Invoices</h3>
         <div class="card-tools">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRecurringModal"><i class="fas fa-plus mr-2"></i>Create</button>
+            <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addRecurringModal"><i class="fas fa-plus mr-2"></i>Create</button>
         </div>
     </div>
 
@@ -37,14 +37,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     <div class="input-group">
                         <input type="search" class="form-control" name="q" value="<?php if (isset($q)) {echo strip_tags(nullable_htmlentities($q));} ?>" placeholder="Search Recurring Invoices">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
+                            <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="btn-group float-right">
-                        <a href="invoices.php" class="btn btn-outline-primary"><i class="fa fa-fw fa-file-invoice mr-2"></i>Back to Invoices</a>
+                        <a href="invoices.php" class="btn btn-soft-primary"><i class="fa fa-fw fa-file-invoice mr-2"></i>Back to Invoices</a>
                     </div>
                 </div>
             </div>
@@ -152,7 +152,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         </td>
                         <td>
                             <div class="dropdown dropleft text-center">
-                                <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu">

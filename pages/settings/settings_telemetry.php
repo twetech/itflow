@@ -31,7 +31,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
 
                 <hr>
 
-                <button type="submit" name="edit_telemetry_settings" class="btn btn-primary text-bold float-right"><i class="fas fa-check mr-2"></i>Save</button>
+                <button type="submit" name="edit_telemetry_settings" class="btn btn-soft-primary text-bold float-right"><i class="fas fa-check mr-2"></i>Save</button>
 
             </form>
         </div>

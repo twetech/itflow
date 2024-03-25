@@ -1,3 +1,5 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
 <div class="modal" id="addSoftwareTemplateModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -74,7 +76,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_software_template" class="btn btn-primary text-bold"><i class="fa fa-check mr-2"></i>Create</button>
+                    <button type="submit" name="add_software_template" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Create</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

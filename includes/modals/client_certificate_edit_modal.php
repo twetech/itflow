@@ -1,3 +1,5 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
 <div class="modal" id="editCertificateModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -40,7 +42,7 @@
                             </div>
                             <input type="text" class="form-control" id="editCertificateDomain" name="domain" placeholder="Domain" value="" required>
                             <div class="input-group-append">
-                                <button type="button" class="btn btn-secondary" onclick="fetchSSL('edit')"><i class="fas fa-fw fa-sync-alt"></i></button>
+                                <button type="button" class="btn btn-light" onclick="fetchSSL('edit')"><i class="fas fa-fw fa-sync-alt"></i></button>
                             </div>
                         </div>
                     </div>
@@ -94,7 +96,7 @@
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_certificate" class="btn btn-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
+                    <button type="submit" name="edit_certificate" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

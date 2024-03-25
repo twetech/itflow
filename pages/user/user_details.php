@@ -48,7 +48,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
                 <input type="file" class="form-control-file" accept="image/*;capture=camera" name="file">
             </div>
 
-            <button type="submit" name="edit_your_user_details" class="btn btn-primary btn-block mt-3"><i class="fas fa-check mr-2"></i>Save</button>
+            <button type="submit" name="edit_your_user_details" class="btn btn-soft-primary btn-block mt-3"><i class="fas fa-check mr-2"></i>Save</button>
 
 
         </form>
