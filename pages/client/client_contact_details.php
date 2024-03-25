@@ -231,7 +231,7 @@ if (isset($_GET['contact_id'])) {
                                     <td><?php echo $asset_status; ?></td>
                                     <td>
                                         <div class="dropdown dropleft text-center">
-                                            <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></button>
+                                            <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addAssetInterfaceModal<?php echo $asset_id; ?>">Interfaces</a>
                                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editAssetModal<?php echo $asset_id; ?>">
@@ -343,7 +343,7 @@ if (isset($_GET['contact_id'])) {
                                     <td><?php echo $login_uri_display; ?></td>
                                     <td>
                                         <div class="dropdown dropleft text-center">
-                                            <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                            <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div class="dropdown-menu">
@@ -526,8 +526,8 @@ if (isset($_GET['contact_id'])) {
                                 ?>
 
                                 <tr>
-                                    <td><a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><span class="badge badge-pill badge-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span></a></td>
-                                    <td><a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a></td>
+                                    <td><a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><span class="badge badge-pill badge-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span></a></td>
+                                    <td><a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a></td>
                                     <td><?php echo $ticket_priority_display; ?></td>
                                     <td><?php echo $ticket_status_display; ?></td>
                                     <td><?php echo $ticket_assigned_to_display; ?></td>

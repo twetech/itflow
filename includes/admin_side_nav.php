@@ -182,3 +182,34 @@
     </ul>
 </li>
 <!-- End Access -->
+
+
+<?php 
+if ($database == "itflow"){
+?>
+
+<hr>
+
+<!-- Tenants -->
+<li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "admin_tenants.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_users.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_api_keys.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_tags.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_categories.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_taxes.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_account_types.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_inventory_locations.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_vendor_templates.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_software_templates.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_document_templates.php") { echo "u-sidebar-nav--opened"; } ?>">
+    <a class="u-sidebar-nav-menu__link" href="#!" data-target='#tenantsSideNav'>
+        <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
+        <span class="u-sidebar-nav-menu__item-title">Tenants</span>
+        <span class="u-sidebar-nav-menu__item-arrow">
+            <i class="fa fa-angle-down u-sidebar-nav-menu__item-arrow-icon"></i>
+        </span>
+    </a>
+
+    <ul id="tenantsSideNav" class="u-sidebar-nav-menu u-sidebar-nav-menu--second-level" style="display: none;">
+        <!-- Tenants -->
+        <li class="u-sidebar-nav-menu__item">
+            <a class="u-sidebar-nav-menu__link <?php if (basename($_SERVER["PHP_SELF"]) == "admin_tenants.php") { echo "active"; } ?>" href="/pages/admin/admin_tenants.php">
+                <i class="fa fa-building u-sidebar-nav-menu__item-icon"></i>
+                <span class="u-sidebar-nav-menu__item-title">Tenants</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<?php
+}

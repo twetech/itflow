@@ -38,7 +38,7 @@
             </div>
 
             <div class="modal-footer bg-white">
-                <button type="submit" name="bulk_assign_ticket" class="btn btn-primary text-bold"><i class="fa fa-check mr-2"></i>Bulk Assign</button>
+                <button type="submit" name="bulk_assign_ticket" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Bulk Assign</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
             </div>
 

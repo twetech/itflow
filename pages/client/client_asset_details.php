@@ -291,7 +291,7 @@ if (isset($_GET['asset_id'])) {
                                     <td><?php echo $login_uri_display; ?></td>
                                     <td>
                                         <div class="dropdown dropleft text-center">
-                                            <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                            <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div class="dropdown-menu">

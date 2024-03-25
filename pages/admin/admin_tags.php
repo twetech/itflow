@@ -25,7 +25,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-tags mr-2"></i>Tags</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTagModal"><i class="fas fa-plus mr-2"></i>New Tag</button>
+                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addTagModal"><i class="fas fa-plus mr-2"></i>New Tag</button>
             </div>
         </div>
 
@@ -36,7 +36,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="input-group">
                             <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search Tags">
                             <div class="input-group-append">
-                                <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </form>
@@ -75,7 +75,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <td><?php echo $tag_type; ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">

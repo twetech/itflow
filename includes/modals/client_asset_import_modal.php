@@ -1,3 +1,5 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
 <div class="modal" id="importAssetModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -19,7 +21,7 @@
                     <div>Download <a href="/post.php?download_client_assets_csv_template=<?php echo $client_id; ?>">sample csv template</a></div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="import_client_assets_csv" class="btn btn-primary text-bold"><i class="fa fa-check mr-2"></i>Import</button>
+                    <button type="submit" name="import_client_assets_csv" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Import</button>
                 </div>
             </form>
         </div>

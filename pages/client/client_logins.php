@@ -27,10 +27,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-key mr-2"></i>Logins</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addLoginModal">
+                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addLoginModal">
                     <i class="fas fa-plus mr-2"></i>New Login
                 </button>
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#importLoginModal">
                         <i class="fa fa-fw fa-upload mr-2"></i>Import
@@ -139,7 +139,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <a href="<?php echo $login_uri; ?>" target="_blank" class="btn btn-default btn-sm"><i class="fa fa-fw fa-external-link-alt"></i></a>
                                     <?php } ?>
                                     <div class="dropdown dropleft text-center">
-                                        <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                        <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">

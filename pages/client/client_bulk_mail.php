@@ -16,7 +16,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM contacts
         <div class="card-header">
             <h3 class="card-title mt-2 mb-2"><i class="fa fa-fw fa-envelope-open mr-2"></i>Bulk Mail to Special Contacts</h3>
             <div class="card-tools">
-                <button id="bulkActionButton" hidden class="btn btn-primary" type="submit" form='bulkActions' name="send_bulk_mail_now">
+                <button id="bulkActionButton" hidden class="btn btn-soft-primary" type="submit" form='bulkActions' name="send_bulk_mail_now">
                     <i class="fas fa-fw fa-paper-plane mr-2"></i>Send Now (<span id="selectedCount">0</span>)
                 </button>
             </div>

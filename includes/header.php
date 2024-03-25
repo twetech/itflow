@@ -29,7 +29,7 @@ header("X-Frame-Options: DENY");
     If Fav Icon exists else use the default one 
     -->
     <?php if(file_exists('/var/www/develop.twe.tech/uploads/favicon.ico')) { ?>
-        <link rel="icon" type="image/x-icon" href="//uploads/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="/uploads/favicon.ico">
     <?php } else { ?>
         <link rel="icon" type="image/x-icon" href="/includes/dist/img/favicon.ico">
     <?php } ?>

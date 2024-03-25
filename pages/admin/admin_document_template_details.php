@@ -45,7 +45,7 @@ $document_updated_at = nullable_htmlentities($row['document_updated_at']);
     <h3 class="card-title mt-2"><i class="fa fa-fw fa-file mr-2"></i><?php echo $document_name; ?></h3>
 
     <div class="card-tools">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDocumentTemplateModal<?php echo $document_id; ?>">
+      <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#editDocumentTemplateModal<?php echo $document_id; ?>">
         <i class="fas fa-edit mr-2"></i>Edit
       </button>
     </div>

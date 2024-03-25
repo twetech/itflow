@@ -37,9 +37,9 @@ $num_rows = mysqli_num_rows($sql);
                             value="<?php if (isset($q)) {echo stripslashes(nullable_htmlentities($q));} ?>"
                             placeholder="Search Credits">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button" data-toggle="collapse"
+                            <button class="btn btn-light" type="button" data-toggle="collapse"
                                 data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@ $num_rows = mysqli_num_rows($sql);
                             <td><?php echo $credit_reference; ?></td>
                             <td><a href="client_payments.php?client_id=<?php echo $credit_client_id; ?>"><?php echo $payment_invoice_display; ?></a></td>
                             <td>
-                                <a href="/post.php?apply_credit=<?php echo $credit_id; ?>" class="btn btn-sm btn-primary"
+                                <a href="/post.php?apply_credit=<?php echo $credit_id; ?>" class="btn btn-sm btn-soft-primary"
                                 title="Apply"><i class="fas fa-credit-card"></i></a>
                                 <a href="/post.php?delete_credit=<?php echo $credit_id; ?>" class="btn btn-sm btn-danger"
                                 title="Delete"><i class="fas fa-trash"></i></a>

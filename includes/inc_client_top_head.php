@@ -11,20 +11,21 @@
                         <i class="fas fa-fw fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editClientModal<?php echo $client_id; ?>">
+                        <a href="#!" data-toggle="modal" data-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="edit_client_modal.php?client_id=<?php echo $client_id; ?>">
                             <i class="fas fa-fw fa-edit mr-2"></i>Edit Client
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exportClientPDFModal">
+                        <a href="#!" data-toggle="modal" data-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="export_client_pdf_modal.php?client_id=<?php echo $client_id; ?>">
                             <i class="fas fa-fw fa-file-pdf mr-2"></i>Export Data
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_client=<?php echo $client_id; ?>">
+                        
+                        <a href="#!" data-toggle="modal" data-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="archive_client_modal.php?client_id=<?php echo $client_id; ?>">
                             <i class="fas fa-fw fa-archive mr-2"></i>Archive Client
                         </a>
                         <?php if ($session_user_role == 3) { ?>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger text-bold" href="#" data-toggle="modal" data-target="#deleteClientModal<?php echo $client_id; ?>">
+                        <a href="#!" data-toggle="modal" data-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="delete_client_modal.php?client_id=<?php echo $client_id; ?>">
                             <i class="fas fa-fw fa-trash mr-2"></i>Delete Client
                         </a>
                         <?php } ?>
@@ -153,9 +154,3 @@
 </div>
 
 <?php
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_edit_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_delete_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_download_pdf_modal.php";

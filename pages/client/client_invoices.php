@@ -31,8 +31,8 @@ $recurring_invoice_count = $row['num'];
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-file-invoice mr-2"></i>Invoices</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addInvoiceModal"><i class="fas fa-plus mr-2"></i>New Invoice</button>
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addInvoiceModal"><i class="fas fa-plus mr-2"></i>New Invoice</button>
+                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportInvoiceModal">
                         <i class="fa fa-fw fa-download mr-2"></i>Export
@@ -60,7 +60,7 @@ $recurring_invoice_count = $row['num'];
                 <div class="col-md-8">
                     <div class="float-right">
                         <div class="btn-group float-right">
-                            <a href="client_recurring_invoices.php?client_id=<?php echo $client_id; ?>" class="btn btn-outline-primary"><i class="fa fa-fw fa-redo-alt mr-2"></i>Recurring | <b><?php echo $recurring_invoice_count; ?></b></a>
+                            <a href="client_recurring_invoices.php?client_id=<?php echo $client_id; ?>" class="btn btn-soft-primary"><i class="fa fa-fw fa-redo-alt mr-2"></i>Recurring | <b><?php echo $recurring_invoice_count; ?></b></a>
                             <?php if ($balance > 0) { ?>
                                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addBulkPaymentModal"><i class="fa fa-credit-card mr-2"></i>Batch Payment</button>
                             <?php } ?>
@@ -149,7 +149,7 @@ $recurring_invoice_count = $row['num'];
                             </td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">

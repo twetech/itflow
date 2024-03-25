@@ -13,7 +13,12 @@ if (!isset($_GET['tenant_id'])) {
     exit;
 }
 
-require_once "/var/www/develop.twe.tech/includes/tenant_db.php";
+if (isset($_GET['tenant_id'])) {
+    $_SESSION['database'] = $_GET['tenant_id'];
+    if ($_SESSION['database'] == 'twe') {
+        $_SESSION['database'] = 'itflow';
+    }
+}
 
 require_once "/var/www/develop.twe.tech/includes/config.php";
 
@@ -32,6 +37,7 @@ if ($config_https_only && (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'o
 require_once "/var/www/develop.twe.tech/includes/functions/functions.php";
 
 require_once "/var/www/develop.twe.tech/includes/rfc6238.php";
+
 
 
 // IP & User Agent for logging
@@ -196,6 +202,7 @@ if (isset($_POST['login'])) {
             $_SESSION['user_role'] = $user_role;
             $_SESSION['csrf_token'] = randomString(156);
             $_SESSION['logged'] = true;
+            $_SESSION['database'] = $database;
 
             // Setup encryption session key
             if (isset($user_encryption_ciphertext) && $user_role > 1) {
@@ -352,7 +359,7 @@ if (isset($_POST['login'])) {
 
                             <?php } ?>
 
-							<button class="btn btn-primary btn-block" type="submit" name="login">Login</button>
+							<button class="btn btn-soft-primary btn-block" type="submit" name="login">Login</button>
 						</form>
 
                         <?php if($config_client_portal_enable == 1){ ?>

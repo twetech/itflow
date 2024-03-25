@@ -1,3 +1,5 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
 <div class="modal" id="editLocationModal<?php echo $inventory_location_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -67,7 +69,7 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_inventory_locations" class="btn btn-primary text-bold"><i class="fa fa-check mr- 2"></i>Create</button>
+                    <button type="submit" name="edit_inventory_locations" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr- 2"></i>Create</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

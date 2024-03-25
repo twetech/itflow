@@ -27,7 +27,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-hand-holding-usd mr-2"></i>Revenues</h3>
         <div class="card-tools">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRevenueModal"><i class="fas fa-plus mr-2"></i>New Revenue</button>
+            <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addRevenueModal"><i class="fas fa-plus mr-2"></i>New Revenue</button>
         </div>
     </div>
 
@@ -38,8 +38,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     <div class="input-group">
                         <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search Revenues">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
+                            <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <td><?php echo $account_name; ?></td>
                         <td>
                             <div class="dropdown dropleft text-center">
-                                <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu">

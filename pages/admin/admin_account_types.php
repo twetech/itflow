@@ -42,7 +42,7 @@ $num_rows = mysqli_num_rows($sql);
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-money-bill-wave mr-2"></i>Finance Account Types</h3>
         <div class="card-tools">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addAccountTypeModal">
+            <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addAccountTypeModal">
                 <i class="fas fa-plus mr-2"></i>Create Account Type
             </button>
         </div>
@@ -56,34 +56,34 @@ $num_rows = mysqli_num_rows($sql);
                             echo stripslashes(nullable_htmlentities($q));
                         } ?>" placeholder="Search Categories">
                         <div class="input-group-append">
-                            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="btn-group float-right">
                         <a href="admin_account_types.php" class="btn <?php if (!isset($_GET['account_type']) && !isset($_GET['archived'])) {
-                            echo 'btn-primary';
+                            echo 'btn-soft-primary';
                         } else {
                             echo 'btn-default';
                         } ?>">All</a>
                         <a href="?account_type=Assets" class="btn <?php if ($account_type == 'Assets') {
-                            echo 'btn-primary';
+                            echo 'btn-soft-primary';
                         } else {
                             echo 'btn-default';
                         } ?>">Assets</a>
                         <a href="?account_type=Liabilities" class="btn <?php if ($account_type == 'Liabilities') {
-                            echo 'btn-primary';
+                            echo 'btn-soft-primary';
                         } else {
                             echo 'btn-default';
                         } ?>">Liabilities</a>
                         <a href="?account_type=Equity" class="btn <?php if ($account_type == 'Equity') {
-                            echo 'btn-primary';
+                            echo 'btn-soft-primary';
                         } else {
                             echo 'btn-default';
                         } ?>">Equity</a>
                         <a href="?archived=1" class="btn <?php if ($_GET['archived']) {
-                            echo 'btn-primary';
+                            echo 'btn-soft-primary';
                         } else {
                             echo 'btn-default';
                         } ?>"><i class="fas fa-fw fa-archive mr-2"></i>Archived</a>
@@ -131,7 +131,7 @@ $num_rows = mysqli_num_rows($sql);
                             </td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">

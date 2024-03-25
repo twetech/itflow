@@ -84,7 +84,7 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
                 <div class="form-group">
                     <input type="file" class="form-control-file" name="file[]" multiple id="fileInput" accept=".jpg, .jpeg, .gif, .png, .webp, .pdf, .txt, .md, .doc, .docx, .odt, .csv, .xls, .xlsx, .ods, .pptx, .odp, .zip, .tar, .gz, .xml, .msg, .json, .wav, .mp3, .ogg, .mov, .mp4, .av1, .ovpn">
                 </div>
-                <button type="submit" class="btn btn-primary" name="add_ticket_comment">Reply</button>
+                <button type="submit" class="btn btn-soft-primary" name="add_ticket_comment">Reply</button>
             </form>
 
         <?php } elseif (empty($ticket_feedback)) { ?>
@@ -94,7 +94,7 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
             <form action="portal_post.php" method="post">
                 <input type="hidden" name="ticket_id" value="<?php echo $ticket_id ?>">
 
-                <button type="submit" class="btn btn-primary btn-lg" name="add_ticket_feedback" value="Good" onclick="this.form.submit()">
+                <button type="submit" class="btn btn-soft-primary btn-lg" name="add_ticket_feedback" value="Good" onclick="this.form.submit()">
                     <span class="fa fa-smile" aria-hidden="true"></span> Good
                 </button>
 

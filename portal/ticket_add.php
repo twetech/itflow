@@ -52,7 +52,7 @@ require_once 'inc_portal.php';
                 <textarea class="form-control tinymce" name="details"></textarea>
             </div>
 
-            <button class="btn btn-primary" name="add_ticket">Raise ticket</button>
+            <button class="btn btn-soft-primary" name="add_ticket">Raise ticket</button>
 
         </form>
     </div>

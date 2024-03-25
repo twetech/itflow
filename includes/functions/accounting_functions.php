@@ -247,3 +247,20 @@ function getClientBalance($client_id, $credits = false) {
         return $balance;
     }
 }
+
+function getMonthlyExpenses($year, $month, $number = false)
+{
+    global $mysqli;
+
+    $sql_month_query = $month == 13 ? "" : "AND MONTH(expense_date) = $month";
+
+    if ($number) {
+        $sql = "SELECT COUNT(expense_id) AS total_expenses FROM expenses WHERE YEAR(expense_date) = $year $sql_month_query";
+    } else {
+        $sql = "SELECT SUM(expense_amount) AS total_expenses FROM expenses WHERE YEAR(expense_date) = $year $sql_month_query";
+    }
+
+    $result = mysqli_query($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result); 
+    return $row['total_expenses'] ?? 0;
+}

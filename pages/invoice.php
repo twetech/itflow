@@ -160,7 +160,7 @@ if (isset($_GET['invoice_id'])) {
 
                 <div class="col-8">
                     <?php if ($invoice_status == 'Draft') { ?>
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <button class="btn btn-soft-primary dropdown-toggle" type="button" data-toggle="dropdown">
                             <i class="fas fa-fw fa-paper-plane mr-2"></i>Send
                         </button>
                         <div class="dropdown-menu">
@@ -186,7 +186,7 @@ if (isset($_GET['invoice_id'])) {
                 <div class="col-4">
 
                     <div class="dropdown dropleft text-center float-right">
-                        <button class="btn btn-secondary" type="button" data-toggle="dropdown">
+                        <button class="btn btn-light" type="button" data-toggle="dropdown">
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                         <div class="dropdown-menu">
@@ -236,11 +236,14 @@ if (isset($_GET['invoice_id'])) {
                     <img class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>" alt="Company logo">
                 </div>
                 <div class="col-sm-10">
-                    <div class="ribbon-wrapper">
-                        <div class="ribbon bg-<?php echo $invoice_badge_color; ?>">
-                            <?php echo $invoice_status; ?>
+                        <div class="d-print-none">
+                            <!-- Invoice Status Badge Float Right -->
+                            <div class="float-right">
+                                <span class="badge badge-pill badge-lg badge-<?php echo $invoice_badge_color; ?>">
+                                    <?php echo $invoice_status; ?>
+                                </span>
+                            </div>
                         </div>
-                    </div>
                     <h3 class="text-right mt-5"><strong>Invoice</strong><br><small class="text-secondary"><?php echo "$invoice_prefix$invoice_number"; ?></small></h3>
                 </div>
 

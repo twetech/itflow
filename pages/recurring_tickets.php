@@ -28,7 +28,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-calendar-check mr-2"></i>Recurring Tickets</h3>
         <div class='card-tools'>
             <div class="float-left">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRecurringTicketModal">
+                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addRecurringTicketModal">
                     <i class="fas fa-plus mr-2"></i>New Recurring Ticket
                 </button>
             </div>
@@ -53,7 +53,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <div class="col-md-8">
 
                     <div class="dropdown float-right" id="bulkActionButton" hidden>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
                             <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
                         </button>
                         <div class="dropdown-menu">
@@ -129,7 +129,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                                 <td>
                                     <div class="dropdown dropleft text-center">
-                                        <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                        <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">

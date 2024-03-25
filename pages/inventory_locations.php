@@ -38,15 +38,15 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="input-group">
                             <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search <?php echo $product?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <div class="btn-group float-right">
-                            <a href="inventory.php" class="btn btn-outline-primary"><i class="fa fa-fw fa-arrow-left mr-2"></i>Back to full inventory</a>
+                            <a href="inventory.php" class="btn btn-soft-primary"><i class="fa fa-fw fa-arrow-left mr-2"></i>Back to full inventory</a>
                             <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
                                     <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
                                 </button>
                                 <div class="dropdown-menu">
@@ -112,7 +112,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 <td><?php echo $location_qty; ?></td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="inventory_location_manage.php?inventory_location_id=<?php echo $location_id; ?>" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="inventory_location_manage.php?inventory_location_id=<?php echo $location_id; ?>" class="btn btn-soft-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
                                     </div>
                                 </td>
 

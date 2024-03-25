@@ -102,8 +102,8 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
         <div class="card-header d-print-none">
 
             <div class="float-right">
-                <a class="btn btn-primary" href="#" onclick="window.print();"><i class="fas fa-fw fa-print mr-2"></i>Print</a>
-                <a class="btn btn-primary" href="#" onclick="pdfMake.createPdf(docDefinition).download('<?php echo strtoAZaz09(html_entity_decode("$quote_date-$company_name-QUOTE-$quote_prefix$quote_number")); ?>');">
+                <a class="btn btn-soft-primary" href="#" onclick="window.print();"><i class="fas fa-fw fa-print mr-2"></i>Print</a>
+                <a class="btn btn-soft-primary" href="#" onclick="pdfMake.createPdf(docDefinition).download('<?php echo strtoAZaz09(html_entity_decode("$quote_date-$company_name-QUOTE-$quote_prefix$quote_number")); ?>');">
                     <i class="fa fa-fw fa-download mr-2"></i>Download
                 </a>
             </div>

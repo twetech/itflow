@@ -65,7 +65,7 @@
             this.drops = 'up';
 
         this.buttonClasses = 'btn btn-sm';
-        this.applyButtonClasses = 'btn-primary';
+        this.applyButtonClasses = 'btn-soft-primary';
         this.cancelButtonClasses = 'btn-default';
 
         this.locale = {

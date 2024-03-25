@@ -101,7 +101,7 @@ if (isset($_GET['recurring_id'])) {
                 </div>
                 <div class="col-4">
                     <div class="dropdown dropleft text-center float-right">
-                        <button class="btn btn-secondary" type="button" data-toggle="dropdown">
+                        <button class="btn btn-light" type="button" data-toggle="dropdown">
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                         <div class="dropdown-menu">

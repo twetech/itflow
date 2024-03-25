@@ -1,3 +1,5 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
 <div class="modal" id="addCertificateModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -55,7 +57,7 @@
                                     </div>
                                     <input type="text" class="form-control" name="domain" id="domain" placeholder="FQDN" required>
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-secondary" onclick="fetchSSL('new')"><i class="fas fa-fw fa-sync-alt"></i></button>
+                                        <button type="button" class="btn btn-light" onclick="fetchSSL('new')"><i class="fas fa-fw fa-sync-alt"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +125,7 @@
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_certificate" class="btn btn-primary text-bold"><i class="fa fa-check"></i> Create</button>
+                    <button type="submit" name="add_certificate" class="btn btn-soft-primary text-bold"><i class="fa fa-check"></i> Create</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

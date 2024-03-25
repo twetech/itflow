@@ -25,7 +25,7 @@ $num_rows = mysqli_num_rows($sql);
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-balance-scale mr-2"></i>Taxes</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaxModal"><i class="fas fa-plus mr-2"></i>New Tax</button>
+                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addTaxModal"><i class="fas fa-plus mr-2"></i>New Tax</button>
             </div>
         </div>
         <div class="card-body">
@@ -52,7 +52,7 @@ $num_rows = mysqli_num_rows($sql);
                             <td><?php echo "$tax_percent%"; ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">

@@ -10,7 +10,7 @@ validateAccountantRole();
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-exclamation-triangle mr-2"></i>Clients with a Balance</h3>
         <div class="card-tools">
-            <button type="button" class="btn btn-primary d-print-none" onclick="window.print();"><i class="fas fa-fw fa-print mr-2"></i>Print</button>
+            <button type="button" class="btn btn-soft-primary d-print-none" onclick="window.print();"><i class="fas fa-fw fa-print mr-2"></i>Print</button>
         </div>
     </div>
     <div class="card-body">

@@ -134,7 +134,7 @@
                     </div>
 
                     <div class="card-footer py-3">
-                        <a class="btn btn-block btn-outline-primary" href="#">View all activities</a>
+                        <a class="btn btn-block btn-soft-primary" href="#">View all activities</a>
                     </div>
                 </div>
             </div>
@@ -204,7 +204,7 @@
                     </div>
 
                     <div class="card-footer py-3">
-                        <a class="btn btn-block btn-outline-primary" href="/pages/notifications_dismissed.php">View all notifications</a>
+                        <a class="btn btn-block btn-soft-primary" href="/pages/notifications_dismissed.php">View all notifications</a>
                     </div>
                 </div>
             </div>

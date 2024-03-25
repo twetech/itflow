@@ -58,7 +58,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_expense" class="btn btn-primary text-bold"><i class="fas fa-check mr-2"></i>Refund</button>
+                    <button type="submit" name="add_expense" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Refund</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

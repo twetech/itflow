@@ -55,13 +55,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <?php if ($session_user_role == 3) { ?>
                     <ul class="list-inline ml-auto mb0">
                         <li class="list-inline-item mr3">
-                            <a href="#" data-toggle="modal" data-target="#addClientModal" class="text-dark">
-                                <i class="fa fa-fw fa-plus mr-2"></i>
+                            <a href="#!" data-toggle="modal" data-target="#dynamicModal" class="text-dark loadModalContentBtn" data-modal-file="client_add_modal.php?leads=<?php echo $leads; ?>">
+                                <i class="fa fa-fw fa-plus mr-2"></i><!-- Add Client -->
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a href="#" data-toggle="modal" data-target="#exportClientModal" class="text-dark">
-                                <i class="fa fa-fw fa-download mr-2"></i>
+                                <i class="fa fa-fw fa-download mr-2"></i><!-- Export Clients -->
                             </a>
                         </li>
                     </ul>
@@ -76,8 +76,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="input-group">
                             <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search <?php if($leads == 0){ echo "clients"; } else { echo "leads"; } ?>" autofocus>
                             <div class="input-group-append">
-                                <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                                <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
+                                <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 <a href="?leads=0" class="btn btn-<?php if($leads == 0){ echo "primary"; } else { echo "default"; } ?>"><i class="fa fa-fw fa-user-friends mr-2"></i>Clients</a>
                                 <a href="?leads=1" class="btn btn-<?php if($leads == 1){ echo "primary"; } else { echo "default"; } ?>"><i class="fa fa-fw fa-bullhorn mr-2"></i>Leads</a>
                             </div>
-                           
                         </div>
                     </div>
                 </div>
@@ -126,7 +125,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </form>
             <hr>
             <div class="table-responsive-sm">
-                <table class="table table-hover">
+                <table class="table table-hover" id="modalTable">
                     <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <?php 
@@ -232,9 +231,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         $recurring_monthly = $recurring_monthly_total + $recurring_yearly_total;
 
-                        if (!$session_mobile) {
-                        ?>
-
+                        if (!$session_mobile) { ?>
                         <tr>
                             <td>
                                 <a class="font-weight-bold" href="/pages/client/client_overview.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?> <i class="fas fa-fw fa-arrow-circle-right"></i></a>
@@ -313,27 +310,27 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <?php if ($session_user_role == 3) { ?>
                                 <td>
                                     <ul
-                                    <div class="dropdown dropleft text-center">
-                                        <button class="btn btn-secondary btn-sm" type="button" data-toggle="dropdown">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editClientModal<?php echo $client_id; ?>">
-                                                <i class="fas fa-fw fa-edit mr-2"></i>Edit
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_client=<?php echo $client_id; ?>">
-                                                <i class="fas fa-fw fa-archive mr-2"></i>Archive
-                                            </a>
+                                        <div class="dropdown dropleft text-center">
+                                            <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a href="#!" data-toggle="modal" data-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_edit_modal.php?client_id=<?php echo $client_id; ?>">
+                                                    <i class="fas fa-fw fa-edit mr-2"></i>Edit
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_client=<?php echo $client_id; ?>">
+                                                    <i class="fas fa-fw fa-archive mr-2"></i>Archive
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </ul>
                                 </td>
                             <?php } ?>
                         </tr>
 
                         <?php
-                        } else {
-                            ?>
+                        } else { ?>
                             <tr>
                                 <td>
                                     <ul class="list-unstyled">
@@ -358,7 +355,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                         <a href="client_overview.php?client_id=<?php echo $client_id; ?>">Overview</a>
                                                     </li>
                                                     <li class="dropdown-item">
-                                                        <a href="#" data-toggle="modal" data-target="#editClientModal<?php echo $client_id; ?>">Edit</a>
+                                                        <a href="#!" data-toggle="modal" data-target="#dynamicModal" class="text-dark loadModalContentBtn" data-modal-file="client_edit_modal.php?client_id=<?php echo $client_id; ?>">
+                                                            Edit
+                                                        </a>
+
                                                     </li>
                                                     <li class="dropdown-item">
                                                         <a href="/post.php?archive_client=<?php echo $client_id; ?>" class="text-danger confirm-link">Archive</a>
@@ -371,24 +371,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </tr>
                             <?php
                         }
-
-                        require "/var/www/develop.twe.tech/includes/modals/client_edit_modal.php";
-
-
                     } ?>
-
                     </tbody>
                 </table>
             </div>
-            <?php require_once "/var/www/develop.twe.tech/includes/pagination.php";
- ?>
+            <?php require_once "/var/www/develop.twe.tech/includes/pagination.php"; ?>
         </div>
     </div>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/client_add_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/modals/client_export_modal.php";
 
 require_once "/var/www/develop.twe.tech/includes/footer.php";
 

@@ -75,10 +75,10 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
         </h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTicketModal">
+                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addTicketModal">
                     <i class="fas fa-plus mr-2"></i>New Ticket
                 </button>
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportTicketModal">
                         <i class="fa fa-fw fa-download mr-2"></i>Export

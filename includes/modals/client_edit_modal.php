@@ -1,3 +1,25 @@
+$client_id = $_GET['client_id'];
+
+$sql = mysqli_query($mysqli, "SELECT * FROM clients WHERE client_id = $client_id");
+$row = mysqli_fetch_array($sql);
+
+$client_id = intval($row['client_id']);
+$client_name = nullable_htmlentities($row['client_name']);
+$client_type = nullable_htmlentities($row['client_type']);
+$client_website = nullable_htmlentities($row['client_website']);
+$client_is_lead = intval($row['client_is_lead']);
+$client_referral = nullable_htmlentities($row['client_referral']);
+$client_rate = floatval($row['client_rate']);
+$client_currency_code = nullable_htmlentities($row['client_currency_code']);
+$client_net_terms = intval($row['client_net_terms']);
+$client_tax_id_number = nullable_htmlentities($row['client_tax_id_number']);
+$client_notes = nullable_htmlentities($row['client_notes']);
+$client_tag_id_array = explode(',', $row['client_tag_id']);
+$client_created_at = $row['client_created_at'];
+
+
+?>
+
 <div class="modal" id="editClientModal<?php echo $client_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -215,7 +237,7 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_client" class="btn btn-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
+                    <button type="submit" name="edit_client" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>
