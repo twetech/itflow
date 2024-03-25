@@ -1,3 +1,5 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
 <!-- Open Tickets Modal -->
 <div class="modal fade" id="openTicketsModal" tabindex="-1" role="dialog" aria-labelledby="openTicketsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

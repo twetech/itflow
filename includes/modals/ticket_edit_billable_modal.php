@@ -1,3 +1,15 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php";
+
+$ticket_id = $_GET['ticket_id'];
+
+$sql = "SELECT * FROM tickets WHERE ticket_id = $ticket_id";
+$result = mysqli_query($mysqli, $sql);
+$row = mysqli_fetch_assoc($result);
+
+$ticket_billable = $row['ticket_billable'];
+
+?>
+
 <div class="modal" id="editTicketBillableModal<?php echo $ticket_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">

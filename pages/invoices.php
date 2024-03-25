@@ -143,7 +143,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-file-invoice mr-2"></i>Invoices</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addInvoiceModal"><i class="fas fa-plus mr-2"></i>New Invoice</button>
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="invoice_add_modal.php"><i class="fas fa-plus mr-2"></i>New Invoice</button>
             </div>
         </div>
 
@@ -276,9 +276,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editInvoiceModal<?php echo $invoice_id; ?>">
+                                        <a href="#" class="dropdown-item loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="invoice_edit_modal.php?invoice_id=<?php echo $invoice_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
+                                        <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addInvoiceCopyModal<?php echo $invoice_id; ?>">
                                             <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                         </a>
@@ -296,19 +297,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 </div>
                             </td>
                         </tr>
-
                         <?php
-
-
-                        require "/var/www/develop.twe.tech/includes/modals/invoice_edit_modal.php";
-
-                        require "/var/www/develop.twe.tech/includes/modals/invoice_copy_modal.php";
-
-
                     }
-
                     ?>
-
                     </tbody>
                 </table>
             </div>
@@ -318,7 +309,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     </div>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/invoice_add_modal.php";
 
 require_once "/var/www/develop.twe.tech/includes/footer.php";
 

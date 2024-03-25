@@ -1,3 +1,4 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 <?php
 // Check if ticket_id and invoice_id are set in the URL
 $addToExistingInvoice = isset($_GET['ticket_id']) && isset($_GET['invoice_id']);

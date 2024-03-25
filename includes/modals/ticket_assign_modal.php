@@ -1,3 +1,18 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php";
+
+$ticket_id = $_GET['ticket_id'];
+
+$sql = "SELECT * FROM tickets LEFT JOIN clients ON tickets.ticket_client_id = clients.client_id WHERE ticket_id = $ticket_id";
+$result = mysqli_query($mysqli, $sql);
+$row = mysqli_fetch_assoc($result);
+
+$ticket_assigned_to = $row['ticket_assigned_to'];
+$ticket_status = $row['ticket_status'];
+$ticket_number = $row['ticket_number'];
+$ticket_prefix = $row['ticket_prefix'];
+$client_name = $row['client_name'];
+
+?>
 <div class="modal" id="assignTicketModal<?php echo $ticket_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">

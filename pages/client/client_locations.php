@@ -28,7 +28,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Locations</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addLocationModal">
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_location_add_modal.php?client_id=<?php echo $client_id; ?>"
                     <i class="fas fa-plus mr-2"></i>New Location
                 </button>
                 <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
