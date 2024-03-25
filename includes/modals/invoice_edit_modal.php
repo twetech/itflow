@@ -1,3 +1,21 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; 
+
+$invoice_id = intval($_GET['invoice_id']);
+
+$sql = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_id = $invoice_id");
+$row = mysqli_fetch_array($sql);
+
+$invoice_number = intval($row['invoice_number']);
+$invoice_prefix = nullable_htmlentities($row['invoice_prefix']);
+$invoice_date = nullable_htmlentities($row['invoice_date']);
+$invoice_due = nullable_htmlentities($row['invoice_due']);
+$invoice_scope = nullable_htmlentities($row['invoice_scope']);
+$invoice_discount = floatval($row['invoice_discount']);
+$invoice_created_at = nullable_htmlentities($row['invoice_created_at']);
+
+
+?>
+
 <div class="modal" id="editInvoiceModal<?php echo $invoice_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">

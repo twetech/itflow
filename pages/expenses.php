@@ -26,14 +26,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT('recurring_expense_id') AS num FROM recurring_expenses WHERE recurring_expense_archived_at IS NULL"));
 $recurring_expense_count = $row['num'];
-
 ?>
 
     <div class="card">
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-shopping-cart mr-2"></i>Expenses</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addExpenseModal"><i class="fas fa-plus mr-2"></i>New Expense</button>
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="expense_add_modal.php"><i class="fas fa-plus mr-2"></i>New Expense</button>
             </div>
         </div>
 

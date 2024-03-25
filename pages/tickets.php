@@ -108,7 +108,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
             <?php if ($session_user_role == 3) { ?>
                 <ul class="list-inline ml-auto mb0">
                     <li class="list-inline-item mr3">
-                        <a href="#!" data-toggle="modal" data-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="ticket_add_modal.php">
+                        <a href="#!" class="dropdown-item loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_add_modal.php">
                             <i class="fa fa-fw fa-plus mr-2"></i>
                         </a>
                     </li>
@@ -438,7 +438,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 
                                     <?php if ($config_module_enable_accounting) { ?>
                                         <td class="text-center">
-                                            <a href="#" data-toggle="modal" data-target="#editTicketBillableModal<?php echo $ticket_id; ?>">
+                                            <a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_billable_modal.php?ticket_id=<?php echo $ticket_id; ?>">
                                                 <?php
                                                 if ($ticket_billable == 1) {
                                                     echo "<span class='badge badge-pill badge-success'>$</span>";
@@ -449,9 +449,9 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                         </td>
                                     <?php } ?>
 
-                                    <td><a href="#" data-toggle="modal" data-target="#editTicketPriorityModal<?php echo $ticket_id; ?>"><span class='p-2 badge badge-pill badge-<?php echo $ticket_priority_color; ?>'><?php echo $ticket_priority; ?></span></a></td>
+                                    <td><a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_priority_modal.php?ticket_id=<?php echo $ticket_id; ?>"><span class='p-2 badge badge-pill badge-<?php echo $ticket_priority_color; ?>'><?php echo $ticket_priority; ?></span></a></td>
                                     <td><span class='p-2 badge badge-pill badge-<?php echo $ticket_status_color; ?>'><?php echo $ticket_status; ?></span> <?php if ($ticket_status == 'On Hold' && isset ($ticket_scheduled_for)) { echo "<div class=\"mt-1\"> <small class='text-secondary'> $ticket_scheduled_for </small></div>"; } ?></td>
-                                    <td><a href="#" data-toggle="modal" data-target="#assignTicketModal<?php echo $ticket_id; ?>"><?php echo $ticket_assigned_to_display; ?></a></td>
+                                    <td><a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_assign_modal.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_assigned_to_display; ?></a></td>
                                     <td><?php echo $ticket_updated_at_display; ?></td>
                                     <td>
                                         <?php echo $ticket_created_at_time_ago; ?>
@@ -461,18 +461,6 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                 </tr>
 
                             <?php
-
-                                if ($ticket_status !== "Closed") {
-                                    // Temp performance boost for closed tickets, until we move to dynamic modals
-
-                                    require "/var/www/develop.twe.tech/includes/modals/ticket_assign_modal.php";
-
-                                    require "/var/www/develop.twe.tech/includes/modals/ticket_edit_priority_modal.php";
-
-                                    if ($config_module_enable_accounting) {
-                                        require "/var/www/develop.twe.tech/includes/modals/ticket_edit_billable_modal.php";
-                                    }
-                                }
                             } else {
                                 ?>
 
@@ -497,7 +485,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                     </td>
                                     <?php if ($config_module_enable_accounting) { ?>
                                         <td class="text-center">
-                                            <a href="#" data-toggle="modal" data-target="#editTicketBillableModal<?php echo $ticket_id; ?>">
+                                            <a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_billable_modal.php?ticket_id<?php echo $ticket_id; ?>">
                                                 <?php
                                                 if ($ticket_billable == 1) {
                                                     echo "<span class='badge badge-pill badge-success'>$</span>";

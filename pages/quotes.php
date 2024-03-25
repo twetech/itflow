@@ -163,10 +163,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-toggle="modal" onclick="populateQuoteEditModal(<?php echo $quote_id ?>)" data-target="#editQuoteModal">
+                                        <a href="#" class="dropdown-item loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="quote_edit_modal.php?quote_id=<?php echo $quote_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addQuoteCopyModal<?php echo $quote_id; ?>">
+                                        <a href="#" class="dropdown-item loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="quote_copy_modal.php?quote_id=<?php echo $quote_id; ?>">
                                             <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                         </a>
                                         <div class="dropdown-divider"></div>

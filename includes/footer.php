@@ -53,6 +53,7 @@
 		<!-- Plugins -->
 		<script src="/includes/dist/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 		<script src="/includes/dist/vendor/chart.js/dist/Chart.min.js"></script>
+		<script src="/includes/dist/vendor/datatables/datatables.min.js"></script>
 		<!-- Initialization  -->
 		<script src="/includes/dist/js/sidebar-nav.js"></script>
 		<script src="/includes/dist/js/main.js"></script>

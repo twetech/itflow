@@ -517,7 +517,7 @@ if (isset($_GET['quote_id'])) {
     require_once "/var/www/develop.twe.tech/includes/modals/quote_note_modal.php";
 }
 
-require_once "footer.php";
+require_once "/var/www/develop.twe.tech/includes/footer.php";
 
 
 ?>

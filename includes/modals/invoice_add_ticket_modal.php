@@ -1,3 +1,4 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
 <div class="modal" id="addTicketModal">
 <div class="modal-dialog">

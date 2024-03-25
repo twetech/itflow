@@ -1,3 +1,18 @@
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
+<? $quote_id = intval($_GET['quote_id']);
+
+$sql = mysqli_query($mysqli, "SELECT * FROM quotes LEFT JOIN clients ON quote_client_id = client_id WHERE quote_id = $quote_id");
+$row = mysqli_fetch_array($sql);
+
+$quote_id = intval($row['quote_id']);
+$quote_number = intval($row['quote_number']);
+$quote_prefix = nullable_htmlentities($row['quote_prefix']);
+$client_id = intval($row['client_id']);
+$client_name = nullable_htmlentities($row['client_name']);
+
+?>
+
 <div class="modal" id="addQuoteCopyModal<?php echo $quote_id; ?>" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content bg-dark">
