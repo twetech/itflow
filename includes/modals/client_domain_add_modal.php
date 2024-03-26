@@ -1,4 +1,8 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+<?php
+$client_id = intval($_GET['client_id']);
+?>
+
 <div class="modal" id="addDomainModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">

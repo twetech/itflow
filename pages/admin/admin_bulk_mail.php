@@ -79,7 +79,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM contacts
                     <hr>
                     <div class="card">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table id=responsive class="responsive table">
                                 <thead>
                                     <tr>
                                         <td>

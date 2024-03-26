@@ -118,7 +118,7 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
             <h3>Payment for Invoice: <?php echo $invoice_prefix . $invoice_number ?></h3>
             <br>
             <div class="table-responsive">
-                <table class="table">
+                <table id=responsive class="responsive table">
                     <thead>
                     <tr>
                         <th>Product</th>

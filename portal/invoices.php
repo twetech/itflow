@@ -21,7 +21,7 @@ $invoices_sql = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_clie
 
     <div class="col-md-10">
 
-        <table class="table tabled-bordered border border-dark">
+        <table id=responsive class="responsive table tabled-bordered border border-dark">
             <thead class="thead-dark">
             <tr>
                 <th>#</th>

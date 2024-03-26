@@ -18,7 +18,7 @@ $sql_recent_logs = mysqli_query($mysqli, "SELECT * FROM logs
     <div class="card-header">
         <h3 class="card-title"><i class="fas fa-fw fa-sign-in-alt mr-2"></i>Your Recent Sign ins</h3>
     </div>
-    <table class="table table-borderless">
+    <table id=responsive class="responsive table table-borderless">
         <tbody>
         <?php
 
@@ -52,7 +52,7 @@ $sql_recent_logs = mysqli_query($mysqli, "SELECT * FROM logs
     </div>
 
 
-    <table class="table">
+    <table id=responsive class="responsive table">
         <tbody>
         <?php
 

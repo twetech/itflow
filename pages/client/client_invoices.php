@@ -31,7 +31,7 @@ $recurring_invoice_count = $row['num'];
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-file-invoice mr-2"></i>Invoices</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addInvoiceModal"><i class="fas fa-plus mr-2"></i>New Invoice</button>
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="invoice_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Invoice</button>
                 <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportInvoiceModal">
@@ -72,7 +72,7 @@ $recurring_invoice_count = $row['num'];
         </form>
         <hr>
         <div class="table-responsive-sm">
-             <table class="table table-hover">
+             <table id=responsive class="responsive table table-hover">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) {
                                             echo "d-none";
                                         } ?>">

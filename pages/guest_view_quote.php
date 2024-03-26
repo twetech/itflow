@@ -149,7 +149,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                 <div class="col-sm-8">
                 </div>
                 <div class="col-sm-4">
-                    <table class="table">
+                    <table id=responsive class="responsive table">
                         <tr>
                             <td>Date</td>
                             <td class="text-right"><?php echo $quote_date; ?></td>
@@ -168,7 +168,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                 <div class="col-md-12">
                     <div class="card">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table id=responsive class="responsive table">
                                 <thead>
                                 <tr>
                                     <th>Product</th>
@@ -231,7 +231,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                 </div>
 
                 <div class="col-sm-3 offset-sm-2">
-                    <table class="table table-borderless">
+                    <table id=responsive class="responsive table table-borderless">
                         <tbody>
                         <tr class="border-bottom">
                             <td>Subtotal</td>

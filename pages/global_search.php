@@ -129,7 +129,7 @@ if (isset($_GET['query'])) {
                         <h6 class="mt-1"><i class="fas fa-fw fa-users mr-2"></i>Clients</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless">
+                        <table id=responsive class="responsive table table-striped table-borderless">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -171,7 +171,7 @@ if (isset($_GET['query'])) {
                         <h6 class="mt-1"><i class="fas fa-fw fa-users mr-2"></i>Contacts</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless">
+                        <table id=responsive class="responsive table table-striped table-borderless">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -227,7 +227,7 @@ if (isset($_GET['query'])) {
                         <h6 class="mt-1"><i class="fas fa-fw fa-building mr-2"></i>Vendors</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless">
+                        <table id=responsive class="responsive table table-striped table-borderless">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -274,7 +274,7 @@ if (isset($_GET['query'])) {
                         <h6 class="mt-1"><i class="fas fa-fw fa-globe mr-2"></i>Domains</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless">
+                        <table id=responsive class="responsive table table-striped table-borderless">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -318,7 +318,7 @@ if (isset($_GET['query'])) {
                         <h6 class="mt-1"><i class="fas fa-fw fa-box mr-2"></i>Products</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless">
+                        <table id=responsive class="responsive table table-striped table-borderless">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -357,7 +357,7 @@ if (isset($_GET['query'])) {
                         <h6 class="mt-1"><i class="fas fa-fw fa-file-alt mr-2"></i>Documents</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless">
+                        <table id=responsive class="responsive table table-striped table-borderless">
                             <thead>
                             <tr>
                                 <th>Document</th>
@@ -401,7 +401,7 @@ if (isset($_GET['query'])) {
                         <h6 class="mt-1"><i class="fas fa-fw fa-life-ring mr-2"></i>Tickets</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless">
+                        <table id=responsive class="responsive table table-striped table-borderless">
                             <thead>
                             <tr>
                                 <th>Ticket ID</th>
@@ -450,7 +450,7 @@ if (isset($_GET['query'])) {
                         <h6 class="mt-1"><i class="fas fa-fw fa-key mr-2"></i>Logins</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless">
+                        <table id=responsive class="responsive table table-striped table-borderless">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -503,7 +503,7 @@ if (isset($_GET['query'])) {
                         <h6 class="mt-1"><i class="fas fa-fw fa-file-invoice mr-2"></i>Invoices</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless">
+                        <table id=responsive class="responsive table table-striped table-borderless">
                             <thead>
                             <tr>
                                 <th>Number</th>
@@ -554,7 +554,7 @@ if (isset($_GET['query'])) {
                         <h6 class="mt-1"><i class="fas fa-fw fa-desktop mr-2"></i>Assets</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-borderless">
+                        <table id=responsive class="responsive table table-striped table-borderless">
                             <thead>
                             <tr>
                                 <th>Asset</th>

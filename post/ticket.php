@@ -675,6 +675,8 @@ if (isset($_POST['bulk_ticket_reply'])) {
 
 if (isset($_POST['add_ticket_reply'])) {
 
+    global $mysqli, $session_user_id, $session_name, $session_company_name, $session_ip, $session_user_agent, $config_smtp_host, $config_ticket_from_name, $config_ticket_from_email, $config_base_url;
+
     validateTechRole();
 
     $ticket_id = intval($_POST['ticket_id']);

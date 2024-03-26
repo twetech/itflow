@@ -93,7 +93,7 @@ $num_rows = mysqli_num_rows($sql);
             </div>
         </form>
         <form action="/post.php" method="post" autocomplete="off">
-             <table class="table table-hover">
+             <table id=responsive class="responsive table table-hover">
                 <thead>
                     <tr>
                         <th>Account Type Parent</th>

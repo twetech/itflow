@@ -22,7 +22,7 @@ $tenants_count_row = mysqli_fetch_assoc($result_tenants_count);
     <div class="card-body">
         <div class="tab-content">
             <div class="table-responsive">
-                <table class="table table-striped table-hover">
+                <table id=responsive class="responsive table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>

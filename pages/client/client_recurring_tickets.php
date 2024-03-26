@@ -28,7 +28,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-calendar-check mr-2"></i>Recurring Tickets</h3>
         <div class='card-tools'>
-            <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addRecurringTicketModal">
+            <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="recurring_ticket_add_modal.php?client_id=<?php echo $client_id; ?>">
                 <i class="fas fa-plus mr-2"></i>New Recurring Ticket
             </button>
         </div>
@@ -58,7 +58,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <form id="bulk_actions" action="/post.php" method="post">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
-                 <table class="table table-hover">
+                 <table id=responsive class="responsive table table-hover">
                     <thead class="<?php if ($num_rows[0] == 0) {
                         echo "d-none";
                     } ?>">

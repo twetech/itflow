@@ -113,7 +113,7 @@ $recurring_expense_count = $row['num'];
             <hr>
             <form id="bulkActions" action="/post.php" method="post">
                 <div class="table-responsive-sm">
-                     <table class="table table-hover">
+                     <table id=responsive class="responsive table table-hover">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
                             <td class="bg-light pr-0">

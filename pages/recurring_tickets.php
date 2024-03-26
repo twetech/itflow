@@ -73,7 +73,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <form id="bulkActions" action="/post.php" method="post">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
-                 <table class="table table-hover">
+                 <table id=responsive class="responsive table table-hover">
                     <thead class="<?php if (!$num_rows[0]) {
                                         echo "d-none";
                                     } ?>">

@@ -1,5 +1,30 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
+<?php
+$contact_id = intval($_GET['contact_id']);
+
+$sql_contact = mysqli_query($mysqli, "SELECT * FROM contacts WHERE contact_id = $contact_id");
+$row = mysqli_fetch_array($sql_contact);
+
+$contact_name = nullable_htmlentities($row['contact_name']);
+$contact_title = nullable_htmlentities($row['contact_title']);
+$contact_department = nullable_htmlentities($row['contact_department']);
+$contact_phone = nullable_htmlentities($row['contact_phone']);
+$contact_extension = nullable_htmlentities($row['contact_extension']);
+$contact_mobile = nullable_htmlentities($row['contact_mobile']);
+$contact_email = nullable_htmlentities($row['contact_email']);
+$contact_location_id = intval($row['contact_location_id']);
+$contact_primary = intval($row['contact_primary']);
+$contact_important = intval($row['contact_important']);
+$contact_billing = intval($row['contact_billing']);
+$contact_technical = intval($row['contact_technical']);
+$contact_pin = nullable_htmlentities($row['contact_pin']);
+$contact_photo = nullable_htmlentities($row['contact_photo']);
+$contact_notes = nullable_htmlentities($row['contact_notes']);
+$auth_method = nullable_htmlentities($row['contact_auth_method']);
+$contact_password = nullable_htmlentities($row['contact_password']);
+
+?>
 
 <div class="modal" id="editContactModal<?php echo $contact_id; ?>" tabindex="-1">
     <div class="modal-dialog">

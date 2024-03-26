@@ -20,7 +20,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM notifications LEFT JOIN clients ON n
             <?php if (mysqli_num_rows($sql) > 0) { ?>
 
             <div class="table-responsive-sm">
-                <table class="table table-hover">
+                <table id=responsive class="responsive table table-hover">
                     <thead>
                     <tr>
                         <th>Timestamp</th>

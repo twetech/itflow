@@ -75,7 +75,7 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
         </h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addTicketModal">
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_add_modal.php?client_id=<?php echo $client_id; ?>">
                     <i class="fas fa-plus mr-2"></i>New Ticket
                 </button>
                 <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
@@ -115,7 +115,7 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
         </form>
         <hr>
         <div class="table-responsive-sm">
-             <table class="table table-hover">
+             <table id=responsive class="responsive table table-hover">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
                     <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_number&order=<?php echo $disp; ?>">Number</a></th>
@@ -207,9 +207,9 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
                     ?>
 
                     <tr class="<?php if(empty($ticket_updated_at)) { echo "text-bold"; }?>">
-                        <td><a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><span class="badge badge-pill badge-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span></a></td>
+                        <td><a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><span class="badge badge-pill badge-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span></a></td>
                         <td>
-                            <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a>
+                            <a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a>
                         </td>
                         <td><a href="#" data-toggle="modal" data-target="#editTicketContactModal<?php echo $ticket_id; ?>"><?php echo $contact_display; ?></a></td>
 
@@ -239,19 +239,6 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
 
                     <?php
 
-                    if ($ticket_status !== "Closed") {
-                        // Temp performance boost for closed tickets, until we move to dynamic modals
-
-                        require "/var/www/develop.twe.tech/includes/modals/ticket_assign_modal.php";
-
-                        require "/var/www/develop.twe.tech/includes/modals/ticket_edit_priority_modal.php";
-
-                        require "/var/www/develop.twe.tech/includes/modals/ticket_edit_contact_modal.php";
-
-                        require "/var/www/develop.twe.tech/includes/modals/ticket_edit_billable_modal.php";
-
-                    }
-
                 }
 
                 ?>
@@ -265,10 +252,6 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
 </div>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/ticket_add_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_ticket_export_modal.php";
-
 require_once '/var/www/develop.twe.tech/includes/footer.php';
 
 ?>

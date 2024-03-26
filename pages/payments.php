@@ -109,7 +109,7 @@ $credits_num_rows = mysqli_num_rows($sql_credits);
         </form>
         <hr>
         <div class="table-responsive-sm">
-             <table class="table table-hover">
+             <table id=responsive class="responsive table table-hover">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th><a class="text-dark"

@@ -48,7 +48,7 @@ $sql_categories_expense = mysqli_query($mysqli, "SELECT * FROM categories WHERE 
                 </select>
             </form>
             <div class="table-responsive-sm">
-                <table class="table table-sm">
+                <table id=responsive class="responsive table table-sm">
                     <thead class="text-dark">
                     <tr>
                         <th></th>
