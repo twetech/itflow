@@ -324,7 +324,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </tbody>
                 </table>
             </div>
-            <?php  ?>
+            <?php } ?>
         </div>
     </div>
 
