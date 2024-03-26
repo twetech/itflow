@@ -21,7 +21,7 @@ $sql = mysqli_query(
     AND (notification_user_id = $session_user_id OR notification_user_id = 0)
     AND notification_dismissed_at IS NOT NULL
     ORDER BY $sort $order
-    LIMIT $record_from, $record_to
+   
 ");
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

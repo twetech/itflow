@@ -15,7 +15,7 @@ $sql = mysqli_query(
     LEFT JOIN account_types ON account_types.account_type_id = accounts.account_type 
     WHERE (account_name LIKE '%$q%' OR account_type_name LIKE '%$q%')
     AND account_archived_at IS NULL
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -109,7 +109,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </tbody>
                 </table>
             </div>
-            <?php require_once "/var/www/develop.twe.tech/includes/pagination.php"; ?>
+            <?php  ?>
         </div>
     </div>
 

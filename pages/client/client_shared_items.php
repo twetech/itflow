@@ -17,7 +17,7 @@ $sql = mysqli_query(
     AND item_active = '1'
     AND item_views != item_view_limit
     AND item_expire_at > NOW()
-    AND (item_note LIKE '%$q%') ORDER BY $sort $order LIMIT $record_from, $record_to"
+    AND (item_note LIKE '%$q%') ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

@@ -18,7 +18,14 @@ header("X-Frame-Options: DENY");
 
     <title><?php echo nullable_htmlentities($session_company_name); ?> | <?php echo nullable_htmlentities($config_app_name); ?></title>
 
+        <!-- jQuery -->
+        <script src="/includes/plugins/jquery/jquery.min.js"></script>
+    <script src="/includes/plugins/toastr/toastr.min.js"></script>
+    
         <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css"> 
+
+    <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css"> 
 
     <!-- DataTables -->
@@ -56,9 +63,7 @@ header("X-Frame-Options: DENY");
     <link href="/includes/plugins/toastr/toastr.min.css" rel="stylesheet">
     <link href="/includes/dist/vendor/datatables/datatables.css" rel="stylesheet">
 
-    <!-- jQuery -->
-    <script src="/includes/plugins/jquery/jquery.min.js"></script>
-    <script src="/includes/plugins/toastr/toastr.min.js"></script>
+
 
 </head>
 <body>

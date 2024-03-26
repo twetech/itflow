@@ -42,7 +42,7 @@ $sql = mysqli_query(
       AND clients.client_lead = $leads
     GROUP BY clients.client_id
     ORDER BY $sort $order
-    LIMIT $record_from, $record_to
+   
 ");
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -375,7 +375,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </tbody>
                 </table>
             </div>
-            <?php require_once "/var/www/develop.twe.tech/includes/pagination.php"; ?>
+            <?php  ?>
         </div>
     </div>
 

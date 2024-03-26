@@ -23,7 +23,7 @@ $sql = mysqli_query(
     WHERE category_name LIKE '%$q%'
     AND category_type = '$category'
     AND category_$archive_query
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 

@@ -14,7 +14,7 @@ $sql = mysqli_query($mysqli, "SELECT SQL_CALC_FOUND_ROWS * FROM certificates
   WHERE certificate_archived_at IS NULL
   AND certificate_client_id = $client_id 
   AND (certificate_name LIKE '%$q%' OR certificate_domain LIKE '%$q%' OR certificate_issued_by LIKE '%$q%') 
-  ORDER BY $sort $order LIMIT $record_from, $record_to");
+  ORDER BY $sort $order");
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 

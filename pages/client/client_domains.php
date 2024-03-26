@@ -15,7 +15,7 @@ $sql = mysqli_query($mysqli, "SELECT SQL_CALC_FOUND_ROWS * FROM domains
     WHERE domain_client_id = $client_id 
     AND domain_archived_at IS NULL
     AND (domain_name LIKE '%$q%' OR vendor_name LIKE '%$q%') 
-    ORDER BY $sort $order LIMIT $record_from, $record_to");
+    ORDER BY $sort $order");
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 

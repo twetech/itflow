@@ -15,7 +15,7 @@ $sql = mysqli_query(
     "SELECT SQL_CALC_FOUND_ROWS * FROM logins
     WHERE login_client_id = $client_id
     AND (login_name LIKE '%$q%' OR login_description LIKE '%$q%' OR login_uri LIKE '%$q%')
-    ORDER BY login_important DESC, $sort $order LIMIT $record_from, $record_to"
+    ORDER BY login_important DESC, $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

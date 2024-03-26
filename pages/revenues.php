@@ -17,7 +17,7 @@ $sql = mysqli_query(
     LEFT JOIN accounts ON revenue_account_id = account_id
     WHERE (account_name LIKE '%$q%' OR revenue_payment_method LIKE '%$q%' OR category_name LIKE '%$q%' OR revenue_reference LIKE '%$q%' OR revenue_amount LIKE '%$q%')
     AND DATE(revenue_date) BETWEEN '$dtf' AND '$dtt'
-    ORDER BY $sort $order LIMIT $record_from, $record_to");
+    ORDER BY $sort $order");
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 

@@ -16,7 +16,7 @@ $sql = mysqli_query(
     LEFT JOIN categories ON budget_category_id = category_id
     AND DATE(budget_created_at) BETWEEN '$dtf' AND '$dtt'
     AND (budget_description LIKE '%$q%' OR budget_amount LIKE '%$q%' OR budget_month LIKE '%$q%' OR budget_year LIKE '%$q%' OR category_name LIKE '%$q%')
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -139,7 +139,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </tbody>
                 </table>
             </div>
-            <?php require_once "/var/www/develop.twe.tech/includes/pagination.php";
+            <?php 
  ?>
         </div>
     </div>

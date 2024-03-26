@@ -42,7 +42,7 @@ $sql = mysqli_query(
     AND document_folder_id = $folder
     AND document_archived_at IS NULL
     $query_snippet
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

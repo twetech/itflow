@@ -17,7 +17,7 @@ $sql = mysqli_query(
     AND software_template = 0
     AND software_$archive_query
     AND (software_name LIKE '%$q%' OR software_type LIKE '%$q%' OR software_key LIKE '%$q%')
-    ORDER BY $sort $order LIMIT $record_from, $record_to");
+    ORDER BY $sort $order");
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 

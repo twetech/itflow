@@ -23,7 +23,7 @@ $sql = mysqli_query(
     LEFT JOIN users ON document_created_by = user_id
     WHERE document_template = 1
     $query_snippet
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
