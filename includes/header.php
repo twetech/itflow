@@ -32,8 +32,9 @@ header("X-Frame-Options: DENY");
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
 
     <!-- DataTables Responsive -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/1.0.5/css/dataTables.responsive.css">
-    <script type="text/javascript" src="//cdn.datatables.net/responsive/1.0.5/js/dataTables.responsive.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.bootstrap4.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/3.0.0/js/responsive.bootstrap4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap4.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
