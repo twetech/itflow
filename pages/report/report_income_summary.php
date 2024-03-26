@@ -45,7 +45,7 @@ $sql_categories = mysqli_query($mysqli, "SELECT * FROM categories WHERE category
         <canvas id="cashFlow" width="100%" height="20"></canvas>
 
         <div class="table-responsive-sm">
-            <table class="table table-striped">
+            <table id=responsive class="responsive table table-striped">
                 <thead>
                 <tr>
                     <th>Category</th>

@@ -227,7 +227,7 @@ $webServer = $_SERVER['SERVER_SOFTWARE'];
 
             // Generate an HTML table to display the results
             ?>
-            <table class="table table-sm">
+            <table id=responsive class="responsive table table-sm">
                 <tr>
                     <th>Table Name</th>
                     <th>Number of Fields</th>

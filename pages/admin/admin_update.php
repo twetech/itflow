@@ -65,7 +65,7 @@ $git_log = shell_exec("git log $repo_branch..origin/$repo_branch --pretty=format
             }
 
             if (!empty($git_log)) { ?>
-                <table class="table ">
+                <table id=responsive class="responsive table ">
                     <thead>
                     <tr>
                         <th>Commit</th>

@@ -20,7 +20,7 @@ $documents_sql = mysqli_query($mysqli, "SELECT document_id, document_name, docum
 
     <div class="col-md-10">
 
-        <table class="table tabled-bordered border border-dark">
+        <table id=responsive class="responsive table tabled-bordered border border-dark">
             <thead class="thead-dark">
             <tr>
                 <th>Name</th>

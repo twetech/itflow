@@ -97,7 +97,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-desktop mr-2"></i>Assets</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addAssetModal">
+                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="client_asset_add_modal.php?client_id=<?php echo $client_id; ?>&type=<?php echo stripslashes(nullable_htmlentities($_GET['type'])); ?>">
                         <i class="fas fa-plus mr-2"></i>New <?php if (!empty($_GET['type'])) { echo ucwords(strip_tags(nullable_htmlentities($_GET['type']))); } else { echo "Asset"; } ?>
                     </button>
                     <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
@@ -207,7 +207,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <hr>
             <form id="bulkActions" action="/post.php" method="post">
                 <div class="table-responsive">
-                    <table class="table border table-hover">
+                    <table id=responsive class="responsive table border table-hover">
                         <thead class="thead-light <?php if (!$num_rows[0]) { echo "d-none"; } ?>">
                         <tr>
                             <td class="bg-light pr-0">

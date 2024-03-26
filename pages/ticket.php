@@ -260,8 +260,21 @@ if (isset($_GET['ticket_id'])) {
 <div class="card card-body">
     <div class="row">
         <div class="col-9">
+
+        <?php if ($session_mobile){
+            ?>
+            <button class="btn btn-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_details_modal.php?ticket_id=<?php echo $ticket_id; ?>">
+                <h3><i class="fas fa-fw fa-life-ring text-secondary mr-2"></i>Ticket
+                    <?php echo "$ticket_prefix$ticket_number"; ?> 
+            </button>
+            <?php } else {
+            ?>
             <h3><i class="fas fa-fw fa-life-ring text-secondary mr-2"></i>Ticket
-                <?php echo "$ticket_prefix$ticket_number"; ?> <?php echo $ticket_status_display; ?></h3>
+                <?php echo "$ticket_prefix$ticket_number"; ?> 
+            <?php } ?><?php echo $ticket_status_display; ?></h3>
+
+
+                
         </div>
         <?php if ($ticket_status != "Closed") { ?>
         <div class="col-3">
@@ -301,285 +314,290 @@ if (isset($_GET['ticket_id'])) {
 <div class="row">
 
 
-            <div class="col-md-9">
-                
-                <div class="card card-outline card-primary mb-3">
+    <div class="col-md-<?php if ($session_mobile) {
+                            echo "12";
+                        } else {
+                            echo "9";
+                        } ?>">
+        
+        <div class="card card-outline card-primary mb-3">
 
-                <div class="card-header">
-                    <h3 class="card-title text-bold"><?php echo $ticket_subject; ?></h3>
+            <div class="card-header">
+                <h3 class="card-title text-bold"><?php echo $ticket_subject; ?></h3>
+            </div>
+
+            <div class="card-body prettyContent" id="ticketDetails">
+                <?php echo $ticket_details; ?>
+
+                <?php
+                        while ($ticket_attachment = mysqli_fetch_array($sql_ticket_attachments)) {
+                            $name = nullable_htmlentities($ticket_attachment['ticket_attachment_name']);
+                            $ref_name = nullable_htmlentities($ticket_attachment['ticket_attachment_reference_name']);
+                            echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
+                        }
+                        ?>
+            </div>
+        </div>
+
+        <!-- Only show ticket reply modal if status is not closed -->
+        <?php if ($ticket_status != "Closed") { ?>
+        <form class="mb-3 d-print-none" action="/post.php" method="post" autocomplete="off">
+            <input type="hidden" name="ticket_id" id="ticket_id" value="<?php echo $ticket_id; ?>">
+            <input type="hidden" name="client_id" id="client_id" value="<?php echo $client_id; ?>">
+            <div class="form-group">
+                <?php if($config_ai_enable) { ?>
+                <div class="form-group">
+                    <textarea class="form-control tinymceai" id="textInput" name="ticket_reply"
+                        placeholder="Type a response"></textarea>
                 </div>
 
-                <div class="card-body prettyContent" id="ticketDetails">
-                    <?php echo $ticket_details; ?>
+                <div class="mb-3">
+                    <button id="rewordButton" class="btn btn-soft-primary" type="button"><i
+                            class="fas fa-fw fa-robot mr-2"></i>Reword</button>
+                    <button id="undoButton" class="btn btn-light" type="button" style="display:none;"><i
+                            class="fas fa-fw fa-redo-alt mr-2"></i>Undo</button>
+                </div>
+                <?php } else { ?>
+                <div class="form-group">
+                    <textarea class="form-control tinymce" name="ticket_reply"
+                        placeholder="Type a response"></textarea>
+                </div>
+                <?php } ?>
 
-                    <?php
-                            while ($ticket_attachment = mysqli_fetch_array($sql_ticket_attachments)) {
+            </div>
+            <div class="form-row">
+                <div class="col-md-2">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-fw fa-thermometer-half"></i></span>
+                        </div>
+                        <select class="form-control select2" name="status" required>
+                            <option <?php if ($ticket_status == "Open") {
+                                                    echo "selected";
+                                                } ?>>Open</option>
+                            <option <?php if ($ticket_status == "On Hold") {
+                                                    echo "selected";
+                                                } ?>>On Hold</option>
+                            <?php if ($config_ticket_autoclose) { ?>
+                            <option <?php if ($ticket_status == 'Auto Close') {
+                                                        echo "selected";
+                                                    } ?>>Auto Close</option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <div class="custom-tt-horizontal-spacing"></div> <!-- Add custom class for smaller spacing -->
+
+                <!-- Time Tracking -->
+                <div class="col-sm-3 col-lg-2">
+                    <div class="input-group mb-3">
+                        <div class="form-row">
+
+                            <div class="input-group custom-tt-width">
+                                <input type="text" class="form-control" inputmode="numeric" id="hours" name="hours"
+                                    placeholder="Hrs" min="0" max="23" pattern="0?[0-9]|1[0-9]|2[0-3]">
+                            </div>
+
+                            <div class="input-group custom-tt-width">
+                                <input type="text" class="form-control" inputmode="numeric" id="minutes"
+                                    name="minutes" placeholder="Mins" min="0" max="59" pattern="[0-5]?[0-9]">
+                            </div>
+
+                            <div class="input-group custom-tt-width">
+                                <input type="text" class="form-control" inputmode="numeric" id="seconds"
+                                    name="seconds" placeholder="Secs" min="0" max="59" pattern="[0-5]?[0-9]">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timer Controls -->
+                <div class="col-sm-2">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success" id="startStopTimer"><i
+                                class="fas fa-fw fa-pause"></i></button>
+                        <button type="button" class="btn btn-danger" id="resetTimer"><i
+                                class="fas fa-fw fa-redo-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+
+                <?php
+                            // Set the initial ticket response type (private/internal note)
+                            //  Future updates of the wording/icon are done by Javascript
+
+                        // Public responses by default (maybe configurable in future?)
+                        $ticket_reply_button_wording = "Respond";
+                        $ticket_reply_button_check = "checked";
+                        $ticket_reply_button_icon = "paper-plane";
+
+                        // Internal responses by default if 1) the contact email is empty or 2) the contact email matches the agent responding
+                        if (empty($contact_email) || $contact_email == $session_email) {
+                            // Internal
+                            $ticket_reply_button_wording = "Add note";
+                            $ticket_reply_button_check = "";
+                            $ticket_reply_button_icon = "sticky-note";
+                        } ?>
+
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="ticket_reply_type_checkbox"
+                                name="public_reply_type" value="1" <?php echo $ticket_reply_button_check ?>>
+                            <label class="custom-control-label" for="ticket_reply_type_checkbox">Public
+                                Update<br><small class="text-secondary">(Emails contact)</small></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="submit" id="ticket_add_reply" name="add_ticket_reply"
+                        class="btn btn-soft-primary text-bold"><i
+                            class="fas fa-<?php echo $ticket_reply_button_icon ?> mr-2"></i><?php echo $ticket_reply_button_wording ?></button>
+                </div>
+
+            </div>
+
+            <p class="font-weight-light" id="ticket_collision_viewing"></p>
+
+        </form>
+        <!-- End IF for reply modal -->
+        <?php } ?>
+
+        <h5 class="mb-4">Responses (<?php echo $ticket_responses; ?>)</h5>
+
+        <!-- Ticket replies -->
+        <?php
+
+            while ($row = mysqli_fetch_array($sql_ticket_replies)) {
+                $ticket_reply_id = intval($row['ticket_reply_id']);
+                $ticket_reply = $purifier->purify($row['ticket_reply']);
+                $ticket_reply_type = nullable_htmlentities($row['ticket_reply_type']);
+                $ticket_reply_created_at = nullable_htmlentities($row['ticket_reply_created_at']);
+                $ticket_reply_updated_at = nullable_htmlentities($row['ticket_reply_updated_at']);
+                $ticket_reply_by = intval($row['ticket_reply_by']);
+
+                if ($ticket_reply_type == "Client") {
+                    $ticket_reply_by_display = nullable_htmlentities($row['contact_name']);
+                    $user_initials = initials($row['contact_name']);
+                    $user_avatar = nullable_htmlentities($row['contact_photo']);
+                    $avatar_link = "/uploads/clients/$client_id/$user_avatar";
+                } else {
+                    $ticket_reply_by_display = nullable_htmlentities($row['user_name']);
+                    $user_id = intval($row['user_id']);
+                    $user_avatar = nullable_htmlentities($row['user_avatar']);
+                    $user_initials = initials($row['user_name']);
+                    $avatar_link = "/uploads/users/$user_id/$user_avatar";
+                    $ticket_reply_time_worked = date_create($row['ticket_reply_time_worked']);
+                }
+
+                $sql_ticket_reply_attachments = mysqli_query(
+                    $mysqli,
+                    "SELECT * FROM ticket_attachments
+                    WHERE ticket_attachment_reply_id = $ticket_reply_id
+                    AND ticket_attachment_ticket_id = $ticket_id"
+                );
+
+            ?>
+
+        <div class="card card-outline <?php if ($ticket_reply_type == 'Internal') {
+                                                        echo "card-dark";
+                                                    } elseif ($ticket_reply_type == 'Client') {
+                                                        echo "card-warning";
+                                                    } else {
+                                                        echo "card-info";
+                                                    } ?> mb-3">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <div class="media">
+                        <?php if (!empty($user_avatar)) { ?>
+                        <img src="<?php echo $avatar_link; ?>" alt="User Avatar"
+                            class="img-size-50 mr-3 img-circle">
+                        <?php } else { ?>
+                        <span class="fa-stack fa-2x">
+                            <i class="fa fa-circle fa-stack-2x text-secondary"></i>
+                            <span class="fa fa-stack-1x text-white"><?php echo $user_initials; ?></span>
+                        </span>
+                        <?php } ?>
+
+                        <div class="media-body">
+                            <?php echo $ticket_reply_by_display; ?>
+                            <div>
+                                <small class="text-muted"><?php echo $ticket_reply_created_at; ?>
+                                    <?php if (!empty($ticket_reply_updated_at)) {
+                                                                                                                    echo "modified: $ticket_reply_updated_at";
+                                                                                                                } ?></small>
+                            </div>
+                            <?php if ($ticket_reply_type !== "Client") { ?>
+                            <div>
+                                <small class="text-muted">Time worked:
+                                    <?php echo date_format($ticket_reply_time_worked, 'H:i:s'); ?></small>
+                            </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </h3>
+
+                <?php if ($ticket_reply_type !== "Client" && $ticket_status !== "Closed") { ?>
+                <div class="card-tools d-print-none">
+                    <div class="dropdown dropleft">
+                        <button class="btn btn-tool" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                            <i class="fas fa-fw fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                data-target="#replyEditTicketModal<?php echo $ticket_reply_id; ?>">
+                                <i class="fas fa-fw fa-edit text-secondary mr-2"></i>Edit
+                            </a>
+                            <?php if ($session_user_role == 3) { ?>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger confirm-link"
+                                href="/post.php?archive_ticket_reply=<?php echo $ticket_reply_id; ?>">
+                                <i class="fas fa-fw fa-archive mr-2"></i>Archive
+                            </a>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+
+            </div>
+
+            <div class="card-body prettyContent">
+                <?php echo $ticket_reply; ?>
+
+                <?php
+                            while ($ticket_attachment = mysqli_fetch_array($sql_ticket_reply_attachments)) {
                                 $name = nullable_htmlentities($ticket_attachment['ticket_attachment_name']);
                                 $ref_name = nullable_htmlentities($ticket_attachment['ticket_attachment_reference_name']);
                                 echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
                             }
                             ?>
-                </div>
-
             </div>
-
-            <!-- Only show ticket reply modal if status is not closed -->
-            <?php if ($ticket_status != "Closed") { ?>
-            <form class="mb-3 d-print-none" action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="ticket_id" id="ticket_id" value="<?php echo $ticket_id; ?>">
-                <input type="hidden" name="client_id" id="client_id" value="<?php echo $client_id; ?>">
-                <div class="form-group">
-                    <?php if($config_ai_enable) { ?>
-                    <div class="form-group">
-                        <textarea class="form-control tinymceai" id="textInput" name="ticket_reply"
-                            placeholder="Type a response"></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <button id="rewordButton" class="btn btn-soft-primary" type="button"><i
-                                class="fas fa-fw fa-robot mr-2"></i>Reword</button>
-                        <button id="undoButton" class="btn btn-light" type="button" style="display:none;"><i
-                                class="fas fa-fw fa-redo-alt mr-2"></i>Undo</button>
-                    </div>
-                    <?php } else { ?>
-                    <div class="form-group">
-                        <textarea class="form-control tinymce" name="ticket_reply"
-                            placeholder="Type a response"></textarea>
-                    </div>
-                    <?php } ?>
-
-                </div>
-                <div class="form-row">
-                    <div class="col-md-2">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-fw fa-thermometer-half"></i></span>
-                            </div>
-                            <select class="form-control select2" name="status" required>
-                                <option <?php if ($ticket_status == "Open") {
-                                                        echo "selected";
-                                                    } ?>>Open</option>
-                                <option <?php if ($ticket_status == "On Hold") {
-                                                        echo "selected";
-                                                    } ?>>On Hold</option>
-                                <?php if ($config_ticket_autoclose) { ?>
-                                <option <?php if ($ticket_status == 'Auto Close') {
-                                                            echo "selected";
-                                                        } ?>>Auto Close</option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-
-
-
-                    <div class="custom-tt-horizontal-spacing"></div> <!-- Add custom class for smaller spacing -->
-
-                    <!-- Time Tracking -->
-                    <div class="col-sm-3 col-lg-2">
-                        <div class="input-group mb-3">
-                            <div class="form-row">
-
-                                <div class="input-group custom-tt-width">
-                                    <input type="text" class="form-control" inputmode="numeric" id="hours" name="hours"
-                                        placeholder="Hrs" min="0" max="23" pattern="0?[0-9]|1[0-9]|2[0-3]">
-                                </div>
-
-                                <div class="input-group custom-tt-width">
-                                    <input type="text" class="form-control" inputmode="numeric" id="minutes"
-                                        name="minutes" placeholder="Mins" min="0" max="59" pattern="[0-5]?[0-9]">
-                                </div>
-
-                                <div class="input-group custom-tt-width">
-                                    <input type="text" class="form-control" inputmode="numeric" id="seconds"
-                                        name="seconds" placeholder="Secs" min="0" max="59" pattern="[0-5]?[0-9]">
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Timer Controls -->
-                    <div class="col-sm-2">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-success" id="startStopTimer"><i
-                                    class="fas fa-fw fa-pause"></i></button>
-                            <button type="button" class="btn btn-danger" id="resetTimer"><i
-                                    class="fas fa-fw fa-redo-alt"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-
-                    <?php
-                                // Set the initial ticket response type (private/internal note)
-                                //  Future updates of the wording/icon are done by Javascript
-
-                            // Public responses by default (maybe configurable in future?)
-                            $ticket_reply_button_wording = "Respond";
-                            $ticket_reply_button_check = "checked";
-                            $ticket_reply_button_icon = "paper-plane";
-
-                            // Internal responses by default if 1) the contact email is empty or 2) the contact email matches the agent responding
-                            if (empty($contact_email) || $contact_email == $session_email) {
-                                // Internal
-                                $ticket_reply_button_wording = "Add note";
-                                $ticket_reply_button_check = "";
-                                $ticket_reply_button_icon = "sticky-note";
-                            } ?>
-
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="ticket_reply_type_checkbox"
-                                    name="public_reply_type" value="1" <?php echo $ticket_reply_button_check ?>>
-                                <label class="custom-control-label" for="ticket_reply_type_checkbox">Public
-                                    Update<br><small class="text-secondary">(Emails contact)</small></label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <button type="submit" id="ticket_add_reply" name="add_ticket_reply"
-                            class="btn btn-soft-primary text-bold"><i
-                                class="fas fa-<?php echo $ticket_reply_button_icon ?> mr-2"></i><?php echo $ticket_reply_button_wording ?></button>
-                    </div>
-
-                </div>
-
-                <p class="font-weight-light" id="ticket_collision_viewing"></p>
-
-            </form>
-            <!-- End IF for reply modal -->
-            <?php } ?>
-
-            <h5 class="mb-4">Responses (<?php echo $ticket_responses; ?>)</h5>
-
-            <!-- Ticket replies -->
-            <?php
-
-                while ($row = mysqli_fetch_array($sql_ticket_replies)) {
-                    $ticket_reply_id = intval($row['ticket_reply_id']);
-                    $ticket_reply = $purifier->purify($row['ticket_reply']);
-                    $ticket_reply_type = nullable_htmlentities($row['ticket_reply_type']);
-                    $ticket_reply_created_at = nullable_htmlentities($row['ticket_reply_created_at']);
-                    $ticket_reply_updated_at = nullable_htmlentities($row['ticket_reply_updated_at']);
-                    $ticket_reply_by = intval($row['ticket_reply_by']);
-
-                    if ($ticket_reply_type == "Client") {
-                        $ticket_reply_by_display = nullable_htmlentities($row['contact_name']);
-                        $user_initials = initials($row['contact_name']);
-                        $user_avatar = nullable_htmlentities($row['contact_photo']);
-                        $avatar_link = "/uploads/clients/$client_id/$user_avatar";
-                    } else {
-                        $ticket_reply_by_display = nullable_htmlentities($row['user_name']);
-                        $user_id = intval($row['user_id']);
-                        $user_avatar = nullable_htmlentities($row['user_avatar']);
-                        $user_initials = initials($row['user_name']);
-                        $avatar_link = "/uploads/users/$user_id/$user_avatar";
-                        $ticket_reply_time_worked = date_create($row['ticket_reply_time_worked']);
-                    }
-
-                    $sql_ticket_reply_attachments = mysqli_query(
-                        $mysqli,
-                        "SELECT * FROM ticket_attachments
-                        WHERE ticket_attachment_reply_id = $ticket_reply_id
-                        AND ticket_attachment_ticket_id = $ticket_id"
-                    );
-
-                ?>
-
-            <div class="card card-outline <?php if ($ticket_reply_type == 'Internal') {
-                                                            echo "card-dark";
-                                                        } elseif ($ticket_reply_type == 'Client') {
-                                                            echo "card-warning";
-                                                        } else {
-                                                            echo "card-info";
-                                                        } ?> mb-3">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <div class="media">
-                            <?php if (!empty($user_avatar)) { ?>
-                            <img src="<?php echo $avatar_link; ?>" alt="User Avatar"
-                                class="img-size-50 mr-3 img-circle">
-                            <?php } else { ?>
-                            <span class="fa-stack fa-2x">
-                                <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-                                <span class="fa fa-stack-1x text-white"><?php echo $user_initials; ?></span>
-                            </span>
-                            <?php } ?>
-
-                            <div class="media-body">
-                                <?php echo $ticket_reply_by_display; ?>
-                                <div>
-                                    <small class="text-muted"><?php echo $ticket_reply_created_at; ?>
-                                        <?php if (!empty($ticket_reply_updated_at)) {
-                                                                                                                        echo "modified: $ticket_reply_updated_at";
-                                                                                                                    } ?></small>
-                                </div>
-                                <?php if ($ticket_reply_type !== "Client") { ?>
-                                <div>
-                                    <small class="text-muted">Time worked:
-                                        <?php echo date_format($ticket_reply_time_worked, 'H:i:s'); ?></small>
-                                </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </h3>
-
-                    <?php if ($ticket_reply_type !== "Client" && $ticket_status !== "Closed") { ?>
-                    <div class="card-tools d-print-none">
-                        <div class="dropdown dropleft">
-                            <button class="btn btn-tool" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-                                <i class="fas fa-fw fa-ellipsis-v"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#replyEditTicketModal<?php echo $ticket_reply_id; ?>">
-                                    <i class="fas fa-fw fa-edit text-secondary mr-2"></i>Edit
-                                </a>
-                                <?php if ($session_user_role == 3) { ?>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger confirm-link"
-                                    href="/post.php?archive_ticket_reply=<?php echo $ticket_reply_id; ?>">
-                                    <i class="fas fa-fw fa-archive mr-2"></i>Archive
-                                </a>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } ?>
-
-                </div>
-
-                <div class="card-body prettyContent">
-                    <?php echo $ticket_reply; ?>
-
-                    <?php
-                                while ($ticket_attachment = mysqli_fetch_array($sql_ticket_reply_attachments)) {
-                                    $name = nullable_htmlentities($ticket_attachment['ticket_attachment_name']);
-                                    $ref_name = nullable_htmlentities($ticket_attachment['ticket_attachment_reference_name']);
-                                    echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
-                                }
-                                ?>
-                </div>
-
-            </div>
-
-            <?php
-
-                    require "/var/www/develop.twe.tech/includes/modals/ticket_reply_edit_modal.php";
-                }
-
-                ?>
 
         </div>
+
+        <?php
+
+                require "/var/www/develop.twe.tech/includes/modals/ticket_reply_edit_modal.php";
+            }
+
+            ?>
     </div>
+
+<?php
+if (!$session_mobile){
+?>
+
 
     <div class="col-md-3">
         <div class="card card-body">
-
             <!-- Client card -->
             <div class="card card-body card-outline card-primary mb-3">
                 <h5><strong><?php echo $client_name; ?></strong></h5>
@@ -676,40 +694,37 @@ if (isset($_GET['ticket_id'])) {
 
             <!-- Ticket watchers card -->
             <?php
-                    $sql_ticket_watchers = mysqli_query($mysqli, "SELECT * FROM ticket_watchers WHERE watcher_ticket_id = $ticket_id ORDER BY watcher_email DESC");
+                $sql_ticket_watchers = mysqli_query($mysqli, "SELECT * FROM ticket_watchers WHERE watcher_ticket_id = $ticket_id ORDER BY watcher_email DESC");
 
                 if ($ticket_status !== "Closed" || mysqli_num_rows($sql_ticket_watchers) > 0) { ?>
 
-            <div class="card card-body card-outline mb-3">
-                <h5 class="text-secondary">Watchers</h5>
+                <div class="card card-body card-outline mb-3">
+                    <h5 class="text-secondary">Watchers</h5>
 
-                <?php if ($ticket_status !== "Closed") { ?>
-                <div class="d-print-none">
-                    <a href="#" data-toggle="modal" data-target="#addTicketWatcherModal"><i
-                            class="fa fa-fw fa-plus mr-2"></i>Add a Watcher</a>
-                </div>
-                <?php } ?>
-
-                <?php
-                        // Get Watchers
-                        while ($ticket_watcher_row = mysqli_fetch_array($sql_ticket_watchers)) {
-                            $watcher_id = intval($ticket_watcher_row['watcher_id']);
-                            $ticket_watcher_email = nullable_htmlentities($ticket_watcher_row['watcher_email']);
-                            ?>
-                <div class='mt-1'>
-                    <i class="fa fa-fw fa-eye text-secondary ml-1 mr-2"></i><?php echo $ticket_watcher_email; ?>
                     <?php if ($ticket_status !== "Closed") { ?>
-                    <a class="confirm-link" href="/post.php?delete_ticket_watcher=<?php echo $watcher_id; ?>">
-                        <i class="fas fa-fw fa-times text-secondary ml-1"></i>
-                    </a>
+                    <div class="d-print-none">
+                        <a href="#" data-toggle="modal" data-target="#addTicketWatcherModal"><i
+                                class="fa fa-fw fa-plus mr-2"></i>Add a Watcher</a>
+                    </div>
                     <?php } ?>
-                </div>
 
-                <?php
-                        }
-                    }
-                    ?>
-            </div>
+                    <?php
+                            // Get Watchers
+                            while ($ticket_watcher_row = mysqli_fetch_array($sql_ticket_watchers)) {
+                                $watcher_id = intval($ticket_watcher_row['watcher_id']);
+                                $ticket_watcher_email = nullable_htmlentities($ticket_watcher_row['watcher_email']);
+                                ?>
+                    <div class='mt-1'>
+                        <i class="fa fa-fw fa-eye text-secondary ml-1 mr-2"></i><?php echo $ticket_watcher_email; ?>
+                        <?php if ($ticket_status !== "Closed") { ?>
+                        <a class="confirm-link" href="/post.php?delete_ticket_watcher=<?php echo $watcher_id; ?>">
+                            <i class="fas fa-fw fa-times text-secondary ml-1"></i>
+                        </a>
+                        <?php }
+                        } ?>
+                    </div>
+                </div>
+            <?php } ?>
             <!-- End Ticket watchers card -->
 
             <!-- Ticket Details card -->
@@ -962,9 +977,6 @@ if (isset($_GET['ticket_id'])) {
             <?php
                     }
                     ?>
-
-
-
                 <!-- Assigned to -->
                 <form action="/post.php" method="post">
                     <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
@@ -1018,34 +1030,13 @@ if (isset($_GET['ticket_id'])) {
         </div>
     </div>
 
-</div> <!-- row -->
+<?php } ?>
+
 </div>
 
 <?php
-        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_modal.php";
-
-        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_contact_modal.php";
-
-        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_asset_modal.php";
-
-        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_vendor_modal.php";
-
-        require_once "/var/www/develop.twe.tech/includes/modals/ticket_add_watcher_modal.php";
-
-        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_priority_modal.php";
-
-        require_once "/var/www/develop.twe.tech/includes/modals/ticket_change_client_modal.php";
-
-        require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_schedule_modal.php";
-
-        require_once "/var/www/develop.twe.tech/includes/modals/ticket_merge_modal.php";
 
 
-        if ($config_module_enable_accounting) {
-            require_once "/var/www/develop.twe.tech/includes/modals/ticket_edit_billable_modal.php";
-            require_once "/var/www/develop.twe.tech/includes/modals/ticket_invoice_add_modal.php";
-            require_once "/var/www/develop.twe.tech/includes/modals/ticket_add_product_modal.php";
-        }
     }
 }
 

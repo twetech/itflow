@@ -49,7 +49,7 @@ validateAccountantRole();
         ?>
         
         <div class="table-responsive-sm">
-            <table class="table table-striped">
+            <table id=responsive class="responsive table table-striped">
                 <thead>
                 <tr>
                     <th>Client</th>

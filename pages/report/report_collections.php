@@ -72,7 +72,7 @@
     <div class="card-body p-0">
         <div>
             <div class="table-responsive-sm">
-                <table class="table table-sm">
+                <table id=responsive class="responsive table table-sm">
                     <thead class="text-dark">
                         <tr>
                             <th>Client Name</th>

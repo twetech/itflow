@@ -73,7 +73,7 @@ function display_account_section($mysqli, $accounts, $type) {
                 <h5 class="text-dark">As of <?php echo date("F j, Y"); ?></h5>
             </div>
             <div>
-            <table class="table table-sm">
+            <table id=responsive class="responsive table table-sm">
             <!-- Table Header -->
             <!-- Table Body -->
             <tbody>

@@ -177,7 +177,7 @@ if ($item_type == "Document") {
     ?>
 
     <h4><?php echo $login_name; ?></h4>
-    <table class="table col-md-3">
+    <table id=responsive class="responsive table col-md-3">
         <tr>
             <th>URL</th>
             <td><?php echo $login_uri; ?></td>

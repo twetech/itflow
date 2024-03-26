@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body bg-white">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table id=responsive class="responsive table table-striped">
                         <thead>
                             <tr>
                                 <th>Ticket Number</th>

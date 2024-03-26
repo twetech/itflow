@@ -68,7 +68,7 @@ $num_of_files = mysqli_num_rows($sql);
                 </button>
                 <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#createFolderModal">
+                    <a href="#" class="dropdown-item text-dark loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="folder_create_modal.php?client_id=<?php echo $client_id; ?>">
                         <i class="fa fa-fw fa-folder-plus mr-2"></i>Create Folder
                     </a>
                 </div>
@@ -229,7 +229,7 @@ $num_of_files = mysqli_num_rows($sql);
                 <form id="bulkActions" action="/post.php" method="post">
 
                     <div class="table-responsive-sm">
-                        <table class="table border">
+                        <table id=responsive class="responsive table border">
                             
                             <thead class="thead-light <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                             <tr>

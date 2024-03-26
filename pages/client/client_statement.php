@@ -68,7 +68,7 @@ if (isset($_GET['client_id'])) {
     <div class="card-body p-0">
         <div>
             <div class="table-responsive-sm">
-                <table class="table table-sm">
+                <table id=responsive class="responsive table table-sm">
                     <!-- Past Due Payments -->
                     <thead class="text-dark">
                         <tr>
@@ -120,7 +120,7 @@ if (isset($_GET['client_id'])) {
             </div>
             <div class="table-responsive-sm">
                 <!-- Previous Payments -->
-                <table class="table table-sm">
+                <table id=responsive class="responsive table table-sm">
                     <thead class="text-dark">
                         <tr>
                             <th>Payment Reference</th>

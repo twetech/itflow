@@ -44,7 +44,7 @@ $all_tickets = mysqli_query($mysqli, "SELECT * FROM tickets LEFT JOIN contacts O
             </form>
         </div>
     </div>
-    <table class="table">
+    <table id=responsive class="responsive table">
         <thead>
         <tr>
             <th scope="col">#</th>

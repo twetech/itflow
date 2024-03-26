@@ -130,10 +130,10 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <div class="btn-group float-right">
+                    <div class="float-right">
                         <div class="btn-group">
                             <button class="btn btn-outline-dark dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">
-                                <i class="fa fa-fw fa-envelope mr-2"></i>My Tickets
+                                <i class="fa fa-fw fa-envelope mr-2"></i><?php if(!$session_mobile) { echo "My Tickets"; } ?>
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="?status=Open&assigned=<?php echo $session_user_id ?>">Active tickets (<?php echo $user_active_assigned_tickets ?>)</a>
@@ -141,11 +141,11 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                             </div>
                         </div>
                         <a href="?assigned=unassigned" class="btn btn-outline-danger">
-                            <i class="fa fa-fw fa-exclamation-triangle mr-2"></i>Unassigned Tickets | <strong> <?php echo $total_tickets_unassigned; ?></strong>
+                            <i class="fa fa-fw fa-exclamation-triangle mr-2"></i><?php if(!$session_mobile) { echo "Unassigned"; } ?> | <strong><?php echo $total_tickets_unassigned; ?></strong>
                         </a>
 
                         <a href="recurring_tickets.php" class="btn btn-outline-info">
-                            <i class="fa fa-fw fa-redo-alt mr-2"></i>Recurring Tickets | <strong> <?php echo $total_scheduled_tickets; ?></strong>
+                            <i class="fa fa-fw fa-redo-alt mr-2"></i><?php if(!$session_mobile) { echo "Recurring"; } ?> | <strong> <?php echo $total_scheduled_tickets; ?></strong>
                         </a>
 
                         <div class="dropdown ml-2" id="bulkActionButton" hidden>
@@ -291,13 +291,12 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
         <form id="bulkActions" action="/post/" method="post">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
             <div class="table-responsive-sm">
-                 <table class="table table-hover">
+                 <table id=responsive class="responsive table table-hover responsive" id="responsive">
                     <thead class="text-dark <?php if (!$num_rows[0]) {
                                                 echo "d-none";
                                             } ?>">
 
-                        <?php if (!$session_mobile) {
-                            ?>
+                            
                             <tr>
                                 <td>
                                     <div class="form-check">
@@ -325,22 +324,6 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                 <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_created_at&order=<?php echo $disp; ?>">Created</a>
                                 </th>
                             </tr>
-                            <?php } else { ?>
-                            <tr>
-                                <td>
-                                    <div class="form-check
-                                    ">
-                                        <input class="form-check
-                                        -input" id="selectAllCheckbox" type="checkbox" onclick="checkAll(this)">
-                                    </div>
-                                </td>
-                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_number&order=<?php echo $disp; ?>">Number</a>
-                                </th>
-                                <?php if ($config_module_enable_accounting) { ?>
-                                    <th class="text-center"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_billable&order=<?php echo $disp; ?>">Billable</a>
-                                    </th>
-                                <?php } ?>
-                            <?php } ?>
                         </thead>
                         <tbody>
                             <?php
@@ -409,7 +392,6 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                 $asset_id = intval($row['ticket_asset_id']);
                                 $vendor_id = intval($row['ticket_vendor_id']);
 
-                                if (!$session_mobile) {
                             ?>
 
                                 <tr class="<?php if (empty($ticket_updated_at)) {
@@ -461,41 +443,6 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                 </tr>
 
                             <?php
-                            } else {
-                                ?>
-
-                                <tr class="<?php if (empty($ticket_updated_at)) {
-                                                echo "text-bold";
-                                            } ?>">
-                                    <td>
-                                        <?php if ($ticket_status !== "Closed") { ?>
-                                            <div class="form-check
-                                            ">
-                                                <input class="form-check
-                                                -input bulk-select" type="checkbox" name="ticket_ids[]" value="<?php echo $ticket_id ?>">
-                                            </div>
-                                        <?php } ?>
-                                    </td>
-                                    <td>
-                                        <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>">
-                                            <div>
-                                                <h3 class="mb-0"><?php echo "$ticket_prefix$ticket_number"; ?></h3>
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <?php if ($config_module_enable_accounting) { ?>
-                                        <td class="text-center">
-                                            <a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_billable_modal.php?ticket_id<?php echo $ticket_id; ?>">
-                                                <?php
-                                                if ($ticket_billable == 1) {
-                                                    echo "<span class='badge badge-pill badge-success'>$</span>";
-                                                } else {
-                                                    echo "<span class='badge badge-pill badge-secondary'>X</span>";
-                                                }
-                                                ?>
-                                        </td>
-                                    <?php } ?>
-                                <?php }
                         }
 
                         ?>

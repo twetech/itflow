@@ -18,7 +18,15 @@ header("X-Frame-Options: DENY");
 
     <title><?php echo nullable_htmlentities($session_company_name); ?> | <?php echo nullable_htmlentities($config_app_name); ?></title>
 
+        <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css"> 
 
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
+
+    <!-- DataTables Responsive -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/1.0.5/css/dataTables.responsive.css">
+    <script type="text/javascript" src="//cdn.datatables.net/responsive/1.0.5/js/dataTables.responsive.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +54,7 @@ header("X-Frame-Options: DENY");
     <link href="/includes/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet" type="text/css">
     <link href='/includes/plugins/daterangepicker/daterangepicker.css' rel='stylesheet' />
     <link href="/includes/plugins/toastr/toastr.min.css" rel="stylesheet">
-    <link href="/includes/vendor/datatables/datatables.css" rel="stylesheet">
+    <link href="/includes/dist/vendor/datatables/datatables.css" rel="stylesheet">
 
     <!-- jQuery -->
     <script src="/includes/plugins/jquery/jquery.min.js"></script>

@@ -232,7 +232,7 @@ if (isset($_GET['quote_id'])) {
                 <div class="col-sm-8">
                 </div>
                 <div class="col-sm-4">
-                    <table class="table">
+                    <table id=responsive class="responsive table">
                         <tr>
                             <td>Date</td>
                             <td class="text-right"><?php echo $quote_date; ?></td>
@@ -251,7 +251,7 @@ if (isset($_GET['quote_id'])) {
                 <div class="col-md-12">
                     <div class="card">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table id=responsive class="responsive table">
                                 <thead>
                                     <tr>
                                         <th class="d-print-none"></th>
@@ -426,7 +426,7 @@ if (isset($_GET['quote_id'])) {
                 </div>
 
                 <div class="col-sm-3 offset-sm-2">
-                    <table class="table table-borderless">
+                    <table id=responsive class="responsive table table-borderless">
                         <tbody>
                             <tr class="border-bottom">
                                 <td>Subtotal</td>
@@ -474,7 +474,7 @@ if (isset($_GET['quote_id'])) {
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table">
+                    <table id=responsive class="responsive table">
                         <thead>
                             <tr>
                                 <th>Date</th>

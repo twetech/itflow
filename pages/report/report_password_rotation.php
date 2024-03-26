@@ -31,7 +31,7 @@ $passwords_not_rotated_sql = mysqli_query($mysqli,
         <div class="card-body">
 
             <div class="table-responsive-sm">
-                <table class="table table-striped">
+                <table id=responsive class="responsive table table-striped">
                     <thead>
                     <tr>
                         <th>Client</th>

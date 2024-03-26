@@ -37,7 +37,7 @@ $sql_tickets = mysqli_query($mysqli, "SELECT ticket_id FROM tickets");
         <canvas id="tickets" width="100%" height="20"></canvas>
 
         <div class="table-responsive-sm">
-            <table class="table table-striped">
+            <table id=responsive class="responsive table table-striped">
                 <thead>
                 <tr>
                     <th class="text-right">January</th>

@@ -42,7 +42,7 @@ $monthlyTotals = array_fill(1, 12, 0);  // Initialize monthly totals for each mo
         <canvas id="cashFlow" width="100%" height="20"></canvas>
 
         <div class="table-responsive-sm">
-            <table class="table table-striped">
+            <table id=responsive class="responsive table table-striped">
                 <thead class="text-dark">
                 <tr>
                     <th>Category</th>

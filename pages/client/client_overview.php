@@ -119,7 +119,7 @@ $sql_asset_retire = mysqli_query(
                         <h5 class="card-title"><i class="fa fa-fw fa-users mr-2"></i>Important Contacts</h5>
                     </div>
                     <div class="card-body p-2">
-                        <table class="table table-borderless table-sm">
+                        <table id=responsive class="responsive table table-borderless table-sm">
                             <?php
 
                             while ($row = mysqli_fetch_array($sql_important_contacts)) {
@@ -268,7 +268,7 @@ $sql_asset_retire = mysqli_query(
                     </div>
                     <div class="card-body p-2">
 
-                        <table class="table table-borderless table-sm">
+                        <table id=responsive class="responsive table table-borderless table-sm">
                             <tbody>
                             <?php
 
@@ -311,7 +311,7 @@ $sql_asset_retire = mysqli_query(
                     </div>
                     <div class="card-body p-2">
 
-                        <table class="table table-borderless table-sm">
+                        <table id=responsive class="responsive table table-borderless table-sm">
                             <tbody>
                             <?php
 

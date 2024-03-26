@@ -37,7 +37,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
                     </div>
                 </div>
 
-                <table class="table table-bordered">
+                <table id=responsive class="responsive table table-bordered">
                     <thead class="thead-dark">
                         <tr>
                             <th>Notification</th>

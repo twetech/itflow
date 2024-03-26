@@ -193,7 +193,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                 <div class="col-sm-8">
                 </div>
                 <div class="col-sm-4">
-                    <table class="table">
+                    <table id=responsive class="responsive table">
                         <tr>
                             <td>Date</td>
                             <td class="text-right"><?php echo $invoice_date; ?></td>
@@ -210,7 +210,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                 <div class="col-md-12">
                     <div class="card">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table id=responsive class="responsive table">
                                 <thead>
                                 <tr>
                                     <th>Product</th>
@@ -269,7 +269,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                     <?php } ?>
                 </div>
                 <div class="col-sm-3 offset-sm-2">
-                    <table class="table table-borderless">
+                    <table id=responsive class="responsive table table-borderless">
                         <tbody>
                         <tr class="border-bottom">
                             <td>Subtotal</td>
@@ -784,7 +784,7 @@ if (mysqli_num_rows($sql) > 1) { ?>
             <strong><i class="fa fa-fw fa-exclamation-triangle mr-2"></i>Previous Unpaid Invoices</strong>
         </div>
         <div card="card-body">
-            <table class="table">
+            <table id=responsive class="responsive table">
                 <thead>
                 <tr>
                     <th class="text-center">Invoice #</th>
@@ -842,7 +842,7 @@ if (mysqli_num_rows($sql) > 1) { ?>
             <strong><i class="fas fa-fw fa-clock mr-2"></i>Current Invoices</strong>
         </div>
         <div card="card-body">
-            <table class="table">
+            <table id=responsive class="responsive table">
                 <thead>
                 <tr>
                     <th class="text-center">Invoice #</th>
@@ -900,7 +900,7 @@ if (mysqli_num_rows($sql) > 1) { ?>
             <strong><i class="fas fa-fw fa-history mr-2"></i>Previous Invoices Paid</strong>
         </div>
         <div card="card-body">
-            <table class="table">
+            <table id=responsive class="responsive table">
                 <thead>
                 <tr>
                     <th class="text-center">Invoice #</th>
