@@ -128,19 +128,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <table id=responsive class="responsive table table-hover" id="modalTable">
                     <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <?php 
-                            if (!$session_mobile) { ?>
                                 <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">Name</a></th>
                                 <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=location_city&order=<?php echo $disp; ?>">Primary Location </a></th>
                                 <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=contact_name&order=<?php echo $disp; ?>">Primary Contact</a></th>
                                 <?php if (($session_user_role == 3 || $session_user_role == 1) && $config_module_enable_accounting == 1) { ?> <th class="text-right">Billing</th> <?php } ?>
                                 <?php if ($session_user_role == 3) { ?> <th class="text-center">Action</th> <?php } ?>
-                            <?php } else {
-                                ?>
-                                <th></th>
-                                <?php
-                            }
-                        ?>
+                        
                     </tr>
                     </thead>
                     <tbody>
@@ -231,7 +224,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         $recurring_monthly = $recurring_monthly_total + $recurring_yearly_total;
 
-                        if (!$session_mobile) { ?>
+?>
                         <tr>
                             <td>
                                 <a class="font-weight-bold" href="/pages/client/client_overview.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?> <i class="fas fa-fw fa-arrow-circle-right"></i></a>
@@ -309,7 +302,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <!-- Show actions for Admin role only -->
                             <?php if ($session_user_role == 3) { ?>
                                 <td>
-                                    <ul
+                                    <ul>
                                         <div class="dropdown dropleft text-center">
                                             <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
                                                 <i class="fas fa-ellipsis-h"></i>
@@ -328,50 +321,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 </td>
                             <?php } ?>
                         </tr>
-
-                        <?php
-                        } else { ?>
-                            <tr>
-                                <td>
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <div class="dropdown mr4">
-                                                <a class="ml-auto" href="#!" role="button" id=clientDropdownLink data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <div class="d-flex align-items-center">
-                                                        <i class="fa fa-fw fa-user-friends mr-2"></i>
-                                                        <?php echo $client_name; ?>
-                                                    </div>
-                                                    <p class="text-secondary mt-1">
-                                                            <?php echo $client_type;
-                                                            if ($session_user_role == 3 || $session_user_role == 1) { ?>
-                                                                Balance: <?php echo numfmt_format_currency($currency_format, $balance, $session_company_currency); 
-                                                            } else {
-                                                                echo $location_address_display;
-                                                            } ?>
-                                                        </p>
-                                                </a>
-                                                <ul class="dropdown-menu" aria-labelledby="clientDropdownLink">
-                                                    <li class="dropdown-item">
-                                                        <a href="client_overview.php?client_id=<?php echo $client_id; ?>">Overview</a>
-                                                    </li>
-                                                    <li class="dropdown-item">
-                                                        <a href="#!" data-toggle="modal" data-target="#dynamicModal" class="text-dark loadModalContentBtn" data-modal-file="client_edit_modal.php?client_id=<?php echo $client_id; ?>">
-                                                            Edit
-                                                        </a>
-
-                                                    </li>
-                                                    <li class="dropdown-item">
-                                                        <a href="/post.php?archive_client=<?php echo $client_id; ?>" class="text-danger confirm-link">Archive</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <?php
-                        }
-                    } ?>
                     </tbody>
                 </table>
             </div>
