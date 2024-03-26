@@ -18,7 +18,7 @@ $sql = mysqli_query(
     LEFT JOIN accounts ON payment_account_id = account_id
     WHERE DATE(payment_date) BETWEEN '$dtf' AND '$dtt'
     AND (CONCAT(invoice_prefix,invoice_number) LIKE '%$q%' OR client_name LIKE '%$q%' OR account_name LIKE '%$q%' OR payment_method LIKE '%$q%' OR payment_reference LIKE '%$q%')
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

@@ -15,7 +15,7 @@ $sql = mysqli_query(
     "SELECT SQL_CALC_FOUND_ROWS * FROM software
     WHERE software_template = 1 
     AND (software_name LIKE '%$q%' OR software_type LIKE '%$q%') 
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

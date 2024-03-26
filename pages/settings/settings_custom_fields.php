@@ -21,7 +21,7 @@ $sql = mysqli_query(
     "SELECT SQL_CALC_FOUND_ROWS * FROM custom_fields
     WHERE custom_field_label LIKE '%$q%'
     AND custom_field_table = '$table'
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

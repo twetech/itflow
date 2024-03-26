@@ -16,7 +16,7 @@ $sql = mysqli_query(
     "SELECT SQL_CALC_FOUND_ROWS * FROM scheduled_tickets
     LEFT JOIN clients on scheduled_ticket_client_id = client_id
     WHERE scheduled_tickets.scheduled_ticket_subject LIKE '%$q%'
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

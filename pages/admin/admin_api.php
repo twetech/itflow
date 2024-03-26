@@ -15,7 +15,7 @@ $sql = mysqli_query(
     "SELECT SQL_CALC_FOUND_ROWS * FROM api_keys
     LEFT JOIN clients on api_keys.api_key_client_id = clients.client_id
     WHERE (api_key_name LIKE '%$q%')
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

@@ -62,7 +62,7 @@ $sql = mysqli_query(
     WHERE $ticket_status_snippet " . $ticket_assigned_filter . "
     AND DATE(ticket_created_at) BETWEEN '$dtf' AND '$dtt'
     AND (CONCAT(ticket_prefix,ticket_number) LIKE '%$q%' OR client_name LIKE '%$q%' OR ticket_subject LIKE '%$q%' OR ticket_status LIKE '%$q%' OR ticket_priority LIKE '%$q%' OR user_name LIKE '%$q%' OR contact_name LIKE '%$q%' OR asset_name LIKE '%$q%' OR vendor_name LIKE '%$q%' OR ticket_vendor_ticket_number LIKE '%q%')
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -291,7 +291,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
         <form id="bulkActions" action="/post/" method="post">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
             <div class="table-responsive-sm">
-                 <table id=responsive class="responsive table table-hover responsive" id="responsive">
+                 <table id=responsive class=" table table-hover responsive">
                     <thead class="text-dark <?php if (!$num_rows[0]) {
                                                 echo "d-none";
                                             } ?>">
@@ -450,12 +450,9 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                     </tbody>
                 </table>
             </div>
-            <?php require_once "/var/www/develop.twe.tech/includes/modals/ticket_bulk_assign_modal.php"; ?>
-            <?php require_once "/var/www/develop.twe.tech/includes/modals/ticket_bulk_edit_priority_modal.php"; ?>
-            <?php require_once "/var/www/develop.twe.tech/includes/modals/ticket_bulk_close_modal.php"; ?>
-            <?php require_once "/var/www/develop.twe.tech/includes/modals/ticket_bulk_reply_modal.php"; ?>
+
         </form>
-        <?php require_once "/var/www/develop.twe.tech/includes/pagination.php";
+        <?php 
         ?>
     </div>
 </div>
@@ -463,6 +460,5 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 <script src="js/bulk_actions.js"></script>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/ticket_add_modal.php";
 
 require_once "/var/www/develop.twe.tech/includes/footer.php";

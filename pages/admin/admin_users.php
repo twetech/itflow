@@ -16,7 +16,7 @@ $sql = mysqli_query(
     WHERE users.user_id = user_settings.user_id
     AND (user_name LIKE '%$q%' OR user_email LIKE '%$q%')
     AND user_archived_at IS NULL
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

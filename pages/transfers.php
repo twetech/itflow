@@ -16,7 +16,7 @@ $sql = mysqli_query(
     AND transfer_revenue_id = revenue_id
     AND DATE(expense_date) BETWEEN '$dtf' AND '$dtt'
     AND (transfer_notes LIKE '%$q%' OR transfer_method LIKE '%$q%')
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

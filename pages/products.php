@@ -17,7 +17,7 @@ $sql = mysqli_query(
     LEFT JOIN taxes ON product_tax_id = tax_id
     WHERE product_archived_at IS NULL
     AND (product_name LIKE '%$q%' OR product_description LIKE '%$q%' OR category_name LIKE '%$q%' OR product_price LIKE '%$q%' OR tax_name LIKE '%$q%' OR tax_percent LIKE '%$q%')
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -137,7 +137,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </tbody>
                 </table>
             </div>
-            <?php require_once "/var/www/develop.twe.tech/includes/pagination.php";
+            <?php 
  ?>
         </div>
     </div>

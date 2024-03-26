@@ -87,7 +87,7 @@ $sql = mysqli_query(
     $overdue_query
     AND DATE(invoice_date) BETWEEN '$dtf' AND '$dtt'
     AND (CONCAT(invoice_prefix,invoice_number) LIKE '%$q%' OR invoice_scope LIKE '%$q%' OR client_name LIKE '%$q%' OR invoice_status LIKE '%$q%' OR invoice_amount LIKE '%$q%' OR category_name LIKE '%$q%')
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -303,7 +303,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </tbody>
                 </table>
             </div>
-            <?php require_once "/var/www/develop.twe.tech/includes/pagination.php";
+            <?php 
  ?>
         </div>
     </div>

@@ -16,7 +16,7 @@ $sql = mysqli_query(
     "SELECT SQL_CALC_FOUND_ROWS * FROM services
     WHERE service_client_id = '$client_id'
     AND (service_name LIKE '%$q%' OR service_description LIKE '%$q%' OR service_category LIKE '%$q%')
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));

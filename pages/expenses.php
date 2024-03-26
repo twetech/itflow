@@ -19,7 +19,7 @@ $sql = mysqli_query(
     WHERE expense_vendor_id > 0
     AND DATE(expense_date) BETWEEN '$dtf' AND '$dtt'
     AND (vendor_name LIKE '%$q%' OR client_name LIKE '%$q%' OR category_name LIKE '%$q%' OR account_name LIKE '%$q%' OR expense_description LIKE '%$q%' OR expense_amount LIKE '%$q%')
-    ORDER BY $sort $order LIMIT $record_from, $record_to"
+    ORDER BY $sort $order"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -234,7 +234,7 @@ $recurring_expense_count = $row['num'];
                     require_once "/var/www/develop.twe.tech/includes/modals/expense_bulk_edit_client_modal.php";
                 ?>
             </form>
-            <?php require_once "/var/www/develop.twe.tech/includes/pagination.php"; ?>
+            <?php  ?>
         </div>
     </div>
 
