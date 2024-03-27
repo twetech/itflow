@@ -3,16 +3,15 @@
 <div class="modal" id="addUserModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
+            <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fas fa-fw fa-user-plus mr-2"></i>New User</h5>
                 <button type="button" class="close text-white" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
                 <div class="modal-body bg-white">
-
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
                     <div class="form-group">
                         <label>Name <strong class="text-danger">*</strong></label>
                         <div class="input-group">
@@ -55,7 +54,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-user-shield"></i></span>
                             </div>
-                            <select class="form-control select2" name="role" required>
+                            <select class="form-control select2" id='select2' name="role" required>
                                 <option value="">- Role -</option>
                                 <option value="3">Administrator</option>
                                 <option value="2">Technician</option>

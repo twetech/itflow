@@ -20,7 +20,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-sync-alt"></i></span>
                                 </div>
-                                <select class="form-control select2" name="frequency" required>
+                                <select class="form-control select2" id='select2' name="frequency" required>
                                     <option value="1" <?php if($recurring_expense_frequency == 1) { echo "selected"; } ?>>Monthly</option>
                                     <option value="2" <?php if($recurring_expense_frequency == 2) { echo "selected"; } ?>>Annually</option>
                                 </select>
@@ -33,7 +33,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                 </div>
-                                <select class="form-control select2" name="month" required>
+                                <select class="form-control select2" id='select2' name="month" required>
                                     <option value="">- Select a Month -</option>
                                     <option value="1" <?php if($recurring_expense_month == 1) { echo "selected"; } ?>>01 - January</option>
                                     <option value="2" <?php if($recurring_expense_month == 2) { echo "selected"; } ?>>02 - February</option>
@@ -82,7 +82,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-piggy-bank"></i></span>
                                 </div>
-                                <select class="form-control select2" name="account" required>
+                                <select class="form-control select2" id='select2' name="account" required>
                                     <?php
 
                                     $sql_accounts = mysqli_query($mysqli, "SELECT account_id, account_name, opening_balance, account_archived_at FROM accounts WHERE (account_archived_at > '$expense_created_at' OR account_archived_at IS NULL) ORDER BY account_archived_at ASC, account_name ASC");
@@ -127,7 +127,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-building"></i></span>
                                 </div>
-                                <select class="form-control select2" name="vendor" required>
+                                <select class="form-control select2" id='select2' name="vendor" required>
                                     <?php
 
                                     $sql_select = mysqli_query($mysqli, "SELECT vendor_id, vendor_name FROM vendors WHERE vendor_client_id = 0 AND vendor_template = 0 AND (vendor_archived_at > '$expense_created_at' OR vendor_archived_at IS NULL) ORDER BY vendor_name ASC");
@@ -172,7 +172,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-list"></i></span>
                                 </div>
-                                <select class="form-control select2" name="category" required>
+                                <select class="form-control select2" id='select2' name="category" required>
                                     <?php
 
                                     $sql_select = mysqli_query($mysqli, "SELECT category_id, category_name FROM categories WHERE category_type = 'Expense' AND (category_archived_at > '$expense_created_at' OR category_archived_at IS NULL) ORDER BY category_name ASC");
@@ -202,7 +202,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="client">
+                                    <select class="form-control select2" id='select2' name="client">
                                         <option value="">- Client (Optional) -</option>
                                         <?php
 

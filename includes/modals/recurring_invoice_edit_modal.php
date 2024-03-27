@@ -29,7 +29,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-clock"></i></span>
                             </div>
-                            <select class="form-control select2" name="frequency" required>
+                            <select class="form-control select2" id='select2' name="frequency" required>
                                 <option value="">- Frequency -</option>
                                 <option <?php if ($recurring_frequency == 'month') { echo "selected"; } ?> value="month">Monthly</option>
                                 <option <?php if ($recurring_frequency == 'year') { echo "selected"; } ?> value="year">Yearly</option>
@@ -53,7 +53,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                             </div>
-                            <select class="form-control select2" name="category" required>
+                            <select class="form-control select2" id='select2' name="category" required>
                                 <option value="">- Category -</option>
                                 <?php
 
@@ -90,7 +90,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-clock"></i></span>
                             </div>
-                            <select class="form-control select2" name="status" required>
+                            <select class="form-control select2" id='select2' name="status" required>
                                 <option <?php if ($recurring_status == 1) {
                                             echo "selected";
                                         } ?> value="1">Active</option>

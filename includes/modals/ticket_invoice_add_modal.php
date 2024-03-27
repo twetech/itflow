@@ -22,7 +22,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                         if (mysqli_num_rows($sql_invoices) > 0) {
                         ?>
                     
-                    <ul class="nav nav-pills nav-justified mb-3">
+                    <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <?php if (!$addToExistingInvoice): ?>
                                 <a class="nav-link active" data-toggle="pill" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
@@ -74,7 +74,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-list"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="category">
+                                    <select class="form-control select2" id='select2' name="category">
                                         <option value="">- Category -</option>
                                         <?php
 
@@ -212,7 +212,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-piggy-bank"></i></span>
                             </div>
-                            <select class="form-control select2" name="tax_id" required>
+                            <select class="form-control select2" id='select2' name="tax_id" required>
                                 <option value="0">None</option>
                                 <?php
 

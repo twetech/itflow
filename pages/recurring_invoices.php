@@ -7,7 +7,6 @@ $order = "ASC";
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query(
     $mysqli,
@@ -15,7 +14,6 @@ $sql = mysqli_query(
     LEFT JOIN clients ON recurring_client_id = client_id
     LEFT JOIN categories ON recurring_category_id = category_id
     WHERE (CONCAT(recurring_prefix,recurring_number) LIKE '%$q%' OR recurring_frequency LIKE '%$q%' OR recurring_scope LIKE '%$q%' OR client_name LIKE '%$q%' OR category_name LIKE '%$q%')
-    AND DATE(recurring_created_at) BETWEEN '$dtf' AND '$dtt'
     ORDER BY $sort $order");
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -53,7 +51,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Canned Date</label>
-                            <select class="form-control select2" name="canned_date">
+                            <select class="form-control select2" id='select2' name="canned_date">
                                 <option <?php if ($_GET['canned_date'] == "custom") { echo "selected"; } ?> value="custom">Custom</option>
                                 <option <?php if ($_GET['canned_date'] == "today") { echo "selected"; } ?> value="today">Today</option>
                                 <option <?php if ($_GET['canned_date'] == "yesterday") { echo "selected"; } ?> value="yesterday">Yesterday</option>

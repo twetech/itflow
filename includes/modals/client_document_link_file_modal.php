@@ -19,7 +19,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-paperclip"></i></span>
                             </div>
-                            <select class="form-control select2" name="file_id">
+                            <select class="form-control select2" id='select2' name="file_id">
                                 <option value="">- Select a File -</option>
                                 <?php
                                 $sql_files_select = mysqli_query($mysqli, "SELECT * FROM files 

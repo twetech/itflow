@@ -73,7 +73,6 @@ $network_count = intval($row['network_count']);
 $other_count = intval($row['other_count']);
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query(
     $mysqli,
@@ -120,17 +119,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <input type="hidden" name="archived" value="<?php echo $archived; ?>">
                 <div class="row">
 
-                    <div class="col-md-4">
-                        <div class="input-group mb-3 mb-md-0">
-                            <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search <?php if (!empty($_GET['type'])) { echo ucwords(stripslashes(nullable_htmlentities($_GET['type']))); } else { echo "Asset"; } ?>s">
-                            <div class="input-group-append">
-                                <button class="btn btn-dark"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-2">
                         <div class="input-group">
-                            <select class="form-control select2" name="location" onchange="this.form.submit()">
+                            <select class="form-control select2" id='select2' name="location" onchange="this.form.submit()">
                                 <option value="" <?php if (!isset($location)) { echo "selected"; } ?>>- All Locations -</option>
 
                                 <?php

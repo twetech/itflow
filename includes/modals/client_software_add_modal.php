@@ -12,7 +12,7 @@
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <div class="modal-body bg-white">
 
-                    <ul class="nav nav-pills nav-justified mb-3">
+                    <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="pill" href="#pills-details">Details</a>
                         </li>
@@ -66,7 +66,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="type" required>
+                                    <select class="form-control select2" id='select2' name="type" required>
                                         <option value="">- Type -</option>
                                         <?php foreach ($software_types_array as $software_type) { ?>
                                             <option><?php echo $software_type; ?></option>
@@ -85,7 +85,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-cube"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="license_type">
+                                    <select class="form-control select2" id='select2' name="license_type">
                                         <option value="">- Select a License Type -</option>
                                         <?php foreach ($license_types_array as $license_type) { ?>
                                             <option><?php echo $license_type; ?></option>
@@ -140,7 +140,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-desktop"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="assets[]" data-placeholder="Select licensed Assets" multiple>
+                                    <select class="form-control select2" id='select2' name="assets[]" data-placeholder="Select licensed Assets" multiple>
                                         <?php
 
                                        $sql = mysqli_query($mysqli, "SELECT * FROM assets LEFT JOIN contacts ON asset_contact_id = contact_id WHERE asset_archived_at IS NULL AND asset_client_id = $client_id ORDER BY asset_name ASC");
@@ -164,7 +164,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-users"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="contacts[]" data-placeholder="Select licensed Users" multiple>
+                                    <select class="form-control select2" id='select2' name="contacts[]" data-placeholder="Select licensed Users" multiple>
                                         <?php
 
                                        $sql = mysqli_query($mysqli, "SELECT * FROM contacts WHERE contact_archived_at IS NULL AND contact_client_id = $client_id ORDER BY contact_name ASC");

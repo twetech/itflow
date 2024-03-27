@@ -8,7 +8,6 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
 
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query(
     $mysqli,
@@ -35,14 +34,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <form autocomplete="off">
                 <div class="row">
 
-                    <div class="col-md-4">
-                        <div class="input-group mb-3 mb-md-0">
-                            <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search keys">
-                            <div class="input-group-append">
-                                <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
+
 
                     <div class="col-md-8">
                         <div class="btn-group float-right">

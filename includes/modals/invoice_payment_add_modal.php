@@ -52,7 +52,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-piggy-bank"></i></span>
                             </div>
-                            <select class="form-control select2" name="account" required>
+                            <select class="form-control select2" id='select2' name="account" required>
                                 <option value="">- Select an Account -</option>
                                 <?php
 
@@ -96,7 +96,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-money-check-alt"></i></span>
                             </div>
-                            <select class="form-control select2" name="payment_method" required>
+                            <select class="form-control select2" id='select2' name="payment_method" required>
                                 <option value="">- Method of Payment -</option>
                                 <?php
 

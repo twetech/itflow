@@ -18,7 +18,7 @@ $client_id = intval($_GET['client_id']);
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <div class="modal-body bg-white">
 
-                    <ul class="nav nav-pills nav-justified mb-3">
+                    <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="pill" href="#pills-details">Details</a>
                         </li>
@@ -120,7 +120,7 @@ $client_id = intval($_GET['client_id']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-globe-americas"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="country">
+                                    <select class="form-control select2" id='select2' name="country">
                                         <option value="">- Country -</option>
                                         <?php foreach($countries_array as $country_name) { ?>
                                             <option <?php if ($session_company_country == $country_name) { echo "selected"; } ?> ><?php echo $country_name; ?></option>
@@ -139,7 +139,7 @@ $client_id = intval($_GET['client_id']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="contact">
+                                    <select class="form-control select2" id='select2' name="contact">
                                         <option value="">- Contact -</option>
                                         <?php
 

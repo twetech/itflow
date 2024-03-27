@@ -4,11 +4,12 @@
 $sort = "quote_number";
 $order = "DESC";
 
+// Set Datatable Order
+$datatable_order = "[[4, 'desc']]";
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query(
     $mysqli,
@@ -16,7 +17,6 @@ $sql = mysqli_query(
     LEFT JOIN clients ON quote_client_id = client_id
     LEFT JOIN categories ON quote_category_id = category_id
     WHERE (CONCAT(quote_prefix,quote_number) LIKE '%$q%' OR quote_scope LIKE '%$q%' OR category_name LIKE '%$q%' OR quote_status LIKE '%$q%' OR quote_amount LIKE '%$q%' OR client_name LIKE '%$q%')
-    AND DATE(quote_date) BETWEEN '$dtf' AND '$dtt'
     ORDER BY $sort $order");
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -54,7 +54,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Canned Date</label>
-                                <select onchange="this.form.submit()" class="form-control select2" name="canned_date">
+                                <select onchange="this.form.submit()" class="form-control select2" id='select2' name="canned_date">
                                     <option <?php if ($_GET['canned_date'] == "custom") { echo "selected"; } ?> value="custom">Custom</option>
                                     <option <?php if ($_GET['canned_date'] == "today") { echo "selected"; } ?> value="today">Today</option>
                                     <option <?php if ($_GET['canned_date'] == "yesterday") { echo "selected"; } ?> value="yesterday">Yesterday</option>

@@ -4,6 +4,8 @@
 $sort = "invoice_number";
 $order = "DESC";
 
+$datatable_order = '[[4,"desc"]]';
+
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT('recurring_id') AS num FROM recurring WHERE recurring_archived_at IS NULL"));
@@ -76,7 +78,6 @@ if (isset($_GET['status']) && ($_GET['status']) == 'Draft') {
 }
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query(
     $mysqli,
@@ -85,7 +86,6 @@ $sql = mysqli_query(
     LEFT JOIN categories ON invoice_category_id = category_id
     WHERE ($status_query)
     $overdue_query
-    AND DATE(invoice_date) BETWEEN '$dtf' AND '$dtt'
     AND (CONCAT(invoice_prefix,invoice_number) LIKE '%$q%' OR invoice_scope LIKE '%$q%' OR client_name LIKE '%$q%' OR invoice_status LIKE '%$q%' OR invoice_amount LIKE '%$q%' OR category_name LIKE '%$q%')
     ORDER BY $sort $order"
 );
@@ -171,7 +171,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Canned Date</label>
-                                <select onchange="this.form.submit()" class="form-control select2" name="canned_date">
+                                <select onchange="this.form.submit()" class="form-control select2" id='select2' name="canned_date">
                                     <option <?php if ($_GET['canned_date'] == "custom") { echo "selected"; } ?> value="custom">Custom</option>
                                     <option <?php if ($_GET['canned_date'] == "today") { echo "selected"; } ?> value="today">Today</option>
                                     <option <?php if ($_GET['canned_date'] == "yesterday") { echo "selected"; } ?> value="yesterday">Yesterday</option>

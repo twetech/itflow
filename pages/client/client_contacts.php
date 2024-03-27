@@ -8,7 +8,6 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_client.php";
 
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query($mysqli, "SELECT SQL_CALC_FOUND_ROWS * FROM contacts
     LEFT JOIN locations ON location_id = contact_location_id
@@ -46,66 +45,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </div>
         </div>
         <div class="card-body">
-            <form autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <input type="hidden" name="archived" value="<?php echo $archived; ?>">
-                <div class="row">
-
-                    <div class="col-md-4">
-                        <div class="input-group mb-3 mb-md-0">
-                            <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search Contacts">
-                            <div class="input-group-append">
-                                <button class="btn btn-dark"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-8">
-                        <div class="btn-group float-right">
-                            <?php if($archived == 1){ ?>
-                            <a href="?client_id=<?php echo $client_id; ?>&archived=0" class="btn btn-soft-primary"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
-                            <?php } else { ?>
-                            <a href="?client_id=<?php echo $client_id; ?>&archived=1" class="btn btn-default"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
-                            <?php } ?>
-                            <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkAssignLocationModal">
-                                        <i class="fas fa-fw fa-map-marker-alt mr-2"></i>Assign Location
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkEditPhoneModal">
-                                        <i class="fas fa-fw fa-phone-alt mr-2"></i>Set Phone Number
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkEditDepartmentModal">
-                                        <i class="fas fa-fw fa-users mr-2"></i>Set Department
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkEditRoleModal">
-                                        <i class="fas fa-fw fa-user-shield mr-2"></i>Set Roles
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </form>
-            <hr>
             <form id="bulkActions" action="/post.php" method="post">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
                 <div class="table-responsive-sm">
                     <table id=responsive class="responsive table border">
                         <thead class="thead-light <?php if (!$num_rows[0]) { echo "d-none"; } ?>">
                         <tr>
-                            <td class="bg-light pr-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" id="selectAllCheckbox" type="checkbox" onclick="checkAll(this)">
-                                </div>
-                            </td>
                             <th><a class="text-secondary ml-3" href="?<?php echo $url_query_strings_sort; ?>&sort=contact_name&order=<?php echo $disp; ?>">Name</a></th>
                             <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=contact_department&order=<?php echo $disp; ?>">Department</a></th>
                             <th>Contact</th>
@@ -205,17 +150,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                             ?>
                             <tr>
-                                <td class="pr-0 bg-light">
-                                    <div class="form-check">
-                                        <input class="form-check-input bulk-select" type="checkbox" name="contact_ids[]" value="<?php echo $contact_id ?>">
-                                    </div>
-                                </td>
                                 <td>
                                     <a class="text-dark" href="client_contact_details.php?client_id=<?php echo $client_id; ?>&contact_id=<?php echo $contact_id; ?>">
                                         <div class="media">
                                             <?php if (!empty($contact_photo)) { ?>
                                                 <span class="fa-stack fa-2x mr-3 text-center">
-                                                    <img class="img-size-50 img-circle" src="<?php echo "/uploads/clients/$client_id/$contact_photo"; ?>">
+                                                    <img class="img-fluid rounded-circle" src="<?php echo "/uploads/clients/$client_id/$contact_photo"; ?>">
                                                 </span>
                                             <?php } else { ?>
 

@@ -49,7 +49,7 @@
 
                     <div class="form-group">
                         <label>User Assigned<strong class="text-danger">*</strong></label>
-                        <select class="form-control select2" name="user_id" required>
+                        <select class="form-control select2" id='select2' name="user_id" required>
                             <option value="" selected disabled>Select a user</option>
                             <?php
                             $users = mysqli_query($mysqli, "SELECT users.* FROM users

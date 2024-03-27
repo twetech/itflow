@@ -15,7 +15,6 @@ if (!empty($_GET['folder_id'])) {
 }
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 // Folder ID
 $get_folder_id = 0;

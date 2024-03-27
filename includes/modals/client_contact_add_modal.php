@@ -19,7 +19,7 @@
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <div class="modal-body bg-white">
 
-                    <ul class="nav nav-pills nav-justified mb-3">
+                    <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="pill" href="#pills-details"><i class="fa fa-fw fa-user mr-2"></i>Details</a>
                         </li>
@@ -118,7 +118,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-map-marker-alt"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="location">
+                                    <select class="form-control select2" id='select2' name="location">
                                         <option value="">- Location -</option>
                                         <?php
 

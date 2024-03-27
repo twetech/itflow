@@ -6,7 +6,7 @@
 
 if (isset($_POST['add_quote'])) {
 
-    require_once 'post/quote_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/quote_model.php';
 
     $client = intval($_POST['client']);
 
@@ -209,7 +209,7 @@ if (isset($_POST['quote_note'])) {
 
 if (isset($_POST['edit_quote'])) {
 
-    require_once 'post/quote_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/quote_model.php';
 
     $quote_id = intval($_POST['quote_id']);
 

@@ -57,7 +57,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-arrow-right"></i></span>
                             </div>
-                            <select class="form-control select2" name="destination" data-tags="true" data-placeholder="- Select / Input Destination -" required>
+                            <select class="form-control select2" id='select2' name="destination" data-tags="true" data-placeholder="- Select / Input Destination -" required>
                                 <option><?php echo $trip_destination; ?></option>
                                 <?php
 
@@ -91,7 +91,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                             </div>
-                            <select class="form-control select2" name="user" required>
+                            <select class="form-control select2" id='select2' name="user" required>
                                 <option value="">- Driver -</option>
                                 <?php
 
@@ -121,7 +121,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                 </div>
-                                <select class="form-control select2" name="client">
+                                <select class="form-control select2" id='select2' name="client">
                                     <option value="">- Client (Optional) -</option>
                                     <?php
 

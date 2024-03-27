@@ -58,7 +58,7 @@
                             <!-- Activity -->
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media align-items-center">
-                                    <img class="u-avatar--sm rounded-circle mr-3" src="/includes/dist/img/avatars/img1.jpg" alt="Image description">
+                                    <img class="u-avatar--sm rounded-circle mb-3mr-3" src="/includes/dist/img/avatars/img1.jpg" alt="Image description">
 
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
@@ -77,7 +77,7 @@
                             <!-- Activity -->
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media align-items-center">
-                                    <img class="u-avatar--sm rounded-circle mr-3" src="/includes/dist/img/avatars/img2.jpg" alt="Image description">
+                                    <img class="u-avatar--sm rounded-circle mb-3mr-3" src="/includes/dist/img/avatars/img2.jpg" alt="Image description">
 
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
@@ -96,7 +96,7 @@
                             <!-- Activity -->
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media align-items-center">
-                                    <img class="u-avatar--sm rounded-circle mr-3" src="/includes/dist/img/avatars/user-unknown.jpg" alt="Image description">
+                                    <img class="u-avatar--sm rounded-circle mb-3mr-3" src="/includes/dist/img/avatars/user-unknown.jpg" alt="Image description">
 
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
@@ -115,7 +115,7 @@
                             <!-- Activity -->
                             <a class="list-group-item list-group-item-action" href="#">
                                 <div class="media align-items-center">
-                                    <img class="u-avatar--sm rounded-circle mr-3" src="/includes/dist/img/avatars/img4.jpg" alt="Image description">
+                                    <img class="u-avatar--sm rounded-circle mb-3mr-3" src="/includes/dist/img/avatars/img4.jpg" alt="Image description">
 
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
@@ -182,7 +182,7 @@
 
                                 <a class="list-group-item list-group-item-action" href="<?php echo $notification_action; ?>">
                                     <div class="media align-items-center">
-                                        <div class="u-icon u-icon--sm rounded-circle bg-danger text-white mr-3">
+                                        <div class="u-icon u-icon--sm rounded-circle mb-3bg-danger text-white mr-3">
                                             <i class="fab fa-dribbble"></i>
                                         </div>
 
@@ -214,7 +214,7 @@
         <!-- User Profile -->
         <div class="dropdown ml-2">
             <a class="link-muted d-flex align-items-center" href="#!" role="button" id="dropdownMenuLinkUser" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
-                <img class="u-avatar--xs img-fluid rounded-circle mr-2" src="<?php echo "/uploads/users/$session_user_id/" . nullable_htmlentities($session_avatar); ?>" alt="User Profile">
+                <img class="u-avatar--xs img-fluid rounded-circle mb-3mr-2" src="<?php echo "/uploads/users/$session_user_id/" . nullable_htmlentities($session_avatar); ?>" alt="User Profile">
                 <span class="text-dark d-none d-sm-inline-block">
                     <?php echo $session_name ?> <small class="fa fa-angle-down text-muted ml-1"></small>
                 </span>

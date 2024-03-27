@@ -6,7 +6,7 @@
 
 if (isset($_POST['add_tag'])) {
 
-    require_once 'post/tag_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/tag_model.php';
 
 
     mysqli_query($mysqli,"INSERT INTO tags SET tag_name = '$name', tag_type = $type, tag_color = '$color', tag_icon = '$icon'");
@@ -22,7 +22,7 @@ if (isset($_POST['add_tag'])) {
 
 if (isset($_POST['edit_tag'])) {
 
-    require_once 'post/tag_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/tag_model.php';
 
 
     $tag_id = intval($_POST['tag_id']);

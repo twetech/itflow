@@ -56,7 +56,7 @@ $invoice_created_at = nullable_htmlentities($row['invoice_created_at']);
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                             </div>
-                            <select class="form-control select2" name="category" required>
+                            <select class="form-control select2" id='select2' name="category" required>
                                 <option value="">- Category -</option>
                                 <?php
 

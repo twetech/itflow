@@ -29,7 +29,6 @@ if (($_GET['billable']) == '1') {
 }
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query(
     $mysqli,

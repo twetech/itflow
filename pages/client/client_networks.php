@@ -45,15 +45,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <div class="row">
 
-                    <div class="col-md-4">
-                        <div class="input-group mb-3 mb-md-0">
-                            <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search Networks">
-                            <div class="input-group-append">
-                                <button class="btn btn-dark"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="col-md-8">
                         <div class="btn-group float-right">
                             <div class="dropdown ml-2" id="bulkActionButton" hidden>

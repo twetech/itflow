@@ -8,13 +8,11 @@ require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query(
     $mysqli,
     "SELECT SQL_CALC_FOUND_ROWS * FROM budget
     LEFT JOIN categories ON budget_category_id = category_id
-    AND DATE(budget_created_at) BETWEEN '$dtf' AND '$dtt'
     AND (budget_description LIKE '%$q%' OR budget_amount LIKE '%$q%' OR budget_month LIKE '%$q%' OR budget_year LIKE '%$q%' OR category_name LIKE '%$q%')
     ORDER BY $sort $order"
 );
@@ -32,54 +30,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </div>
 
         <div class="card-body">
-            <form class="mb-4" autocomplete="off">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search...">
-                            <div class="input-group-append">
-                                <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                                <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                    </div>
-                </div>
-                <div class="collapse mt-3 <?php if (!empty($_GET['dtf']) || $_GET['canned_date'] !== "custom" ) { echo "show"; } ?>" id="advancedFilter">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Canned Date</label>
-                                <select onchange="this.form.submit()" class="form-control select2" name="canned_date">
-                                    <option <?php if ($_GET['canned_date'] == "custom") { echo "selected"; } ?> value="">Custom</option>
-                                    <option <?php if ($_GET['canned_date'] == "today") { echo "selected"; } ?> value="today">Today</option>
-                                    <option <?php if ($_GET['canned_date'] == "yesterday") { echo "selected"; } ?> value="yesterday">Yesterday</option>
-                                    <option <?php if ($_GET['canned_date'] == "thisweek") { echo "selected"; } ?> value="thisweek">This Week</option>
-                                    <option <?php if ($_GET['canned_date'] == "lastweek") { echo "selected"; } ?> value="lastweek">Last Week</option>
-                                    <option <?php if ($_GET['canned_date'] == "thismonth") { echo "selected"; } ?> value="thismonth">This Month</option>
-                                    <option <?php if ($_GET['canned_date'] == "lastmonth") { echo "selected"; } ?> value="lastmonth">Last Month</option>
-                                    <option <?php if ($_GET['canned_date'] == "thisyear") { echo "selected"; } ?> value="thisyear">This Year</option>
-                                    <option <?php if ($_GET['canned_date'] == "lastyear") { echo "selected"; } ?> value="lastyear">Last Year</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Date From</label>
-                                <input onchange="this.form.submit()" type="date" class="form-control" name="dtf" max="2999-12-31" value="<?php echo nullable_htmlentities($dtf); ?>">
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Date To</label>
-                                <input onchange="this.form.submit()" type="date" class="form-control" name="dtt" max="2999-12-31" value="<?php echo nullable_htmlentities($dtt); ?>">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <hr>
             <div class="table-responsive-sm">
                  <table id=responsive class="responsive table table-hover">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">

@@ -13,7 +13,7 @@
                 <input type="hidden" name="vendor_id" value="<?php echo $vendor_id; ?>">
                 <div class="modal-body bg-white">
 
-                    <ul class="nav nav-pills nav-justified mb-3">
+                    <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="pill" href="#pills-details<?php echo $vendor_id; ?>">Details</a>
                         </li>

@@ -15,7 +15,7 @@
 
         <div class="modal-body bg-white">
 
-          <ul class="nav nav-pills nav-justified mb-3">
+          <ul class="nav nav-pills  mb-3">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="pill" href="#pills-overview<?php echo $service_id ?>">Overview</a>
             </li>
@@ -70,7 +70,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-fw fa-thermometer-half"></i></span>
                   </div>
-                  <select class="form-control select2" name="importance" required>
+                  <select class="form-control select2" id='select2' name="importance" required>
                     <option <?php if ($service_importance == 'Low') { echo "selected"; } ?> >Low</option>
                     <option <?php if ($service_importance == 'Medium') { echo "selected"; } ?> >Medium</option>
                     <option <?php if ($service_importance == 'High') { echo "selected"; } ?> >High</option>
@@ -98,7 +98,7 @@
 
               <div class="form-group">
                 <label for="contacts">Contacts</label>
-                <select multiple class="form-control select2" name="contacts[]">
+                <select multiple class="form-control select2" id='select2' name="contacts[]">
                   <?php
                   // Get just the currently selected contact IDs
                   $selected_ids = array_column(mysqli_fetch_all($sql_contacts, MYSQLI_ASSOC), "contact_id");
@@ -125,7 +125,7 @@
 
               <div class="form-group">
                 <label for="vendors">Vendors</label>
-                <select multiple class="form-control select2" name="vendors[]">
+                <select multiple class="form-control select2" id='select2' name="vendors[]">
                   <?php
                   $selected_ids = array_column(mysqli_fetch_all($sql_vendors, MYSQLI_ASSOC), "vendor_id");
 
@@ -147,7 +147,7 @@
 
               <div class="form-group">
                 <label for="documents">Documents</label>
-                <select multiple class="form-control select2" name="documents[]">
+                <select multiple class="form-control select2" id='select2' name="documents[]">
                   <?php
                   $selected_ids = array_column(mysqli_fetch_all($sql_docs, MYSQLI_ASSOC), "document_id");
 
@@ -177,7 +177,7 @@
 
               <div class="form-group">
                 <label for="assets">Assets</label>
-                <select multiple class="form-control select2" name="assets[]">
+                <select multiple class="form-control select2" id='select2' name="assets[]">
                   <?php
                   $selected_ids = array_column(mysqli_fetch_all($sql_assets, MYSQLI_ASSOC), "asset_id");
 
@@ -199,7 +199,7 @@
 
               <div class="form-group">
                 <label for="logins">Logins</label>
-                <select multiple class="form-control select2" name="logins[]">
+                <select multiple class="form-control select2" id='select2' name="logins[]">
                   <?php
                   $selected_ids = array_column(mysqli_fetch_all($sql_logins, MYSQLI_ASSOC), "login_id");
 
@@ -221,7 +221,7 @@
 
               <div class="form-group">
                 <label for="domains">Domains</label>
-                <select multiple class="form-control select2" name="domains[]">
+                <select multiple class="form-control select2" id='select2' name="domains[]">
                   <?php
                   $selected_ids = array_column(mysqli_fetch_all($sql_domains, MYSQLI_ASSOC), "domain_id");
 
@@ -243,7 +243,7 @@
 
               <div class="form-group">
                 <label for="certificates">Certificates</label>
-                <select multiple class="form-control select2" name="certificates[]">
+                <select multiple class="form-control select2" id='select2' name="certificates[]">
                   <?php
                   $selected_ids = array_column(mysqli_fetch_all($sql_certificates, MYSQLI_ASSOC), "certificate_id");
 

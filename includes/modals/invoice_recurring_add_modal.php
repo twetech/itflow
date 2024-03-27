@@ -18,7 +18,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-fw fa-clock"></i></span>
               </div>
-              <select class="form-control select2" name="frequency" required>
+              <select class="form-control select2" id='select2' name="frequency" required>
                 <option value="">- Frequency -</option>
                 <option value="month">Monthly</option>
                 <option value="year">Yearly</option>

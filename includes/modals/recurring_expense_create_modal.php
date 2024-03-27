@@ -19,7 +19,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-sync-alt"></i></span>
                                 </div>
-                                <select class="form-control select2" name="frequency" required>
+                                <select class="form-control select2" id='select2' name="frequency" required>
                                     <option value="1">Monthly</option>
                                     <option value="2">Annually</option>
                                 </select>
@@ -32,7 +32,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                 </div>
-                                <select class="form-control select2" name="month" required>
+                                <select class="form-control select2" id='select2' name="month" required>
                                     <option value="">- Select a Month -</option>
                                     <option value="1">01 - January</option>
                                     <option value="2">02 - February</option>
@@ -82,7 +82,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-piggy-bank"></i></span>
                                 </div>
-                                <select class="form-control select2" name="account" required>
+                                <select class="form-control select2" id='select2' name="account" required>
                                     <option value="">- Account -</option>
                                     <?php
 
@@ -122,7 +122,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-building"></i></span>
                                 </div>
-                                <select class="form-control select2" name="vendor" required>
+                                <select class="form-control select2" id='select2' name="vendor" required>
                                     <option value="">- Vendor -</option>
                                     <?php
 
@@ -167,7 +167,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-list"></i></span>
                                 </div>
-                                <select class="form-control select2" name="category" required>
+                                <select class="form-control select2" id='select2' name="category" required>
                                     <option value="">- Category -</option>
                                     <?php
 
@@ -200,7 +200,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="client" required>
+                                    <select class="form-control select2" id='select2' name="client" required>
                                         <option value="0">- Client (Optional) -</option>
                                         <?php
 

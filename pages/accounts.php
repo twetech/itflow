@@ -7,7 +7,6 @@ $order = "ASC";
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query(
     $mysqli,
@@ -30,15 +29,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </div>
         </div>
         <div class="card-body">
-            <form autocomplete="off">
-                <div class="input-group">
-                    <input type="search" class="form-control col-md-4" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search Accounts">
-                    <div class="input-group-append">
-                        <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-            </form>
-            <hr>
             <div class="table-responsive-sm">
                  <table id=responsive class="responsive table table-hover">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">

@@ -269,7 +269,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
                 <div class="input-group">
-                    <select class="form-control select2" name="test_email" required>
+                    <select class="form-control select2" id='select2' name="test_email" required>
                         <option value="">- Select an Email Address to send from -</option>
                         <?php
                         if ($config_mail_from_email) {

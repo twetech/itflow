@@ -63,7 +63,7 @@ $quote_category_id = intval($row['quote_category_id']);
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                             </div>
-                            <select class="form-control select2" name="category" id="editQuoteCategory" required>
+                            <select class="form-control select2" id='select2' name="category" id="editQuoteCategory" required>
                                 <option value="">- Select Category -</option>
                                 <?php
 

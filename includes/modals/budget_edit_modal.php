@@ -21,7 +21,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                 </div>
-                                <select class="form-control select2" name="month" required>
+                                <select class="form-control select2" id='select2' name="month" required>
                                     <option value="">- Select a Month -</option>
                                     <option value="1" <?php if($budget_month == 1) { echo "selected"; } ?>>01 - January</option>
                                     <option value="2" <?php if($budget_month == 2) { echo "selected"; } ?>>02 - February</option>
@@ -74,7 +74,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-list"></i></span>
                                 </div>
-                                <select class="form-control select2" name="category" required>
+                                <select class="form-control select2" id='select2' name="category" required>
                                     <?php
 
                                     $sql_select = mysqli_query($mysqli, "SELECT category_id, category_name FROM categories WHERE category_type = 'Expense' AND (category_archived_at > '$expense_created_at' OR category_archived_at IS NULL) ORDER BY category_name ASC");

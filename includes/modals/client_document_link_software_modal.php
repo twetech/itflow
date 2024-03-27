@@ -19,7 +19,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-box-open"></i></span>
                             </div>
-                            <select class="form-control select2" name="software_id">
+                            <select class="form-control select2" id='select2' name="software_id">
                                 <option value="">- Select a License -</option>
                                 <?php
                                 // Check if there are any associated vendors

@@ -68,7 +68,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-user-shield"></i></span>
                             </div>
-                            <select class="form-control select2" name="role" required>
+                            <select class="form-control select2" id='select2' name="role" required>
                                 <option value="">- Role -</option>
                                 <option <?php if ($user_role == 3) {
                                     echo "selected";

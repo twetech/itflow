@@ -20,7 +20,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                 </div>
-                                <select class="form-control select2" name="month" required>
+                                <select class="form-control select2" id='select2' name="month" required>
                                     <option value="">- Select a Month -</option>
                                     <option value="1">01 - January</option>
                                     <option value="2">02 - February</option>
@@ -77,7 +77,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-list"></i></span>
                                 </div>
-                                <select class="form-control select2" name="category" required>
+                                <select class="form-control select2" id='select2' name="category" required>
                                     <option value="">- Category -</option>
                                     <?php
 

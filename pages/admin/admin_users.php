@@ -8,7 +8,6 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
 
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query(
     $mysqli,
@@ -28,7 +27,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-users mr-2"></i>Users</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addUserModal">
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="admin_user_add_modal.php">
                     <i class="fas fa-fw fa-user-plus mr-2"></i>New User
                 </button>
                 <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
@@ -36,7 +35,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     <!--<a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#userInviteModal"><i class="fas fa-paper-plane mr-2"></i>Invite User</a>-->
                     <?php if ($num_rows[0] > 1) { ?>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="#" data-toggle="modal" data-target="#resetAllUserPassModal"><i class="fas fa-skull-crossbones mr-2"></i>IR</a>
+                        <a href="#" class="dropdown-item text-danger loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="admin_user_all_reset_password_modal.php"></i>IR</a>
                     <?php } ?>
                 </div>
             </div>
@@ -133,7 +132,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <td class="text-center">
                             <a class="text-dark" href="#" <?php if ($user_id !== $session_user_id) {   // Prevent modifying self ?> data-toggle="modal" data-target="#editUserModal<?php echo $user_id; ?>" <?php } ?>>
                                 <?php if (!empty($user_avatar)) { ?>
-                                    <img class="img-size-50 img-circle" src="<?php echo "/uploads/users/$user_id/$user_avatar"; ?>">
+                                    <img class="img-fluid rounded-circle" src="<?php echo "/uploads/users/$user_id/$user_avatar"; ?>">
                                 <?php } else { ?>
                                     <span class="fa-stack fa-2x">
                                         <i class="fa fa-circle fa-stack-2x text-secondary"></i>
@@ -184,12 +183,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </tr>
 
                     <?php
-
-                    require "/var/www/develop.twe.tech/includes/modals/admin_user_edit_modal.php";
-
-                    require "/var/www/develop.twe.tech/includes/modals/admin_user_archive_modal.php";
-
-
                 }
 
                 ?>
@@ -209,13 +202,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/modals/admin_user_add_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/admin_user_invite_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/admin_user_export_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/admin_user_all_reset_password_modal.php";
 
 require_once '/var/www/develop.twe.tech/includes/footer.php';
 

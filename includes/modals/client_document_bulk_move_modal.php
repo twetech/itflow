@@ -17,7 +17,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-folder"></i></span>
                         </div>
-                        <select class="form-control select2" name="bulk_folder_id">
+                        <select class="form-control select2" id='select2' name="bulk_folder_id">
                             <option value="0">/</option>
                             <?php
                             $sql_folders_select = mysqli_query($mysqli, "SELECT * FROM folders WHERE folder_location = $folder_location AND folder_client_id = $client_id ORDER BY folder_name ASC");

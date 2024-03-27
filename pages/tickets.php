@@ -60,7 +60,6 @@ $sql = mysqli_query(
     LEFT JOIN locations ON ticket_location_id = location_id
     LEFT JOIN vendors ON ticket_vendor_id = vendor_id
     WHERE $ticket_status_snippet " . $ticket_assigned_filter . "
-    AND DATE(ticket_created_at) BETWEEN '$dtf' AND '$dtt'
     AND (CONCAT(ticket_prefix,ticket_number) LIKE '%$q%' OR client_name LIKE '%$q%' OR ticket_subject LIKE '%$q%' OR ticket_status LIKE '%$q%' OR ticket_priority LIKE '%$q%' OR user_name LIKE '%$q%' OR contact_name LIKE '%$q%' OR asset_name LIKE '%$q%' OR vendor_name LIKE '%$q%' OR ticket_vendor_ticket_number LIKE '%q%')
     ORDER BY $sort $order"
 );
@@ -100,11 +99,30 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 </style>
 <div class="card">
     <header class="card-header d-flex align-items-center">
-        <h3 class="card-title mt-2"><i class="fa fa-fw fa-life-ring mr-2"></i>Support Tickets</h3>
-        <small class="ml-3">
-                <a href="?status=Open"><strong><?php echo $total_tickets_open; ?></strong> Open</a> |
-                <a href="?status=Closed"><strong><?php echo $total_tickets_closed; ?></strong> Closed</a>
-        </small>
+        <div class="col">
+            <h3 class="card-title mt-2"><i class="fa fa-fw fa-life-ring mr-2"></i>Support Tickets</h3>
+            <small class="ml-3">
+                    <a href="?status=Open"><strong><?php echo $total_tickets_open; ?></strong> Open</a> |
+                    <a href="?status=Closed"><strong><?php echo $total_tickets_closed; ?></strong> Closed</a>
+            </small>
+        </div>
+        <div class="col">
+            <div class="btn-group">
+                <button class="btn btn-outline-dark dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">
+                    <i class="fa fa-fw fa-envelope mr-2"></i><?php if(!$session_mobile) { echo "My Tickets"; } ?>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="?status=Open&assigned=<?php echo $session_user_id ?>">Active tickets (<?php echo $user_active_assigned_tickets ?>)</a>
+                    <a class="dropdown-item " href="?status=Closed&assigned=<?php echo $session_user_id ?>">Closed tickets</a>
+                </div>
+            </div>
+            <a href="?assigned=unassigned" class="btn btn-outline-danger">
+                <i class="fa fa-fw fa-exclamation-triangle mr-2"></i><?php if(!$session_mobile) { echo "Unassigned"; } ?> | <strong><?php echo $total_tickets_unassigned; ?></strong>
+            </a>
+            <a href="recurring_tickets.php" class="btn btn-outline-info">
+                <i class="fa fa-fw fa-redo-alt mr-2"></i><?php if(!$session_mobile) { echo "Recurring"; } ?> | <strong> <?php echo $total_scheduled_tickets; ?></strong>
+            </a>
+        </div>
             <?php if ($session_user_role == 3) { ?>
                 <ul class="list-inline ml-auto mb0">
                     <li class="list-inline-item mr3">
@@ -116,208 +134,31 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
             <?php } ?>
     </header>
     <div class="card-body">
-        <form autocomplete="off">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="input-group">
-                        <input type="search" class="form-control" name="q" value="<?php if (isset($q)) {
-                                                                                        echo stripslashes(nullable_htmlentities($q));
-                                                                                    } ?>" placeholder="Search Tickets">
-                        <div class="input-group-append">
-                            <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                            <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-8">
-                    <div class="float-right">
-                        <div class="btn-group">
-                            <button class="btn btn-outline-dark dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">
-                                <i class="fa fa-fw fa-envelope mr-2"></i><?php if(!$session_mobile) { echo "My Tickets"; } ?>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="?status=Open&assigned=<?php echo $session_user_id ?>">Active tickets (<?php echo $user_active_assigned_tickets ?>)</a>
-                                <a class="dropdown-item " href="?status=Closed&assigned=<?php echo $session_user_id ?>">Closed tickets</a>
-                            </div>
-                        </div>
-                        <a href="?assigned=unassigned" class="btn btn-outline-danger">
-                            <i class="fa fa-fw fa-exclamation-triangle mr-2"></i><?php if(!$session_mobile) { echo "Unassigned"; } ?> | <strong><?php echo $total_tickets_unassigned; ?></strong>
-                        </a>
-
-                        <a href="recurring_tickets.php" class="btn btn-outline-info">
-                            <i class="fa fa-fw fa-redo-alt mr-2"></i><?php if(!$session_mobile) { echo "Recurring"; } ?> | <strong> <?php echo $total_scheduled_tickets; ?></strong>
-                        </a>
-
-                        <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
-                                <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkAssignTicketModal">
-                                    <i class="fas fa-fw fa-user-check mr-2"></i>Assign Tech
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkEditPriorityTicketModal">
-                                    <i class="fas fa-fw fa-thermometer-half mr-2"></i>Update Priority
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkCloseTicketsModal">
-                                    <i class="fas fa-fw fa-gavel mr-2"></i>Close
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkReplyTicketModal">
-                                    <i class="fas fa-fw fa-paper-plane mr-2"></i>Bulk Update/Reply
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="collapse <?php if (!empty($_GET['dtf']) || (isset($_GET['canned_date']) && $_GET['canned_date'] !== "custom") || (isset($_GET['status']) && is_array($_GET['status']))) {
-                                        echo "show";
-                                    } ?>" id="advancedFilter">
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Canned Date</label>
-                            <select class="form-control select2" name="canned_date">
-                                <option <?php if ($_GET['canned_date'] == "custom") {
-                                            echo "selected";
-                                        } ?> value="custom">Custom
-                                </option>
-                                <option <?php if ($_GET['canned_date'] == "today") {
-                                            echo "selected";
-                                        } ?> value="today">Today
-                                </option>
-                                <option <?php if ($_GET['canned_date'] == "yesterday") {
-                                            echo "selected";
-                                        } ?> value="yesterday">Yesterday
-                                </option>
-                                <option <?php if ($_GET['canned_date'] == "thisweek") {
-                                            echo "selected";
-                                        } ?> value="thisweek">This Week
-                                </option>
-                                <option <?php if ($_GET['canned_date'] == "lastweek") {
-                                            echo "selected";
-                                        } ?> value="lastweek">Last Week
-                                </option>
-                                <option <?php if ($_GET['canned_date'] == "thismonth") {
-                                            echo "selected";
-                                        } ?> value="thismonth">This Month
-                                </option>
-                                <option <?php if ($_GET['canned_date'] == "lastmonth") {
-                                            echo "selected";
-                                        } ?> value="lastmonth">Last Month
-                                </option>
-                                <option <?php if ($_GET['canned_date'] == "thisyear") {
-                                            echo "selected";
-                                        } ?> value="thisyear">This Year
-                                </option>
-                                <option <?php if ($_GET['canned_date'] == "lastyear") {
-                                            echo "selected";
-                                        } ?> value="lastyear">Last Year
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Date From</label>
-                            <input type="date" class="form-control" name="dtf" max="2999-12-31" value="<?php echo nullable_htmlentities($dtf); ?>">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Date To</label>
-                            <input type="date" class="form-control" name="dtt" max="2999-12-31" value="<?php echo nullable_htmlentities($dtt); ?>">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Ticket Status</label>
-                            <select class="form-control select2" name="status[]" data-placeholder="Select Status" multiple>
-                                <option value="New" <?php if (isset($_GET['status']) && is_array($_GET['status']) && in_array('New', $_GET['status'])) {
-                                                                echo 'selected';
-                                                            } ?>>New</option>
-                                <option value="Open" <?php if (isset($_GET['status']) && is_array($_GET['status']) && in_array('Open', $_GET['status'])) {
-                                                                    echo 'selected';
-                                                                } ?>>Open</option>
-                                <option value="On Hold" <?php if (isset($_GET['status']) && is_array($_GET['status']) && in_array('On Hold', $_GET['status'])) {
-                                                                    echo 'selected';
-                                                                } ?>>On Hold</option>
-                                <option value="Auto Close" <?php if (isset($_GET['status']) && is_array($_GET['status']) && in_array('Auto Close', $_GET['status'])) {
-                                                                    echo 'selected';
-                                                                } ?>>Auto Close</option>
-                                <option value="Closed" <?php if (isset($_GET['status']) && is_array($_GET['status']) && in_array('Closed', $_GET['status'])) {
-                                                            echo 'selected';
-                                                        } ?>>Closed</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Assigned to</label>
-                            <select class="form-control select2" name="assigned">
-                                <option value="" <?php if ($ticket_assigned_filter == "") {
-                                                        echo "selected";
-                                                    } ?>>Any</option>
-                                <option value="unassigned" <?php if ($ticket_assigned_filter == "0") {
-                                                                echo "selected";
-                                                            } ?>>Unassigned</option>
-
-                                <?php
-                                $sql_assign_to = mysqli_query($mysqli, "SELECT * FROM users WHERE user_archived_at IS NULL ORDER BY user_name ASC");
-                                while ($row = mysqli_fetch_array($sql_assign_to)) {
-                                    $user_id = intval($row['user_id']);
-                                    $user_name = nullable_htmlentities($row['user_name']);
-                                ?>
-                                    <option <?php if ($ticket_assigned_filter == $user_id) {
-                                                echo "selected";
-                                            } ?> value="<?php echo $user_id; ?>"><?php echo $user_name; ?></option>
-                                <?php
-                                }
-                                ?>
-
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <hr>
         <form id="bulkActions" action="/post/" method="post">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
             <div class="table-responsive-sm">
-                 <table id=responsive class=" table table-hover responsive">
-                    <thead class="text-dark <?php if (!$num_rows[0]) {
-                                                echo "d-none";
-                                            } ?>">
+                <table id='responsive' class=" table table-hover responsive">
+                    <thead class="text-dark <?php if (!$num_rows[0]) { echo "d-none"; } ?>">
 
-                            
                             <tr>
-                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_number&order=<?php echo $disp; ?>">Number</a>
-                                </th>
-                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_subject&order=<?php echo $disp; ?>">Subject</a>
-                                </th>
-                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">Client / Contact</a>
-                                </th>
-                                <?php if ($config_module_enable_accounting) { ?>
-                                    <th class="text-center"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_billable&order=<?php echo $disp; ?>">Billable</a>
-                                    </th>
-                                <?php } ?>
+                                <?php
+                                // table head
 
-                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_priority&order=<?php echo $disp; ?>">Priority</a>
-                                </th>
-                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_status&order=<?php echo $disp; ?>">Status</a>
-                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_name&order=<?php echo $disp; ?>">Assigned</a>
-                                </th>
-                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_updated_at&order=<?php echo $disp; ?>">Last Response</a>
-                                </th>
-                                <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_created_at&order=<?php echo $disp; ?>">Created</a>
-                                </th>
+                                if (!$session_mobile) {
+                                    $rows = [ 'Number', 'Subject', 'Client / Contact', 'Priority', 'Status', 'Assigned', 'Last Response', 'Created' ];
+                                    $datatable_order = "[[7,'desc']]";
+                                } else {
+                                    $rows = [ 'Subject', 'Client', 'Number', 'Status', 'Assigned', 'Last Response', 'Created' ];
+                                    $datatable_order = "[[6,'desc']]";
+                                }
+                                
+                                if ($config_module_enable_accounting) {
+                                    $rows[] = 'Billable';
+                                }
+                                foreach ($rows as $row) {
+                                    echo "<th>$row</th>";
+                                }
+                                ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -389,9 +230,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 
                             ?>
 
-                                <tr class="<?php if (empty($ticket_updated_at)) {
-                                                echo "text-bold";
-                                            } ?>">
+                                <tr class="<?= empty($ticket_updated_at) ? "text-bold" : "" ?>">
 
                                     <td>
                                         <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>">
@@ -406,20 +245,6 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 
                                         <div class="mt-1"><?php echo $contact_display; ?></div>
                                     </td>
-
-                                    <?php if ($config_module_enable_accounting) { ?>
-                                        <td class="text-center">
-                                            <a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_billable_modal.php?ticket_id=<?php echo $ticket_id; ?>">
-                                                <?php
-                                                if ($ticket_billable == 1) {
-                                                    echo "<span class='badge badge-pill badge-success'>$</span>";
-                                                } else {
-                                                    echo "<span class='badge badge-pill badge-secondary'>X</span>";
-                                                }
-                                                ?>
-                                        </td>
-                                    <?php } ?>
-
                                     <td><a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_priority_modal.php?ticket_id=<?php echo $ticket_id; ?>"><span class='p-2 badge badge-pill badge-<?php echo $ticket_priority_color; ?>'><?php echo $ticket_priority; ?></span></a></td>
                                     <td><span class='p-2 badge badge-pill badge-<?php echo $ticket_status_color; ?>'><?php echo $ticket_status; ?></span> <?php if ($ticket_status == 'On Hold' && isset ($ticket_scheduled_for)) { echo "<div class=\"mt-1\"> <small class='text-secondary'> $ticket_scheduled_for </small></div>"; } ?></td>
                                     <td><a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_assign_modal.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_assigned_to_display; ?></a></td>
@@ -429,6 +254,19 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                         <br>
                                         <small class="text-secondary"><?php echo $ticket_created_at; ?></small>
                                     </td>
+
+                                    <?php if ($config_module_enable_accounting) { ?>
+                                        <td class="text-center">
+                                            <a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_billable_modal.php?ticket_id=<?php echo $ticket_id; ?>">
+                                                <?php
+                                                    if ($ticket_billable == 1) {
+                                                        echo "<span class='badge badge-pill badge-success'>$</span>";
+                                                    } else {
+                                                        echo "<span class='badge badge-pill badge-secondary'>X</span>";
+                                                    }
+                                                ?>
+                                        </td>
+                                    <?php } ?>
                                 </tr>
 
                             <?php

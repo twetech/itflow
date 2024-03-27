@@ -28,7 +28,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-list"></i></span>
                             </div>
-                            <select class="form-control select2" name="category" required>
+                            <select class="form-control select2" id='select2' name="category" required>
                                 <?php
 
                                 $sql_select = mysqli_query($mysqli, "SELECT * FROM categories WHERE category_type = 'Income' AND (category_archived_at > '$product_created_at' OR category_archived_at IS NULL)");
@@ -67,7 +67,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-balance-scale"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="tax">
+                                    <select class="form-control select2" id='select2' name="tax">
                                         <option value="0">None</option>
                                         <?php
 

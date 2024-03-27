@@ -14,7 +14,7 @@
                 <input type="hidden" name="ticket_number" value="<?php echo "$ticket_prefix$ticket_number"; ?>">
                 <div class="modal-body bg-white">
 
-                    <ul class="nav nav-pills nav-justified mb-3">
+                    <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="pill" href="#pills-details<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
                         </li>
@@ -58,7 +58,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-thermometer-half"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="priority" required>
+                                    <select class="form-control select2" id='select2' name="priority" required>
                                         <option <?php if ($ticket_priority == 'Low') { echo "selected"; } ?> >Low</option>
                                         <option <?php if ($ticket_priority == 'Medium') { echo "selected"; } ?> >Medium</option>
                                         <option <?php if ($ticket_priority == 'High') { echo "selected"; } ?> >High</option>
@@ -93,7 +93,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="contact">
+                                    <select class="form-control select2" id='select2' name="contact">
                                         <option value="0">No One</option>
                                         <?php
                                         $sql_client_contacts_select = mysqli_query($mysqli, "SELECT * FROM contacts WHERE contact_client_id = $client_id AND contact_archived_at IS NULL ORDER BY contact_primary DESC, contact_technical DESC, contact_name ASC");
@@ -136,7 +136,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-desktop"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="asset">
+                                    <select class="form-control select2" id='select2' name="asset">
                                         <option value="0">- None -</option>
                                         <?php
 
@@ -165,7 +165,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-map-marker-alt"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="location">
+                                    <select class="form-control select2" id='select2' name="location">
                                         <option value="0">- None -</option>
                                         <?php
 
@@ -193,7 +193,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-building"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="vendor">
+                                    <select class="form-control select2" id='select2' name="vendor">
                                         <option value="0">- None -</option>
                                         <?php
 

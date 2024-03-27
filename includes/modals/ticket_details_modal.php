@@ -633,7 +633,7 @@ if (mysqli_num_rows($sql) == 0) {
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                             </div>
-                            <select class="form-control select2" name="assigned_to" <?php if ($ticket_status == "Closed") {
+                            <select class="form-control select2" id='select2' name="assigned_to" <?php if ($ticket_status == "Closed") {
                                                                                         echo "disabled";
                                                                                     } ?>>
                                 <option value="0">Not Assigned</option>

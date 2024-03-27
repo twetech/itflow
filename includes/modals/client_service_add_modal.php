@@ -14,7 +14,7 @@
 
         <div class="modal-body bg-white">
 
-          <ul class="nav nav-pills nav-justified mb-3">
+          <ul class="nav nav-pills  mb-3">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="pill" href="#pills-overview">Overview</a>
             </li>
@@ -71,7 +71,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-fw fa-thermometer-half"></i></span>
                   </div>
-                  <select class="form-control select2" name="importance" required>
+                  <select class="form-control select2" id='select2' name="importance" required>
                     <option>Low</option>
                     <option>Medium</option>
                     <option>High</option>
@@ -98,7 +98,7 @@
             <div class="tab-pane fade" id="pills-general">
               <div class="form-group">
                 <label for="contacts">Select related Contacts</label>
-                <select class="form-control select2" id="contacts" name="contacts[]" multiple>
+                <select class="form-control select2" id='select2' id="contacts" name="contacts[]" multiple>
                   <?php
                   $sql = mysqli_query($mysqli, "SELECT * FROM contacts WHERE contact_archived_at IS NULL AND contact_client_id = $client_id");
                   while ($row = mysqli_fetch_array($sql)) {
@@ -112,7 +112,7 @@
 
               <div class="form-group">
                 <label for="vendors">Select related vendors</label>
-                <select class="form-control select2" id="vendors" name="vendors[]" multiple>
+                <select class="form-control select2" id='select2' id="vendors" name="vendors[]" multiple>
                   <?php
                   $sql = mysqli_query($mysqli, "SELECT * FROM vendors WHERE vendor_template = 0 AND vendor_archived_at IS NULL AND vendor_client_id = $client_id");
                   while ($row = mysqli_fetch_array($sql)) {
@@ -126,7 +126,7 @@
 
               <div class="form-group">
                 <label for="documents">Select related documents</label>
-                <select class="form-control select2" id="documents" name="documents[]" multiple>
+                <select class="form-control select2" id='select2' id="documents" name="documents[]" multiple>
                   <?php
                   $sql = mysqli_query($mysqli, "SELECT * FROM documents WHERE document_archived_at IS NULL AND document_client_id = $client_id");
                   while ($row = mysqli_fetch_array($sql)) {
@@ -146,7 +146,7 @@
   
               <div class="form-group">
                 <label for="assets">Select related assets</label>
-                <select class="form-control select2" id="assets" name="assets[]" multiple>
+                <select class="form-control select2" id='select2' id="assets" name="assets[]" multiple>
                   <?php
                   $sql = mysqli_query($mysqli, "SELECT * FROM assets WHERE asset_archived_at IS NULL AND asset_client_id = $client_id");
                   while ($row = mysqli_fetch_array($sql)) {
@@ -160,7 +160,7 @@
          
               <div class="form-group">
                 <label for="logins">Select related logins</label>
-                <select class="form-control select2" id="logins" name="logins[]" multiple>
+                <select class="form-control select2" id='select2' id="logins" name="logins[]" multiple>
                   <?php
                   $sql = mysqli_query($mysqli, "SELECT * FROM logins WHERE login_archived_at IS NULL AND login_client_id = $client_id");
                   while ($row = mysqli_fetch_array($sql)) {
@@ -174,7 +174,7 @@
 
               <div class="form-group">
                 <label for="domains">Select related domains</label>
-                <select class="form-control select2" id="domains" name="domains[]" multiple>
+                <select class="form-control select2" id='select2' id="domains" name="domains[]" multiple>
                   <?php
                   $sql = mysqli_query($mysqli, "SELECT * FROM domains WHERE domain_archived_at IS NULL AND domain_client_id = $client_id");
                   while ($row = mysqli_fetch_array($sql)) {
@@ -188,7 +188,7 @@
 
               <div class="form-group">
                 <label for="certificates">Select related certificates</label>
-                <select class="form-control select2" id="certificates" name="certificates[]" multiple>
+                <select class="form-control select2" id='select2' id="certificates" name="certificates[]" multiple>
                   <?php
                   $sql = mysqli_query($mysqli, "SELECT * FROM certificates WHERE certificate_archived_at IS NULL AND certificate_client_id = $client_id");
                   while ($row = mysqli_fetch_array($sql)) {

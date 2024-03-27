@@ -6,7 +6,7 @@
 
 if(isset($_POST['create_custom_field'])){
 
-    require_once 'post/custom_field_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/custom_field_model.php';
 
 
     $table = sanitizeInput($_POST['table']);
@@ -24,7 +24,7 @@ if(isset($_POST['create_custom_field'])){
 
 if(isset($_POST['edit_custom_field'])){
 
-    require_once 'post/custom_field_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/custom_field_model.php';
 
 
     $custom_field_id = intval($_POST['custom_field_id']);

@@ -20,7 +20,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-envelope"></i></span>
                             </div>
-                            <select class="form-control select2" data-tags="true" name="watcher_email">
+                            <select class="form-control select2" id='select2' data-tags="true" name="watcher_email">
                                 <option value="">-Select a contact-</option>
                                 <?php
 

@@ -16,7 +16,7 @@
 
                 <div class="modal-body bg-white">
 
-                    <ul class="nav nav-pills nav-justified mb-3">
+                    <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="pill" href="#pills-details<?php echo $asset_id; ?>">Details</a>
                         </li>
@@ -66,7 +66,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-tags"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="type" required>
+                                    <select class="form-control select2" id='select2' name="type" required>
                                         <?php foreach($asset_types_array as $asset_type_select => $asset_icon_select) { ?>
                                             <option <?php if ($asset_type_select == $asset_type) { echo "selected"; } ?>><?php echo $asset_type_select; ?></option>
                                         <?php } ?>
@@ -129,7 +129,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-network-wired"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="network">
+                                    <select class="form-control select2" id='select2' name="network">
                                         <option value="">- Network -</option>
                                         <?php
 
@@ -218,7 +218,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-map-marker-alt"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="location">
+                                    <select class="form-control select2" id='select2' name="location">
                                         <option value="">- Location -</option>
                                         <?php
 
@@ -246,7 +246,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="contact">
+                                    <select class="form-control select2" id='select2' name="contact">
                                         <option value="">- Contact -</option>
                                         <?php
 
@@ -276,7 +276,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-info"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="status">
+                                    <select class="form-control select2" id='select2' name="status">
                                         <?php foreach($asset_status_array as $asset_status_select) { ?>
                                             <option <?php if ($asset_status_select == $asset_status) { echo "selected"; } ?>><?php echo $asset_status_select; ?></option>
                                         <?php } ?>
@@ -294,7 +294,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-building"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="vendor">
+                                    <select class="form-control select2" id='select2' name="vendor">
                                         <option value="">- Vendor -</option>
                                         <?php
 
