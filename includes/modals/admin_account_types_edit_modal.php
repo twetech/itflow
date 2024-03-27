@@ -20,7 +20,7 @@
 
                     <div class="form-group">
                         <label>Account Type</label>
-                        <select class="form-control select2" name="type" required>
+                        <select class="form-control select2" id='select2' name="type" required>
                             <option value="1" <?php if ($account_parent == 1) echo 'selected'; ?>>Assets</option>
                             <option value="2" <?php if ($account_parent == 2) echo 'selected'; ?>>Liabilities</option>
                             <option value="3" <?php if ($account_parent == 3) echo 'selected'; ?>>Equity</option>

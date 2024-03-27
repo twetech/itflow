@@ -12,7 +12,7 @@
         <input type="hidden" name="vendor_id" value="<?php echo $vendor_id; ?>">
         <div class="modal-body bg-white">
 
-          <ul class="nav nav-pills nav-justified mb-3">
+          <ul class="nav nav-pills  mb-3">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="pill" href="#pills-details<?php echo $vendor_id; ?>">Details</a>
             </li>
@@ -76,7 +76,7 @@
                       <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fa fa-fw fa-puzzle-piece"></i></span>
                       </div>
-                      <select class="form-control select2" name="vendor_template_id">
+                      <select class="form-control select2" id='select2' name="vendor_template_id">
                           <option value="0">- None -</option>
                           <?php
 

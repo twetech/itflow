@@ -59,7 +59,7 @@ $key = randomString(156);
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                             </div>
-                            <select class="form-control select2" name="client" required>
+                            <select class="form-control select2" id='select2' name="client" required>
                                 <option value="0"> ALL CLIENTS </option>
                                 <?php
                                 $sql = mysqli_query($mysqli, "SELECT * FROM clients ORDER BY client_name ASC");

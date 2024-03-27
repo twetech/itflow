@@ -1,42 +1,32 @@
 
-				</div><!-- /.container-fluid -->
-				<footer class="u-footer d-md-flex align-items-md-center text-center text-md-left text-muted text-muted">
-					<p class="h5 mb-0 ml-auto">
-						© <?php echo date("Y"); ?> <a class="link-muted" href="https://htmlstream.com/" target="_blank">TWE Technologies</a>. All Rights Reserved.
-					</p>
-				</footer>
-			<!-- /.content-wrapper -->
-			</div>
-			<!-- ./wrapper -->
+				</div><!-- /.content-wrapper -->
+				<div>
+					<footer class="u-footer d-md-flex align-items-md-center text-center text-md-left text-muted text-muted">
+						<p class="h5 mb-0 ml-auto">
+							© <?php echo date("Y"); ?> <a class="link-muted" href="https://htmlstream.com/" target="_blank">TWE Technologies</a>. All Rights Reserved.
+						</p>
+					</footer>
+				</div>	
+			</div><!-- /.container-fluid -->
+			<?php 
+			require_once "/var/www/develop.twe.tech/includes/inc_confirm_modal.php";
+			require_once "/var/www/develop.twe.tech/includes/inc_dynamic_modal.php";
+			?>
 
-			<?php require_once "/var/www/develop.twe.tech/includes/inc_confirm_modal.php"; ?>
+		</div><!-- /.wrapper -->
 
-			<div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel" aria-hidden="true" role="dialog">
-				<div class="modal-dialog" role="document">
-					<form action="/post.php" method="post" autocomplete="off">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="dynamicModalLabel">Error Loading Modal</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
+		<?php if (!isset($datatable_order)) {
+			$datatable_order = '[[0, "asc"]]';
+		} ?>
 
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
 		</main>
 		<!-- REQUIRED SCRIPTS -->
 		<script>
 			$(function () {
 				$('#responsive').DataTable({
-					responsive: true
+					responsive: true,
+					order: <?= $datatable_order ?>,
+					buttons: ['copy', 'excel', 'pdf']
 				});
 			});
 		</script>

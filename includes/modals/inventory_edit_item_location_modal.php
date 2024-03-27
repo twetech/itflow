@@ -15,7 +15,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="inventory_location_id">Move to location</label>
-                            <select class="form-control select2" id="inventory_new_location_id" name="inventory_new_location_id">
+                            <select class="form-control select2" id='select2' id="inventory_new_location_id" name="inventory_new_location_id">
                                 <option value="">Select location</option>
                                 <?php
                                 $inventory_locations = mysqli_query($mysqli, "SELECT * FROM inventory_locations WHERE inventory_location_id != $inventory_location_id AND inventory_location_archived_at IS NULL ORDER BY inventory_location_name ASC");

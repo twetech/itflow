@@ -6,7 +6,7 @@
 
 if (isset($_POST['add_invoice'])) {
 
-    require_once 'post/models/invoice_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/models/invoice_model.php';
 
     $parameters['invoice_client_id'] = intval($_POST['client']);
     $parameters['invoice_date'] = sanitizeInput($_POST['date']);
@@ -20,7 +20,7 @@ if (isset($_POST['add_invoice'])) {
 
 if (isset($_POST['edit_invoice'])) {
 
-    require_once 'post/models/invoice_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/models/invoice_model.php';
 
     $invoice_id = intval($_POST['invoice_id']);
     $due = sanitizeInput($_POST['due']);

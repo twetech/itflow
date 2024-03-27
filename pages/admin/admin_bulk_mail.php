@@ -38,7 +38,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM contacts
                     <hr>
                     
                     <div class="form-group">
-                        <select type="text" class="form-control select2" name="mail_from">
+                        <select type="text" class="form-control select2" id='select2' name="mail_from">
                             <option value="<?php echo nullable_htmlentities($config_mail_from_email); ?>">
                                 <?php echo nullable_htmlentities("$config_mail_from_name - $config_mail_from_email"); ?></option>
                             <option value="<?php echo nullable_htmlentities($config_invoice_from_email); ?>">

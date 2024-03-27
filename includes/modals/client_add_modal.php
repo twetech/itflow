@@ -12,7 +12,7 @@ $leads = $_GET['leads'];
             <input type="hidden" name="lead" value="0">
             <input type="hidden" name="net_terms" value="0">
             <input type="hidden" name="currency_code" value="<?php echo $session_company_currency; ?>">
-            <ul class="nav nav-pills nav-justified mb-3">
+            <ul class="nav nav-pills mb-3">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="pill" href="#pills-details">Details</a>
                 </li>
@@ -58,7 +58,7 @@ $leads = $_GET['leads'];
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-smile-wink"></i></span>
                             </div>
-                            <select class="form-control select2" data-tags="true" name="referral">
+                            <select class="form-control select2" id='select2' data-tags="true" name="referral">
                                 <option value="">N/A</option>
                                 <?php
                                 $referral_sql = mysqli_query($mysqli, "SELECT * FROM categories WHERE category_type = 'Referral' AND category_archived_at IS NULL ORDER BY category_name ASC");
@@ -139,7 +139,7 @@ $leads = $_GET['leads'];
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-globe-americas"></i></span>
                             </div>
-                            <select class="form-control select2" name="country">
+                            <select class="form-control select2" id='select2' name="country">
                                 <option value="">- Country -</option>
                                 <?php foreach($countries_array as $country_name) { ?>
                                     <option <?php if ($session_company_country == $country_name) { echo "selected"; } ?> ><?php echo $country_name; ?></option>
@@ -219,7 +219,7 @@ $leads = $_GET['leads'];
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-money-bill"></i></span>
                             </div>
-                            <select class="form-control select2" name="currency_code" required>
+                            <select class="form-control select2" id='select2' name="currency_code" required>
                                 <option value="">- Currency -</option>
                                 <?php foreach($currencies_array as $currency_code => $currency_name) { ?>
                                     <option <?php if ($session_company_currency == $currency_code) { echo "selected"; } ?> value="<?php echo $currency_code; ?>"><?php echo "$currency_code - $currency_name"; ?></option>
@@ -233,7 +233,7 @@ $leads = $_GET['leads'];
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                             </div>
-                            <select class="form-control select2" name="net_terms">
+                            <select class="form-control select2" id='select2' name="net_terms">
                                 <?php foreach($net_terms_array as $net_term_value => $net_term_name) { ?>
                                     <option <?php if ($config_default_net_terms == $net_term_value) { echo "selected"; } ?> value="<?php echo $net_term_value; ?>"><?php echo $net_term_name; ?></option>
                                 <?php } ?>
@@ -262,7 +262,7 @@ $leads = $_GET['leads'];
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-tags"></i></span>
                             </div>
-                            <select class="form-control select2" name="tags[]" data-placeholder="Add some tags" multiple>
+                            <select class="form-control select2" id='select2' name="tags[]" data-placeholder="Add some tags" multiple>
                                 <?php
                                 $sql_tags_select = mysqli_query($mysqli, "SELECT * FROM tags WHERE tag_type = 1 ORDER BY tag_name ASC");
                                 while ($row = mysqli_fetch_array($sql_tags_select)) {

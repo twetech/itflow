@@ -42,7 +42,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-piggy-bank"></i></span>
                             </div>
-                            <select class="form-control select2" name="account_from" required>
+                            <select class="form-control select2" id='select2' name="account_from" required>
                                 <option value="">- Account From -</option>
                                 <?php
 
@@ -80,7 +80,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-arrow-right"></i></span>
                             </div>
-                            <select class="form-control select2" name="account_to" required>
+                            <select class="form-control select2" id='select2' name="account_to" required>
                                 <option value="">- Account To -</option>
                                 <?php
 
@@ -151,7 +151,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-money-check-alt"></i></span>
                             </div>
-                            <select class="form-control select2" name="transfer_method">
+                            <select class="form-control select2" id='select2' name="transfer_method">
                                 <option value="">- Method of Transfer -</option>
                                 <?php
 

@@ -88,7 +88,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-globe"></i></span>
                             </div>
-                            <select class="form-control select2" id="editDomainId" name="domain_id">
+                            <select class="form-control select2" id='select2' id="editDomainId" name="domain_id">
                             </select>
                         </div>
                     </div>

@@ -16,7 +16,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-user-check"></i></span>
                         </div>
-                        <select class="form-control select2" name="assign_to">
+                        <select class="form-control select2" id='select2' name="assign_to">
                             <option value="0">Not Assigned</option>
                             <?php
                             $sql_users_select = mysqli_query($mysqli, "SELECT * FROM users 

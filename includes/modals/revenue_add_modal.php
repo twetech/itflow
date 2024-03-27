@@ -29,7 +29,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-money-bill"></i></span>
                                 </div>
-                                <select class="form-control select2" name="currency_code" required>
+                                <select class="form-control select2" id='select2' name="currency_code" required>
                                     <option value="">- Currency -</option>
                                     <?php foreach($currencies_array as $currency_code => $currency_name) { ?>
                                         <option <?php if ($session_company_currency == $currency_code) { echo "selected"; } ?> value="<?php echo $currency_code; ?>"><?php echo "$currency_code - $currency_name"; ?></option>
@@ -58,7 +58,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-piggy-bank"></i></span>
                                 </div>
-                                <select class="form-control select2" name="account" required>
+                                <select class="form-control select2" id='select2' name="account" required>
                                     <option value="">- Account -</option>
                                     <?php
 
@@ -99,7 +99,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-money-check-alt"></i></span>
                                 </div>
-                                <select class="form-control select2" name="category" required>
+                                <select class="form-control select2" id='select2' name="category" required>
                                     <option value="">- Category -</option>
                                     <?php
 
@@ -135,7 +135,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-money-check-alt"></i></span>
                                 </div>
-                                <select class="form-control select2" name="payment_method" required>
+                                <select class="form-control select2" id='select2' name="payment_method" required>
                                     <option value="">- Method of Payment -</option>
                                     <?php
 

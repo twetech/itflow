@@ -15,8 +15,13 @@ if (!isset($config_enable_setup)) {
 }
 
 if ($config_enable_setup == 0) {
-    header("Location: login.php");
+    header("Location: tenant_login.php");
     exit;
+}
+
+if (isset($session_ip)) {
+	header('Location: /pages/dashboard.php');
+	exit();
 }
 
 include_once "settings_localization_array.php";
@@ -682,7 +687,7 @@ if (isset($_POST['add_telemetry'])) {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-globe-americas"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="country" required>
+                                        <select class="form-control select2" id='select2' name="country" required>
                                             <option value="">- Country -</option>
                                             <?php foreach($countries_array as $country_name) { ?>
                                                 <option><?php echo $country_name; ?></option>
@@ -729,7 +734,7 @@ if (isset($_POST['add_telemetry'])) {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-language"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="locale" required>
+                                        <select class="form-control select2" id='select2' name="locale" required>
                                             <option value="">- Select a Language -</option>
                                             <?php foreach($locales_array as $locale_code => $locale_name) { ?>
                                                 <option value="<?php echo $locale_code; ?>"><?php echo $locale_name; ?></option>
@@ -744,7 +749,7 @@ if (isset($_POST['add_telemetry'])) {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-money-bill"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="currency_code" required>
+                                        <select class="form-control select2" id='select2' name="currency_code" required>
                                             <option value="">- Select a Currency -</option>
                                             <?php foreach($currencies_array as $currency_code => $currency_name) { ?>
                                                 <option value="<?php echo $currency_code; ?>"><?php echo "$currency_code - $currency_name"; ?></option>
@@ -759,7 +764,7 @@ if (isset($_POST['add_telemetry'])) {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-business-time"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="timezone" required>
+                                        <select class="form-control select2" id='select2' name="timezone" required>
                                             <option value="">- Select a Timezone -</option>
                                             <?php foreach ($timezones as $tz) { ?>
                                                 <option value="<?php echo $tz; ?>"><?php echo $tz; ?></option>

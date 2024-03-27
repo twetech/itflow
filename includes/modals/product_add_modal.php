@@ -28,7 +28,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                             </div>
-                            <select class="form-control select2" name="category" required>
+                            <select class="form-control select2" id='select2' name="category" required>
                                 <option value="">- Select Category -</option>
                                 <?php
 
@@ -69,7 +69,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-balance-scale"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="tax">
+                                    <select class="form-control select2" id='select2' name="tax">
                                         <option value="0">None</option>
                                         <?php
 

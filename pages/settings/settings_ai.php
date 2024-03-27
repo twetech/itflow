@@ -17,7 +17,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-fw fa-robot"></i></span>
                     </div>
-                    <select class="form-control select2" name="provider">
+                    <select class="form-control select2" id='select2' name="provider">
                         <option value="" <?php if($config_ai_enable == 0) { echo "selected"; } ?> >Disabled</option>
                         <option <?php if($config_ai_provider == "Ollama") { echo "selected"; } ?> >Ollama</option>
                         <option <?php if($config_ai_provider == "OpenAI") { echo "selected"; } ?> >OpenAI</option>

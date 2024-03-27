@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label>Account Type</label>
-                        <select class="form-control select2" name="type" required> 
+                        <select class="form-control select2" id='select2' name="type" required> 
                             <option value="" <?php if ($account_type == NULL) echo "selected"; ?>>- Select -</option>
                             <option value="1" <?php if ($account_type == 'Assets') echo "selected"; ?>>Assets</option>
                             <option value="2" <?php if ($account_type == 'Liabilities') echo "selected"; ?>>Liabilities</option>

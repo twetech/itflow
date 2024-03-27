@@ -12,7 +12,7 @@
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <div class="modal-body bg-white">
 
-                    <ul class="nav nav-pills nav-justified mb-3">
+                    <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="pill" href="#pills-details">Details</a>
                         </li>
@@ -124,7 +124,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="contact">
+                                    <select class="form-control select2" id='select2' name="contact">
                                         <option value="">- Contact -</option>
                                         <?php
 
@@ -148,7 +148,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-building"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="vendor">
+                                    <select class="form-control select2" id='select2' name="vendor">
                                         <option value="">- Vendor -</option>
                                         <?php
 
@@ -172,7 +172,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="asset">
+                                    <select class="form-control select2" id='select2' name="asset">
                                         <option value="">- Asset -</option>
                                         <?php
 
@@ -203,7 +203,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-box"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="software">
+                                    <select class="form-control select2" id='select2' name="software">
                                         <option value="">- Software -</option>
                                         <?php
 

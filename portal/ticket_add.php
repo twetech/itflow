@@ -39,7 +39,7 @@ require_once 'inc_portal.php';
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-fw fa-thermometer-half"></i></span>
                     </div>
-                    <select class="form-control select2" name="priority" required>
+                    <select class="form-control select2" id='select2' name="priority" required>
                         <option>Low</option>
                         <option>Medium</option>
                         <option>High</option>

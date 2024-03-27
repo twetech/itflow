@@ -19,7 +19,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                             </div>
-                            <select class="form-control select2" name="contact_id">
+                            <select class="form-control select2" id='select2' name="contact_id">
                                 <option value="">- Select a Contact -</option>
                                 <?php
                                 // Check if there are any associated vendors

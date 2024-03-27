@@ -6,7 +6,7 @@
 
 if (isset($_POST['add_expense'])) {
 
-    require_once 'post/expense_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/expense_model.php';
 
     $extended_alert_description = '';
 
@@ -65,7 +65,7 @@ if (isset($_POST['add_expense'])) {
 
 if (isset($_POST['edit_expense'])) {
 
-    require_once 'post/expense_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/expense_model.php';
 
 
     $expense_id = intval($_POST['expense_id']);

@@ -15,7 +15,7 @@
 
                 <div class="modal-body bg-white">
 
-                    <ul class="nav nav-pills nav-justified mb-3">
+                    <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="pill" href="#pills-add-details"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
                         </li>
@@ -54,7 +54,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-thermometer-half"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="priority" required>
+                                    <select class="form-control select2" id='select2' name="priority" required>
                                         <option>Low</option>
                                         <option>Medium</option>
                                         <option>High</option>
@@ -68,7 +68,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user-check"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="assigned_to">
+                                    <select class="form-control select2" id='select2' name="assigned_to">
                                         <option value="0">- Not Assigned -</option>
                                         <?php
 
@@ -98,7 +98,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="client" id="changeClientSelect" required <?php if (isset($client_id)) { echo "disabled"; } ?>>
+                                    <select class="form-control select2" id='select2' name="client" id="changeClientSelect" required <?php if (isset($client_id)) { echo "disabled"; } ?>>
                                         <option value="">- Client -</option>
                                         <?php
 
@@ -121,7 +121,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="contact" id="contactSelect" required>
+                                    <select class="form-control select2" id='select2' name="contact" id="contactSelect" required>
                                     </select>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-recycle"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="frequency" required>
+                                    <select class="form-control select2" id='select2' name="frequency" required>
                                         <option>Weekly</option>
                                         <option>Monthly</option>
                                         <option>Quarterly</option>
@@ -172,7 +172,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-desktop"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="asset">
+                                        <select class="form-control select2" id='select2' name="asset">
                                             <option value="0">- None -</option>
                                             <?php
                                             $sql_assets = mysqli_query($mysqli, "SELECT * FROM assets WHERE asset_client_id = $client_id AND asset_archived_at IS NULL ORDER BY asset_name ASC");

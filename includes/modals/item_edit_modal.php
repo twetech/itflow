@@ -74,7 +74,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-fw fa-piggy-bank"></i></span>
               </div>
-              <select class="form-control select2" name="tax_id" required>
+              <select class="form-control select2" id='select2' name="tax_id" required>
                 <option value="0">No Tax</option>
                 <?php 
                 

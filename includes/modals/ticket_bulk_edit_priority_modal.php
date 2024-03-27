@@ -17,7 +17,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-thermometer-half"></i></span>
                         </div>
-                        <select class="form-control select2" name="bulk_priority">
+                        <select class="form-control select2" id='select2' name="bulk_priority">
                             <option>Low</option>
                             <option>Medium</option>
                             <option>High</option>

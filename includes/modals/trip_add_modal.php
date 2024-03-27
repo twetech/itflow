@@ -55,7 +55,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-arrow-right"></i></span>
                             </div>
-                            <select class="form-control select2" name="destination" data-tags="true" data-placeholder="- Select / Input Destination -" required>
+                            <select class="form-control select2" id='select2' name="destination" data-tags="true" data-placeholder="- Select / Input Destination -" required>
                                 <option value=""></option>
                                 <?php
                                 if (isset($_GET['client_id'])) {
@@ -87,7 +87,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                             </div>
-                            <select class="form-control select2" name="user" required>
+                            <select class="form-control select2" id='select2' name="user" required>
                                 <option value="">- Driver -</option>
                                 <?php
 
@@ -118,7 +118,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                 </div>
-                                <select class="form-control select2" name="client" required>
+                                <select class="form-control select2" id='select2' name="client" required>
                                     <option value="0">- Client (Optional) -</option>
                                     <?php
 

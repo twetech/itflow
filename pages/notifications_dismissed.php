@@ -9,7 +9,6 @@ require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 //Rebuild URL
 
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query(
     $mysqli,
@@ -17,7 +16,6 @@ $sql = mysqli_query(
     LEFT JOIN users ON notification_dismissed_by = user_id 
     LEFT JOIN clients ON notification_client_id = client_id
     WHERE (notification_type LIKE '%$q%' OR notification LIKE '%$q%' OR user_name LIKE '%$q%' OR client_name LIKE '%$q%')
-    AND DATE(notification_timestamp) BETWEEN '$dtf' AND '$dtt'
     AND (notification_user_id = $session_user_id OR notification_user_id = 0)
     AND notification_dismissed_at IS NOT NULL
     ORDER BY $sort $order

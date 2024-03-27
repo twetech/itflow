@@ -153,7 +153,7 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
                             <?php
                             if (!empty($user_avatar)) {
                                 ?>
-                                <img src="<?php echo $avatar_link ?>" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <img src="<?php echo $avatar_link ?>" alt="User Avatar" class="img-fluid mr-3 rounded-circle">
                                 <?php
                             } else {
                                 ?>

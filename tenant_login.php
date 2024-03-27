@@ -1,5 +1,9 @@
 <?php
 // Purpose: Login page for tenants
+if (isset($session_ip)) {
+	header('Location: /pages/dashboard.php');
+	exit();
+}
 ?>
 
 <!DOCTYPE html>

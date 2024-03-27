@@ -16,7 +16,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-list"></i></span>
                         </div>
-                        <select class="form-control select2" name="bulk_category_id">
+                        <select class="form-control select2" id='select2' name="bulk_category_id">
                             <?php
 
                             $sql = mysqli_query($mysqli, "SELECT category_id, category_name FROM categories WHERE category_type = 'Expense' AND category_archived_at IS NULL ORDER BY category_name ASC");

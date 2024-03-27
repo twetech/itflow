@@ -14,7 +14,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="product_id">Product</label>
-                            <select class="form-control select2" id="product_id" name="product_id" required>
+                            <select class="form-control select2" id='select2' id="product_id" name="product_id" required>
                                 <option value="" selected disabled>Select a product</option>
                                 <?php
                                 $products = mysqli_query($mysqli, "SELECT * FROM products

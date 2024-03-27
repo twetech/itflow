@@ -18,7 +18,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-users"></i></span>
                             </div>
-                            <select class="form-control select2" name="new_client_id" id="changeClientSelect" required>
+                            <select class="form-control select2" id='select2' name="new_client_id" id="changeClientSelect" required>
                             </select>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                             </div>
-                            <select class="form-control select2" name="new_contact_id" id="changeContactSelect">
+                            <select class="form-control select2" id='select2' name="new_contact_id" id="changeContactSelect">
                             </select>
                         </div>
                     </div>

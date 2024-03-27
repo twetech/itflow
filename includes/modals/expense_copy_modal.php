@@ -42,7 +42,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-piggy-bank"></i></span>
                                 </div>
-                                <select class="form-control select2" name="account" required>
+                                <select class="form-control select2" id='select2' name="account" required>
                                     <?php
 
                                     $sql_accounts = mysqli_query($mysqli, "SELECT account_id, account_name, opening_balance FROM accounts WHERE account_archived_at IS NULL ORDER BY account_name ASC");
@@ -80,7 +80,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-building"></i></span>
                                 </div>
-                                <select class="form-control select2" name="vendor" required>
+                                <select class="form-control select2" id='select2' name="vendor" required>
                                     <?php
 
                                     $sql_vendors = mysqli_query($mysqli, "SELECT vendor_id, vendor_name FROM vendors WHERE vendor_client_id = 0 AND vendor_template = 0 ORDER BY vendor_name ASC");
@@ -122,7 +122,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-list"></i></span>
                                 </div>
-                                <select class="form-control select2" name="category" required>
+                                <select class="form-control select2" id='select2' name="category" required>
                                     <?php
 
                                     $sql_categories = mysqli_query($mysqli, "SELECT category_id, category_name FROM categories WHERE category_type = 'Expense' ORDER BY category_name ASC");
@@ -149,7 +149,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="client">
+                                    <select class="form-control select2" id='select2' name="client">
                                         <option value="">- Client (Optional) -</option>
                                         <?php
 

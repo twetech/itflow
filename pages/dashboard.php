@@ -616,8 +616,8 @@ if ($user_config_dashboard_financial_enable == 1) {
                         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                         datasets: [{
                             label: 'Total Income',
-                            borderColor: 'rgba(107,21,182,0.6)',
-                            backgroundColor: 'rgba(107,21,182,0.6)',
+                            borderColor: 'rgba(107,21,182,0.5',
+                            backgroundColor: 'rgba(107,21,182,0.5)',
                             data: [
                                 <?php
                                 for ($month = 1; $month <= 12; $month++) {
@@ -647,8 +647,8 @@ if ($user_config_dashboard_financial_enable == 1) {
                             ]
                         }, {
                             label: 'LY Total Income',
-                            borderColor: 'rgba(41,114,250,0.6)',
-                            backgroundColor: 'rgba(41,114,250,0.6)',
+                            borderColor: 'rgba(41,114,250,0.3)',
+                            backgroundColor: 'rgba(41,114,250,0.3)',
                             data: [
                                 <?php
                                 for ($month = 1; $month <= 12; $month++) {
@@ -705,8 +705,8 @@ if ($user_config_dashboard_financial_enable == 1) {
                             ]
                         }, {
                             label: 'Expense',
-                            borderColor: 'rgba(250,182,51,0.6)',
-                            backgroundColor: 'rgba(250,182,51,0.6)',
+                            borderColor: 'rgba(250,182,51,0.5)',
+                            backgroundColor: 'rgba(250,182,51,0.5)',
                             data: [
                                 <?php
 
@@ -733,8 +733,8 @@ if ($user_config_dashboard_financial_enable == 1) {
                             ]
                         }, {
                             label: 'Profit',
-                            borderColor: 'rgba(41,114,250,0.6)',
-                            backgroundColor: 'rgba(41,114,250,0.6)',
+                            borderColor: 'rgba(41,114,250,0.7)',
+                            backgroundColor: 'rgba(41,114,250,0.7)',
                             data: [
                                 <?php
 

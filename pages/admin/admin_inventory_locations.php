@@ -8,7 +8,6 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
 
 
 //Rebuild URL
-$url_query_strings_sort = http_build_query($get_copy);
 
 $sql = mysqli_query(
     $mysqli,

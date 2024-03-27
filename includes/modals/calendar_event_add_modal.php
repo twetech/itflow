@@ -12,7 +12,7 @@
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
 
-                    <ul class="nav nav-pills nav-justified mb-3">
+                    <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="pill" href="#pills-event"><i class="fa fa-fw fa-calendar mr-2"></i>Event</a>
                         </li>
@@ -46,7 +46,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="calendar" required>
+                                    <select class="form-control select2" id='select2' name="calendar" required>
                                         <option value="">- Calendar -</option>
                                         <?php
 
@@ -88,7 +88,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-recycle"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="repeat">
+                                    <select class="form-control select2" id='select2' name="repeat">
                                         <option value="">Never</option>
                                         <option>Day</option>
                                         <option>Week</option>
@@ -130,7 +130,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="client">
+                                        <select class="form-control select2" id='select2' name="client">
                                             <option value="">- Client -</option>
                                             <?php
 

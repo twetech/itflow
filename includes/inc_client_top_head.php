@@ -2,7 +2,7 @@
     <div class="card-body py-2">
         <div class="row">
             <div class="col">
-                <a href="#" data-toggle="collapse" data-target="#clientHeader"><h4 class="text-secondary"><strong><?php echo $client_name; ?></strong></h4></a>
+                <a href="#" data-toggle="collapse" data-target="#clientHeader"><h4 class="text-secondary"><strong><?php echo $client_name; ?> <i class="fas fa-fw fa-chevron-down"></i></strong></h4></a>
             </div>
             <div class="col">
                 <?php if ($session_user_role == 3) { ?>

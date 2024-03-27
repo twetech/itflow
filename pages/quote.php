@@ -377,7 +377,7 @@ if (isset($_GET['quote_id'])) {
                                                 <input type="text" class="form-control" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" id="price" style="text-align: right;" name="price" placeholder="Price (<?php echo $quote_currency_code; ?>)">
                                             </td>
                                             <td>
-                                                <select class="form-control select2" id="tax" name="tax_id" required>
+                                                <select class="form-control select2" id='select2' id="tax" name="tax_id" required>
                                                     <option value="0">No Tax</option>
                                                     <?php
 

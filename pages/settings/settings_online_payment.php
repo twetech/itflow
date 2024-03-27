@@ -49,7 +49,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-fw fa-piggy-bank"></i></span>
                         </div>
-                        <select class="form-control select2" name="config_stripe_account">
+                        <select class="form-control select2" id='select2' name="config_stripe_account">
                             <option value="">- Account -</option>
                             <?php
                             $sql_accounts = mysqli_query($mysqli, "SELECT * FROM accounts LEFT JOIN account_types ON account_types.account_type_id = accounts.account_type WHERE account_type_parent = 1 AND account_archived_at IS NULL ORDER BY account_name ASC");
@@ -104,7 +104,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-building"></i></span>
                             </div>
-                            <select class="form-control select2" name="config_stripe_expense_vendor">
+                            <select class="form-control select2" id='select2' name="config_stripe_expense_vendor">
                                 <option value="">- Do not Enable Account Expensure -</option>
                                 <?php
 
@@ -128,7 +128,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-list"></i></span>
                             </div>
-                            <select class="form-control select2" name="config_stripe_expense_category">
+                            <select class="form-control select2" id='select2' name="config_stripe_expense_category">
                                 <option value="">- Do not Enable Account Expensure -</option>
                                 <?php
 

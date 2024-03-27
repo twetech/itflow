@@ -17,7 +17,7 @@ $client_id = intval($_GET['client_id']);
                 <div class="modal-body bg-white">
 
                     <?php if (isset($_GET['client_id'])) { ?>
-                        <ul class="nav nav-pills nav-justified mb-3">
+                        <ul class="nav nav-pills  mb-3">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="pill" href="#pills-details"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
                             </li>
@@ -76,7 +76,7 @@ $client_id = intval($_GET['client_id']);
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="client" required>
+                                        <select class="form-control select2" id='select2' name="client" required>
                                             <option value="">- Client -</option>
                                             <?php
 
@@ -106,7 +106,7 @@ $client_id = intval($_GET['client_id']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-thermometer-half"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="priority" required>
+                                    <select class="form-control select2" id='select2' name="priority" required>
                                         <option>Low</option>
                                         <option>Medium</option>
                                         <option>High</option>
@@ -120,7 +120,7 @@ $client_id = intval($_GET['client_id']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user-check"></i></span>
                                     </div>
-                                    <select class="form-control select2" name="assigned_to">
+                                    <select class="form-control select2" id='select2' name="assigned_to">
                                         <option value="0">Not Assigned</option>
                                         <?php
 
@@ -153,7 +153,7 @@ $client_id = intval($_GET['client_id']);
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="contact">
+                                        <select class="form-control select2" id='select2' name="contact">
                                             <option value="0">- No One -</option>
                                             <?php
                                             $sql = mysqli_query($mysqli, "SELECT * FROM contacts WHERE contact_client_id = $client_id AND contact_archived_at IS NULL ORDER BY contact_primary DESC, contact_technical DESC, contact_name ASC");
@@ -193,7 +193,7 @@ $client_id = intval($_GET['client_id']);
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-envelope"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="watchers[]" data-tags="true" data-placeholder="Enter or select email address" multiple>
+                                        <select class="form-control select2" id='select2' name="watchers[]" data-tags="true" data-placeholder="Enter or select email address" multiple>
                                             <option value="">aa</option>
                                             <?php
                                             $sql = mysqli_query($mysqli, "SELECT * FROM contacts WHERE contact_client_id = $client_id AND contact_archived_at IS NULL AND contact_email IS NOT NULL ORDER BY contact_email ASC");
@@ -217,7 +217,7 @@ $client_id = intval($_GET['client_id']);
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-desktop"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="asset">
+                                        <select class="form-control select2" id='select2' name="asset">
                                             <option value="0">- None -</option>
                                             <?php
 
@@ -244,7 +244,7 @@ $client_id = intval($_GET['client_id']);
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-map-marker-alt"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="location">
+                                        <select class="form-control select2" id='select2' name="location">
                                             <option value="0">- None -</option>
                                             <?php
 
@@ -270,7 +270,7 @@ $client_id = intval($_GET['client_id']);
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-building"></i></span>
                                         </div>
-                                        <select class="form-control select2" name="vendor">
+                                        <select class="form-control select2" id='select2' name="vendor">
                                             <option value="0">- None -</option>
                                             <?php
 

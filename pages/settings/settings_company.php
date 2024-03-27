@@ -97,7 +97,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-globe-americas"></i></span>
                         </div>
-                        <select class="form-control select2" name="country">
+                        <select class="form-control select2" id='select2' name="country">
                             <option value="">- Country -</option>
                             <?php foreach($countries_array as $country_name) { ?>
                                 <option <?php if ($company_country == $country_name) { echo "selected"; } ?>><?php echo $country_name; ?></option>
