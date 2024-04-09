@@ -368,7 +368,7 @@ if (isset($_GET['quote_id'])) {
                                                 <input type="text" class="form-control" name="name" id="name" placeholder="Item" required>
                                             </td>
                                             <td>
-                                                <textarea class="form-control" rows="2" name="description" id="desc" placeholder="Enter a Description"></textarea>
+                                                <textarea class="form-control trumbowyg" rows="2" name="description" id="desc" placeholder="Enter a Description"></textarea>
                                             </td>
                                             <td>
                                                 <input type="text" class="form-control" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" id="qty" style="text-align: center;" name="qty" placeholder="Quantity">

@@ -86,7 +86,7 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
             <form action="portal_post.php" enctype="multipart/form-data" method="post">
                 <input type="hidden" name="ticket_id" value="<?php echo $ticket_id ?>">
                 <div class="form-group">
-                    <textarea class="form-control tinymce" name="comment" placeholder="Add comments.."></textarea>
+                    <textarea id=trumbowyg class="form-control" name="comment" placeholder="Add comments.."></textarea>
                 </div>
                 <div class="form-group">
                     <input type="file" class="form-control-file" name="file[]" multiple id="fileInput" accept=".jpg, .jpeg, .gif, .png, .webp, .pdf, .txt, .md, .doc, .docx, .odt, .csv, .xls, .xlsx, .ods, .pptx, .odp, .zip, .tar, .gz, .xml, .msg, .json, .wav, .mp3, .ogg, .mov, .mp4, .av1, .ovpn">

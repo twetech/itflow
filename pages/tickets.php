@@ -122,16 +122,13 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
             <a href="recurring_tickets.php" class="btn btn-outline-info">
                 <i class="fa fa-fw fa-redo-alt mr-2"></i><?php if(!$session_mobile) { echo "Recurring"; } ?> | <strong> <?php echo $total_scheduled_tickets; ?></strong>
             </a>
-        </div>
             <?php if ($session_user_role == 3) { ?>
-                <ul class="list-inline ml-auto mb0">
-                    <li class="list-inline-item mr3">
-                        <a href="#!" class="dropdown-item loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_add_modal.php">
-                            <i class="fa fa-fw fa-plus mr-2"></i>
-                        </a>
-                    </li>
-                </ul>
+                <a href="#!" class="btn dropdown-item loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_add_modal.php">
+                    <i class="fa fa-fw fa-plus mr-2"></i>
+                </a>
             <?php } ?>
+            </div>
+
     </header>
     <div class="card-body">
         <form id="bulkActions" action="/post/" method="post">
@@ -228,31 +225,37 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                 $asset_id = intval($row['ticket_asset_id']);
                                 $vendor_id = intval($row['ticket_vendor_id']);
 
+                                //$datetime_format="date-time-format";
+                                $datetime_format="date-time-ago";
+
+
                             ?>
 
                                 <tr class="<?= empty($ticket_updated_at) ? "text-bold" : "" ?>">
 
                                     <td>
-                                        <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>">
-                                            <span class="badge badge-pill badge-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span>
-                                        </a>
+                                        <small>
+                                            <a href="ticket.php?ticket_id=<?= $ticket_id ?>">
+                                                <span class="badge badge-pill badge-secondary p-3"><?=$ticket_prefix . $ticket_number?></span>
+                                            </a>
+                                        </small>
                                     </td>
                                     <td>
-                                        <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a>
+                                        <small>
+                                            <a href="ticket.php?ticket_id=<?= $ticket_id ?>"><?= $ticket_subject ?></a>
+                                        </small>
                                     </td>
                                     <td>
-                                        <a href="client_tickets.php?client_id=<?php echo $client_id; ?>"><strong><?php echo $client_name; ?></strong></a>
+                                        <a href="client_tickets.php?client_id=<?= $client_id ?>"><strong><?= $client_name ?></strong></a>
 
-                                        <div class="mt-1"><?php echo $contact_display; ?></div>
+                                        <div class="mt-1"><?= $contact_display ?></div>
                                     </td>
                                     <td><a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_priority_modal.php?ticket_id=<?php echo $ticket_id; ?>"><span class='p-2 badge badge-pill badge-<?php echo $ticket_priority_color; ?>'><?php echo $ticket_priority; ?></span></a></td>
-                                    <td><span class='p-2 badge badge-pill badge-<?php echo $ticket_status_color; ?>'><?php echo $ticket_status; ?></span> <?php if ($ticket_status == 'On Hold' && isset ($ticket_scheduled_for)) { echo "<div class=\"mt-1\"> <small class='text-secondary'> $ticket_scheduled_for </small></div>"; } ?></td>
+                                    <td><span class='p-2 badge badge-pill badge-<?= $ticket_status_color ?>'><?= $ticket_status; ?></span> <?php if ($ticket_status == 'On Hold' && isset ($ticket_scheduled_for)) { echo "<div class=\"mt-1\"> <small class='text-secondary'> $ticket_scheduled_for </small></div>"; } ?></td>
                                     <td><a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_assign_modal.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_assigned_to_display; ?></a></td>
-                                    <td><?php echo $ticket_updated_at_display; ?></td>
-                                    <td>
-                                        <?php echo $ticket_created_at_time_ago; ?>
-                                        <br>
-                                        <small class="text-secondary"><?php echo $ticket_created_at; ?></small>
+                                    <td <?= $ticket_updated_at ? "class='" . $datetime_format . "'" : '' ?>><?= $ticket_updated_at ? $ticket_updated_at : 'never'; ?></td>
+                                    <td class="<?= $datetime_format?>">
+                                        <?= $ticket_created_at ?>
                                     </td>
 
                                     <?php if ($config_module_enable_accounting) { ?>

@@ -237,5 +237,3 @@ require_once "/var/www/develop.twe.tech/includes/inc_alert_feedback.php";
 
 require_once "/var/www/develop.twe.tech/includes/inc_client_top_head.php";
 
-require_once "/var/www/develop.twe.tech/includes/pagination_head.php";
-

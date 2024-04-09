@@ -383,7 +383,7 @@ if (isset($_GET['invoice_id'])) {
                                             <input type="text" class="form-control" id="name" name="name" placeholder="Item" required>
                                         </td>
                                         <td>
-                                            <textarea class="form-control" rows="2" id="desc" name="description" placeholder="Enter a Description"></textarea>
+                                            <textarea class="form-control trumbowyg" rows="2" id="desc" name="description" placeholder="Enter a Description"></textarea>
                                         </td>
                                         <td>
                                             <input type="text" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" class="form-control" style="text-align: center;" id="qty" name="qty" placeholder="Quantity">
@@ -486,7 +486,7 @@ if (isset($_GET['invoice_id'])) {
     </div>
     <div class="row d-print-none mb-3">
         <div class="col-sm">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-header text-bold">
                     <i class="fa fa-history mr-2"></i>History
                     <div class="card-tools">

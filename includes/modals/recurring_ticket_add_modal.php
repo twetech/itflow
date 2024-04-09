@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="form-group">
-                                <textarea class="form-control tinymce" name="details"></textarea>
+                                <textarea id=trumbowyg class="form-control" name="details"></textarea>
                             </div>
 
                             <div class="form-group">

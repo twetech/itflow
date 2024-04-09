@@ -107,13 +107,13 @@ if (isset($_POST['add_recurring_item'])) {
     $item_order = intval($_POST['item_order']);
 
     $item = [];
-    $item['invoice_id'] = $recurring_id;
-    $item['name'] = $name;
-    $item['description'] = $description;
-    $item['qty'] = $qty;
-    $item['price'] = $price;
-    $item['tax_id'] = $tax_id;
-    $item['item_order'] = $item_order;
+    $item['item_invoice_id'] = $recurring_id;
+    $item['item_name'] = $name;
+    $item['item_description'] = $description;
+    $item['item_qty'] = $qty;
+    $item['item_price'] = $price;
+    $item['item_tax_id'] = $tax_id;
+    $item['item_item_order'] = $item_order;
 
     createInvoiceItem("recurring", $item);
     referWithAlert("Item added", "success");

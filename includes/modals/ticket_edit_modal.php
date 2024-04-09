@@ -1,4 +1,29 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
+<?php
+$ticket_id = intval($_GET['ticket_id']);
+
+$sql_ticket_select = mysqli_query($mysqli,
+    "SELECT * FROM tickets
+    LEFT JOIN clients ON client_id = ticket_client_id
+    WHERE ticket_id = $ticket_id");
+$row = mysqli_fetch_array($sql_ticket_select);
+$ticket_id = intval($row['ticket_id']);
+$ticket_number = intval($row['ticket_number']);
+$ticket_prefix = nullable_htmlentities($row['ticket_prefix']);
+$client_name = nullable_htmlentities($row['client_name']);
+$client_id = intval($row['client_id']);
+$ticket_subject = nullable_htmlentities($row['ticket_subject']);
+$ticket_details = nullable_htmlentities($row['ticket_details']);
+$ticket_priority = nullable_htmlentities($row['ticket_priority']);
+$ticket_billable = intval($row['ticket_billable']);
+$contact_id = intval($row['ticket_contact_id']);
+$asset_id = intval($row['ticket_asset_id']);
+$location_id = intval($row['ticket_location_id']);
+$vendor_id = intval($row['ticket_vendor_id']);
+$ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_number']);
+?>
+
 <div class="modal" id="editTicketModal<?php echo $ticket_id; ?>" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content bg-dark">
@@ -49,7 +74,7 @@
                             </div>
 
                             <div class="form-group">
-                                <textarea class="form-control tinymce" rows="8" name="details"><?php echo $ticket_details; ?></textarea>
+                                <textarea id=trumbowyg class="form-control" rows="8" name="details"><?php echo $ticket_details; ?></textarea>
                             </div>
 
                             <div class="form-group">

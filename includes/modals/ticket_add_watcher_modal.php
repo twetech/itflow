@@ -1,4 +1,20 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
+<?php
+$ticket_id = intval($_GET['ticket_id']);
+
+$sql_ticket_select = mysqli_query($mysqli,
+    "SELECT * FROM tickets
+    LEFT JOIN clients ON ticket_client_id = client_id
+    WHERE ticket_id = $ticket_id");
+$row = mysqli_fetch_array($sql_ticket_select);
+$ticket_id = intval($row['ticket_id']);
+$ticket_number = intval($row['ticket_number']);
+$ticket_prefix = nullable_htmlentities($row['ticket_prefix']);
+$client_id = intval($row['ticket_client_id']);
+$client_name = nullable_htmlentities($row['client_name']);
+?>
+
 <div class="modal" id="addTicketWatcherModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">

@@ -1,4 +1,20 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
+<?php
+$ticket_id = intval($_GET['ticket_id']);
+
+$sql_ticket_select = mysqli_query($mysqli,
+    "SELECT * FROM tickets
+    WHERE ticket_id = $ticket_id");
+$row = mysqli_fetch_array($sql_ticket_select);
+$ticket_id = intval($row['ticket_id']);
+$ticket_number = intval($row['ticket_number']);
+$ticket_prefix = nullable_htmlentities($row['ticket_prefix']);
+$ticket_scheduled_for = nullable_htmlentities($row['ticket_scheduled_for']);
+$ticket_onsite = intval($row['ticket_onsite']);
+?>
+
+
 <div class="modal" id="editTicketScheduleModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">

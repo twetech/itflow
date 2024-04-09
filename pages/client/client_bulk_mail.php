@@ -55,7 +55,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM contacts
                         </div>
 
                         <div class="form-group">
-                            <textarea class="form-control tinymce" name="body"
+                            <textarea id=trumbowyg class="form-control" name="body"
                                 placeholder="Type an email in here"></textarea>
                         </div>
 

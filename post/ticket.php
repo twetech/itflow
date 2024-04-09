@@ -89,6 +89,8 @@ if (isset($_POST['add_ticket_watcher'])) {
 
     validateTechRole();
 
+    global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id;
+
     $ticket_id = intval($_POST['ticket_id']);
     $client_id = intval($_POST['client_id']);
     $ticket_number = sanitizeInput($_POST['ticket_number']);
@@ -1339,12 +1341,14 @@ if (isset($_POST['set_billable_status'])) {
 
 if (isset($_POST['edit_ticket_schedule'])) {
 
+    global $config_base_url, $config_ticket_from_email, $config_ticket_from_name, $mysqli, $session_company_name, $session_user_id, $session_user_name, $session_user_email, $session_user_role, $session_ip, $session_user_agent;
+
     validateTechRole();
 
     $ticket_id = intval($_POST['ticket_id']);
     $onsite = intval($_POST['onsite']);
     $schedule = sanitizeInput($_POST['scheduled_date_time']);
-    $ticket_link = "ticket.php?ticket_id=$ticket_id";
+    $ticket_link = "pages/ticket.php?ticket_id=$ticket_id";
     $full_ticket_url = "https://$config_base_url/portal/ticket.php?ticket_id=$ticket_id";
     $ticket_link_html = "<a href=\"$full_ticket_url\">$ticket_link</a>";
 

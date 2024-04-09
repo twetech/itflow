@@ -32,7 +32,7 @@
                     </div>
                     <?php } else { ?>
                     <div class="form-group">
-                        <textarea class="form-control tinymce" name="content"><?php echo $document_content; ?></textarea>
+                        <textarea id=trumbowyg class="form-control" name="content"><?php echo $document_content; ?></textarea>
                     </div>
                     <?php } ?>
                     
