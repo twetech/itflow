@@ -1,4 +1,30 @@
+
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
+<?php
+$ticket_id = intval($_GET['ticket_id']);
+
+$sql_ticket_select = mysqli_query($mysqli,
+    "SELECT * FROM tickets
+    LEFT JOIN clients ON client_id = ticket_client_id
+    LEFT JOIN vendors ON vendor_id = ticket_vendor_id
+    WHERE ticket_id = $ticket_id");
+
+$row = mysqli_fetch_array($sql_ticket_select);
+$ticket_id = intval($row['ticket_id']);
+$ticket_number = intval($row['ticket_number']);
+$ticket_prefix = nullable_htmlentities($row['ticket_prefix']);
+$ticket_onsite = intval($row['ticket_onsite']);
+$ticket_vendor_id = intval($row['ticket_vendor_id']);
+$ticket_client_id = intval($row['ticket_client_id']);
+$client_id = intval($row['client_id']);
+$client_name = nullable_htmlentities($row['client_name']);
+$vendor_id = intval($row['vendor_id']);
+$vendor_name = nullable_htmlentities($row['vendor_name']);
+
+
+
+?>
 <div class="modal" id="editTicketVendorModal<?php echo $ticket_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -9,11 +35,10 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+                <div class="modal-body bg-white">
                 <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <input type="hidden" name="ticket_number" value="<?php echo "$ticket_prefix$ticket_number"; ?>">
-                <div class="modal-body bg-white">
-
                     <div class="form-group">
                         <label>Vendor</label>
                         <div class="input-group">

@@ -302,7 +302,7 @@ function generateReadablePassword($security_level)
 
 function createiCalStr($datetime, $title, $description, $location)
 {
-    require_once "plugins/zapcal/zapcallib.php";
+    require_once "/var/www/develop.twe.tech/includes/plugins/zapcal/zapcallib.php";
 
     // Create the iCal object
     $cal_event = new ZCiCal();
@@ -355,35 +355,6 @@ function createiCalStrCancel($originaliCalStr) {
 
     // Return the modified iCal string
     return $cal_event->export();
-}
-
-function getTicketStatusColor($status) {
-    switch ($status) {
-
-        case 'New':
-            return 'danger';
-
-        case 'Assigned':
-            return 'danger';
-
-        case 'Open':
-            return 'warning';
-
-        case 'On Hold':
-            return 'success';
-
-        case 'Closed':
-            return 'dark';
-
-        case 'Auto Close':
-            return 'dark';
-        
-        case 'In-Progress':
-            return 'primary';
-            
-        default:
-            return 'secondary';
-    }
 }
 
 function referWithAlert(

@@ -59,6 +59,9 @@ header("X-Frame-Options: DENY");
     <!-- Theme style -->
     <link rel="stylesheet" href="/includes/dist/css/theme.css">
 
+    <!-- Trumbowyg WYSIWYG -->
+    <link rel="stylesheet" href="/includes/dist/vendor/trumbowyg/ui/trumbowyg.min.css">
+
     <!-- Custom Style Sheet -->
     <link href="/includes/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" type="text/css">
     <link href="/includes/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">

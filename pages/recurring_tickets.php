@@ -14,7 +14,6 @@ $sql = mysqli_query(
     $mysqli,
     "SELECT SQL_CALC_FOUND_ROWS * FROM scheduled_tickets
     LEFT JOIN clients on scheduled_ticket_client_id = client_id
-    WHERE scheduled_tickets.scheduled_ticket_subject LIKE '%$q%'
     ORDER BY $sort $order"
 );
 
@@ -157,9 +156,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </form>
 
         </div>
-
-        <?php require_once 'pagination.php';
-        ?>
 
     </div>
 </div>

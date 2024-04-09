@@ -1,7 +1,24 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
-<div class="modal" id="addTicketProductModal<?php echo $ticket_id; ?>" tabindex="-1">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content bg-dark">
+
+<?php
+$ticket_id = intval($_GET['ticket_id']);
+
+$sql_ticket_select = mysqli_query($mysqli,
+    "SELECT * FROM tickets
+    LEFT JOIN clients ON client_id = ticket_client_id
+    WHERE ticket_id = $ticket_id");
+
+$row = mysqli_fetch_array($sql_ticket_select);
+$ticket_id = intval($row['ticket_id']);
+$ticket_number = intval($row['ticket_number']);
+$ticket_prefix = nullable_htmlentities($row['ticket_prefix']);
+$ticket_onsite = intval($row['ticket_onsite']);
+$ticket_client_id = intval($row['ticket_client_id']);
+$client_id = intval($row['client_id']);
+$client_name = nullable_htmlentities($row['client_name']);
+?>
+
+
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-clone mr-2"></i>Add Products</h5>
                 <button type="button" class="close text-white" data-dismiss="modal">
@@ -9,9 +26,9 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" id="current_ticket_id" name="ticket_id" value="<?php echo $ticket_id; ?>">
                 <div class="modal-body bg-white">
                     <div class="form-row">
+                    <input type="hidden" id="current_ticket_id" name="ticket_id" value="<?php echo $ticket_id; ?>">
                         <div class="form-group">
                             <label for="product_id">Product</label>
                             <select class="form-control select2" id='select2' id="product_id" name="product_id" required>
@@ -39,6 +56,4 @@
                     <!-- Merge button starts disabled. Is enabled by the merge_into_number_get_details Javascript function-->
                 </div>
             </form>
-        </div>
-    </div>
-</div>
+

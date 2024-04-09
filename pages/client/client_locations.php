@@ -13,9 +13,7 @@ $sql = mysqli_query(
     $mysqli,
     "SELECT SQL_CALC_FOUND_ROWS * FROM locations 
     WHERE location_client_id = $client_id
-    AND location_$archive_query
-    AND (location_name LIKE '%$q%' OR location_description LIKE '%$q%' OR location_address LIKE '%$q%' OR location_phone LIKE '%$phone_query%') 
-    ORDER BY location_primary DESC, $sort $order"
+    "
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -27,7 +25,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Locations</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_location_add_modal.php?client_id=<?php echo $client_id; ?>"
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_location_add_modal.php?client_id=<?php echo $client_id; ?>">
                     <i class="fas fa-plus mr-2"></i>New Location
                 </button>
                 <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>

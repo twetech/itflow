@@ -191,8 +191,7 @@ function updateTicket(
     $ticket_data = readTicket(['ticket_id' => $ticket_id])[$ticket_id];    
 
     //if in parameters, set the new value, else keep the old value
-    $prefix = isset($parameters['ticket_prefix']) ? sanitizeInput($parameters['ticket_prefix']) : $ticket_data['ticket_prefix'];
-    $number = isset($parameters['ticket_number']) ? intval($parameters['ticket_number']) : $ticket_data['ticket_number'];
+
     $subject = isset($parameters['ticket_subject']) ? sanitizeInput($parameters['ticket_subject']) : $ticket_data['ticket_subject'];
     $priority = isset($parameters['ticket_priority']) ? sanitizeInput($parameters['ticket_priority']) : $ticket_data['ticket_priority'];
     $details = isset($parameters['ticket_details']) ? mysqli_real_escape_string($mysqli, $parameters['ticket_details']) : $ticket_data['ticket_details'];
@@ -206,7 +205,7 @@ function updateTicket(
     $source = isset($parameters['ticket_source']) ? sanitizeInput($parameters['ticket_source']) : $ticket_data['ticket_source'];
     $category = isset($parameters['ticket_category']) ? sanitizeInput($parameters['ticket_category']) : $ticket_data['ticket_category'];
     $status = isset($parameters['ticket_status']) ? sanitizeInput($parameters['ticket_status']) : $ticket_data['ticket_status'];
-    $schedule = isset($parameters['ticket_schedule']) ? sanitizeInput($parameters['ticket_schedule']) : $ticket_data['ticket_schedule']??'NULL';
+    $schedule = isset($parameters['ticket_schedule']) ? sanitizeInput($parameters['ticket_schedule']) : $ticket_data['ticket_schedule'] ?? "NULL";
     $onsite = isset($parameters['ticket_onsite']) ? sanitizeInput($parameters['ticket_onsite']) : $ticket_data['ticket_onsite'];
     $feedback = isset($parameters['ticket_feedback']) ? mysqli_real_escape_string($mysqli, $parameters['ticket_feedback']) : $ticket_data['ticket_feedback'];
     $assigned_to = isset($parameters['ticket_assigned_to']) ? intval($parameters['ticket_assigned_to']) : $ticket_data['ticket_assigned_to'];
@@ -216,8 +215,7 @@ function updateTicket(
 
 
     $update_sql = "UPDATE tickets SET
-    ticket_prefix = '$prefix',
-    ticket_number = $number,
+
     ticket_subject = '$subject',
     ticket_priority = '$priority',
     ticket_details = '$details',
@@ -244,7 +242,28 @@ function updateTicket(
     $ticket_reply = "Ticket updated by $session_name, changes: ";
     foreach ($parameters as $key => $value) {
         if ($key !== 'ticket_id') {
-            $key = ucupper(str_replace('ticket_', '', $key));
+            //remove ticket_ from key
+            $key = ucfirst(str_replace('ticket_', '', $key));
+            if ($key === 'Contact') {
+                $sql = mysqli_query($mysqli, "SELECT contact_name FROM contacts WHERE contact_id = $value");
+                $row = mysqli_fetch_array($sql);
+                $value = sanitizeInput($row['contact_name']);
+            }
+            if ($key === 'Client') {
+                $sql = mysqli_query($mysqli, "SELECT client_name FROM clients WHERE client_id = $value");
+                $row = mysqli_fetch_array($sql);
+                $value = sanitizeInput($row['client_name']);
+            }
+            if ($key === 'Assigned_to') {
+                $sql = mysqli_query($mysqli, "SELECT user_name FROM users WHERE user_id = $value");
+                $row = mysqli_fetch_array($sql);
+                $value = sanitizeInput($row['user_name']);
+            }
+            if ($key === 'Invoice') {
+                $sql = mysqli_query($mysqli, "SELECT invoice_number FROM invoices WHERE invoice_id = $value");
+                $row = mysqli_fetch_array($sql);
+                $value = sanitizeInput($row['invoice_number']);
+            }
             $ticket_reply .= "$key: $value, ";
         }
     }
@@ -307,4 +326,33 @@ function deleteTicket(
     }
 
     return $return_data;
+}
+
+function getTicketStatusColor($status) {
+    switch ($status) {
+
+        case 'New':
+            return 'danger';
+
+        case 'Assigned':
+            return 'danger';
+
+        case 'Open':
+            return 'warning';
+
+        case 'On Hold':
+            return 'success';
+
+        case 'Closed':
+            return 'dark';
+
+        case 'Auto Close':
+            return 'dark';
+        
+        case 'In-Progress':
+            return 'primary';
+            
+        default:
+            return 'secondary';
+    }
 }
