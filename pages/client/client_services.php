@@ -4,7 +4,7 @@
 $sort = "service_name";
 $order = "ASC";
 
-require_once "/var/www/develop.twe.tech/includes/inc_all_client.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 //Rebuild URL

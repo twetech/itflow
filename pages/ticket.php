@@ -361,7 +361,23 @@ if (isset($_GET['ticket_id'])) {
                                         </td>
                                         <?php if ($ticket_status != "Closed") { ?>
                                         <td>
-
+                                            <!-- Dropdown for edit and archive -->
+                                            <div class="dropdown dropleft text-center d-print-none">
+                                                <button class="btn btn-light btn-sm" type="button" id="dropdownMenuButton"
+                                                    aria-atomic="" data-toggle="dropdown">
+                                                    <i class="fas fa-fw fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a href="#" class="dropdown-item" data-toggle="modal"
+                                                        data-target="#editTicketReplyModal<?= $ticket_reply_id; ?>">
+                                                        <i class="fas fa-fw fa-edit mr-2"></i>Edit
+                                                    </a>
+                                                    <a href="#" class="dropdown-item" data-toggle="modal"
+                                                        data-target="#archiveTicketReplyModal<?= $ticket_reply_id; ?>">
+                                                        <i class="fas fa-fw fa-archive mr-2"></i>Archive
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </td>
                                         <?php } ?>
 

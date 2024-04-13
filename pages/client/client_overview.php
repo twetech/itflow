@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/inc_all_client.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 $sql_recent_activities = mysqli_query(
