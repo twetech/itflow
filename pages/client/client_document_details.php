@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/inc_all_client.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 //Initialize the HTML Purifier to prevent XSS

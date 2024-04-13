@@ -1,77 +1,51 @@
-<?php
+<!doctype html>
 
-    // Calculate Execution time start
-    // uncomment for test
-    // $time_start = microtime(true);
+<html lang="en" class="light-style layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="/includes/assets/" data-template="horizontal-menu-template">
 
-header("X-Frame-Options: DENY");
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="robots" content="noindex">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title><?php echo nullable_htmlentities($session_company_name); ?> | <?php echo nullable_htmlentities($config_app_name); ?></title>
+    <title>ITFlow-NG</title>
 
-        <!-- jQuery -->
-        <script src="/includes/plugins/jquery/jquery.min.js"></script>
-    <script src="/includes/plugins/toastr/toastr.min.js"></script>
-    
-        <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css"> 
+    <meta name="description" content="" />
 
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css"> 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/includes/assets/img/favicon/favicon.ico" />
 
-    <!-- DataTables -->
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
-    <!-- DataTables Responsive -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.bootstrap4.css">
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/3.0.0/js/responsive.bootstrap4.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap4.js"></script>
+    <!-- Icons -->
+    <link rel="stylesheet" href="/includes/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/fonts/flag-icons.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/includes/assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="/includes/assets/css/demo.css" />
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/apex-charts/apex-charts.css" />
 
-    <!-- 
-    Favicon
-    If Fav Icon exists else use the default one 
-    -->
-    <?php if(file_exists('/var/www/develop.twe.tech/uploads/favicon.ico')) { ?>
-        <link rel="icon" type="image/x-icon" href="/uploads/favicon.ico">
-    <?php } else { ?>
-        <link rel="icon" type="image/x-icon" href="/includes/dist/img/favicon.ico">
-    <?php } ?>
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="/includes/plugins/fontawesome-free/css/all.min.css">
+    <!-- Page CSS -->
 
-    <!-- Theme style -->
-    <link rel="stylesheet" href="/includes/dist/css/theme.css">
-
-    <!-- Trumbowyg WYSIWYG -->
-    <link rel="stylesheet" href="/includes/dist/vendor/trumbowyg/ui/trumbowyg.min.css">
-
-    <!-- Custom Style Sheet -->
-    <link href="/includes/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" type="text/css">
-    <link href="/includes/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
-    <link href="/includes/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet" type="text/css">
-    <link href='/includes/plugins/daterangepicker/daterangepicker.css' rel='stylesheet' />
-    <link href="/includes/plugins/toastr/toastr.min.css" rel="stylesheet">
-    <link href="/includes/dist/vendor/datatables/datatables.css" rel="stylesheet">
-
-
-
+    <!-- Helpers -->
+    <script src="/includes/assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="/includes/assets/vendor/js/template-customizer.js"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="/includes/assets/js/config.js"></script>
 </head>
-<body>
 
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+        <div class="layout-container">
+            
