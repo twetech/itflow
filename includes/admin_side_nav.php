@@ -1,6 +1,6 @@
 <!-- Access -->
 <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "admin_users.php" || basename($_SERVER["PHP_SELF"]) == "api_keys.php") { echo "u-sidebar-nav--opened"; } ?>">
-    <a class="u-sidebar-nav-menu__link" href="#!" data-target='#accessSideNav'>
+    <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#accessSideNav'>
         <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
         <span class="u-sidebar-nav-menu__item-title">Access</span>
         <span class="u-sidebar-nav-menu__item-arrow">
@@ -33,7 +33,7 @@
 
 <!-- Tags & Categories --> 
 <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "admin_tags.php" || basename($_SERVER["PHP_SELF"]) == "admin_categories.php" || basename($_SERVER["PHP_SELF"]) == "admin_taxes.php" || basename($_SERVER["PHP_SELF"]) == "admin_account_types.php" || basename($_SERVER["PHP_SELF"]) == "admin_inventory_locations.php") { echo "u-sidebar-nav--opened"; } ?>">
-    <a class="u-sidebar-nav-menu__link" href="#!" data-target='#tagsSideNav'>
+    <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#tagsSideNav'>
         <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
         <span class="u-sidebar-nav-menu__item-title">Tags & Categories</span>
         <span class="u-sidebar-nav-menu__item-arrow">
@@ -84,7 +84,7 @@
 
 <!-- Templates -->
 <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "admin_vendor_templates.php" || basename($_SERVER["PHP_SELF"]) == "admin_software_templates.php" || basename($_SERVER["PHP_SELF"]) == "admin_document_templates.php") { echo "u-sidebar-nav--opened"; } ?>">
-    <a class="u-sidebar-nav-menu__link" href="#!" data-target='#templatesSideNav'>
+    <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#templatesSideNav'>
         <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
         <span class="u-sidebar-nav-menu__item-title">Templates</span>
         <span class="u-sidebar-nav-menu__item-arrow">
@@ -123,7 +123,7 @@
 
 <!-- Maintenance -->
 <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "admin_mail_queue.php" || basename($_SERVER["PHP_SELF"]) == "admin_logs.php" || basename($_SERVER["PHP_SELF"]) == "admin_backup.php" || basename($_SERVER["PHP_SELF"]) == "admin_debug.php" || basename($_SERVER["PHP_SELF"]) == "admin_update.php" || basename($_SERVER["PHP_SELF"]) == "admin_bulk_mail.php") { echo "u-sidebar-nav--opened"; } ?>">
-    <a class="u-sidebar-nav-menu__link" href="#!" data-target='#maintenanceSideNav'>
+    <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#maintenanceSideNav'>
         <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
         <span class="u-sidebar-nav-menu__item-title">Maintenance</span>
         <span class="u-sidebar-nav-menu__item-arrow">
@@ -192,7 +192,7 @@ if ($database == "itflow"){
 
 <!-- Tenants -->
 <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "admin_tenants.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_users.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_api_keys.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_tags.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_categories.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_taxes.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_account_types.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_inventory_locations.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_vendor_templates.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_software_templates.php" || basename($_SERVER["PHP_SELF"]) == "admin_tenant_document_templates.php") { echo "u-sidebar-nav--opened"; } ?>">
-    <a class="u-sidebar-nav-menu__link" href="#!" data-target='#tenantsSideNav'>
+    <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#tenantsSideNav'>
         <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
         <span class="u-sidebar-nav-menu__item-title">Tenants</span>
         <span class="u-sidebar-nav-menu__item-arrow">

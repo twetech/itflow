@@ -29,7 +29,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-life-ring mr-2"></i>Editing ticket: <strong><?php echo "$ticket_prefix$ticket_number"; ?></strong> - <?php echo $client_name; ?></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -41,19 +41,19 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="pill" href="#pills-details<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
+                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-contacts<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Contact</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-contacts<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-assets<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-desktop mr-2"></i>Asset</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-assets<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-desktop mr-2"></i>Asset</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-locations<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Location</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-locations<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Location</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-vendors<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-building mr-2"></i>Vendor</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-vendors<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-building mr-2"></i>Vendor</a>
                         </li>
                     </ul>
 
@@ -253,8 +253,8 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_ticket" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" name="edit_ticket" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
 
             </form>

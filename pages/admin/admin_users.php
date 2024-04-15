@@ -27,15 +27,15 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-users mr-2"></i>Users</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="admin_user_add_modal.php">
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="admin_user_add_modal.php">
                     <i class="fas fa-fw fa-user-plus mr-2"></i>New User
                 </button>
-                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <div class="dropdown-menu">
-                    <!--<a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#userInviteModal"><i class="fas fa-paper-plane mr-2"></i>Invite User</a>-->
+                    <!--<a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#userInviteModal"><i class="fas fa-paper-plane mr-2"></i>Invite User</a>-->
                     <?php if ($num_rows[0] > 1) { ?>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item text-danger loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="admin_user_all_reset_password_modal.php"></i>IR</a>
+                        <a href="#" class="dropdown-item text-danger loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="admin_user_all_reset_password_modal.php"></i>IR</a>
                     <?php } ?>
                 </div>
             </div>
@@ -54,14 +54,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </div>
                 <div class="col-md-8">
                     <div class="float-right">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exportUserModal"><i class="fa fa-fw fa-download mr-2"></i>Export</button>
+                        <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#exportUserModal"><i class="fa fa-fw fa-download mr-2"></i>Export</button>
                     </div>
                 </div>
             </div>
         </form>
         <hr>
-        <div class="table-responsive-sm">
-             <table id=responsive class="responsive table table-hover">
+        <div class="card-datatable table-responsive pt-0">               
+<table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
                     <th class="text-center"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_name&order=<?php echo $disp; ?>">Name</a></th>
@@ -130,16 +130,20 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     ?>
                     <tr>
                         <td class="text-center">
-                            <a class="text-dark" href="#" <?php if ($user_id !== $session_user_id) {   // Prevent modifying self ?> data-toggle="modal" data-target="#editUserModal<?php echo $user_id; ?>" <?php } ?>>
-                                <?php if (!empty($user_avatar)) { ?>
-                                    <img class="img-fluid rounded-circle" src="<?php echo "/uploads/users/$user_id/$user_avatar"; ?>">
-                                <?php } else { ?>
-                                    <span class="fa-stack fa-2x">
-                                        <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-                                        <span class="fa fa-stack-1x text-white"><?php echo $user_initials; ?></span>
-                                    </span>
-                                    <br>
-                                <?php } ?>
+                            <a class="text-dark" href="#" <?php if ($user_id !== $session_user_id) {   // Prevent modifying self ?> data-bs-toggle="modal" data-bs-target="#editUserModal<?php echo $user_id; ?>" <?php } ?>>
+                                <div class="avatar-wrapper">
+                                    <div class="avatar avatar-sm me-3">
+                                        <?php if (!empty($user_avatar)) { ?>
+                                            <img class="img-fluid rounded-circle" src="<?php echo "/uploads/users/$user_id/$user_avatar"; ?>">
+                                        <?php } else { ?>
+                                            <span class="fa-stack fa-2x">
+                                                <i class="fa fa-circle fa-stack-2x text-secondary"></i>
+                                                <span class="fa fa-stack-1x text-white"><?php echo $user_initials; ?></span>
+                                            </span>
+                                            <br>
+                                        <?php } ?>
+                                    </div>
+                                </div>
 
                                 <div class="text-secondary"><?php echo $user_name; ?></div>
                             </a>
@@ -152,11 +156,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <td>
                             <?php if ($user_id !== $session_user_id) {   // Prevent modifying self ?>
                             <div class="dropdown dropleft text-center">
-                                <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editUserModal<?php echo $user_id; ?>">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal<?php echo $user_id; ?>">
                                         <i class="fas fa-fw fa-user-edit mr-2"></i>Edit
                                     </a>
                                     <?php if ($remember_token_count > 0) { ?>
@@ -173,7 +177,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         </a>
                                     <?php } ?>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="#" data-toggle="modal" data-target="#archiveUserModal<?php echo $user_id; ?>">
+                                    <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#archiveUserModal<?php echo $user_id; ?>">
                                         <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                     </a>
                                 </div>

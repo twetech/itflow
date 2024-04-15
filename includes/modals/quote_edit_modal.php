@@ -26,7 +26,7 @@ $quote_category_id = intval($row['quote_category_id']);
                 <h5 class="modal-title text-white"><i class="fas fa-fw fa-comment-dollar mr-2"></i>Editing quote: <span class="text-bold">
                     <?php echo "$quote_prefix$quote_number"; ?></span> - <span class="text" id="editQuoteHeaderClient"><?php echo $client_name; ?></span></h5>
                 </span> - <span class="text" id="editQuoteHeaderClient"></span></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -109,7 +109,7 @@ $quote_category_id = intval($row['quote_category_id']);
                 </div>
                 <div class="modal-footer bg-white">
                     <button type="submit" name="edit_quote" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>
         </div>

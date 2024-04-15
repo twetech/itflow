@@ -1,6 +1,9 @@
 <?php
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
+//TODO Completed and invoicing to top
+
+
 // Initialize the HTML Purifier to prevent XSS
 require "/var/www/develop.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
@@ -241,19 +244,6 @@ if (isset($_GET['ticket_id'])) {
         }
         
 ?>
-
-<ol class="breadcrumb d-print-none">
-    <li class="breadcrumb-item">
-        <a href="tickets.php">Tickets</a>
-    </li>
-    <li class="breadcrumb-item">
-        <a href="client_tickets.php?client_id=<?= $client_id; ?>"><?= $client_name; ?></a>
-    </li>
-    <li class="breadcrumb-item active">
-        <?= $session_mobile ? "<a href='#'>Ticket $ticket_prefix$ticket_number Details</a>" : "Ticket $ticket_prefix$ticket_number Details"; ?>
-    </li>
-</ol>
-
 <div class="row">
     <!-- Ticket Responses -->
     <div class="col-9">
@@ -364,16 +354,16 @@ if (isset($_GET['ticket_id'])) {
                                             <!-- Dropdown for edit and archive -->
                                             <div class="dropdown dropleft text-center d-print-none">
                                                 <button class="btn btn-light btn-sm" type="button" id="dropdownMenuButton"
-                                                    aria-atomic="" data-toggle="dropdown">
+                                                    aria-atomic="" data-bs-toggle="dropdown">
                                                     <i class="fas fa-fw fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a href="#" class="dropdown-item" data-toggle="modal"
-                                                        data-target="#editTicketReplyModal<?= $ticket_reply_id; ?>">
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#editTicketReplyModal<?= $ticket_reply_id; ?>">
                                                         <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                                     </a>
-                                                    <a href="#" class="dropdown-item" data-toggle="modal"
-                                                        data-target="#archiveTicketReplyModal<?= $ticket_reply_id; ?>">
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#archiveTicketReplyModal<?= $ticket_reply_id; ?>">
                                                         <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                     </a>
                                                 </div>
@@ -524,17 +514,17 @@ if (isset($_GET['ticket_id'])) {
                     </div>
                     <div class="col">
                         <div class="dropdown dropleft text-center d-print-none">
-                            <button class="btn btn-light btn-sm float-right" type="button" id="dropdownMenuButton" aria-atomic=""data-toggle="dropdown">
+                            <button class="btn btn-light btn-sm float-right" type="button" id="dropdownMenuButton" aria-atomic=""data-bs-toggle="dropdown">
                                 <i class="fas fa-fw fa-ellipsis-v"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a href="#"  class="dropdown-item"data-toggle="modal" data-target="#editTicketModal<?= $ticket_id; ?>">
+                                <a href="#"  class="dropdown-item"data-bs-toggle="modal" data-bs-target="#editTicketModal<?= $ticket_id; ?>">
                                     <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                 </a>
-                                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#mergeTicketModal<?= $ticket_id; ?>">
+                                <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#mergeTicketModal<?= $ticket_id; ?>">
                                     <i class="fas fa-fw fa-clone mr-2"></i>Merge
                                 </a>
-                                <a href="#" class="dropdown-item" data-toggle="modal" id="clientChangeTicketModalLoad" data-target="#clientChangeTicketModal">
+                                <a href="#" class="dropdown-item" data-bs-toggle="modal" id="clientChangeTicketModalLoad" data-bs-target="#clientChangeTicketModal">
                                     <i class="fas fa-fw fa-people-carry mr-2"></i>Change Client
                                 </a>
                                 <?php if ($session_user_role == 3) { ?>
@@ -568,13 +558,39 @@ if (isset($_GET['ticket_id'])) {
                     </div>
                 </div>
                 <!-- End Client card -->
+                <!-- Ticket Actions -->
+                <?php
+                    if ($ticket_status != "Closed") {
+                        $close_ticket_button = true;
+                    }
+                    if ($ticket_billable) {
+                        $invoice_ticket_button = true;
+                    }
+
+                    if ($close_ticket_button || $invoice_ticket_button) {
+                    ?>
+                    <div class="card card-body card-outline card-dark mb-2 d-print-none">
+                        <?php if ($invoice_ticket_button) { ?>
+                        <a href="#" class="btn btn-info btn-block" data-toggle="modal" data-target="#addInvoiceFromTicketModal">
+                            <i class="fas fa-fw fa-file-invoice mr-2"></i>Invoice Ticket
+                        </a>
+                        <?php } ?>
+                        <?php if ($close_ticket_button) { ?>
+                        <a href="post.php?close_ticket=1865" class="btn btn-secondary btn-block confirm-link" id="ticket_close">
+                            <i class="fas fa-fw fa-gavel mr-2"></i>Close Ticket
+                        </a>
+                        <?php } ?>
+                    </div>
+                    <?php } ?>
+
+                <!-- End Ticket Actions -->
                 <!-- Contact card -->
                 <div class="card card-body card-outline mb-3">
                     <h5 class="text-secondary">Contact</h5>
                     <?php if (!empty($contact_id)) { ?>
                     <div>
-                        <i class="fa fa-fw fa-user text-secondary ml-1 mr-2"></i><a class="loadModalContentBtn" href="#" data-toggle="modal"
-                            data-target="#dynamicModal" data-modal-file="ticket_edit_contact_modal.php?ticket_id=<?= $ticket_id; ?>"><strong><?= $contact_name; ?></strong>
+                        <i class="fa fa-fw fa-user text-secondary ml-1 mr-2"></i><a class="loadModalContentBtn" href="#" data-bs-toggle="modal"
+                            data-bs-target="#dynamicModal" data-modal-file="ticket_edit_contact_modal.php?ticket_id=<?= $ticket_id; ?>"><strong><?= $contact_name; ?></strong>
                         </a>
                     </div>
                     <?php
@@ -625,7 +641,7 @@ if (isset($_GET['ticket_id'])) {
                     <?php } ?>
                     <?php } else { ?>
                     <div class="d-print-none">
-                        <a class="loadModalContentBtn" href="#" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_contact_modal.php?ticket_id=<?php echo $ticket_id; ?>"><i
+                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_contact_modal.php?ticket_id=<?php echo $ticket_id; ?>"><i
                                 class="fa fa-fw fa-plus mr-2"></i>Add a Contact</a>
                     </div>
                     <?php } ?>
@@ -679,7 +695,7 @@ if (isset($_GET['ticket_id'])) {
 
                         <?php if ($ticket_status !== "Closed") { ?>
                         <div class="d-print-none">
-                            <a class="loadModalContentBtn" href="#" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_add_watcher_modal.php?ticket_id=<?php echo $ticket_id; ?>"
+                            <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_add_watcher_modal.php?ticket_id=<?php echo $ticket_id; ?>"
                             ><i
                                     class="fa fa-fw fa-plus mr-2"></i>Add a Watcher</a>
                         </div>
@@ -709,8 +725,8 @@ if (isset($_GET['ticket_id'])) {
                 <div class="card card-body card-outline mb-3">
                     <h5 class="text-secondary">Details</h5>
                     <div>
-                        <i class="fa fa-fw fa-thermometer-half text-secondary ml-1 mr-2"></i><a href="#" data-toggle="modal"
-                            data-target="#editTicketPriorityModal<?= $ticket_id; ?>"><?= $ticket_priority_display; ?></a>
+                        <i class="fa fa-fw fa-thermometer-half text-secondary ml-1 mr-2"></i><a href="#" data-bs-toggle="modal"
+                            data-bs-target="#editTicketPriorityModal<?= $ticket_id; ?>"><?= $ticket_priority_display; ?></a>
                     </div>
                     <div class="mt-1">
                         <i class="fa fa-fw fa-calendar text-secondary ml-1 mr-2"></i>Created:
@@ -744,7 +760,7 @@ if (isset($_GET['ticket_id'])) {
                             if ($ticket_status !== "Closed") { ?>
                     <div class="mt-1">
                         <i class="fa fa-fw fa-calendar-check text-secondary ml-1 mr-2"></i>Scheduled: <a class="loadModalContentBtn" href="#"
-                            data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_schedule_modal.php?ticket_id=<?php echo $ticket_id; ?>">
+                            data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_schedule_modal.php?ticket_id=<?php echo $ticket_id; ?>">
                             <?= $ticket_scheduled_wording ?> </a>
                     </div>
                     <?php }
@@ -761,12 +777,12 @@ if (isset($_GET['ticket_id'])) {
                             if ($config_module_enable_accounting) { ?>
                     <div class="mt-1">
                         <i class="fa fa-fw fa-dollar-sign text-secondary ml-1 mr-2"></i>Billable:
-                        <a class="loadModalContentBtn" href="#" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_billable_modal.php?ticket_id=<?php echo $ticket_id; ?>">
+                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_billable_modal.php?ticket_id=<?php echo $ticket_id; ?>">
                             <?php
                                         if ($ticket_billable == 1) {
-                                            echo "<span class='badge badge-pill badge-success p-2'>$</span>";
+                                            echo "<span class='badge rounded-pill bg-label-success p-2'>$</span>";
                                         } else {
-                                            echo "<span class='badge badge-pill badge-secondary p-2'>X</span>";
+                                            echo "<span class='badge rounded-pill bg-label-secondary p-2'>X</span>";
                                         }
                                         ?>
                         </a>
@@ -781,7 +797,7 @@ if (isset($_GET['ticket_id'])) {
                     <?php if ($asset_id == 0) { ?>
 
                     <div class="d-print-none">
-                        <a class="loadModalContentBtn" href="#" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_asset_modal.php?ticket_id=<?php echo $ticket_id; ?>"><i
+                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_asset_modal.php?ticket_id=<?php echo $ticket_id; ?>"><i
                                 class="fa fa-fw fa-plus mr-2"></i>Add an Asset</a>
                     </div>
 
@@ -834,8 +850,8 @@ if (isset($_GET['ticket_id'])) {
 
                             if ($ticket_asset_count > 0) { ?>
 
-                    <button class="btn btn-block btn-light mt-2 d-print-none" data-toggle="modal"
-                        data-target="#assetTicketsModal">Service History (<?= $ticket_asset_count; ?>)</button>
+                    <button class="btn btn-block btn-light mt-2 d-print-none" data-bs-toggle="modal"
+                        data-bs-target="#assetTicketsModal">Service History (<?= $ticket_asset_count; ?>)</button>
 
                     <div class="modal" id="assetTicketsModal" tabindex="-1">
                         <div class="modal-dialog modal-lg">
@@ -843,7 +859,7 @@ if (isset($_GET['ticket_id'])) {
                                 <div class="modal-header">
                                     <h5 class="modal-title"><i class="fa fa-fw fa-desktop"></i> <?= $asset_name; ?>
                                     </h5>
-                                    <button type="button" class="close text-white" data-dismiss="modal">
+                                    <button type="button" class="close text-white" data-bs-dismiss="modal">
                                         <span>&times;</span>
                                     </button>
                                 </div>
@@ -871,7 +887,7 @@ if (isset($_GET['ticket_id'])) {
                                                     ?>
                                 </div>
                                 <div class="modal-footer bg-white">
-                                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                                 </div>
 
                             </div>
@@ -891,7 +907,7 @@ if (isset($_GET['ticket_id'])) {
                     <h5 class="text-secondary">Vendor</h5>
                     <?php if (empty($vendor_id)) { ?>
                     <div class="d-print-none">
-                        <a class="loadModalContentBtn" href="#" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_vendor_modal.php?ticket_id=<?php echo $ticket_id; ?>"><i
+                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_vendor_modal.php?ticket_id=<?php echo $ticket_id; ?>"><i
                                 class="fa fa-fw fa-plus mr-2"></i>Add a Vendor</a>
                     </div>
                     <?php } else { ?>
@@ -941,7 +957,7 @@ if (isset($_GET['ticket_id'])) {
                     <div class="card card-body card-outline mb-3">
                         <h5 class="text-secondary">Products</h5>
                         <div class="d-print-none">
-                            <a class="loadModalContentBtn" href="#" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_add_product_modal.php?ticket_id=<?php echo $ticket_id; ?>"><i
+                            <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_add_product_modal.php?ticket_id=<?php echo $ticket_id; ?>"><i
                                     class="fa fa-fw fa-plus mr-2"></i>Manage Products</a>
                         </div>
                         <?= $ticket_products_display; ?>
@@ -950,7 +966,7 @@ if (isset($_GET['ticket_id'])) {
             </div>
         </div>
     </div>
-
+</div>
 <?php
 
 

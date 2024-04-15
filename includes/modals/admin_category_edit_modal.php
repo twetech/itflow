@@ -1,11 +1,19 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
+<?php
+$category_id = intval($_GET['category_id']);
+$sql_category = mysqli_query($mysqli, "SELECT * FROM categories WHERE category_id = $category_id");
+$row = mysqli_fetch_array($sql_category);
+$category_name = nullable_htmlentities($row['category_name']);
+$category_color = nullable_htmlentities($row['category_color']);
+?>
+
 <div class="modal" id="editCategoryModal<?php echo $category_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-list-ul mr-2"></i>Editing category: <strong><?php echo $category_name; ?></strong></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -36,8 +44,8 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_category" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" name="edit_category" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>
         </div>

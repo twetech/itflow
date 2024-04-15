@@ -56,16 +56,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <div class="card-tools">
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="client_document_add_modal.php?client_id=<?php echo $client_id; ?>">
+                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_document_add_modal.php?client_id=<?php echo $client_id; ?>">
                         <i class="fas fa-plus mr-2"></i>Create
                     </button>
-                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#createFolderModal">
+                        <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#createFolderModal">
                             <i class="fa fa-fw fa-folder-plus mr-2"></i>Folder
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#addDocumentFromTemplateModal">From Template</a>
+                        <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#addDocumentFromTemplateModal">From Template</a>
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT('document_id') AS num FROM documents WHERE document_folder_id = 0 AND document_client_id = $client_id AND document_archived_at IS NULL"));
                                     $num_documents = intval($row['num']);
                                     ?>
-                                    <a class="nav-link <?php if ($get_folder_id == 0) { echo "active"; } ?>" href="?client_id=<?php echo $client_id; ?>&folder_id=0">/ <?php if ($num_documents > 0) { echo "<span class='badge badge-pill badge-dark float-right mt-1'>$num_documents</span>"; } ?></a>
+                                    <a class="nav-link <?php if ($get_folder_id == 0) { echo "active"; } ?>" href="?client_id=<?php echo $client_id; ?>&folder_id=0">/ <?php if ($num_documents > 0) { echo "<span class='badge rounded-pill bg-label-dark float-right mt-1'>$num_documents</span>"; } ?></a>
                                 </div>
                                 <div class="col-2">
                                 </div>
@@ -115,16 +115,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                 <i class="fas fa-fw fa-folder"></i>
                                             <?php } ?>
 
-                                            <?php echo $folder_name; ?> <?php if ($num_documents > 0) { echo "<span class='badge badge-pill badge-dark float-right mt-1'>$num_documents</span>"; } ?>
+                                            <?php echo $folder_name; ?> <?php if ($num_documents > 0) { echo "<span class='badge rounded-pill bg-label-dark float-right mt-1'>$num_documents</span>"; } ?>
                                         </a>
                                     </div>
                                     <div class="col-2">
                                         <div class="dropdown">
-                                            <button class="btn btn-sm" type="button" data-toggle="dropdown">
+                                            <button class="btn btn-sm" type="button" data-bs-toggle="dropdown">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#renameFolderModal<?php echo $folder_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#renameFolderModal<?php echo $folder_id; ?>">
                                                     <i class="fas fa-fw fa-edit mr-2"></i>Rename
                                                 </a>
                                                 <?php if ($session_user_role == 3 && $num_documents == 0) { ?>
@@ -166,11 +166,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <div class="col-md-8">
                                 <div class="btn-group float-right">
                                     <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                                        <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                             <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkMoveDocumentModal">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#bulkMoveDocumentModal">
                                                 <i class="fas fa-fw fa-exchange-alt mr-2"></i>Move
                                             </a>
                                         </div>
@@ -184,8 +184,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     
                     <form id="bulkActions" action="/post.php" method="post">
 
-                        <div class="table-responsive-sm">
-                            <table id=responsive class="responsive table table-striped table-sm table-borderless table-hover">
+                        <div class="card-datatable table-responsive pt-0">                            <table id=responsive class="responsive table table-striped table-sm table-borderless table-hover">
                                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                                 <tr>
                                     <td class="bg-light">
@@ -239,19 +238,19 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <td><?php echo $document_updated_at; ?></td>
                                         <td>
                                             <div class="dropdown dropleft text-center">
-                                                <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                                <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'Document', $document_id"; ?>)">
+                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'Document', $document_id"; ?>)">
                                                         <i class="fas fa-fw fa-share mr-2"></i>Share
                                                     </a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#renameDocumentModal<?php echo $document_id; ?>">
+                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#renameDocumentModal<?php echo $document_id; ?>">
                                                         <i class="fas fa-fw fa-pencil-alt mr-2"></i>Rename
                                                     </a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#moveDocumentModal<?php echo $document_id; ?>">
+                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#moveDocumentModal<?php echo $document_id; ?>">
                                                         <i class="fas fa-fw fa-exchange-alt mr-2"></i>Move
                                                     </a>
                                                     <?php if ($session_user_role == 3) { ?>

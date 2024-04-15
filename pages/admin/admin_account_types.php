@@ -42,7 +42,7 @@ $num_rows = mysqli_num_rows($sql);
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-money-bill-wave mr-2"></i>Finance Account Types</h3>
         <div class="card-tools">
-            <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addAccountTypeModal">
+            <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addAccountTypeModal">
                 <i class="fas fa-plus mr-2"></i>Create Account Type
             </button>
         </div>
@@ -93,7 +93,8 @@ $num_rows = mysqli_num_rows($sql);
             </div>
         </form>
         <form action="/post.php" method="post" autocomplete="off">
-             <table id=responsive class="responsive table table-hover">
+               
+<table class="datatables-basic table border-top">
                 <thead>
                     <tr>
                         <th>Account Type Parent</th>
@@ -119,8 +120,8 @@ $num_rows = mysqli_num_rows($sql);
                         $account_type_description = nullable_htmlentities($row['account_type_description']);
                         ?>
                         <tr>
-                            <td><a class="text-dark text-bold" href="#" data-toggle="modal"
-                                    data-target="#editAccountTypeModal<?php echo $account_type_id; ?>">
+                            <td><a class="text-dark text-bold" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#editAccountTypeModal<?php echo $account_type_id; ?>">
                                     <?php echo $account_type_parent_name; ?>
                                 </a></td>
                             <td>
@@ -131,12 +132,12 @@ $num_rows = mysqli_num_rows($sql);
                             </td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-toggle="modal"
-                                            data-target="#editAccountTypeModal<?php echo $account_type_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#editAccountTypeModal<?php echo $account_type_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>

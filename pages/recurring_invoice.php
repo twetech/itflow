@@ -101,11 +101,11 @@ if (isset($_GET['recurring_id'])) {
                 </div>
                 <div class="col-4">
                     <div class="dropdown dropleft text-center float-right">
-                        <button class="btn btn-light" type="button" data-toggle="dropdown">
+                        <button class="btn btn-light" type="button" data-bs-toggle="dropdown">
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editRecurringModal<?php echo $recurring_id; ?>">
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRecurringModal<?php echo $recurring_id; ?>">
                                 <i class="fa fa-fw fa-edit text-secondary mr-2"></i>Edit
                             </a>
                             <div class="dropdown-divider"></div>
@@ -244,7 +244,7 @@ if (isset($_GET['recurring_id'])) {
                                     <tr>
                                         <td class="d-print-none">
                                             <div class="dropdown">
-                                                <button class="btn btn-sm btn-light" type="button" data-toggle="dropdown">
+                                                <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
@@ -257,7 +257,7 @@ if (isset($_GET['recurring_id'])) {
                                                         <button class="dropdown-item" type="submit" name="update_recurring_item_order" value="down" <?php echo $down_hidden; ?>><i class="fa fa-fw fa-arrow-down mr-2"></i> Move Down</button>
                                                     </form>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editItemModal<?php echo $item_id; ?>"><i class="fa fa-fw fa-edit mr-2"></i>Edit</a>
+                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editItemModal<?php echo $item_id; ?>"><i class="fa fa-fw fa-edit mr-2"></i>Edit</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item text-danger confirm-link" href="/post.php?delete_recurring_item=<?php echo $item_id; ?>"><i class="fa fa-fw fa-trash mr-2"></i>Delete</a>
                                                     
@@ -343,7 +343,7 @@ if (isset($_GET['recurring_id'])) {
                         <div class="card-header text-bold">
                             Notes
                             <div class="card-tools d-print-none">
-                                <a href="#" class="btn btn-light btn-tool" data-toggle="modal" data-target="#recurringNoteModal">
+                                <a href="#" class="btn btn-light btn-tool" data-bs-toggle="modal" data-bs-target="#recurringNoteModal">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </div>

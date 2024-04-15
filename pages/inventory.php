@@ -39,7 +39,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="input-group">
                             <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search Inventory">
                             <div class="input-group-append">
-                                <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
+                                <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#advancedFilter"><i class="fas fa-filter"></i></button>
                                 <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
@@ -48,19 +48,19 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="btn-group float-right">
                             <a href="inventory_locations.php" class="btn btn-soft-primary"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Locations</b></a>
                             <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                     <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkEditCategoryModal">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#bulkEditCategoryModal">
                                         <i class="fas fa-fw fa-list mr-2"></i>Set Category
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkEditAccountModal">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#bulkEditAccountModal">
                                         <i class="fas fa-fw fa-piggy-bank mr-2"></i>Set Account
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkEditClientModal">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#bulkEditClientModal">
                                         <i class="fas fa-fw fa-user mr-2"></i>Set Client
                                     </a>
                                 </div>
@@ -71,15 +71,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </form>
             <hr>
             <form id="bulkActions" action="/post.php" method="post">
-                <div class="table-responsive-sm">
-                     <table id=responsive class="responsive table table-hover">
+                <div class="card-datatable table-responsive pt-0">                       
+<table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
-                            <td class="bg-light pr-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" id="selectAllCheckbox" type="checkbox" onclick="checkAll(this)">
-                                </div>
-                            </td>
                             <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=inventory_date&order=<?php echo $disp; ?>">Product Name</a></th>
                             <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Quantity</a></th>
                             <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Locations</a></th>
@@ -98,11 +93,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             ?>
 
                             <tr>
-                                <td class="bg-light pr-0">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="selected[]" value="<?php echo $inventory_product_id; ?>">
-                                    </div>
-                                </td>
                                 <td><?php echo $inventory_name; ?></td>
                                 <td><?php echo $inventory_quantity; ?></td>
                                 <td><?php echo $inventory_locations; ?></td>

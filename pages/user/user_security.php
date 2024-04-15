@@ -17,7 +17,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-fw fa-lock"></i></span>
                     </div>
-                    <input type="password" class="form-control" data-toggle="password" name="new_password" placeholder="Leave blank for no change" autocomplete="new-password" minlength="8" required>
+                    <input type="password" class="form-control" data-bs-toggle="password" name="new_password" placeholder="Leave blank for no change" autocomplete="new-password" minlength="8" required>
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="fa fa-fw fa-eye"></i></span>
                     </div>

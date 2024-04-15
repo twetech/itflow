@@ -477,7 +477,7 @@ if (isset($_GET['query'])) {
                                     <td><a href="client_logins.php?client_id=<?php echo $login_client_id ?>&q=<?php echo $q ?>"><?php echo $login_name; ?></a></td>
                                     <td><?php echo $login_description; ?></td>
                                     <td><?php echo $login_username; ?></td>
-                                    <td><a tabindex="0" class="btn btn-sm" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="<?php echo $login_password; ?>"><i class="far fa-eye text-secondary"></i></a><button class="btn btn-sm clipboardjs" data-clipboard-text="<?php echo $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
+                                    <td><a tabindex="0" class="btn btn-sm" data-bs-toggle="popover" data-trigger="focus" data-placement="left" data-content="<?php echo $login_password; ?>"><i class="far fa-eye text-secondary"></i></a><button class="btn btn-sm clipboardjs" data-clipboard-text="<?php echo $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
                                     </td>
                                     <td><a href="client_logins.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a></td>
                                 </tr>

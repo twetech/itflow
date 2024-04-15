@@ -26,16 +26,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-key mr-2"></i>Logins</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="client_login_add_modal.php?client_id=<?php echo $client_id; ?>">
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_login_add_modal.php?client_id=<?php echo $client_id; ?>">
                     <i class="fas fa-plus mr-2"></i>New Login
                 </button>
-                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#importLoginModal">
+                    <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#importLoginModal">
                         <i class="fa fa-fw fa-upload mr-2"></i>Import
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportLoginModal">
+                    <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportLoginModal">
                         <i class="fa fa-fw fa-download mr-2"></i>Export
                     </a>
                 </div>
@@ -64,8 +64,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </div>
         </form>
         <hr>
-        <div class="table-responsive-sm">
-             <table id=responsive class="responsive table table-hover">
+        <div class="card-datatable table-responsive pt-0">               
+<table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) {
                                             echo "d-none";
                                         } ?>">
@@ -116,7 +116,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     ?>
                         <tr class="<?php if (!empty($login_important)) { echo "text-bold"; } ?>">
                             <td>
-                                <a class="text-dark" href="#" data-toggle="modal" data-target="#editLoginModal<?php echo $login_id; ?>">
+                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?php echo $login_id; ?>">
                                     <div class="media">
                                         <i class="fa fa-fw fa-2x fa-key mr-3"></i>
                                         <div class="media-body">
@@ -128,7 +128,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </td>
                             <td><?php echo $login_username_display; ?></td>
                             <td>
-                                <button class="btn p-0" type="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<?php echo $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></button><button class="btn btn-sm clipboardjs" type="button" data-clipboard-text="<?php echo $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
+                                <button class="btn p-0" type="button" data-bs-toggle="popover" data-trigger="focus" data-placement="top" data-content="<?php echo $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></button><button class="btn btn-sm clipboardjs" type="button" data-clipboard-text="<?php echo $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
                             </td>
                             <td><?php echo $otp_display; ?></td>
                             <td><?php echo $login_uri_display; ?></td>
@@ -138,14 +138,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <a href="<?php echo $login_uri; ?>" target="_blank" class="btn btn-default btn-sm"><i class="fa fa-fw fa-external-link-alt"></i></a>
                                     <?php } ?>
                                     <div class="dropdown dropleft text-center">
-                                        <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                        <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editLoginModal<?php echo $login_id; ?>">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?php echo $login_id; ?>">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'Login', $login_id"; ?>)">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'Login', $login_id"; ?>)">
                                                 <i class="fas fa-fw fa-share mr-2"></i>Share
                                             </a>
                                             <?php if ($session_user_role == 3) { ?>

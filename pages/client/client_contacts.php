@@ -24,18 +24,18 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-users mr-2"></i>Contacts</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="client_contact_add_modal.php">
+                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_contact_add_modal.php">
                         <i class="fas fa-plus mr-2"></i>New Contact
                     </button>
-                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#contactInviteModal"><i class="fas fa-fw fa-paper-plane mr-2"></i>Invite</a>
+                        <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#contactInviteModal"><i class="fas fa-fw fa-paper-plane mr-2"></i>Invite</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#importContactModal">
+                        <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#importContactModal">
                             <i class="fa fa-fw fa-upload mr-2"></i>Import
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportContactModal">
+                        <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportContactModal">
                             <i class="fa fa-fw fa-download mr-2"></i>Export
                         </a>
                     </div>
@@ -45,8 +45,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-body">
             <form id="bulkActions" action="/post.php" method="post">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
-                <div class="table-responsive-sm">
-                    <table id=responsive class="responsive table border">
+                <div class="card-datatable table-responsive pt-0">                    <table id=responsive class="responsive table border">
                         <thead class="thead-light <?php if (!$num_rows[0]) { echo "d-none"; } ?>">
                         <tr>
                             <th><a class="text-secondary ml-3" href="?<?php echo $url_query_strings_sort; ?>&sort=contact_name&order=<?php echo $disp; ?>">Name</a></th>
@@ -178,14 +177,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 <td><?php echo $location_name_display; ?></td>
                                 <td>
                                     <div class="dropdown dropleft text-center">
-                                        <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                        <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="client_contact_details.php?client_id=<?php echo $client_id; ?>&contact_id=<?php echo $contact_id; ?>">
                                                 <i class="fas fa-fw fa-eye mr-2"></i>Details
                                             </a>
-                                            <a href="#" class="dropdown-item loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="client_contact_edit_modal.php?contact_id=<?php echo $contact_id; ?>">
+                                            <a href="#" class="dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_contact_edit_modal.php?contact_id=<?php echo $contact_id; ?>">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
                                             <?php if ($session_user_role == 3 && $contact_primary == 0) { ?>

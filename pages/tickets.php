@@ -36,15 +36,21 @@ if (isset($_GET['status']) && is_array($_GET['status']) && !empty($_GET['status'
 
 // Ticket assignment status filter
 if (isset($_GET['assigned']) & !empty($_GET['assigned'])) {
+    // Unassigned
     if ($_GET['assigned'] == 'unassigned') {
         $ticket_assigned_filter = 'AND ticket_assigned_to = 0';
-    } else {
-        $ticket_assigned_filter = 'AND ticket_assigned_to = ' . intval($_GET['assigned']);
     }
+    // Assigned to any
+    elseif ($_GET['assigned'] == 'all') {
+        $ticket_assigned_filter = '';
+    }
+
 } else {
-    // Default - any
-    $ticket_assigned_filter = '';
+
+    // Default - Assigned to me
+    $ticket_assigned_filter = 'AND ticket_assigned_to = ' . intval($_GET['assigned']);
 }
+
 
 //Rebuild URL
 $url_query_strings_sort = http_build_query(array_merge($_GET, array('sort' => $sort, 'order' => $order, 'status' => $status, 'assigned' => $ticket_assigned_filter)));
@@ -59,10 +65,7 @@ $sql = mysqli_query(
     LEFT JOIN assets ON ticket_asset_id = asset_id
     LEFT JOIN locations ON ticket_location_id = location_id
     LEFT JOIN vendors ON ticket_vendor_id = vendor_id
-    WHERE $ticket_status_snippet " . $ticket_assigned_filter . "
-    AND (CONCAT(ticket_prefix,ticket_number) LIKE '%$q%' OR client_name LIKE '%$q%' OR ticket_subject LIKE '%$q%' OR ticket_status LIKE '%$q%' OR ticket_priority LIKE '%$q%' OR user_name LIKE '%$q%' OR contact_name LIKE '%$q%' OR asset_name LIKE '%$q%' OR vendor_name LIKE '%$q%' OR ticket_vendor_ticket_number LIKE '%q%')
-    ORDER BY $sort $order"
-);
+    WHERE $ticket_status_snippet " . $ticket_assigned_filter);
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
@@ -102,13 +105,13 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
         <div class="col">
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-life-ring mr-2"></i>Support Tickets</h3>
             <small class="ml-3">
-                    <a href="?status=Open"><strong><?php echo $total_tickets_open; ?></strong> Open</a> |
+                    <a href="?status=Open&assigned=all"><strong><?php echo $total_tickets_open; ?></strong> Open</a> |
                     <a href="?status=Closed"><strong><?php echo $total_tickets_closed; ?></strong> Closed</a>
             </small>
         </div>
         <div class="col">
             <div class="btn-group">
-                <button class="btn btn-outline-dark dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">
+                <button class="btn btn-outline-dark dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown">
                     <i class="fa fa-fw fa-envelope mr-2"></i><?php if(!$session_mobile) { echo "My Tickets"; } ?>
                 </button>
                 <div class="dropdown-menu">
@@ -123,7 +126,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                 <i class="fa fa-fw fa-redo-alt mr-2"></i><?php if(!$session_mobile) { echo "Recurring"; } ?> | <strong> <?php echo $total_scheduled_tickets; ?></strong>
             </a>
             <?php if ($session_user_role == 3) { ?>
-                <a href="#!" class="btn dropdown-item loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_add_modal.php">
+                <a href="#!" class="btn dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_add_modal.php">
                     <i class="fa fa-fw fa-plus mr-2"></i>
                 </a>
             <?php } ?>
@@ -133,8 +136,8 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
     <div class="card-body">
         <form id="bulkActions" action="/post/" method="post">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
-            <div class="table-responsive-sm">
-                <table id='responsive' class=" table table-hover responsive">
+            <div class="card-datatable table-responsive pt-0">
+                <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if (!$num_rows[0]) { echo "d-none"; } ?>">
 
                             <tr>
@@ -160,7 +163,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                         </thead>
                         <tbody>
                             <?php
-
+                            //TODO bring up my tickets first
                             while ($row = mysqli_fetch_array($sql)) {
                                 $ticket_id = intval($row['ticket_id']);
                                 $ticket_prefix = nullable_htmlentities($row['ticket_prefix']);
@@ -236,7 +239,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                     <td>
                                         <small>
                                             <a href="ticket.php?ticket_id=<?= $ticket_id ?>">
-                                                <span class="badge badge-pill badge-secondary p-3"><?=$ticket_prefix . $ticket_number?></span>
+                                                <span class="badge rounded-pill bg-label-secondary p-3"><?=$ticket_prefix . $ticket_number?></span>
                                             </a>
                                         </small>
                                     </td>
@@ -250,9 +253,9 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 
                                         <div class="mt-1"><?= $contact_display ?></div>
                                     </td>
-                                    <td><a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_priority_modal.php?ticket_id=<?php echo $ticket_id; ?>"><span class='p-2 badge badge-pill badge-<?php echo $ticket_priority_color; ?>'><?php echo $ticket_priority; ?></span></a></td>
-                                    <td><span class='p-2 badge badge-pill badge-<?= $ticket_status_color ?>'><?= $ticket_status; ?></span> <?php if ($ticket_status == 'On Hold' && isset ($ticket_scheduled_for)) { echo "<div class=\"mt-1\"> <small class='text-secondary'> $ticket_scheduled_for </small></div>"; } ?></td>
-                                    <td><a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_assign_modal.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_assigned_to_display; ?></a></td>
+                                    <td><a href="#" class="loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_priority_modal.php?ticket_id=<?php echo $ticket_id; ?>"><span class='p-2 badge rounded-pill bg-label-<?php echo $ticket_priority_color; ?>'><?php echo $ticket_priority; ?></span></a></td>
+                                    <td><span class='p-2 badge rounded-pill bg-label-<?= $ticket_status_color ?>'><?= $ticket_status; ?></span> <?php if ($ticket_status == 'On Hold' && isset ($ticket_scheduled_for)) { echo "<div class=\"mt-1\"> <small class='text-secondary'> $ticket_scheduled_for </small></div>"; } ?></td>
+                                    <td><a href="#" class="loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_assign_modal.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_assigned_to_display; ?></a></td>
                                     <td <?= $ticket_updated_at ? "class='" . $datetime_format . "'" : '' ?>><?= $ticket_updated_at ? $ticket_updated_at : 'never'; ?></td>
                                     <td class="<?= $datetime_format?>">
                                         <?= $ticket_created_at ?>
@@ -260,12 +263,12 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 
                                     <?php if ($config_module_enable_accounting) { ?>
                                         <td class="text-center">
-                                            <a href="#" class="loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_billable_modal.php?ticket_id=<?php echo $ticket_id; ?>">
+                                            <a href="#" class="loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_billable_modal.php?ticket_id=<?php echo $ticket_id; ?>">
                                                 <?php
                                                     if ($ticket_billable == 1) {
-                                                        echo "<span class='badge badge-pill badge-success'>$</span>";
+                                                        echo "<span class='badge rounded-pill bg-label-success'>$</span>";
                                                     } else {
-                                                        echo "<span class='badge badge-pill badge-secondary'>X</span>";
+                                                        echo "<span class='badge rounded-pill bg-label-secondary'>X</span>";
                                                     }
                                                 ?>
                                         </td>

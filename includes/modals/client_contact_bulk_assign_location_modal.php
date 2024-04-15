@@ -5,7 +5,7 @@
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Bulk Assign Location</h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -38,7 +38,7 @@
 
             <div class="modal-footer bg-white">
                 <button type="submit" name="bulk_assign_contact_location" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Assign</button>
-                <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@
             <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fas fa-fw fa-user-plus mr-2"></i>New User</h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -38,7 +38,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-lock"></i></span>
                             </div>
-                            <input type="password" class="form-control" data-toggle="password" name="password" id="password" placeholder="Enter a Password" autocomplete="new-password" required minlength="8">
+                            <input type="password" class="form-control" data-bs-toggle="password" name="password" id="password" placeholder="Enter a Password" autocomplete="new-password" required minlength="8">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fa fa-fw fa-eye"></i></span>
                             </div>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="modal-footer bg-white">
                     <button type="submit" name="add_user" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Create</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>
         </div>

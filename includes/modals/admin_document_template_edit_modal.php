@@ -1,11 +1,20 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
+<?php
+$document_id = intval($_GET['document_id']);
+$sql_document = mysqli_query($mysqli, "SELECT * FROM document_templates WHERE document_id = $document_id");
+$row = mysqli_fetch_array($sql_document);
+$document_name = nullable_htmlentities($row['document_name']);
+$document_content = nullable_htmlentities($row['document_content']);
+$document_description = nullable_htmlentities($row['document_description']);
+?>
+
 <div class="modal" id="editDocumentTemplateModal<?php echo $document_id; ?>" tabindex="-1">
     <div class="modal-dialog modal-xl">
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-file-alt mr-2"></i>Editing template: <strong><?php echo $document_name; ?></strong></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -27,8 +36,8 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_document_template" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" name="edit_document_template" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>
         </div>

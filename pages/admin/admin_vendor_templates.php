@@ -28,7 +28,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <i class="fas fa-fw fa-building mr-2"></i>Vendor Templates
             </h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addVendorTemplateModal">
+                <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addVendorTemplateModal">
                     <i class="fas fa-plus mr-2"></i>New Vendor Template
                 </button>
             </div>
@@ -41,7 +41,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </form>
             <hr>
             <div class="table-responsive">
-                <table id=responsive class="responsive table table-hover">
+                  
+<table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Vendor</a></th>
@@ -82,7 +83,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
                         <tr>
                             <th>
-                                <a class="text-dark" href="#" data-toggle="modal" data-target="#editVendorTemplateModal<?php echo $vendor_id; ?>">
+                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editVendorTemplateModal<?php echo $vendor_id; ?>">
                                     <i class="fa fa-fw fa-building text-secondary mr-2"></i><?php echo $vendor_name; ?>
                                 </a>
                                 <?php
@@ -119,11 +120,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editVendorTemplateModal<?php echo $vendor_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editVendorTemplateModal<?php echo $vendor_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <?php if ($session_user_role == 3) { ?>

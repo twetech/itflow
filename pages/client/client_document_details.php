@@ -77,10 +77,10 @@ $document_parent = intval($row['document_parent']);
 	<div class="col-md-3 d-print-none">
     <div class="row">
       <div class="col-12 mb-3">
-        <button type="button" class="btn btn-soft-primary mr-2" data-toggle="modal" data-target="#editDocumentModal<?php echo $document_id; ?>">
+        <button type="button" class="btn btn-soft-primary mr-2" data-bs-toggle="modal" data-bs-target="#editDocumentModal<?php echo $document_id; ?>">
           <i class="fas fa-fw fa-edit mr-2"></i>Edit
         </button>
-        <button type="button" class="btn btn-light mr-2" data-toggle="modal" data-target="#shareModal"
+        <button type="button" class="btn btn-light mr-2" data-bs-toggle="modal" data-bs-target="#shareModal"
           onclick="populateShareModal(<?php echo "$client_id, 'Document', $document_id"; ?>)">
           <i class="fas fa-fw fa-share mr-2"></i>Share
         </button>
@@ -91,7 +91,7 @@ $document_parent = intval($row['document_parent']);
       <h5 class="mb-3"><i class="fas fa-tags mr-2"></i>Related Items</h5>
       <h6>
         <i class="fas fa-fw fa-paperclip text-secondary mr-2"></i>Files
-        <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#linkFileToDocumentModal">
+        <button type="button" class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#linkFileToDocumentModal">
           <i class="fas fa-fw fa-plus"></i>
         </button>
       </h6>
@@ -123,7 +123,7 @@ $document_parent = intval($row['document_parent']);
         ?>
       <h6>
         <i class="fas fa-fw fa-users text-secondary mt-3 mr-2"></i>Contacts
-        <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#linkContactToDocumentModal">
+        <button type="button" class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#linkContactToDocumentModal">
           <i class="fas fa-fw fa-plus"></i>
         </button>
       </h6>
@@ -154,7 +154,7 @@ $document_parent = intval($row['document_parent']);
         ?>
       <h6>
         <i class="fas fa-fw fa-laptop text-secondary mr-2 mt-3"></i>Assets
-        <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#linkAssetToDocumentModal">
+        <button type="button" class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#linkAssetToDocumentModal">
           <i class="fas fa-fw fa-plus"></i>
         </button>
       </h6>
@@ -185,7 +185,7 @@ $document_parent = intval($row['document_parent']);
       ?>
       <h6>
         <i class="fas fa-fw fa-cube text-secondary mr-2 mt-3"></i>Licenses
-        <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#linkSoftwareToDocumentModal">
+        <button type="button" class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#linkSoftwareToDocumentModal">
           <i class="fas fa-fw fa-plus"></i>
         </button>
       </h6>
@@ -216,7 +216,7 @@ $document_parent = intval($row['document_parent']);
         ?>
       <h6>
         <i class="fas fa-fw fa-building text-secondary mr-2 mt-3"></i>Vendors
-        <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#linkVendorToDocumentModal">
+        <button type="button" class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#linkVendorToDocumentModal">
           <i class="fas fa-fw fa-plus"></i>
         </button>
       </h6>

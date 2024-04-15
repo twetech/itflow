@@ -72,8 +72,7 @@ $sql_clients = mysqli_query($mysqli, "SELECT client_id, client_name FROM clients
                 </select>
             </form>
 
-            <div class="table-responsive-sm">
-                <table id=responsive class="responsive table table-striped">
+            <div class="card-datatable table-responsive pt-0">                <table id=responsive class="responsive table table-striped">
                     <thead>
                     <tr>
                         <th>Client</th>

@@ -1,11 +1,23 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
+<?php
+$tag_id = intval($_GET['tag_id']);
+$sql_tag = mysqli_query($mysqli, "SELECT * FROM tags WHERE tag_id = $tag_id");
+$row = mysqli_fetch_array($sql_tag);
+
+$tag_name = nullable_htmlentities($row['tag_name']);
+$tag_type = intval($row['tag_type']);
+$tag_color = nullable_htmlentities($row['tag_color']);
+$tag_icon = nullable_htmlentities($row['tag_icon']);
+?>
+
+
 <div class="modal" id="editTagModal<?php echo $tag_id; ?>" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content bg-dark">
       <div class="modal-header">
         <h5 class="modal-title"><i class="fas fa-fw fa-tag mr-2"></i>Editing tag: <strong><?php echo $tag_name; ?></strong></h5>
-        <button type="button" class="close text-white" data-dismiss="modal">
+        <button type="button" class="close text-white" data-bs-dismiss="modal">
           <span>&times;</span>
         </button>
       </div>
@@ -59,7 +71,7 @@
         </div>
         <div class="modal-footer bg-white">
           <button type="submit" name="edit_tag" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
-          <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
         </div>
       </form>
     </div>

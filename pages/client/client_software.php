@@ -27,16 +27,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-cube mr-2"></i>Software & Licenses</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="software_add_modal.php?client_id=<?php echo $client_id; ?>">
+                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="software_add_modal.php?client_id=<?php echo $client_id; ?>">
                         <i class="fas fa-plus mr-2"></i>New License
                     </button>
-                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#addSoftwareFromTemplateModal">
+                        <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#addSoftwareFromTemplateModal">
                             <i class="fas fa-fw fa-puzzle-piece mr-2"></i>Create from Template
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportSoftwareModal">
+                        <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportSoftwareModal">
                             <i class="fa fa-fw fa-download mr-2"></i>Export
                         </a>
                     </div>
@@ -63,8 +63,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </div>
             </form>
             <hr>
-            <div class="table-responsive-sm">
-                 <table id=responsive class="responsive table table-hover">
+            <div class="card-datatable table-responsive pt-0">                   
+<table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=software_name&order=<?php echo $disp; ?>">Software</a></th>
@@ -116,7 +116,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
                         <tr>
                             <td>
-                                <a class="text-dark" href="#" data-toggle="modal" data-target="#editSoftwareModal<?php echo $software_id; ?>">
+                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareModal<?php echo $software_id; ?>">
                                     <div class="media">
                                         <i class="fa fa-fw fa-2x fa-cube mr-3"></i>
                                         <div class="media-body">
@@ -131,11 +131,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <td><?php echo "$seat_count / $software_seats"; ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-light btn-sm" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editSoftwareModal<?php echo $software_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareModal<?php echo $software_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>

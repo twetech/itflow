@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="confirmationModalLabel">Confirm</h5>
-                <button type="button" class="close" data-dismiss="modal">
+                <button type="button" class="close" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -11,7 +11,7 @@
                 Are you sure?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-soft-primary" id="confirmSubmitBtn">Yes</button>
             </div>
         </div>

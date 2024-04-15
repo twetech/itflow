@@ -29,10 +29,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-network-wired mr-2"></i>Networks</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="client_network_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Network</button>
-                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_network_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Network</button>
+                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportNetworkModal">
+                        <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportNetworkModal">
                             <i class="fa fa-fw fa-download mr-2"></i>Export
                         </a>
                     </div>
@@ -48,7 +48,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     <div class="col-md-8">
                         <div class="btn-group float-right">
                             <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                     <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
                                 </button>
                                 <div class="dropdown-menu">
@@ -64,12 +64,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </div>
             </form>
             <hr>
-            <div class="table-responsive-sm">
-
+            <div class="card-datatable table-responsive pt-0">
                 <form id="bulkActions" action="/post.php" method="post">
                     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
-                     <table id=responsive class="responsive table table-hover">
+                       
+<table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
                             <td class="pr-0">
@@ -124,7 +124,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     </div>
                                 </td>
                                 <td>
-                                    <a class="text-dark" href="#" data-toggle="modal" onclick="populateNetworkEditModal(<?php echo $client_id, ",", $network_id ?>)" data-target="#editNetworkModal">
+                                    <a class="text-dark" href="#" data-bs-toggle="modal" onclick="populateNetworkEditModal(<?php echo $client_id, ",", $network_id ?>)" data-bs-target="#editNetworkModal">
                                         <div class="media">
                                             <i class="fa fa-fw fa-2x fa-network-wired mr-3"></i>
                                             <div class="media-body">
@@ -141,11 +141,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 <td><?php echo $location_name_display; ?></td>
                                 <td>
                                     <div class="dropdown dropleft text-center">
-                                        <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                        <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" onclick="populateNetworkEditModal(<?php echo $client_id, ",", $network_id ?>)" data-target="#editNetworkModal">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" onclick="populateNetworkEditModal(<?php echo $client_id, ",", $network_id ?>)" data-bs-target="#editNetworkModal">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
                                             <?php if ($session_user_role == 3) { ?>

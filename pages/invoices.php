@@ -94,114 +94,67 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 ?>
 
-    <div class="row">
-        <div class="col-lg-4">
-            <!-- small box -->
-            <a href="?<?php echo $url_query_strings_sort; ?>&status=Draft" class="small-box bg-secondary">
-                <div class="inner">
-                    <h3><?php echo numfmt_format_currency($currency_format, $total_draft_amount, $session_company_currency); ?></h3>
-                    <p><?php echo $draft_count; ?> Draft</p>
+<div class="col-12">
+        <div class="card mb-4">
+            <div class="card-widget-separator-wrapper">
+                <div class="card-body card-widget-separator">
+                    <div class="row gy-4 gy-sm-1">
+                        <div class="col-sm-12 col-lg-4">
+                            <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
+                                <div>
+                                    <h3><?php echo numfmt_format_currency($currency_format, $total_unpaid_amount, $session_company_currency); ?></h3>
+                                    <p><?php echo $unpaid_count; ?> Unpaid</p>
+                                </div>
+                                <span class="badge bg-label-secondary rounded p-2 me-sm-4">
+                                    <i class="bx bx-dollar
+                                    bx-sm"></i>
+                                </span>
+                            </div>
+                            <hr class="d-none d-sm-block d-lg-none me-4">
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
+                                <div>
+                                    <h3><?php echo numfmt_format_currency($currency_format, $total_overdue_amount, $session_company_currency); ?></h3>
+                                    <p><?php echo $overdue_count; ?> Overdue</p>
+                                </div>
+                                <span class="badge bg-label-secondary rounded p-2 me-sm-4">
+                                    <i class="bx bx-time
+                                     bx-sm"></i>
+                                </span>
+                            </div>
+                            <hr class="d-none d-sm-block d-lg-none me-4">
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="d-flex justify-content-between align-items-start card-widget-1 pb-3 pb-sm-0">
+                                <div>
+                                    <h3><?php echo numfmt_format_currency($currency_format, $total_draft_amount, $session_company_currency); ?></h3>
+                                    <p><?php echo $draft_count; ?> Draft</p>
+                                </div>
+                                <span class="badge bg-label-secondary rounded p-2 me-sm-4">
+                                    <i class="bx bx-pencil
+                                    bx-sm"></i>
+                                </span>
+                            </div>
+                            <hr class="d-none d-sm-block d-lg-none me-4">
+                        </div>
+                    </div>
                 </div>
-                <div class="icon">
-                    <i class="fa fa-pencil-ruler"></i>
-                </div>
-            </a>
+            </div>
         </div>
-        <!-- ./col -->
-
-        <div class="col-lg-4">
-            <!-- small box -->
-            <a href="?<?php echo $url_query_strings_sort; ?>&status=Unpaid" class="small-box bg-info">
-                <div class="inner text-white">
-                    <h3><?php echo numfmt_format_currency($currency_format, $total_unpaid_amount, $session_company_currency); ?></h3>
-                    <p><?php echo $unpaid_count; ?> Unpaid</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-hand-holding-usd"></i>
-                </div>
-            </a>
-        </div>
-        <!-- ./col -->
-
-        <div class="col-lg-4">
-            <!-- small box -->
-            <a href="?<?php echo $url_query_strings_sort; ?>&status=Overdue" class="small-box bg-danger">
-                <div class="inner">
-                    <h3><?php echo numfmt_format_currency($currency_format, $real_overdue_amount, $session_company_currency); ?></h3>
-                    <p><?php echo $overdue_count; ?> Overdue</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-exclamation-triangle"></i>
-                </div>
-            </a>
-        </div>
-        <!-- ./col -->
-
     </div>
 
     <div class="card">
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-file-invoice mr-2"></i>Invoices</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="invoice_add_modal.php"><i class="fas fa-plus mr-2"></i>New Invoice</button>
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="invoice_add_modal.php"><i class="fas fa-plus mr-2"></i>New Invoice</button>
             </div>
         </div>
 
         <div class="card-body">
-            <form class="mb-4" autocomplete="off">
-                <input type="hidden" name="status" value="<?php if (isset($_GET['status'])) { echo nullable_htmlentities($_GET['status']); } ?>">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <input type="search" class="form-control" name="q" value="<?php if (isset($q)) {echo stripslashes(nullable_htmlentities($q));} ?>" placeholder="Search Invoices">
-                            <div class="input-group-append">
-                                <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                                <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="btn-group float-right">
-                            <a href="recurring_invoices.php" class="btn btn-soft-primary"><i class="fa fa-fw fa-redo-alt mr-2"></i>Recurring | <b><?php echo $recurring_invoice_count; ?></b></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="collapse mt-3 <?php if (!empty($_GET['dtf']) || $_GET['canned_date'] !== "custom" ) { echo "show"; } ?>" id="advancedFilter">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Canned Date</label>
-                                <select onchange="this.form.submit()" class="form-control select2" id='select2' name="canned_date">
-                                    <option <?php if ($_GET['canned_date'] == "custom") { echo "selected"; } ?> value="custom">Custom</option>
-                                    <option <?php if ($_GET['canned_date'] == "today") { echo "selected"; } ?> value="today">Today</option>
-                                    <option <?php if ($_GET['canned_date'] == "yesterday") { echo "selected"; } ?> value="yesterday">Yesterday</option>
-                                    <option <?php if ($_GET['canned_date'] == "thisweek") { echo "selected"; } ?> value="thisweek">This Week</option>
-                                    <option <?php if ($_GET['canned_date'] == "lastweek") { echo "selected"; } ?> value="lastweek">Last Week</option>
-                                    <option <?php if ($_GET['canned_date'] == "thismonth") { echo "selected"; } ?> value="thismonth">This Month</option>
-                                    <option <?php if ($_GET['canned_date'] == "lastmonth") { echo "selected"; } ?> value="lastmonth">Last Month</option>
-                                    <option <?php if ($_GET['canned_date'] == "thisyear") { echo "selected"; } ?> value="thisyear">This Year</option>
-                                    <option <?php if ($_GET['canned_date'] == "lastyear") { echo "selected"; } ?> value="lastyear">Last Year</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Date From</label>
-                                <input onchange="this.form.submit()" type="date" class="form-control" name="dtf" max="2999-12-31" value="<?php echo $dtf; ?>">
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Date To</label>
-                                <input onchange="this.form.submit()" type="date" class="form-control" name="dtt" max="2999-12-31" value="<?php echo $dtt; ?>">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <hr>
-            <div class="table-responsive-sm">
-                 <table id=responsive class="responsive table table-hover">
+            <div class="card-datatable table-responsive pt-0">                   
+                <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
                             <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_number&order=<?php echo $disp; ?>">Number</a></th>
@@ -272,15 +225,15 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a href="#" class="dropdown-item loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="invoice_edit_modal.php?invoice_id=<?php echo $invoice_id; ?>">
+                                        <a href="#" class="dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="invoice_edit_modal.php?invoice_id=<?php echo $invoice_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addInvoiceCopyModal<?php echo $invoice_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addInvoiceCopyModal<?php echo $invoice_id; ?>">
                                             <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                         </a>
                                         <div class="dropdown-divider"></div>

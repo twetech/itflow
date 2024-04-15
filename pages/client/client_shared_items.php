@@ -30,8 +30,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-body">
 
             <hr>
-            <div class="table-responsive-sm">
-                 <table id=responsive class="responsive table table-hover">
+            <div class="card-datatable table-responsive pt-0">                   
+<table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th>Item Name</th>
@@ -82,7 +82,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <td>
                                 <?php if ($session_user_role == 3) { ?>
                                     <div class="dropdown dropleft text-center">
-                                        <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                        <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">

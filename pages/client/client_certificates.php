@@ -24,11 +24,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-lock mr-2"></i>Certificates</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="client_certificate_add_modal.php?client_id=<?php echo $client_id; ?>">
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_certificate_add_modal.php?client_id=<?php echo $client_id; ?>">
                     <i class="fas fa-plus mr-2"></i>New Certificate</button>
-                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportCertificateModal">
+                    <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportCertificateModal">
                         <i class="fa fa-fw fa-download mr-2"></i>Export
                     </a>
                 </div>
@@ -52,7 +52,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <div class="col-md-8">
                     <div class="btn-group float-right">
                         <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                 <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
                             </button>
                             <div class="dropdown-menu">
@@ -68,12 +68,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </div>
         </form>
         <hr>
-        <div class="table-responsive-sm">
-
+        <div class="card-datatable table-responsive pt-0">
             <form id="bulkActions" action="/post.php" method="post">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
-                 <table id=responsive class="responsive table table-hover">
+                   
+<table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <td class="pr-0">
@@ -109,7 +109,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 </div>
                             </td>
                             <td>
-                                <a class="text-dark" href="#" data-toggle="modal" onclick="populateCertificateEditModal(<?php echo $client_id, ",", $certificate_id ?>)" data-target="#editCertificateModal">
+                                <a class="text-dark" href="#" data-bs-toggle="modal" onclick="populateCertificateEditModal(<?php echo $client_id, ",", $certificate_id ?>)" data-bs-target="#editCertificateModal">
                                     <div class="media">
                                         <i class="fa fa-fw fa-2x fa-lock mr-3"></i>
                                         <div class="media-body">
@@ -127,11 +127,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-toggle="modal" onclick="populateCertificateEditModal(<?php echo $client_id, ",", $certificate_id ?>)" data-target="#editCertificateModal">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" onclick="populateCertificateEditModal(<?php echo $client_id, ",", $certificate_id ?>)" data-bs-target="#editCertificateModal">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <?php if ($session_user_role == 3) { ?>

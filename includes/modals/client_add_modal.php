@@ -4,7 +4,7 @@ $leads = $_GET['leads'];
 <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title"><i class="fa fa-fw fa-user-plus mr-2"></i>Create <?php if($leads == 0){ echo "Client"; } else { echo "Lead"; } ?></h5>
-        <button type="button" class="close text-white" data-dismiss="modal">
+        <button type="button" class="close text-white" data-bs-dismiss="modal">
             <span>&times;</span>
         </button>
     </div>
@@ -14,21 +14,21 @@ $leads = $_GET['leads'];
             <input type="hidden" name="currency_code" value="<?php echo $session_company_currency; ?>">
             <ul class="nav nav-pills mb-3">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="pill" href="#pills-details">Details</a>
+                    <a class="nav-link active" data-bs-toggle="pill" href="#pills-details">Details</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="pill" href="#pills-location">Location</a>
+                    <a class="nav-link" data-bs-toggle="pill" href="#pills-location">Location</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="pill" href="#pills-contact" id="contactNavPill">Contact</a>
+                    <a class="nav-link" data-bs-toggle="pill" href="#pills-contact" id="contactNavPill">Contact</a>
                 </li>
                 <?php if ($config_module_enable_accounting) { ?>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="pill" href="#pills-billing">Billing</a>
+                    <a class="nav-link" data-bs-toggle="pill" href="#pills-billing">Billing</a>
                 </li>
                 <?php } ?>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="pill" href="#pills-more">More</a>
+                    <a class="nav-link" data-bs-toggle="pill" href="#pills-more">More</a>
                 </li>
             </ul>
             <hr>
@@ -278,8 +278,8 @@ $leads = $_GET['leads'];
             </div>
     </div>
     <div class="modal-footer bg-white">
-        <button type="submit" name="add_client" class="btn btn-soft-primary text-bold" onclick="promptPrimaryContact()"><i class="fa fa-check mr-2"></i>Create</button>
-        <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Close</button>
+        <button type="submit" name="add_client" class="btn btn-soft-primary text-bold" onclick="promptPrimaryContact()"></i>Create</button>
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Close</button>
     </div>
 </div>
 

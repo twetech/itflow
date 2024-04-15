@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
       emailSearch.addEventListener('keyup', e => {
         let searchValue = e.currentTarget.value.toLowerCase(),
           searchEmailListItems = {},
-          selectedFolderFilter = document.querySelector('.email-filter-folders .active').getAttribute('data-target');
+          selectedFolderFilter = document.querySelector('.email-filter-folders .active').getAttribute('data-bs-target');
 
         // Filter emails based on selected folders
         if (selectedFolderFilter != 'inbox') {
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
     emailFilterByFolders.forEach(emailFilterByFolder => {
       emailFilterByFolder.addEventListener('click', e => {
         let currentTarget = e.currentTarget,
-          currentTargetData = currentTarget.getAttribute('data-target');
+          currentTargetData = currentTarget.getAttribute('data-bs-target');
 
         appEmailSidebar.classList.remove('show');
         appOverlay.classList.remove('show');

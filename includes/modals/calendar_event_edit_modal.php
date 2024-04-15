@@ -1,11 +1,26 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
+<?php
+$event_id = intval($_GET['event_id']);
+$sql_event = mysqli_query($mysqli, "SELECT * FROM events WHERE event_id = $event_id");
+$row = mysqli_fetch_array($sql_event);
+
+$event_title = nullable_htmlentities($row['event_title']);
+$event_start = nullable_htmlentities($row['event_start']);
+$event_end = nullable_htmlentities($row['event_end']);
+$event_location = nullable_htmlentities($row['event_location']);
+$event_description = nullable_htmlentities($row['event_description']);
+$event_repeat = nullable_htmlentities($row['event_repeat']);
+$calendar_id = intval($row['calendar_id']);
+$client_id = intval($row['client_id']);
+?>
+
 <div class="modal" id="editEventModal<?php echo $event_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-calendar mr-2"></i><?php echo $event_title; ?></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -17,13 +32,13 @@
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="pill" href="#pills-event<?php echo $event_id; ?>"><i class="fa fa-fw fa-calendar mr-2"></i>Event</a>
+                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-event<?php echo $event_id; ?>"><i class="fa fa-fw fa-calendar mr-2"></i>Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-details<?php echo $event_id; ?>"><i class="fa fa-fw fa-info-circle mr-2"></i>Details</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-details<?php echo $event_id; ?>"><i class="fa fa-fw fa-info-circle mr-2"></i>Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-attendees<?php echo $event_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Attendees</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-attendees<?php echo $event_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Attendees</a>
                         </li>
                     </ul>
 
@@ -167,8 +182,8 @@
                 </div>
                 <div class="modal-footer bg-white">
                     <a class="btn btn-default text-danger mr-auto" href="/post.php?delete_event=<?php echo $event_id; ?>"><i class="fa fa-calendar-times mr-2"></i>Delete</a>
-                    <button type="submit" name="edit_event" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" name="edit_event" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>
         </div>

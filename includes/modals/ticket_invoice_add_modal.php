@@ -11,7 +11,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-file-invoice-dollar mr-2"></i>Invoice ticket</h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -25,16 +25,16 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <?php if (!$addToExistingInvoice): ?>
-                                <a class="nav-link active" data-toggle="pill" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
+                                <a class="nav-link active" data-bs-toggle="pill" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
                             <?php else: ?>
-                                <a class="nav-link" data-toggle="pill" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
+                                <a class="nav-link" data-bs-toggle="pill" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
                             <?php endif; ?>
                         </li>
                         <li class="nav-item">
                             <?php if ($addToExistingInvoice): ?>
-                                <a class="nav-link active" data-toggle="pill" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
+                                <a class="nav-link active" data-bs-toggle="pill" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
                             <?php else: ?>
-                                <a class="nav-link" data-toggle="pill" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
+                                <a class="nav-link" data-bs-toggle="pill" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
                             <?php endif; ?>
                         </li>
                         <?php
@@ -90,7 +90,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                                         ?>
                                     </select>
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#addQuickCategoryIncomeModal"><i class="fas fa-fw fa-plus"></i></button>
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addQuickCategoryIncomeModal"><i class="fas fa-fw fa-plus"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -234,8 +234,8 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_invoice_from_ticket" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Invoice</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" name="add_invoice_from_ticket" class="btn btn-soft-primary text-bold"></i>Invoice</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>
         </div>

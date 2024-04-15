@@ -1,14 +1,20 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
 <?php
-$account_id 
+$account_id = intval($_GET['account_id']);
+$sql_account = mysqli_query($mysqli, "SELECT * FROM accounts WHERE account_id = $account_id");
+$row = mysqli_fetch_array($sql_account);
+$account_name = nullable_htmlentities($row['account_name']);
+$account_type = intval($row['account_type']);
+$account_notes = nullable_htmlentities($row['account_notes']);
+?>
 
 <div class="modal" id="editAccountModal<?php echo $account_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-piggy-bank mr-2"></i>Editing account: <strong><?php echo $account_name; ?></strong></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -53,8 +59,8 @@ $account_id
                 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_account" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" name="edit_account" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>
         </div>

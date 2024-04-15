@@ -38,7 +38,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
 
                 <hr>
 
-                <button type="submit" name="edit_theme_settings" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Set Theme</button>
+                <button type="submit" name="edit_theme_settings" class="btn btn-soft-primary text-bold"></i>Set Theme</button>
 
             </form>
         </div>
@@ -60,7 +60,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
 
                 <hr>
 
-                <button type="submit" name="edit_favicon_settings" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Upload Icon</button>
+                <button type="submit" name="edit_favicon_settings" class="btn btn-soft-primary text-bold"></i>Upload Icon</button>
 
             </form>
         </div>

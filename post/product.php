@@ -7,6 +7,8 @@
 // Products
 if (isset($_POST['add_product'])) {
 
+    global $mysqli, $session_company_currency, $session_name, $session_ip, $session_user_agent, $session_user_id;
+
     require_once '/var/www/develop.twe.tech/post/models/product_model.php';
 
 

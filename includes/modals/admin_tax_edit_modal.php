@@ -1,11 +1,22 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
+<?php
+$tax_id = intval($_GET['tax_id']);
+
+$sql_tax = mysqli_query($mysqli, "SELECT * FROM taxes WHERE tax_id = $tax_id");
+$row = mysqli_fetch_array($sql_tax);
+
+$tax_name = nullable_htmlentities($row['tax_name']);
+$tax_percent = nullable_htmlentities($row['tax_percent']);
+?>
+
+
 <div class="modal" id="editTaxModal<?php echo $tax_id; ?>" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content bg-dark">
       <div class="modal-header">
         <h5 class="modal-title"><i class="fas fa-fw fa-balance-scale mr-2"></i>Editing tax: <strong><?php echo $tax_name; ?></strong></h5>
-        <button type="button" class="close text-white" data-dismiss="modal">
+        <button type="button" class="close text-white" data-bs-dismiss="modal">
           <span>&times;</span>
         </button>
       </div>
@@ -29,7 +40,7 @@
         </div>
         <div class="modal-footer bg-white">
           <button type="submit" name="edit_tax" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
-          <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
         </div>
       </form>
     </div>

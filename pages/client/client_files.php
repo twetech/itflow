@@ -62,12 +62,12 @@ $num_of_files = mysqli_num_rows($sql);
         
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#uploadFilesModal">
+                <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#uploadFilesModal">
                     <i class="fas fa-fw fa-cloud-upload-alt mr-2"></i>Upload
                 </button>
-                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item text-dark loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="folder_create_modal.php?client_id=<?php echo $client_id; ?>">
+                    <a href="#" class="dropdown-item text-dark loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="folder_create_modal.php?client_id=<?php echo $client_id; ?>">
                         <i class="fa fa-fw fa-folder-plus mr-2"></i>Create Folder
                     </a>
                 </div>
@@ -106,16 +106,16 @@ $num_of_files = mysqli_num_rows($sql);
                                             <i class="fas fa-fw fa-folder"></i>
                                         <?php } ?>
 
-                                        <?php echo $folder_name; ?> <?php if ($num_files > 0) { echo "<span class='badge badge-pill badge-dark float-right mt-1'>$num_files</span>"; } ?>
+                                        <?php echo $folder_name; ?> <?php if ($num_files > 0) { echo "<span class='badge rounded-pill bg-label-dark float-right mt-1'>$num_files</span>"; } ?>
                                     </a>
                                 </div>
                                 <div class="col-2">
                                     <div class="dropdown">
-                                        <button class="btn btn-sm" type="button" data-toggle="dropdown">
+                                        <button class="btn btn-sm" type="button" data-bs-toggle="dropdown">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#renameFolderModal<?php echo $folder_id; ?>">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#renameFolderModal<?php echo $folder_id; ?>">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Rename
                                             </a>
                                             <?php if ($session_user_role == 3 && $num_files == 0) { ?>
@@ -162,11 +162,11 @@ $num_of_files = mysqli_num_rows($sql);
                                 <a href="?<?php echo $url_query_strings_sort; ?>&view=1" class="btn <?php if($view == 1){ echo "btn-soft-primary"; } else { echo "btn-outline-secondary"; } ?>"><i class="fas fa-th-large"></i></a>
                                 
                                 <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                                    <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkMoveFilesModal">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#bulkMoveFilesModal">
                                             <i class="fas fa-fw fa-exchange-alt mr-2"></i>Move
                                         </a>
                                     </div>
@@ -202,16 +202,16 @@ $num_of_files = mysqli_num_rows($sql);
 
                         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-3">
                             <div class="card">
-                                <a href="#" data-toggle="modal" data-target="#viewFileModal<?php echo $file_id; ?>">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#viewFileModal<?php echo $file_id; ?>">
                                     <img class="img-fluid" src="<?php echo "/uploads/clients/$client_id/$file_reference_name"; ?>" alt="<?php echo $file_reference_name ?>">
                                 </a>
                                 <div class="card-footer bg-dark text-white p-1" style="text-align: center;">
                                     <a href="<?php echo "/uploads/clients/$client_id/$file_reference_name"; ?>" download="<?php echo $file_name; ?>" class="text-white float-left ml-1"><i class="fa fa-cloud-download-alt"></i></a>
-                                    <a href="#" data-toggle="modal" data-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'File', $file_id"; ?>)" class="text-white float-left ml-1"><i class="fa fa-share"></i></a>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'File', $file_id"; ?>)" class="text-white float-left ml-1"><i class="fa fa-share"></i></a>
 
                                     <small><?php echo $file_name; ?></small>
 
-                                    <a href="#" data-toggle="modal" data-target="#deleteFileModal" onclick="populateFileDeleteModal(<?php echo "$file_id , '$file_name'" ?>)" class="text-white float-right mr-1"><i class="fa fa-times"></i></a>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#deleteFileModal" onclick="populateFileDeleteModal(<?php echo "$file_id , '$file_name'" ?>)" class="text-white float-right mr-1"><i class="fa fa-times"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -227,8 +227,7 @@ $num_of_files = mysqli_num_rows($sql);
 
                 <form id="bulkActions" action="/post.php" method="post">
 
-                    <div class="table-responsive-sm">
-                        <table id=responsive class="responsive table border">
+                    <div class="card-datatable table-responsive pt-0">                        <table id=responsive class="responsive table border">
                             
                             <thead class="thead-light <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                             <tr>
@@ -301,20 +300,20 @@ $num_of_files = mysqli_num_rows($sql);
                                     <td><?php echo $file_created_at; ?></td>
                                     <td>
                                         <div class="dropdown dropleft text-center">
-                                            <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                            <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="<?php echo "/uploads/clients/$client_id/$file_reference_name"; ?>" download="<?php echo $file_name; ?>">
                                                     <i class="fas fa-fw fa-cloud-download-alt mr-2"></i>Download
                                                 </a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'File', $file_id"; ?>)">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'File', $file_id"; ?>)">
                                                     <i class="fas fa-fw fa-share mr-2"></i>Share
                                                 </a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#renameFileModal<?php echo $file_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#renameFileModal<?php echo $file_id; ?>">
                                                     <i class="fas fa-fw fa-edit mr-2"></i>Rename
                                                 </a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#moveFileModal<?php echo $file_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#moveFileModal<?php echo $file_id; ?>">
                                                     <i class="fas fa-fw fa-exchange-alt mr-2"></i>Move
                                                 </a>
                                                 <div class="dropdown-divider"></div>
@@ -322,7 +321,7 @@ $num_of_files = mysqli_num_rows($sql);
                                                     <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                 </a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger text-bold" href="#" data-toggle="modal" data-target="#deleteFileModal" onclick="populateFileDeleteModal(<?php echo "$file_id , '$file_name'" ?>)">
+                                                <a class="dropdown-item text-danger text-bold" href="#" data-bs-toggle="modal" data-bs-target="#deleteFileModal" onclick="populateFileDeleteModal(<?php echo "$file_id , '$file_name'" ?>)">
                                                     <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                 </a>
                                             </div>

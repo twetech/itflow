@@ -30,7 +30,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="input-group">
                             <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search mail queue">
                             <div class="input-group-append">
-                                <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
+                                <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#advancedFilter"><i class="fas fa-filter"></i></button>
                                 <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
@@ -70,8 +70,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </div>
             </form>
             <hr>
-            <div class="table-responsive-sm">
-                <table id=responsive class="responsive table table-sm table-striped table-borderless table-hover">
+            <div class="card-datatable table-responsive pt-0">                <table id=responsive class="responsive table table-sm table-striped table-borderless table-hover">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=email_id&order=<?php echo $disp; ?>">ID</a></th>

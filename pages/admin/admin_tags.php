@@ -24,7 +24,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-tags mr-2"></i>Tags</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addTagModal"><i class="fas fa-plus mr-2"></i>New Tag</button>
+                <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addTagModal"><i class="fas fa-plus mr-2"></i>New Tag</button>
             </div>
         </div>
 
@@ -45,8 +45,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </div>
 
             <hr>
-            <div class="table-responsive-sm">
-                 <table id=responsive class="responsive table table-hover">
+            <div class="card-datatable table-responsive pt-0">                   
+<table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=tag_name&order=<?php echo $disp; ?>">Name</a></th>
@@ -67,18 +67,18 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
                         <tr>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#editTagModal<?php echo $tag_id; ?>">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#editTagModal<?php echo $tag_id; ?>">
                                     <span class='badge text-light p-2 mr-1' style="background-color: <?php echo $tag_color; ?>"><i class="fa fa-fw fa-<?php echo $tag_icon; ?> mr-2"></i><?php echo $tag_name; ?></span>
                                 </a>
                             </td>
                             <td><?php echo $tag_type; ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editTagModal<?php echo $tag_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editTagModal<?php echo $tag_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>

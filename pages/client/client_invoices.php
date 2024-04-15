@@ -30,10 +30,10 @@ $recurring_invoice_count = $row['num'];
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-file-invoice mr-2"></i>Invoices</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="invoice_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Invoice</button>
-                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="invoice_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Invoice</button>
+                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportInvoiceModal">
+                    <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportInvoiceModal">
                         <i class="fa fa-fw fa-download mr-2"></i>Export
                     </a>
                 </div>
@@ -61,7 +61,7 @@ $recurring_invoice_count = $row['num'];
                         <div class="btn-group float-right">
                             <a href="client_recurring_invoices.php?client_id=<?php echo $client_id; ?>" class="btn btn-soft-primary"><i class="fa fa-fw fa-redo-alt mr-2"></i>Recurring | <b><?php echo $recurring_invoice_count; ?></b></a>
                             <?php if ($balance > 0) { ?>
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addBulkPaymentModal"><i class="fa fa-credit-card mr-2"></i>Batch Payment</button>
+                                <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#addBulkPaymentModal"><i class="fa fa-credit-card mr-2"></i>Batch Payment</button>
                             <?php } ?>
                         </div>
                     </div>
@@ -70,8 +70,8 @@ $recurring_invoice_count = $row['num'];
             </div>
         </form>
         <hr>
-        <div class="table-responsive-sm">
-             <table id=responsive class="responsive table table-hover">
+        <div class="card-datatable table-responsive pt-0">               
+<table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) {
                                             echo "d-none";
                                         } ?>">
@@ -148,7 +148,7 @@ $recurring_invoice_count = $row['num'];
                             </td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
@@ -158,10 +158,10 @@ $recurring_invoice_count = $row['num'];
                                             </a>
                                             <div class="dropdown-divider"></div>
                                         <?php } ?>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editInvoiceModal<?php echo $invoice_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editInvoiceModal<?php echo $invoice_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addInvoiceCopyModal<?php echo $invoice_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addInvoiceCopyModal<?php echo $invoice_id; ?>">
                                             <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                         </a>
                                         <div class="dropdown-divider"></div>

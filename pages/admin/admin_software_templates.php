@@ -25,7 +25,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-cube mr-2"></i>License Templates</h3>
         <div class="card-tools">
-            <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addSoftwareTemplateModal"><i class="fas fa-plus mr-2"></i>New License Template</button>
+            <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addSoftwareTemplateModal"><i class="fas fa-plus mr-2"></i>New License Template</button>
         </div>
     </div>
     <div class="card-body">
@@ -47,8 +47,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </div>
         </form>
         <hr>
-        <div class="table-responsive-sm">
-             <table id=responsive class="responsive table table-hover">
+        <div class="card-datatable table-responsive pt-0">               
+<table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if($num_rows[0] == 0){ echo "d-none"; } ?>">
                 <tr>
                     <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=software_name&order=<?php echo $disp; ?>">Template</a></th>
@@ -72,7 +72,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     ?>
                     <tr>
                         <td>
-                            <a class="text-dark" href="#" data-toggle="modal" data-target="#editSoftwareTemplateModal<?php echo $software_id; ?>">
+                            <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareTemplateModal<?php echo $software_id; ?>">
                                 <div class="media">
                                     <i class="fa fa-fw fa-2x fa-cube mr-3"></i>
                                     <div class="media-body">
@@ -86,11 +86,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <td><?php echo $software_license_type; ?></td>
                         <td>
                             <div class="dropdown dropleft text-center">
-                                <button class="btn btn-light btn-sm" data-toggle="dropdown">
+                                <button class="btn btn-light btn-sm" data-bs-toggle="dropdown">
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editSoftwareTemplateModal<?php echo $software_id; ?>">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareTemplateModal<?php echo $software_id; ?>">
                                         <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                     </a>
                                     <?php if($session_user_role == 3) { ?>
