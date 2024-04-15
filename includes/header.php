@@ -10,6 +10,8 @@
 
     <meta name="description" content="" />
 
+    <link rel="manifest" href="/manifest.json">
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/includes/assets/img/favicon/favicon.ico" />
 
@@ -32,6 +34,9 @@
     <link rel="stylesheet" href="/includes/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="/includes/assets/vendor/libs/typeahead-js/typeahead.css" />
     <link rel="stylesheet" href="/includes/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.1/css/responsive.bootstrap5.css" />
+
 
     <!-- Page CSS -->
 

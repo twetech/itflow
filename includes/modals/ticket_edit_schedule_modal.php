@@ -23,7 +23,7 @@ $ticket_onsite = intval($row['ticket_onsite']);
                     <i class="fa fa-fw fa-user mr-2"></i>
                     Edit Scheduled Time for <strong><?php echo "$ticket_prefix$ticket_number"; ?></strong>
                 </h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -56,8 +56,8 @@ $ticket_onsite = intval($row['ticket_onsite']);
                         <i class="fa fa-trash mr-2"></i>Cancel Scheduled Time
                     </a>
                 <?php } ?>
-                    <button type="submit" name="edit_ticket_schedule" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" name="edit_ticket_schedule" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
 
             </form>

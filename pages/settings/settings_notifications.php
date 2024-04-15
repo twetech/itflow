@@ -123,7 +123,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
 
                 <hr>
 
-                <button type="submit" name="edit_notification_settings" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
+                <button type="submit" name="edit_notification_settings" class="btn btn-soft-primary text-bold"></i>Save</button>
 
             </form>
         </div>

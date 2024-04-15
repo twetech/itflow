@@ -164,5 +164,5 @@ clipboard.on('error', function(e) {
 
 // Enable Popovers
 $(function () {
-  $('[data-toggle="popover"]').popover()
+  $('[data-bs-toggle="popover"]').popover()
 });

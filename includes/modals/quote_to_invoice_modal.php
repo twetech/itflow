@@ -4,7 +4,7 @@
     <div class="modal-content bg-dark">
       <div class="modal-header">
         <h5 class="modal-title"><i class="fas fa-fw fa-file mr-2"></i>Quote <?php echo "$quote_prefix$quote_number"; ?> <i class="fas fa-arrow-right mr-2"></i>Invoice</h5>
-        <button type="button" class="close text-white" data-dismiss="modal">
+        <button type="button" class="close text-white" data-bs-dismiss="modal">
           <span>&times;</span>
         </button>
       </div>
@@ -27,7 +27,7 @@
         </div>
         <div class="modal-footer bg-white">
           <button type="submit" name="add_quote_to_invoice" class="btn btn-soft-primary text-bold"><strong><i class="fas fa-check mr-2"></i>Create Invoice</button>
-            <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
         </div>
       </form>
     </div>

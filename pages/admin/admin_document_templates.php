@@ -33,7 +33,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
   <div class="card-header py-2">
     <h3 class="card-title mt-2"><i class="fa fa-fw fa-file mr-2"></i>Document Templates</h3>
     <div class="card-tools">
-      <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addDocumentTemplateModal">
+      <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addDocumentTemplateModal">
         <i class="fas fa-plus mr-2"></i>New Template
       </button>
     </div>
@@ -50,8 +50,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     </form>
     <hr>
 
-    <div class="table-responsive-sm">
-       <table id=responsive class="responsive table table-hover">
+    <div class="card-datatable table-responsive pt-0">         
+<table class="datatables-basic table border-top">
         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
           <tr>
             <th>
@@ -95,11 +95,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <td><?php echo $document_updated_at; ?></td>
             <td>
               <div class="dropdown dropleft text-center">
-                <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                   <i class="fas fa-ellipsis-h"></i>
                 </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editDocumentTemplateModal<?php echo $document_id; ?>">
+                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editDocumentTemplateModal<?php echo $document_id; ?>">
                     <i class="fas fa-fw fa-edit mr-2"></i>Edit
                   </a>
                   <?php if ($session_user_role == 3) { ?>

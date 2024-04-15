@@ -5,7 +5,7 @@
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-user-plus mr-2"></i>New Contact</h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -21,16 +21,16 @@
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="pill" href="#pills-details"><i class="fa fa-fw fa-user mr-2"></i>Details</a>
+                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details"><i class="fa fa-fw fa-user mr-2"></i>Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-photo"><i class="fa fa-fw fa-image mr-2"></i>Photo</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-photo"><i class="fa fa-fw fa-image mr-2"></i>Photo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-secure"><i class="fa fa-fw fa-lock mr-2"></i>Secure</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-secure"><i class="fa fa-fw fa-lock mr-2"></i>Secure</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-notes"><i class="fa fa-fw fa-edit mr-2"></i>Notes</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-notes"><i class="fa fa-fw fa-edit mr-2"></i>Notes</a>
                         </li>
                     </ul>
 
@@ -207,7 +207,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-fw fa-lock"></i></span>
                                             </div>
-                                            <input type="password" class="form-control" data-toggle="password" id="password-add" name="contact_password" placeholder="Password" autocomplete="new-password">
+                                            <input type="password" class="form-control" data-bs-toggle="password" id="password-add" name="contact_password" placeholder="Password" autocomplete="new-password">
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-fw fa-eye"></i></span>
                                             </div>
@@ -236,7 +236,7 @@
                 </div>
                 <div class="modal-footer bg-white">
                     <button type="submit" name="add_contact" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Create</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>
         </div>

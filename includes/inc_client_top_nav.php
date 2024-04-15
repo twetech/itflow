@@ -524,7 +524,7 @@
 
                 <!-- Dashboard -->
                 <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "client_overview.php" || basename($_SERVER["PHP_SELF"]) == "client_contacts.php" || basename($_SERVER["PHP_SELF"]) == "client_locations.php") { echo 'u-sidebar-nav--opened'; } ?>">
-                    <a class="u-sidebar-nav-menu__link" href="#!" data-target='#detailsSideNav'>
+                    <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#detailsSideNav'>
                         <i class="fa fa-user-circle u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Client Details</span>
                         <span class="u-sidebar-nav-menu__item-arrow">
@@ -558,7 +558,7 @@
 
                 <!-- Support -->
                 <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "client_tickets.php" || basename($_SERVER["PHP_SELF"]) == "client_vendors.php" || basename($_SERVER["PHP_SELF"]) == "client_events.php") { echo 'u-sidebar-nav--opened'; } ?>">
-                    <a class="u-sidebar-nav-menu__link" href="#!" data-target='#supportSideNav'>
+                    <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#supportSideNav'>
                         <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Support</span>
                         <span class="u-sidebar-nav-menu__item-arrow">
@@ -592,7 +592,7 @@
 
                 <!-- Documentation -->
                 <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "client_assets.php" || basename($_SERVER["PHP_SELF"]) == "client_software.php" || basename($_SERVER["PHP_SELF"]) == "client_logins.php" || basename($_SERVER["PHP_SELF"]) == "client_networks.php" || basename($_SERVER["PHP_SELF"]) == "client_certificates.php" || basename($_SERVER["PHP_SELF"]) == "client_domains.php" || basename($_SERVER["PHP_SELF"]) == "client_services.php" || basename($_SERVER["PHP_SELF"]) == "client_documents.php" || basename($_SERVER["PHP_SELF"]) == "client_files.php") { echo 'u-sidebar-nav--opened'; } ?>">
-                    <a class="u-sidebar-nav-menu__link" href="#!" data-target='#documentationSideNav'>
+                    <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#documentationSideNav'>
                         <i class="fa fa-pencil-alt u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Documentation</span>
                         <span class="u-sidebar-nav-menu__item-arrow">
@@ -662,7 +662,7 @@
 
                 <!-- Finance -->
                 <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "client_invoices.php" || basename($_SERVER["PHP_SELF"]) == "client_quotes.php" || basename($_SERVER["PHP_SELF"]) == "client_payments.php" || basename($_SERVER["PHP_SELF"]) == "client_statement.php" || basename($_SERVER["PHP_SELF"]) == "client_trips.php") { echo 'u-sidebar-nav--opened'; } ?>">
-                    <a class="u-sidebar-nav-menu__link" href="#!" data-target='#financeSideNav'>
+                    <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#financeSideNav'>
                         <i class="fa fa-money-bill-wave u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">Finance</span>
                         <span class="u-sidebar-nav-menu__item-arrow">
@@ -708,7 +708,7 @@
 
                 <!-- More -->
                 <li class="u-sidebar-nav-menu__item <?php if (basename($_SERVER["PHP_SELF"]) == "client_bulk_mail.php" || basename($_SERVER["PHP_SELF"]) == "client_shared_items.php" || basename($_SERVER["PHP_SELF"]) == "client_logs.php") { echo 'u-sidebar-nav--opened'; } ?>">
-                    <a class="u-sidebar-nav-menu__link" href="#!" data-target='#moreSideNav'>
+                    <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#moreSideNav'>
                         <i class="fa fa-plus-circle u-sidebar-nav-menu__item-icon"></i>
                         <span class="u-sidebar-nav-menu__item-title">More</span>
                         <span class="u-sidebar-nav-menu__item-arrow">

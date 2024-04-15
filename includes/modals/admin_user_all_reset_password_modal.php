@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-header">
             <h5 class="modal-title">Incident Response: Agent Password Reset</h5>
-            <button type="button" class="close" data-dismiss="modal">
+            <button type="button" class="close" data-bs-dismiss="modal">
                 <span>&times;</span>
             </button>
             <form action="/post.php" method="POST">
@@ -33,7 +33,7 @@
             </div>
             
             <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary btn-lg px-5 mr-4" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-outline-secondary btn-lg px-5 mr-4" data-bs-dismiss="modal">Cancel</button>
             <button class="btn btn-danger" type="submit" name="ir_reset_user_password"><i class="fas fa-fw fa-key mr-2"></i>Reset passwords</button>
             </form>
             </div>

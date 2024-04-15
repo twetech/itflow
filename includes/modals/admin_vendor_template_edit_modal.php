@@ -1,11 +1,31 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
+<?php
+$vendor_id = intval($_GET['vendor_id']);
+$sql_vendor = mysqli_query($mysqli, "SELECT * FROM vendor_templates WHERE vendor_id = $vendor_id");
+$row = mysqli_fetch_array($sql_vendor);
+
+$vendor_name = nullable_htmlentities($row['vendor_name']);
+$vendor_description = nullable_htmlentities($row['vendor_description']);
+$vendor_account_number = nullable_htmlentities($row['vendor_account_number']);
+$vendor_contact_name = nullable_htmlentities($row['vendor_contact_name']);
+$vendor_phone = nullable_htmlentities($row['vendor_phone']);
+$vendor_extension = nullable_htmlentities($row['vendor_extension']);
+$vendor_hours = nullable_htmlentities($row['vendor_hours']);
+$vendor_email = nullable_htmlentities($row['vendor_email']);
+$vendor_website = nullable_htmlentities($row['vendor_website']);
+$vendor_sla = nullable_htmlentities($row['vendor_sla']);
+$vendor_code = nullable_htmlentities($row['vendor_code']);
+$vendor_notes = nullable_htmlentities($row['vendor_notes']);
+?>
+
+
 <div class="modal" id="editVendorTemplateModal<?php echo $vendor_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fas fa-fw fa-building mr-2"></i>Editing vendor template: <strong><?php echo $vendor_name; ?></strong></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -15,13 +35,13 @@
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="pill" href="#pills-details<?php echo $vendor_id; ?>">Details</a>
+                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details<?php echo $vendor_id; ?>">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-support<?php echo $vendor_id; ?>">Support</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-support<?php echo $vendor_id; ?>">Support</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-notes<?php echo $vendor_id; ?>">Notes</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-notes<?php echo $vendor_id; ?>">Notes</a>
                         </li>
                     </ul>
 
@@ -221,8 +241,8 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" class="btn btn-soft-primary text-bold" name="edit_vendor_template"><i class="fa fa-check mr-2"></i>Update Template</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" class="btn btn-soft-primary text-bold" name="edit_vendor_template"></i>Update Template</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>
         </div>

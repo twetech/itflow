@@ -4,7 +4,7 @@
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-key mr-2"></i>New Login</h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -14,13 +14,13 @@
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="pill" href="#pills-details">Details</a>
+                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-relation">Relation</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-relation">Relation</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-notes">Notes</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-notes">Notes</a>
                         </li>
                     </ul>
 
@@ -71,7 +71,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-lock"></i></span>
                                     </div>
-                                    <input type="password" class="form-control" data-toggle="password" id="password" name="password" placeholder="Password" required autocomplete="new-password">
+                                    <input type="password" class="form-control" data-bs-toggle="password" id="password" name="password" placeholder="Password" required autocomplete="new-password">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-fw fa-eye"></i></span>
                                     </div>
@@ -87,7 +87,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-key"></i></span>
                                     </div>
-                                    <input type="password" class="form-control" data-toggle="password" name="otp_secret" placeholder="Insert secret key">
+                                    <input type="password" class="form-control" data-bs-toggle="password" name="otp_secret" placeholder="Insert secret key">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-fw fa-eye"></i></span>
                                     </div>
@@ -234,8 +234,8 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_login" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Create</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" name="add_login" class="btn btn-soft-primary text-bold"></i>Create</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>
         </div>

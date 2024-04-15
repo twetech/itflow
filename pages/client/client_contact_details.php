@@ -64,7 +64,7 @@ if (isset($_GET['contact_id'])) {
 
             <div class="card">
                 <div class="card-body">
-                    <button type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#editContactModal<?php echo $contact_id; ?>">
+                    <button type="button" class="btn btn-default float-right" data-bs-toggle="modal" data-bs-target="#editContactModal<?php echo $contact_id; ?>">
                         <i class="fas fa-fw fa-user-edit"></i>
                     </button>
                     <h3 class="text-bold"><?php echo $contact_name; ?></h3>
@@ -145,8 +145,8 @@ if (isset($_GET['contact_id'])) {
                     <h3 class="card-title"><i class="fa fa-fw fa-desktop mr-2"></i>Related Assets</h3>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive-sm">
-                         <table id=responsive class="responsive table table-hover">
+                    <div class="card-datatable table-responsive pt-0">                           
+<table class="datatables-basic table border-top">
                             <thead>
                             <tr>
                                 <th>Name/Description</th>
@@ -213,7 +213,7 @@ if (isset($_GET['contact_id'])) {
                                 <tr>
                                     <th>
                                         <i class="fa fa-fw text-secondary fa-<?php echo $device_icon; ?> mr-2"></i>
-                                        <a class="text-secondary" href="#" data-toggle="modal" data-target="#editAssetModal<?php echo $asset_id; ?>"><?php echo $asset_name; ?></a>
+                                        <a class="text-secondary" href="#" data-bs-toggle="modal" data-bs-target="#editAssetModal<?php echo $asset_id; ?>"><?php echo $asset_name; ?></a>
                                         <div class="mt-0">
                                             <small class="text-muted"><?php echo $asset_description; ?></small>
                                         </div>
@@ -231,13 +231,13 @@ if (isset($_GET['contact_id'])) {
                                     <td><?php echo $asset_status; ?></td>
                                     <td>
                                         <div class="dropdown dropleft text-center">
-                                            <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></button>
+                                            <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addAssetInterfaceModal<?php echo $asset_id; ?>">Interfaces</a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editAssetModal<?php echo $asset_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addAssetInterfaceModal<?php echo $asset_id; ?>">Interfaces</a>
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAssetModal<?php echo $asset_id; ?>">
                                                     <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                                 </a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#copyAssetModal<?php echo $asset_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#copyAssetModal<?php echo $asset_id; ?>">
                                                     <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                                 </a>
                                                 <?php if ($session_user_role == 3) { ?>
@@ -280,7 +280,8 @@ if (isset($_GET['contact_id'])) {
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm-sm">
-                         <table id=responsive class="responsive table table-hover">
+                           
+<table class="datatables-basic table border-top">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -330,27 +331,27 @@ if (isset($_GET['contact_id'])) {
                                 <tr>
                                     <td>
                                         <i class="fa fa-fw fa-key text-secondary"></i>
-                                        <a class="text-dark" href="#" data-toggle="modal" data-target="#editLoginModal<?php echo $login_id; ?>">
+                                        <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?php echo $login_id; ?>">
                                             <?php echo $login_name; ?>
                                         </a>
                                     </td>
                                     <td><?php echo $login_description; ?></td>
                                     <td><?php echo $login_username_display; ?></td>
                                     <td>
-                                        <a tabindex="0" href="#" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<?php echo $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></a><button class="btn btn-sm clipboardjs" data-clipboard-text="<?php echo $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
+                                        <a tabindex="0" href="#" data-bs-toggle="popover" data-trigger="focus" data-placement="top" data-content="<?php echo $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></a><button class="btn btn-sm clipboardjs" data-clipboard-text="<?php echo $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
                                     </td>
                                     <td><?php echo $otp_display; ?></td>
                                     <td><?php echo $login_uri_display; ?></td>
                                     <td>
                                         <div class="dropdown dropleft text-center">
-                                            <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                            <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editLoginModal<?php echo $login_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?php echo $login_id; ?>">
                                                     <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                                 </a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'Login', $login_id"; ?>)">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'Login', $login_id"; ?>)">
                                                     <i class="fas fa-fw fa-share-alt mr-2"></i>Share
                                                 </a>
                                                 <?php if ($session_user_role == 3) { ?>
@@ -384,8 +385,8 @@ if (isset($_GET['contact_id'])) {
                     <h3 class="card-title"><i class="fa fa-fw fa-cube mr-2"></i>Related Licenses</h3>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive-sm">
-                         <table id=responsive class="responsive table table-hover">
+                    <div class="card-datatable table-responsive pt-0">                           
+<table class="datatables-basic table border-top">
                             <thead class="text-dark">
                             <tr>
                                 <th>Software</th>
@@ -436,7 +437,7 @@ if (isset($_GET['contact_id'])) {
 
                                 ?>
                                 <tr>
-                                    <td><a class="text-dark" href="#" data-toggle="modal" data-target="#editSoftwareModal<?php echo $software_id; ?>"><?php echo "$software_name<br><span class='text-secondary'>$software_version</span>"; ?></a></td>
+                                    <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareModal<?php echo $software_id; ?>"><?php echo "$software_name<br><span class='text-secondary'>$software_version</span>"; ?></a></td>
                                     <td><?php echo $software_type; ?></td>
                                     <td><?php echo $software_license_type; ?></td>
                                     <td><?php echo "$seat_count / $software_seats"; ?></td>
@@ -459,8 +460,8 @@ if (isset($_GET['contact_id'])) {
                     <h3 class="card-title"><i class="fa fa-fw fa-life-ring mr-2"></i>Related Tickets</h3>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive-sm">
-                         <table id=responsive class="responsive table table-hover">
+                    <div class="card-datatable table-responsive pt-0">                           
+<table class="datatables-basic table border-top">
                             <thead class="text-dark">
                             <tr>
                                 <th>Number</th>
@@ -526,7 +527,7 @@ if (isset($_GET['contact_id'])) {
                                 ?>
 
                                 <tr>
-                                    <td><a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><span class="badge badge-pill badge-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span></a></td>
+                                    <td><a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><span class="badge rounded-pill bg-label-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span></a></td>
                                     <td><a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a></td>
                                     <td><?php echo $ticket_priority_display; ?></td>
                                     <td><?php echo $ticket_status_display; ?></td>

@@ -118,7 +118,7 @@ if (isset($_GET['quote_id'])) {
 
                 <div class="col-8">
                     <?php if ($quote_status == 'Draft') { ?>
-                        <button class="btn btn-soft-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <button class="btn btn-soft-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                             <i class="fas fa-paper-plane mr-2"></i>Send
                         </button>
                         <div class="dropdown-menu">
@@ -144,7 +144,7 @@ if (isset($_GET['quote_id'])) {
                     <?php } ?>
 
                     <?php if ($quote_status == 'Accepted') { ?>
-                        <a class="btn btn-soft-primary" href="#" data-toggle="modal" data-target="#addQuoteToInvoiceModal<?php echo $quote_id; ?>">
+                        <a class="btn btn-soft-primary" href="#" data-bs-toggle="modal" data-bs-target="#addQuoteToInvoiceModal<?php echo $quote_id; ?>">
                             <i class="fas fa-check mr-2"></i>Invoice
                         </a>
                     <?php } ?>
@@ -153,14 +153,14 @@ if (isset($_GET['quote_id'])) {
 
                 <div class="col-4">
                     <div class="dropdown dropleft text-center float-right">
-                        <button class="btn btn-light" type="button" data-toggle="dropdown">
+                        <button class="btn btn-light" type="button" data-bs-toggle="dropdown">
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" data-toggle="modal" onclick="populateQuoteEditModal(<?php echo $quote_id ?>)" data-target="#editQuoteModal">
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" onclick="populateQuoteEditModal(<?php echo $quote_id ?>)" data-bs-target="#editQuoteModal">
                                 <i class="fa fa-fw fa-edit text-secondary mr-2"></i>Edit
                             </a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addQuoteCopyModal<?php echo $quote_id; ?>">
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addQuoteCopyModal<?php echo $quote_id; ?>">
                                 <i class="fa fa-fw fa-copy text-secondary mr-2"></i>Copy
                             </a>
                             <div class="dropdown-divider"></div>
@@ -308,7 +308,7 @@ if (isset($_GET['quote_id'])) {
                                             <td class="d-print-none">
                                                 <?php if ($quote_status !== "Invoiced" && $quote_status !== "Accepted" && $quote_status !== "Declined") { ?>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-sm btn-light" type="button" data-toggle="dropdown">
+                                                        <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown">
                                                             <i class="fas fa-ellipsis-v"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
@@ -323,7 +323,7 @@ if (isset($_GET['quote_id'])) {
                                                                 <button class="dropdown-item" type="submit" name="update_quote_item_order" value="down" <?php echo $down_hidden; ?>><i class="fa fa-fw fa-arrow-down mr-2"></i>Move Down</button>
                                                             </form>
                                                             <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editItemModal<?php echo $item_id; ?>">
+                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editItemModal<?php echo $item_id; ?>">
                                                                 <i class="fa fa-fw fa-edit mr-2"></i>Edit
                                                             </a>
                                                             <div class="dropdown-divider"></div>
@@ -414,7 +414,7 @@ if (isset($_GET['quote_id'])) {
                         <div class="card-header text-bold">
                             Notes
                             <div class="card-tools d-print-none">
-                                <a href="#" class="btn btn-light btn-tool" data-toggle="modal" data-target="#quoteNoteModal">
+                                <a href="#" class="btn btn-light btn-tool" data-bs-toggle="modal" data-bs-target="#quoteNoteModal">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </div>

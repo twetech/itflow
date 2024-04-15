@@ -266,7 +266,7 @@ if (isset($_POST['login'])) {
                 $response = "
                       <div class='alert alert-warning'>
                         Please Enter 2FA Code!
-                        <button class='close' data-dismiss='alert'>&times;</button>
+                        <button class='close' data-bs-dismiss='alert'>&times;</button>
                       </div>";
             }
         }
@@ -282,7 +282,7 @@ if (isset($_POST['login'])) {
         $response = "
               <div class='alert alert-danger'>
                 Incorrect username or password.
-                <button class='close' data-dismiss='alert'>&times;</button>
+                <button class='close' data-bs-dismiss='alert'>&times;</button>
               </div>";
     }
 }

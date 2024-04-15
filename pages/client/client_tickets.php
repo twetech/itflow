@@ -74,12 +74,12 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
         </h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_add_modal.php?client_id=<?php echo $client_id; ?>">
+                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_add_modal.php?client_id=<?php echo $client_id; ?>">
                     <i class="fas fa-plus mr-2"></i>New Ticket
                 </button>
-                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportTicketModal">
+                    <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportTicketModal">
                         <i class="fa fa-fw fa-download mr-2"></i>Export
                     </a>
                 </div>
@@ -113,8 +113,8 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
             </div>
         </form>
         <hr>
-        <div class="table-responsive-sm">
-             <table id=responsive class="responsive table table-hover">
+        <div class="card-datatable table-responsive pt-0">               
+<table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
                     <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_number&order=<?php echo $disp; ?>">Number</a></th>
@@ -206,28 +206,28 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
                     ?>
 
                     <tr class="<?php if(empty($ticket_updated_at)) { echo "text-bold"; }?>">
-                        <td><a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><span class="badge badge-pill badge-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span></a></td>
+                        <td><a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><span class="badge rounded-pill bg-label-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span></a></td>
                         <td>
                             <a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a>
                         </td>
-                        <td><a href="#" data-toggle="modal" data-target="#editTicketContactModal<?php echo $ticket_id; ?>"><?php echo $contact_display; ?></a></td>
+                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#editTicketContactModal<?php echo $ticket_id; ?>"><?php echo $contact_display; ?></a></td>
 
                         <?php if ($config_module_enable_accounting) { ?>
                         <td class="text-center">
-                            <a href="#" data-toggle="modal" data-target="#editTicketBillableModal<?php echo $ticket_id; ?>">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketBillableModal<?php echo $ticket_id; ?>">
                             <?php
                                 if ($ticket_billable == 1) {
-                                    echo "<span class='badge badge-pill badge-success'>$</span>";
+                                    echo "<span class='badge rounded-pill bg-label-success'>$</span>";
                                 } else {
-                                    echo "<span class='badge badge-pill badge-secondary'>X</span>";
+                                    echo "<span class='badge rounded-pill bg-label-secondary'>X</span>";
                                 }
                             ?>
                         </td>
                         <?php } ?>
 
-                        <td><a href="#" data-toggle="modal" data-target="#editTicketPriorityModal<?php echo $ticket_id; ?>"><?php echo $ticket_priority_display; ?></a></td>
-                        <td><span class='p-2 badge badge-pill badge-<?php echo $ticket_status_color; ?>'><?php echo $ticket_status; ?></span></td>
-                        <td><a href="#" data-toggle="modal" data-target="#assignTicketModal<?php echo $ticket_id; ?>"><?php echo $ticket_assigned_to_display; ?></a></td>
+                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#editTicketPriorityModal<?php echo $ticket_id; ?>"><?php echo $ticket_priority_display; ?></a></td>
+                        <td><span class='p-2 badge rounded-pill bg-label-<?php echo $ticket_status_color; ?>'><?php echo $ticket_status; ?></span></td>
+                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#assignTicketModal<?php echo $ticket_id; ?>"><?php echo $ticket_assigned_to_display; ?></a></td>
                         <td><?php echo $ticket_updated_at_display; ?></td>
                         <td>
                             <?php echo $ticket_created_at_time_ago; ?>

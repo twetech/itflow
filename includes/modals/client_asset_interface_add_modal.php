@@ -5,7 +5,7 @@
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-ethernet"></i> <i class="fa fa-fw fa-<?php echo $device_icon; ?>"></i> <?php echo $asset_name; ?></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -19,10 +19,10 @@
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="pill" href="#pills-interfaces<?php echo $asset_id; ?>">Interfaces</a>
+                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-interfaces<?php echo $asset_id; ?>">Interfaces</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-create<?php echo $asset_id; ?>">Create</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-create<?php echo $asset_id; ?>">Create</a>
                         </li>
                     </ul>
 
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" name="add_asset_interface" class="btn btn-soft-primary"><i class="fa fa-check"></i> Create</button>
                 </div>
             </form>

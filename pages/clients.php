@@ -53,12 +53,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <?php if ($session_user_role == 3) { ?>
                     <ul class="list-inline ml-auto mb0">
                         <li class="list-inline-item mr3">
-                            <a href="#!" data-toggle="modal" data-target="#dynamicModal" class="text-dark loadModalContentBtn" data-modal-file="client_add_modal.php?leads=<?php echo $leads; ?>">
+                            <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="text-dark loadModalContentBtn" data-modal-file="client_add_modal.php?leads=<?php echo $leads; ?>">
                                 <i class="fa fa-fw fa-plus mr-2"></i><!-- Add Client -->
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#" data-toggle="modal" data-target="#exportClientModal" class="text-dark">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#exportClientModal" class="text-dark">
                                 <i class="fa fa-fw fa-download mr-2"></i><!-- Export Clients -->
                             </a>
                         </li>
@@ -68,8 +68,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
         <div class="card-body p-2 p-md-3">
 
-            <div class="table-responsive-sm">
-                <table id='responsive' class="responsive table table-hover">
+            <div class="card-datatable table-responsive pt-0">                <table id='responsive' class="responsive table table-hover">
                     <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                                 <th>Name</th>
@@ -248,11 +247,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 <td>
                                     <ul>
                                         <div class="dropdown dropleft text-center">
-                                            <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                            <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a href="#!" data-toggle="modal" data-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_edit_modal.php?client_id=<?php echo $client_id; ?>">
+                                                <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_edit_modal.php?client_id=<?php echo $client_id; ?>">
                                                     <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                                 </a>
                                                 <div class="dropdown-divider"></div>

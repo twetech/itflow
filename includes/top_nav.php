@@ -1,6 +1,5 @@
 <?php
 
-
 $menuItems = [
     [
         'title' => 'Dashboard',
@@ -22,46 +21,104 @@ $menuItems = [
         'title' => 'Sales',
         'icon' => 'bx bx-shopping-bag',
         'children' => [
-            ['title' => 'Quotes', 'link' => '/pages/quotes.php', 'icon' => 'fa fa-comment-dollar'],
-            ['title' => 'Invoices', 'link' => '/pages/invoices.php', 'icon' => 'fa fa-file-invoice'],
-            ['title' => 'Products', 'link' => '/pages/products.php', 'icon' => 'fa fa-box-open']
+            ['title' => 'Quotes', 'link' => '/pages/quotes.php', 'icon' => 'bx bx-message-square-detail'],
+            ['title' => 'Invoices', 'link' => '/pages/invoices.php', 'icon' => 'bx bx-receipt'],
+            ['title' => 'Products', 'link' => '/pages/products.php', 'icon' => 'bx bx-box'],
+            
         ]
     ],
     [
         'title' => 'Finance',
-        'icon' => 'bx bx-dollar',
+        'icon' => 'bx bx-money-withdraw',
         'children' => [
-            ['title' => 'Payments', 'link' => '/pages/payments.php', 'icon' => 'fa fa-money-check-alt'],
-            ['title' => 'Expenses', 'link' => '/pages/expenses.php', 'icon' => 'fa fa-money-bill-wave'],
-            ['title' => 'Transfers', 'link' => '/pages/transfers.php', 'icon' => 'fa fa-exchange-alt'],
-            ['title' => 'Accounts', 'link' => '/pages/accounts.php', 'icon' => 'fa fa-university']
+            ['title' => 'Payments', 'link' => '/pages/payments.php', 'icon' => 'bx bx-credit-card'],
+            ['title' => 'Expenses', 'link' => '/pages/expenses.php', 'icon' => 'bx bx-money'],
+            ['title' => 'Transfers', 'link' => '/pages/transfers.php', 'icon' => 'bx bx-transfer'],
+            ['title' => 'Accounts', 'link' => '/pages/accounts.php', 'icon' => 'bx bx-wallet'],
+            
         ]
     ],
     [
         'title' => 'Reports',
         'icon' => 'bx bx-bar-chart',
         'children' => [
+            ['title' => 'Financial', 'icon' => 'bx bx-dollar', 'children' => [
+                ['title' => 'Income', 'link' => '/pages/report/report_income_summary.php', 'icon' => 'bx bx-box'],
+                ['title' => 'Income By Client', 'link' => '/pages/report/report_income_by_client.php', 'icon' => 'bx bx bx-box'],
+                ['title' => 'Recurring Income by Client' , 'link' => '/pages/report/report_recurring_by_client.php', 'icon' => 'bx bx-box'],
+                ['title' => 'Expenses', 'link' => '/pages/report/report_expense_summary.php', 'icon' => 'bx bx-box'],
+                ['title' => 'Expenses By Vendor', 'link' => '/pages/report/report_expenses_by_vendor.php', 'icon' => 'bx bx-box'],
+                ['title' => 'Budgets', 'link' => '/pages/report/report_budget.php', 'icon' => 'bx bx-box'],
+                ['title' => 'Profit & Loss', 'link' => '/pages/report/report_profit_loss.php', 'icon' => 'bx bx-box'],
+                ['title' => 'Balance Sheet', 'link' => '/pages/report/report_balance_sheet.php', 'icon' => 'bx bx-box'],
+                ['title' => 'Cash Flow', 'link' => '/pages/report/report_cash_flow.php', 'icon' => 'bx bx-box'],
+                ['title' => 'Tax Summary', 'link' => '/pages/report/report_tax_summary.php', 'icon' => 'bx bx-box'],
+                ['title' => 'Collections', 'link' => '/pages/report/report_collections.php', 'icon' => 'bx bx-box']
+                ]],
+                ['title' => 'Technical', 'icon' => 'bx bx-cog', 'children' => [
+                    ['title' => 'Unbilled Tickets', 'link' => '/pages/report/report_unbilled_tickets.php', 'icon' => 'bx bx-box'],
+                    ['title' => 'Tickets', 'link' => '/pages/report/report_tickets.php', 'icon' => 'bx bx-box'],
+                    ['title' => 'Tickets by Client', 'link' => '/pages/report/report_tickets_by_client.php', 'icon' => 'bx bx-box'],
+                    ['title' => 'Password Rotation', 'link' => '/pages/report/report_password_rotation.php', 'icon' => 'bx bx-box'],
+                    ['title' => 'All Assets', 'link' => '/pages/report/report_all_assets.php', 'icon' => 'bx bx-box'],
+                ]]
         ]
     ],
     [
         'title' => 'Administration',
-        'icon' => 'fa fa-puzzle-piece',
+        'icon' => 'bx bx-wrench',
         'children' => [
-            ['title' => 'Users', 'link' => '/pages/users.php', 'icon' => 'fa fa-users'],
-            ['title' => 'Roles', 'link' => '/pages/roles.php', 'icon' => 'fa fa-user-tag'],
-            ['title' => 'Permissions', 'link' => '/pages/permissions.php', 'icon' => 'fa fa-user-shield'],
-            ['title' => 'Settings', 'link' => '/pages/settings.php', 'icon' => 'fa fa-cogs']
+            ['title' => 'Users', 'link' => '/pages/admin/admin_users.php', 'icon' => 'bx bx-user'],
+            ['title' => 'API Keys', 'link' => '/pages/admin/admin_api_keys.php', 'icon' => 'bx bx-key'],
+            ['title' => 'Tags and Categories', 'icon' => 'bx bx-tag', 'children' => [
+                ['title' => 'Tags', 'link' => '/pages/admin/admin_tags.php', 'icon' => 'bx bx-purchase-tag'],
+                ['title' => 'Categories', 'link' => '/pages/admin/admin_categories.php', 'icon' => 'bx bx-category']
+            ]],
+            ['title' => 'Financial', 'icon' => 'bx bx-dollar', 'children' => [
+                ['title' => 'Taxes', 'link' => '/pages/admin/admin_taxes.php', 'icon' => 'bx bx-bank'],
+                ['title' => 'Account Types', 'link' => '/pages/admin/admin_account_types.php', 'icon' => 'bx bx-university']
+            ]],
+            ['title' => 'Templates', 'icon' => 'bx bx-file', 'children' => [
+                ['title' => 'Vendor Templates', 'link' => '/pages/admin/admin_vendor_templates.php', 'icon' => 'bx bx-file'],
+                ['title' => 'License Templates', 'link' => '/pages/admin/admin_license_templates.php', 'icon' => 'bx bx-file'],
+                ['title' => 'Document Templates', 'link' => '/pages/admin/admin_document_templates.php', 'icon' => 'bx bx-file'],
+            ]],
+            ['title' => 'Maintenance', 'icon' => 'bx bx-cog', 'children' => [
+                ['title' => 'Mail Queue', 'link' => '/pages/admin/admin_mail_queue.php', 'icon' => 'bx bx-envelope'],
+                ['title' => 'Audit Logs', 'link' => '/pages/admin/admin_audit_logs.php', 'icon' => 'bx bx-history'],
+                ['title' => 'Backup', 'link' => '/pages/admin/admin_backup.php', 'icon' => 'bx bx-cloud-download'],
+                ['title' => 'Debug', 'link' => '/pages/admin/admin_debug.php', 'icon' => 'bx bx-bug']
+            ]]
         ]
     ],
     [
         'title' => 'Settings',
         'icon' => 'bx bx-cog',
         'children' => [
-            ['title' => 'Profile', 'link' => '/pages/profile.php', 'icon' => 'fa fa-user'],
-            ['title' => 'Users', 'link' => '/pages/users.php', 'icon' => 'fa fa-users'],
-            ['title' => 'Roles', 'link' => '/pages/roles.php', 'icon' => 'fa fa-user-tag'],
-            ['title' => 'Permissions', 'link' => '/pages/permissions.php', 'icon' => 'fa fa-user-shield'],
-            ['title' => 'Settings', 'link' => '/pages/settings.php', 'icon' => 'fa fa-cogs']
+            ['title' => 'Modules', 'icon' => 'bx bx-checkbox', 'children' => [
+                ['title' => 'Enabled Modules', 'link' => '/pages/settings/settings_modules.php', 'icon' => 'bx bx-checkbox-square'],
+                ['title' => 'Invoice Module', 'link' => '/pages/settings/settings_invoice.php', 'icon' => 'bx bx-barcode'],
+                ['title' => 'Ticket Module', 'link' => '/pages/settings/settings_ticket.php', 'icon' => 'bx bx-first-aid'],
+                ['title' => 'Task Module', 'link' => '/pages/settings/settings_task.php', 'icon' => 'bx bx-task'],
+                ['title' => 'Calendar Module', 'link' => '/pages/settings/settings_calendar.php', 'icon' => 'bx bx-calendar'],
+                ['title' => 'Quote Module', 'link' => '/pages/settings/settings_quote.php', 'icon' => 'bx bx-message-square-detail'],
+                ['title' => 'Expense Module', 'link' => '/pages/settings/settings_expense.php', 'icon' => 'bx bx-money'],
+                ['title' => 'Transfer Module', 'link' => '/pages/settings/settings_transfer.php', 'icon' => 'bx bx-transfer'],
+                ['title' => 'Online Payments Module', 'link' => '/pages/settings/settings_online_payments.php', 'icon' => 'bx bx-credit-card'],
+                ['title' => 'Integrations', 'link' => '/pages/settings/settings_integrations.php', 'icon' => 'bx bx-plug'],
+            ]],
+            ['title' => 'General', 'icon' => 'bx bx-cog', 'children' => [
+                ['title' => 'Company', 'link' => '/pages/settings/settings_company.php', 'icon' => 'bx bx-building'],
+                ['title' => 'Localization', 'link' => '/pages/settings/settings_localization.php', 'icon' => 'bx bx-globe'],
+                ['title' => 'Security', 'link' => '/pages/settings/settings_security.php', 'icon' => 'bx bx-lock'],
+                ['title' => 'Email', 'link' => '/pages/settings/settings_email.php', 'icon' => 'bx bx-envelope'],
+                ['title' => 'Notifications', 'link' => '/pages/settings/settings_notifications.php', 'icon' => 'bx bx-bell'],
+                ['title' => 'Custom Fields', 'link' => '/pages/settings/settings_custom_fields.php', 'icon' => 'bx bx-list-ul'],
+                ['title' => 'Defaults', 'link' => '/pages/settings/settings_defaults.php', 'icon' => 'bx bx-cog'],
+                ['title' => 'Integrations', 'link' => '/pages/settings/settings_integrations.php', 'icon' => 'bx bx-plug'],
+                ['title' => 'Webhooks', 'link' => '/pages/settings/settings_webhooks.php', 'icon' => 'bx bx-link'],
+                ['title' => 'AI', 'link' => '/pages/settings/settings_ai.php', 'icon' => 'bx bx-brain'],
+            ]]
         ]
     ]
 ];
@@ -107,10 +164,10 @@ $clientMenuItems = [
         'title' => 'Finance',
         'icon' => 'bx bx-dollar',
         'children' => [
-            ['title' => 'Invoices', 'link' => '/pages/client/client_invoices.php?client_id=' . $client_id, 'icon' => 'fa fa-file-invoice'],
-            ['title' => 'Estimates', 'link' => '/pages/client/client_quotes.php?client_id=' . $client_id, 'icon' => 'fa fa-comment-dollar'],
-            ['title' => 'Payments', 'link' => '/pages/client/client_payments.php?client_id=' . $client_id, 'icon' => 'fa fa-money-check-alt'],
-            ['title' => 'Statements', 'link' => '/pages/client/client_statements.php?client_id=' . $client_id, 'icon' => 'fa fa-file-alt'],
+            ['title' => 'Invoices', 'link' => '/pages/client/client_invoices.php?client_id=' . $client_id, 'icon' => 'bx bx-receipt'],
+            ['title' => 'Estimates', 'link' => '/pages/client/client_quotes.php?client_id=' . $client_id, 'icon' => 'bx bx-message-square-detail'],
+            ['title' => 'Payments', 'link' => '/pages/client/client_payments.php?client_id=' . $client_id, 'icon' => 'bx bx-credit-card'],
+            ['title' => 'Statements', 'link' => '/pages/client/client_statements.php?client_id=' . $client_id, 'icon' => 'bx bx-file'],
         ]
     ],
     [
@@ -124,29 +181,81 @@ $clientMenuItems = [
     ]
 ];
 
+// Render Nav menu
 function renderMenu($menuItems, $isSubmenu = false) {
     $ulClass = $isSubmenu ? 'menu-sub' : 'menu-inner';
-    echo "<ul class=\"$ulClass\">";
+    $html = "<ul class=\"$ulClass\">";
 
     foreach ($menuItems as $item) {
         $hasChildren = isset($item['children']);
         $link = $hasChildren ? 'javascript:void(0)' : $item['link'];
 
-        echo '<li class="menu-item">';
-        echo "<a href=\"$link\" class=\"menu-link" . ($hasChildren ? ' menu-toggle' : '') . '">';
-        echo '<i class="menu-icon tf-icons ' . $item['icon'] . '"></i>';
-        echo '<div data-i18n="' . $item['title'] . '">' . $item['title'] . '</div>';
-        echo '</a>';
+        $html .= '<li class="menu-item">';
+        $html .= "<a href=\"$link\" class=\"menu-link" . ($hasChildren ? ' menu-toggle' : '') . "\">";
+        $html .= '<i class="menu-icon tf-icons ' . $item['icon'] . '"></i>';
+        $html .= '<div data-i18n="' . $item['title'] . '">' . $item['title'] . '</div>';
+        $html .= '</a>';
 
         if ($hasChildren) {
-            renderMenu($item['children'], true);
+            $html .= renderMenu($item['children'], true);
         }
-
-        echo '</li>';
+        $html .= '</li>';
     }
 
-    echo '</ul>';
+    $html .= '</ul>';
+
+    echo $html;
+    return $html;
 }
+
+$shortcutsData = [
+    ['shortcut_key' => 'calendar'],
+    ['shortcut_key' => 'invoice'],
+    ['shortcut_key' => 'task'],
+    ['shortcut_key' => 'email'],
+    ['shortcut_key' => 'chat'],
+];
+
+// Render user shortcuts
+function renderUserShortcuts($shortcutsData, $shortcutsMap) {
+    $html = '<div class="row row-bordered overflow-visible g-0">';
+    $colCount = 0;
+
+    foreach ($shortcutsData as $row) {
+        $key = $row['shortcut_key'];
+        if (array_key_exists($key, $shortcutsMap)) {
+            $shortcut = $shortcutsMap[$key];
+            $html .= '<div class="dropdown-shortcuts-item col">';
+            $html .= '<span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">';
+            $html .= '<i class="' . $shortcut['icon'] . ' fs-4"></i>';
+            $html .= '</span>';
+            $html .= '<a href="' . $shortcut['link'] . '" class="stretched-link">' . $shortcut['name'] . '</a>';
+            $html .= '<small class="text-muted mb-0">' . $shortcut['description'] . '</small>';
+            $html .= '</div>';
+
+            $colCount++;
+            if ($colCount % 2 == 0) {
+                $html .= '</div><div class="row row-bordered overflow-visible g-0">';
+            }
+        }
+    }
+    $html .= '</div>';
+
+    echo $html;
+}
+
+require_once "/var/www/develop.twe.tech/includes/shortcuts.php";
+
+
+//get number of notifications
+$sql_notifications = mysqli_query(
+    $mysqli,
+    "SELECT * FROM notifications
+    WHERE notification_dismissed_at IS NULL
+    ORDER BY notification_timestamp DESC
+    "
+);
+$num_notifications = mysqli_num_rows($sql_notifications);
 
 ?>
 
@@ -228,70 +337,9 @@ function renderMenu($menuItems, $isSubmenu = false) {
                                         </div>
                                     </div>
                                     <div class="dropdown-shortcuts-list scrollable-container">
-                                        <div class="row row-bordered overflow-visible g-0">
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                                    <i class="bx bx-calendar fs-4"></i>
-                                                </span>
-                                                <a href="app-calendar.html" class="stretched-link">Calendar</a>
-                                                <small class="text-muted mb-0">Appointments</small>
-                                            </div>
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                                    <i class="bx bx-food-menu fs-4"></i>
-                                                </span>
-                                                <a href="app-invoice-list.html" class="stretched-link">Invoice App</a>
-                                                <small class="text-muted mb-0">Manage Accounts</small>
-                                            </div>
-                                        </div>
-                                        <div class="row row-bordered overflow-visible g-0">
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                                    <i class="bx bx-user fs-4"></i>
-                                                </span>
-                                                <a href="app-user-list.html" class="stretched-link">User App</a>
-                                                <small class="text-muted mb-0">Manage Users</small>
-                                            </div>
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                                    <i class="bx bx-check-shield fs-4"></i>
-                                                </span>
-                                                <a href="app-access-roles.html" class="stretched-link">Role Management</a>
-                                                <small class="text-muted mb-0">Permission</small>
-                                            </div>
-                                        </div>
-                                        <div class="row row-bordered overflow-visible g-0">
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                                    <i class="bx bx-pie-chart-alt-2 fs-4"></i>
-                                                </span>
-                                                <a href="index.html" class="stretched-link">Dashboard</a>
-                                                <small class="text-muted mb-0">User Profile</small>
-                                            </div>
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                                    <i class="bx bx-cog fs-4"></i>
-                                                </span>
-                                                <a href="pages-account-settings-account.html" class="stretched-link">Setting</a>
-                                                <small class="text-muted mb-0">Account Settings</small>
-                                            </div>
-                                        </div>
-                                        <div class="row row-bordered overflow-visible g-0">
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                                    <i class="bx bx-help-circle fs-4"></i>
-                                                </span>
-                                                <a href="pages-faq.html" class="stretched-link">FAQs</a>
-                                                <small class="text-muted mb-0">FAQs & Articles</small>
-                                            </div>
-                                            <div class="dropdown-shortcuts-item col">
-                                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                                    <i class="bx bx-window-open fs-4"></i>
-                                                </span>
-                                                <a href="modal-examples.html" class="stretched-link">Modals</a>
-                                                <small class="text-muted mb-0">Useful Popups</small>
-                                            </div>
-                                        </div>
+                                        <?php
+                                            renderUserShortcuts($shortcutsData, $shortcutsMap);
+                                        ?>
                                     </div>
                                 </div>
                             </li>
@@ -326,7 +374,7 @@ function renderMenu($menuItems, $isSubmenu = false) {
                             <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                     <i class="bx bx-bell bx-sm"></i>
-                                    <span class="badge bg-danger rounded-pill badge-notifications">5</span>
+                                    <?= $num_notifications > 0 ? '<span class="badge bg-danger rounded-pill badge-notifications">'. $num_notifications . '</span>' : $num_notifications ?>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end py-0">
                                     <li class="dropdown-menu-header border-bottom">
@@ -337,17 +385,22 @@ function renderMenu($menuItems, $isSubmenu = false) {
                                     </li>
                                     <li class="dropdown-notifications-list scrollable-container">
                                         <ul class="list-group list-group-flush">
+                                            <?php
+                                                while ($row = mysqli_fetch_array($sql_notifications)) {
+                                                    $notification_id = intval($row['notification_id']);
+                                                    $notification_type = nullable_htmlentities($row['notification_type']);
+                                                    $notification = nullable_htmlentities($row['notification']);
+                                                    $notification_action = nullable_htmlentities($row['notification_action']);
+                                                    $notification_timestamp = date('M d g:ia',strtotime($row['notification_timestamp']));
+                                                    $notification_client_id = intval($row['notification_client_id']);
+                                                    if(empty($notification_action)) { $notification_action = "#"; }
+                                            ?>
                                             <li class="list-group-item list-group-item-action dropdown-notifications-item">
                                                 <div class="d-flex">
-                                                    <div class="flex-shrink-0 me-3">
-                                                        <div class="avatar">
-                                                            <img src="/includes/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                                                        </div>
-                                                    </div>
                                                     <div class="flex-grow-1">
-                                                        <h6 class="mb-1">Congratulation Lettie 🎉</h6>
-                                                        <p class="mb-0">Won the monthly best seller gold badge</p>
-                                                        <small class="text-muted">1h ago</small>
+                                                        <h6 class="mb-1"><?= $notification_type ?></h6>
+                                                        <p class="mb-0"><?= $notification ?></p>
+                                                        <small class="text-muted"><?= $notification_timestamp ?></small>
                                                     </div>
                                                     <div class="flex-shrink-0 dropdown-notifications-actions">
                                                         <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
@@ -355,24 +408,7 @@ function renderMenu($menuItems, $isSubmenu = false) {
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 me-3">
-                                                        <div class="avatar">
-                                                            <img src="/includes/assets/img/avatars/2.png" alt class="w-px-40 h-auto rounded-circle" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <h6 class="mb-1">New Message ✉️</h6>
-                                                        <p class="mb-0">You have new message from Natalie</p>
-                                                        <small class="text-muted">1h ago</small>
-                                                    </div>
-                                                    <div class="flex-shrink-0 dropdown-notifications-actions">
-                                                        <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                                                        <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                        <?php } ?>
                                         </ul>
                                     </li>
                                     <li class="dropdown-menu-footer border-top p-3">
@@ -385,7 +421,7 @@ function renderMenu($menuItems, $isSubmenu = false) {
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="/includes/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                        <img src="<?php echo "/uploads/users/$session_user_id/$session_avatar"; ?>" alt class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -394,12 +430,12 @@ function renderMenu($menuItems, $isSubmenu = false) {
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="/includes/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                                        <img src="<?php echo "/uploads/users/$session_user_id/$session_avatar"; ?>" alt class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-medium d-block"><?php echo stripslashes(nullable_htmlentities($session_name)); ?></span>
+                                                    <small class="text-muted"><?php echo nullable_htmlentities($session_user_role_display); ?></small>
                                                 </div>
                                             </div>
                                         </a>
@@ -408,46 +444,22 @@ function renderMenu($menuItems, $isSubmenu = false) {
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="pages-profile-user.html">
+                                        <a class="dropdown-item" href="/pages/user/user_details.php">
                                             <i class="bx bx-user me-2"></i>
                                             <span class="align-middle">My Profile</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="pages-account-settings-account.html">
+                                        <a class="dropdown-item" href="/pages/user/user_preferences.php">
                                             <i class="bx bx-cog me-2"></i>
                                             <span class="align-middle">Settings</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="pages-account-settings-billing.html">
-                                            <span class="d-flex align-items-center align-middle">
-                                                <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                                                <span class="flex-grow-1 align-middle">Billing</span>
-                                                <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="pages-faq.html">
-                                            <i class="bx bx-help-circle me-2"></i>
-                                            <span class="align-middle">FAQ</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="pages-pricing.html">
-                                            <i class="bx bx-dollar me-2"></i>
-                                            <span class="align-middle">Pricing</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-divider"></div>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+                                        <a class="dropdown-item" href="/post.php?logout" target="_blank">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
@@ -488,23 +500,24 @@ function renderMenu($menuItems, $isSubmenu = false) {
                         require_once "/var/www/develop.twe.tech/includes/inc_client_top_head.php";
                     }
                     ?>
-                        <h4 class="font-weight-bold py-3 mb-4">
-                            <!-- breadcrumb -->
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/pages/dashboard.php">Home</a></li>
-                                    
-                                    <?php if ($page_is_client) { ?>
-                                        <li class="breadcrumb-item">
-                                            <a href="/pages/client/client_overview.php?client_id=<?= $client_id ?>">
-                                                <?= ucfirst($client_name) ?>
-                                            </a>
-                                        </li>
-                                    <?php } ?>
+                    <h4 class="font-weight-bold py-3 mb-4">
+                        <!-- breadcrumb -->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/pages/dashboard.php">Home</a></li>
+                                
+                                <?php if ($page_is_client) { ?>
+                                    <li class="breadcrumb-item">
+                                        <a href="/pages/client/client_overview.php?client_id=<?= $client_id ?>">
+                                            <?= ucfirst($client_name) ?>
+                                        </a>
+                                    </li>
+                                <?php } ?>
 
-                                    <li class="breadcrumb-item active" aria-current="page"><?= $page_name ?></li>
-                                </ol>
-                            </nav>
-                        </h4>
-                        <div class="row">
+                                <li class="breadcrumb-item active" aria-current="page"><?= $page_name ?></li>
+                            </ol>
+                        </nav>
+                    </h4>
+                    <div class="row">
+                        
 

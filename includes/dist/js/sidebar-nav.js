@@ -42,7 +42,7 @@
   $(window).on('load', function () {
     // Sidebar
     if ($('.u-sidebar-nav--opened').length) {
-      $('.u-sidebar-nav--opened > .u-sidebar-nav-menu__link[data-target]').each(function() {
+      $('.u-sidebar-nav--opened > .u-sidebar-nav-menu__link[data-bs-target]').each(function() {
         closedItems.push($(this).data('target'));
       });
     }
@@ -59,7 +59,7 @@
       }
     });
 
-    $('.u-sidebar-nav-menu__link[data-target]').on('click', function (e) {
+    $('.u-sidebar-nav-menu__link[data-bs-target]').on('click', function (e) {
       e.preventDefault();
 
       var itemTarget = $(this).data('target');

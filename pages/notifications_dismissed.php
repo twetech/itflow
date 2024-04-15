@@ -42,7 +42,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         </div>
                     </div>
                     <div class="col-sm-8">
-                        <button class="btn btn-soft-primary float-right" type="button" data-toggle="collapse" data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
+                        <button class="btn btn-soft-primary float-right" type="button" data-bs-toggle="collapse" data-bs-target="#advancedFilter"><i class="fas fa-filter"></i></button>
                     </div>
                 </div>
                 <div class="collapse mt-3 <?php if (!empty($_GET['dtf'])) { echo "show"; } ?>" id="advancedFilter">
@@ -62,8 +62,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </div>
                 </div>
             </form>
-            <div class="table-responsive-sm">
-                <table id=responsive class="responsive table table-hover">
+            <div class="card-datatable table-responsive pt-0">                  
+<table class="datatables-basic table border-top">
                     <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th>

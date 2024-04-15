@@ -160,7 +160,7 @@ if (isset($_GET['invoice_id'])) {
 
                 <div class="col-8">
                     <?php if ($invoice_status == 'Draft') { ?>
-                        <button class="btn btn-soft-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <button class="btn btn-soft-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                             <i class="fas fa-fw fa-paper-plane mr-2"></i>Send
                         </button>
                         <div class="dropdown-menu">
@@ -177,7 +177,7 @@ if (isset($_GET['invoice_id'])) {
                     <?php } ?>
 
                     <?php if ($invoice_status !== 'Paid' && $invoice_status !== 'Cancelled' && $invoice_status !== 'Draft') { ?>
-                        <a class="btn btn-success" href="#" data-toggle="modal" data-target="#addPaymentModal">
+                        <a class="btn btn-success" href="#" data-bs-toggle="modal" data-bs-target="#addPaymentModal">
                             <i class="fa fa-fw fa-credit-card mr-2"></i>Add Payment
                         </a>
                     <?php } ?>
@@ -186,17 +186,17 @@ if (isset($_GET['invoice_id'])) {
                 <div class="col-4">
 
                     <div class="dropdown dropleft text-center float-right">
-                        <button class="btn btn-light" type="button" data-toggle="dropdown">
+                        <button class="btn btn-light" type="button" data-bs-toggle="dropdown">
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editInvoiceModal<?php echo $invoice_id; ?>">
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editInvoiceModal<?php echo $invoice_id; ?>">
                                 <i class="fa fa-fw fa-edit text-secondary mr-2"></i>Edit
                             </a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addInvoiceCopyModal<?php echo $invoice_id; ?>">
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addInvoiceCopyModal<?php echo $invoice_id; ?>">
                                 <i class="fa fa-fw fa-copy text-secondary mr-2"></i>Copy
                             </a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addInvoiceRecurringModal<?php echo $invoice_id; ?>">
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addInvoiceRecurringModal<?php echo $invoice_id; ?>">
                                 <i class="fa fa-fw fa-sync-alt text-secondary mr-2"></i>Recurring
                             </a>
                             <div class="dropdown-divider"></div>
@@ -239,7 +239,7 @@ if (isset($_GET['invoice_id'])) {
                         <div class="d-print-none">
                             <!-- Invoice Status Badge Float Right -->
                             <div class="float-right">
-                                <span class="badge badge-pill badge-lg badge-<?php echo $invoice_badge_color; ?>">
+                                <span class="badge rounded-pill bg-label-lg badge-<?php echo $invoice_badge_color; ?>">
                                     <?php echo $invoice_status; ?>
                                 </span>
                             </div>
@@ -340,7 +340,7 @@ if (isset($_GET['invoice_id'])) {
                                         <td class="d-print-none">
                                             <?php if ($invoice_status !== "Paid" && $invoice_status !== "Cancelled") { ?>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-sm btn-light" type="button" data-toggle="dropdown">
+                                                    <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown">
                                                         <i class="fas fa-ellipsis-v"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
@@ -353,7 +353,7 @@ if (isset($_GET['invoice_id'])) {
                                                             <button class="dropdown-item" type="submit" name="update_invoice_item_order" value="down" <?php echo $down_hidden; ?>><i class="fas fa-fw fa-arrow-down mr-2"></i>Move down</button>
                                                         </form>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editItemModal<?php echo $item_id; ?>"><i class="fa fa-fw fa-edit mr-2"></i>Edit</a>
+                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editItemModal<?php echo $item_id; ?>"><i class="fa fa-fw fa-edit mr-2"></i>Edit</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item text-danger confirm-link" href="/post.php?delete_invoice_item=<?php echo $item_id; ?>"><i class="fa fa-fw fa-trash mr-2"></i>Delete</a>
                                                     </div>
@@ -426,7 +426,7 @@ if (isset($_GET['invoice_id'])) {
                         <div class="card-header text-bold">
                             Notes
                             <div class="card-tools d-print-none">
-                                <a href="#" class="btn btn-light btn-tool" data-toggle="modal" data-target="#invoiceNoteModal">
+                                <a href="#" class="btn btn-light btn-tool" data-bs-toggle="modal" data-bs-target="#invoiceNoteModal">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </div>
@@ -591,7 +591,7 @@ if (isset($_GET['invoice_id'])) {
 
 
                         <?php if (mysqli_num_rows($sql_tickets_billable) > 0) { ?>
-                        <a class="btn btn-tool" href="#" data-toggle="modal" data-target="#addTicketModal">
+                        <a class="btn btn-tool" href="#" data-bs-toggle="modal" data-bs-target="#addTicketModal">
                             <i class="fas fa-plus"></i>
                         </a>
                         <?php } ?>

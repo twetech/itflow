@@ -42,7 +42,7 @@ if (isset($_GET['archived'])) {
             if (!isset($_GET['archived'])) {
         ?>
         <div class="card-tools">
-            <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addCategoryModal"><i
+            <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i
                     class="fas fa-plus mr-2"></i>New <?php echo nullable_htmlentities($category); ?> Category</button>
         </div>
         <?php
@@ -104,8 +104,8 @@ if (isset($_GET['archived'])) {
             </div>
         </form>
         <hr>
-        <div class="table-responsive-sm">
-             <table id=responsive class="responsive table table-hover">
+        <div class="card-datatable table-responsive pt-0">               
+<table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) {
                     echo "d-none";
                 } ?>">
@@ -127,14 +127,14 @@ if (isset($_GET['archived'])) {
                     
                         ?>
                         <tr>
-                            <td><a class="text-dark" href="#" data-toggle="modal"
-                                    data-target="#editCategoryModal<?php echo $category_id; ?>">
+                            <td><a class="text-dark" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#editCategoryModal<?php echo $category_id; ?>">
                                     <?php echo $category_name; ?>
                                 </a></td>
                             <td><i class="fa fa-3x fa-circle" style="color:<?php echo $category_color; ?>;"></i></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
@@ -152,8 +152,8 @@ if (isset($_GET['archived'])) {
                                             <?php
                                         } else {
                                             ?>
-                                            <a class="dropdown-item" href="#" data-toggle="modal"
-                                                data-target="#editCategoryModal<?php echo $category_id; ?>">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#editCategoryModal<?php echo $category_id; ?>">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
                                             <a class="dropdown-item text-danger confirm-link"

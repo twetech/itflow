@@ -469,7 +469,7 @@ if (isset($_POST['add_telemetry'])) {
                     ?>
                     <div class="alert alert-info" id="alert">
                         <?php echo nullable_htmlentities($_SESSION['alert_message']); ?>
-                        <button class='close' data-dismiss='alert'>&times;</button>
+                        <button class='close' data-bs-dismiss='alert'>&times;</button>
                     </div>
                     <?php
                     $_SESSION['alert_type'] = '';

@@ -4,7 +4,7 @@
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-user mr-2"></i>Bulk Set Client</h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="modal-footer bg-white">
                 <button type="submit" name="bulk_edit_expense_client" class="btn btn-soft-primary text-bold"><i class="fa fa-fw fa-check mr-2"></i>Set</button>
-                <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
             </div>
         </div>
     </div>

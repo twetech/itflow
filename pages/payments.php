@@ -37,8 +37,8 @@ $credits_num_rows = mysqli_num_rows($sql_credits);
     </div>
 
     <div class="card-body">
-        <div class="table-responsive-sm">
-             <table id=responsive class="responsive table table-hover">
+        <div class="card-datatable table-responsive pt-0">               
+            <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th><a class="text-dark"

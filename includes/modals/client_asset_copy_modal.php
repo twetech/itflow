@@ -5,7 +5,7 @@
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-<?php echo $device_icon; ?> mr-2"></i>Copying asset: <strong><?php echo $asset_name; ?></strong></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -16,22 +16,22 @@
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="pill" href="#pillsDetailsCopy<?php echo $asset_id; ?>">Details</a>
+                            <a class="nav-link active" data-bs-toggle="pill" href="#pillsDetailsCopy<?php echo $asset_id; ?>">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pillsNetworkCopy<?php echo $asset_id; ?>">Network</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pillsNetworkCopy<?php echo $asset_id; ?>">Network</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pillsAssignmentCopy<?php echo $asset_id; ?>">Assignment</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pillsAssignmentCopy<?php echo $asset_id; ?>">Assignment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pillsPurchaseCopy<?php echo $asset_id; ?>">Purchase</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pillsPurchaseCopy<?php echo $asset_id; ?>">Purchase</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pillsLoginCopy<?php echo $asset_id; ?>">Login</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pillsLoginCopy<?php echo $asset_id; ?>">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pillsNotesCopy<?php echo $asset_id; ?>">Notes</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pillsNotesCopy<?php echo $asset_id; ?>">Notes</a>
                         </li>
                     </ul>
 
@@ -360,8 +360,8 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_asset" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Copy</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" name="add_asset" class="btn btn-soft-primary text-bold"></i>Copy</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>
         </div>

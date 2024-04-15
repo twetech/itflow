@@ -60,7 +60,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" data-toggle="password" name="config_smtp_password" placeholder="Password (Leave blank if no auth is required)" value="<?php echo nullable_htmlentities($config_smtp_password); ?>" autocomplete="new-password">
+                        <input type="password" class="form-control" data-bs-toggle="password" name="config_smtp_password" placeholder="Password (Leave blank if no auth is required)" value="<?php echo nullable_htmlentities($config_smtp_password); ?>" autocomplete="new-password">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fa fa-fw fa-eye"></i></span>
                         </div>
@@ -134,7 +134,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
                         <div class='input-group-prepend'>
                             <span class='input-group-text'><i class='fa fa-fw fa-key'></i></span>
                         </div>
-                        <input type='password' class='form-control' data-toggle='password' name='config_imap_password' placeholder='Password' value="<?php
+                        <input type='password' class='form-control' data-bs-toggle='password' name='config_imap_password' placeholder='Password' value="<?php
                         echo nullable_htmlentities($config_imap_password); ?>" autocomplete='new-password' required>
                         <div class='input-group-append'>
                             <span class='input-group-text'><i class='fa fa-fw fa-eye'></i></span>

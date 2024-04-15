@@ -25,7 +25,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-key mr-2"></i>API Keys</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primary" data-toggle="modal" data-target="#addApiKeyModal"><i class="fas fa-plus mr-2"></i>Create</button>
+                <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addApiKeyModal"><i class="fas fa-plus mr-2"></i>Create</button>
             </div>
         </div>
 
@@ -39,7 +39,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     <div class="col-md-8">
                         <div class="btn-group float-right">
                             <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                     <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
                                 </button>
                                 <div class="dropdown-menu">
@@ -57,12 +57,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </form>
             <hr>
 
-            <div class="table-responsive-sm">
-
+            <div class="card-datatable table-responsive pt-0">
                 <form id="bulkActions" action="/post.php" method="post">
                     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
-                     <table id=responsive class="responsive table table-hover">
+                       
+<table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
                             <td class="pr-0">
@@ -117,7 +117,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                                 <td>
                                     <div class="dropdown dropleft text-center">
-                                        <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                        <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">

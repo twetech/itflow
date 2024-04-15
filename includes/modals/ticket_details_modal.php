@@ -240,7 +240,7 @@ if (mysqli_num_rows($sql) == 0) {
 <div class="modal-header">
     <h5 class="modal-title"><i class="fa fa-fw fa-ticket-alt"></i> Ticket: <?php echo "$ticket_prefix$ticket_number"; ?>
     </h5>
-    <button type="button" class="close" data-dismiss="modal">
+    <button type="button" class="close" data-bs-dismiss="modal">
         <span>&times;</span>
     </button>
 </div>
@@ -269,8 +269,8 @@ if (mysqli_num_rows($sql) == 0) {
                 <?php if (!empty($contact_id)) { ?>
 
                 <div>
-                    <i class="fa fa-fw fa-user text-secondary ml-1 mr-2"></i><a href="#" data-toggle="modal"
-                        data-target="#editTicketContactModal<?php echo $ticket_id; ?>"><strong><?php echo $contact_name; ?></strong>
+                    <i class="fa fa-fw fa-user text-secondary ml-1 mr-2"></i><a href="#" data-bs-toggle="modal"
+                        data-bs-target="#editTicketContactModal<?php echo $ticket_id; ?>"><strong><?php echo $contact_name; ?></strong>
                     </a>
                 </div>
 
@@ -331,7 +331,7 @@ if (mysqli_num_rows($sql) == 0) {
 
                 <?php } else { ?>
                 <div class="d-print-none">
-                    <a href="#" data-toggle="modal" data-target="#editTicketContactModal<?php echo $ticket_id; ?>"><i
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketContactModal<?php echo $ticket_id; ?>"><i
                             class="fa fa-fw fa-plus mr-2"></i>Add a Contact</a>
                 </div>
                 <?php } ?>
@@ -350,7 +350,7 @@ if (mysqli_num_rows($sql) == 0) {
 
                     <?php if ($ticket_status !== "Closed") { ?>
                     <div class="d-print-none">
-                        <a href="#" data-toggle="modal" data-target="#addTicketWatcherModal"><i
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#addTicketWatcherModal"><i
                                 class="fa fa-fw fa-plus mr-2"></i>Add a Watcher</a>
                     </div>
                     <?php } ?>
@@ -377,8 +377,8 @@ if (mysqli_num_rows($sql) == 0) {
             <div class="card card-body card-outline mb-3">
                 <h5 class="text-secondary">Details</h5>
                 <div>
-                    <i class="fa fa-fw fa-thermometer-half text-secondary ml-1 mr-2"></i><a href="#" data-toggle="modal"
-                        data-target="#editTicketPriorityModal<?php echo $ticket_id; ?>"><?php echo $ticket_priority_display; ?></a>
+                    <i class="fa fa-fw fa-thermometer-half text-secondary ml-1 mr-2"></i><a href="#" data-bs-toggle="modal"
+                        data-bs-target="#editTicketPriorityModal<?php echo $ticket_id; ?>"><?php echo $ticket_priority_display; ?></a>
                 </div>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-calendar text-secondary ml-1 mr-2"></i>Created:
@@ -412,7 +412,7 @@ if (mysqli_num_rows($sql) == 0) {
                         if ($ticket_status !== "Closed") { ?>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-calendar-check text-secondary ml-1 mr-2"></i>Scheduled: <a href="#"
-                        data-toggle="modal" data-target="#editTicketScheduleModal">
+                        data-bs-toggle="modal" data-bs-target="#editTicketScheduleModal">
                         <?php echo $ticket_scheduled_wording ?> </a>
                 </div>
                 <?php }
@@ -429,12 +429,12 @@ if (mysqli_num_rows($sql) == 0) {
                         if ($config_module_enable_accounting) { ?>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-dollar-sign text-secondary ml-1 mr-2"></i>Billable:
-                    <a href="#" data-toggle="modal" data-target="#editTicketBillableModal<?php echo $ticket_id; ?>">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketBillableModal<?php echo $ticket_id; ?>">
                         <?php
                                     if ($ticket_billable == 1) {
-                                        echo "<span class='badge badge-pill badge-success p-2'>$</span>";
+                                        echo "<span class='badge rounded-pill bg-label-success p-2'>$</span>";
                                     } else {
-                                        echo "<span class='badge badge-pill badge-secondary p-2'>X</span>";
+                                        echo "<span class='badge rounded-pill bg-label-secondary p-2'>X</span>";
                                     }
                                     ?>
                     </a>
@@ -450,7 +450,7 @@ if (mysqli_num_rows($sql) == 0) {
                 <?php if ($asset_id == 0) { ?>
 
                 <div class="d-print-none">
-                    <a href="#" data-toggle="modal" data-target="#editTicketAssetModal<?php echo $ticket_id; ?>"><i
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketAssetModal<?php echo $ticket_id; ?>"><i
                             class="fa fa-fw fa-plus mr-2"></i>Add an Asset</a>
                 </div>
 
@@ -504,8 +504,8 @@ if (mysqli_num_rows($sql) == 0) {
 
                         if ($ticket_asset_count > 0) { ?>
 
-                <button class="btn btn-block btn-light mt-2 d-print-none" data-toggle="modal"
-                    data-target="#assetTicketsModal">Service History (<?php echo $ticket_asset_count; ?>)</button>
+                <button class="btn btn-block btn-light mt-2 d-print-none" data-bs-toggle="modal"
+                    data-bs-target="#assetTicketsModal">Service History (<?php echo $ticket_asset_count; ?>)</button>
 
                 <div class="modal" id="assetTicketsModal" tabindex="-1">
                     <div class="modal-dialog modal-lg">
@@ -513,7 +513,7 @@ if (mysqli_num_rows($sql) == 0) {
                             <div class="modal-header">
                                 <h5 class="modal-title"><i class="fa fa-fw fa-desktop"></i> <?php echo $asset_name; ?>
                                 </h5>
-                                <button type="button" class="close text-white" data-dismiss="modal">
+                                <button type="button" class="close text-white" data-bs-dismiss="modal">
                                     <span>&times;</span>
                                 </button>
                             </div>
@@ -541,7 +541,7 @@ if (mysqli_num_rows($sql) == 0) {
                                                 ?>
                             </div>
                             <div class="modal-footer bg-white">
-                                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                             </div>
 
                         </div>
@@ -562,7 +562,7 @@ if (mysqli_num_rows($sql) == 0) {
                 <h5 class="text-secondary">Vendor</h5>
                 <?php if (empty($vendor_id)) { ?>
                 <div class="d-print-none">
-                    <a href="#" data-toggle="modal" data-target="#editTicketVendorModal<?php echo $ticket_id; ?>"><i
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketVendorModal<?php echo $ticket_id; ?>"><i
                             class="fa fa-fw fa-plus mr-2"></i>Add a Vendor</a>
                 </div>
                 <?php } else { ?>
@@ -615,7 +615,7 @@ if (mysqli_num_rows($sql) == 0) {
             <div class="card card-body card-outline mb-3">
                 <h5 class="text-secondary">Products</h5>
                 <div class="d-print-none">
-                    <a href="#" data-toggle="modal" data-target="#addTicketProductModal<?php echo $ticket_id; ?>"><i
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#addTicketProductModal<?php echo $ticket_id; ?>"><i
                             class="fa fa-fw fa-plus mr-2"></i>Manage Products</a>
                 </div>
                 <?php echo $ticket_products_display; ?>
@@ -659,8 +659,8 @@ if (mysqli_num_rows($sql) == 0) {
 
             <div class="card card-body card-outline mb-2 d-print-none">
                 <?php if ($config_module_enable_accounting && $ticket_billable == 1) { ?>
-                <a href="#" class="btn btn-info btn-block" href="#" data-toggle="modal"
-                    data-target="#addInvoiceFromTicketModal">
+                <a href="#" class="btn btn-info btn-block" href="#" data-bs-toggle="modal"
+                    data-bs-target="#addInvoiceFromTicketModal">
                     <i class="fas fa-fw fa-file-invoice mr-2"></i>Invoice Ticket
                 </a>
                 <?php }
@@ -677,7 +677,7 @@ if (mysqli_num_rows($sql) == 0) {
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-fw fa-times"></i> Close</button>
+    <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fa fa-fw fa-times"></i> Close</button>
 </div>
 
 <?php } ?>

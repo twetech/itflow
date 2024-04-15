@@ -1,11 +1,29 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
+<?php
+$inventory_location_id = intval($_GET['inventory_location_id']);
+$sql_inventory_location = mysqli_query($mysqli, "SELECT inventory_locations.*, users.user_name FROM inventory_locations
+LEFT JOIN users ON inventory_locations.inventory_location_user_id = users.user_id
+WHERE inventory_location_id = $inventory_location_id");
+$row = mysqli_fetch_array($sql_inventory_location);
+$inventory_location_name = nullable_htmlentities($row['inventory_location_name']);
+$inventory_location_description = nullable_htmlentities($row['inventory_location_description']);
+$inventory_location_address = nullable_htmlentities($row['inventory_location_address']);
+$inventory_location_city = nullable_htmlentities($row['inventory_location_city']);
+$inventory_location_state = nullable_htmlentities($row['inventory_location_state']);
+$inventory_location_zip = nullable_htmlentities($row['inventory_location_zip']);
+$inventory_location_country = nullable_htmlentities($row['inventory_location_country']);
+$inventory_location_user_id = intval($row['inventory_location_user_id']);
+$inventory_location_user_name = nullable_htmlentities($row['user_name']);
+?>
+
+
 <div class="modal" id="editLocationModal<?php echo $inventory_location_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header text-white">
                 <h5 class="modal-title"><i class="fas fa-fw fa-map-marker-alt mr-2"></i>Edit Location</h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -70,7 +88,7 @@
                 </div>
                 <div class="modal-footer bg-white">
                     <button type="submit" name="edit_inventory_locations" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr- 2"></i>Create</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>
         </div>

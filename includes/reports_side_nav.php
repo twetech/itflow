@@ -15,7 +15,7 @@
         basename($_SERVER["PHP_SELF"]) == "report_tickets_unbilled.php"
     ) { echo "u-sidebar-nav--opened"; } ?>">
 
-        <a class="u-sidebar-nav-menu__link" href="#!" data-target='#financialSideNav'>
+        <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#financialSideNav'>
             <i class="fa fa-dollar-sign u-sidebar-nav-menu__item-icon"></i>
             <span class="u-sidebar-nav-menu__item-title">Financial</span>
             <span class="u-sidebar-nav-menu__item-arrow">
@@ -148,7 +148,7 @@
         basename($_SERVER["PHP_SELF"]) == "report_password_rotation.php" ||
         basename($_SERVER["PHP_SELF"]) == "report_all_assets_by_client.php"
     ) { echo "u-sidebar-nav--opened"; } ?>">
-        <a class="u-sidebar-nav-menu__link" href="#!" data-target='#supportSideNav'>
+        <a class="u-sidebar-nav-menu__link" href="#!" data-bs-target='#supportSideNav'>
             <i class="fa fa-question-circle u-sidebar-nav-menu__item-icon"></i>
             <span class="u-sidebar-nav-menu__item-title">Technical</span>
             <span class="u-sidebar-nav-menu__item-arrow">

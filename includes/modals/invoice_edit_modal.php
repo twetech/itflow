@@ -21,7 +21,7 @@ $invoice_created_at = nullable_htmlentities($row['invoice_created_at']);
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fas fa-fw fa-file-invoice mr-2"></i>Editing invoice: <strong><?php echo "$invoice_prefix$invoice_number"; ?></strong> - <?php echo $client_name; ?></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -102,7 +102,7 @@ $invoice_created_at = nullable_htmlentities($row['invoice_created_at']);
                 </div>
                 <div class="modal-footer bg-white">
                     <button type="submit" name="edit_invoice" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>
         </div>

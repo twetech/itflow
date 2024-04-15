@@ -37,7 +37,7 @@ require_once 'inc_portal.php';
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-fw fa-lock"></i></span>
                     </div>
-                    <input type="password" class="form-control" minlength="8" required data-toggle="password" name="new_password" placeholder="Leave blank for no change" autocomplete="new-password">
+                    <input type="password" class="form-control" minlength="8" required data-bs-toggle="password" name="new_password" placeholder="Leave blank for no change" autocomplete="new-password">
                 </div>
             </div>
             <button type="submit" name="edit_profile" class="btn btn-soft-primary text-bold mt-3"><i class="fas fa-check mr-2"></i>Save password</button>

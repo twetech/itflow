@@ -26,8 +26,7 @@ $sql = mysqli_query($mysqli, "
         </div>
     </div>
     <div class="card-body">
-        <div class="table-responsive-sm">
-            <table id=responsive class="responsive table table-striped table-sm">
+        <div class="card-datatable table-responsive pt-0">            <table id=responsive class="responsive table table-striped table-sm">
                 <thead>
                 <tr>
                     <th>Client</th>

@@ -5,7 +5,7 @@
     <div class="modal-content bg-dark">
       <div class="modal-header text-white">
         <h5 class="modal-title"><i class="fas fa-fw fa-balance-scale mr-2"></i>New Tax</h5>
-        <button type="button" class="close text-white" data-dismiss="modal">
+        <button type="button" class="close text-white" data-bs-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="modal-footer bg-white">
           <button type="submit" name="add_tax" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr- 2"></i>Create</button>
-          <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
         </div>
       </form>
     </div>

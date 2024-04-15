@@ -27,13 +27,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-building mr-2"></i>Vendors</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primaryloadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="ticket_edit_priority_modal.php?ticket_id=<i class="fas fa-plus mr-2"></i>New Vendor</button>
+                <button type="button" class="btn btn-soft-primaryloadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_priority_modal.php?ticket_id=<i class="fas fa-plus mr-2"></i>New Vendor</button>
             </div>
         </div>
 
         <div class="card-body">
-            <div class="table-responsive-sm">
-                <table id=responsive class="responsive table table-striped table-hover table-borderless">
+            <div class="card-datatable table-responsive pt-0">                <table id=responsive class="responsive table table-striped table-hover table-borderless">
                     <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Vendor</a></th>
@@ -75,7 +74,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         <tr>
                             <th>
-                                <a class="text-dark" href="#" data-toggle="modal" data-target="#editVendorModal<?php echo $vendor_id; ?>"><?php echo $vendor_name; ?></a>
+                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editVendorModal<?php echo $vendor_id; ?>"><?php echo $vendor_name; ?></a>
                                 <?php if (!empty($vendor_account_number)) { ?>
                                     <br>
                                     <small class="text-secondary"><?php echo $vendor_account_number; ?></small>
@@ -105,11 +104,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editVendorModal<?php echo $vendor_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editVendorModal<?php echo $vendor_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>

@@ -36,8 +36,8 @@ $num_rows = mysqli_num_rows($sql);
                             value="<?php if (isset($q)) {echo stripslashes(nullable_htmlentities($q));} ?>"
                             placeholder="Search Credits">
                         <div class="input-group-append">
-                            <button class="btn btn-light" type="button" data-toggle="collapse"
-                                data-target="#advancedFilter"><i class="fas fa-filter"></i></button>
+                            <button class="btn btn-light" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#advancedFilter"><i class="fas fa-filter"></i></button>
                             <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
@@ -89,8 +89,8 @@ $num_rows = mysqli_num_rows($sql);
             </div>
         </form>
         <hr>
-        <div class="table-responsive-sm">
-             <table id=responsive class="responsive table table-hover">
+        <div class="card-datatable table-responsive pt-0">               
+<table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th><a class="text-dark"

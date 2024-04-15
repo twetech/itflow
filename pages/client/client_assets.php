@@ -96,16 +96,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-desktop mr-2"></i>Assets</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-toggle="modal" data-target="#dynamicModal" data-modal-file="client_asset_add_modal.php?client_id=<?php echo $client_id; ?>&type=<?php echo stripslashes(nullable_htmlentities($_GET['type'])); ?>">
+                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_asset_add_modal.php?client_id=<?php echo $client_id; ?>&type=<?php echo stripslashes(nullable_htmlentities($_GET['type'])); ?>">
                         <i class="fas fa-plus mr-2"></i>New <?php if (!empty($_GET['type'])) { echo ucwords(strip_tags(nullable_htmlentities($_GET['type']))); } else { echo "Asset"; } ?>
                     </button>
-                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#importAssetModal">
+                        <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#importAssetModal">
                             <i class="fa fa-fw fa-upload mr-2"></i>Import
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-dark" href="#" data-toggle="modal" data-target="#exportAssetModal">
+                        <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportAssetModal">
                             <i class="fa fa-fw fa-download mr-2"></i>Export
                         </a>
                     </div>
@@ -173,19 +173,19 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 <a href="?client_id=<?php echo $client_id; ?>&archived=1" class="btn btn-default"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
                                 <?php } ?>
                                 <div class="dropdown ml-2" id="bulkActionButton" hidden>
-                                    <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkAssignContactModal">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#bulkAssignContactModal">
                                             <i class="fas fa-fw fa-user mr-2"></i>Assign Contact
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkAssignLocationModal">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#bulkAssignLocationModal">
                                             <i class="fas fa-fw fa-map-marker-alt mr-2"></i>Assign Location
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#bulkEditStatusModal">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#bulkEditStatusModal">
                                             <i class="fas fa-fw fa-info mr-2"></i>Set Status
                                         </a>
                                     </div>
@@ -358,14 +358,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <?php if ($login_count > 0) { ?>
-                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#viewPasswordModal<?php echo $asset_id; ?>"><i class="fas fa-key text-dark"></i></button>
+                                        <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#viewPasswordModal<?php echo $asset_id; ?>"><i class="fas fa-key text-dark"></i></button>
 
                                         <div class="modal" id="viewPasswordModal<?php echo $asset_id; ?>" tabindex="-1">
                                             <div class="modal-dialog">
                                                 <div class="modal-content bg-dark">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title"><i class="fa fa-fw fa-key mr-2"></i><?php echo $asset_name; ?></h5>
-                                                        <button type="button" class="close text-white" data-dismiss="modal">
+                                                        <button type="button" class="close text-white" data-bs-dismiss="modal">
                                                             <span>&times;</span>
                                                         </button>
                                                     </div>
@@ -415,12 +415,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <?php } ?>
                                         
                                         <div class="dropdown dropleft text-center">
-                                            <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></button>
+                                            <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editAssetModal<?php echo $asset_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAssetModal<?php echo $asset_id; ?>">
                                                     <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                                 </a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#copyAssetModal<?php echo $asset_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#copyAssetModal<?php echo $asset_id; ?>">
                                                     <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                                 </a>
                                                 <?php if ($session_user_role > 2) { ?>

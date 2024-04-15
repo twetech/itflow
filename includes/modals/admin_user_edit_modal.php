@@ -1,12 +1,26 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
+<?php
+$user_id = intval($_GET['user_id']);
+$sql_user = mysqli_query($mysqli, "SELECT * FROM users WHERE user_id = $user_id");
+$row = mysqli_fetch_array($sql_user);
+
+$user_name = nullable_htmlentities($row['user_name']);
+$user_email = nullable_htmlentities($row['user_email']);
+$user_role = nullable_htmlentities($row['user_role']);  
+$user_avatar = nullable_htmlentities($row['user_avatar']);
+$user_initials = strtoupper($user_name[0].$user_name[1]);
+$user_token = nullable_htmlentities($row['user_token']);
+$user_config_force_mfa = nullable_htmlentities($row['user_config_force_mfa']);
+?>
+
 <div class="modal" id="editUserModal<?php echo $user_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fas fa-fw fa-user-edit mr-2"></i>Editing user:
                     <strong><?php echo $user_name; ?></strong></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -54,7 +68,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-lock"></i></span>
                             </div>
-                            <input type="password" class="form-control" data-toggle="password" name="new_password"
+                            <input type="password" class="form-control" data-bs-toggle="password" name="new_password"
                                    placeholder="Leave Blank For No Password Change" autocomplete="new-password">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fa fa-fw fa-eye"></i></span>
@@ -120,7 +134,7 @@
                 </div>
                 <div class="modal-footer bg-white">
                     <button type="submit" name="edit_user" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>
         </div>

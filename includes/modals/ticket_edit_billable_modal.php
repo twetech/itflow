@@ -7,6 +7,9 @@ $result = mysqli_query($mysqli, $sql);
 $row = mysqli_fetch_assoc($result);
 
 $ticket_billable = $row['ticket_billable'];
+$ticket_number = $row['ticket_number'];
+$ticket_prefix = $row['ticket_prefix'];
+
 
 ?>
 
@@ -18,7 +21,7 @@ $ticket_billable = $row['ticket_billable'];
                     <i class="fa fa-fw fa-user mr-2"></i>
                     Edit Billable Status for <strong><?php echo "$ticket_prefix$ticket_number"; ?></strong>
                 </h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -32,7 +35,7 @@ $ticket_billable = $row['ticket_billable'];
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-money-bill"></i></span>
                                 </div>
-                                <select class="form-control" name="billable_status">
+                                <select class="form-control" name="billable">
                                     <option <?php if ($ticket_billable == 1) { echo "selected"; } ?> value="1">Yes</option>
                                     <option <?php if ($ticket_billable == 0) { echo "selected"; } ?> value="0">No</option>
                                 </select>
@@ -43,8 +46,8 @@ $ticket_billable = $row['ticket_billable'];
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_ticket_billable" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" name="edit_ticket_billable" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
 
             </form>

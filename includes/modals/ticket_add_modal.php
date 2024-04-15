@@ -9,7 +9,7 @@ $client_id = intval($_GET['client_id']);
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fas fa-fw fa-life-ring mr-2"></i>New Ticket</h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -19,19 +19,19 @@ $client_id = intval($_GET['client_id']);
                     <?php if (isset($_GET['client_id'])) { ?>
                         <ul class="nav nav-pills  mb-3">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="pill" href="#pills-details"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
+                                <a class="nav-link active" data-bs-toggle="pill" href="#pills-details"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#pills-contacts"><i class="fa fa-fw fa-users mr-2"></i>Contact</a>
+                                <a class="nav-link" data-bs-toggle="pill" href="#pills-contacts"><i class="fa fa-fw fa-users mr-2"></i>Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#pills-assets"><i class="fa fa-fw fa-desktop mr-2"></i>Asset</a>
+                                <a class="nav-link" data-bs-toggle="pill" href="#pills-assets"><i class="fa fa-fw fa-desktop mr-2"></i>Asset</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#pills-locations"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Location</a>
+                                <a class="nav-link" data-bs-toggle="pill" href="#pills-locations"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Location</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#pills-vendors"><i class="fa fa-fw fa-building mr-2"></i>Vendor</a>
+                                <a class="nav-link" data-bs-toggle="pill" href="#pills-vendors"><i class="fa fa-fw fa-building mr-2"></i>Vendor</a>
                             </li>
                         </ul>
 
@@ -304,7 +304,7 @@ $client_id = intval($_GET['client_id']);
                 </div>
                 <div class="modal-footer bg-white">
                     <button type="submit" name="add_ticket" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Create</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>
         </div>

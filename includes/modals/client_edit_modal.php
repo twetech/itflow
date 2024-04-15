@@ -28,7 +28,7 @@ $client_created_at = $row['client_created_at'];
                 <h5 class="modal-title"><i class="fa fa-fw fa-user-edit mr-2"></i>Editing: <strong>
                         <?php echo $client_name; ?>
                     </strong></h5>
-                <button type="button" class="close text-white" data-dismiss="modal">
+                <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
@@ -45,15 +45,15 @@ $client_created_at = $row['client_created_at'];
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="pill" href="#pills-client-details<?php echo $client_id; ?>">Details</a>
+                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-client-details<?php echo $client_id; ?>">Details</a>
                         </li>
                         <?php if ($config_module_enable_accounting) { ?>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-client-billing<?php echo $client_id; ?>">Billing</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-client-billing<?php echo $client_id; ?>">Billing</a>
                         </li>
                         <?php } ?>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#pills-client-more<?php echo $client_id; ?>">More</a>
+                            <a class="nav-link" data-bs-toggle="pill" href="#pills-client-more<?php echo $client_id; ?>">More</a>
                         </li>
                     </ul>
 
@@ -238,8 +238,8 @@ $client_created_at = $row['client_created_at'];
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_client" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr-2"></i>Save</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Cancel</button>
+                    <button type="submit" name="edit_client" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>
         </div>

@@ -1,0 +1,21 @@
+{
+    "short_name": "ITFlow-NG",
+    "name": "ITFlow Next Generation",
+    "icons": [
+        {
+            "src": "icon/lowres.webp",
+            "sizes": "48x48",
+            "type": "image/webp"
+        },
+        {
+            "src": "icon/hd_hi.ico",
+            "sizes": "72x72 96x96 128x128 256x256",
+            "type": "image/x-icon"
+        }
+    ],
+    "start_url": "/login.php",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#FFFFFF"
+}
