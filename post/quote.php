@@ -6,6 +6,8 @@
 
 if (isset($_POST['add_quote'])) {
 
+    global $mysqli, $session_company_currency, $config_quote_prefix, $config_quote_next_number, $session_ip, $session_user_agent, $session_user_id;
+
     require_once '/var/www/develop.twe.tech/post/models/quote_model.php';
 
     $client = intval($_POST['client']);
@@ -29,7 +31,7 @@ if (isset($_POST['add_quote'])) {
 
     $_SESSION['alert_message'] = "Quote added";
 
-    header("Location: quote.php?quote_id=$quote_id");
+    header("Location: /pages/quote.php?quote_id=$quote_id");
 
 }
 

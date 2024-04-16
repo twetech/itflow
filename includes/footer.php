@@ -88,8 +88,7 @@
 
 <script src="/includes/assets/vendor/libs/block-ui/block-ui.js"></script>
 <script src="/includes/assets/vendor/libs/sortablejs/sortable.js"></script>
-<link rel="stylesheet" href="/includes/assets/vendor/libs/toastr/toastr.js" />
-
+<script src="/includes/assets/vendor/libs/toastr/toastr.js"></script>
 <!-- Main JS -->
 <script src="/includes/assets/js/main.js"></script>
 
