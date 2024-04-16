@@ -103,7 +103,10 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 <div class="card">
     <header class="card-header d-flex align-items-center">
         <div class="col">
-            <h3 class="card-title mt-2"><i class="fa fa-fw fa-life-ring mr-2"></i>Support Tickets</h3>
+            <div class="row">
+                <h3 class="card-title mt-2"><i class="bx bx-support mr-2">
+                </i> Support Tickets</h3>
+            </div>
             <small class="ml-3">
                     <a href="?status=Open&assigned=all"><strong><?php echo $total_tickets_open; ?></strong> Open</a> |
                     <a href="?status=Closed"><strong><?php echo $total_tickets_closed; ?></strong> Closed</a>
@@ -136,10 +139,9 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
     <div class="card-body">
         <form id="bulkActions" action="/post/" method="post">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
-            <div class="card-datatable table-responsive pt-0">
+            <div class="card-datatable table-responsive container-fluid  container-fluid pt-0">
                 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if (!$num_rows[0]) { echo "d-none"; } ?>">
-
                             <tr>
                                 <?php
                                 // table head
@@ -147,16 +149,34 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                 if (!$session_mobile) {
                                     $rows = [ 'Number', 'Subject', 'Client / Contact', 'Priority', 'Status', 'Assigned', 'Last Response', 'Created' ];
                                     $datatable_order = "[[7,'desc']]";
+                                    $datatable_priority = [
+                                        'Number' => 1,
+                                        'Subject' => 2,
+                                        'Assigned' => 3
+                                    ];
                                 } else {
                                     $rows = [ 'Subject', 'Client', 'Number', 'Status', 'Assigned', 'Last Response', 'Created' ];
                                     $datatable_order = "[[6,'desc']]";
+                                    $datatable_priority = [
+                                        'Status' => 1,
+                                        'Number' => 2,
+                                        'Subject' => 3,
+                                        'Assigned' => 4,
+                                        'Client' => 5,
+                                        'Last Response' => 6
+                                    ];
                                 }
                                 
                                 if ($config_module_enable_accounting) {
                                     $rows[] = 'Billable';
                                 }
+
                                 foreach ($rows as $row) {
-                                    echo "<th>$row</th>";
+                                    if (isset($datatable_priority[$row])) {
+                                        echo "<th data-priority='" . $datatable_priority[$row] . "'>$row</th>";
+                                    } else {
+                                        echo "<th>$row</th>";
+                                    }
                                 }
                                 ?>
                             </tr>
@@ -231,9 +251,9 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                 //$datetime_format="date-time-format";
                                 $datetime_format="date-time-ago";
 
-
+                                if (!$session_mobile) {
+                                    
                             ?>
-
                                 <tr class="<?= empty($ticket_updated_at) ? "text-bold" : "" ?>">
 
                                     <td>
@@ -274,10 +294,64 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                         </td>
                                     <?php } ?>
                                 </tr>
-
                             <?php
+                                } else {
+                            ?>
+                                <tr class="<?= empty($ticket_updated_at) ? "text-bold" : "" ?>">
+                                    <td data-priority="1">
+                                        <!-- subject -->
+                                        <a href="ticket.php?ticket_id=<?= $ticket_id ?>">
+                                            <strong><?= $ticket_subject ?></strong>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <!-- client -->
+                                        <a href="client_tickets.php?client_id=<?= $client_id ?>">
+                                            <strong><?= $client_name ?></strong>
+                                        </a>
+                                    </td>
+                                    <td data-priority="2">
+                                        <!-- ticket number -->
+                                        <small>
+                                            <a href="ticket.php?ticket_id=<?= $ticket_id ?>">
+                                                <span class="badge rounded-pill bg-label-secondary p-3"><?=$ticket_prefix . $ticket_number?></span>
+                                            </a>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <!-- status -->
+                                        <span class='p-2 badge rounded-pill bg-label-<?= $ticket_status_color ?>'><?= $ticket_status; ?></span>
+                                    </td>
+                                    <td>
+                                        <!-- assigned -->
+                                        <a href="#" class="loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_assign_modal.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_assigned_to_display; ?></a>
+                                    </td>
+                                    <td <?= $ticket_updated_at ? "class='" . $datetime_format . "'" : '' ?>>
+                                        <!-- last response -->
+                                        <?= $ticket_updated_at ? $ticket_updated_at : 'never'; ?>
+                                    </td>
+                                    <td class="<?= $datetime_format?>">
+                                        <!-- created -->
+                                        <?= $ticket_created_at ?>
+                                    </td>
+                                    <td>
+                                        <!-- billable -->
+                                        <?php if ($config_module_enable_accounting) { ?>
+                                            <a href="#" class="loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_billable_modal.php?ticket_id=<?php echo $ticket_id; ?>">
+                                                <?php
+                                                    if ($ticket_billable == 1) {
+                                                        echo "<span class='badge rounded-pill bg-label-success'>$</span>";
+                                                    } else {
+                                                        echo "<span class='badge rounded-pill bg-label-secondary'>X</span>";
+                                                    }
+                                                ?>
+                                            </a>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            <?php
+                                }
                         }
-
                         ?>
 
                     </tbody>
@@ -290,7 +364,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
     </div>
 </div>
 
-<script src="js/bulk_actions.js"></script>
+<script src="/includes/js/bulk_actions.js"></script>
 
 <?php
 

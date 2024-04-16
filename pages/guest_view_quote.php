@@ -167,7 +167,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
             <div class="row mb-4">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="table-responsive">
+                                <div class="card-datatable table-responsive container-fluid  pt-0">               
                             <table id=responsive class="responsive table">
                                 <thead>
                                 <tr>

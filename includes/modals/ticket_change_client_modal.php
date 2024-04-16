@@ -47,4 +47,4 @@
 <!-- Ticket Change Client JS -->
 <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui.min.css">
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-<script src="js/ticket_change_client.js"></script>
+<script src="/includes/js/ticket_change_client.js"></script>

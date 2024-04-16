@@ -4,6 +4,8 @@
 $sort = "client_accessed_at";
 $order = "DESC";
 
+$datatable_order = "[[0, 'asc']]";
+
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 // Leads Query
@@ -68,14 +70,15 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
         <div class="card-body p-2 p-md-3">
 
-            <div class="card-datatable table-responsive pt-0">                <table id='responsive' class="responsive table table-hover">
+            <div class="card-datatable table-responsive  pt-0">                
+                <table class="datatables-basic table border-top">
                     <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                                <th>Name</th>
-                                <th>Primary Location</th>
+                                <th data-priority="1">Name</th>
+                                <th data-priority="2">Primary Location</th>
                                 <th>Primary Contact</th>
-                                <?php if (($session_user_role == 3 || $session_user_role == 1) && $config_module_enable_accounting == 1) { ?> <th class="text-right">Billing</th> <?php } ?>
-                                <?php if ($session_user_role == 3) { ?> <th class="text-center">Action</th> <?php } ?>
+                                <?php if (($session_user_role == 3 || $session_user_role == 1) && $config_module_enable_accounting == 1) { ?> <th class="text-right " data-priority="3">Billing</th> <?php } ?>
+                                <?php if ($session_user_role == 3) { ?> <th class="text-center" data-priority="4">Action</th> <?php } ?>
                         
                     </tr>
                     </thead>

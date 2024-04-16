@@ -11,9 +11,8 @@ require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 $sql = mysqli_query($mysqli, "SELECT SQL_CALC_FOUND_ROWS * FROM domains 
     LEFT JOIN vendors ON domain_registrar = vendor_id
-    WHERE domain_client_id = $client_id 
+    WHERE domain_client_id = $client_id
     AND domain_archived_at IS NULL
-    AND (domain_name LIKE '%$q%' OR vendor_name LIKE '%$q%') 
     ORDER BY $sort $order");
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -60,7 +59,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </div>
             </form>
             <hr>
-            <div class="card-datatable table-responsive pt-0">
+            <div class="card-datatable table-responsive container-fluid  pt-0">
                 <form id="bulkActions" action="/post.php" method="post">
                     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
@@ -68,11 +67,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
-                            <td class="pr-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" id="selectAllCheckbox" type="checkbox" onclick="checkAll(this)">
-                                </div>
-                            </td>
                             <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=domain_name&order=<?php echo $disp; ?>">Domain</a></th>
                             <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Registrar</a></th>
                             <th>Web Host</th>
@@ -105,12 +99,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                             ?>
                             <tr>
-                                <td class="pr-0">
-                                    <div class="form-check">
-                                        <input class="form-check-input bulk-select" type="checkbox" name="domain_ids[]" value="<?php echo $domain_id ?>">
-                                        <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                                    </div>
-                                </td>
                                 <td>
                                     <a class="text-dark" href="#" data-bs-toggle="modal" onclick="populateDomainEditModal(<?php echo $client_id, ",", $domain_id ?>)" data-bs-target="#editDomainModal">
                                         <div class="media">
@@ -160,8 +148,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                 </form>
             </div>
-            <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
-            ?>
         </div>
     </div>
 
@@ -173,8 +159,8 @@ require_once "/var/www/develop.twe.tech/includes/modals/client_domain_add_modal.
 require_once "/var/www/develop.twe.tech/includes/modals/client_domain_export_modal.php";
 ?>
 
-<script src="js/domain_edit_modal.js"></script>
-<script src="js/bulk_actions.js"></script>
+<script src="/includes/js/domain_edit_modal.js"></script>
+<script src="/includes/js/bulk_actions.js"></script>
 
 <?php require_once '/var/www/develop.twe.tech/includes/footer.php';
 

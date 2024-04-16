@@ -52,7 +52,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </form>
         <hr>
 
-        <div class="card-datatable table-responsive pt-0">
+        <div class="card-datatable table-responsive container-fluid  pt-0">
             <form id="bulk_actions" action="/post.php" method="post">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
@@ -136,8 +136,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
     </div>
 </div>
-<script src="js/recurring_tickets_edit_modal.js"></script>
-<script src="js/bulk_actions.js"></script>
+<script src="/includes/js/recurring_tickets_edit_modal.js"></script>
+<script src="/includes/js/bulk_actions.js"></script>
 
 <?php
 

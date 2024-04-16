@@ -70,7 +70,7 @@ if ($email_status == 0) {
 
 </div>
 
-<script src="js/pretty_content.js"></script>
+<script src="/includes/js/pretty_content.js"></script>
 
 <?php
 

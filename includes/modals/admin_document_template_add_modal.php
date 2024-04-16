@@ -17,7 +17,7 @@
                     </div>
 
                     <div class="form-group">
-                        <textarea id=trumbowyg class="form-control" name="content"></textarea>
+                        <textarea  class="form-control" name="content"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" name="description" placeholder="Enter a short summary">

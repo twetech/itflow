@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea id=trumbowyg class="form-control" rows="5" name="bulk_reply_details" placeholder="Type an update here"></textarea>
+                    <textarea  class="form-control" rows="5" name="bulk_reply_details" placeholder="Type an update here"></textarea>
                 </div>
 
                 <div class="form-group">

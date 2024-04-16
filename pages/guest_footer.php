@@ -21,7 +21,7 @@
   <script src='plugins/select2/js/select2.min.js'></script>
   <script src='plugins/inputmask/min/inputmask/inputmask.min.js'></script>
 
-  <script src="js/app.js"></script>
+  <script src="/includes/js/app.js"></script>
 
   </body>
 </html>

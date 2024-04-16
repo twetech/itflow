@@ -184,14 +184,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     
                     <form id="bulkActions" action="/post.php" method="post">
 
-                        <div class="card-datatable table-responsive pt-0">                            <table id=responsive class="responsive table table-striped table-sm table-borderless table-hover">
+                        <div class="card-datatable table-responsive container-fluid  pt-0">                            <table id=responsive class="responsive table table-striped table-sm table-borderless table-hover">
                                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                                 <tr>
-                                    <td class="bg-light">
-                                        <div class="form-check">
-                                            <input class="form-check-input" id="selectAllCheckbox" type="checkbox" onclick="checkAll(this)">
-                                        </div>
-                                    </td>
                                     <th>
                                         <a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=document_name&order=<?php echo $disp; ?>">Name</a>
                                     </th>
@@ -222,11 +217,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     ?>
 
                                     <tr>
-                                        <td class="bg-light">
-                                            <div class="form-check">
-                                                <input class="form-check-input bulk-select" type="checkbox" name="document_ids[]" value="<?php echo $document_id ?>">
-                                            </div>
-                                        </td>
                                         <td>
                                             <a href="client_document_details.php?client_id=<?php echo $client_id; ?>&document_id=<?php echo $document_id; ?>"><i class="fas fa-fw fa-file-alt"></i> <?php echo $document_name; ?></a>
                                             <div class="text-secondary mt-1"><?php echo $document_description; ?>
@@ -292,7 +282,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </div>
     </div>
 
-<script src="js/bulk_actions.js"></script>
+<script src="/includes/js/bulk_actions.js"></script>
 
 <?php
 require_once "/var/www/develop.twe.tech/includes/modals/share_modal.php";

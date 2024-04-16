@@ -14,8 +14,6 @@ $sql = mysqli_query(
     "SELECT SQL_CALC_FOUND_ROWS * FROM software
     WHERE software_client_id = $client_id
     AND software_template = 0
-    AND software_$archive_query
-    AND (software_name LIKE '%$q%' OR software_type LIKE '%$q%' OR software_key LIKE '%$q%')
     ORDER BY $sort $order");
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -63,7 +61,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </div>
             </form>
             <hr>
-            <div class="card-datatable table-responsive pt-0">                   
+            <div class="card-datatable table-responsive container-fluid  pt-0">                   
 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>

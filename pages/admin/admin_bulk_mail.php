@@ -59,7 +59,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM contacts
                     </div>
 
                     <div class="form-group">
-                        <textarea id=trumbowyg class="form-control" name="body" placeholder="Type an email in here"></textarea>
+                        <textarea  class="form-control" name="body" placeholder="Type an email in here"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -78,7 +78,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM contacts
                     <h5>Select Contacts</h5>
                     <hr>
                     <div class="card">
-                        <div class="table-responsive">
+                                <div class="card-datatable table-responsive container-fluid  pt-0">               
                             <table id=responsive class="responsive table">
                                 <thead>
                                     <tr>
@@ -144,7 +144,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM contacts
 </div>
 
 
-<script src="js/bulk_actions.js"></script>
+<script src="/includes/js/bulk_actions.js"></script>
 
 <?php
 

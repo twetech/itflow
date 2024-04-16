@@ -64,7 +64,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </div>
         </form>
         <hr>
-        <div class="card-datatable table-responsive pt-0">               
+        <div class="card-datatable table-responsive container-fluid  pt-0">               
 <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) {
                                             echo "d-none";
@@ -169,16 +169,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </tbody>
             </table>
         </div>
-        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
-        ?>
     </div>
 </div>
 
 <!-- Include script to get TOTP code via the login ID -->
-<script src="js/logins_show_otp_via_id.js"></script>
+<script src="/includes/js/logins_show_otp_via_id.js"></script>
 
 <!-- Include script to generate readable passwords for login entries -->
-<script src="js/logins_generate_password.js"></script>
+<script src="/includes/js/logins_generate_password.js"></script>
 
 <?php
 

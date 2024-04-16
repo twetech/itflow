@@ -99,12 +99,21 @@ $sql_asset_retire = mysqli_query(
 
         <div class="col-md-12">
 
-            <div class="card mb-3 elevation-3">
+            <div class="card mb-3 elevation-3 card-action">
                 <div class="card-header">
-                    <h5 class="card-title"><i class="fa fa-fw fa-edit mr-2"></i>Quick Notes</h5>
+                    <h5 class="card-action-title"><i class="fa fa-fw fa-edit mr-2"></i>Quick Notes</h5>
+                    <div class="card-action-element">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item">
+                                <a href="javascript:void(0);" class="card-collapsible"><i class="tf-icons bx bx-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="card-body p-1">
-                    <textarea class="form-control" rows=8 id="clientNotes" placeholder="Enter quick notes here" onblur="updateClientNotes(<?php echo $client_id ?>)"><?php echo $client_notes ?></textarea>
+                <div class="collapse">
+                    <div class="card-body p-1">
+                        <textarea class="form-control" rows=8 id="clientNotes" placeholder="Enter quick notes here" onblur="updateClientNotes(<?php echo $client_id ?>)"><?php echo $client_notes ?></textarea>
+                    </div>
                 </div>
             </div>
 

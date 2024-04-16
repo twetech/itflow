@@ -292,7 +292,7 @@ if (isset($_GET['invoice_id'])) {
             <div class="row mb-4">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="table-responsive">
+                                <div class="card-datatable table-responsive container-fluid  pt-0">               
                             <table id=responsive class="responsive table">
                                 <thead>
                                 <tr>
@@ -383,7 +383,7 @@ if (isset($_GET['invoice_id'])) {
                                             <input type="text" class="form-control" id="name" name="name" placeholder="Item" required>
                                         </td>
                                         <td>
-                                            <textarea class="form-control trumbowyg" rows="2" id="desc" name="description" placeholder="Enter a Description"></textarea>
+                                            <textarea class="form-control " rows="2" id="desc" name="description" placeholder="Enter a Description"></textarea>
                                         </td>
                                         <td>
                                             <input type="text" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" class="form-control" style="text-align: center;" id="qty" name="qty" placeholder="Quantity">
@@ -544,7 +544,7 @@ if (isset($_GET['invoice_id'])) {
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                            <div class="card-datatable table-responsive container-fluid  pt-0">               
                         <table id=responsive class="responsive table">
                             <thead class="<?php if (mysqli_num_rows($sql_payments) == 0) { echo "d-none"; } ?>">
                                 <tr>
@@ -613,7 +613,7 @@ if (isset($_GET['invoice_id'])) {
                 </div>
 
                 <div class="card-body">
-                    <div class="table-responsive">
+                            <div class="card-datatable table-responsive container-fluid  pt-0">               
                         <table id=responsive class="responsive table">
                             <thead class="<?php if (mysqli_num_rows($sql_tickets) == 0) { echo "d-none"; } ?>">
                                 <tr>

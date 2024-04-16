@@ -57,7 +57,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </form>
             <hr>
 
-            <div class="card-datatable table-responsive pt-0">
+            <div class="card-datatable table-responsive container-fluid  pt-0">
                 <form id="bulkActions" action="/post.php" method="post">
                     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
@@ -99,11 +99,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                             ?>
                             <tr>
-                                <td class="pr-0">
-                                    <div class="form-check">
-                                        <input class="form-check-input bulk-select" type="checkbox" name="api_key_ids[]" value="<?php echo $api_key_id ?>">
-                                    </div>
-                                </td>
 
                                 <td class="text-bold"><?php echo $api_key_name; ?></td>
 
@@ -143,7 +138,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </div>
     </div>
 
-    <script src="js/bulk_actions.js"></script>
+    <script src="/includes/js/bulk_actions.js"></script>
 
 <?php
 require_once "/var/www/develop.twe.tech/includes/modals/admin_api_key_add_modal.php";

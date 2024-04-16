@@ -66,7 +66,7 @@ $sql_vendor_expenses = mysqli_query($mysqli, "
             </select>
         </form>
 
-        <div class="card-datatable table-responsive pt-0">            <table id=responsive class="responsive table table-striped">
+        <div class="card-datatable table-responsive container-fluid  pt-0">            <table id=responsive class="responsive table table-striped">
                 <thead>
                 <tr>
                     <th>Vendor</th>

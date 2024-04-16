@@ -32,7 +32,7 @@ $client_id = intval($_GET['client_id']);
                     </div>
                     <?php } else { ?>
                     <div class="form-group">
-                        <textarea id=trumbowyg class="form-control" name="content"></textarea>
+                        <textarea  class="form-control" name="content"></textarea>
                     </div>
                     <?php } ?>
                     <div class="form-group">

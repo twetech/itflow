@@ -44,7 +44,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </form>
             <hr>
 
-            <div class="card-datatable table-responsive pt-0">                   
+            <div class="card-datatable table-responsive container-fluid  pt-0">                   
 <table class="datatables-basic table border-top">
                     <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>

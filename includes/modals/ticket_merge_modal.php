@@ -61,4 +61,4 @@
 </div>
 
 <!-- Ticket merge JS -->
-<script src="js/ticket_merge.js"></script>
+<script src="/includes/js/ticket_merge.js"></script>

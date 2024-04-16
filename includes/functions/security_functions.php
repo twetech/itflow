@@ -339,8 +339,17 @@ function sanitizeForEmail($data)
 
 function isMobile()
 {
-    // Check if the user agent is a mobile device
-    return preg_match('/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|opera mini|palm|phone|pie|tablet|up.browser|up.link|webos|wos)/i', $_SERVER['HTTP_USER_AGENT']);
+    // Check if the user agent is an android, blackberry or iPhone or iPad
+    $device = preg_match('/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|opera mini|palm|phone|pie|tablet|up.browser|up.link|webos|wos)/i', getUserAgent());
+
+    //double check for iPad
+    if (preg_match('/(ipad)/i', getUserAgent())) {
+        $device = true;
+    }
+
+    return $device;
+
+
 }
 
 

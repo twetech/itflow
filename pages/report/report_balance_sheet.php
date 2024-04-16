@@ -63,7 +63,7 @@ function display_account_section($mysqli, $accounts, $type) {
         </div>
     </div>
     <div class="card-body p-0">
-        <div class="card-datatable table-responsive pt-0">
+        <div class="card-datatable table-responsive container-fluid  pt-0">
             <div class="text-center">
                 <h2 class="text-dark">
                     <?php echo nullable_htmlentities($session_company_name); ?>

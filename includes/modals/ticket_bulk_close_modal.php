@@ -13,7 +13,7 @@
                 <input type="hidden" name="bulk_private_note" value="0">
 
                 <div class="form-group">
-                    <textarea id=trumbowyg class="form-control" rows="5" name="bulk_details" placeholder="Enter closing remarks"></textarea>
+                    <textarea  class="form-control" rows="5" name="bulk_details" placeholder="Enter closing remarks"></textarea>
                 </div>
 
                 <div class="form-group">

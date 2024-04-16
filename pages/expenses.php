@@ -36,7 +36,8 @@ $recurring_expense_count = $row['num'];
 
         <div class="card-body">
             <form id="bulkActions" action="/post.php" method="post">
-                <div class="card-datatable table-responsive pt-0">                    <table id='responsive' class="responsive table table-hover">
+                <div class="card-datatable table-responsive container-fluid  pt-0">                      
+<table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
                             <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=expense_date&order=<?php echo $disp; ?>">Date</a></th>
@@ -151,7 +152,7 @@ $recurring_expense_count = $row['num'];
         </div>
     </div>
 
-<script src="js/bulk_actions.js"></script>
+<script src="/includes/js/bulk_actions.js"></script>
 
 <?php
 require_once "/var/www/develop.twe.tech/includes/modals/expense_add_modal.php";

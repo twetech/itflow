@@ -78,6 +78,7 @@
 <script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
 <script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
 
+<script src="/includes/js/reformat_datetime.js"></script>
 
 <script src="/includes/assets/vendor/js/menu.js"></script>
 
@@ -85,6 +86,9 @@
 
 <!-- Vendors JS -->
 
+<script src="/includes/assets/vendor/libs/block-ui/block-ui.js"></script>
+<script src="/includes/assets/vendor/libs/sortablejs/sortable.js"></script>
+<link rel="stylesheet" href="/includes/assets/vendor/libs/toastr/toastr.js" />
 
 <!-- Main JS -->
 <script src="/includes/assets/js/main.js"></script>
@@ -94,6 +98,19 @@
 
 
 <script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ],
+        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+    });
+
 			$(function () {
 				$('.datatables-basic').DataTable({
 					responsive: true,
@@ -101,9 +118,18 @@
 				});
 			});
 
-			$('.trumbowyg').trumbowyg();
+            $(window).resize(function() {
+                $("table.dataTable").resize();
+            });
+
+            jQuery('#querytableDatasets').dataTable({  
+                "bAutoWidth": false
+            }); 
+
+
 </script>
 
+    <script src="/includes/assets/js/cards-actions.js"></script>
 <!-- Page JS -->
 </body>
 </html>

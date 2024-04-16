@@ -55,7 +55,7 @@ $document_updated_at = nullable_htmlentities($row['document_updated_at']);
   </div>
 </div>
 
-<script src="js/pretty_content.js"></script>
+<script src="/includes/js/pretty_content.js"></script>
 
 <?php
 

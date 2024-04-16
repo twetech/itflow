@@ -721,4 +721,4 @@ require_once '/var/www/develop.twe.tech/includes/footer.php';
 
 ?>
 
-<script src="js/pretty_content.js"></script>
+<script src="/includes/js/pretty_content.js"></script>

@@ -27,7 +27,7 @@ $document_description = nullable_htmlentities($row['document_description']);
                     </div>
 
                     <div class="form-group">
-                        <textarea id=trumbowyg class="form-control" name="content"><?php echo $document_content; ?></textarea>
+                        <textarea  class="form-control" name="content"><?php echo $document_content; ?></textarea>
                     </div>
 
                     <div class="form-group">

@@ -145,7 +145,7 @@ if (isset($_GET['contact_id'])) {
                     <h3 class="card-title"><i class="fa fa-fw fa-desktop mr-2"></i>Related Assets</h3>
                 </div>
                 <div class="card-body">
-                    <div class="card-datatable table-responsive pt-0">                           
+                    <div class="card-datatable table-responsive container-fluid  pt-0">                           
 <table class="datatables-basic table border-top">
                             <thead>
                             <tr>
@@ -385,7 +385,7 @@ if (isset($_GET['contact_id'])) {
                     <h3 class="card-title"><i class="fa fa-fw fa-cube mr-2"></i>Related Licenses</h3>
                 </div>
                 <div class="card-body">
-                    <div class="card-datatable table-responsive pt-0">                           
+                    <div class="card-datatable table-responsive container-fluid  pt-0">                           
 <table class="datatables-basic table border-top">
                             <thead class="text-dark">
                             <tr>
@@ -460,7 +460,7 @@ if (isset($_GET['contact_id'])) {
                     <h3 class="card-title"><i class="fa fa-fw fa-life-ring mr-2"></i>Related Tickets</h3>
                 </div>
                 <div class="card-body">
-                    <div class="card-datatable table-responsive pt-0">                           
+                    <div class="card-datatable table-responsive container-fluid  pt-0">                           
 <table class="datatables-basic table border-top">
                             <thead class="text-dark">
                             <tr>
