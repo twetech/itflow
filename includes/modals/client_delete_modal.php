@@ -19,4 +19,4 @@
         </div>
     </div>
 </div>
-<script src="js/client_delete_confirm.js"></script>
+<script src="/includes/js/client_delete_confirm.js"></script>

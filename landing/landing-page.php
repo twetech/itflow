@@ -294,7 +294,7 @@
                 <ul class="navbar-nav flex-row align-items-center ms-auto">
                     <!-- navbar button: Start -->
                     <li>
-                        <a href="/tenant_login.php" class="btn btn-primary" target="_blank"><span class="tf-icons bx bx-user me-md-1"></span><span class="d-none d-md-block">Login/Register</span></a>
+                        <a href="/tenant_login.php" class="btn btn-primary"><span class="tf-icons bx bx-user me-md-1"></span><span class="d-none d-md-block">Login</span></a>
                     </li>
                     <!-- navbar button: End -->
                 </ul>

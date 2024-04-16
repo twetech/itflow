@@ -45,7 +45,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-body">
             <form id="bulkActions" action="/post.php" method="post">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
-                <div class="card-datatable table-responsive pt-0">                    <table id=responsive class="responsive table border">
+                <div class="card-datatable table-responsive container-fluid  pt-0">                    <table id=responsive class="responsive table border">
                         <thead class="thead-light <?php if (!$num_rows[0]) { echo "d-none"; } ?>">
                         <tr>
                             <th><a class="text-secondary ml-3" href="?<?php echo $url_query_strings_sort; ?>&sort=contact_name&order=<?php echo $disp; ?>">Name</a></th>
@@ -266,7 +266,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     });
 </script>
 
-<script src="js/bulk_actions.js"></script>
+<script src="/includes/js/bulk_actions.js"></script>
 
 <?php
 

@@ -78,15 +78,11 @@ $product_name = sanitizeInput($product_name_row[0]);
             </form>
             <hr>
             <form id="bulkActions" action="/post.php" method="post">
-                <div class="card-datatable table-responsive pt-0">                       
+                <div class="card-datatable table-responsive container-fluid  pt-0">                       
 <table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
-                            <td class="bg-light pr-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" id="selectAllCheckbox" type="checkbox" onclick="checkAll(this)">
-                                </div>
-                            </td>
+
                             <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Location</a></th>
                             <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Quantity</a></th>
                             <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Unit Cost</a></th>
@@ -139,7 +135,7 @@ $product_name = sanitizeInput($product_name_row[0]);
         </div>
     </div>
 
-<script src="js/bulk_actions.js"></script>
+<script src="/includes/js/bulk_actions.js"></script>
 
 <?php
 

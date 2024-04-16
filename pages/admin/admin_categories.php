@@ -104,7 +104,7 @@ if (isset($_GET['archived'])) {
             </div>
         </form>
         <hr>
-        <div class="card-datatable table-responsive pt-0">               
+        <div class="card-datatable table-responsive container-fluid  pt-0">               
 <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) {
                     echo "d-none";

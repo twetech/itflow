@@ -66,7 +66,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </form>
         <hr>
 
-        <div class="card-datatable table-responsive pt-0">
+        <div class="card-datatable table-responsive container-fluid  pt-0">
             <form id="bulkActions" action="/post.php" method="post">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
 
@@ -76,11 +76,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         echo "d-none";
                                     } ?>">
                         <tr>
-                            <td class="pr-0">
-                                <div class="form-check">
-                                    <input class="form-check-input" id="selectAllCheckbox" type="checkbox" onclick="checkAll(this)">
-                                </div>
-                            </td>
                             <th><a class="text-dark">Client</a></th>
                             <th><a class="text-dark">Subject</a></th>
                             <th><a class="text-dark">Priority</a></th>
@@ -105,11 +100,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
 
                             <tr>
-                                <td class="pr-0">
-                                    <div class="form-check">
-                                        <input class="form-check-input bulk-select" type="checkbox" name="scheduled_ticket_ids[]" value="<?php echo $scheduled_ticket_id ?>">
-                                    </div>
-                                </td>
 
                                 <th><a href="client_recurring_tickets.php?client_id=<?php echo $scheduled_ticket_client_id; ?>"><?php echo $scheduled_ticket_client_name ?></a>
                                 </th>
@@ -160,8 +150,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     </div>
 </div>
 
-<script src="js/recurring_tickets_edit_modal.js"></script>
-<script src="js/bulk_actions.js"></script>
+<script src="/includes/js/recurring_tickets_edit_modal.js"></script>
+<script src="/includes/js/bulk_actions.js"></script>
 
 <?php
 require_once "/var/www/develop.twe.tech/includes/modals/recurring_ticket_add_modal.php";

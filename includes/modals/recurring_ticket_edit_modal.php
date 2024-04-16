@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="form-group">
-                                <textarea id=trumbowyg class="form-control" name="details" id="editTicketDetails"></textarea>
+                                <textarea  class="form-control" name="details" id="editTicketDetails"></textarea>
                             </div>
 
                             <div class="form-group">

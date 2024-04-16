@@ -209,7 +209,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
             <div class="row mb-4">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="table-responsive">
+                                <div class="card-datatable table-responsive container-fluid  pt-0">               
                             <table id=responsive class="responsive table">
                                 <thead>
                                 <tr>

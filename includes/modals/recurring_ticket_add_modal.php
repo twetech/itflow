@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="form-group">
-                                <textarea id=trumbowyg class="form-control" name="details"></textarea>
+                                <textarea  class="form-control" name="details"></textarea>
                             </div>
 
                             <div class="form-group">
@@ -207,4 +207,4 @@
 <!-- Recurring Ticket Client/Contact JS -->
 <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui.min.css">
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-<script src="js/recurring_tickets_add_modal.js"></script>
+<script src="/includes/js/recurring_tickets_add_modal.js"></script>

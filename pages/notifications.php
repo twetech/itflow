@@ -19,7 +19,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM notifications LEFT JOIN clients ON n
         <div class="card-body">
             <?php if (mysqli_num_rows($sql) > 0) { ?>
 
-            <div class="card-datatable table-responsive pt-0">                  
+            <div class="card-datatable table-responsive container-fluid  pt-0">                  
 <table class="datatables-basic table border-top">
                     <thead>
                     <tr>

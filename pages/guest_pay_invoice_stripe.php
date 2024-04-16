@@ -117,7 +117,7 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
         <div class="col-sm">
             <h3>Payment for Invoice: <?php echo $invoice_prefix . $invoice_number ?></h3>
             <br>
-            <div class="table-responsive">
+                    <div class="card-datatable table-responsive container-fluid  pt-0">               
                 <table id=responsive class="responsive table">
                     <thead>
                     <tr>
@@ -194,7 +194,7 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
     </div>
 
     <!-- Include local JS that powers stripe -->
-    <script src="js/guest_pay_invoice_stripe.js"></script>
+    <script src="/includes/js/guest_pay_invoice_stripe.js"></script>
 
     <?php
 

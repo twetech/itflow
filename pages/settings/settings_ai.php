@@ -69,7 +69,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
             <button id="undoButton" class="btn btn-light" style="display:none;"><i class="fas fa-fw fa-redo-alt mr-2"></i>Undo</button>
         </div>
 
-        <script src="js/ai_reword.js"></script>
+        <script src="/includes/js/ai_reword.js"></script>
 
     </div>
 </div>

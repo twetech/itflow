@@ -56,7 +56,7 @@ $menuItems = [
                 ['title' => 'Collections', 'link' => '/pages/report/report_collections.php', 'icon' => 'bx bx-box']
                 ]],
                 ['title' => 'Technical', 'icon' => 'bx bx-cog', 'children' => [
-                    ['title' => 'Unbilled Tickets', 'link' => '/pages/report/report_unbilled_tickets.php', 'icon' => 'bx bx-box'],
+                    ['title' => 'Unbilled Tickets', 'link' => '/pages/report/report_tickets_unbilled.php', 'icon' => 'bx bx-box'],
                     ['title' => 'Tickets', 'link' => '/pages/report/report_tickets.php', 'icon' => 'bx bx-box'],
                     ['title' => 'Tickets by Client', 'link' => '/pages/report/report_tickets_by_client.php', 'icon' => 'bx bx-box'],
                     ['title' => 'Password Rotation', 'link' => '/pages/report/report_password_rotation.php', 'icon' => 'bx bx-box'],
@@ -151,7 +151,7 @@ $clientMenuItems = [
         'children' => [
             ['title' => 'Assets', 'link' => '/pages/client/client_assets.php?client_id=' . $client_id, 'icon' => 'bx bx-barcode'],
             
-            ['title' => 'Licenses', 'link' => '/pages/client/client_licenses.php?client_id=' . $client_id, 'icon' => 'bx bx-key'],
+            ['title' => 'Licenses', 'link' => '/pages/client/client_software.php?client_id=' . $client_id, 'icon' => 'bx bx-key'],
             ['title' => 'Logins', 'link' => '/pages/client/client_logins.php?client_id=' . $client_id, 'icon' => 'bx bx-log-in'],
             ['title' => 'Networks', 'link' => '/pages/client/client_networks.php?client_id=' . $client_id, 'icon' => 'bx bx-network-chart'],
             ['title' => 'Services', 'link' => '/pages/client/client_services.php?client_id=' . $client_id, 'icon' => 'bx bx-server'],
@@ -207,14 +207,6 @@ function renderMenu($menuItems, $isSubmenu = false) {
     echo $html;
     return $html;
 }
-
-$shortcutsData = [
-    ['shortcut_key' => 'calendar'],
-    ['shortcut_key' => 'invoice'],
-    ['shortcut_key' => 'task'],
-    ['shortcut_key' => 'email'],
-    ['shortcut_key' => 'chat'],
-];
 
 // Render user shortcuts
 function renderUserShortcuts($shortcutsData, $shortcutsMap) {
@@ -333,8 +325,11 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                                     <div class="dropdown-menu-header border-bottom">
                                         <div class="dropdown-header d-flex align-items-center py-3">
                                             <h5 class="text-body mb-0 me-auto">Shortcuts</h5>
-                                            <a href="javascript:void(0)" class="dropdown-shortcuts-add text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Add shortcuts"><i class="bx bx-sm bx-plus-circle"></i></a>
-                                        </div>
+                                            <?php //if pagename not in array shortcutsMap, dont show add button
+                                            if (in_array($page_name, array_keys($shortcutsMap))) {
+                                            ?>
+                                            <a href="/post.php?add_shortcut=<?= $page_name ?>" class="dropdown-shortcuts-add text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Add shortcuts"><i class="bx bx-sm bx-plus-circle"></i></a>
+                                            <?php } ?>
                                     </div>
                                     <div class="dropdown-shortcuts-list scrollable-container">
                                         <?php
@@ -484,7 +479,7 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                     <!-- Menu -->
                     <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
                         <div class="container-xxl d-flex h-100">
-                            <?php if ($page_is_client) {
+                            <?php if ($page_is_client || $page_is_ticket) {
                                 renderMenu($clientMenuItems);
                             } else {
                                 renderMenu($menuItems);
@@ -506,7 +501,7 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/pages/dashboard.php">Home</a></li>
                                 
-                                <?php if ($page_is_client) { ?>
+                                <?php if ($page_is_client || $page_is_ticket) { ?>
                                     <li class="breadcrumb-item">
                                         <a href="/pages/client/client_overview.php?client_id=<?= $client_id ?>">
                                             <?= ucfirst($client_name) ?>

@@ -1802,6 +1802,21 @@ CREATE TABLE `user_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+-- 
+-- Table structure for table `user_shortcuts
+--
+
+DROP TABLE IF EXISTS `user_shortcuts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_shortcuts` (
+  `user_shortcut_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_shortcut_key` text(255) NOT NULL,
+  `user_shortcut_order` int(11) NOT NULL,
+  `user_shortcut_user_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_shortcut_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Table structure for table `users`
 --

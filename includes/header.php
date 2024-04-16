@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="/includes/assets/vendor/libs/apex-charts/apex-charts.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.1/css/responsive.bootstrap5.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/spinkit/spinkit.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/toastr/toastr.css" />
 
 
     <!-- Page CSS -->
@@ -47,7 +49,9 @@
     <script src="/includes/assets/vendor/js/template-customizer.js"></script>
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/includes/assets/js/config.js"></script>
-</head>
+
+    <!-- TinyMCE -->
+    <script src="https://cdn.tiny.cloud/1/78o64w2w2bmaf98z8p7idos4tjloc808tr1j9iv8efl63nce/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script></head>
 
 <body>
     <!-- Layout wrapper -->

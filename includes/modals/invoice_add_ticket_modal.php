@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body bg-white">
-                <div class="table-responsive">
+                        <div class="card-datatable table-responsive container-fluid  pt-0">               
                     <table id=responsive class="responsive table table-striped">
                         <thead>
                             <tr>

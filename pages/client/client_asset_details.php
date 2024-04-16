@@ -333,7 +333,7 @@ if (isset($_GET['asset_id'])) {
                     <h3 class="card-title"><i class="fa fa-fw fa-cube mr-2"></i>Licenses</h3>
                 </div>
                 <div class="card-body">
-                    <div class="card-datatable table-responsive pt-0">                           
+                    <div class="card-datatable table-responsive container-fluid  pt-0">                           
 <table class="datatables-basic table border-top">
                             <thead class="text-dark">
                             <tr>
@@ -408,7 +408,7 @@ if (isset($_GET['asset_id'])) {
                     <h3 class="card-title"><i class="fa fa-fw fa-life-ring mr-2"></i>Tickets</h3>
                 </div>
                 <div class="card-body">
-                    <div class="card-datatable table-responsive pt-0">                           
+                    <div class="card-datatable table-responsive container-fluid  pt-0">                           
 <table class="datatables-basic table border-top">
                             <thead class="text-dark">
                             <tr>

@@ -74,7 +74,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
                             </div>
 
                             <div class="form-group">
-                                <textarea id=trumbowyg class="form-control" rows="8" name="details"><?php echo $ticket_details; ?></textarea>
+                                <textarea  class="form-control" rows="8" name="details"><?php echo $ticket_details; ?></textarea>
                             </div>
 
                             <div class="form-group">

@@ -884,7 +884,7 @@ if (isset($_POST['add_telemetry'])) {
 <script src="/includes/dist/js/adminlte.min.js"></script>
 
 <!-- Custom js-->
-<script src="js/app.js"></script>
+<script src="/includes/js/app.js"></script>
 
 </body>
 

@@ -28,7 +28,7 @@ $num_rows = mysqli_num_rows($sql);
             </div>
         </div>
         <div class="card-body">
-            <div class="card-datatable table-responsive pt-0">                   
+            <div class="card-datatable table-responsive container-fluid  pt-0">                   
 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows == 0) { echo "d-none"; } ?>">
                     <tr>
