@@ -36,7 +36,7 @@ $recurring_expense_count = $row['num'];
 
         <div class="card-body">
             <form id="bulkActions" action="/post.php" method="post">
-                <div class="card-datatable table-responsive container-fluid  pt-0">                      
+                <div class="card-datatable table-responsive pt-0">                      
 <table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
@@ -125,16 +125,6 @@ $recurring_expense_count = $row['num'];
                             </tr>
 
                             <?php
-
-                            require "/var/www/develop.twe.tech/includes/modals/expense_edit_modal.php";
-
-                            require "/var/www/develop.twe.tech/includes/modals/expense_copy_modal.php";
-
-                            require "/var/www/develop.twe.tech/includes/modals/expense_refund_modal.php";
-
-                            require "/var/www/develop.twe.tech/includes/modals/expense_export_modal.php";
-
-
                         }
 
                         ?>
@@ -142,11 +132,6 @@ $recurring_expense_count = $row['num'];
                         </tbody>
                     </table>
                 </div>
-                <?php 
-                    require_once "/var/www/develop.twe.tech/includes/modals/expense_bulk_edit_category_modal.php";
-                    require_once "/var/www/develop.twe.tech/includes/modals/expense_bulk_edit_account_modal.php";
-                    require_once "/var/www/develop.twe.tech/includes/modals/expense_bulk_edit_client_modal.php";
-                ?>
             </form>
             <?php  ?>
         </div>
@@ -155,6 +140,4 @@ $recurring_expense_count = $row['num'];
 <script src="/includes/js/bulk_actions.js"></script>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/expense_add_modal.php";
-
 require_once "/var/www/develop.twe.tech/includes/footer.php";

@@ -9,13 +9,42 @@
 <?php
     require_once "/var/www/develop.twe.tech/includes/inc_confirm_modal.php";
     require_once "/var/www/develop.twe.tech/includes/inc_dynamic_modal.php";
+    function renderMenuItems($items, $level = 0, $isLast = true) {
+        $itemCount = count($items);
+        $firstItem = true; // Track the first item at this level
+    
+        foreach ($items as $index => $item) {
+            if (!$firstItem) {
+                echo '<span class="px-2">|</span>'; // Add separator before the item if it's not the first
+            }
+    
+            echo '<div class="d-inline">'; // Inline display using Bootstrap
+    
+            // Check if a link is provided and display accordingly
+            if (!empty($item['link'])) {
+                echo '<a href="' . htmlspecialchars($item['link']) . '" class="footer-link">' . htmlspecialchars($item['title']) . '</a>';
+            } else {
+                echo '<span>' . htmlspecialchars($item['title']) . '</span>'; // Non-link text
+            }
+    
+            // If there are children, show them with a hierarchy visual cue
+            if (!empty($item['children'])) {
+                echo ' <span class="text-muted">></span> '; // Visual cue for hierarchy
+                renderMenuItems($item['children'], $level + 1, $index == $itemCount - 1);
+            }
+    
+            echo '</div>';
+    
+            $firstItem = false; // After the first item has been rendered, set this to false
+        }
+    }
 ?>
 
 <footer class="content-footer footer bg-footer-theme">
     <div class="container-fluid pt-5 pb-4">
         <div class="row">
             <div class="row">
-                <div class="col-12 col-sm-6 col-md-4 mb-4 mb-sm-4">
+                <div class="col-12 col-sm-3 col-md-2 mb-4 mb-sm-4">
                     <h4 class="fw-bold mb-3"><a href="https://twe.tech" target="_blank" class="footer-text">ITFlow-NG </a></h4>        <span>Get ready for a better ERP.</span>
                     <div class="social-icon my-3">
                     <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-facebook"><i class='bx bxl-facebook'></i></a>
@@ -30,24 +59,7 @@
                 </div>
             </div>
             <div class="row">
-            <?php
-                foreach ($menuItems as $item): ?>
-                    <div class="col-12 col-sm-4 col-md-2 mb-4 mb-md-0">
-                    <h5><?= htmlspecialchars($item['title']) ?></h5>
-                    <ul class="list-unstyled">
-                        <?php
-                        if (isset($item['children'])):
-                        foreach ($item['children'] as $child): ?>
-                            <li>
-                                <a href="<?= htmlspecialchars($child['link']) ?>" class="footer-link d-block pb-2">
-                                    <?= htmlspecialchars($child['title']) ?>
-                                </a>
-                            </li>
-                        <?php endforeach;
-                        endif; ?>
-                    </ul>
-                    </div>
-                <?php endforeach; ?>
+            <?php renderMenuItems($menuItems); ?>
             </div>
         </div>
     </div>
@@ -89,12 +101,14 @@
 <script src="/includes/assets/vendor/libs/block-ui/block-ui.js"></script>
 <script src="/includes/assets/vendor/libs/sortablejs/sortable.js"></script>
 <script src="/includes/assets/vendor/libs/toastr/toastr.js"></script>
+<script src="assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
 <!-- Main JS -->
 <script src="/includes/assets/js/main.js"></script>
 
 <script src="/includes/js/dynamic_modal_loading.js"></script>
 
-
+<!-- Page JS -->
 
 <script>
     tinymce.init({
@@ -109,26 +123,18 @@
         ],
         ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
     });
+</script>
 
-			$(function () {
-				$('.datatables-basic').DataTable({
-					responsive: true,
-					order: <?= $datatable_order ?>,
-				});
-			});
+<script>
 
-            $(window).resize(function() {
-                $("table.dataTable").resize();
-            });
-
-            jQuery('#querytableDatasets').dataTable({  
-                "bAutoWidth": false
-            }); 
-
+$(function () {
+    $('.datatables-basic').DataTable({
+        responsive: true,
+        order: <?= $datatable_order ?>});
+});
 
 </script>
 
-    <script src="/includes/assets/js/cards-actions.js"></script>
-<!-- Page JS -->
+<script src="/includes/assets/js/cards-actions.js"></script>
 </body>
 </html>

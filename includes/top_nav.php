@@ -291,7 +291,7 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                                     </g>
                                 </svg>
                             </span>
-                            <span class="app-brand-text demo menu-text fw-bold"><?= $tenant_brand ? $tenant_brand : 'ITFlow-NG' ?></span>
+                            <span class="app-brand-text demo menu-text fw-bold"><?= isset($tenant_brand) ? $tenant_brand : 'ITFlow-NG' ?></span>
                             </span>
                         </a>
 
@@ -479,7 +479,7 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                     <!-- Menu -->
                     <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
                         <div class="container-xxl d-flex h-100">
-                            <?php if ($page_is_client || $page_is_ticket) {
+                            <?php if (isset($page_is_client) || isset($page_is_ticket)) {
                                 renderMenu($clientMenuItems);
                             } else {
                                 renderMenu($menuItems);
@@ -491,7 +491,7 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
 
-                    <?php if ($page_is_client) { //if page is client page (client.php, client-*.php
+                    <?php if (isset($page_is_client)) { //if page is client page (client.php, client-*.php
                         require_once "/var/www/develop.twe.tech/includes/inc_client_top_head.php";
                     }
                     ?>
@@ -501,7 +501,7 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/pages/dashboard.php">Home</a></li>
                                 
-                                <?php if ($page_is_client || $page_is_ticket) { ?>
+                                <?php if (isset($page_is_client) || isset($page_is_ticket)) { ?>
                                     <li class="breadcrumb-item">
                                         <a href="/pages/client/client_overview.php?client_id=<?= $client_id ?>">
                                             <?= ucfirst($client_name) ?>

@@ -10,6 +10,8 @@ require_once "/var/www/develop.twe.tech/includes/check_login.php";
 
 require_once "/var/www/develop.twe.tech/includes/header.php";
 
+require_once "/var/www/develop.twe.tech/includes/inc_alert_feedback.php";
+
 $page_name = basename($_SERVER['PHP_SELF']);
 
 if (strpos($page_name, 'index') !== false) {
@@ -30,8 +32,8 @@ if (strpos($page_name, 'Ticket') !== false && strpos($page_name, 'Tickets') === 
     $page_is_ticket = true;
 }
 
-$client_id = $_GET['client_id'] ? intval($_GET['client_id']) : 0;
-$ticket_id = $_GET['ticket_id'] ? intval($_GET['ticket_id']) : 0;
+$client_id = isset($_GET['client_id']) ? intval($_GET['client_id']) : 0;
+$ticket_id = isset($_GET['ticket_id']) ? intval($_GET['ticket_id']) : 0;
 
 if ($ticket_id) {
     // Get the client_name from the tickets table for breadcrumbs
@@ -60,7 +62,6 @@ while ($row = mysqli_fetch_assoc($shortcuts_result)) {
 
 require_once "/var/www/develop.twe.tech/includes/top_nav.php";
 
-require_once "/var/www/develop.twe.tech/includes/inc_alert_feedback.php";
 
 
 ?>

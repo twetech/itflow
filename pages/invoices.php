@@ -3,10 +3,9 @@
 // Default Column Sortby/Order Filter
 $sort = "invoice_number";
 $order = "DESC";
-
-$datatable_order = '[[4,"desc"]]';
-
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+
+$datatable_order = '[[4, "desc"]]';
 
 $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT('recurring_id') AS num FROM recurring WHERE recurring_archived_at IS NULL"));
 $recurring_invoice_count = $row['num'];
@@ -87,7 +86,7 @@ $sql = mysqli_query(
     WHERE ($status_query)
     $overdue_query
     AND (CONCAT(invoice_prefix,invoice_number) LIKE '%$q%' OR invoice_scope LIKE '%$q%' OR client_name LIKE '%$q%' OR invoice_status LIKE '%$q%' OR invoice_amount LIKE '%$q%' OR category_name LIKE '%$q%')
-    ORDER BY $sort $order"
+"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -157,14 +156,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_number&order=<?php echo $disp; ?>">Number</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_scope&order=<?php echo $disp; ?>">Scope</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">Client</a></th>
-                            <th class="text-right"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_amount&order=<?php echo $disp; ?>">Amount</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_date&order=<?php echo $disp; ?>">Date</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_due&order=<?php echo $disp; ?>">Due</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Category</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_status&order=<?php echo $disp; ?>">Status</a></th>
+                            <th>Number</th>
+                            <th>Scope</th>
+                            <th>Client</th>
+                            <th class="text-right">Amount</th>
+                            <th>Date</th>
+                            <th>Due</th>
+                            <th>Category</th>
+                            <th>Status</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -219,7 +218,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <td class="<?php echo $overdue_color; ?>"><?php echo $invoice_due; ?></td>
                             <td><?php echo $category_name; ?></td>
                             <td>
-                              <span class="p-2 badge badge-<?php echo $invoice_badge_color; ?>">
+                              <span class="p-2 badge bg-label-<?php echo $invoice_badge_color; ?>">
                                   <?php echo $invoice_status; ?>
                               </span>
                             </td>

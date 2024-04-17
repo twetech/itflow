@@ -264,3 +264,9 @@ function getMonthlyExpenses($year, $month, $number = false)
     $row = mysqli_fetch_assoc($result); 
     return $row['total_expenses'] ?? 0;
 }
+
+function getMonthlyUnbilledHours($year, $month)
+{
+    //TODO: Implement this function
+    return 0;
+}

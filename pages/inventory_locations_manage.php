@@ -90,9 +90,7 @@ $location_name = sanitizeInput($location_name_row[0]);
                         </tr>
                         </thead>
                         <tbody>
-                        <?php
-
-                        while ($row = mysqli_fetch_array($sql)) {
+                        <?php while ($row = mysqli_fetch_array($sql)) {
                             $inventory_id = $row['inventory_id'];
                             $inventory_name = $row['product_name'];
                             $inventory_quantity = $row['sum(inventory_quantity)'];
@@ -100,7 +98,7 @@ $location_name = sanitizeInput($location_name_row[0]);
                             $inventory_product_id = $row['inventory_product_id'];
                             $inventory_locations = $row['inventory_location_name'];
                             $inventory_unit_cost = $inventory_cost / $inventory_quantity;
-                            ?>
+                        ?>
 
                             <tr>
                                 <td class="bg-light pr-0">
@@ -119,29 +117,15 @@ $location_name = sanitizeInput($location_name_row[0]);
                                     <div class="btn-group">
                                         <a href="inventory_manage.php?inventory_product_id=<?php echo $inventory_product_id; ?>" class="btn btn-soft-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#editInventoryLocations<?php echo $inventory_product_id; ?>" class="btn btn-soft-primary btn-sm"><i class="fas fa-fw fa-map-marker-alt"></i></a>
-
                                     </div>
                                 </td>
-                            <?php
-                            require "/var/www/develop.twe.tech/includes/modals/inventory_edit_item_location_modal.php";
-                        }
-
-                        ?>
-
+                                
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
-
             </form>
-            <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
-
- ?>
         </div>
     </div>
-
-<script src="/includes/js/bulk_actions.js"></script>
-
 <?php
-
-
 require_once '/var/www/develop.twe.tech/includes/footer.php';

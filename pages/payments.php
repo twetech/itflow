@@ -37,7 +37,7 @@ $credits_num_rows = mysqli_num_rows($sql_credits);
     </div>
 
     <div class="card-body">
-        <div class="card-datatable table-responsive container-fluid  pt-0">               
+        <div class="card-datatable table-responsive pt-0">
             <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
@@ -120,8 +120,6 @@ $credits_num_rows = mysqli_num_rows($sql_credits);
                 </tbody>
             </table>
         </div>
-        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
- ?>
     </div>
 </div>
 
