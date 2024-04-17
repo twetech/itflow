@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.1/css/responsive.bootstrap5.css" />
     <link rel="stylesheet" href="/includes/assets/vendor/libs/spinkit/spinkit.css" />
     <link rel="stylesheet" href="/includes/assets/vendor/libs/toastr/toastr.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/apex-charts/apex-charts.css" />
 
 
     <!-- Page CSS -->
