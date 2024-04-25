@@ -25,7 +25,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-cube mr-2"></i>License Templates</h3>
         <div class="card-tools">
-            <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addSoftwareTemplateModal"><i class="fas fa-plus mr-2"></i>New License Template</button>
+            <button type="button" class="btn btn-label-primary" data-bs-toggle="modal" data-bs-target="#addSoftwareTemplateModal"><i class="fas fa-plus mr-2"></i>New License Template</button>
         </div>
     </div>
     <div class="card-body">
@@ -106,8 +106,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                     <?php
 
-                    require "/var/www/develop.twe.tech/includes/modals/admin_software_template_edit_modal.php";
-
                 }
 
                 ?>
@@ -115,13 +113,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </tbody>
             </table>
         </div>
-        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
- ?>
+
     </div>
 </div>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/admin_software_template_add_modal.php";
 
 require_once '/var/www/develop.twe.tech/includes/footer.php';
 

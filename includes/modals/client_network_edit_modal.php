@@ -92,7 +92,7 @@
 
         </div>
         <div class="modal-footer bg-white">
-          <button type="submit" name="edit_network" class="btn btn-soft-primary text-bold"></i>Save</button>
+          <button type="submit" name="edit_network" class="btn btn-label-primary text-bold"></i>Save</button>
           <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
         </div>
       </form>

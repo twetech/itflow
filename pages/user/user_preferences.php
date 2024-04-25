@@ -1,5 +1,5 @@
 <?php
-require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 ?>
 
@@ -24,7 +24,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_user.php";
 
             <?php } ?>
 
-            <button type="submit" name="edit_your_user_browser_extension" class="btn btn-soft-primary btn-block mt-3"><i class="fas fa-check mr-2"></i>Save</button>
+            <button type="submit" name="edit_your_user_browser_extension" class="btn btn-label-primary btn-block mt-3"><i class="fas fa-check mr-2"></i>Save</button>
 
         </form>
 

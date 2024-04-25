@@ -79,11 +79,13 @@
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
 
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="/includes/assets/vendor/libs/popper/popper.js"></script>
 <script src="/includes/assets/vendor/js/bootstrap.js"></script>
 <script src="/includes/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="/includes/assets/vendor/libs/hammer/hammer.js"></script>
+<script src="/includes/assets/vendor/libs/i18n/i18n.js"></script>
+<script src="/includes/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+<script src="/includes/assets/vendor/js/menu.js"></script>
 
 <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
@@ -101,7 +103,13 @@
 <script src="/includes/assets/vendor/libs/block-ui/block-ui.js"></script>
 <script src="/includes/assets/vendor/libs/sortablejs/sortable.js"></script>
 <script src="/includes/assets/vendor/libs/toastr/toastr.js"></script>
-<script src="assets/vendor/libs/apex-charts/apexcharts.js"></script>
+<script src="/includes/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+<script src="/includes/assets/vendor/libs/flatpickr/flatpickr.js"></script>
+<script src="/includes/assets/vendor/libs/cleavejs/cleave.js"></script>
+<script src="/includes/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+<script src="/includes/assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
+
+
 
 <!-- Main JS -->
 <script src="/includes/assets/js/main.js"></script>
@@ -111,18 +119,18 @@
 <!-- Page JS -->
 
 <script>
-    tinymce.init({
-        selector: 'textarea',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name',
-        mergetags_list: [
-            { value: 'First.Name', title: 'First Name' },
-            { value: 'Email', title: 'Email' },
-        ],
-        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-    });
+document.querySelectorAll('textarea').forEach(function(textarea) {
+    textarea.addEventListener('click', function initTinyMCE() {
+        // This check ensures that TinyMCE is initialized only once for each textarea
+        if (!tinymce.get(this.id)) {
+            tinymce.init({
+                selector: '#' + this.id,
+                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            });
+        }
+    }, { once: true });
+});
 </script>
 
 <script>

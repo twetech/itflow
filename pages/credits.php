@@ -28,69 +28,8 @@ $num_rows = mysqli_num_rows($sql);
     </div>
 
     <div class="card-body">
-        <form class="mb-4" autocomplete="off">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="input-group">
-                        <input type="search" class="form-control" name="q"
-                            value="<?php if (isset($q)) {echo stripslashes(nullable_htmlentities($q));} ?>"
-                            placeholder="Search Credits">
-                        <div class="input-group-append">
-                            <button class="btn btn-light" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                            <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="collapse mt-3 <?php if (!empty($_GET['dtf']) || $_GET['canned_date'] !== "custom" ) { echo "show"; } ?>"
-                id="advancedFilter">
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Canned Date</label>
-                            <select class="form-control select2" id='select2' name="canned_date">
-                                <option <?php if ($_GET['canned_date'] == "custom") { echo "selected"; } ?>
-                                    value="custom">Custom</option>
-                                <option <?php if ($_GET['canned_date'] == "today") { echo "selected"; } ?>
-                                    value="today">Today</option>
-                                <option <?php if ($_GET['canned_date'] == "yesterday") { echo "selected"; } ?>
-                                    value="yesterday">Yesterday</option>
-                                <option <?php if ($_GET['canned_date'] == "thisweek") { echo "selected"; } ?>
-                                    value="thisweek">This Week</option>
-                                <option <?php if ($_GET['canned_date'] == "lastweek") { echo "selected"; } ?>
-                                    value="lastweek">Last Week</option>
-                                <option <?php if ($_GET['canned_date'] == "thismonth") { echo "selected"; } ?>
-                                    value="thismonth">This Month</option>
-                                <option <?php if ($_GET['canned_date'] == "lastmonth") { echo "selected"; } ?>
-                                    value="lastmonth">Last Month</option>
-                                <option <?php if ($_GET['canned_date'] == "thisyear") { echo "selected"; } ?>
-                                    value="thisyear">This Year</option>
-                                <option <?php if ($_GET['canned_date'] == "lastyear") { echo "selected"; } ?>
-                                    value="lastyear">Last Year</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Date From</label>
-                            <input type="date" class="form-control" name="dtf" max="2999-12-31"
-                                value="<?php echo nullable_htmlentities($dtf); ?>">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Date To</label>
-                            <input type="date" class="form-control" name="dtt" max="2999-12-31"
-                                value="<?php echo nullable_htmlentities($dtt); ?>">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <hr>
         <div class="card-datatable table-responsive container-fluid  pt-0">               
-<table class="datatables-basic table border-top">
+            <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th><a class="text-dark"

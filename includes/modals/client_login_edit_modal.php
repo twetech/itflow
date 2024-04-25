@@ -9,19 +9,19 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <div class="modal-body bg-white">
-
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details<?php echo $login_id; ?>">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $login_id; ?>">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-relation<?php echo $login_id; ?>">Relation</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-relation<?php echo $login_id; ?>">Relation</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-notes<?php echo $login_id; ?>">Notes</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes<?php echo $login_id; ?>">Notes</a>
                         </li>
                     </ul>
 
@@ -130,7 +130,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-relation<?php echo $login_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-relation<?php echo $login_id; ?>">
 
                             <div class="form-group">
                                 <label>Contact</label>
@@ -228,7 +228,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-notes<?php echo $login_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-notes<?php echo $login_id; ?>">
 
                             <div class="form-group">
                                 <textarea class="form-control" rows="12" placeholder="Enter some notes" name="note"><?php echo $login_note; ?></textarea>
@@ -239,7 +239,7 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_login" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_login" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

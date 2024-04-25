@@ -14,13 +14,13 @@
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-event"><i class="fa fa-fw fa-calendar mr-2"></i>Event</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-event"><i class="fa fa-fw fa-calendar mr-2"></i>Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-details"><i class="fa fa-fw fa-info-circle mr-2"></i>Details</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-details"><i class="fa fa-fw fa-info-circle mr-2"></i>Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-attendees"><i class="fa fa-fw fa-users mr-2"></i>Attendees</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-attendees"><i class="fa fa-fw fa-users mr-2"></i>Attendees</a>
                         </li>
                     </ul>
 
@@ -100,7 +100,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-details">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-details">
 
                             <div class="form-group">
                                 <label>Location</label>
@@ -118,7 +118,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-attendees">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-attendees">
 
                             <?php if (isset($client_id)) { ?>
                                 <input type="hidden" name="client" value="<?php echo $client_id; ?>">
@@ -164,7 +164,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_event" class="btn btn-soft-primary text-bold"></i>Create</button>
+                    <button type="submit" name="add_event" class="btn btn-label-primary text-bold"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

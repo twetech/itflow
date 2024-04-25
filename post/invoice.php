@@ -1,12 +1,15 @@
 <?php
 
+global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id;
+
+
 /*
  * ITFlow - GET/POST request handler for invoices & payments
  */
 
 if (isset($_POST['add_invoice'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/models/invoice_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/invoice_model.php';
 
     $parameters['invoice_client_id'] = intval($_POST['client']);
     $parameters['invoice_date'] = sanitizeInput($_POST['date']);
@@ -14,13 +17,13 @@ if (isset($_POST['add_invoice'])) {
     $parameters['invoice_scope'] = sanitizeInput($_POST['scope']);
 
     $return_data = createInvoice($parameters);
-    $invoice_id = $return_data['invoice']['invoice_id'];
-    referWithAlert("Invoice added", "success", "invoice.php?invoice_id=$invoice_id");
+    $invoice_id = $return_data['invoice_id'];
+    referWithAlert("Invoice added", "success", "/pages/invoice.php?invoice_id=$invoice_id");
 }
 
 if (isset($_POST['edit_invoice'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/models/invoice_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/invoice_model.php';
 
     $invoice_id = intval($_POST['invoice_id']);
     $due = sanitizeInput($_POST['due']);
@@ -165,6 +168,7 @@ if (isset($_POST['add_invoice_item'])) {
     $description = sanitizeInput($_POST['description']);
     $qty = floatval($_POST['qty']);
     $price = floatval($_POST['price']);
+    $discount = sanitizeInput($_POST['discount']);
     $tax_id = intval($_POST['tax_id']);
     $item_order = intval($_POST['item_order']);
 
@@ -176,6 +180,7 @@ if (isset($_POST['add_invoice_item'])) {
     $item['item_price'] = $price;
     $item['item_tax_id'] = $tax_id;
     $item['item_order'] = $item_order;
+    $item['item_discount'] = $discount;
 
     createInvoiceItem("invoice", $item);
     referWithAlert("Item added", "success");

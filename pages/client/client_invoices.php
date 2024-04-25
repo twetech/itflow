@@ -14,7 +14,6 @@ $sql = mysqli_query(
     "SELECT SQL_CALC_FOUND_ROWS * FROM invoices
     LEFT JOIN categories ON invoice_category_id = category_id
     WHERE invoice_client_id = $client_id
-    AND (CONCAT(invoice_prefix,invoice_number) LIKE '%$q%' OR invoice_scope LIKE '%$q%' OR category_name LIKE '%$q%' OR invoice_status LIKE '%$q%' OR invoice_amount LIKE '%$q%') 
     ORDER BY $sort $order"
 );
 
@@ -30,8 +29,8 @@ $recurring_invoice_count = $row['num'];
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-file-invoice mr-2"></i>Invoices</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="invoice_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Invoice</button>
-                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="invoice_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Invoice</button>
+                <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportInvoiceModal">
                         <i class="fa fa-fw fa-download mr-2"></i>Export
@@ -59,7 +58,7 @@ $recurring_invoice_count = $row['num'];
                 <div class="col-md-8">
                     <div class="float-right">
                         <div class="btn-group float-right">
-                            <a href="client_recurring_invoices.php?client_id=<?php echo $client_id; ?>" class="btn btn-soft-primary"><i class="fa fa-fw fa-redo-alt mr-2"></i>Recurring | <b><?php echo $recurring_invoice_count; ?></b></a>
+                            <a href="client_recurring_invoices.php?client_id=<?php echo $client_id; ?>" class="btn btn-label-primary"><i class="fa fa-fw fa-redo-alt mr-2"></i>Recurring | <b><?php echo $recurring_invoice_count; ?></b></a>
                             <?php if ($balance > 0) { ?>
                                 <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#addBulkPaymentModal"><i class="fa fa-credit-card mr-2"></i>Batch Payment</button>
                             <?php } ?>
@@ -73,16 +72,17 @@ $recurring_invoice_count = $row['num'];
         <div class="card-datatable table-responsive container-fluid  pt-0">               
 <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) {
+
                                             echo "d-none";
                                         } ?>">
                     <tr>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_number&order=<?php echo $disp; ?>">Number</a></th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_scope&order=<?php echo $disp; ?>">Scope</a></th>
-                        <th class="text-right"><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_amount&order=<?php echo $disp; ?>">Amount</a></th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_date&order=<?php echo $disp; ?>">Date</a></th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_due&order=<?php echo $disp; ?>">Due</a></th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Category</a></th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_status&order=<?php echo $disp; ?>">Status</a></th>
+                        <th>Number</th>
+                        <th>Scope</th>
+                        <th class="text-right">Amount</th>
+                        <th>Date</th>
+                        <th>Due</th>
+                        <th>Category</th>
+                        <th>Status</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -129,11 +129,9 @@ $recurring_invoice_count = $row['num'];
                         } else {
                             $invoice_badge_color = "secondary";
                         }
-
                     ?>
-
                         <tr>
-                            <td class="text-bold"><a href="invoice.php?invoice_id=<?php echo $invoice_id; ?>"><?php echo "$invoice_prefix$invoice_number"; ?></a></td>
+                            <td class="text-bold"><a href="/pages/invoice.php?invoice_id=<?php echo $invoice_id; ?>"><?php echo "$invoice_prefix$invoice_number"; ?></a></td>
                             <td><?php echo $invoice_scope_display; ?></td>
                             <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
                             <td><?php echo $invoice_date; ?></td>
@@ -175,9 +173,6 @@ $recurring_invoice_count = $row['num'];
 
                     <?php
 
-                        require "/var/www/develop.twe.tech/includes/modals/invoice_copy_modal.php";
-
-                        require "/var/www/develop.twe.tech/includes/modals/invoice_edit_modal.php";
                     }
 
                     ?>
@@ -185,16 +180,11 @@ $recurring_invoice_count = $row['num'];
                 </tbody>
             </table>
         </div>
-        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
-        ?>
+
     </div>
 </div>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/invoice_add_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/modals/invoice_payment_add_bulk_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_invoice_export_modal.php";
 
 require_once '/var/www/develop.twe.tech/includes/footer.php';

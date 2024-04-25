@@ -42,7 +42,7 @@ $num_rows = mysqli_num_rows($sql);
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-money-bill-wave mr-2"></i>Finance Account Types</h3>
         <div class="card-tools">
-            <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addAccountTypeModal">
+            <button type="button" class="btn btn-label-primary" data-bs-toggle="modal" data-bs-target="#addAccountTypeModal">
                 <i class="fas fa-plus mr-2"></i>Create Account Type
             </button>
         </div>
@@ -56,7 +56,7 @@ $num_rows = mysqli_num_rows($sql);
                             echo stripslashes(nullable_htmlentities($q));
                         } ?>" placeholder="Search Categories">
                         <div class="input-group-append">
-                            <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-label-primary"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>

@@ -34,26 +34,26 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <input type="hidden" name="ticket_number" value="<?php echo "$ticket_prefix$ticket_number"; ?>">
-                <div class="modal-body bg-white">
-
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-contacts<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Contact</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-contacts<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-assets<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-desktop mr-2"></i>Asset</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-assets<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-desktop mr-2"></i>Asset</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-locations<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Location</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-locations<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Location</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-vendors<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-building mr-2"></i>Vendor</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-vendors<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-building mr-2"></i>Vendor</a>
                         </li>
                     </ul>
 
@@ -110,7 +110,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-contacts<?php echo $ticket_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-contacts<?php echo $ticket_id; ?>">
 
                             <div class="form-group">
                                 <label>Contact</label>
@@ -153,7 +153,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-assets<?php echo $ticket_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-assets<?php echo $ticket_id; ?>">
 
                             <div class="form-group">
                                 <label>Asset</label>
@@ -182,7 +182,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-locations<?php echo $ticket_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-locations<?php echo $ticket_id; ?>">
 
                             <div class="form-group">
                                 <label>Location</label>
@@ -210,7 +210,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-vendors<?php echo $ticket_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-vendors<?php echo $ticket_id; ?>">
 
                             <div class="form-group">
                                 <label>Vendor</label>
@@ -253,7 +253,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_ticket" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_ticket" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
 

@@ -9,9 +9,10 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" id="inventory_product_id" name="inventory_product_id" value="<?php echo $inventory_product_id; ?>">
                 <input type="hidden" id="inventory_location_id" name="inventory_location_id" value="<?php echo $inventory_location_id; ?>">
-                <div class="modal-body bg-white">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="inventory_location_id">Move to location</label>
@@ -36,7 +37,7 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" id="move_inventory_btn" name="move_inventory" class="btn btn-soft-primary text-bold"><i class="fa fa-fw fa-clone mr-2"></i>Move Inventory</button>
+                    <button type="submit" id="move_inventory_btn" name="move_inventory" class="btn btn-label-primary text-bold"><i class="fa fa-fw fa-clone mr-2"></i>Move Inventory</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

@@ -359,7 +359,7 @@ if (isset($_POST['login'])) {
 
                             <?php } ?>
 
-							<button class="btn btn-soft-primary btn-block" type="submit" name="login">Login</button>
+							<button class="btn btn-label-primary btn-block" type="submit" name="login">Login</button>
 						</form>
 
                         <?php if($config_client_portal_enable == 1){ ?>

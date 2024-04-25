@@ -40,13 +40,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search Inventory">
                             <div class="input-group-append">
                                 <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                                <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-label-primary"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <div class="btn-group float-right">
-                            <a href="inventory_locations.php" class="btn btn-soft-primary"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Locations</b></a>
+                            <a href="inventory_locations.php" class="btn btn-label-primary"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Locations</b></a>
                             <div class="dropdown ml-2" id="bulkActionButton" hidden>
                                 <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                     <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
@@ -98,7 +98,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 <td><?php echo $inventory_locations; ?></td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="inventory_manage.php?inventory_product_id=<?php echo $inventory_product_id; ?>" class="btn btn-soft-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="inventory_manage.php?inventory_product_id=<?php echo $inventory_product_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
                                     </div>
                                 </td>
 
@@ -112,8 +112,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </div>
 
             </form>
-            <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
- ?>
+
         </div>
     </div>
 

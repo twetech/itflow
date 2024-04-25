@@ -181,7 +181,7 @@ function updateTicket(
 
     global $mysqli, $session_user_id, $session_name, $session_ip, $session_user_agent;
 
-    if (!isset($session_ip)) {
+    if (!isset($session_ip) || !isset($session_user_agent) || !isset($session_user_id) || !isset($session_name)){
         //Assume API is making changes
         $session_ip = "API";
         $session_user_agent = "API";
@@ -189,57 +189,21 @@ function updateTicket(
         $session_name = "API";
     }
 
+    //if in parameters, set the new value, add to update_sql 
+    $update_sql = "UPDATE tickets SET";
+    foreach ($parameters as $key => $value) {
+        $update_sql .= " $key = '$value'";
+        // if not the last key in the array, add a comma
+        if ($key !== array_key_last($parameters)) {
+            $update_sql .= ",";
+        }
+    }
     $ticket_id = intval($parameters['ticket_id']);
-    $ticket_data = readTicket(['ticket_id' => $ticket_id])[$ticket_id];    
+    $update_sql .= " WHERE ticket_id = $ticket_id";
 
-    //if in parameters, set the new value, else keep the old value
-
-    $subject = isset($parameters['ticket_subject']) ? sanitizeInput($parameters['ticket_subject']) : $ticket_data['ticket_subject'];
-    $priority = isset($parameters['ticket_priority']) ? sanitizeInput($parameters['ticket_priority']) : $ticket_data['ticket_priority'];
-    $details = isset($parameters['ticket_details']) ? mysqli_real_escape_string($mysqli, $parameters['ticket_details']) : $ticket_data['ticket_details'];
-    $billable = isset($parameters['ticket_billable']) ? intval($parameters['ticket_billable']) : $ticket_data['ticket_billable'];
-    $vendor_ticket_number = isset($parameters['ticket_vendor_ticket_number']) ? sanitizeInput($parameters['ticket_vendor_ticket_number']) : $ticket_data['ticket_vendor_ticket_number'];
-    $contact_id = isset($parameters['ticket_contact']) ? intval($parameters['ticket_contact']) : $ticket_data['ticket_contact_id'];
-    $vendor_id = isset($parameters['ticket_vendor']) ? intval($parameters['ticket_vendor']) : $ticket_data['ticket_vendor_id'];
-    $asset_id = isset($parameters['ticket_asset_id']) ? intval($parameters['ticket_asset_id']) : $ticket_data['ticket_asset_id'];
-    $ticket_number = isset($parameters['ticket_number']) ? intval($parameters['ticket_number']) : $ticket_data['ticket_number'];
-    $client_id = isset($parameters['ticket_client']) ? intval($parameters['ticket_client']) : $ticket_data['ticket_client_id'];
-    $source = isset($parameters['ticket_source']) ? sanitizeInput($parameters['ticket_source']) : $ticket_data['ticket_source'];
-    $category = isset($parameters['ticket_category']) ? sanitizeInput($parameters['ticket_category']) : $ticket_data['ticket_category'];
-    $status = isset($parameters['ticket_status']) ? sanitizeInput($parameters['ticket_status']) : $ticket_data['ticket_status'];
-    $schedule = isset($parameters['ticket_schedule']) ? sanitizeInput($parameters['ticket_schedule']) : $ticket_data['ticket_schedule'] ?? "NULL";
-    $onsite = isset($parameters['ticket_onsite']) ? sanitizeInput($parameters['ticket_onsite']) : $ticket_data['ticket_onsite'];
-    $feedback = isset($parameters['ticket_feedback']) ? mysqli_real_escape_string($mysqli, $parameters['ticket_feedback']) : $ticket_data['ticket_feedback'];
-    $assigned_to = isset($parameters['ticket_assigned_to']) ? intval($parameters['ticket_assigned_to']) : $ticket_data['ticket_assigned_to'];
-    $invoice_id = isset($parameters['ticket_invoice']) ? intval($parameters['ticket_invoice']) : $ticket_data['ticket_invoice_id'];
-    $location = isset($parameters['ticket_location']) ? sanitizeInput($parameters['ticket_location']) : $ticket_data['ticket_location_id'];
-    $closed_by = isset($parameters['ticket_closed_by']) ? intval($parameters['ticket_closed_by']) : $ticket_data['ticket_closed_by'];
-
-
-    $update_sql = "UPDATE tickets SET
-
-    ticket_subject = '$subject',
-    ticket_priority = '$priority',
-    ticket_details = '$details',
-    ticket_billable = $billable,
-    ticket_vendor_ticket_number = '$vendor_ticket_number',
-    ticket_contact_id = $contact_id,
-    ticket_vendor_id = $vendor_id,
-    ticket_asset_id = $asset_id,
-    ticket_client_id = $client_id,
-    ticket_source = '$source',
-    ticket_category = '$category',
-    ticket_status = '$status',
-    ticket_schedule = $schedule,
-    ticket_onsite = '$onsite',
-    ticket_feedback = '$feedback',
-    ticket_assigned_to = $assigned_to,
-    ticket_invoice_id = $invoice_id,
-    ticket_location_id = $location,
-    ticket_closed_by = $closed_by
-    WHERE ticket_id = $ticket_id";
 
     mysqli_query($mysqli, $update_sql);
+
 
     $ticket_reply = "Ticket updated by $session_name, changes: ";
     foreach ($parameters as $key => $value) {
@@ -270,6 +234,12 @@ function updateTicket(
         }
     }
 
+    $ticket_data = readTicket(['ticket_id' => $ticket_id]);
+    $ticket_number = $ticket_data[$ticket_id]['ticket_prefix'] . $ticket_data[$ticket_id]['ticket_number'];
+    $subject = $ticket_data[$ticket_id]['ticket_subject'];
+    $client_id = $ticket_data[$ticket_id]['ticket_client_id'];
+
+
     mysqli_query($mysqli, "INSERT INTO ticket_replies SET ticket_reply = '$ticket_reply', ticket_reply_type = 'Internal', ticket_reply_time_worked = '00:01:00', ticket_reply_by = $session_user_id, ticket_reply_ticket_id = $ticket_id");
 
     // Logging
@@ -281,7 +251,7 @@ function updateTicket(
     $return_data = [
         'status' => 'success',
         'message' => 'Ticket ' . $ticket_number . ' has been updated. \nUpdated '. implode(", ", array_keys($parameters)),
-        'ticket' => readTicket(['ticket_id' => $asset_id])
+        'ticket' => readTicket(['ticket_id' => $ticket_id])
     ];
 
     return $return_data;
@@ -357,4 +327,46 @@ function getTicketStatusColor($status) {
         default:
             return 'secondary';
     }
+}
+
+function getUnassignedTickets() {
+    global $mysqli;
+
+    //Count the number of unassigned tickets
+
+    $sql = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS unassigned_tickets FROM tickets WHERE ticket_assigned_to = 0 AND ticket_status != 'Closed'");
+    $row = mysqli_fetch_array($sql);
+    $unassigned_tickets = intval($row['unassigned_tickets']);
+
+    return $unassigned_tickets;
+
+}
+
+function getStaleTickets() {
+    global $mysqli;
+
+    //Count the number of tickets with a reply older than 3 days
+
+    $sql = mysqli_query($mysqli,
+    "SELECT COUNT(ticket_id) AS stale_tickets, ticket_status FROM tickets
+    LEFT JOIN ticket_replies ON ticket_id = ticket_reply_ticket_id
+    WHERE ticket_status != 'Closed'
+    GROUP BY ticket_id HAVING MAX(ticket_reply_created_at) < DATE_SUB(NOW(), INTERVAL 3 DAY)
+    ");
+    $row = mysqli_fetch_array($sql);
+    $stale_tickets = intval($row['stale_tickets']);
+
+    // Count the number of tickets without a reply older than 3 days
+    $sql = mysqli_query($mysqli,
+    "SELECT COUNT(ticket_id) AS stale_tickets, ticket_status, ticket_id, ticket_created_at FROM tickets
+    WHERE ticket_status != 'Closed'
+    AND ticket_id NOT IN (SELECT ticket_reply_ticket_id FROM ticket_replies)
+    AND ticket_created_at < DATE_SUB(NOW(), INTERVAL 3 DAY)
+    ");
+    $row = mysqli_fetch_array($sql);
+    $stale_tickets += intval($row['stale_tickets']);
+
+
+    return $stale_tickets;
+
 }

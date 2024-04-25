@@ -4,7 +4,8 @@
  * Primary contact view: all tickets
  */
 
-require_once 'inc_portal.php';
+require_once '/var/www/develop.twe.tech/includes/inc_portal.php';
+
 
 
 if ($session_contact_primary == 0 && !$session_contact_is_technical_contact) {

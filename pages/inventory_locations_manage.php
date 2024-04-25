@@ -47,13 +47,13 @@ $location_name = sanitizeInput($location_name_row[0]);
                         <div class="input-group">
                             <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search">
                             <div class="input-group-append">
-                                <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-label-primary"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <div class="btn-group float-right">
-                            <a href="inventory_locations.php" class="btn btn-soft-primary"><i class="fa fa-fw fa-arrow-left mr-2"></i>Back to inventory locations</a>
+                            <a href="inventory_locations.php" class="btn btn-label-primary"><i class="fa fa-fw fa-arrow-left mr-2"></i>Back to inventory locations</a>
                             <div class="dropdown ml-2" id="bulkActionButton" hidden>
                                 <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                     <i class="fas fa-fw fa-layer-group mr-2"></i>Bulk Action (<span id="selectedCount">0</span>)
@@ -115,8 +115,8 @@ $location_name = sanitizeInput($location_name_row[0]);
                                 <td><?php echo $inventory_locations; ?></td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="inventory_manage.php?inventory_product_id=<?php echo $inventory_product_id; ?>" class="btn btn-soft-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#editInventoryLocations<?php echo $inventory_product_id; ?>" class="btn btn-soft-primary btn-sm"><i class="fas fa-fw fa-map-marker-alt"></i></a>
+                                        <a href="inventory_manage.php?inventory_product_id=<?php echo $inventory_product_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#editInventoryLocations<?php echo $inventory_product_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-map-marker-alt"></i></a>
                                     </div>
                                 </td>
                                 

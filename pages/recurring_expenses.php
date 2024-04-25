@@ -28,7 +28,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><a href="expenses.php"><i class="fas fa-fw fa-shopping-cart mr-2"></i>Expenses</a> / <i class="fas fa-fw fa-clock mr-2"></i>Recurring</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#createRecurringExpenseModal"><i class="fas fa-plus mr-2"></i>Create</button>
+                <button type="button" class="btn btn-label-primary" data-bs-toggle="modal" data-bs-target="#createRecurringExpenseModal"><i class="fas fa-plus mr-2"></i>Create</button>
             </div>
         </div>
 
@@ -40,7 +40,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search Recurring Expenses">
                             <div class="input-group-append">
                                 <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#advancedFilter"><i class="fas fa-filter"></i></button>
-                                <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-label-primary"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </div>
@@ -169,10 +169,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         </tr>
 
                         <?php
-
-                        require "/var/www/develop.twe.tech/includes/modals/recurring_expense_edit_modal.php";
-
-
                     }
 
                     ?>
@@ -180,13 +176,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </tbody>
                 </table>
             </div>
-            <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
- ?>
+
         </div>
     </div>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/recurring_expense_create_modal.php";
 
 require_once '/var/www/develop.twe.tech/includes/footer.php';
 

@@ -11,21 +11,21 @@
                         <i class="fas fa-fw fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="edit_client_modal.php?client_id=<?php echo $client_id; ?>">
+                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_edit_modal.php?client_id=<?php echo $client_id; ?>">
                             <i class="fas fa-fw fa-edit mr-2"></i>Edit Client
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="export_client_pdf_modal.php?client_id=<?php echo $client_id; ?>">
+                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_export_modal.php?client_id=<?php echo $client_id; ?>">
                             <i class="fas fa-fw fa-file-pdf mr-2"></i>Export Data
                         </a>
                         <div class="dropdown-divider"></div>
                         
-                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="archive_client_modal.php?client_id=<?php echo $client_id; ?>">
+                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_archive_modal.php?client_id=<?php echo $client_id; ?>">
                             <i class="fas fa-fw fa-archive mr-2"></i>Archive Client
                         </a>
                         <?php if ($session_user_role == 3) { ?>
                         <div class="dropdown-divider"></div>
-                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="delete_client_modal.php?client_id=<?php echo $client_id; ?>">
+                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_delete_modal.php?client_id=<?php echo $client_id; ?>">
                             <i class="fas fa-fw fa-trash mr-2"></i>Delete Client
                         </a>
                         <?php } ?>

@@ -16,13 +16,13 @@
 
           <ul class="nav nav-pills  mb-3">
             <li class="nav-item">
-              <a class="nav-link active" data-bs-toggle="pill" href="#pills-overview">Overview</a>
+              <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-overview">Overview</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="pill" href="#pills-general">General</a>
+              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-general">General</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="pill" href="#pills-assets">Assets</a>
+              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-assets">Assets</a>
             </li>
           </ul>
 
@@ -95,7 +95,7 @@
               </div>
             </div>
 
-            <div class="tab-pane fade" id="pills-general">
+            <div class="tab-pane fade" role="tabpanel" id="pills-general">
               <div class="form-group">
                 <label for="contacts">Select related Contacts</label>
                 <select class="form-control select2" id='select2' id="contacts" name="contacts[]" multiple>
@@ -142,7 +142,7 @@
 
             </div>
 
-            <div class="tab-pane fade" id="pills-assets">
+            <div class="tab-pane fade" role="tabpanel" id="pills-assets">
   
               <div class="form-group">
                 <label for="assets">Select related assets</label>
@@ -206,7 +206,7 @@
           </div>
         </div>
         <div class="modal-footer bg-white">
-          <button type="submit" name="add_service" class="btn btn-soft-primary text-bold"></i>Create</button>
+          <button type="submit" name="add_service" class="btn btn-label-primary text-bold"></i>Create</button>
           <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
         </div>
       </form>

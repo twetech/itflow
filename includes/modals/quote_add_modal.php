@@ -101,7 +101,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_quote" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Create</button>
+                    <button type="submit" name="add_quote" class="btn btn-label-primary text-bold"><i class="fas fa-check mr-2"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

@@ -58,14 +58,14 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
 
             <hr>
 
-            <button type="submit" name="edit_ai_settings" class="btn btn-soft-primary text-bold"></i>Save</button>
+            <button type="submit" name="edit_ai_settings" class="btn btn-label-primary text-bold"></i>Save</button>
 
         </form>
 
         <div class="mt-5">
             <h1>Test Input Text to Reword</h1>
             <textarea id="textInput" class="form-control tinymceai mb-3" rows="10"></textarea>
-            <button id="rewordButton" class="btn btn-soft-primary"><i class="fas fa-fw fa-robot mr-2"></i>Reword</button>
+            <button id="rewordButton" class="btn btn-label-primary"><i class="fas fa-fw fa-robot mr-2"></i>Reword</button>
             <button id="undoButton" class="btn btn-light" style="display:none;"><i class="fas fa-fw fa-redo-alt mr-2"></i>Undo</button>
         </div>
 

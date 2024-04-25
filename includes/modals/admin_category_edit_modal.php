@@ -18,9 +18,9 @@ $category_color = nullable_htmlentities($row['category_color']);
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+                <div class="modal-body bg-white">
                 <input type="hidden" name="category_id" value="<?php echo $category_id; ?>">
                 <input type="hidden" name="type" value="<?php echo nullable_htmlentities($category); ?>">
-                <div class="modal-body bg-white">
 
                     <div class="form-group">
                         <label>Name <strong class="text-danger">*</strong></label>
@@ -44,7 +44,7 @@ $category_color = nullable_htmlentities($row['category_color']);
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_category" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_category" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

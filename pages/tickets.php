@@ -21,7 +21,6 @@ if (isset($_GET['status']) && is_array($_GET['status']) && !empty($_GET['status'
     $sanitizedStatusesString = implode(",", $sanitizedStatuses);
     $ticket_status_snippet = "ticket_status IN ($sanitizedStatusesString)";
 } else {
-
     if (isset($_GET['status']) && ($_GET['status']) == 'Open') {
         $status = 'Open';
         $ticket_status_snippet = "ticket_status != 'Closed'";
@@ -44,11 +43,9 @@ if (isset($_GET['assigned']) & !empty($_GET['assigned'])) {
     elseif ($_GET['assigned'] == 'all') {
         $ticket_assigned_filter = '';
     }
-
 } else {
-
-    // Default - Assigned to me
-    $ticket_assigned_filter = 'AND ticket_assigned_to = ' . intval($_GET['assigned']);
+    // Default - Assigned to me or unassigned
+    $ticket_assigned_filter = 'AND (ticket_assigned_to = 0 OR ticket_assigned_to = ' . $session_user_id . ')';
 }
 
 
@@ -145,7 +142,6 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                             <tr>
                                 <?php
                                 // table head
-
                                 if (!$session_mobile) {
                                     $rows = [ 'Number', 'Subject', 'Client / Contact', 'Priority', 'Status', 'Assigned', 'Last Response', 'Created' ];
                                     $datatable_order = "[[7,'desc']]";
@@ -170,7 +166,6 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                 if ($config_module_enable_accounting) {
                                     $rows[] = 'Billable';
                                 }
-
                                 foreach ($rows as $row) {
                                     if (isset($datatable_priority[$row])) {
                                         echo "<th data-priority='" . $datatable_priority[$row] . "'>$row</th>";
@@ -259,7 +254,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                     <td>
                                         <small>
                                             <a href="ticket.php?ticket_id=<?= $ticket_id ?>">
-                                                <span class="badge rounded-pill bg-label-secondary p-3"><?=$ticket_prefix . $ticket_number?></span>
+                                                <span class="badge rounded-pill bg-label-secondary p-3"><?=$ticket_number?></span>
                                             </a>
                                         </small>
                                     </td>
@@ -363,8 +358,6 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
         ?>
     </div>
 </div>
-
-<script src="/includes/js/bulk_actions.js"></script>
 
 <?php
 

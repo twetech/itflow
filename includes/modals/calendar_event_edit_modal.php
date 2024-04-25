@@ -26,19 +26,19 @@ $client_id = intval($row['client_id']);
             </div>
 
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
 
                 <div class="modal-body bg-white">
+                <input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-event<?php echo $event_id; ?>"><i class="fa fa-fw fa-calendar mr-2"></i>Event</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-event<?php echo $event_id; ?>"><i class="fa fa-fw fa-calendar mr-2"></i>Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-details<?php echo $event_id; ?>"><i class="fa fa-fw fa-info-circle mr-2"></i>Details</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $event_id; ?>"><i class="fa fa-fw fa-info-circle mr-2"></i>Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-attendees<?php echo $event_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Attendees</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-attendees<?php echo $event_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Attendees</a>
                         </li>
                     </ul>
 
@@ -117,7 +117,7 @@ $client_id = intval($row['client_id']);
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-details<?php echo $event_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-details<?php echo $event_id; ?>">
                             <div class="form-group">
                                 <label>Location</label>
                                 <div class="input-group">
@@ -136,7 +136,7 @@ $client_id = intval($row['client_id']);
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-attendees<?php echo $event_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-attendees<?php echo $event_id; ?>">
 
                             <?php if (isset($_GET['client_id'])) { ?>
                                 <input type="hidden" name="client" value="<?php echo $client_id; ?>">
@@ -182,7 +182,7 @@ $client_id = intval($row['client_id']);
                 </div>
                 <div class="modal-footer bg-white">
                     <a class="btn btn-default text-danger mr-auto" href="/post.php?delete_event=<?php echo $event_id; ?>"><i class="fa fa-calendar-times mr-2"></i>Delete</a>
-                    <button type="submit" name="edit_event" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_event" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

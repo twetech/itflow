@@ -77,7 +77,7 @@ $document_parent = intval($row['document_parent']);
 	<div class="col-md-3 d-print-none">
     <div class="row">
       <div class="col-12 mb-3">
-        <button type="button" class="btn btn-soft-primary mr-2" data-bs-toggle="modal" data-bs-target="#editDocumentModal<?php echo $document_id; ?>">
+        <button type="button" class="btn btn-label-primary mr-2" data-bs-toggle="modal" data-bs-target="#editDocumentModal<?php echo $document_id; ?>">
           <i class="fas fa-fw fa-edit mr-2"></i>Edit
         </button>
         <button type="button" class="btn btn-light mr-2" data-bs-toggle="modal" data-bs-target="#shareModal"

@@ -22,8 +22,8 @@ $software_notes = nullable_htmlentities($row['software_notes']);
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="software_id" value="<?php echo $software_id; ?>">
                 <div class="modal-body bg-white">
+                <input type="hidden" name="software_id" value="<?php echo $software_id; ?>">
 
                     <div class="form-group">
                         <label>Template Name <strong class="text-danger">*</strong></label>
@@ -88,7 +88,7 @@ $software_notes = nullable_htmlentities($row['software_notes']);
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_software_template" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_software_template" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

@@ -4,7 +4,7 @@
  * New ticket form
  */
 
-require_once 'inc_portal.php';
+require_once '/var/www/develop.twe.tech/includes/inc_portal.php';
 
 ?>
 
@@ -52,7 +52,7 @@ require_once 'inc_portal.php';
                 <textarea  class="form-control" name="details"></textarea>
             </div>
 
-            <button class="btn btn-soft-primary" name="add_ticket">Raise ticket</button>
+            <button class="btn btn-label-primary" name="add_ticket">Raise ticket</button>
 
         </form>
     </div>

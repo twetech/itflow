@@ -7,7 +7,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
         <h3 class="card-title"><i class="fas fa-fw fa-database mr-2"></i>Download Database</h3>
     </div>
     <div class="card-body" style="text-align: center;">
-        <a class="btn btn-soft-primary btn-lg p-3" href="/post.php?download_database&csrf_token=<?php echo $_SESSION['csrf_token'] ?>"><i class="fas fa-fw fa-4x fa-download"></i><br><br>Download</a>
+        <a class="btn btn-label-primary btn-lg p-3" href="/post.php?download_database&csrf_token=<?php echo $_SESSION['csrf_token'] ?>"><i class="fas fa-fw fa-4x fa-download"></i><br><br>Download</a>
     </div>
 </div>
 
@@ -24,7 +24,7 @@ require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
                         <div class="input-group-prepend">
                             <input type="password" class="form-control" placeholder="Enter your account password" name="password" autocomplete="new-password" required>
                         </div>
-                        <button class="btn btn-soft-primary" type="submit" name="backup_master_key"><i class="fas fa-fw fa-key mr-2"></i>Get Master Key</button>
+                        <button class="btn btn-label-primary" type="submit" name="backup_master_key"><i class="fas fa-fw fa-key mr-2"></i>Get Master Key</button>
                     </div>
                 </div>
             </form>

@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="modal-footer bg-white">
-          <button type="submit" name="quote_note" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
+          <button type="submit" name="quote_note" class="btn btn-label-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
           <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
         </div>
       </form>

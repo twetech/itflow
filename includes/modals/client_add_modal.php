@@ -14,21 +14,21 @@ $leads = $_GET['leads'];
             <input type="hidden" name="currency_code" value="<?php echo $session_company_currency; ?>">
             <ul class="nav nav-pills mb-3">
                 <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="pill" href="#pills-details">Details</a>
+                    <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details">Details</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="pill" href="#pills-location">Location</a>
+                    <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-location">Location</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="pill" href="#pills-contact" id="contactNavPill">Contact</a>
+                    <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-contact" id="contactNavPill">Contact</a>
                 </li>
                 <?php if ($config_module_enable_accounting) { ?>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="pill" href="#pills-billing">Billing</a>
+                    <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-billing">Billing</a>
                 </li>
                 <?php } ?>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="pill" href="#pills-more">More</a>
+                    <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-more">More</a>
                 </li>
             </ul>
             <hr>
@@ -87,7 +87,7 @@ $leads = $_GET['leads'];
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-location">
+                <div class="tab-pane fade" role="tabpanel" id="pills-location">
                     <label>Location Phone</label>
                     <div class="form-group">
                         <div class="input-group">
@@ -148,7 +148,7 @@ $leads = $_GET['leads'];
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-contact">
+                <div class="tab-pane fade" role="tabpanel" id="pills-contact">
                     <div class="form-group">
                         <label>Primary Contact <strong class="text-danger">*</strong></label>
                         <div class="input-group">
@@ -203,7 +203,7 @@ $leads = $_GET['leads'];
                     </div>
                 </div>
                 <?php if ($config_module_enable_accounting) { ?>
-                <div class="tab-pane fade" id="pills-billing">
+                <div class="tab-pane fade" role="tabpanel" id="pills-billing">
                     <div class="form-group">
                         <label>Hourly Rate</label>
                         <div class="input-group">
@@ -251,7 +251,7 @@ $leads = $_GET['leads'];
                     </div>
                 </div>
                 <?php } ?>
-                <div class="tab-pane fade" id="pills-more">
+                <div class="tab-pane fade" role="tabpanel" id="pills-more">
                     <div class="form-group">
                         <label>Notes</label>
                         <textarea class="form-control" rows="6" name="notes" placeholder="Enter some notes"></textarea>
@@ -278,7 +278,7 @@ $leads = $_GET['leads'];
             </div>
     </div>
     <div class="modal-footer bg-white">
-        <button type="submit" name="add_client" class="btn btn-soft-primary text-bold" onclick="promptPrimaryContact()"></i>Create</button>
+        <button type="submit" name="add_client" class="btn btn-label-primary text-bold" onclick="promptPrimaryContact()"></i>Create</button>
         <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Close</button>
     </div>
 </div>

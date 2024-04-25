@@ -15,21 +15,22 @@ $client_id = intval($_GET['client_id']);
                 </button>
             </div>
             <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+
                 <div class="modal-body bg-white">
+                    <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-address">Address</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-address">Address</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-contact">Contact</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-notes">Notes</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes">Notes</a>
                         </li>
                         
                     </ul>
@@ -72,7 +73,7 @@ $client_id = intval($_GET['client_id']);
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-address">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-address">
 
                             <div class="form-group">
                                 <label>Address</label>
@@ -131,7 +132,7 @@ $client_id = intval($_GET['client_id']);
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-contact">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-contact">
 
                             <div class="form-group">
                                 <label>Contact</label>
@@ -181,7 +182,7 @@ $client_id = intval($_GET['client_id']);
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-notes">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-notes">
 
                             <div class="form-group">
                                 <textarea class="form-control" rows="12" name="notes" placeholder="Notes, eg Parking Info, Building Access etc"></textarea>
@@ -193,7 +194,7 @@ $client_id = intval($_GET['client_id']);
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_location" class="btn btn-soft-primary text-bold"></i>Create</button>
+                    <button type="submit" name="add_location" class="btn btn-label-primary text-bold"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

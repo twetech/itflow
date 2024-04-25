@@ -265,8 +265,71 @@ function getMonthlyExpenses($year, $month, $number = false)
     return $row['total_expenses'] ?? 0;
 }
 
-function getMonthlyUnbilledHours($year, $month)
+function getMonthlyUnbilledHours($year, $month, $number = false)
 {
-    //TODO: Implement this function
+    global $mysqli;
+
+    $sql_month_query = $month == 13 ? "" : "AND MONTH(ticket_reply_created_at) = $month";
+
+    $sql = 
+    "SELECT SUM(ticket_reply_time_worked) AS total_unbilled_hours FROM ticket_replies
+    WHERE YEAR(ticket_reply_created_at) = $year
+    ";
+    $sql .= $sql_month_query;
+    $result = mysqli_query($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $number_unbilled = $row['total_unbilled_hours']/10000;
+
+    if ($number) {
+        return $number_unbilled;
+    } else {
+        return $number_unbilled * 125;
+    }
+
+}
+
+function getMonthlyCalendarEvents($year, $month)
+{
     return 0;
+}
+
+function getMonthlyUnassignedTickets($year, $month)
+{
+    return 0;
+}
+
+
+function getMonthlyInvoices($year, $month, $number = false)
+
+{
+    switch ($number) {
+        case true:
+            return getMonthlyInvoicesNumber($year, $month);
+        case false:
+            return getMonthlyInvoicesAmount($year, $month);
+    }
+}
+
+function getMonthlyInvoicesAmount($year, $month)
+{
+    global $mysqli;
+
+    $sql_month_query = $month == 13 ? "" : "AND MONTH(invoice_date) = $month";
+
+    $sql = "SELECT SUM(invoice_amount) AS total_invoices FROM invoices WHERE YEAR(invoice_date) = $year $sql_month_query";
+    $result = mysqli_query($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['total_invoices'] ?? 0;
+}
+
+function getMonthlyInvoicesNumber($year, $month)
+{
+    global $mysqli;
+
+    $sql_month_query = $month == 13 ? "" : "AND MONTH(invoice_date) = $month";
+
+    $sql = "SELECT COUNT(invoice_id) AS number_invoices FROM invoices WHERE YEAR(invoice_date) = $year $sql_month_query";
+    $result = mysqli_query($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['number_invoices'] ?? 0;
 }

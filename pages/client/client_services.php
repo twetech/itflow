@@ -25,7 +25,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-stream mr-2"></i>Services</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_service_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Service</button>
+                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_service_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Service</button>
             </div>
         </div>
 
@@ -186,9 +186,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             WHERE service_id = $service_id"
                         );
 
-                        require "/var/www/develop.twe.tech/includes/modals/client_service_edit_modal.php";
-
-                        require "/var/www/develop.twe.tech/includes/modals/client_service_view_modal.php";
 
 
                     }
@@ -197,13 +194,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     </tbody>
                 </table>
             </div>
-            <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
- ?>
+
         </div>
     </div>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/client_service_add_modal.php";
 
 require_once '/var/www/develop.twe.tech/includes/footer.php';
 

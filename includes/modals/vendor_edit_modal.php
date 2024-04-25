@@ -14,13 +14,13 @@
 
           <ul class="nav nav-pills  mb-3">
             <li class="nav-item">
-              <a class="nav-link active" data-bs-toggle="pill" href="#pills-details<?php echo $vendor_id; ?>">Details</a>
+              <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $vendor_id; ?>">Details</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="pill" href="#pills-support<?php echo $vendor_id; ?>">Support</a>
+              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-support<?php echo $vendor_id; ?>">Support</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="pill" href="#pills-notes<?php echo $vendor_id; ?>">Notes</a>
+              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes<?php echo $vendor_id; ?>">Notes</a>
             </li>
           </ul>
 
@@ -93,7 +93,7 @@
 
             </div>
             
-            <div class="tab-pane fade" id="pills-support<?php echo $vendor_id; ?>">
+            <div class="tab-pane fade" role="tabpanel" id="pills-support<?php echo $vendor_id; ?>">
 
               <label>Support Phone</label>
               <div class="form-row">
@@ -164,7 +164,7 @@
             
             </div>
 
-            <div class="tab-pane fade" id="pills-notes<?php echo $vendor_id; ?>">
+            <div class="tab-pane fade" role="tabpanel" id="pills-notes<?php echo $vendor_id; ?>">
               
               <div class="form-group">
                 <textarea class="form-control" rows="12" placeholder="Enter some notes" name="notes"><?php echo $vendor_notes; ?></textarea>
@@ -176,7 +176,7 @@
           
         </div>
         <div class="modal-footer bg-white">
-          <button type="submit" name="edit_vendor" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
+          <button type="submit" name="edit_vendor" class="btn btn-label-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
           <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
         </div>
       </form>

@@ -42,7 +42,7 @@ if (isset($_GET['archived'])) {
             if (!isset($_GET['archived'])) {
         ?>
         <div class="card-tools">
-            <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i
+            <button type="button" class="btn btn-label-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i
                     class="fas fa-plus mr-2"></i>New <?php echo nullable_htmlentities($category); ?> Category</button>
         </div>
         <?php
@@ -61,7 +61,7 @@ if (isset($_GET['archived'])) {
                             } ?>"
                             placeholder="Search <?php echo nullable_htmlentities($category); ?> Categories ">
                         <div class="input-group-append">
-                            <button class="btn btn-soft-primary"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-label-primary"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
@@ -169,9 +169,6 @@ if (isset($_GET['archived'])) {
                         </tr>
 
                         <?php
-                    
-                        include "admin_category_edit_modal.php";
-
                     }
 
                     ?>
@@ -179,12 +176,10 @@ if (isset($_GET['archived'])) {
                 </tbody>
             </table>
         </div>
-        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
- ?>
+
     </div>
 </div>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/admin_category_add_modal.php";
 
 require_once '/var/www/develop.twe.tech/includes/footer.php';

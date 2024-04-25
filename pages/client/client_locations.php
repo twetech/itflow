@@ -6,6 +6,8 @@ $order = "ASC";
 
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
+$archived = 0;
+
 
 //Rebuild URL
 
@@ -25,10 +27,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Locations</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_location_add_modal.php?client_id=<?php echo $client_id; ?>">
+                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_location_add_modal.php?client_id=<?php echo $client_id; ?>">
                     <i class="fas fa-plus mr-2"></i>New Location
                 </button>
-                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#importLocationModal">
                         <i class="fa fa-fw fa-upload mr-2"></i>Import
@@ -59,7 +61,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <div class="col-md-8">
                     <div class="float-right">
                         <?php if($archived == 1){ ?>
-                        <a href="?client_id=<?php echo $client_id; ?>&archived=0" class="btn btn-soft-primary"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
+                        <a href="?client_id=<?php echo $client_id; ?>&archived=0" class="btn btn-label-primary"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
                         <?php } else { ?>
                         <a href="?client_id=<?php echo $client_id; ?>&archived=1" class="btn btn-default"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
                         <?php } ?>
@@ -70,13 +72,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </form>
         <hr>
         <div class="card-datatable table-responsive container-fluid  pt-0">               
-<table class="datatables-basic table border-top">
+            <table class="datatables-basic table border-top">
                 <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=location_name&order=<?php echo $disp; ?>">Name</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=location_address&order=<?php echo $disp; ?>">Address</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=location_phone&order=<?php echo $disp; ?>">Phone</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=location_hours&order=<?php echo $disp; ?>">Hours</a></th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Hours</th>
                     <th class="text-center">Action</th>
                 </tr>
                 </thead>
@@ -138,7 +140,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editLocationModal<?php echo $location_id; ?>">
+                                    <a class="dropdown-item loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_location_edit_modal.php?location_id=<?php echo $location_id; ?>">
                                         <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                     </a>
                                     <?php if ($session_user_role == 3 && $location_primary == 0) { ?>
@@ -155,8 +157,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <?php } ?>
                                 </div>
                             </div>
-                            <?php require "/var/www/develop.twe.tech/includes/modals/client_location_edit_modal.php";
- ?>
                         </td>
                     </tr>
 
@@ -165,18 +165,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </tbody>
             </table>
         </div>
-        <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
- ?>
+
     </div>
 </div>
 
 <?php
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_location_add_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_location_import_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_location_export_modal.php";
 
 require_once '/var/www/develop.twe.tech/includes/footer.php';
 

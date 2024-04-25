@@ -26,7 +26,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-calendar-check mr-2"></i>Recurring Tickets</h3>
         <div class='card-tools'>
             <div class="float-left">
-                <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addRecurringTicketModal">
+                <button type="button" class="btn btn-label-primary" data-bs-toggle="modal" data-bs-target="#addRecurringTicketModal">
                     <i class="fas fa-plus mr-2"></i>New Recurring Ticket
                 </button>
             </div>

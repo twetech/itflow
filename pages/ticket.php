@@ -1,9 +1,6 @@
 <?php
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
-//TODO Completed and invoicing to top
-
-
 // Initialize the HTML Purifier to prevent XSS
 require "/var/www/develop.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
@@ -249,6 +246,11 @@ if (isset($_GET['ticket_id'])) {
         <div class="col<?= $session_mobile ? '' : '-9'; ?>">
             <!-- Ticket Details -->
             <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        <i class="fas fa-fw fa-info-circle mr-2"></i><?= $ticket_subject; ?>
+                    </h5>
+                </div>
                 <div class="card-body prettyContent" id="ticketDetails">
                     <div class="row">
                         <div class="text-truncate">
@@ -421,7 +423,7 @@ if (isset($_GET['ticket_id'])) {
                                                 <textarea class="form-control " id="response" name="ticket_reply" placeholder="Type a response"></textarea>
                                             </div>
                                             <div class="mb-3">
-                                                <button id="rewordButton" class="btn btn-soft-primary" type="button">
+                                                <button id="rewordButton" class="btn btn-label-primary" type="button">
                                                     <i class="fas fa-fw fa-robot mr-2"></i>Reword
                                                 </button>
                                                 <button id="undoButton" class="btn btn-light" type="button" style="display:none;">
@@ -511,7 +513,7 @@ if (isset($_GET['ticket_id'])) {
 
                                 <div class="col col-lg-2">
                                     <button type="submit" id="ticket_add_reply" name="add_ticket_reply"
-                                        class="btn btn-soft-primary text-bold"><i
+                                        class="btn btn-label-primary text-bold"><i
                                         class="fas fa-<?= $ticket_reply_button_icon ?> mr-2"></i><?= $ticket_reply_button_wording ?></button>
                                 </div>
                             <!-- End IF for reply modal -->
@@ -603,12 +605,12 @@ if (isset($_GET['ticket_id'])) {
                             ?>
                             <div class="card card-body card-outline card-dark mb-2 d-print-none">
                                 <?php if ($invoice_ticket_button) { ?>
-                                <a href="#" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#addInvoiceFromTicketModal">
+                                <a href="#" class="btn btn-primary btn-block mb-3 loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_invoice_add_modal.php?ticket_id=<?= $ticket_id; ?>&ticket_total_reply_time=<?= $ticket_total_reply_time; ?>">
                                     <i class="fas fa-fw fa-file-invoice mr-2"></i>Invoice Ticket
                                 </a>
                                 <?php } ?>
                                 <?php if ($close_ticket_button) { ?>
-                                <a href="post.php?close_ticket=<?= $ticket_id; ?>" class="btn btn-secondary btn-block confirm-link" id="ticket_close">
+                                <a href="/post.php?close_ticket=<?= $ticket_id; ?>" class="btn btn-secondary btn-block confirm-link" id="ticket_close">
                                     <i class="fas fa-fw fa-gavel mr-2"></i>Close Ticket
                                 </a>
                                 <?php } ?>
@@ -708,7 +710,7 @@ if (isset($_GET['ticket_id'])) {
                                             <?php } ?>
                                         </select>
                                         <div class="input-group-append d-print-none">
-                                            <button type="submit" class="btn btn-soft-primary" name="assign_ticket" <?php if ($ticket_status == "Closed") {
+                                            <button type="submit" class="btn btn-label-primary" name="assign_ticket" <?php if ($ticket_status == "Closed") {
                                                                                                                     echo "disabled";
                                                                                                                 } ?>><i class="fas fa-check"></i></button>
                                         </div>

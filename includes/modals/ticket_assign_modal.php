@@ -23,10 +23,8 @@ $client_name = $row['client_name'];
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
-                <input type="hidden" name="ticket_status" value="<?php echo $ticket_status; ?>">
                 <div class="modal-body bg-white">
-
+                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
                     <div class="form-group">
                         <label>Assign to</label>
                         <div class="input-group">
@@ -56,7 +54,7 @@ $client_name = $row['client_name'];
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="assign_ticket" class="btn btn-soft-primary text-bold"></i>Assign</button>
+                    <button type="submit" name="assign_ticket" class="btn btn-label-primary text-bold"></i>Assign</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
 

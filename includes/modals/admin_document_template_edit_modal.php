@@ -19,8 +19,8 @@ $document_description = nullable_htmlentities($row['document_description']);
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="document_id" value="<?php echo $document_id; ?>">
                 <div class="modal-body bg-white">
+                <input type="hidden" name="document_id" value="<?php echo $document_id; ?>">
 
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" value="<?php echo $document_name; ?>" placeholder="Name" required>
@@ -36,7 +36,7 @@ $document_description = nullable_htmlentities($row['document_description']);
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_document_template" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_document_template" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

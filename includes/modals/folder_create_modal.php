@@ -9,10 +9,10 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <input type="hidden" name="folder_location" value="<?php echo $folder_location; ?>">
-                <div class="modal-body bg-white">
-
                     <div class="form-group">
                         <label>Name <strong class="text-danger">*</strong></label>
                         <div class="input-group">
@@ -25,7 +25,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="create_folder" class="btn btn-soft-primary text-bold"></i>Create</button>
+                    <button type="submit" name="create_folder" class="btn btn-label-primary text-bold"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

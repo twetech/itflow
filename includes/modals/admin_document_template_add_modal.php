@@ -27,7 +27,7 @@
 
                 <div class="modal-footer bg-white">
 
-                    <button type="submit" name="add_document_template" class="btn btn-soft-primary text-bold"></i>Create</button>
+                    <button type="submit" name="add_document_template" class="btn btn-label-primary text-bold"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
 
                 </div>

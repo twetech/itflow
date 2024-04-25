@@ -12,6 +12,10 @@
 
     <link rel="manifest" href="/manifest.json">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/includes/assets/img/favicon/favicon.ico" />
 
@@ -39,9 +43,13 @@
     <link rel="stylesheet" href="/includes/assets/vendor/libs/spinkit/spinkit.css" />
     <link rel="stylesheet" href="/includes/assets/vendor/libs/toastr/toastr.css" />
     <link rel="stylesheet" href="/includes/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
     <!-- Page CSS -->
+
+    <?php echo $page_css; ?>
 
     <!-- Helpers -->
     <script src="/includes/assets/vendor/js/helpers.js"></script>
@@ -52,7 +60,7 @@
     <script src="/includes/assets/js/config.js"></script>
 
     <!-- TinyMCE -->
-    <script src="https://cdn.tiny.cloud/1/78o64w2w2bmaf98z8p7idos4tjloc808tr1j9iv8efl63nce/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script></head>
+    <script src="https://cdn.tiny.cloud/1/78o64w2w2bmaf98z8p7idos4tjloc808tr1j9iv8efl63nce/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
 <body>
     <!-- Layout wrapper -->

@@ -9,8 +9,8 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" id="current_ticket_id" name="ticket_id" value="<?php echo $ticket_id; ?>">
                 <div class="modal-body bg-white">
+                <input type="hidden" id="current_ticket_id" name="ticket_id" value="<?php echo $ticket_id; ?>">
 
                     <div class="form-group">
                         <label>Ticket number to merge this ticket into <strong class="text-danger">*</strong></label>
@@ -51,7 +51,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" id="merge_ticket_btn" name="merge_ticket" class="btn btn-soft-primary text-bold" disabled></i>Merge</button>
+                    <button type="submit" id="merge_ticket_btn" name="merge_ticket" class="btn btn-label-primary text-bold" disabled></i>Merge</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                     <!-- Merge button starts disabled. Is enabled by the merge_into_number_get_details Javascript function-->
                 </div>

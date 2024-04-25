@@ -14,8 +14,8 @@ $client_id = intval($_GET['client_id']);
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <div class="modal-body bg-white">
+                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
 
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" placeholder="Name" required autofocus>
@@ -27,7 +27,7 @@ $client_id = intval($_GET['client_id']);
                     </div>
                     
                     <div class="mb-3">
-                        <button id="rewordButton" class="btn btn-soft-primary" type="button"><i class="fas fa-fw fa-robot mr-2"></i>Reword</button>
+                        <button id="rewordButton" class="btn btn-label-primary" type="button"><i class="fas fa-fw fa-robot mr-2"></i>Reword</button>
                         <button id="undoButton" class="btn btn-light" type="button" style="display:none;"><i class="fas fa-fw fa-redo-alt mr-2"></i>Undo</button>
                     </div>
                     <?php } else { ?>
@@ -69,7 +69,7 @@ $client_id = intval($_GET['client_id']);
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_document" class="btn btn-soft-primary text-bold"></i>Create</button>
+                    <button type="submit" name="add_document" class="btn btn-label-primary text-bold"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

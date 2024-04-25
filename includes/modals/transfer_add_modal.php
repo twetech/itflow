@@ -171,7 +171,7 @@
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_transfer" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Transfer</button>
+                    <button type="submit" name="add_transfer" class="btn btn-label-primary text-bold"><i class="fas fa-check mr-2"></i>Transfer</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

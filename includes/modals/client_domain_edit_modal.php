@@ -9,16 +9,16 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" name="domain_id" value="" id="editDomainId">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <div class="modal-body bg-white">
-
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-overview">Overview</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-overview">Overview</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-records">Records</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-records">Records</a>
                         </li>
                     </ul>
 
@@ -87,7 +87,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-records">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-records">
 
                             <div class="form-group">
                                 <label>Domain IP(s)</label>
@@ -145,7 +145,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_domain" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_domain" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

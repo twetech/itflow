@@ -11,26 +11,26 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" name="asset_id" value="<?php echo $asset_id; ?>">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
 
-                <div class="modal-body bg-white">
-
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details<?php echo $asset_id; ?>">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $asset_id; ?>">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-network<?php echo $asset_id; ?>">Network</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-network<?php echo $asset_id; ?>">Network</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-assignment<?php echo $asset_id; ?>">Assignment</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-assignment<?php echo $asset_id; ?>">Assignment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-purchase<?php echo $asset_id; ?>">Purchase</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-purchase<?php echo $asset_id; ?>">Purchase</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-notes<?php echo $asset_id; ?>">Notes</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes<?php echo $asset_id; ?>">Notes</a>
                         </li>
                     </ul>
 
@@ -121,7 +121,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-network<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-network<?php echo $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Network</label>
@@ -210,7 +210,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-assignment<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-assignment<?php echo $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Location</label>
@@ -286,7 +286,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-purchase<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-purchase<?php echo $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Vendor</label>
@@ -350,7 +350,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-notes<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-notes<?php echo $asset_id; ?>">
 
                             <div class="form-group">
                                 <textarea class="form-control" rows="8" placeholder="Enter some notes" name="notes"><?php echo $asset_notes; ?></textarea>
@@ -361,7 +361,7 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_asset" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_asset" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

@@ -19,19 +19,19 @@ $client_id = intval($_GET['client_id']);
                     <?php if (isset($_GET['client_id'])) { ?>
                         <ul class="nav nav-pills  mb-3">
                             <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="pill" href="#pills-details"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
+                                <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#pills-contacts"><i class="fa fa-fw fa-users mr-2"></i>Contact</a>
+                                <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-contacts"><i class="fa fa-fw fa-users mr-2"></i>Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#pills-assets"><i class="fa fa-fw fa-desktop mr-2"></i>Asset</a>
+                                <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-assets"><i class="fa fa-fw fa-desktop mr-2"></i>Asset</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#pills-locations"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Location</a>
+                                <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-locations"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Location</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#pills-vendors"><i class="fa fa-fw fa-building mr-2"></i>Vendor</a>
+                                <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-vendors"><i class="fa fa-fw fa-building mr-2"></i>Vendor</a>
                             </li>
                         </ul>
 
@@ -59,7 +59,7 @@ $client_id = intval($_GET['client_id']);
                             </div>
 
                             <div class="mb-3">
-                                <button id="rewordButton" class="btn btn-soft-primary" type="button"><i class="fas fa-fw fa-robot mr-2"></i>Reword</button>
+                                <button id="rewordButton" class="btn btn-label-primary" type="button"><i class="fas fa-fw fa-robot mr-2"></i>Reword</button>
                                 <button id="undoButton" class="btn btn-light" type="button" style="display:none;"><i class="fas fa-fw fa-redo-alt mr-2"></i>Undo</button>
                             </div>
                             <?php } else { ?>
@@ -143,7 +143,7 @@ $client_id = intval($_GET['client_id']);
 
                         <?php if (isset($_GET['client_id'])) { ?>
 
-                            <div class="tab-pane fade" id="pills-contacts">
+                            <div class="tab-pane fade" role="tabpanel" id="pills-contacts">
 
                                 <input type="hidden" name="client" value="<?php echo $client_id; ?>">
 
@@ -209,7 +209,7 @@ $client_id = intval($_GET['client_id']);
 
                             </div>
 
-                            <div class="tab-pane fade" id="pills-assets">
+                            <div class="tab-pane fade" role="tabpanel" id="pills-assets">
 
                                 <div class="form-group">
                                     <label>Asset</label>
@@ -236,7 +236,7 @@ $client_id = intval($_GET['client_id']);
 
                             </div>
 
-                            <div class="tab-pane fade" id="pills-locations">
+                            <div class="tab-pane fade" role="tabpanel" id="pills-locations">
 
                                 <div class="form-group">
                                     <label>Location</label>
@@ -262,7 +262,7 @@ $client_id = intval($_GET['client_id']);
 
                             </div>
 
-                            <div class="tab-pane fade" id="pills-vendors">
+                            <div class="tab-pane fade" role="tabpanel" id="pills-vendors">
 
                                 <div class="form-group">
                                     <label>Vendor</label>
@@ -303,7 +303,7 @@ $client_id = intval($_GET['client_id']);
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_ticket" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Create</button>
+                    <button type="submit" name="add_ticket" class="btn btn-label-primary text-bold"><i class="fas fa-check mr-2"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

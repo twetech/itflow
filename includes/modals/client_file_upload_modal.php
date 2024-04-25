@@ -54,7 +54,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="upload_files" class="btn btn-soft-primary text-bold"><i class="fa fa-upload mr-2"></i>Upload</button>
+                    <button type="submit" name="upload_files" class="btn btn-label-primary text-bold"><i class="fa fa-upload mr-2"></i>Upload</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

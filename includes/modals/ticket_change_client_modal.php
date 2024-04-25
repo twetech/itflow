@@ -9,8 +9,8 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
                 <div class="modal-body bg-white">
+                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
 
                     <div class="form-group">
                         <label>New Client <strong class="text-danger">*</strong></label>
@@ -36,7 +36,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="change_client_ticket" class="btn btn-soft-primary text-bold"></i>Change</button>
+                    <button type="submit" name="change_client_ticket" class="btn btn-label-primary text-bold"></i>Change</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

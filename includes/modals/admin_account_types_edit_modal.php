@@ -19,8 +19,8 @@ $account_parent = intval($row['account_parent']);
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="account_type_id" value="<?php echo $account_type_id; ?>">
                 <div class="modal-body bg-white">
+                <input type="hidden" name="account_type_id" value="<?php echo $account_type_id; ?>">
 
                     <div class="form-group">
                         <label>Name <strong class="text-danger">*</strong></label>
@@ -42,7 +42,7 @@ $account_parent = intval($row['account_parent']);
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_account_type" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
+                    <button type="submit" name="edit_account_type" class="btn btn-label-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>
