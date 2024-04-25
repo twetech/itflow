@@ -19,9 +19,9 @@ $account_notes = nullable_htmlentities($row['account_notes']);
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
                 <div class="modal-body bg-white">
-                    <div class="form-group">
+                                    <input type="hidden" name="account_id" value="<?php echo $account_id; ?>">
+<div class="form-group">
                         <label>Account Name <strong class="text-danger">*</strong></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -59,7 +59,7 @@ $account_notes = nullable_htmlentities($row['account_notes']);
                 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_account" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_account" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

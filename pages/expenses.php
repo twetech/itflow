@@ -30,7 +30,7 @@ $recurring_expense_count = $row['num'];
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-shopping-cart mr-2"></i>Expenses</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="expense_add_modal.php"><i class="fas fa-plus mr-2"></i>New Expense</button>
+                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="expense_add_modal.php"><i class="fas fa-plus mr-2"></i>New Expense</button>
             </div>
         </div>
 

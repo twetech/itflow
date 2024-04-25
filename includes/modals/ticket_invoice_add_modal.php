@@ -1,5 +1,25 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 <?php
+
+$ticket_id = isset($_GET['ticket_id']) ? intval($_GET['ticket_id']) : 0;
+$ticket_sql = mysqli_query($mysqli, "SELECT * FROM tickets WHERE ticket_id = $ticket_id");
+$ticket_row = mysqli_fetch_array($ticket_sql);
+$ticket_prefix = nullable_htmlentities($ticket_row['ticket_prefix']);
+$ticket_number = intval($ticket_row['ticket_number']);
+$ticket_subject = nullable_htmlentities($ticket_row['ticket_subject']);
+$ticket_date = nullable_htmlentities($ticket_row['ticket_date']);
+$ticket_asset_id = intval($ticket_row['ticket_asset_id']);
+$ticket_contact_id = intval($ticket_row['ticket_contact_id']);
+$ticket_status = nullable_htmlentities($ticket_row['ticket_status']);
+$ticket_priority = nullable_htmlentities($ticket_row['ticket_priority']);
+$ticket_category_id = intval($ticket_row['ticket_category_id']);
+
+$ticket_total_reply_time = mysqli_query($mysqli, "SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(ticket_reply_time_worked))) AS ticket_total_reply_time FROM ticket_replies WHERE ticket_reply_archived_at IS NULL AND ticket_reply_ticket_id = $ticket_id");
+$row = mysqli_fetch_array($ticket_total_reply_time);
+$ticket_total_reply_time = nullable_htmlentities($row['ticket_total_reply_time']);
+
+$client_id = intval($ticket_row['ticket_client_id']);
+
 // Check if ticket_id and invoice_id are set in the URL
 $addToExistingInvoice = isset($_GET['ticket_id']) && isset($_GET['invoice_id']);
 $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_status LIKE 'Draft' AND invoice_client_id = $client_id ORDER BY invoice_number ASC");
@@ -16,25 +36,25 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
+
                 <div class="modal-body bg-white">
                     <?php
                         if (mysqli_num_rows($sql_invoices) > 0) {
                         ?>
-                    
+                                    <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <?php if (!$addToExistingInvoice): ?>
-                                <a class="nav-link active" data-bs-toggle="pill" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
+                                <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
                             <?php else: ?>
-                                <a class="nav-link" data-bs-toggle="pill" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
+                                <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
                             <?php endif; ?>
                         </li>
                         <li class="nav-item">
                             <?php if ($addToExistingInvoice): ?>
-                                <a class="nav-link active" data-bs-toggle="pill" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
+                                <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
                             <?php else: ?>
-                                <a class="nav-link" data-bs-toggle="pill" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
+                                <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
                             <?php endif; ?>
                         </li>
                         <?php
@@ -55,7 +75,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                         <?php if (!$addToExistingInvoice): ?>
                             <div class="tab-pane fade show active" id="pills-create-invoice">
                         <?php else: ?>
-                            <div class="tab-pane fade" id="pills-create-invoice">
+                            <div class="tab-pane fade" role="tabpanel" id="pills-create-invoice">
                         <?php endif; ?>
 
                             <div class="form-group">
@@ -114,7 +134,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                             if ($addToExistingInvoice): ?>
                             <div class="tab-pane fade show active" id="pills-add-to-invoice">
                         <?php else: ?>
-                            <div class="tab-pane fade" id="pills-add-to-invoice">
+                            <div class="tab-pane fade" role="tabpanel" id="pills-add-to-invoice">
                             <?php endif;?>
                             <div class="form-group">
                                 <label>Invoice</label>
@@ -234,7 +254,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_invoice_from_ticket" class="btn btn-soft-primary text-bold"></i>Invoice</button>
+                    <button type="submit" name="add_invoice_from_ticket" class="btn btn-label-primary text-bold"></i>Invoice</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

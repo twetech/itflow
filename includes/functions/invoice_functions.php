@@ -87,6 +87,7 @@ function createInvoice(
     $return_data = [
         'status' => 'success',
         'message' => "Invoice $invoice_number has been created",
+        'invoice_id' => $invoice_id,
         'invoice' => readInvoice(['invoice_id' => $invoice_id])
     ];
 

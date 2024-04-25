@@ -13,7 +13,7 @@ FullCalendar.Bootstrap = (function (exports, core, internal$1) {
         table: 'table-bordered',
         tableCellShaded: 'table-active',
         buttonGroup: 'btn-group',
-        button: 'btn btn-soft-primary',
+        button: 'btn btn-label-primary',
         buttonActive: 'active',
         popover: 'popover',
         popoverHeader: 'popover-header',

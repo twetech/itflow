@@ -76,7 +76,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_account" class="btn btn-soft-primary text-bold">Create</button>
+                    <button type="submit" name="add_account" class="btn btn-label-primary text-bold">Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </form>

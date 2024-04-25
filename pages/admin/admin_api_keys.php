@@ -25,7 +25,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-key mr-2"></i>API Keys</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addApiKeyModal"><i class="fas fa-plus mr-2"></i>Create</button>
+                <button type="button" class="btn btn-label-primary" data-bs-toggle="modal" data-bs-target="#addApiKeyModal"><i class="fas fa-plus mr-2"></i>Create</button>
             </div>
         </div>
 
@@ -133,15 +133,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 </form>
 
             </div>
-            <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
- ?>
         </div>
     </div>
 
-    <script src="/includes/js/bulk_actions.js"></script>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/admin_api_key_add_modal.php";
-
 require_once '/var/www/develop.twe.tech/includes/footer.php';
 

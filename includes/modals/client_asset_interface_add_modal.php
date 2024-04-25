@@ -19,10 +19,10 @@
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-interfaces<?php echo $asset_id; ?>">Interfaces</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-interfaces<?php echo $asset_id; ?>">Interfaces</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-create<?php echo $asset_id; ?>">Create</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-create<?php echo $asset_id; ?>">Create</a>
                         </li>
                     </ul>
 
@@ -30,12 +30,12 @@
 
                     <div class="tab-content">
 
-                        <div class="tab-pane fade" id="pills-interfaces<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-interfaces<?php echo $asset_id; ?>">
 
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-create<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-create<?php echo $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Interface Number</label>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="modal-footer bg-white">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" name="add_asset_interface" class="btn btn-soft-primary"><i class="fa fa-check"></i> Create</button>
+                    <button type="submit" name="add_asset_interface" class="btn btn-label-primary"><i class="fa fa-check"></i> Create</button>
                 </div>
             </form>
         </div>

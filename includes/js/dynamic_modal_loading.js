@@ -13,7 +13,7 @@ $(document).ready(function() {
                 // Create a temporary div to hold the loaded content
                 var tempDiv = $('<div>').html(data);
 
-
+                // Output the loaded content to the console
                 // Extract and replace the modal title, body, and footer from the loaded content
                 $('#dynamicModalLabel').html(tempDiv.find('.modal-title').html());
                 $('#dynamicModal .modal-body').html(tempDiv.find('.modal-body').html());
@@ -25,9 +25,22 @@ $(document).ready(function() {
                 // Show the modal
                 $('#dynamicModal').modal('show');
 
-                $('select').select2({
-                    dropdownParent: $('#dynamicModal')
+                // Trigger a custom event to indicate that the modal content has been loaded
+                $(document).trigger('modalContentLoaded');
+                
+                document.querySelectorAll('textarea').forEach(function(textarea) {
+                    textarea.addEventListener('click', function initTinyMCE() {
+                        // This check ensures that TinyMCE is initialized only once for each textarea
+                        if (!tinymce.get(this.id)) {
+                            tinymce.init({
+                                selector: '#' + this.id,
+                                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+                                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                            });
+                        }
+                    }, { once: true });
                 });
+
                 
             }).fail(function() {
                 console.error('Failed to load the modal content from ' + fullPath);

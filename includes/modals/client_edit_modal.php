@@ -33,6 +33,8 @@ $client_created_at = $row['client_created_at'];
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <input type="hidden" name="lead" value="0">
                 <input type="hidden" name="currency_code" value="<?php if (empty($currency_code)) {
@@ -41,19 +43,17 @@ $client_created_at = $row['client_created_at'];
                     echo $currency_code;
                 } ?>">
                 <input type="hidden" name="net_terms" value="<?php echo $client_net_terms; ?>">
-                <div class="modal-body bg-white">
-
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-client-details<?php echo $client_id; ?>">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-client-details<?php echo $client_id; ?>">Details</a>
                         </li>
                         <?php if ($config_module_enable_accounting) { ?>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-client-billing<?php echo $client_id; ?>">Billing</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-client-billing<?php echo $client_id; ?>">Billing</a>
                         </li>
                         <?php } ?>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-client-more<?php echo $client_id; ?>">More</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-client-more<?php echo $client_id; ?>">More</a>
                         </li>
                     </ul>
 
@@ -138,7 +138,7 @@ $client_created_at = $row['client_created_at'];
 
                         <?php if ($config_module_enable_accounting) { ?>
 
-                        <div class="tab-pane fade" id="pills-client-billing<?php echo $client_id; ?>">     
+                        <div class="tab-pane fade" role="tabpanel" id="pills-client-billing<?php echo $client_id; ?>">     
 
                             <div class="form-group">
                                 <label>Hourly Rate</label>
@@ -205,7 +205,7 @@ $client_created_at = $row['client_created_at'];
 
                         <?php } ?>
 
-                        <div class="tab-pane fade" id="pills-client-more<?php echo $client_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-client-more<?php echo $client_id; ?>">
 
                             <div class="form-group">
                                 <textarea class="form-control" rows="8" placeholder="Enter some notes"
@@ -238,7 +238,7 @@ $client_created_at = $row['client_created_at'];
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_client" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_client" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

@@ -10,28 +10,28 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
 
                 <div class="modal-body bg-white">
+                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pillsDetailsCopy<?php echo $asset_id; ?>">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pillsDetailsCopy<?php echo $asset_id; ?>">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pillsNetworkCopy<?php echo $asset_id; ?>">Network</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pillsNetworkCopy<?php echo $asset_id; ?>">Network</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pillsAssignmentCopy<?php echo $asset_id; ?>">Assignment</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pillsAssignmentCopy<?php echo $asset_id; ?>">Assignment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pillsPurchaseCopy<?php echo $asset_id; ?>">Purchase</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pillsPurchaseCopy<?php echo $asset_id; ?>">Purchase</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pillsLoginCopy<?php echo $asset_id; ?>">Login</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pillsLoginCopy<?php echo $asset_id; ?>">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pillsNotesCopy<?php echo $asset_id; ?>">Notes</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pillsNotesCopy<?php echo $asset_id; ?>">Notes</a>
                         </li>
                     </ul>
 
@@ -122,7 +122,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pillsNetworkCopy<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pillsNetworkCopy<?php echo $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Network</label>
@@ -205,7 +205,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pillsAssignmentCopy<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pillsAssignmentCopy<?php echo $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Location</label>
@@ -267,7 +267,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pillsPurchaseCopy<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pillsPurchaseCopy<?php echo $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Vendor</label>
@@ -325,7 +325,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pillsLoginCopy<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pillsLoginCopy<?php echo $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Username</label>
@@ -349,7 +349,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pillsNotesCopy<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pillsNotesCopy<?php echo $asset_id; ?>">
 
                             <div class="form-group">
                                 <textarea class="form-control" rows="8" placeholder="Enter some notes" name="notes"><?php echo $asset_notes; ?></textarea>
@@ -360,7 +360,7 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_asset" class="btn btn-soft-primary text-bold"></i>Copy</button>
+                    <button type="submit" name="add_asset" class="btn btn-label-primary text-bold"></i>Copy</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

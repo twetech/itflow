@@ -138,7 +138,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
 
                 <hr>
 
-                <button type="submit" name="edit_company" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
+                <button type="submit" name="edit_company" class="btn btn-label-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
 
             </form>
         </div>

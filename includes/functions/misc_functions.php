@@ -359,7 +359,7 @@ function createiCalStrCancel($originaliCalStr) {
 
 function referWithAlert(
     $alert,
-    $type = "alert",
+    $type = "warning",
     $url = null
 ) {
     if ($url == null) {

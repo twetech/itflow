@@ -9,25 +9,25 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" name="software_id" value="<?php echo $software_id; ?>">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <div class="modal-body bg-white">
-
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details<?php echo $software_id; ?>">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $software_id; ?>">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-license<?php echo $software_id; ?>">License</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-license<?php echo $software_id; ?>">License</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-device-licenses<?php echo $software_id; ?>">Devices</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-device-licenses<?php echo $software_id; ?>">Devices</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-user-licenses<?php echo $software_id; ?>">Users</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-user-licenses<?php echo $software_id; ?>">Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-notes<?php echo $software_id; ?>">Notes</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes<?php echo $software_id; ?>">Notes</a>
                         </li>
                     </ul>
 
@@ -83,7 +83,7 @@
 
                         </div>
 
-                         <div class="tab-pane fade" id="pills-license<?php echo $software_id; ?>">
+                         <div class="tab-pane fade" role="tabpanel" id="pills-license<?php echo $software_id; ?>">
 
                             <div class="form-group">
                                 <label>License Type</label>
@@ -142,7 +142,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-device-licenses<?php echo $software_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-device-licenses<?php echo $software_id; ?>">
 
                             <div class="alert alert-info">
                                 Select Assets that are licensed for this software
@@ -179,7 +179,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-user-licenses<?php echo $software_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-user-licenses<?php echo $software_id; ?>">
 
                             <div class="alert alert-info">
                                 Select Users that are licensed for this software
@@ -215,7 +215,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-notes<?php echo $software_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-notes<?php echo $software_id; ?>">
 
                             <textarea class="form-control" rows="12" placeholder="Enter some notes" name="notes"><?php echo $software_notes; ?></textarea>
 
@@ -225,7 +225,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_software" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_software" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

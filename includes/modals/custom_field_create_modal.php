@@ -9,9 +9,9 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="table" value="<?php echo nullable_htmlentities($table); ?>">
 
                 <div class="modal-body bg-white">
+                <input type="hidden" name="table" value="<?php echo nullable_htmlentities($table); ?>">
 
                     <div class="form-group">
                         <label>Label <strong class="text-danger">*</strong></label>
@@ -33,7 +33,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="create_custom_field" class="btn btn-soft-primary text-bold"></i>Create</button>
+                    <button type="submit" name="create_custom_field" class="btn btn-label-primary text-bold"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

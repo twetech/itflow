@@ -17,10 +17,10 @@ $client_id = intval($_GET['client_id'])
 
           <ul class="nav nav-pills  mb-3">
             <li class="nav-item">
-              <a class="nav-link active" data-bs-toggle="pill" href="#pills-details">Details</a>
+              <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details">Details</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="pill" href="#pills-notes">Notes</a>
+              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes">Notes</a>
             </li>
           </ul>
 
@@ -115,7 +115,7 @@ $client_id = intval($_GET['client_id'])
               </div>
 
             </div>
-            <div class="tab-pane fade" id="pills-notes">
+            <div class="tab-pane fade" role="tabpanel" id="pills-notes">
               <div class="form-group">
                 <textarea class="form-control" rows="12" placeholder="Enter some notes" name="notes"></textarea>
               </div>
@@ -125,7 +125,7 @@ $client_id = intval($_GET['client_id'])
 
         </div>
         <div class="modal-footer bg-white">
-          <button type="submit" name="add_network" class="btn btn-soft-primary text-bold"></i>Create</button>
+          <button type="submit" name="add_network" class="btn btn-label-primary text-bold"></i>Create</button>
           <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
         </div>
       </form>

@@ -25,11 +25,11 @@ $client_name = nullable_htmlentities($row['client_name']);
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <input type="hidden" name="ticket_number" value="<?php echo "$ticket_prefix$ticket_number"; ?>">
-                <div class="modal-body bg-white">
-
                     <div class="form-group">
                         <label>Watcher Email</label>
                         <div class="input-group">
@@ -58,7 +58,7 @@ $client_name = nullable_htmlentities($row['client_name']);
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_ticket_watcher" class="btn btn-soft-primary text-bold"></i>Add</button>
+                    <button type="submit" name="add_ticket_watcher" class="btn btn-label-primary text-bold"></i>Add</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
 

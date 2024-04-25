@@ -1,5 +1,8 @@
 <?php
 
+global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id;
+
+
 /*
  * ITFlow - GET/POST request handler for client tickets
  */
@@ -24,7 +27,7 @@ if (isset($_POST['add_ticket'])) {
 
     $return_data = createTicket($parameters);
     $ticket_id = $return_data['ticket_id'];
-    referWithAlert($return_data['message'], $return_data['status'], "tickets.php?ticket_id=$ticket_id");
+    referWithAlert($return_data['message'], $return_data['status'], "/pages/ticket.php?ticket_id=$ticket_id");
 }
 
 if (isset($_POST['edit_ticket'])) {
@@ -190,100 +193,20 @@ if (isset($_POST['edit_ticket_priority'])) {
 
 if (isset($_POST['assign_ticket'])) {
 
+    global $mysqli, $session_user_id, $session_name, $session_company_name, $session_ip, $session_user_agent, $config_smtp_host, $config_ticket_from_name, $config_ticket_from_email, $config_base_url;
+
     // Role check
     validateTechRole();
 
     // POST variables
     $ticket_id = intval($_POST['ticket_id']);
     $assigned_to = intval($_POST['assigned_to']);
-    $ticket_status = sanitizeInput($_POST['ticket_status']);
-    if ($ticket_status == 'New' && $assigned_to !== 0) {
-        $ticket_status = 'Open';
-    }
 
-    // Allow for un-assigning tickets
-    if ($assigned_to == 0) {
-        $ticket_reply = "Ticket unassigned.";
-        $agent_name = "No One";
-    } else {
-        // Get & verify assigned agent details
-        $agent_details_sql = mysqli_query($mysqli, "SELECT user_name, user_email FROM users LEFT JOIN user_settings ON users.user_id = user_settings.user_id WHERE users.user_id = $assigned_to AND user_settings.user_role > 1");
-        $agent_details = mysqli_fetch_array($agent_details_sql);
-
-        $agent_name = sanitizeInput($agent_details['user_name']);
-        $agent_email = sanitizeInput($agent_details['user_email']);
-        $ticket_reply = "Ticket re-assigned to $agent_name.";
-
-        if (!$agent_name) {
-            $_SESSION['alert_type'] = "error";
-            $_SESSION['alert_message'] = "Invalid agent!";
-            header("Location: " . $_SERVER["HTTP_REFERER"]);
-            exit();
-        }
-    }
-
-    // Get & verify ticket details
-    $ticket_details_sql = mysqli_query($mysqli, "SELECT ticket_prefix, ticket_number, ticket_subject, ticket_client_id, client_name FROM tickets LEFT JOIN clients ON ticket_client_id = client_id WHERE ticket_id = '$ticket_id' AND ticket_status != 'Closed'");
-    $ticket_details = mysqli_fetch_array($ticket_details_sql);
-
-    $ticket_prefix = sanitizeInput($ticket_details['ticket_prefix']);
-    $ticket_number = intval($ticket_details['ticket_number']);
-    $ticket_subject = sanitizeInput($ticket_details['ticket_subject']);
-    $client_id = intval($ticket_details['ticket_client_id']);
-    $client_name = sanitizeInput($ticket_details['client_name']);
-
-    if (!$ticket_subject) {
-        $_SESSION['alert_type'] = "error";
-        $_SESSION['alert_message'] = "Invalid ticket!";
-        header("Location: " . $_SERVER["HTTP_REFERER"]);
-        exit();
-    }
-
-    // Update ticket & insert reply
-    mysqli_query($mysqli, "UPDATE tickets SET ticket_assigned_to = $assigned_to, ticket_status = '$ticket_status' WHERE ticket_id = $ticket_id");
-
-    mysqli_query($mysqli, "INSERT INTO ticket_replies SET ticket_reply = '$ticket_reply', ticket_reply_type = 'Internal', ticket_reply_time_worked = '00:01:00', ticket_reply_by = $session_user_id, ticket_reply_ticket_id = $ticket_id");
-
-    // Logging
-    mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Ticket', log_action = 'Edit', log_description = '$session_name reassigned ticket $ticket_prefix$ticket_number - $ticket_subject to $agent_name', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_client_id = $client_id, log_user_id = $session_user_id, log_entity_id = $ticket_id");
+    // Update ticket
+    $return_data = updateTicket(['ticket_id' => $ticket_id, 'ticket_assigned_to' => $assigned_to]);
+    referWithAlert($return_data['message'], $return_data['status']);
 
 
-    // Notification
-    if ($session_user_id != $assigned_to && $assigned_to != 0) {
-
-        // App Notification
-        mysqli_query($mysqli, "INSERT INTO notifications SET notification_type = 'Ticket', notification = 'Ticket $ticket_prefix$ticket_number - Subject: $ticket_subject has been assigned to you by $session_name', notification_action = 'ticket.php?ticket_id=$ticket_id', notification_client_id = $client_id, notification_user_id = $assigned_to");
-
-        // Email Notification
-        if (!empty($config_smtp_host)) {
-
-            // Sanitize Config vars from get_settings.php
-            $config_ticket_from_name = sanitizeInput($config_ticket_from_name);
-            $config_ticket_from_email = sanitizeInput($config_ticket_from_email);
-            $company_name = sanitizeInput($session_company_name);
-
-            $subject = "$config_app_name - Ticket $ticket_prefix$ticket_number assigned to you - $ticket_subject";
-            $body = "Hi $agent_name, <br><br>A ticket has been assigned to you!<br><br>Client: $client_name<br>Ticket Number: $ticket_prefix$ticket_number<br> Subject: $ticket_subject<br><br>https://$config_base_url/ticket.php?ticket_id=$ticket_id <br><br>Thanks, <br>$session_name<br>$company_name";
-
-            // Email Ticket Agent
-            // Queue Mail
-            $data = [
-                [
-                    'from' => $config_ticket_from_email,
-                    'from_name' => $config_ticket_from_name,
-                    'recipient' => $agent_email,
-                    'recipient_name' => $agent_name,
-                    'subject' => $subject,
-                    'body' => $body,
-                ]
-            ];
-            addToMailQueue($mysqli, $data);
-        }
-    }
-
-    $_SESSION['alert_message'] = "Ticket <strong>$ticket_prefix$ticket_number</strong> assigned to <strong>$agent_name</strong>";
-
-    header("Location: " . $_SERVER["HTTP_REFERER"]);
 }
 
 if (isset($_GET['delete_ticket'])) {
@@ -1020,6 +943,8 @@ if (isset($_GET['close_ticket'])) {
 
 if (isset($_POST['add_invoice_from_ticket'])) {
 
+    global $config_ticket_next_number, $config_default_net_terms, $config_invoice_prefix, $config_invoice_next_number, $session_company_currency;
+
     $invoice_id = intval($_POST['invoice_id']);
     $ticket_id = intval($_POST['ticket_id']);
     $date = sanitizeInput($_POST['date']);
@@ -1153,7 +1078,7 @@ if (isset($_POST['add_invoice_from_ticket'])) {
 
     $_SESSION['alert_message'] = "Invoice created from ticket";
 
-    header("Location: invoice.php?invoice_id=$invoice_id");
+    header("Location: /pages/invoice.php?invoice_id=$invoice_id");
 }
 
 if (isset($_POST['export_client_tickets_csv'])) {

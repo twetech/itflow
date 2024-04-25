@@ -118,7 +118,7 @@ if (isset($_GET['quote_id'])) {
 
                 <div class="col-8">
                     <?php if ($quote_status == 'Draft') { ?>
-                        <button class="btn btn-soft-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <button class="btn btn-label-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                             <i class="fas fa-paper-plane mr-2"></i>Send
                         </button>
                         <div class="dropdown-menu">
@@ -135,7 +135,7 @@ if (isset($_GET['quote_id'])) {
                     <?php } ?>
 
                     <?php if ($quote_status == 'Sent' || $quote_status == 'Viewed') { ?>
-                        <a class="btn btn-soft-primary" href="/post.php?accept_quote=<?php echo $quote_id; ?>">
+                        <a class="btn btn-label-primary" href="/post.php?accept_quote=<?php echo $quote_id; ?>">
                             <i class="fas fa-thumbs-up mr-2"></i>Accept
                         </a>
                         <a class="btn btn-default" href="/post.php?decline_quote=<?php echo $quote_id; ?>">
@@ -144,7 +144,7 @@ if (isset($_GET['quote_id'])) {
                     <?php } ?>
 
                     <?php if ($quote_status == 'Accepted') { ?>
-                        <a class="btn btn-soft-primary" href="#" data-bs-toggle="modal" data-bs-target="#addQuoteToInvoiceModal<?php echo $quote_id; ?>">
+                        <a class="btn btn-label-primary" href="#" data-bs-toggle="modal" data-bs-target="#addQuoteToInvoiceModal<?php echo $quote_id; ?>">
                             <i class="fas fa-check mr-2"></i>Invoice
                         </a>
                     <?php } ?>

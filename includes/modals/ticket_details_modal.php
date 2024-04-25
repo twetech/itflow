@@ -648,7 +648,7 @@ if (mysqli_num_rows($sql) == 0) {
                                 <?php } ?>
                             </select>
                             <div class="input-group-append d-print-none">
-                                <button type="submit" class="btn btn-soft-primary" name="assign_ticket" <?php if ($ticket_status == "Closed") {
+                                <button type="submit" class="btn btn-label-primary" name="assign_ticket" <?php if ($ticket_status == "Closed") {
                                                                                                         echo "disabled";
                                                                                                     } ?>><i class="fas fa-check"></i></button>
                             </div>

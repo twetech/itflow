@@ -1,5 +1,26 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
+<?php
+$location_id = intval($_GET['location_id']);
+$sql = mysqli_query($mysqli, "SELECT * FROM locations WHERE location_id = $location_id");
+$row = mysqli_fetch_array($sql);
+$client_id = intval($row['location_client_id']);
+$location_name = nullable_htmlentities($row['location_name']);
+$location_description = nullable_htmlentities($row['location_description']);
+$location_photo = nullable_htmlentities($row['location_photo']);
+$location_address = nullable_htmlentities($row['location_address']);
+$location_city = nullable_htmlentities($row['location_city']);
+$location_state = nullable_htmlentities($row['location_state']);
+$location_zip = nullable_htmlentities($row['location_zip']);
+$location_country = nullable_htmlentities($row['location_country']);
+$location_phone = nullable_htmlentities($row['location_phone']);
+$location_contact_id = intval($row['location_contact_id']);
+$location_hours = nullable_htmlentities($row['location_hours']);
+$location_notes = nullable_htmlentities($row['location_notes']);
+
+?>
+
+
 <div class="modal" id="editLocationModal<?php echo $location_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -10,23 +31,23 @@
                 </button>
             </div>
             <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                <input type="hidden" name="location_id" value="<?php echo $location_id; ?>">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+
                 
                 <div class="modal-body bg-white">
-
+                <input type="hidden" name="location_id" value="<?php echo $location_id; ?>">
+                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details<?php echo $location_id; ?>">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $location_id; ?>">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-address<?php echo $location_id; ?>">Address</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-address<?php echo $location_id; ?>">Address</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-contact<?php echo $location_id; ?>">Contact</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-contact<?php echo $location_id; ?>">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-notes<?php echo $location_id; ?>">Notes</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes<?php echo $location_id; ?>">Notes</a>
                         </li>
                     </ul>
 
@@ -74,7 +95,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-address<?php echo $location_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-address<?php echo $location_id; ?>">
 
                             <div class="form-group">
                                 <label>Address</label>
@@ -133,7 +154,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-contact<?php echo $location_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-contact<?php echo $location_id; ?>">
 
                             <div class="form-group">
                                 <label>Contact</label>
@@ -190,7 +211,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-notes<?php echo $location_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-notes<?php echo $location_id; ?>">
 
                             <div class="form-group">
                                 <textarea class="form-control" rows="12" name="notes" placeholder="Notes, eg Parking Info, Building Access etc"><?php echo $location_notes; ?></textarea>
@@ -202,7 +223,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_location" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_location" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

@@ -86,7 +86,7 @@
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="button" id="div_share_link_generate" class="btn btn-soft-primary text-bold" onclick="event.preventDefault(); generateShareLink()"><i class="fas fa-paper-plane mr-2"></i>Send and Show Link</button>
+                    <button type="button" id="div_share_link_generate" class="btn btn-label-primary text-bold" onclick="event.preventDefault(); generateShareLink()"><i class="fas fa-paper-plane mr-2"></i>Send and Show Link</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

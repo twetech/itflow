@@ -6,7 +6,8 @@
 
 header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
 
-require_once 'inc_portal.php';
+require_once '/var/www/develop.twe.tech/includes/inc_portal.php';
+
 
 ?>
 
@@ -40,7 +41,7 @@ require_once 'inc_portal.php';
                     <input type="password" class="form-control" minlength="8" required data-bs-toggle="password" name="new_password" placeholder="Leave blank for no change" autocomplete="new-password">
                 </div>
             </div>
-            <button type="submit" name="edit_profile" class="btn btn-soft-primary text-bold mt-3"><i class="fas fa-check mr-2"></i>Save password</button>
+            <button type="submit" name="edit_profile" class="btn btn-label-primary text-bold mt-3"><i class="fas fa-check mr-2"></i>Save password</button>
         </form>
     </div>
 <?php endif ?>

@@ -28,14 +28,14 @@ $inventory_location_user_name = nullable_htmlentities($row['user_name']);
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
-                <input type="hidden" name="inventory_location_id" value="<?php echo $inventory_location_id; ?>">
 
                 <div class="modal-body bg-white">
                     <div class="form-group">
                         <label>Name <strong class="text-danger">*</strong></label>
                         <input type="text" class="form-control" name="name" value="<?php echo $inventory_location_name; ?>" placeholder="Location name" required autofocus>
                     </div>
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="inventory_location_id" value="<?php echo $inventory_location_id; ?>">
 
                     <div class="form-group">
                         <label>Description <strong class="text-danger">*</strong></label>
@@ -87,7 +87,7 @@ $inventory_location_user_name = nullable_htmlentities($row['user_name']);
                     </div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_inventory_locations" class="btn btn-soft-primary text-bold"><i class="fa fa-check mr- 2"></i>Create</button>
+                    <button type="submit" name="edit_inventory_locations" class="btn btn-label-primary text-bold"><i class="fa fa-check mr- 2"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

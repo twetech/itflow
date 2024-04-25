@@ -75,7 +75,7 @@ while ($row = mysqli_fetch_array($sql_ticket_select)) {
     </div>
 </div>
 <div class="modal-footer bg-white">
-    <button type="submit" name="edit_ticket_contact" class="btn btn-soft-primary text-bold"></i>Save</button>
+    <button type="submit" name="edit_ticket_contact" class="btn btn-label-primary text-bold"></i>Save</button>
     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
 </div>
 

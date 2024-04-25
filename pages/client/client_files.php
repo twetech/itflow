@@ -62,10 +62,10 @@ $num_of_files = mysqli_num_rows($sql);
         
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#uploadFilesModal">
+                <button type="button" class="btn btn-label-primary" data-bs-toggle="modal" data-bs-target="#uploadFilesModal">
                     <i class="fas fa-fw fa-cloud-upload-alt mr-2"></i>Upload
                 </button>
-                <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <div class="dropdown-menu">
                     <a href="#" class="dropdown-item text-dark loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="folder_create_modal.php?client_id=<?php echo $client_id; ?>">
                         <i class="fa fa-fw fa-folder-plus mr-2"></i>Create Folder
@@ -227,7 +227,7 @@ $num_of_files = mysqli_num_rows($sql);
 
                 <form id="bulkActions" action="/post.php" method="post">
 
-                    <div class="card-datatable table-responsive container-fluid  pt-0">                        <table id=responsive class="responsive table border">
+                    <div class="card-datatable table-responsive container-fluid  pt-0">                        <table class="datatables-basic table border-top">
                             
                             <thead class="thead-light <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                             <tr>
@@ -319,9 +319,6 @@ $num_of_files = mysqli_num_rows($sql);
                                     </td>
                                 </tr>
                                 <?php
-                                require "/var/www/develop.twe.tech/includes/modals/client_file_rename_modal.php";
-
-                                require "/var/www/develop.twe.tech/includes/modals/client_file_move_modal.php";
 
                             }
                             ?>
@@ -329,26 +326,17 @@ $num_of_files = mysqli_num_rows($sql);
 
                         </table>
                     </div>
-                    <?php require_once "/var/www/develop.twe.tech/includes/modals/client_file_bulk_move_modal.php"; ?>
                 </form>
 
                 <?php } ?>
-
-                <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
- ?>
 
             </div>
         </div>
     </div>
 </div>
 
-<script src="/includes/js/bulk_actions.js"></script>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/client_file_upload_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/modals/share_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_file_delete_modal.php";
 
 require_once '/var/www/develop.twe.tech/includes/footer.php';

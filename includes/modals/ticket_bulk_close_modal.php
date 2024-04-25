@@ -26,7 +26,7 @@
 
             </div>
             <div class="modal-footer bg-white">
-                <button type="submit" name="bulk_close_tickets" class="btn btn-soft-primary text-bold"><i class="fas fa-gavel mr-2"></i>Close</button>
+                <button type="submit" name="bulk_close_tickets" class="btn btn-label-primary text-bold"><i class="fas fa-gavel mr-2"></i>Close</button>
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
             </div>
         </div>

@@ -9,11 +9,11 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <input type="hidden" name="balance" value="<?php echo $balance; ?>">
                 <input type="hidden" name="currency_code" value="<?php echo $client_currency_code; ?>">
-                <div class="modal-body bg-white">
-
                     <div class="alert alert-info">
                         <h5>Batch Payment Notice</h5>
                         Batch Payment will settle invoices in order from the oldest to the newest.
@@ -144,7 +144,7 @@
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_bulk_payment" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Pay</button>
+                    <button type="submit" name="add_bulk_payment" class="btn btn-label-primary text-bold"><i class="fas fa-check mr-2"></i>Pay</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

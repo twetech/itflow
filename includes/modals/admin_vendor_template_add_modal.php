@@ -17,13 +17,13 @@
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-support">Support</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-support">Support</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-notes">Notes</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes">Notes</a>
                         </li>
                     </ul>
 
@@ -75,7 +75,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-support">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-support">
 
                             <label>Support Phone</label>
                             <div class="form-row">
@@ -146,7 +146,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-notes">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-notes">
 
                             <div class="form-group">
                                 <textarea class="form-control" rows="8" placeholder="Enter some notes" name="notes"></textarea>
@@ -158,7 +158,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_vendor_template" class="btn btn-soft-primary text-bold"></i>Create Template</button>
+                    <button type="submit" name="add_vendor_template" class="btn btn-label-primary text-bold"></i>Create Template</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

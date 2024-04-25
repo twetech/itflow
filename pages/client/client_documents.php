@@ -14,12 +14,6 @@ if (!empty($_GET['folder_id'])) {
     $folder = 0;
 }
 
-// Search query SQL snippet
-if (!empty($q)) {
-    $query_snippet = "AND (MATCH(document_content_raw) AGAINST ('$q') OR document_name LIKE '%$q%')";
-} else {
-    $query_snippet = ""; // empty
-}
 
 //Rebuild URL
 
@@ -40,7 +34,6 @@ $sql = mysqli_query(
     AND document_template = 0
     AND document_folder_id = $folder
     AND document_archived_at IS NULL
-    $query_snippet
     ORDER BY $sort $order"
 );
 
@@ -56,10 +49,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <div class="card-tools">
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_document_add_modal.php?client_id=<?php echo $client_id; ?>">
+                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_document_add_modal.php?client_id=<?php echo $client_id; ?>">
                         <i class="fas fa-plus mr-2"></i>Create
                     </button>
-                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                    <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#createFolderModal">
                             <i class="fa fa-fw fa-folder-plus mr-2"></i>Folder
@@ -188,13 +181,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                                 <tr>
                                     <th>
-                                        <a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=document_name&order=<?php echo $disp; ?>">Name</a>
+                                        Name
                                     </th>
                                     <th>
-                                        <a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=document_created_at&order=<?php echo $disp; ?>">Created</a>
+                                        Created
                                     </th>
                                     <th>
-                                        <a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=document_updated_at&order=<?php echo $disp; ?>">Last Update</a>
+                                        Last Update
                                     </th>
                                     <th class="text-center">
                                         Action
@@ -260,11 +253,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                                 <?php
 
-                                require "/var/www/develop.twe.tech/includes/modals/client_document_move_modal.php";
-
-                                require "/var/www/develop.twe.tech/includes/modals/client_document_rename_modal.php";
-
-
                                 }
 
                                 ?>
@@ -273,22 +261,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </table>
                             <br>
                         </div>
-                        <?php require_once "/var/www/develop.twe.tech/includes/modals/client_document_bulk_move_modal.php"; ?>
                     </form>
-                    <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
- ?>
+
                 </div>
             </div>
         </div>
     </div>
 
-<script src="/includes/js/bulk_actions.js"></script>
-
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/share_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_document_add_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_document_add_from_template_modal.php";
 
 require_once '/var/www/develop.twe.tech/includes/footer.php';

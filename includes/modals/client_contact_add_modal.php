@@ -10,6 +10,8 @@
                 </button>
             </div>
             <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <!-- Prevent undefined checkbox errors on submit -->
                 <input type="hidden" name="contact_primary" value="0">
                 <input type="hidden" name="contact_important" value="0">
@@ -17,20 +19,18 @@
                 <input type="hidden" name="contact_technical" value="0">
                 <!-- End prevent undefined errors -->
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <div class="modal-body bg-white">
-
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-details"><i class="fa fa-fw fa-user mr-2"></i>Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details"><i class="fa fa-fw fa-user mr-2"></i>Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-photo"><i class="fa fa-fw fa-image mr-2"></i>Photo</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-photo"><i class="fa fa-fw fa-image mr-2"></i>Photo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-secure"><i class="fa fa-fw fa-lock mr-2"></i>Secure</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-secure"><i class="fa fa-fw fa-lock mr-2"></i>Secure</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-notes"><i class="fa fa-fw fa-edit mr-2"></i>Notes</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes"><i class="fa fa-fw fa-edit mr-2"></i>Notes</a>
                         </li>
                     </ul>
 
@@ -165,7 +165,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-photo">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-photo">
 
                             <div class="form-group">
                                 <label>Upload Photo</label>
@@ -174,7 +174,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-secure">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-secure">
 
                             <div class="form-group">
                                 <label>Pin</label>
@@ -223,7 +223,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-notes">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-notes">
 
                             <div class="form-group">
                                 <textarea class="form-control" rows="8" name="notes" placeholder="Enter some notes"></textarea>
@@ -235,7 +235,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_contact" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Create</button>
+                    <button type="submit" name="add_contact" class="btn btn-label-primary text-bold"><i class="fas fa-check mr-2"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

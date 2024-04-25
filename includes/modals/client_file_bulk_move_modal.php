@@ -34,7 +34,7 @@
 
             </div>
             <div class="modal-footer bg-white">
-                <button type="submit" name="bulk_move_files" class="btn btn-soft-primary text-bold"></i>Move</button>
+                <button type="submit" name="bulk_move_files" class="btn btn-label-primary text-bold"></i>Move</button>
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
             </div>
         </div>

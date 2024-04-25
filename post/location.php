@@ -1,14 +1,30 @@
 <?php
 
+global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id;
+
+
 /*
  * ITFlow - GET/POST request handler for client physical locations/sites
  */
 
 if(isset($_POST['add_location'])){
 
+
     validateAdminRole();
 
-    require_once '/var/www/develop.twe.tech/post/models/models/client_locations_model.php';
+    $client_id = intval($_POST['client_id']);
+    $name = sanitizeInput($_POST['name']);
+    $description = sanitizeInput($_POST['description']);
+    $country = sanitizeInput($_POST['country']);
+    $address = sanitizeInput($_POST['address']);
+    $city = sanitizeInput($_POST['city']);
+    $state = sanitizeInput($_POST['state']);
+    $zip = sanitizeInput($_POST['zip']);
+    $phone = preg_replace("/[^0-9]/", '',$_POST['phone']);
+    $hours = sanitizeInput($_POST['hours']);
+    $notes = sanitizeInput($_POST['notes']);
+    $contact = intval($_POST['contact']);
+    $location_primary = intval($_POST['location_primary']);
 
 
     if(!file_exists("/uploads/clients/$client_id")) {
@@ -56,10 +72,11 @@ if(isset($_POST['add_location'])){
 }
 
 if(isset($_POST['edit_location'])){
+    
 
     validateAdminRole();
 
-    require_once '/var/www/develop.twe.tech/post/models/models/client_locations_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/client_locations_model.php';
 
 
     $location_id = intval($_POST['location_id']);

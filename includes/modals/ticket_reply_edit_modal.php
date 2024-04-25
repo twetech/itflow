@@ -9,11 +9,11 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="ticket_reply_id" value="<?php echo $ticket_reply_id; ?>">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+
 
                 <div class="modal-body bg-white">
-
+                <input type="hidden" name="ticket_reply_id" value="<?php echo $ticket_reply_id; ?>">
+                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                     <div class="form-group">
                         <textarea  class="form-control" name="ticket_reply"><?php echo nullable_htmlentities($ticket_reply); ?></textarea>
                     </div>
@@ -30,7 +30,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_ticket_reply" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_ticket_reply" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

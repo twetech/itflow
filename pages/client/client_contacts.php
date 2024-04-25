@@ -24,10 +24,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-users mr-2"></i>Contacts</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-soft-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_contact_add_modal.php">
+                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_contact_add_modal.php">
                         <i class="fas fa-plus mr-2"></i>New Contact
                     </button>
-                    <button type="button" class="btn btn-soft-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                    <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#contactInviteModal"><i class="fas fa-fw fa-paper-plane mr-2"></i>Invite</a>
                         <div class="dropdown-divider"></div>
@@ -45,13 +45,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-body">
             <form id="bulkActions" action="/post.php" method="post">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
-                <div class="card-datatable table-responsive container-fluid  pt-0">                    <table id=responsive class="responsive table border">
+                <div class="card-datatable table-responsive container-fluid  pt-0">                    
+                    <table class="datatables-basic table border-top">
                         <thead class="thead-light <?php if (!$num_rows[0]) { echo "d-none"; } ?>">
                         <tr>
-                            <th><a class="text-secondary ml-3" href="?<?php echo $url_query_strings_sort; ?>&sort=contact_name&order=<?php echo $disp; ?>">Name</a></th>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=contact_department&order=<?php echo $disp; ?>">Department</a></th>
+                            <th>Name</a></th>
+                            <th>Department</a></th>
                             <th>Contact</th>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=location_name&order=<?php echo $disp; ?>">Location</a></th>
+                            <th>Location</a></th>
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -210,8 +211,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                             <?php
 
-                            require "/var/www/develop.twe.tech/includes/modals/client_contact_edit_modal.php";
-
                         }
 
                         ?>
@@ -219,63 +218,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         </tbody>
                     </table>
                 </div>
-                <?php require_once "/var/www/develop.twe.tech/includes/modals/client_contact_bulk_assign_location_modal.php"; ?>
-                <?php require_once "/var/www/develop.twe.tech/includes/modals/client_contact_bulk_edit_phone_modal.php"; ?>
-                <?php require_once "/var/www/develop.twe.tech/includes/modals/client_contact_bulk_edit_department_modal.php"; ?>
-                <?php require_once "/var/www/develop.twe.tech/includes/modals/client_contact_bulk_edit_role_modal.php"; ?>
             </form>
-            <?php require_once '/var/www/develop.twe.tech/includes/pagination.php';
-?>
+
         </div>
     </div>
 
 <!-- JavaScript to Show/Hide Password Form Group -->
-<script>
 
-    function generatePassword(type, id) {
-        // Send a GET request to ajax.php as ajax.php?get_readable_pass=true
-        jQuery.get(
-            "ajax.php", {
-                get_readable_pass: 'true'
-            },
-            function(data) {
-                //If we get a response from post.php, parse it as JSON
-                const password = JSON.parse(data);
-
-                // Set the password value to the correct modal, based on the type
-                if (type == "add") {
-                    document.getElementById("password-add").value = password;
-                } else if (type == "edit") {
-                    document.getElementById("password-edit-"+id.toString()).value = password;
-                }
-            }
-        );
-    }
-
-    $(document).ready(function() {
-        $('.authMethod').on('change', function() {
-            var $form = $(this).closest('.authForm');
-            if ($(this).val() === 'local') {
-                $form.find('.passwordGroup').show();
-            } else {
-                $form.find('.passwordGroup').hide();
-            }
-        });
-        $('.authMethod').trigger('change');
-
-    });
-</script>
 
 <script src="/includes/js/bulk_actions.js"></script>
 
 <?php
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_contact_add_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_contact_invite_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_contact_import_modal.php";
-
-require_once "/var/www/develop.twe.tech/includes/modals/client_contact_export_modal.php";
 
 require_once '/var/www/develop.twe.tech/includes/footer.php';

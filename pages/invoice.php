@@ -1,11 +1,15 @@
 <?php
 
+$page_css = '<link rel="stylesheet" href="/includes/assets/vendor/css/pages/app-invoice.css" />';
+
+$invoice_id = intval($_GET['invoice_id']);
+
+
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
-if (isset($_GET['invoice_id'])) {
 
-    $invoice_id = intval($_GET['invoice_id']);
+if (isset($_GET['invoice_id'])) {
 
     $sql = mysqli_query(
         $mysqli,
@@ -93,7 +97,8 @@ if (isset($_GET['invoice_id'])) {
 
     //Get billable, and unbilled tickets to add to invoice
     $sql_tickets_billable = mysqli_query(
-        $mysqli, "
+        $mysqli,
+        "
         SELECT
             *
         FROM
@@ -106,7 +111,18 @@ if (isset($_GET['invoice_id'])) {
             ticket_invoice_id = 0
         AND
             ticket_status LIKE '%close%';
-    ");
+    "
+    );
+
+    //Product autocomplete
+    $products_sql = mysqli_query($mysqli, "SELECT product_name AS label, product_description AS description, product_price AS price, product_tax_id AS tax FROM products WHERE product_archived_at IS NULL");
+
+    if (mysqli_num_rows($products_sql) > 0) {
+        while ($row = mysqli_fetch_assoc($products_sql)) {
+            $products[] = $row;
+        }
+        $json_products = json_encode($products);
+    }
 
 
     //Add up all the payments for the invoice and get the total amount paid to the invoice
@@ -123,45 +139,253 @@ if (isset($_GET['invoice_id'])) {
             $invoice_overdue = "Overdue";
         }
     }
+?>
 
-    //Set Badge color based off of invoice status
-    $invoice_badge_color = getInvoiceBadgeColor($invoice_status);
 
-    //Product autocomplete
-    $products_sql = mysqli_query($mysqli, "SELECT product_name AS label, product_description AS description, product_price AS price, product_tax_id AS tax FROM products WHERE product_archived_at IS NULL");
+    <div class="row invoice-edit">
+        <!-- Invoice Edit-->
+        <div class="col-lg-9 col-12 mb-lg-0 mb-4">
+            <div class="card invoice-preview-card">
+                <div class="card-body">
+                    <div class="row p-sm-3 p-0">
+                        <div class="col-md-6 mb-md-0 mb-4">
+                            <div class="d-flex svg-illustration mb-4 gap-2">
+                                <span class="app-brand-text demo text-body fw-bold"><?php echo $company_name; ?></span>
+                            </div>
+                            <p class="mb-1"><?php echo $company_address; ?></p>
+                            <p class="mb-1"><?php echo "$company_city $company_state $company_zip"; ?></p>
+                            <p class="mb-1"><?php echo "$company_phone $company_email"; ?></p>
+                            <p class="mb-0"><?php echo $company_website; ?></p>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row mb-2">
+                                <dt class="col-sm-6 mb-2 mb-sm-0 text-md-end">
+                                    <span class="h4 text-capitalize mb-0 text-nowrap">Invoice <?= $invoice_prefix ?></span>
+                                </dt>
+                                <dd class="col-sm-6 d-flex justify-content-md-end">
+                                    <div class="w-px-150">
+                                        <input type="text" class="form-control" disabled placeholder="<?php echo "$invoice_number"; ?>" value="<?php echo "$invoice_number"; ?>" id="invoiceId" />
+                                    </div>
+                                </dd>
+                                <dt class="col-sm-6 mb-2 mb-sm-0 text-md-end">
+                                    <span class="fw-normal">Status:</span>
+                                </dt>
+                                <dd class="col-sm-6 d-flex justify-content-md-end">
+                                    <div class="w-px-150">
+                                        <select class="form-select invoice-status" id="invoiceStatus">
+                                            <option value="Draft" <?=$invoice_status == 'Draft' ? 'selected' : 'disabled'?>>Draft</option>
+                                            <option value="Sent" <?=$invoice_status == 'Sent' ? 'selected' : 'disabled'?>>Sent</option>
+                                            <option value="Viewed" <?=$invoice_status == 'Viewed' ? 'selected' : 'disabled'?>>Viewed</option>
+                                            <option value="Paid" <?=$invoice_status == 'Paid' ? 'selected' : 'disabled'?>>Paid</option>
+                                            <option value="Partial" <?=$invoice_status == 'Partial' ? 'selected' : 'disabled'?>>Partial</option>
+                                            <option value="Overdue" <?=$invoice_status == 'Overdue' ? 'selected' : 'disabled'?>>Overdue</option>
+                                            <option value="Cancelled" <?=$invoice_status == 'Cancelled' ? 'selected' : 'disabled'?>>Cancelled</option>
+                                        </select>
+                                    </div>
+                                </dd>
+                                <dt class="col-sm-6 mb-2 mb-sm-0 text-md-end">
+                                    <span class="fw-normal">Date:</span>
+                                </dt>
+                                <dd class="col-sm-6 d-flex justify-content-md-end">
+                                    <div class="w-px-150">
+                                        <input type="text" class="form-control invoice-date" placeholder="YYYY-MM-DD" value="<?= $invoice_date ?>" />
+                                    </div>
+                                </dd>
+                                <dt class="col-sm-6 mb-2 mb-sm-0 text-md-end">
+                                    <span class="fw-normal">Due Date:</span>
+                                </dt>
+                                <dd class="col-sm-6 d-flex justify-content-md-end">
+                                    <div class="w-px-150">
+                                        <input type="text" class="form-control due-date" placeholder="YYYY-MM-DD" value="<?= $invoice_due ?>" />
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
 
-    if (mysqli_num_rows($products_sql) > 0) {
-        while ($row = mysqli_fetch_array($products_sql)) {
-            $products[] = $row;
-        }
-        $json_products = json_encode($products);
-    }
+                    <hr class="my-4 mx-n4" />
 
-    ?>
+                    <div class="row p-sm-3 p-0">
+                        <div class="col-md-6 col-sm-5 col-12 mb-sm-0 mb-4">
+                            <h6 class="pb-2">Invoice To:</h6>
+                            <p class="mb-1"><strong><?php echo $contact_name; ?></strong></p>
+                            <p class="mb-1"><strong><?php echo $client_name; ?></strong></p>
+                            <p class="mb-1"><?php echo $location_address; ?></p>
+                            <p class="mb-1"><?php echo "$location_city $location_state $location_zip"; ?></p>
+                            <p class="mb-1"><?php echo "$contact_phone $contact_extension"; ?></p>
+                            <p class="mb-1"><?php echo $contact_mobile; ?></p>
+                            <p class="mb-0"><?php echo $contact_email; ?></p>
 
-    <ol class="breadcrumb d-print-none">
-        <li class="breadcrumb-item">
-            <a href="invoices.php">Invoices</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="client_invoices.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a>
-        </li>
-        <li class="breadcrumb-item active"><?php echo "$invoice_prefix$invoice_number"; ?></li>
-        <?php if (isset($invoice_overdue)) { ?>
-            <span class="p-2 ml-2 badge badge-danger"><?php echo $invoice_overdue; ?></span>
-        <?php } ?>
-    </ol>
 
-    <div class="card">
+                        </div>
+                    </div>
 
-        <div class="card-header d-print-none">
 
-            <div class="row">
+                    <div class="mb-3">
 
-                <div class="col-8">
+                    <?php $sql_invoice_items = mysqli_query($mysqli, 
+                        "SELECT * FROM invoice_items
+                        LEFT JOIN taxes ON item_tax_id = tax_id
+                        WHERE item_invoice_id = $invoice_id
+                        ORDER BY item_order ASC"); 
+                    ?>
+
+                    <?php while ($row = mysqli_fetch_array($sql_invoice_items)) {
+                        $item_id = intval($row['item_id']);
+                        $item_name = nullable_htmlentities($row['item_name']);
+                        $item_description = nullable_htmlentities($row['item_description']);
+                        $item_price = floatval($row['item_price']);
+                        $item_qty = floatval($row['item_quantity']);
+                        $item_discount = floatval($row['item_discount']);
+                        $item_tax_id = floatval($row['item_tax_id']);
+                        $item_tax = floatval($row['item_tax']);
+                        $item_subtotal = $item_price * $item_qty; // Calculate the total of the item
+                        $tax_percent = floatval($row['tax_percent']);
+                        $tax_name = nullable_htmlentities($row['tax_name']);
+
+                        $tax_total += $item_tax; // Calculate the total tax
+                        $item_total = $item_subtotal + $item_tax - $item_discount; // Calculate the total of the item after tax and discount
+
+                        $subtotal += $item_subtotal; // Calculate the subtotal of all items
+                        $discount_total += $item_discount; // Calculate the total discount
+
+                        // Calculate the discount percentage
+                        if ($item_discount > 0) {
+                            $item_discount_percent = ($item_discount / $item_subtotal) * 100;
+                        } else {
+                            $item_discount_percent = 0;
+                        }
+
+                    ?>
+
+                        <hr class="mx-n4" />
+
+                        <div class="pt-0 pt-md-4 mb-4">
+                            <form action="/post.php" method="post" autocomplete="off" enctype="multipart/form-data" >
+                                <input type="hidden" name="invoice_id" value="<?=$invoice_id?>" />
+                                <input type="hidden" name="item_id" value="<?=$item_id?>" />
+                                <div id="item<?=$item_id?>" class="d-flex border rounded position-relative pe-0 item-container">
+                                    <div class="row w-100 m-0 p-3">
+                                        <div class="col-md-6 col-12 mb-md-0 mb-3 ps-md-0">
+                                            <p class="mb-2 repeater-title">Item</p>
+                                            <input type="text" class="form-control invoice-item-name mb-2" value="<?= $item_name ?>" name="name"/>
+                                            <textarea class="form-control" rows="2" id="item_<?=$item_id?>_description" name="description"><?= $item_description ?></textarea>
+                                        </div>
+                                        <div class="col-md-3 col-12 mb-md-0 mb-3">
+                                            <p class="mb-2 repeater-title">Unit Price</p>
+                                            <input type="text" name="price" class="form-control invoice-item-price mb-2" value="<?= $item_price ?>" placeholder="<?= $item_price ?>"/>
+                                            <div>
+                                                <span class="discount me-2"  data-bs-toggle="tooltip" data-bs-placement="top" title="Discount: <?=numfmt_format_currency($currency_format, $item_discount, $client_currency_code)?>"><?= $item_discount_percent ?>%</span>
+                                                <span class="tax me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Tax: <?= numfmt_format_currency($currency_format, $item_tax, $client_currency_code)?>"><?=$tax_percent?>%</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-12 mb-md-0 mb-3">
+                                            <p class="mb-2 repeater-title">Qty</p>
+                                            <input type="number" name="qty"  class="form-control invoice-item-qty" value="<?=$item_qty?>" placeholder="<?=$item_qty?>" min="1" max="" />
+                                        </div>
+                                        <div class="col-md-1 col-12 pe-0">
+                                            <p class="mb-2 repeater-title">Line Total</p>
+                                            <p class="mb-0"><?=numfmt_format_currency($currency_format, $item_total, $client_currency_code)?></p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column align-items-center justify-content-between border-start p-2">
+                                        <a href="/post.php?delete_invoice_item=<?=$item_id?>&invoice_id=<?=$invoice_id?>">
+                                            <i class="bx bx-x fs-4 text-muted cursor-pointer"></i>
+                                        </a>
+                                        <button id="SaveItem<?=$item_id?>" type="submit" name="edit_item" class="btn btn-link text-primary p-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Save Changes" hidden>
+                                            <i class="bx bx-check fs-4"></i>
+                                        </button>
+                                        <div class="dropdown">
+                                            <i class="bx bx-cog bx-xs text-muted cursor-pointer more-options-dropdown" role="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                            </i>
+                                            <div class="dropdown-menu dropdown-menu-end w-px-300 p-3" aria-labelledby="dropdownMenuButton">
+
+                                                <div class="row g-3">
+                                                    <div class="col-6" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $invoice_currency_code; ?> or end with % ">
+                                                        <label for="discountInput" class="form-label">Discount (<?php echo $invoice_currency_code; ?>) </label>
+                                                        <input class="form-control" id="discountInput" <?=$item_discount_percent ? 'value="'.$item_discount_percent.'%"' : 'placeholder="0%"'?> />
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="taxInput1" class="form-label">Tax</label>
+                                                        <select class="form-select select2 invoice-item-tax mb-2" name="tax_id" id="tax" style="width: 100%;">
+                                                        <option value="0">No Tax</option>
+                                                        <?php
+                                                        $tax_sql = "SELECT * FROM taxes";
+                                                        $tax_result = mysqli_query($mysqli, $tax_sql);
+
+                                                        while ($tax_row = mysqli_fetch_assoc($tax_result)) {
+                                                            $tax_id = $tax_row['tax_id'];
+                                                            $tax_name = $tax_row['tax_name'];
+                                                            $tax_rate = $tax_row['tax_percent'];
+                                                            ?>
+
+                                                            <option value="<?=$tax_id?>" data-rate="<?=$tax_rate?>" <?php if ($tax_id == $item_tax_id) { echo 'selected'; } ?>>
+                                                                <?=$tax_name?> (<?=$tax_rate?>%)
+                                                            </option>
+                                                        <?php } ?>
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    <?php } ?>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <button type="button" class="btn btn-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="invoice_add_item_modal.php?invoice_id=<?=$invoice_id?>">
+                            <i class="bx bx-plus me-1"></i>Add Item
+                        </button>
+                    </div>
+
+
+                    <hr class="my-4 mx-n4" />
+
+                    <div class="row py-sm-3">
+                        <div class="col-md-8 mb-md-0 mb-3">
+                            <div class="mb-3">
+                                <label for="note" class="form-label fw-medium">Note:</label>
+                                <textarea class="form-control" rows="2" id="note">It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance projects. Thank You!</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                            <div class="invoice-calculations">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="w-px-100">Subtotal:</span>
+                                    <span class="fw-medium"><?=numfmt_format_currency($currency_format, $subtotal, $client_currency_code)?></span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="w-px-100">Discount:</span>
+                                    <span class="fw-medium"><?=numfmt_format_currency($currency_format, $discount_total, $client_currency_code)?></span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="w-px-100">Tax:</span>
+                                    <span class="fw-medium"><?=numfmt_format_currency($currency_format, $tax_total, $client_currency_code)?></span>
+                                </div>
+                                <hr />
+                                <div class="d-flex justify-content-between">
+                                    <span class="w-px-100">Total:</span>
+                                    <span class="fw-medium"><?=numfmt_format_currency($currency_format, $subtotal-$discount_total+$tax_total, $client_currency_code)?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /Invoice Edit-->
+
+        <!-- Invoice Actions -->
+        <div class="col-lg-3 col-12 invoice-actions">
+            <div class="card mb-4">
+                <div class="card-body">
                     <?php if ($invoice_status == 'Draft') { ?>
-                        <button class="btn btn-soft-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-fw fa-paper-plane mr-2"></i>Send
+                        <button class="btn btn-primary dropdown-toggle d-grid w-100 d-flex align-items-center justify-content-center text-nowrap" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-fw fa-paper-plane me-1"></i>Send
                         </button>
                         <div class="dropdown-menu">
                             <?php if (!empty($config_smtp_host) && !empty($contact_email)) { ?>
@@ -175,979 +399,144 @@ if (isset($_GET['invoice_id'])) {
                             </a>
                         </div>
                     <?php } ?>
-
-                    <?php if ($invoice_status !== 'Paid' && $invoice_status !== 'Cancelled' && $invoice_status !== 'Draft') { ?>
-                        <a class="btn btn-success" href="#" data-bs-toggle="modal" data-bs-target="#addPaymentModal">
-                            <i class="fa fa-fw fa-credit-card mr-2"></i>Add Payment
-                        </a>
-                    <?php } ?>
-                </div>
-
-                <div class="col-4">
-
-                    <div class="dropdown dropleft text-center float-right">
-                        <button class="btn btn-light" type="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-ellipsis-v"></i>
+                    <div class="d-flex my-3">
+                        <a target="_blank" href="guest_view_invoice.php?invoice_id=<?php echo "$invoice_id&url_key=$invoice_url_key"; ?>" class="btn btn-label-primary w-100 me-3">Preview</a>
+                        <button class="btn btn-primary d-grid w-100" data-bs-toggle="offcanvas" data-bs-target="#addPaymentOffcanvas">
+                            <span class="d-flex align-items-center justify-content-center text-nowrap"><i class="bx bx-dollar bx-xs me-1"></i>Add Payment</span>
                         </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editInvoiceModal<?php echo $invoice_id; ?>">
-                                <i class="fa fa-fw fa-edit text-secondary mr-2"></i>Edit
-                            </a>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addInvoiceCopyModal<?php echo $invoice_id; ?>">
-                                <i class="fa fa-fw fa-copy text-secondary mr-2"></i>Copy
-                            </a>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addInvoiceRecurringModal<?php echo $invoice_id; ?>">
-                                <i class="fa fa-fw fa-sync-alt text-secondary mr-2"></i>Recurring
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" onclick="window.print();">
-                                <i class="fa fa-fw fa-print text-secondary mr-2"></i>Print
-                            </a>
-                            <a class="dropdown-item" href="#" onclick="pdfMake.createPdf(docDefinition).download('<?php echo strtoAZaz09(html_entity_decode("$invoice_date-$company_name-$client_name-Invoice-$invoice_prefix$invoice_number")); ?>');">
-                                <i class="fa fa-fw fa-download text-secondary mr-2"></i>Download PDF
-                            </a>
-                            <?php if (!empty($config_smtp_host) && !empty($contact_email)) { ?>
-                                <a class="dropdown-item" href="/post.php?email_invoice=<?php echo $invoice_id; ?>">
-                                    <i class="fa fa-fw fa-paper-plane text-secondary mr-2"></i>Send Email
-                                </a>
-                            <?php } ?>
-                            <a class="dropdown-item" target="_blank" href="guest_view_invoice.php?invoice_id=<?php echo "$invoice_id&url_key=$invoice_url_key"; ?>">
-                                <i class="fa fa-fw fa-link text-secondary mr-2"></i>Guest URL
-                            </a>
-                            <?php if ($invoice_status !== 'Cancelled' && $invoice_status !== 'Paid') { ?>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?cancel_invoice=<?php echo $invoice_id; ?>">
-                                    <i class="fa fa-fw fa-times mr-2"></i>Cancel
-                                </a>
-                            <?php } ?>
-                        </div>
                     </div>
-
                 </div>
-
             </div>
-
+            <div>
+                <div class="d-flex justify-content-between mb-2">
+                    <label for="client-notes" class="mb-0">Client Notes</label>
+                    <label class="switch switch-primary me-0">
+                        <input type="checkbox" class="switch-input" id="client-notes">
+                        <span class="switch-toggle-slider">
+                            <span class="switch-on">
+                                <i class="bx bx-check"></i>
+                            </span>
+                            <span class="switch-off">
+                                <i class="bx bx-x"></i>
+                            </span>
+                        </span>
+                        <span class="switch-label"></span>
+                    </label>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label for="payment-stub" class="mb-0">Payment Stub</label>
+                    <label class="switch switch-primary me-0">
+                        <input type="checkbox" class="switch-input" id="payment-stub">
+                        <span class="switch-toggle-slider">
+                            <span class="switch-on">
+                                <i class="bx bx-check"></i>
+                            </span>
+                            <span class="switch-off">
+                                <i class="bx bx-x"></i>
+                            </span>
+                        </span>
+                        <span class="switch-label"></span>
+                    </label>
+                </div>
+            </div>
         </div>
-
-        <div class="card-body">
-
-            <div class="row mb-4">
-                <div class="col-sm-2">
-                    <img class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>" alt="Company logo">
-                </div>
-                <div class="col-sm-10">
-                        <div class="d-print-none">
-                            <!-- Invoice Status Badge Float Right -->
-                            <div class="float-right">
-                                <span class="badge rounded-pill bg-label-lg badge-<?php echo $invoice_badge_color; ?>">
-                                    <?php echo $invoice_status; ?>
-                                </span>
-                            </div>
-                        </div>
-                    <h3 class="text-right mt-5"><strong>Invoice</strong><br><small class="text-secondary"><?php echo "$invoice_prefix$invoice_number"; ?></small></h3>
-                </div>
-
-            </div>
-            <div class="row mb-4">
-                <div class="col">
-                    <ul class="list-unstyled">
-                        <li><h4><strong><?php echo $company_name; ?></strong></h4></li>
-                        <li><?php echo $company_address; ?></li>
-                        <li><?php echo "$company_city $company_state $company_zip"; ?></li>
-                        <li><?php echo $company_phone; ?></li>
-                        <li><?php echo $company_email; ?></li>
-                        <li><?php echo $company_website; ?></li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <ul class="list-unstyled text-right">
-                        <li><h4><strong><?php echo $client_name; ?></strong></h4></li>
-                        <li><?php echo $location_address; ?></li>
-                        <li><?php echo "$location_city $location_state $location_zip"; ?></li>
-                        <li><?php echo "$contact_phone $contact_extension"; ?></li>
-                        <li><?php echo $contact_mobile; ?></li>
-                        <li><?php echo $contact_email; ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-sm-8">
-                </div>
-                <div class="col-sm-4">
-                    <table id=responsive class="responsive table">
-                        <tr>
-                            <td>Date</td>
-                            <td class="text-right"><?php echo $invoice_date; ?></td>
-                        </tr>
-                        <tr class="text-bold">
-                            <td>Due</td>
-                            <td class="text-right"><?php echo $invoice_due; ?></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
-            <?php $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE item_invoice_id = $invoice_id ORDER BY item_order ASC"); ?>
-
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <div class="card">
-                                <div class="card-datatable table-responsive container-fluid  pt-0">               
-                            <table id=responsive class="responsive table">
-                                <thead>
-                                <tr>
-                                    <th class="d-print-none"></th>
-                                    <th>Item</th>
-                                    <th>Description</th>
-                                    <th class="text-center">Quantity</th>
-                                    <th class="text-right">Price</th>
-                                    <th class="text-right">Tax</th>
-                                    <th class="text-right">Total</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-
-                                $total_tax = 0.00;
-                                $sub_total = 0.00;
-
-                                while ($row = mysqli_fetch_array($sql_invoice_items)) {
-                                    $item_id = intval($row['item_id']);
-                                    $item_name = nullable_htmlentities($row['item_name']);
-                                    $item_description = nullable_htmlentities($row['item_description']);
-                                    $item_quantity = floatval($row['item_quantity']);
-                                    $item_price = floatval($row['item_price']);
-                                    $item_tax = floatval($row['item_tax']);
-                                    $item_total = floatval($row['item_total']);
-                                    $item_created_at = nullable_htmlentities($row['item_created_at']);
-                                    $tax_id = intval($row['item_tax_id']);
-                                    $total_tax = $item_tax + $total_tax;
-                                    $sub_total = $item_price * $item_quantity + $sub_total;
-                                    $item_order = intval($row['item_order']);
-                                    // Logic to check if top or bottom arrow should be hidden
-                                    if ($item_order == 1) {
-                                        $up_hidden = "hidden";
-                                    } else {
-                                        $up_hidden = "";
-                                    }
-                                    if ($item_order == mysqli_num_rows($sql_invoice_items)) {
-                                        $down_hidden = "hidden";
-                                    } else {
-                                        $down_hidden = "";
-                                    }
-                                    ?>
-                                    <tr>
-                                        <td class="d-print-none">
-                                            <?php if ($invoice_status !== "Paid" && $invoice_status !== "Cancelled") { ?>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown">
-                                                        <i class="fas fa-ellipsis-v"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <form action="/post.php" method="post">
-                                                            <input type="hidden" name="item_invoice_id" value="<?php echo $invoice_id; ?>">
-                                                            <input type="hidden" name="item_id" value="<?php echo $item_id; ?>">
-                                                            <input type="hidden" name="item_order" value="<?php echo $item_order; ?>">
-                                                            <button class="dropdown-item" type="submit" name="update_invoice_item_order" value="up" <?php echo $up_hidden; ?>><i class="fas fa-fw fa-arrow-up mr-2"></i>Move Up</button>
-                                                            <?php if ($up_hidden == "" && $down_hidden == "") { echo '<div class="dropdown-divider"></div>'; }?>
-                                                            <button class="dropdown-item" type="submit" name="update_invoice_item_order" value="down" <?php echo $down_hidden; ?>><i class="fas fa-fw fa-arrow-down mr-2"></i>Move down</button>
-                                                        </form>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editItemModal<?php echo $item_id; ?>"><i class="fa fa-fw fa-edit mr-2"></i>Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?delete_invoice_item=<?php echo $item_id; ?>"><i class="fa fa-fw fa-trash mr-2"></i>Delete</a>
-                                                    </div>
-                                                </div>
-
-                                            <?php } ?>
-                                        </td>
-                                        <td><?php echo $item_name; ?></td>
-                                        <td><?php echo nl2br($item_description); ?></td>
-                                        <td class="text-center"><?php echo number_format($item_quantity, 2); ?></td>
-                                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_price, $invoice_currency_code); ?></td>
-                                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_tax, $invoice_currency_code); ?></td>
-                                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_total, $invoice_currency_code); ?></td>
-                                    </tr>
-                                    <?php
-                                    if ($invoice_status !== "Paid" && $invoice_status !== "Cancelled") {
-                                        require "/var/www/develop.twe.tech/includes/modals/item_edit_modal.php";
-                                    }
-                                }
-                                ?>
-                                <tr class="d-print-none" <?php if ($invoice_status == "Paid" || $invoice_status == "Cancelled") { echo "hidden"; } ?>>
-                                    <form action="/post.php" method="post" autocomplete="off">
-                                        <input type="hidden" name="invoice_id" value="<?php echo $invoice_id; ?>">
-                                        <input type="hidden" name="item_order" value="<?php echo mysqli_num_rows($sql_invoice_items) + 1; ?>">
-                                        <td></td>
-                                        <td>
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Item" required>
-                                        </td>
-                                        <td>
-                                            <textarea class="form-control " rows="2" id="desc" name="description" placeholder="Enter a Description"></textarea>
-                                        </td>
-                                        <td>
-                                            <input type="text" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" class="form-control" style="text-align: center;" id="qty" name="qty" placeholder="Quantity">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" style="text-align: right;" id="price" name="price" placeholder="Price (<?php echo $invoice_currency_code; ?>)">
-                                        </td>
-                                        <td>
-                                            <select class="form-control select2" id='select2' name="tax_id" id="tax" required>
-                                                <option value="0">No Tax</option>
-                                                <?php
-                                                $taxes_sql = mysqli_query($mysqli, "SELECT * FROM taxes WHERE tax_archived_at IS NULL ORDER BY tax_name ASC");
-                                                while ($row = mysqli_fetch_array($taxes_sql)) {
-                                                    $tax_id = intval($row['tax_id']);
-                                                    $tax_name = nullable_htmlentities($row['tax_name']);
-                                                    $tax_percent = floatval($row['tax_percent']);
-                                                    ?>
-                                                    <option value="<?php echo $tax_id; ?>"><?php echo "$tax_name $tax_percent%"; ?></option>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-light text-success" type="submit" name="add_invoice_item">
-                                                <i class="fa fa-check"></i>
-                                            </button>
-                                        </td>
-                                    </form>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-sm-7">
-                    <div class="card">
-                        <div class="card-header text-bold">
-                            Notes
-                            <div class="card-tools d-print-none">
-                                <a href="#" class="btn btn-light btn-tool" data-bs-toggle="modal" data-bs-target="#invoiceNoteModal">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <?php echo nl2br($invoice_note); ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3 offset-sm-2">
-                    <table id=responsive class="responsive table table-borderless">
-                        <tbody>
-
-                        <tr class="border-bottom">
-                            <td>Subtotal</td>
-                            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $sub_total, $invoice_currency_code); ?></td>
-                        </tr>
-                        <?php
-                        if ($invoice_discount > 0) {
-                            ?>
-                            <tr class="border-bottom">
-                                <td>Discount</td>
-                                <td class="text-right">-<?php echo numfmt_format_currency($currency_format, $invoice_discount, $invoice_currency_code); ?></td>
-                            </tr>
-                        <?php
-                        }
-                        ?>
-                        <?php if ($total_tax > 0) { ?>
-                            <tr class="border-bottom">
-                                <td>Tax</td>
-                                <td class="text-right"><?php echo numfmt_format_currency($currency_format, $total_tax, $invoice_currency_code); ?></td>
-                            </tr>
-                        <?php } ?>
-                        <tr class="border-bottom">
-                            <td>Total</td>
-                            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
-                        </tr>
-                        <?php
-                        if ($amount_paid > 0) { ?>
-                            <tr class="border-bottom">
-                                <td><div class="text-success">Paid</div></td>
-                                <td class="text-right text-success"><?php echo numfmt_format_currency($currency_format, $amount_paid, $invoice_currency_code); ?></td>
-                            </tr>
-                        <?php } ?>
-
-                        <tr class="border-bottom">
-                            <td><strong>Balance</strong></td>
-                            <td class="text-right"><strong><?php echo numfmt_format_currency($currency_format, $balance, $invoice_currency_code); ?></strong></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <hr class="d-none d-print-block mt-5">
-            <div class="d-none d-print-block text-center"><?php echo nl2br(nullable_htmlentities($config_invoice_footer)); ?></div>
-        </div>
+        <!-- /Invoice Actions -->
     </div>
-    <div class="row d-print-none mb-3">
-        <div class="col-sm">
-            <div class="card mb-3">
-                <div class="card-header text-bold">
-                    <i class="fa fa-history mr-2"></i>History
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <table id=responsive class="responsive table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php
 
-                        while ($row = mysqli_fetch_array($sql_history)) {
-                            $history_created_at = $row['history_created_at'];
-                            $history_status = nullable_htmlentities($row['history_status']);
-                            $history_description = nullable_htmlentities($row['history_description']);
+<!-- Include jQuery UI -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-                            ?>
-                            <tr>
-                                <td><?php echo $history_created_at; ?></td>
-                                <td><?php echo $history_status; ?></td>
-                                <td><?php echo $history_description; ?></td>
-                            </tr>
-                            <?php
-                        }
-                        ?>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm d-print-none">
-            <div class="card">
-                <div class="card-header text-bold">
-                    <i class="fa fa-credit-card mr-2"></i>Payments
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                            <div class="card-datatable table-responsive container-fluid  pt-0">               
-                        <table id=responsive class="responsive table">
-                            <thead class="<?php if (mysqli_num_rows($sql_payments) == 0) { echo "d-none"; } ?>">
-                                <tr>
-                                    <th>Date</th>
-                                    <th class="text-right">Amount</th>
-                                    <th>Reference</th>
-                                    <th>Account</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-
-                            while ($row = mysqli_fetch_array($sql_payments)) {
-                                $payment_id = intval($row['payment_id']);
-                                $payment_date = nullable_htmlentities($row['payment_date']);
-                                $payment_amount = floatval($row['payment_amount']);
-                                $payment_currency_code = nullable_htmlentities($row['payment_currency_code']);
-                                $payment_reference = nullable_htmlentities($row['payment_reference']);
-                                $account_name = nullable_htmlentities($row['account_name']);
-
-                                ?>
-                                <tr>
-                                    <td><?php echo $payment_date; ?></td>
-                                    <td class="text-right"><?php echo numfmt_format_currency($currency_format, $payment_amount, $payment_currency_code); ?></td>
-                                    <td><?php echo $payment_reference; ?></td>
-                                    <td><?php echo $account_name; ?></td>
-                                    <td class="text-center"><a class="btn btn-light text-danger confirm-link" href="/post.php?delete_payment=<?php echo $payment_id; ?>"><i class="fa fa-times"></i></a></td>
-                                </tr>
-                                <?php
-                            }
-                            ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm d-print-none">
-            <div class="card">
-                <div class="card-header text-bold">
-                    <i class="fa fa-cog mr-2"></i>Tickets
-                    <div class="card-tools">
-
-
-                        <?php if (mysqli_num_rows($sql_tickets_billable) > 0) { ?>
-                        <a class="btn btn-tool" href="#" data-bs-toggle="modal" data-bs-target="#addTicketModal">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                        <?php } ?>
-
-
-                        <a class="btn btn-tool" href="tickets.php?client_id=<?php echo $client_id; ?>">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-
-                        </button>
-
-
-                </div>
-
-                <div class="card-body">
-                            <div class="card-datatable table-responsive container-fluid  pt-0">               
-                        <table id=responsive class="responsive table">
-                            <thead class="<?php if (mysqli_num_rows($sql_tickets) == 0) { echo "d-none"; } ?>">
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Subject</th>
-                                    <th>Status</th>
-                                    <th>Priority</th>
-                                    <th>Assigned To</th>
-                                    <th class="text-right">Time Worked</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-
-                            while ($row = mysqli_fetch_array($sql_tickets)) {
-                                $ticket_id = intval($row['ticket_id']);
-                                $ticket_created_at = nullable_htmlentities($row['ticket_created_at']);
-                                $ticket_subject = nullable_htmlentities($row['ticket_subject']);
-                                $ticket_status = nullable_htmlentities($row['ticket_status']);
-                                $ticket_priority = nullable_htmlentities($row['ticket_priority']);
-                                $ticket_assigned_to_id = intval($row['ticket_assigned_to']);
-                                $ticket_total_time_worked = floatval($row['total_time_worked']);
-
-                                $sql_assigned_to = mysqli_query($mysqli, "SELECT * FROM users WHERE user_id = $ticket_assigned_to_id");
-                                $row = mysqli_fetch_array($sql_assigned_to);
-                                $ticket_assigned_to = nullable_htmlentities($row['user_name']);
-
-                                ?>
-                                <tr>
-                                    <td><?php echo $ticket_created_at; ?></td>
-                                    <td><?php echo $ticket_subject; ?></td>
-                                    <td><?php echo $ticket_status; ?></td>
-                                    <td><?php echo $ticket_priority; ?></td>
-                                    <td><?php echo $ticket_assigned_to; ?></td>
-                                    <td class="text-right"><?php echo $ticket_total_time_worked; ?></td>
-
-                                </tr>
-                                <?php
-                            }
-                            ?>
-                            </tbody>
-                        </table>
-                    </div>
-        </div>
-    </div>
-    <?php
-    include_once "/var/www/develop.twe.tech/includes/modals/invoice_add_ticket_modal.php";
-
-    include_once "/var/www/develop.twe.tech/includes/modals/invoice_payment_add_modal.php";
-
-    include_once "/var/www/develop.twe.tech/includes/modals/invoice_copy_modal.php";
-
-    include_once "/var/www/develop.twe.tech/includes/modals/invoice_recurring_add_modal.php";
-
-    include_once "/var/www/develop.twe.tech/includes/modals/invoice_edit_modal.php";
-
-    include_once "/var/www/develop.twe.tech/includes/modals/invoice_note_modal.php";
-
-}
-
-require_once '/var/www/develop.twe.tech/includes/footer.php';
-
-
-?>
-
-<!-- JSON Autocomplete / type ahead -->
-<link rel="stylesheet" href="plugins/jquery-ui/jquery-ui.min.css">
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <script>
-    $(function() {
-        var availableProducts = <?php echo $json_products?>;
+$(document).ready(function() {
+    $(document).on('modalContentLoaded', function() {
+        // Bind event handlers to the inputs after the modal content has been loaded
+        // Get the description of the selected product
+        $(function() {
+            var availableProducts = <?php echo $json_products?>;
+            var zIndex = $('#name').css('z-index');
 
-        $("#name").autocomplete({
-            source: availableProducts,
-            select: function (event, ui) {
-                $("#name").val(ui.item.label); // Product name field - this seemingly has to referenced as label
-                $("#desc").val(ui.item.description); // Product description field
-                $("#qty").val(1); // Product quantity field automatically make it a 1
-                $("#price").val(ui.item.price); // Product price field
-                $("#tax").val(ui.item.tax); // Product tax field
-                return false;
+            $("#name").autocomplete({
+                source: availableProducts,
+                select: function (event, ui) {
+                    $("#name").val(ui.item.label); // Product name field - this seemingly has to referenced as label
+                    $("#desc").val(ui.item.description); // Product description field
+                    $("#qty").val(1); // Product quantity field automatically make it a 1
+                    $("#price").val(ui.item.price); // Product price field
+                    $(".invoice-item-tax-modal").val(ui.item.tax).trigger('change'); // Product tax field
+                    if (tinymce.get("desc")) { // Check if the TinyMCE instance for 'desc' exists
+                        tinymce.get("desc").setContent(ui.item.description);
+                    }
+                    updateLineTotal();
+                    return false;
+                }
+            });
+
+            // Event listeners for when the inputs are changed
+            $('#price, #qty, .invoice-item-discount').on('input', function() {
+                updateLineTotal(); // Call the update function when price, qty, or discount changes
+            });
+
+            $('.invoice-item-tax-modal').on('change', function() {
+                updateLineTotal();
+            });
+
+            console.log("Length: ", $('.invoice-item-tax').length); // Check how many selects with this class are present
+            $('.invoice-item-tax').each(function() {
+                console.log("Num Options: ", $(this).find('option:selected').length); // Check how many options are selected in each
+                console.log("Data Rata: ", $(this).find('option:selected').data('rate')); // Log the data rate of selected options
+            });
+
+            function updateLineTotal() {
+                var price = parseFloat($('#price').val()) || 0; // Get the price or 0 if empty
+                var qty = parseFloat($('#qty').val()) || 0; // Get the quantity or 0 if empty
+                var discountInput = $('.invoice-item-discount').val().trim(); // Get the discount value
+                var taxRate = $('.invoice-item-tax-modal').find(':selected').data('rate') || 0;
+
+                var subtotal = price * qty; // Calculate the subtotal
+                var taxAmount = subtotal * (taxRate / 100); // Calculate the tax amount
+                var discount = 0; // Initialize discount
+
+                if (discountInput.endsWith('%')) {
+                    var discountPercentage = parseFloat(discountInput) || 0; // Parse the percentage number
+                    discount = (subtotal * discountPercentage / 100); // Calculate percentage-based discount
+                } else {
+                    discount = parseFloat(discountInput) || 0; // Otherwise, treat it as a fixed amount
+                }
+
+                var total = subtotal + taxAmount - discount; // Calculate the total after tax and discount
+                $('.invoice-item-total').val(total.toFixed(2)); // Set the calculated total, formatted to 2 decimal places
             }
         });
     });
-</script>
 
-<script src='plugins/pdfmake/pdfmake.min.js'></script>
-<script src='plugins/pdfmake/vfs_fonts.js'></script>
-<script>
 
-    var docDefinition = {
-        info: {
-            title: <?php echo json_encode(html_entity_decode($company_name) . "- Invoice") ?>,
-            author: <?php echo json_encode(html_entity_decode($company_name)) ?>
-        },
 
-        //watermark: {text: '<?php echo $invoice_status; ?>', color: 'lightgrey', opacity: 0.3, bold: true, italics: false},
 
-        content: [
-            // Header
-            {
-                columns: [
-                    <?php if (!empty($company_logo_base64)) { ?>
-                    {
-                        image: <?php echo json_encode("data:image;base64,$company_logo_base64") ?>,
-                        width: 120
-                    },
-                    <?php } ?>
 
-                    [
-                        {
-                            text: 'Invoice',
-                            style: 'invoiceTitle',
-                            width: '*'
-                        },
-                        {
-                            text: <?php echo json_encode(html_entity_decode("$invoice_prefix$invoice_number")) ?>,
-                            style: 'invoiceNumber',
-                            width: '*'
-                        },
-                    ],
-                ],
-            },
-            // Billing Headers
-            {
-                columns: [
-                    {
-                        text: <?php echo json_encode(html_entity_decode($company_name)) ?>,
-                        style: 'invoiceBillingTitle',
-                    },
-                    {
-                        text: <?php echo json_encode(html_entity_decode($client_name)) ?>,
-                        style: 'invoiceBillingTitleClient',
-                    },
-                ]
-            },
-            // Billing Address
-            {
-                columns: [
-                    {
-                        text: <?php echo json_encode(html_entity_decode("$company_address \n $company_city $company_state $company_zip \n $company_phone \n $company_website")) ?>,
-                        style: 'invoiceBillingAddress'
-                    },
-                    {
-                        text: <?php echo json_encode(html_entity_decode("$location_address \n $location_city $location_state $location_zip \n $contact_email \n $contact_phone")) ?>,
-                        style: 'invoiceBillingAddressClient'
-                    },
-                ]
-            },
-            //Invoice Dates Table
-            {
-                table: {
-                    // headers are automatically repeated if the table spans over multiple pages
-                    // you can declare how many rows should be treated as headers
-                    headerRows: 0,
-                    widths: [ '*',80, 80 ],
+    // Find all input, textarea, and select elements within any 'item-container' div
+    document.querySelectorAll('.item-container input, .item-container textarea, .item-container select').forEach(function(element) {
+        element.addEventListener('change', function() {
+            // Find the closest parent element with the class 'item-container'
+            var itemContainer = this.closest('.item-container');
 
-                    body: [
-                        // Total
-                        [
-                            {
-                                text: '',
-                                rowSpan: 3
-                            },
-                            {},
-                            {},
-                        ],
-                        [
-                            {},
-                            {
-                                text: 'Date',
-                                style: 'invoiceDateTitle'
-                            },
-                            {
-                                text: <?php echo json_encode($invoice_date) ?>,
-                                style: 'invoiceDateValue'
-                            },
-                        ],
-                        [
-                            {},
-                            {
-                                text: 'Due',
-                                style: 'invoiceDueDateTitle'
-                            },
-                            {
-                                text: <?php echo json_encode($invoice_due) ?>,
-                                style: 'invoiceDueDateValue'
-                            },
-                        ],
-                    ]
-                }, // table
-                layout: 'lightHorizontalLines'
-            },
-            // Line breaks
-            '\n\n',
-            // Items
-            {
-                table: {
-                    // headers are automatically repeated if the table spans over multiple pages
-                    // you can declare how many rows should be treated as headers
-                    headerRows: 1,
-                    widths: [ '*', 40, 'auto', 'auto', 80 ],
-
-                    body: [
-                        // Table Header
-                        [
-                            {
-                                text: 'Product',
-                                style: [ 'itemsHeader', 'left']
-                            },
-                            {
-                                text: 'Qty',
-                                style: [ 'itemsHeader', 'center']
-                            },
-                            {
-                                text: 'Price',
-                                style: [ 'itemsHeader', 'right']
-                            },
-                            {
-                                text: 'Tax',
-                                style: [ 'itemsHeader', 'right']
-                            },
-                            {
-                                text: 'Total',
-                                style: [ 'itemsHeader', 'right']
-                            }
-                        ],
-                        // Items
-                        <?php
-                        $total_tax = 0.00;
-                        $sub_total = 0.00;
-
-                        $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE item_invoice_id = $invoice_id ORDER BY item_order ASC");
-
-                        while ($row = mysqli_fetch_array($sql_invoice_items)) {
-                        $item_name = $row['item_name'];
-                        $item_description = $row['item_description'];
-                        $item_quantity = $row['item_quantity'];
-                        $item_price = $row['item_price'];
-                        $item_subtotal = $row['item_price'];
-                        $item_tax = $row['item_tax'];
-                        $item_total = $row['item_total'];
-                        $tax_id = $row['item_tax_id'];
-                        $total_tax = $item_tax + $total_tax;
-                        $sub_total = $item_price * $item_quantity + $sub_total;
-                        ?>
-
-                        // Item
-                        [
-                            [
-                                {
-                                    text: <?php echo json_encode($item_name) ?>,
-                                    style: 'itemTitle'
-                                },
-                                {
-                                    text: <?php echo json_encode($item_description) ?>,
-                                    style: 'itemDescription'
-                                }
-                            ],
-                            {
-                                text: <?php echo json_encode($item_quantity) ?>,
-                                style: 'itemQty'
-                            },
-                            {
-                                text: <?php echo json_encode(numfmt_format_currency($currency_format, $item_price, $invoice_currency_code)) ?>,
-                                style: 'itemNumber'
-                            },
-                            {
-                                text: <?php echo json_encode(numfmt_format_currency($currency_format, $item_tax, $invoice_currency_code)) ?>,
-                                style: 'itemNumber'
-                            },
-                            {
-                                text: <?php echo json_encode(numfmt_format_currency($currency_format, $item_total, $invoice_currency_code)) ?>,
-                                style: 'itemNumber'
-                            }
-                        ],
-
-                        <?php
-                        }
-                        ?>
-                        // END Items
-                    ]
-                }, // table
-                layout: 'lightHorizontalLines'
-            },
-            // TOTAL
-            {
-                table: {
-                    // headers are automatically repeated if the table spans over multiple pages
-                    // you can declare how many rows should be treated as headers
-                    headerRows: 0,
-                    widths: [ '*','auto', 80 ],
-
-                    body: [
-                        // Total
-                        [
-                            {
-                                text: 'Notes',
-                                style: 'notesTitle'
-                            },
-                            {},
-                            {}
-                        ],
-                        [
-                            {
-                                rowSpan: '*',
-                                text: <?php echo json_encode(html_entity_decode($invoice_note)) ?>,
-                                style: 'notesText'
-                            },
-                            {
-                                text: 'Subtotal',
-                                style: 'itemsFooterSubTitle'
-                            },
-                            {
-                                text: <?php echo json_encode(numfmt_format_currency($currency_format, $sub_total, $invoice_currency_code)) ?>,
-                                style: 'itemsFooterSubValue'
-                            }
-                        ],
-                        <?php if ($invoice_discount > 0) { ?>
-                        [
-                            {},
-                            {
-                                text: 'Discount',
-                                style: 'itemsFooterSubTitle'
-                            },
-                            {
-                                text: <?php echo json_encode(numfmt_format_currency($currency_format, -$invoice_discount, $invoice_currency_code)) ?>,
-                                style: 'itemsFooterSubValue'
-                            }
-                        ],
-                        <?php } ?>
-                        <?php if ($total_tax > 0) { ?>
-                        [
-                            {},
-                            {
-                                text: 'Tax',
-                                style: 'itemsFooterSubTitle'
-                            },
-                            {
-                                text: <?php echo json_encode(numfmt_format_currency($currency_format, $total_tax, $invoice_currency_code)) ?>,
-                                style: 'itemsFooterSubValue'
-                            }
-                        ],
-                        <?php } ?>
-                        [
-                            {},
-                            {
-                                text: 'Total',
-                                style: 'itemsFooterSubTitle'
-                            },
-                            {
-                                text: <?php echo json_encode(numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code)) ?>,
-                                style: 'itemsFooterSubValue'
-                            }
-                        ],
-                        <?php if ($amount_paid > 0) { ?>
-                        [
-                            {},
-                            {
-                                text: 'Paid',
-                                style: 'itemsFooterSubTitle'
-                            },
-                            {
-                                text: <?php echo json_encode(numfmt_format_currency($currency_format, $amount_paid, $invoice_currency_code)) ?>,
-                                style: 'itemsFooterSubValue'
-                            }
-                        ],
-                        <?php } ?>
-                        [
-                            {},
-                            {
-                                text: 'Balance',
-                                style: 'itemsFooterTotalTitle'
-                            },
-                            {
-                                text: <?php echo json_encode(numfmt_format_currency($currency_format, $balance, $invoice_currency_code)) ?>,
-
-                                style: 'itemsFooterTotalValue'
-                            }
-                        ],
-                    ]
-                }, // table
-                layout: 'lightHorizontalLines'
-            },
-            // TERMS / FOOTER
-            {
-                text: <?php echo json_encode($config_invoice_footer) ?>,
-                style: 'documentFooterCenter'
+            // Find the save button within this container and show it
+            var saveButton = itemContainer.querySelector('.btn[data-bs-original-title="Save Changes"]');
+            if (saveButton) {
+                saveButton.hidden = false;
             }
-        ], //End Content,
-        styles: {
-            // Document Footer
-            documentFooterCenter: {
-                fontSize: 9,
-                margin: [10,50,10,10],
-                alignment: 'center',
-            },
-            // Invoice Title
-            invoiceTitle: {
-                fontSize: 18,
-                bold: true,
-                alignment: 'right',
-                margin: [0,0,0,3]
-            },
-            // Invoice Number
-            invoiceNumber: {
-                fontSize: 14,
-                alignment: 'right'
-            },
-            // Billing Headers
-            invoiceBillingTitle: {
-                fontSize: 14,
-                bold: true,
-                alignment: 'left',
-                margin: [0,20,0,5]
-            },
-            invoiceBillingTitleClient: {
-                fontSize: 14,
-                bold: true,
-                alignment: 'right',
-                margin: [0,20,0,5]
-            },
-            // Billing Details
-            invoiceBillingAddress: {
-                fontSize: 10,
-                lineHeight: 1.2
-            },
-            invoiceBillingAddressClient: {
-                fontSize: 10,
-                lineHeight: 1.2,
-                alignment: 'right',
-                margin: [0,0,0,30]
-            },
-            // Invoice Date
-            invoiceDateTitle: {
-                fontSize: 10,
-                alignment: 'left',
-                margin: [0,5,0,5]
-            },
-            invoiceDateValue: {
-                fontSize: 10,
-                alignment: 'right',
-                margin: [0,5,0,5]
-            },
-            // Invoice Due Date
-            invoiceDueDateTitle: {
-                fontSize: 10,
-                bold: true,
-                alignment: 'left',
-                margin: [0,5,0,5]
-            },
-            invoiceDueDateValue: {
-                fontSize: 10,
-                bold: true,
-                alignment: 'right',
-                margin: [0,5,0,5]
-            },
-            // Items Header
-            itemsHeader: {
-                fontSize: 10,
-                margin: [0,5,0,5],
-                bold: true,
-                alignment: 'right'
-            },
-            // Item Title
-            itemTitle: {
-                fontSize: 10,
-                bold: true,
-                margin: [0,5,0,3]
-            },
-            itemDescription: {
-                italics: true,
-                fontSize: 9,
-                lineHeight: 1.1,
-                margin: [0,3,0,5]
-            },
-            itemQty: {
-                fontSize: 10,
-                margin: [0,5,0,5],
-                alignment: 'center'
-            },
-            itemNumber: {
-                fontSize: 10,
-                margin: [0,5,0,5],
-                alignment: 'right'
-            },
-            itemTotal: {
-                fontSize: 10,
-                margin: [0,5,0,5],
-                bold: true,
-                alignment: 'right'
-            },
-            // Items Footer (Subtotal, Total, Tax, etc)
-            itemsFooterSubTitle: {
-                fontSize: 10,
-                margin: [0,5,0,5],
-                alignment:'right'
-            },
-            itemsFooterSubValue: {
-                fontSize: 10,
-                margin: [0,5,0,5],
-                bold: false,
-                alignment: 'right'
-            },
-            itemsFooterTotalTitle: {
-                fontSize: 10,
-                margin: [0,5,0,5],
-                bold: true,
-                alignment: 'right'
-            },
-            itemsFooterTotalValue: {
-                fontSize: 10,
-                margin: [0,5,0,5],
-                bold: true,
-                alignment: 'right'
-            },
-            notesTitle: {
-                fontSize: 10,
-                bold: true,
-                margin: [0,5,0,5]
-            },
-            notesText: {
-                fontSize: 9,
-                margin: [0,5,50,5]
-            },
-            left: {
-                alignment: 'left'
-            },
-            center: {
-                alignment: 'center'
-            },
-        },
-        defaultStyle: {
-            columnGap: 20
-        }
-    }
+        });
+    });
+
+});
 </script>
+
+<style>
+    .ui-autocomplete {
+        z-index: 9999999;
+    }
+</style>
+
+<?php
+}
+require_once '/var/www/develop.twe.tech/includes/footer.php';
+?>

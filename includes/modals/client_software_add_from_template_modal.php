@@ -9,8 +9,8 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <div class="modal-body bg-white">
+                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
 
                     <label>Template</label>
                     <div class="form-group">
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_software_from_template" class="btn btn-soft-primary text-bold"></i>Create</button>
+                    <button type="submit" name="add_software_from_template" class="btn btn-label-primary text-bold"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

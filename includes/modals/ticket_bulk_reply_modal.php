@@ -36,7 +36,7 @@
 
             </div>
             <div class="modal-footer bg-white">
-                <button type="submit" name="bulk_ticket_reply" class="btn btn-soft-primary text-bold"><i class="fas fa-paper-plane mr-2"></i>Reply</button>
+                <button type="submit" name="bulk_ticket_reply" class="btn btn-label-primary text-bold"><i class="fas fa-paper-plane mr-2"></i>Reply</button>
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
             </div>
         </div>

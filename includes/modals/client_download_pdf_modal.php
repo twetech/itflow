@@ -9,8 +9,9 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <div class="modal-body bg-white">
+                    <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+
                     <ul class="list-group">
                         <div class="row">
                             <div class="col-sm-6">
@@ -178,7 +179,7 @@
                     </ul>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="export_client_pdf" class="btn btn-soft-primary text-bold"><i class="fa fa-fw fa-download mr-2"></i>Export</button>
+                    <button type="submit" name="export_client_pdf" class="btn btn-label-primary text-bold"><i class="fa fa-fw fa-download mr-2"></i>Export</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

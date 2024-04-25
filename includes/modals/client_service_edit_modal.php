@@ -17,13 +17,13 @@
 
           <ul class="nav nav-pills  mb-3">
             <li class="nav-item">
-              <a class="nav-link active" data-bs-toggle="pill" href="#pills-overview<?php echo $service_id ?>">Overview</a>
+              <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-overview<?php echo $service_id ?>">Overview</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="pill" href="#pills-general<?php echo $service_id ?>">General</a>
+              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-general<?php echo $service_id ?>">General</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="pill" href="#pills-assets<?php echo $service_id ?>">Assets</a>
+              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-assets<?php echo $service_id ?>">Assets</a>
             </li>
           </ul>
 
@@ -94,7 +94,7 @@
               </div>
             </div>
 
-            <div class="tab-pane fade" id="pills-general<?php echo $service_id ?>">
+            <div class="tab-pane fade" role="tabpanel" id="pills-general<?php echo $service_id ?>">
 
               <div class="form-group">
                 <label for="contacts">Contacts</label>
@@ -173,7 +173,7 @@
             </div>
 
 
-            <div class="tab-pane fade" id="pills-assets<?php echo $service_id ?>">
+            <div class="tab-pane fade" role="tabpanel" id="pills-assets<?php echo $service_id ?>">
 
               <div class="form-group">
                 <label for="assets">Assets</label>
@@ -267,7 +267,7 @@
           </div>
         </div>
         <div class="modal-footer bg-white">
-          <button type="submit" name="edit_service" class="btn btn-soft-primary text-bold"></i>Save</button>
+          <button type="submit" name="edit_service" class="btn btn-label-primary text-bold"></i>Save</button>
           <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
         </div>
       </form>

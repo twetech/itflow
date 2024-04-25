@@ -28,14 +28,14 @@ $menuItems = [
         ]
     ],
     [
-        'title' => 'Finance',
+        'title' => 'Accounting',
         'icon' => 'bx bx-money-withdraw',
         'children' => [
             ['title' => 'Payments', 'link' => '/pages/payments.php', 'icon' => 'bx bx-credit-card'],
             ['title' => 'Expenses', 'link' => '/pages/expenses.php', 'icon' => 'bx bx-money'],
             ['title' => 'Transfers', 'link' => '/pages/transfers.php', 'icon' => 'bx bx-transfer'],
             ['title' => 'Accounts', 'link' => '/pages/accounts.php', 'icon' => 'bx bx-wallet'],
-            
+            ['title' => 'Credits', 'link' => '/pages/credits.php', 'icon' => 'bx bx-money']
         ]
     ],
     [
@@ -167,7 +167,8 @@ $clientMenuItems = [
             ['title' => 'Invoices', 'link' => '/pages/client/client_invoices.php?client_id=' . $client_id, 'icon' => 'bx bx-receipt'],
             ['title' => 'Estimates', 'link' => '/pages/client/client_quotes.php?client_id=' . $client_id, 'icon' => 'bx bx-message-square-detail'],
             ['title' => 'Payments', 'link' => '/pages/client/client_payments.php?client_id=' . $client_id, 'icon' => 'bx bx-credit-card'],
-            ['title' => 'Statements', 'link' => '/pages/client/client_statements.php?client_id=' . $client_id, 'icon' => 'bx bx-file'],
+            ['title' => 'Statements', 'link' => '/pages/client/client_statement.php?client_id=' . $client_id, 'icon' => 'bx bx-file'],
+            ['title' => 'Credits', 'link' => '/pages/client/client_credits.php?client_id=' . $client_id, 'icon' => 'bx bx-money'],
         ]
     ],
     [
@@ -479,7 +480,7 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                     <!-- Menu -->
                     <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
                         <div class="container-xxl d-flex h-100">
-                            <?php if (isset($page_is_client) || isset($page_is_ticket)) {
+                            <?php if (isset($client_page)) {
                                 renderMenu($clientMenuItems);
                             } else {
                                 renderMenu($menuItems);
@@ -491,7 +492,7 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
 
-                    <?php if (isset($page_is_client)) { //if page is client page (client.php, client-*.php
+                    <?php if (isset($client_page)) { //if page is client page (client.php, client-*.php
                         require_once "/var/www/develop.twe.tech/includes/inc_client_top_head.php";
                     }
                     ?>
@@ -501,7 +502,7 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/pages/dashboard.php">Home</a></li>
                                 
-                                <?php if (isset($page_is_client) || isset($page_is_ticket)) { ?>
+                                <?php if (isset($client_page)) { ?>
                                     <li class="breadcrumb-item">
                                         <a href="/pages/client/client_overview.php?client_id=<?= $client_id ?>">
                                             <?= ucfirst($client_name) ?>

@@ -66,7 +66,7 @@ $vendor_name = nullable_htmlentities($row['vendor_name']);
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_ticket_vendor" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_ticket_vendor" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
 

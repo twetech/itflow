@@ -39,7 +39,7 @@
             </div>
 
             <div class="modal-footer bg-white">
-                <button type="submit" name="bulk_assign_ticket" class="btn btn-soft-primary text-bold"></i>Bulk Assign</button>
+                <button type="submit" name="bulk_assign_ticket" class="btn btn-label-primary text-bold"></i>Bulk Assign</button>
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
             </div>
 

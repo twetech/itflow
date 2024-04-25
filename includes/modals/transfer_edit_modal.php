@@ -9,13 +9,14 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="transfer_id" value="<?php echo $transfer_id; ?>">
-                <input type="hidden" name="expense_id" value="<?php echo $expense_id; ?>">
-                <input type="hidden" name="revenue_id" value="<?php echo $revenue_id; ?>">
+
 
                 <div class="modal-body bg-white">
 
                     <div class="form-row">
+                <input type="hidden" name="expense_id" value="<?php echo $expense_id; ?>">
+                <input type="hidden" name="revenue_id" value="<?php echo $revenue_id; ?>">
+                <input type="hidden" name="transfer_id" value="<?php echo $transfer_id; ?>">
 
                         <div class="form-group col-sm">
                             <label>Date <strong class="text-danger">*</strong></label>
@@ -158,7 +159,7 @@
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_transfer" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
+                    <button type="submit" name="edit_transfer" class="btn btn-label-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

@@ -17,9 +17,18 @@ function createInvoiceItem(
     $tax_id = $item['item_tax_id'];
     $item_order = $item['item_order'];
     $invoice_id = $item['item_invoice_id'];
+    $discount = $item['item_discount'];
     $subtotal = $price * $qty;
 
+    // if discount ends in %, calculate discount amount
+    if (substr($discount, -1) == '%') {
+        $discount = substr($discount, 0, -1);
+        $discount = floatval($discount);
 
+        $discount = $subtotal * $discount / 100;
+    } else {
+        $discount = floatval($discount);
+    }
 
     if ($type == 'recurring'){
         $recurring_id = $invoice_id;
@@ -80,32 +89,21 @@ function createInvoiceItem(
         $tax_amount = 0;
     }
 
-    $total = $subtotal + $tax_amount;
+    $total = $subtotal + $tax_amount - $discount;
 
-    mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$name', item_description = '$description', item_quantity = $qty, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_order = $item_order, item_tax_id = $tax_id, item_invoice_id = $invoice_id");
+    mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$name', item_description = '$description', item_quantity = $qty, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_discount = $discount, item_order = $item_order, item_tax_id = $tax_id, item_invoice_id = $invoice_id");
 
-    //Get Discount
-
-    $sql = mysqli_query($mysqli,"SELECT * FROM invoices WHERE invoice_id = $invoice_id");
-    $row = mysqli_fetch_array($sql);
-    if($invoice_id > 0){
-        $invoice_discount = floatval($row['invoice_discount_amount']);
-    } else {
-        $invoice_discount = 0;
-    }
 
     //add up all line items
     $sql = mysqli_query($mysqli,"SELECT * FROM invoice_items WHERE item_invoice_id = $invoice_id");
     $invoice_total = 0;
     while($row = mysqli_fetch_array($sql)) {
         $item_total = floatval($row['item_total']);
-        $invoice_total = $invoice_total + $item_total;
+        $invoice_total += $item_total;
     }
-    $new_invoice_amount = $invoice_total - $invoice_discount;
+    $new_invoice_amount = $invoice_total;
 
     mysqli_query($mysqli,"UPDATE invoices SET invoice_amount = $new_invoice_amount WHERE invoice_id = $invoice_id");
-
-    
     }
 }
 

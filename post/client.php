@@ -1,12 +1,15 @@
 <?php
 
+global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id;
+
+
 /*
  * ITFlow - GET/POST request handler for clients/customers (overview)
  */
 
 if (isset($_POST['add_client'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/models/client_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/client_model.php';
 
 
     validateAdminRole();

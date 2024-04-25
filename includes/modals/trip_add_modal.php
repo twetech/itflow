@@ -10,8 +10,8 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="roundtrip" value="0">
                 <div class="modal-body bg-white">
+                <input type="hidden" name="roundtrip" value="0">
 
                     <div class="form-row">
                         <div class="form-group col">
@@ -141,7 +141,7 @@
                 </div>
 
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="add_trip" class="btn btn-soft-primary text-bold"></i>Create</button>
+                    <button type="submit" name="add_trip" class="btn btn-label-primary text-bold"></i>Create</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

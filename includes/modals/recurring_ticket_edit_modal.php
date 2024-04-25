@@ -10,23 +10,23 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="scheduled_ticket_id" id="editTicketId">
-                <input type="hidden" name="client" id="editClientId">
+
 
                 <div class="modal-body bg-white">
-
+                <input type="hidden" name="scheduled_ticket_id" id="editTicketId">
+                <input type="hidden" name="client" id="editClientId">
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#pills-edit-details"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-edit-details"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-edit-contacts"><i class="fa fa-fw fa-users mr-2"></i>Contacts</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-edit-contacts"><i class="fa fa-fw fa-users mr-2"></i>Contacts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-edit-schedule"><i class="fa fa-fw fa-building mr-2"></i>Schedule</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-edit-schedule"><i class="fa fa-fw fa-building mr-2"></i>Schedule</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#pills-edit-assets"><i class="fa fa-fw fa-desktop mr-2"></i>Assets</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-edit-assets"><i class="fa fa-fw fa-desktop mr-2"></i>Assets</a>
                         </li>
                     </ul>
 
@@ -77,7 +77,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-edit-contacts">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-edit-contacts">
 
                             <div class="form-group">
                                 <label>Contact <strong class="text-danger">*</strong></label>
@@ -93,7 +93,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-edit-schedule">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-edit-schedule">
 
                             <div class="form-group">
                                 <label>Frequency <strong class="text-danger">*</strong></label>
@@ -124,7 +124,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="pills-edit-assets">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-edit-assets">
 
                             <div class="form-group">
                                 <label>Asset</label>
@@ -144,7 +144,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_recurring_ticket" class="btn btn-soft-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
+                    <button type="submit" name="edit_recurring_ticket" class="btn btn-label-primary text-bold"><i class="fas fa-check mr-2"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>

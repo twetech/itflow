@@ -28,7 +28,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <i class="fas fa-fw fa-building mr-2"></i>Vendor Templates
             </h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-soft-primary" data-bs-toggle="modal" data-bs-target="#addVendorTemplateModal">
+                <button type="button" class="btn btn-label-primary" data-bs-toggle="modal" data-bs-target="#addVendorTemplateModal">
                     <i class="fas fa-plus mr-2"></i>New Vendor Template
                 </button>
             </div>

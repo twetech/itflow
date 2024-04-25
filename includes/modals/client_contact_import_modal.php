@@ -22,7 +22,7 @@
                     <div>Download: <a class="text-bold" href="/post.php?download_client_contacts_csv_template=<?php echo $client_id; ?>">sample csv template</a></div>
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="import_client_contacts_csv" class="btn btn-soft-primary text-strong"><i class="fas fa-upload mr-2"></i>Import</button>
+                    <button type="submit" name="import_client_contacts_csv" class="btn btn-label-primary text-strong"><i class="fas fa-upload mr-2"></i>Import</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

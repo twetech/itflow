@@ -1,8 +1,10 @@
 <?php
 
-
 if (isset($_GET['client_id'])) {
     $client_id = intval($_GET['client_id']);
+}
+
+if (isset($client_id)) {
 
     $sql = mysqli_query($mysqli, "UPDATE clients SET client_accessed_at = NOW() WHERE client_id = $client_id");
 

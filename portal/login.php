@@ -7,11 +7,12 @@
 header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
 
 $session_company_id = 1;
-require_once '../config.php';
+require_once '/var/www/develop.twe.tech/includes/config.php';
 
-require_once '../functions.php';
+require_once '/var/www/develop.twe.tech/includes/get_settings.php';
 
-require_once ('../get_settings.php');
+require_once '/var/www/develop.twe.tech/includes/functions/functions.php';
+
 
 if (!isset($_SESSION)) {
     // HTTP Only cookies
@@ -77,34 +78,63 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
+
+<!doctype html>
+
+<html lang="en" class="light-style layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="/includes/assets/" data-template="horizontal-menu-template">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?php echo $company_name; ?> | Client Portal Login</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex">
+    <title>ITFlow-NG</title>
 
-    <!-- 
-    Favicon
-    If Fav Icon exists else use the default one 
-    -->
-    <?php if(file_exists('..//uploads/favicon.ico')) { ?>
-        <link rel="icon" type="image/x-icon" href="..//uploads/favicon.ico">
-    <?php } ?>
+    <meta name="description" content="" />
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <link rel="manifest" href="/manifest.json">
 
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/includes/assets/img/favicon/favicon.ico" />
 
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="/includes/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/fonts/flag-icons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/includes/assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="/includes/assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.1/css/responsive.bootstrap5.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/spinkit/spinkit.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/toastr/toastr.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/apex-charts/apex-charts.css" />
+
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="/includes/assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="/includes/assets/vendor/js/template-customizer.js"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="/includes/assets/js/config.js"></script>
+
+    <!-- TinyMCE -->
+    <script src="https://cdn.tiny.cloud/1/78o64w2w2bmaf98z8p7idos4tjloc808tr1j9iv8efl63nce/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script></head>
+
 
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -179,17 +209,102 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 </div>
 <!-- /.login-box -->
 
-<!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
 
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<footer class="content-footer footer bg-footer-theme">
+    <div class="container-fluid pt-5 pb-4">
+        <div class="row">
+            <div class="row">
+                <div class="col-12 col-sm-3 col-md-2 mb-4 mb-sm-4">
+                    <h4 class="fw-bold mb-3"><a href="https://twe.tech" target="_blank" class="footer-text">ITFlow-NG </a></h4>        <span>Get ready for a better ERP.</span>
+                    <div class="social-icon my-3">
+                    <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-facebook"><i class='bx bxl-facebook'></i></a>
+                    <a href="javascript:void(0)" class="ms-2 btn btn-icon btn-sm btn-twitter"><i class='bx bxl-twitter'></i></a>
+                    <a href="javascript:void(0)" class="ms-2 btn btn-icon btn-sm btn-linkedin"><i class='bx bxl-linkedin'></i></a>
+                    </div>
+                    <p class="pt-4">
+                    <script>
+                    document.write(new Date().getFullYear())
+                    </script> © TWE Technologies
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+            <?php renderMenuItems($menuItems); ?>
+            </div>
+        </div>
+    </div>
+</footer>
 
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
 
-<!-- Prevents resubmit on refresh or back -->
-<script src="../js/login_prevent_resubmit.js"></script>
+<!-- Drag Target Area To SlideIn Menu On Small Screens -->
+<div class="drag-target"></div>
+</div>
+<!-- / Layout wrapper -->
 
+
+
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="/includes/assets/vendor/libs/popper/popper.js"></script>
+<script src="/includes/assets/vendor/js/bootstrap.js"></script>
+<script src="/includes/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/includes/assets/vendor/libs/hammer/hammer.js"></script>
+
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
+<script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
+
+<script src="/includes/js/reformat_datetime.js"></script>
+
+<script src="/includes/assets/vendor/js/menu.js"></script>
+
+<!-- endbuild -->
+
+<!-- Vendors JS -->
+
+<script src="/includes/assets/vendor/libs/block-ui/block-ui.js"></script>
+<script src="/includes/assets/vendor/libs/sortablejs/sortable.js"></script>
+<script src="/includes/assets/vendor/libs/toastr/toastr.js"></script>
+<script src="assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+<!-- Main JS -->
+<script src="/includes/assets/js/main.js"></script>
+
+<script src="/includes/js/dynamic_modal_loading.js"></script>
+
+<!-- Page JS -->
+
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ],
+        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+    });
+</script>
+
+<script>
+
+$(function () {
+    $('.datatables-basic').DataTable({
+        responsive: true,
+        order: <?= $datatable_order ?>});
+});
+
+</script>
+
+<script src="/includes/assets/js/cards-actions.js"></script>
 </body>
 </html>

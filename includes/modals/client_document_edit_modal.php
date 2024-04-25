@@ -11,12 +11,12 @@
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" name="document_id" value="<?php if($document_parent == 0){ echo $document_id; } else { echo $document_parent; } ?>">
                 <input type="hidden" name="document_parent" value="<?php echo $document_parent; ?>">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <input type="hidden" name="created_by" value="<?php echo $document_created_by_id; ?>">
-                <div class="modal-body bg-white">
-
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" value="<?php echo $document_name; ?>" placeholder="Name" required>
                     </div>
@@ -27,7 +27,7 @@
                     </div>
                     
                     <div class="mb-3">
-                        <button id="rewordButton" class="btn btn-soft-primary" type="button"><i class="fas fa-fw fa-robot mr-2"></i>Reword</button>
+                        <button id="rewordButton" class="btn btn-label-primary" type="button"><i class="fas fa-fw fa-robot mr-2"></i>Reword</button>
                         <button id="undoButton" class="btn btn-light" type="button" style="display:none;"><i class="fas fa-fw fa-redo-alt mr-2"></i>Undo</button>
                     </div>
                     <?php } else { ?>
@@ -64,7 +64,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="edit_document" class="btn btn-soft-primary text-bold"></i>Save</button>
+                    <button type="submit" name="edit_document" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>
             </form>

@@ -17,7 +17,7 @@
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <button type="submit" name="export_clients_csv" class="btn btn-soft-primary text-bold"><i class="fas fa-fw fa-download mr-2"></i>Download CSV</button>
+                    <button type="submit" name="export_clients_csv" class="btn btn-label-primary text-bold"><i class="fas fa-fw fa-download mr-2"></i>Download CSV</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="fas fa-times mr-2"></i>Cancel</button>
                 </div>
             </form>
