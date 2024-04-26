@@ -40,7 +40,7 @@ ITFlow is engineered to streamline and integrate the essential functions of IT d
 - **Advanced Billing System**: Features include a financial dashboard, customizable quotes, invoicing, comprehensive accounting, and detailed expense management.
 - **Interactive Client Portal**: Enables clients to independently manage their quotes, invoices, and tickets.
 - **Proactive Alerts**: Automated notifications for crucial deadlines like account balances, invoice payments, and domain/SSL renewals.
-- **Free & Open Source**: A viable alternative to commercial platforms such as ITGlue and Hudu, with no associated costs.
+- **Free & Open Source**: A viable alternative to commercial platforms such as Connectwise Manage or the like, with no associated costs.
 
 ## Benefits Over Other PSAs or ERPs
 
