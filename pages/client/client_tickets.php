@@ -65,73 +65,31 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
 ?>
 
 <div class="card">
-    <div class="card-header py-2">
-        <h3 class="card-title mt-2"><i class="fa fa-fw fa-life-ring mr-2"></i><?php if (isset($_GET['unbilled'])) { echo "Unbilled "; } ?> Tickets
-            <small class="ml-3">
-                <a href="?client_id=<?php echo $client_id?>&status=Open" class="text-white"><strong><?php echo $total_tickets_open; ?></strong> Open</a> |
-                <a href="?client_id=<?php echo $client_id?>&status=Closed" class="text-white"><strong><?php echo $total_tickets_closed; ?></strong> Closed</a>
-            </small>
-        </h3>
-        <div class="card-tools">
-            <div class="btn-group">
-                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_add_modal.php?client_id=<?php echo $client_id; ?>">
-                    <i class="fas fa-plus mr-2"></i>New Ticket
-                </button>
-                <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportTicketModal">
-                        <i class="fa fa-fw fa-download mr-2"></i>Export
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <?php require_once '/var/www/develop.twe.tech/includes/support_card_header.php'; ?>
+
     <div class="card-body">
-        <form autocomplete="off">
-            <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-            <div class="row">
 
-                <div class="col-md-4">
-                    <div class="input-group mb-3 mb-md-0">
-                        <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search Tickets">
-                        <div class="input-group-append">
-                            <button class="btn btn-dark"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-8">
-                    <div class="float-right">
-                        <a href="client_recurring_tickets.php?client_id=<?php echo $client_id; ?>" class="btn btn-outline-info">
-                            <i class="fa fa-fw fa-redo-alt mr-2"></i>Recurring Tickets | <strong> <?php echo $total_scheduled_tickets; ?></strong>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </form>
         <hr>
         <div class="card-datatable table-responsive container-fluid  pt-0">               
-<table class="datatables-basic table border-top">
+            <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_number&order=<?php echo $disp; ?>">Number</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_subject&order=<?php echo $disp; ?>">Subject</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=contact_name&order=<?php echo $disp; ?>">Contact</a></th>
+                    <th>Number</a></th>
+                    <th>Subject</th>
+                    <th>Contact</th>
                     <?php if ($config_module_enable_accounting) { ?>
-                        <th class="text-center"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_billable&order=<?php echo $disp; ?>">Billable</a></th>
+                        <th class="text-center">Billable</a></th>
                     <?php } ?>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_priority&order=<?php echo $disp; ?>">Priority</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_status&order=<?php echo $disp; ?>">Status</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_name&order=<?php echo $disp; ?>">Assigned</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_updated_at&order=<?php echo $disp; ?>">Last Response</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=ticket_created_at&order=<?php echo $disp; ?>">Created</a></th>
+                    <th>Priority</th>
+                    <th>>Status</th>
+                    <th>Assigned</th>
+                    <th>Last Response</th>
+                    <th>Created</th>
 
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 <?php
 
                 while ($row = mysqli_fetch_array($sql)) {

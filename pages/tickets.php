@@ -98,41 +98,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
     }
 </style>
 <div class="card">
-    <header class="card-header d-flex align-items-center">
-        <div class="col">
-            <div class="row">
-                <h3 class="card-title mt-2"><i class="bx bx-support mr-2">
-                </i> Support Tickets</h3>
-            </div>
-            <small class="ml-3">
-                    <a href="?status=Open&assigned=all"><strong><?php echo $total_tickets_open; ?></strong> Open</a> |
-                    <a href="?status=Closed"><strong><?php echo $total_tickets_closed; ?></strong> Closed</a>
-            </small>
-        </div>
-        <div class="col">
-            <div class="btn-group">
-                <button class="btn btn-outline-dark dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                    <i class="fa fa-fw fa-envelope mr-2"></i><?php if(!$session_mobile) { echo "My Tickets"; } ?>
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="?status=Open&assigned=<?php echo $session_user_id ?>">Active tickets (<?php echo $user_active_assigned_tickets ?>)</a>
-                    <a class="dropdown-item " href="?status=Closed&assigned=<?php echo $session_user_id ?>">Closed tickets</a>
-                </div>
-            </div>
-            <a href="?assigned=unassigned" class="btn btn-outline-danger">
-                <i class="fa fa-fw fa-exclamation-triangle mr-2"></i><?php if(!$session_mobile) { echo "Unassigned"; } ?> | <strong><?php echo $total_tickets_unassigned; ?></strong>
-            </a>
-            <a href="recurring_tickets.php" class="btn btn-outline-info">
-                <i class="fa fa-fw fa-redo-alt mr-2"></i><?php if(!$session_mobile) { echo "Recurring"; } ?> | <strong> <?php echo $total_scheduled_tickets; ?></strong>
-            </a>
-            <?php if ($session_user_role == 3) { ?>
-                <a href="#!" class="btn dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_add_modal.php">
-                    <i class="fa fa-fw fa-plus mr-2"></i>
-                </a>
-            <?php } ?>
-            </div>
-
-    </header>
+    <?php require_once '/var/www/develop.twe.tech/includes/support_card_header.php'; ?>
     <div class="card-body">
         <form id="bulkActions" action="/post/" method="post">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
@@ -155,8 +121,8 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                     $datatable_order = "[[6,'desc']]";
                                     $datatable_priority = [
                                         'Status' => 1,
-                                        'Number' => 2,
-                                        'Subject' => 3,
+                                        'Number' => 3,
+                                        'Subject' => 2,
                                         'Assigned' => 4,
                                         'Client' => 5,
                                         'Last Response' => 6

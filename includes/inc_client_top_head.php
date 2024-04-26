@@ -1,36 +1,57 @@
-<div class="card d-print-none">
+<div class="card card-action d-print-none">
+    <div class="card-header">
+        <div class="card-action-title">
+            <h4>
+                <?php if ($client_page) {
+                    echo ucwords($client_name);
+                } else {
+                    echo $page_name;
+                } ?>
+            </h4>
+        </div>
+        <div class="card-action-element">
+            <ul class="list-inline mb-0">
+                <li class="list-inline-item">
+                    <a href="javascript:void(0);" class="card-collapsible"><i class="tf-icons bx bx-chevron-up"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <div class="dropdown dropleft text-center">
+                        <button class="btn btn-dark btn-sm float-right" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-fw fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_edit_modal.php?client_id=<?php echo $client_id; ?>">
+                                <i class="fas fa-fw fa-edit mr-2"></i>Edit Client
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_export_modal.php?client_id=<?php echo $client_id; ?>">
+                                <i class="fas fa-fw fa-file-pdf mr-2"></i>Export Data
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            
+                            <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_archive_modal.php?client_id=<?php echo $client_id; ?>">
+                                <i class="fas fa-fw fa-archive mr-2"></i>Archive Client
+                            </a>
+                            <?php if ($session_user_role == 3) { ?>
+                            <div class="dropdown-divider"></div>
+                            <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_delete_modal.php?client_id=<?php echo $client_id; ?>">
+                                <i class="fas fa-fw fa-trash mr-2"></i>Delete Client
+                            </a>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
     <div class="card-body py-2">
         <div class="row">
             <div class="col">
-                <a href="#" data-bs-toggle="collapse" data-bs-target="#clientHeader"><h4 class="text-secondary"><strong><?php echo $client_name; ?> <i class="fas fa-fw fa-chevron-down"></i></strong></h4></a>
+                
             </div>
             <div class="col">
                 <?php if ($session_user_role == 3) { ?>
-                <div class="dropdown dropleft text-center">
-                    <button class="btn btn-dark btn-sm float-right" type="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-fw fa-ellipsis-v"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_edit_modal.php?client_id=<?php echo $client_id; ?>">
-                            <i class="fas fa-fw fa-edit mr-2"></i>Edit Client
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_export_modal.php?client_id=<?php echo $client_id; ?>">
-                            <i class="fas fa-fw fa-file-pdf mr-2"></i>Export Data
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        
-                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_archive_modal.php?client_id=<?php echo $client_id; ?>">
-                            <i class="fas fa-fw fa-archive mr-2"></i>Archive Client
-                        </a>
-                        <?php if ($session_user_role == 3) { ?>
-                        <div class="dropdown-divider"></div>
-                        <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_delete_modal.php?client_id=<?php echo $client_id; ?>">
-                            <i class="fas fa-fw fa-trash mr-2"></i>Delete Client
-                        </a>
-                        <?php } ?>
-                    </div>
-                </div>
+
                 <?php } ?>
             </div>
         </div>
