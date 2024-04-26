@@ -4,6 +4,9 @@ $page_css = '<link rel="stylesheet" href="/includes/assets/vendor/css/pages/app-
 
 $invoice_id = intval($_GET['invoice_id']);
 
+// TODO: Put this in company settings
+$margin_goal = 18;
+
 
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
@@ -115,7 +118,7 @@ if (isset($_GET['invoice_id'])) {
     );
 
     //Product autocomplete
-    $products_sql = mysqli_query($mysqli, "SELECT product_name AS label, product_description AS description, product_price AS price, product_tax_id AS tax FROM products WHERE product_archived_at IS NULL");
+    $products_sql = mysqli_query($mysqli, "SELECT product_name AS label, product_description AS description, product_price AS price, product_tax_id AS tax, product_id AS productId FROM products WHERE product_archived_at IS NULL");
 
     if (mysqli_num_rows($products_sql) > 0) {
         while ($row = mysqli_fetch_assoc($products_sql)) {
@@ -228,8 +231,14 @@ if (isset($_GET['invoice_id'])) {
                         LEFT JOIN taxes ON item_tax_id = tax_id
                         WHERE item_invoice_id = $invoice_id
                         ORDER BY item_order ASC"); 
+
+                    $subtotal = 0;
+                    $discount_total = 0;
+                    $tax_total = 0;
+                    $total_cost = 0;
                     ?>
 
+        
                     <?php while ($row = mysqli_fetch_array($sql_invoice_items)) {
                         $item_id = intval($row['item_id']);
                         $item_name = nullable_htmlentities($row['item_name']);
@@ -242,6 +251,7 @@ if (isset($_GET['invoice_id'])) {
                         $item_subtotal = $item_price * $item_qty; // Calculate the total of the item
                         $tax_percent = floatval($row['tax_percent']);
                         $tax_name = nullable_htmlentities($row['tax_name']);
+                        $item_product_id = intval($row['item_product_id']);
 
                         $tax_total += $item_tax; // Calculate the total tax
                         $item_total = $item_subtotal + $item_tax - $item_discount; // Calculate the total of the item after tax and discount
@@ -254,6 +264,32 @@ if (isset($_GET['invoice_id'])) {
                             $item_discount_percent = ($item_discount / $item_subtotal) * 100;
                         } else {
                             $item_discount_percent = 0;
+                        }
+
+                        $profit = 0;
+
+                        if ($item_product_id > 0) {
+                            $product_sql = mysqli_query($mysqli, "SELECT * FROM products WHERE product_id = $item_product_id");
+                            $product_row = mysqli_fetch_array($product_sql);
+                            $product_cost = floatval($product_row['product_cost']);
+                            $item_cost = $item_qty * $product_cost;
+
+                            $total_cost += $item_cost;
+
+                            $item_profit = $item_subtotal - ($item_qty * $product_cost);
+                            $profit += $item_profit;
+
+                            if ($item_subtotal != 0) {
+                                $item_margin = $item_profit / $item_subtotal;
+                            } else {
+                                $item_margin = 0;  // Default or error value if subtotal is zero
+                            }
+                            
+                            if ($item_cost != 0) {
+                                $item_markup = $item_profit / $item_cost;
+                            } else {
+                                $item_markup = 0;  // Default or error value if cost is zero
+                            }
                         }
 
                     ?>
@@ -274,9 +310,14 @@ if (isset($_GET['invoice_id'])) {
                                         <div class="col-md-3 col-12 mb-md-0 mb-3">
                                             <p class="mb-2 repeater-title">Unit Price</p>
                                             <input type="text" name="price" class="form-control invoice-item-price mb-2" value="<?= $item_price ?>" placeholder="<?= $item_price ?>"/>
-                                            <div>
-                                                <span class="discount me-2"  data-bs-toggle="tooltip" data-bs-placement="top" title="Discount: <?=numfmt_format_currency($currency_format, $item_discount, $client_currency_code)?>"><?= $item_discount_percent ?>%</span>
-                                                <span class="tax me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Tax: <?= numfmt_format_currency($currency_format, $item_tax, $client_currency_code)?>"><?=$tax_percent?>%</span>
+                                            <div class="d-flex me-1">
+                                                <span class="discount me-1"  data-bs-toggle="tooltip" data-bs-placement="top" title="Discount: <?=numfmt_format_currency($currency_format, $item_discount, $client_currency_code)?>"><?=number_format($item_discount_percent, 0)?>%</span>
+                                                <span class="tax me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Tax: <?= numfmt_format_currency($currency_format, $item_tax, $client_currency_code)?>"><?=number_format($tax_percent, 3)?>%</span>
+
+                                            </div>
+                                            <div class="d-flex me-1">
+                                                <span class="markup me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Markup: <?=numfmt_format_currency($currency_format, $item_profit, $client_currency_code)?>"><?=number_format($item_markup*100, 0)?>%</span>
+                                                <span class="margin me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Margin"><?=number_format($item_margin*100, 0)?>%</span>
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-12 mb-md-0 mb-3">
@@ -299,31 +340,51 @@ if (isset($_GET['invoice_id'])) {
                                             <i class="bx bx-cog bx-xs text-muted cursor-pointer more-options-dropdown" role="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                             </i>
                                             <div class="dropdown-menu dropdown-menu-end w-px-300 p-3" aria-labelledby="dropdownMenuButton">
-
                                                 <div class="row g-3">
                                                     <div class="col-6" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $invoice_currency_code; ?> or end with % ">
                                                         <label for="discountInput" class="form-label">Discount (<?php echo $invoice_currency_code; ?>) </label>
-                                                        <input class="form-control" id="discountInput" <?=$item_discount_percent ? 'value="'.$item_discount_percent.'%"' : 'placeholder="0%"'?> />
+                                                        <input class="form-control" name="discount" id="discount" <?=$item_discount ? 'value="'.$item_discount.'"' : 'placeholder="0%"'?> />
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="taxInput1" class="form-label">Tax</label>
                                                         <select class="form-select select2 invoice-item-tax mb-2" name="tax_id" id="tax" style="width: 100%;">
-                                                        <option value="0">No Tax</option>
-                                                        <?php
-                                                        $tax_sql = "SELECT * FROM taxes";
-                                                        $tax_result = mysqli_query($mysqli, $tax_sql);
+                                                            <option value="0">No Tax</option>
+                                                            <?php
+                                                            $tax_sql = "SELECT * FROM taxes";
+                                                            $tax_result = mysqli_query($mysqli, $tax_sql);
 
-                                                        while ($tax_row = mysqli_fetch_assoc($tax_result)) {
-                                                            $tax_id = $tax_row['tax_id'];
-                                                            $tax_name = $tax_row['tax_name'];
-                                                            $tax_rate = $tax_row['tax_percent'];
-                                                            ?>
+                                                            while ($tax_row = mysqli_fetch_assoc($tax_result)) {
+                                                                $tax_id = $tax_row['tax_id'];
+                                                                $tax_name = $tax_row['tax_name'];
+                                                                $tax_rate = $tax_row['tax_percent'];
+                                                                ?>
 
-                                                            <option value="<?=$tax_id?>" data-rate="<?=$tax_rate?>" <?php if ($tax_id == $item_tax_id) { echo 'selected'; } ?>>
-                                                                <?=$tax_name?> (<?=$tax_rate?>%)
-                                                            </option>
-                                                        <?php } ?>
-                                                    </select>
+                                                                <option value="<?=$tax_id?>" data-rate="<?=$tax_rate?>" <?php if ($tax_id == $item_tax_id) { echo 'selected'; } ?>>
+                                                                    <?=$tax_name?> (<?=$tax_rate?>%)
+                                                                </option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-divider"></div>
+                                                <div class="row g-3">
+                                                    <div class="col">
+                                                        <label for="productInput" class="form-label">Product</label>
+                                                        <select class="form-select select2" name="product_id" id="product_id" style="width: 100%;">
+                                                            <?php
+                                                            $product_sql = "SELECT * FROM products";
+                                                            $product_result = mysqli_query($mysqli, $product_sql);
+
+                                                            while ($product_row = mysqli_fetch_assoc($product_result)) {
+                                                                $product_id = $product_row['product_id'];
+                                                                $product_name = $product_row['product_name'];
+                                                                ?>
+
+                                                                <option value="<?=$product_id?>" <?php if ($product_id == $item_product_id) { echo 'selected'; } ?>>
+                                                                    <?=$product_name?>
+                                                                </option>
+                                                            <?php } ?>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -348,7 +409,9 @@ if (isset($_GET['invoice_id'])) {
                         <div class="col-md-8 mb-md-0 mb-3">
                             <div class="mb-3">
                                 <label for="note" class="form-label fw-medium">Note:</label>
-                                <textarea class="form-control" rows="2" id="note">It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance projects. Thank You!</textarea>
+                                <textarea class="form-control" rows="2" id="note">
+                                    <?=$invoice_note?>
+                                </textarea>
                             </div>
                         </div>
                         <div class="col-md-4 d-flex justify-content-end">
@@ -400,43 +463,47 @@ if (isset($_GET['invoice_id'])) {
                         </div>
                     <?php } ?>
                     <div class="d-flex my-3">
-                        <a target="_blank" href="guest_view_invoice.php?invoice_id=<?php echo "$invoice_id&url_key=$invoice_url_key"; ?>" class="btn btn-label-primary w-100 me-3">Preview</a>
-                        <button class="btn btn-primary d-grid w-100" data-bs-toggle="offcanvas" data-bs-target="#addPaymentOffcanvas">
+                        <a target="_blank" href="/portal/portal/guest_view_invoice.php?invoice_id=<?php echo "$invoice_id&url_key=$invoice_url_key"; ?>" class="btn btn-label-primary w-100 me-3">Preview</a>
+                        <button class="btn btn-primary d-grid w-100 loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="invoice_payment_add_modal.php?invoice_id=<?=$invoice_id?>&balance=<?=$balance?>">
                             <span class="d-flex align-items-center justify-content-center text-nowrap"><i class="bx bx-dollar bx-xs me-1"></i>Add Payment</span>
                         </button>
                     </div>
-                </div>
-            </div>
-            <div>
-                <div class="d-flex justify-content-between mb-2">
-                    <label for="client-notes" class="mb-0">Client Notes</label>
-                    <label class="switch switch-primary me-0">
-                        <input type="checkbox" class="switch-input" id="client-notes">
-                        <span class="switch-toggle-slider">
-                            <span class="switch-on">
-                                <i class="bx bx-check"></i>
-                            </span>
-                            <span class="switch-off">
-                                <i class="bx bx-x"></i>
-                            </span>
-                        </span>
-                        <span class="switch-label"></span>
-                    </label>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <label for="payment-stub" class="mb-0">Payment Stub</label>
-                    <label class="switch switch-primary me-0">
-                        <input type="checkbox" class="switch-input" id="payment-stub">
-                        <span class="switch-toggle-slider">
-                            <span class="switch-on">
-                                <i class="bx bx-check"></i>
-                            </span>
-                            <span class="switch-off">
-                                <i class="bx bx-x"></i>
-                            </span>
-                        </span>
-                        <span class="switch-label"></span>
-                    </label>
+                    <hr class="my-0" />
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <div class="d-flex align-items-center">
+                            <i class="bx bx-dollar me-2"></i>
+                            <span class="fw-medium">Amount Due:</span>
+                        </div>
+                        <span class="fw-medium"><?=numfmt_format_currency($currency_format, $balance, $client_currency_code)?></span>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                        <div class="d-flex align-items-center">
+                            <i class="bx bx-credit-card me-2"></i>
+                            <span class="fw-medium">Amount Paid:</span>
+                        </div>
+                        <span class="fw-medium"><?=numfmt_format_currency($currency_format, $amount_paid, $client_currency_code)?></span>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                        <div class="d-flex align-items-center">
+                            <i class="bx bx-dollar me-2"></i>
+                            <span class="fw-medium">Margin:</span>
+                        </div>
+                        <?php
+                            if ($total_cost != 0) {
+                                $margin = $profit / $subtotal;
+                            } else {
+                                $margin = 0;  // Default or error value if cost is zero
+                            }
+                            if ($margin < $margin_goal/100) {
+                                echo "<span class='fw-medium text-danger'>";
+                            } else {
+                                echo "<span class='fw-medium text-success'>";
+                            }
+                            echo number_format($margin*100, 1) . "%";
+                            echo "</span>";
+                            ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -462,6 +529,7 @@ $(document).ready(function() {
                     $("#desc").val(ui.item.description); // Product description field
                     $("#qty").val(1); // Product quantity field automatically make it a 1
                     $("#price").val(ui.item.price); // Product price field
+                    $("#product_id").val(ui.item.productId); // Product ID field
                     $(".invoice-item-tax-modal").val(ui.item.tax).trigger('change'); // Product tax field
                     if (tinymce.get("desc")) { // Check if the TinyMCE instance for 'desc' exists
                         tinymce.get("desc").setContent(ui.item.description);

@@ -39,6 +39,7 @@ if (mysqli_num_rows($products_sql) > 0) {
             <div class="modal-body bg-white">
 
             <input hidden name="invoice_id" value="<?=$invoice_id?>">
+            <input hidden name="product_id" id="product_id" value="0">
 
             <div class="d-flex border rounded position-relative pe-0">
                 <div class="row w-100 m-0 p-3">

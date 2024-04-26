@@ -18,6 +18,7 @@ function createInvoiceItem(
     $item_order = $item['item_order'];
     $invoice_id = $item['item_invoice_id'];
     $discount = $item['item_discount'];
+    $product_id = $item['item_product_id'];
     $subtotal = $price * $qty;
 
     // if discount ends in %, calculate discount amount
@@ -91,7 +92,7 @@ function createInvoiceItem(
 
     $total = $subtotal + $tax_amount - $discount;
 
-    mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$name', item_description = '$description', item_quantity = $qty, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_discount = $discount, item_order = $item_order, item_tax_id = $tax_id, item_invoice_id = $invoice_id");
+    mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$name', item_description = '$description', item_quantity = $qty, item_product_id = $product_id, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_discount = $discount, item_order = $item_order, item_tax_id = $tax_id, item_invoice_id = $invoice_id");
 
 
     //add up all line items
@@ -143,9 +144,22 @@ function updateInvoiceItem(
     $tax_id = $item['tax_id'];
     $invoice_id = $item['invoice_id'];
     $recurring_id = $item['recurring_id'];
+    $discount = $item['discount'];
     $quote_id = $item['quote_id'];
+    $category_id = $item['category_id'];
+    $product_id = $item['product_id'];
 
     $subtotal = $price * $qty;
+
+    // if discount ends in %, calculate discount amount
+    if (substr($discount, -1) == '%') {
+        $discount = substr($discount, 0, -1);
+        $discount = floatval($discount);
+
+        $discount = $subtotal * $discount / 100;
+    } else {
+        $discount = floatval($discount);
+    }
 
     if ($tax_id > 0) {
         $sql = mysqli_query($mysqli,"SELECT * FROM taxes WHERE tax_id = $tax_id");
@@ -156,9 +170,9 @@ function updateInvoiceItem(
         $tax_amount = 0;
     }
 
-    $total = $subtotal + $tax_amount;
+    $total = $subtotal + $tax_amount - $discount;
 
-    mysqli_query($mysqli,"UPDATE invoice_items SET item_name = '$name', item_description = '$description', item_quantity = $qty, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_tax_id = $tax_id WHERE item_id = $item_id");
+    mysqli_query($mysqli,"UPDATE invoice_items SET item_name = '$name', item_category_id = $category_id, item_product_id = $product_id, item_description = '$description', item_quantity = $qty, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_tax_id = $tax_id, item_discount = $discount WHERE item_id = $item_id");
 
     if ($invoice_id > 0) {
         //Get Discount Amount

@@ -5,7 +5,7 @@ require_once "/var/www/develop.twe.tech/portal/guest_header.php";
 
 if (!isset($_GET['quote_id'], $_GET['url_key'])) {
     echo "<br><h2>Oops, something went wrong! Please raise a ticket if you believe this is an error.</h2>";
-    require_once "guest_footer.php";
+    require_once "portal/guest_footer.php";
 
     exit();
 }
@@ -27,7 +27,7 @@ $sql = mysqli_query(
 if (mysqli_num_rows($sql) !== 1) {
     // Invalid quote/key
     echo "<br><h2>Oops, something went wrong! Please raise a ticket if you believe this is an error.</h2>";
-    require_once "guest_footer.php";
+    require_once "portal/guest_footer.php";
 
     exit();
 }
@@ -265,10 +265,10 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                 <?php
                     if ($quote_status == "Sent" || $quote_status == "Viewed" && strtotime($quote_expire) > strtotime("now")) {
                         ?>
-                        <a class="btn btn-success" href="guest_post.php?accept_quote=<?php echo $quote_id; ?>&url_key=<?php echo $url_key; ?>">
+                        <a class="btn btn-success" href="portal/guest_post.php?accept_quote=<?php echo $quote_id; ?>&url_key=<?php echo $url_key; ?>">
                             <i class="fas fa-fw fa-thumbs-up mr-2"></i>Accept
                         </a>
-                        <a class="btn btn-danger" href="guest_post.php?decline_quote=<?php echo $quote_id; ?>&url_key=<?php echo $url_key; ?>">
+                        <a class="btn btn-danger" href="portal/guest_post.php?decline_quote=<?php echo $quote_id; ?>&url_key=<?php echo $url_key; ?>">
                             <i class="fas fa-fw fa-thumbs-down mr-2"></i>Decline
                         </a>
                     <?php } ?>
@@ -706,5 +706,5 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
 
 
 <?php
-require_once "guest_footer.php";
+require_once "portal/guest_footer.php";
 

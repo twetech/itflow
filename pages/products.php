@@ -4,6 +4,9 @@
 $sort = "product_name";
 $order = "ASC";
 
+// TODO: Put this in company settings
+$margin_goal = 18;
+
 require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
@@ -36,16 +39,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <div class="card-datatable table-responsive container-fluid  pt-0">                   
                 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
-                    <tr>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=product_name&order=<?php echo $disp; ?>">Name</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Category</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=product_description&order=<?php echo $disp; ?>">Description</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=tax_name&order=<?php echo $disp; ?>">Tax Name</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=tax_percent&order=<?php echo $disp; ?>">Tax Rate</a></th>
-                        <th class="text-right"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=product_price&order=<?php echo $disp; ?>">Price</a></th>
-                        
-                        <th class="text-center">Action</th>
-                    </tr>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Tax Name</th>
+                            <th>Tax Rate</th>
+                            <th>Price</th>
+                            <th>Margin</th>
+                            <th class="text-center">Action</th>
+                        </tr>
                     </thead>
                     <tbody>
                     <?php
@@ -65,6 +68,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         $category_id = intval($row['category_id']);
                         $category_name = nullable_htmlentities($row['category_name']);
                         $product_tax_id = intval($row['product_tax_id']);
+                        $product_cost = floatval($row['product_cost']);
                         $tax_name = nullable_htmlentities($row['tax_name']);
                         if (empty($tax_name)) {
                             $tax_name_display = "-";
@@ -82,6 +86,22 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <td><?php echo $tax_name_display; ?></td>
                             <td><?php echo $tax_percent; ?>%</td>
                             <td class="text-right"><?php echo numfmt_format_currency($currency_format, $product_price, $product_currency_code); ?></td>
+                            <td class="text-right">
+                                <?php
+                                $margin = (($product_price - $product_cost) / $product_price) * 100;
+                                if ($row['product_cost'] != null) {
+                                    if ($margin < $margin_goal) {
+                                        echo "<span class='text-danger'>";
+                                    } else {
+                                        echo "<span class='text-success'>";
+                                    }
+                                    echo number_format($margin, 0) . "%";
+                                } else {
+                                    echo '-';
+                                }
+                                echo "</span>";
+                                ?>
+                            </td>
                             
                             <td>
                                 <div class="dropdown dropleft text-center">
@@ -89,43 +109,30 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editProductModal<?php echo $product_id; ?>">
+                                        <a class="dropdown-item loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="dynamicModal" data-modal-file="product_edit_modal.php?product_id=<?=$product_id?>" ?>
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_product=<?php echo $product_id; ?>">
+                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_product=<?=$product_id; ?>">
                                             <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                         </a>
                                         <?php if ($config_destructive_deletes_enable) { ?>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_product=<?php echo $product_id; ?>">
-                                             <i class="fas fa-fw fa-trash mr-2"></i>Delete
-                                         </a>
+                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_product=<?=$product_id; ?>">
+                                            <i class="fas fa-fw fa-trash mr-2"></i>Delete
+                                        </a>
                                         <?php } ?>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-
-                        <?php
-
-                        require "/var/www/develop.twe.tech/includes/modals/product_edit_modal.php";
-
-
-                    }
-
-                    ?>
-
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
-            <?php 
- ?>
         </div>
     </div>
 
 <?php
-
-require_once "/var/www/develop.twe.tech/includes/modals/product_add_modal.php";
 
 require_once "/var/www/develop.twe.tech/includes/footer.php";
