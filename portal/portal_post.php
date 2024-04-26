@@ -4,8 +4,16 @@
  * Process GET/POST requests
  */
 
-require_once "/var/www/develop.twe.tech/includes/inc_portal.php";
+ require_once '/var/www/develop.twe.tech/includes/config.php';
 
+ require_once '/var/www/develop.twe.tech/includes/get_settings.php';
+ 
+ require_once '/var/www/develop.twe.tech/includes/functions/functions.php';
+ 
+ require_once '/var/www/develop.twe.tech/portal/check_login.php';
+ 
+ require_once '/var/www/develop.twe.tech/portal/portal_functions.php';
+ 
 
 if (isset($_POST['add_ticket'])) {
 
@@ -63,6 +71,7 @@ if (isset($_POST['add_ticket'])) {
     mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Ticket', log_action = 'Create', log_description = 'Client contact $session_contact_name created ticket $subject', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_client_id = $client_id");
 
     header("Location: ticket.php?id=" . $id);
+    exit;
 
 }
 
@@ -160,7 +169,8 @@ if (isset($_POST['add_ticket_comment'])) {
         }
 
         // Redirect back to original page
-        header("Location: " . $_SERVER["HTTP_REFERER"]);
+        referWithAlert("Ticket updated", "success");
+        exit;
 
     } else {
         // The client does not have access to this ticket
@@ -186,6 +196,7 @@ if (isset($_POST['add_ticket_feedback'])) {
 
         // Redirect
         header("Location: " . $_SERVER["HTTP_REFERER"]);
+        exit;
     } else {
         // The client does not have access to this ticket
         header("Location: portal_post.php?logout");
@@ -210,6 +221,7 @@ if (isset($_GET['close_ticket'])) {
         mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Ticket', log_action = 'Closed', log_description = '$ticket_id Closed by client', log_ip = '$session_ip', log_user_agent = '$session_user_agent'");
 
         header("Location: ticket.php?id=" . $ticket_id);
+        exit;
     } else {
         // The client does not have access to this ticket - send them home
         header("Location: index.php");
@@ -225,6 +237,7 @@ if (isset($_GET['logout'])) {
     session_destroy();
 
     header('Location: login.php');
+    exit;
 }
 
 if (isset($_POST['edit_profile'])) {
@@ -237,4 +250,5 @@ if (isset($_POST['edit_profile'])) {
         mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Contact', log_action = 'Modify', log_description = 'Client contact $session_contact_name modified their profile/password.', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_client_id = $session_client_id");
     }
     header('Location: index.php');
+    exit;
 }

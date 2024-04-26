@@ -680,3 +680,149 @@ if (isset($_GET['get_modal'])) {
     
 
 }
+
+if (isset($_GET['search'])) {
+    $clients=[];
+    $contacts=[];
+    $tickets=[];
+    $documents=[];
+    $logins=[];
+    $ticket_replies=[];
+    $assets=[];
+
+    $search = sanitizeInput($_GET['search']);
+    if ($search == true) {
+        $search = '';
+    }
+
+    $client_sql = mysqli_query($mysqli,
+        "SELECT client_id, client_name AS name
+        FROM clients
+        WHERE client_name LIKE '%$search%'
+        AND client_archived_at IS NULL
+        ORDER BY client_name
+        LIMIT 5"
+    );
+    
+    $contact_sql = mysqli_query($mysqli,
+        "SELECT contact_id, contact_name AS name, contact_client_id
+        FROM contacts
+        WHERE contact_name LIKE '%$search%'
+        AND contact_archived_at IS NULL
+        ORDER BY contact_name
+        LIMIT 5"
+    );
+
+    $ticket_sql = mysqli_query($mysqli,
+        "SELECT ticket_id, ticket_number, ticket_subject AS name, ticket_details
+        FROM tickets
+        WHERE ticket_number LIKE '%$search%' OR
+        ticket_subject LIKE '%$search%' OR
+        ticket_details LIKE '%$search%'
+        AND ticket_archived_at IS NULL
+        ORDER BY ticket_number
+        LIMIT 5"
+    );
+
+    $document_sql = mysqli_query($mysqli,
+        "SELECT document_id, document_name AS name
+        FROM documents
+        WHERE document_name LIKE '%$search%'
+        AND document_archived_at IS NULL
+        ORDER BY document_name
+        LIMIT 5"
+    );
+
+    $login_sql = mysqli_query($mysqli,
+        "SELECT login_id, login_name AS name, login_client_id, login_description, login_username, login_note
+        FROM logins
+        WHERE login_name LIKE '%$search%' OR
+        login_description LIKE '%$search%'
+        AND login_archived_at IS NULL
+        ORDER BY login_name
+        LIMIT 5"
+    );
+
+    $ticket_reply_sql = mysqli_query($mysqli,
+        "SELECT ticket_reply_id, ticket_reply AS name
+        FROM ticket_replies
+        WHERE ticket_reply LIKE '%$search%'
+        AND ticket_reply_archived_at IS NULL
+        ORDER BY ticket_reply
+        LIMIT 5"
+    );
+
+    $asset_sql = mysqli_query($mysqli,
+        "SELECT asset_id, asset_name AS name
+        FROM assets
+        WHERE asset_name LIKE '%$search%'
+        AND asset_archived_at IS NULL
+        ORDER BY asset_name
+        LIMIT 5"
+    );
+
+    while ($row = mysqli_fetch_array($client_sql)) {
+        $clients_row = $row;
+        $clients_json = [];
+        $clients_json['name'] = $clients_row['name'];
+        $clients_json['icon'] = 'bx-user';
+        $clients_json['url'] = "/pages/client/client_overview.php?id=".$clients_row['client_id'];
+        $clients[] = $clients_json;
+    }
+
+    while ($row = mysqli_fetch_array($contact_sql)) {
+        $contacts_row = $row;
+        $contacts_json = [];
+        $contacts_json['name'] = $contacts_row['name'];
+        $contacts_json['icon'] = 'bx-user-details';
+        $contacts_json['url'] = "/pages/client/client_contact_details.php?client_id=".$contacts_row['contact_client_id']."&contact_id=".$contacts_row['contact_id'];
+        $contacts[] = $contacts_json;
+    }
+
+    while ($row = mysqli_fetch_array($ticket_sql)) {
+        $tickets_row = $row;
+        $tickets_json = [];
+        $tickets_json['name'] = $tickets_row['name'];
+        $tickets_json['icon'] = 'bx-support';
+        $tickets_json['url'] = "/pages/ticket.php?ticket_id=".$tickets_row['ticket_id'];
+        $tickets[] = $tickets_json;
+    }
+
+    /*while ($row = mysqli_fetch_array($document_sql)) {
+        $documents_row = $row;
+        $documents_json = [];
+        $documents_json['name'] = $documents_row['name'];
+        $documents_json['icon'] = 'bx-file';
+        $documents_json['url'] = "/pages/documents/document_overview.php?id=".$documents_row['document_id'];
+        $documents[] = $documents_json;
+    }*/
+
+    while ($row = mysqli_fetch_array($login_sql)) {
+        $logins_row = $row;
+        $logins_json = [];
+        $logins_json['name'] = $logins_row['name'];
+        $logins_json['icon'] = 'bx-key';
+        $logins_json['url'] = "/pages/logins/login_overview.php?id=".$logins_row['login_id'];
+        $logins[] = $logins_json;
+    }
+
+    while ($row = mysqli_fetch_array($ticket_reply_sql)) {
+        $ticket_replies_row = $row;
+        $ticket_replies_json = [];
+        $ticket_replies_json['name'] = $ticket_replies_row['name'];
+        $ticket_replies_json['icon'] = 'bx-desktop';
+        $ticket_replies_json['url'] = "/pages/tickets/ticket_overview.php?id=".$ticket_replies_row['ticket_reply_id'];
+        $ticket_replies[] = $ticket_replies_json;
+    }
+
+
+    $response['clients'] = $clients;
+    $response['contacts'] = $contacts;
+    $response['tickets'] = $tickets;
+    $response['documents'] = $documents;
+    $response['logins'] = $logins;
+    $response['ticket_replies'] = $ticket_replies;
+    $response['assets'] = $assets;
+
+    echo json_encode($response);
+}

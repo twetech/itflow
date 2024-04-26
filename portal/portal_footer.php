@@ -13,16 +13,16 @@
 
 <p class="text-center"><?php echo nullable_htmlentities($session_company_name); ?></p>
 
-<?php require_once "../inc_confirm_modal.php"; ?>
+<?php require_once "/var/www/develop.twe.tech/includes/inc_confirm_modal.php"; ?>
 
 <!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="/includes/plugins/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/includes/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!--- TinyMCE -->
-<script src="../plugins/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="/includes/plugins/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
     
@@ -56,4 +56,4 @@
 
 </script>
 
-<script src="../js/confirm_modal.js"></script>
+<script src="/includes/js/confirm_modal.js"></script>

@@ -1,15 +1,6 @@
-<?php
-/*
- * Client Portal
- * HTML Header
- */
-
-header("X-Frame-Options: DENY"); // Legacy
-?>
-
 <!doctype html>
 
-<head lang="en" class="light-style layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="/includes/assets/" data-template="horizontal-menu-template">
+<html lang="en" class="light-style layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="/includes/assets/" data-template="horizontal-menu-template">
 
 <head>
     <meta charset="utf-8" />
@@ -20,6 +11,10 @@ header("X-Frame-Options: DENY"); // Legacy
     <meta name="description" content="" />
 
     <link rel="manifest" href="/manifest.json">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/includes/assets/img/favicon/favicon.ico" />
@@ -48,9 +43,9 @@ header("X-Frame-Options: DENY"); // Legacy
     <link rel="stylesheet" href="/includes/assets/vendor/libs/spinkit/spinkit.css" />
     <link rel="stylesheet" href="/includes/assets/vendor/libs/toastr/toastr.css" />
     <link rel="stylesheet" href="/includes/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
-    <!-- Page CSS -->
 
     <!-- Helpers -->
     <script src="/includes/assets/vendor/js/helpers.js"></script>
