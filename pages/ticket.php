@@ -242,7 +242,7 @@ if (isset($_GET['ticket_id'])) {
         
 ?>
 <div class="row">
-        <!-- Ticket Responses -->
+        <!-- Left -->
         <div class="col<?= $session_mobile ? '' : '-9'; ?>">
             <!-- Ticket Details -->
             <div class="card mb-3">
@@ -280,6 +280,12 @@ if (isset($_GET['ticket_id'])) {
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item">
                                     <a href="javascript:void(0);" class="card-collapsible"><i class="tf-icons bx bx-chevron-up"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript:void(0);" class="card-expand"><i class="tf-icons bx bx-fullscreen"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript:void(0);" class="card-reload"><i class="tf-icons bx bx-rotate-left scaleX-n1-rtl"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -407,6 +413,12 @@ if (isset($_GET['ticket_id'])) {
                                 <li class="list-inline-item">
                                     <a href="javascript:void(0);" class="card-collapsible"><i class="tf-icons bx bx-chevron-up"></i></a>
                                 </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript:void(0);" class="card-expand"><i class="tf-icons bx bx-fullscreen"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="javascript:void(0);" class="card-reload"><i class="tf-icons bx bx-rotate-left scaleX-n1-rtl"></i></a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -527,7 +539,7 @@ if (isset($_GET['ticket_id'])) {
             </div>
         </div>
 
-            <!-- Ticket Details -->
+            <!-- Right -->
         <div class="col<?= $session_mobile ? '' : '-3'; ?>">
             <div class="card card-action mb-3">
                 <div class="card-header">

@@ -102,17 +102,12 @@ $(function () {
           opacity: 0.55
         }
       });
-      setTimeout(function () {
-        $this.closest('.card').unblock();
-        if ($this.closest('.card').find('.card-alert').length) {
-          $this
-            .closest('.card')
-            .find('.card-alert')
-            .html(
-              '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><span class="fw-medium">Holy grail!</span> Your success/error message here.</div>'
-            );
-        }
-      }, 2500);
+      // Reinitialize datatables
+      if ($this.closest('.card').find('.data-table').length) {
+        $this.closest('.card').find('.datatables-basic').DataTable().responsive.rebuild();
+        $this.closest('.card').find('.datatables-basic').DataTable().responsive.recalc();
+      }
+      $this.closest('.card').unblock();
     });
   }
 });
