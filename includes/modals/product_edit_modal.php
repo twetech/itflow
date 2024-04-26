@@ -1,4 +1,22 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
+<?php
+$product_id = intval($_GET['product_id']);
+
+$sql = mysqli_query($mysqli,
+"SELECT * FROM products
+WHERE product_id = $product_id");
+$row = mysqli_fetch_array($sql);
+$product_name = nullable_htmlentities($row['product_name']);
+$product_description = nullable_htmlentities($row['product_description']);
+$product_price = floatval($row['product_price']);
+$product_cost = floatval($row['product_cost']);
+$product_tax_id = intval($row['product_tax_id']);
+$categery_id = intval($row['category_id']);
+
+?>
+
+
 <div class="modal" id="editProductModal<?php echo $product_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -57,6 +75,17 @@
                                         <span class="input-group-text"><i class="fa fa-fw fa-dollar-sign"></i></span>
                                     </div>
                                     <input type="text" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" class="form-control" name="price" value="<?php echo number_format($product_price, 2, '.', ''); ?>" placeholder="0.00" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Cost <strong class="text-danger">*</strong></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-fw fa-dollar-sign"></i></span>
+                                    </div>
+                                    <input type="text" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" class="form-control" name="cost" value="<?php echo number_format($product_cost, 2, '.', ''); ?>" placeholder="0.00" required>
                                 </div>
                             </div>
                         </div>

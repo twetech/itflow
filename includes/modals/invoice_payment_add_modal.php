@@ -1,5 +1,19 @@
 
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
+<?php if (isset($_GET['invoice_id'])) {
+    $invoice_id = intval($_GET['invoice_id']);
+    $sql = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_id = $invoice_id");
+    $row = mysqli_fetch_array($sql);
+    $invoice_number = intval($row['invoice_number']);
+    $invoice_prefix = nullable_htmlentities($row['invoice_prefix']);
+    $client_id = intval($row['invoice_client_id']);
+    $balance = floatval($_GET['balance']);
+
+    $sql = mysqli_query($mysqli, "SELECT * FROM clients WHERE client_id = $client_id");
+    $row = mysqli_fetch_array($sql);
+    $client_currency_code = nullable_htmlentities($row['client_currency_code']);
+} ?>
 <div class="modal" id="addPaymentModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">

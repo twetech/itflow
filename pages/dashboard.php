@@ -29,7 +29,7 @@ $row = mysqli_fetch_array($sql_user_dashboard_settings);
 $user_config_dashboard_financial_enable = intval($row['user_config_dashboard_financial_enable']);
 $user_config_dashboard_technical_enable = intval($row['user_config_dashboard_technical_enable']);
 
-$data_keys = ['Income', 'Receivables', 'Profit', 'Expenses', 'Payments', 'Invoices', 'UnbilledHours'];
+$data_keys = ['Income', 'Receivables', 'Profit', 'Expenses', 'Payments', 'Invoices', 'UnbilledHours', 'Markup'];
 $percentage_keys = ['Income', 'Receivables', 'Profit', 'Expenses', 'Payments', 'Invoices'];
 
 
@@ -243,6 +243,7 @@ if ($user_config_dashboard_financial_enable == 1) {
         <div class="row">
             <?php
                 generateCard('Receivables');
+                generateCard('Markup', "small", "manual", $financial_data['current']['markup']*100, "credit-card");
                 generateCard('Profit');
                 generateCard('Expenses');
                 generateCard('Income');

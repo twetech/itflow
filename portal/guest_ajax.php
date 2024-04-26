@@ -1,7 +1,7 @@
 <?php
 
 /*
- * guest_ajax.php
+ * portal/guest_ajax.php
  * Similar to post.php/ajax.php, but for unauthenticated requests using Asynchronous JavaScript
  * Always returns data in JSON format, unless otherwise specified
  */
@@ -24,7 +24,7 @@ if (isset($_GET['stripe_create_pi'])) {
     // Response header
     header('Content-Type: application/json');
 
-    // Params from POST (guest_pay_invoice_stripe.js)
+    // Params from POST (portal/guest_pay_invoice_stripe.js)
     $jsonStr = file_get_contents('php://input');
     $jsonObj = json_decode($jsonStr, true);
     $invoice_id = intval($jsonObj['invoice_id']);

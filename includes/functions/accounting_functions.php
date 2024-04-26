@@ -333,3 +333,31 @@ function getMonthlyInvoicesNumber($year, $month)
     $row = mysqli_fetch_assoc($result);
     return $row['number_invoices'] ?? 0;
 }
+
+function getMonthlyMarkup($year, $month)
+{
+    global $mysqli;
+
+    $sql_month_query = $month == 13 ? "" : "AND MONTH(invoice_date) = $month";
+
+    $sql_invoices = "SELECT * FROM invoices WHERE YEAR(invoice_date) = $year $sql_month_query";
+    $invoices_result = mysqli_query($mysqli, $sql_invoices);
+    $invoices_row = mysqli_fetch_assoc($invoices_result);
+    $total_amount = 0;
+    $total_cost = 0;
+    foreach ($invoices_result as $invoices_row) {
+        $invoice_amount = $invoices_row['invoice_amount'];
+
+        $total_amount += $invoice_amount;
+
+        $sql_items = "SELECT * FROM invoice_items
+        LEFT JOIN products ON invoice_items.item_product_id = products.product_id
+        WHERE item_invoice_id = " . $invoices_row['invoice_id'];
+        $items_result = mysqli_query($mysqli, $sql_items);
+        foreach ($items_result as $items_row) {
+            $total_cost += $items_row['product_cost'] * $items_row['item_quantity'];
+        }
+    }
+    
+    return $total_amount / $total_cost;
+}

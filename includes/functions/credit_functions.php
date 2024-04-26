@@ -96,7 +96,7 @@ function applyCredit(
 
         // Add to Email Body Invoice Portion
 
-        $email_body_invoices .= "<br>Invoice <a href=\'https://$config_base_url/guest_view_invoice.php?invoice_id=$invoice_id&url_key=$invoice_url_key\'>$invoice_prefix$invoice_number</a> - Outstanding Amount: " . numfmt_format_currency($currency_format, $invoice_balance, $credit_currency_code) . " - Payment Applied: " . numfmt_format_currency($currency_format, $payment_amount, $credit_currency_code) . " - New Balance: " . numfmt_format_currency($currency_format, $remaining_invoice_balance, $credit_currency_code);
+        $email_body_invoices .= "<br>Invoice <a href=\'https://$config_base_url/portal/guest_view_invoice.php?invoice_id=$invoice_id&url_key=$invoice_url_key\'>$invoice_prefix$invoice_number</a> - Outstanding Amount: " . numfmt_format_currency($currency_format, $invoice_balance, $credit_currency_code) . " - Payment Applied: " . numfmt_format_currency($currency_format, $payment_amount, $credit_currency_code) . " - New Balance: " . numfmt_format_currency($currency_format, $remaining_invoice_balance, $credit_currency_code);
 
     } // End Invoice Loop
 

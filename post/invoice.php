@@ -181,6 +181,8 @@ if (isset($_POST['add_invoice_item'])) {
     $item['item_tax_id'] = $tax_id;
     $item['item_order'] = $item_order;
     $item['item_discount'] = $discount;
+    $item['item_product_id'] = intval($_POST['product_id']);
+
 
     createInvoiceItem("invoice", $item);
     referWithAlert("Item added", "success");
@@ -205,7 +207,10 @@ if (isset($_POST['edit_item'])) {
     $description = sanitizeInput($_POST['description']);
     $qty = floatval($_POST['qty']);
     $price = floatval($_POST['price']);
+    $discount = floatval($_POST['discount']);
     $tax_id = intval($_POST['tax_id']);
+    $categery_id = intval($_POST['category_id']);
+    $product_id = intval($_POST['product_id']);
 
     $item = [];
     $item['name'] = $name;
@@ -217,6 +222,9 @@ if (isset($_POST['edit_item'])) {
     $item['invoice_id'] = $invoice_id;
     $item['quote_id'] = $quote_id;
     $item['recurring_id'] = $recurring_id;
+    $item['discount'] = $discount;
+    $item['category_id'] = $categery_id;
+    $item['product_id'] = $product_id;
 
     updateInvoiceItem($item);
     referWithAlert("Item edited", "success");
