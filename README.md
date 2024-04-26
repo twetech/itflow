@@ -1,27 +1,46 @@
 # Next Generation ERP for MSPs
 
 ## Introduction
-Next Generation ERP is a cutting-edge platform designed specifically for Managed Service Providers (MSPs). It integrates essential business processes into a single, robust solution, enhancing efficiency and providing deep insights into operational and financial performance.
+ITFlow-NG, better name pending, is a cutting-edge platform designed specifically for Managed Service Providers (MSPs). It integrates essential business processes into a single, robust solution, enhancing efficiency and providing deep insights into operational and financial performance.
 
-## Features
+### Challenges Addressed
 
-### Dynamic Modal Loading
-- Utilizes dynamic modal loading for superior performance, drastically reducing page response times, especially when managing large datasets (over 50 rows).
+- Managing an MSP involves juggling numerous tasks and managing a plethora of client information, often scattered and outdated.
+- Significant time is wasted in retrieving relevant client data for resolving tickets.
+- The financial operations involving pricing, quoting, invoicing, and general accounting are cumbersome and time-consuming.
 
-### Advanced Data Table Management
-- Employs Datatables.js for enhanced flexibility in table loading, rendering, and pagination, ensuring a smooth data management experience.
+### ITFlow: Your Solution
 
-### Modern and Responsive Design
-- Features a modern, responsive, and professional theme from [Sneat Dashboard Pro Bootstrap](https://themeselection.com/item/sneat-dashboard-pro-bootstrap/), offering a visually appealing interface that adjusts to any device.
+ITFlow is engineered to streamline and integrate the essential functions of IT documentation, ticketing, and financial management into one seamless system.
 
-### Intuitive Search Capabilities
-- Includes dynamic and intuitive type-ahead searching, making data retrieval faster and more accurate.
+### Powered By
 
-### Enhanced Financial Analytics
-- Focuses on key financial metrics, such as profit margins, across various categories, invoices, and other financial objects, aiding in more informed decision-making.
+#### Server-Side Technologies
 
-### Improved Codebase Structure
-- The codebase has been refactored into well-organized folders and more functional segments, enhancing maintainability and scalability.
+- **PHP**
+- **MariaDB**
+- **PHPMailer** for email handling
+- **HTML Purifier** for secure HTML output
+- **PHP Mime Mail Parser** for email parsing
+- **Zap Calendar** for event management
+
+#### Client-Side Libraries
+
+- **chart.js** for graphical data representation
+- **moments.js** for date operations
+- **jQuery** for enhanced HTML document manipulation
+- **pdfmake** for client-side PDF generation
+- **Select2** for customizable select boxes
+- **TinyMCE** for web-based WYSIWYG editing
+- **FullCalendar.io** for interactive calendars
+
+## Core Features
+
+- **Comprehensive Client Documentation**: Centralize all client-related data—assets, contacts, domains, documentation, files, and passwords.
+- **Advanced Billing System**: Features include a financial dashboard, customizable quotes, invoicing, comprehensive accounting, and detailed expense management.
+- **Interactive Client Portal**: Enables clients to independently manage their quotes, invoices, and tickets.
+- **Proactive Alerts**: Automated notifications for crucial deadlines like account balances, invoice payments, and domain/SSL renewals.
+- **Free & Open Source**: A viable alternative to commercial platforms such as ITGlue and Hudu, with no associated costs.
 
 ## Benefits Over Other PSAs or ERPs
 
