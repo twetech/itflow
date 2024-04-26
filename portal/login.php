@@ -25,7 +25,7 @@ if (!isset($_SESSION)) {
 }
 
 // Check to see if client portal is enabled
-if($config_client_portal_enable == 0) {
+if ($config_client_portal_enable == 0) {
     echo "Client Portal is Disabled";
     exit();
 }
@@ -81,11 +81,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
 <!doctype html>
 
-<html lang="en" class="light-style layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="/includes/assets/" data-template="horizontal-menu-template">
+<html lang="en" class="light-style layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default"
+    data-assets-path="/includes/assets/" data-template="horizontal-menu-template">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <title>ITFlow-NG</title>
 
@@ -99,7 +101,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet" />
 
     <!-- Icons -->
     <link rel="stylesheet" href="/includes/assets/vendor/fonts/boxicons.css" />
@@ -108,7 +112,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="/includes/assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="/includes/assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/css/rtl/theme-default.css"
+        class="template-customizer-theme-css" />
     <link rel="stylesheet" href="/includes/assets/css/demo.css" />
 
     <!-- Vendors CSS -->
@@ -123,6 +128,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
 
     <!-- Page CSS -->
+    <link rel="stylesheet" href="/includes/assets/vendor/css/pages/page-auth.css" />
+
 
     <!-- Helpers -->
     <script src="/includes/assets/vendor/js/helpers.js"></script>
@@ -133,178 +140,196 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     <script src="/includes/assets/js/config.js"></script>
 
     <!-- TinyMCE -->
-    <script src="https://cdn.tiny.cloud/1/78o64w2w2bmaf98z8p7idos4tjloc808tr1j9iv8efl63nce/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script></head>
+    <script src="https://cdn.tiny.cloud/1/78o64w2w2bmaf98z8p7idos4tjloc808tr1j9iv8efl63nce/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
+</head>
 
 
 <body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-        <?php if (!empty($company_logo)) { ?>
-            <img alt="<?=$company_name?> logo" height="110" width="380" class="img-fluid" src="<?php echo "..//uploads/settings/$company_logo"; ?>">
-        <?php } else { ?>
-            <b><?=$company_name?></b> <br>Client Portal Login</h2>
-        <?php } ?>
-    </div>
-    <div class="card">
-        <div class="card-body login-card-body">
-            <?php if(!empty($config_login_message)){ ?>
-            <p class="login-box-msg px-0"><?php echo nl2br($config_login_message); ?></p>
-            <?php } ?>
-            <?php
-            if (!empty($_SESSION['login_message'])) { ?>
-                <p class="login-box-msg text-danger">
-                <?php
-                echo $_SESSION['login_message'];
-                unset($_SESSION['login_message']);
-                ?>
-                </p>
-            <?php
-            }
-            ?>
-            <form method="post">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Registered Client Email" name="email" required autofocus>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
+    <div class="authentication-wrapper authentication-cover">
+        <div class="authentication-inner row m-0">
+            <!-- /Left Text -->
+            <div class="d-none d-lg-flex col-lg-7 col-xl-8 align-items-center p-5">
+                <div class="w-100 d-flex justify-content-center">
+                    <img src="/includes/assets/img/illustrations/boy-with-rocket-light.png" class="img-fluid"
+                        alt="Login image" width="700" data-app-dark-img="illustrations/boy-with-rocket-dark.png"
+                        data-app-light-img="illustrations/boy-with-rocket-light.png" />
                 </div>
-                <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Client Password" name="password" required>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
+            </div>
+            <!-- /Left Text -->
+
+            <!-- Login -->
+            <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
+                <div class="w-px-400 mx-auto">
+                    <!-- Logo -->
+                    <div class="login-logo">
+                        <?php if (!empty($company_logo)) { ?>
+                            <img alt="<?= $company_name ?> logo" height="110" width="380" class="img-fluid"
+                                src="<?php echo "/uploads/settings/$company_logo"; ?>">
+                        <?php } else { ?>
+                            <b><?= $company_name ?></b> <br>Client Portal Login</h2>
+                        <?php } ?>
                     </div>
-                </div>
+                    <!-- /Logo -->
+                    <div class="card-body login-card-body">
+                        <?php if (!empty($config_login_message)) { ?>
+                            <p class="login-box-msg px-0"><?php echo nl2br($config_login_message); ?></p>
+                        <?php } ?>
+                        <?php
+                        if (!empty($_SESSION['login_message'])) { ?>
+                            <p class="login-box-msg text-danger">
+                                <?php
+                                echo $_SESSION['login_message'];
+                                unset($_SESSION['login_message']);
+                                ?>
+                            </p>
+                            <?php
+                        }
+                        ?>
+                        <form method="post">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Registered Client Email"
+                                    name="email" required autofocus>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-envelope"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="password" class="form-control" placeholder="Client Password"
+                                    name="password" required>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-lock"></span>
+                                    </div>
+                                </div>
+                            </div>
 
-                <button type="submit" class="btn btn-success btn-block mb-3" name="login">Sign in</button>
+                            <button type="submit" class="btn btn-success btn-block mb-3" name="login">Sign in</button>
 
-                <hr>
+                            <hr>
 
-                <?php
-                if (!empty($config_smtp_host)) { ?>
-                    <h6 class="text-center"><a href="login_reset.php">Forgot password?</a></h6>
-                <?php } ?>
+                            <?php
+                            if (!empty($config_smtp_host)) { ?>
+                                <h6 class="text-center"><a href="login_reset.php">Forgot password?</a></h6>
+                            <?php } ?>
 
-            </form>
+                        </form>
 
-            <?php
-            if (!empty($azure_client_id)) { ?>
-                <hr>
-                <div class="col text-center">
-                    <a href="login_microsoft.php">
-                        <button type="button" class="btn btn-light">Login with Microsoft Azure AD</button>
-                    </a>
-                </div>
-            <?php } ?>
+                        <?php
+                        if (!empty($azure_client_id)) { ?>
+                            <hr>
+                            <div class="col text-center">
+                                <a href="login_microsoft.php">
+                                    <button type="button" class="btn btn-light">Login with Microsoft Azure AD</button>
+                                </a>
+                            </div>
+                        <?php } ?>
 
-        </div>
-        <!-- /.login-card-body -->
-
-    </div>
-    <!-- /.div.card -->
-
-</div>
-<!-- /.login-box -->
-
-
-<footer class="content-footer footer bg-footer-theme">
-    <div class="container-fluid pt-5 pb-4">
-        <div class="row">
-            <div class="row">
-                <div class="col-12 col-sm-3 col-md-2 mb-4 mb-sm-4">
-                    <h4 class="fw-bold mb-3"><a href="https://twe.tech" target="_blank" class="footer-text">ITFlow-NG </a></h4>        <span>Get ready for a better ERP.</span>
-                    <div class="social-icon my-3">
-                    <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-facebook"><i class='bx bxl-facebook'></i></a>
-                    <a href="javascript:void(0)" class="ms-2 btn btn-icon btn-sm btn-twitter"><i class='bx bxl-twitter'></i></a>
-                    <a href="javascript:void(0)" class="ms-2 btn btn-icon btn-sm btn-linkedin"><i class='bx bxl-linkedin'></i></a>
                     </div>
-                    <p class="pt-4">
-                    <script>
-                    document.write(new Date().getFullYear())
-                    </script> © TWE Technologies
+
+                    <p class="text-center">
+                        <span>New on our platform?</span>
+                        <a href="auth-register-cover.html">
+                            <span>Create an account</span>
+                        </a>
                     </p>
+
+                    <div class="divider my-4">
+                        <div class="divider-text">or</div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
+                            <i class="tf-icons bx bxl-facebook"></i>
+                        </a>
+
+                        <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
+                            <i class="tf-icons bx bxl-google-plus"></i>
+                        </a>
+
+                        <a href="javascript:;" class="btn btn-icon btn-label-twitter">
+                            <i class="tf-icons bx bxl-twitter"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-            <?php renderMenuItems($menuItems); ?>
-            </div>
+            <!-- /Login -->
         </div>
     </div>
-</footer>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
 
-<!-- Overlay -->
-<div class="layout-overlay layout-menu-toggle"></div>
-
-<!-- Drag Target Area To SlideIn Menu On Small Screens -->
-<div class="drag-target"></div>
-</div>
-<!-- / Layout wrapper -->
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
+    </div>
+    <!-- / Layout wrapper -->
 
 
 
 
-<!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
 
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="/includes/assets/vendor/libs/popper/popper.js"></script>
-<script src="/includes/assets/vendor/js/bootstrap.js"></script>
-<script src="/includes/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="/includes/assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="/includes/assets/vendor/libs/popper/popper.js"></script>
+    <script src="/includes/assets/vendor/js/bootstrap.js"></script>
+    <script src="/includes/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="/includes/assets/vendor/libs/hammer/hammer.js"></script>
 
-<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
-<script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
-<script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
 
-<script src="/includes/js/reformat_datetime.js"></script>
+    <script src="/includes/js/reformat_datetime.js"></script>
 
-<script src="/includes/assets/vendor/js/menu.js"></script>
+    <script src="/includes/assets/vendor/js/menu.js"></script>
 
-<!-- endbuild -->
+    <!-- endbuild -->
 
-<!-- Vendors JS -->
+    <!-- Vendors JS -->
 
-<script src="/includes/assets/vendor/libs/block-ui/block-ui.js"></script>
-<script src="/includes/assets/vendor/libs/sortablejs/sortable.js"></script>
-<script src="/includes/assets/vendor/libs/toastr/toastr.js"></script>
-<script src="assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="/includes/assets/vendor/libs/block-ui/block-ui.js"></script>
+    <script src="/includes/assets/vendor/libs/sortablejs/sortable.js"></script>
+    <script src="/includes/assets/vendor/libs/toastr/toastr.js"></script>
+    <script src="assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
-<!-- Main JS -->
-<script src="/includes/assets/js/main.js"></script>
+    <!-- Main JS -->
+    <script src="/includes/assets/js/main.js"></script>
 
-<script src="/includes/js/dynamic_modal_loading.js"></script>
+    <script src="/includes/js/dynamic_modal_loading.js"></script>
 
-<!-- Page JS -->
+    <!-- Page JS -->
 
-<script>
-    tinymce.init({
-        selector: 'textarea',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name',
-        mergetags_list: [
-            { value: 'First.Name', title: 'First Name' },
-            { value: 'Email', title: 'Email' },
-        ],
-        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-    });
-</script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+    </script>
 
-<script>
+    <script>
 
-$(function () {
-    $('.datatables-basic').DataTable({
-        responsive: true,
-        order: <?= $datatable_order ?>});
-});
+        $(function () {
+            $('.datatables-basic').DataTable({
+                responsive: true,
+                order: <?= $datatable_order ?>
+            });
+        });
 
-</script>
+    </script>
 
-<script src="/includes/assets/js/cards-actions.js"></script>
+    <script src="/includes/assets/js/cards-actions.js"></script>
 </body>
+
 </html>

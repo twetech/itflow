@@ -7,7 +7,7 @@
 require_once "/var/www/develop.twe.tech/includes/inc_portal.php";
 
 //Initialize the HTML Purifier to prevent XSS
-require "/var/www/develop.twe.tech/includes/modals/../plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/develop.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);
@@ -51,18 +51,19 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
             <li class="breadcrumb-item active">Ticket <?php echo $ticket_number; ?></li>
         </ol>
 
-        <div class="card">
-            <div class="card-header bg-dark text-center">
-                <h4 class="mt-1">
+        <div class="card me-2">
+            <div class="card-header header-elements">
+                <span class="me-2">
                     Ticket <?php echo $ticket_prefix, $ticket_number ?>
-                    <?php
-                    if ($ticket_status !== "Closed") { ?>
-                        <a href="portal_post.php?close_ticket=<?php echo $ticket_id; ?>" class="btn btn-sm btn-outline-success float-right text-white confirm-link"><i class="fas fa-fw fa-check text-success"></i> Close ticket</a>
+                </span>
+                <div class="header-elements ms-auto">
+                    <?php if ($ticket_status !== "Closed") { ?>
+                        <a href="portal_post.php?close_ticket=<?php echo $ticket_id; ?>" class="btn btn-xs btn-outline-success confirm-link"><i class="fas fa-fw fa-check text-success"></i> Close ticket</a>
                     <?php } ?>
-                </h4>
+                </div>
             </div>
 
-            <div class="card-body prettyContent">
+            <div class="card-body">
                 <h5><strong>Subject:</strong> <?php echo $ticket_subject ?></h5>
                 <hr>
                 <p>
@@ -78,43 +79,69 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
             </div>
         </div>
 
+        <hr>
+
+        <div class="card me-2">
+            <div class="card-body">
+                <?php if ($ticket_status !== "Closed") { ?>
+                    <form action="portal_post.php" enctype="multipart/form-data" method="post">
+                        <div class="row">
+                            <input type="hidden" name="ticket_id" value="<?php echo $ticket_id ?>">
+                            <div class="col-12 form-group">
+                                <textarea  class="form-control mb-2" name="comment" placeholder="Add comments.."></textarea>
+                            </div>
+                            <div class="col-8 form-group">
+                                <input type="file" class="form-control-file mb-2" name="file[]" multiple id="fileInput" accept=".jpg, .jpeg, .gif, .png, .webp, .pdf, .txt, .md, .doc, .docx, .odt, .csv, .xls, .xlsx, .ods, .pptx, .odp, .zip, .tar, .gz, .xml, .msg, .json, .wav, .mp3, .ogg, .mov, .mp4, .av1, .ovpn">
+                            </div>                            
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-label-primary mb-2" name="add_ticket_comment">Reply</button>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+
+                <?php } elseif (empty($ticket_feedback)) { ?>
+
+                    <h4>Rate your ticket</h4>
+
+                    <form action="portal_post.php" method="post">
+                        <input type="hidden" name="ticket_id" value="<?php echo $ticket_id ?>">
+
+                        <button type="submit" class="btn btn-label-success btn-lg" name="add_ticket_feedback" value="Good" onclick="this.form.submit()">
+                            <span class="fa fa-smile" aria-hidden="true"></span> Good
+                        </button>
+
+                        <button type="submit" class="btn btn-label-danger btn-lg" name="add_ticket_feedback" value="Bad" onclick="this.form.submit()">
+                            <span class="fa fa-frown" aria-hidden="true"></span> Bad
+                        </button>
+                    </form>
+
+                <?php } else { ?>
+
+                    <h4>Rated <?php echo $ticket_feedback ?> -- Thanks for your feedback!</h4>
+
+                    <?php if ($ticket_feedback == "Bad") { ?>
+                        <p>Thats not what we wanted to hear. We have alerted management, and someone will be in touch to discuss further and listen to feedback.</p>
+
+                    <?php } elseif ($ticket_feedback == "Good") { ?>
+                        <p>Great to hear! We're glad we could help.</p>
+                        <hr>
+                        <p>
+                            <a href="https://g.page/r/CT21V3QZ9Jp8EAI/review" target="_blank" class="btn btn-label-google-plus">Leave a review?</a>
+                        </p>
+                    <?php } ?>
+
+                <?php } ?>                
+            </div>
+        </div>
+
+
 
         <!-- Either show the reply comments box, ticket smiley feedback, or thanks for feedback -->
 
-        <?php if ($ticket_status !== "Closed") { ?>
 
-            <form action="portal_post.php" enctype="multipart/form-data" method="post">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id ?>">
-                <div class="form-group">
-                    <textarea  class="form-control" name="comment" placeholder="Add comments.."></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="file" class="form-control-file" name="file[]" multiple id="fileInput" accept=".jpg, .jpeg, .gif, .png, .webp, .pdf, .txt, .md, .doc, .docx, .odt, .csv, .xls, .xlsx, .ods, .pptx, .odp, .zip, .tar, .gz, .xml, .msg, .json, .wav, .mp3, .ogg, .mov, .mp4, .av1, .ovpn">
-                </div>
-                <button type="submit" class="btn btn-label-primary" name="add_ticket_comment">Reply</button>
-            </form>
-
-        <?php } elseif (empty($ticket_feedback)) { ?>
-
-            <h4>Rate your ticket</h4>
-
-            <form action="portal_post.php" method="post">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id ?>">
-
-                <button type="submit" class="btn btn-label-primary btn-lg" name="add_ticket_feedback" value="Good" onclick="this.form.submit()">
-                    <span class="fa fa-smile" aria-hidden="true"></span> Good
-                </button>
-
-                <button type="submit" class="btn btn-danger btn-lg" name="add_ticket_feedback" value="Bad" onclick="this.form.submit()">
-                    <span class="fa fa-frown" aria-hidden="true"></span> Bad
-                </button>
-            </form>
-
-        <?php } else { ?>
-
-            <h4>Rated <?php echo $ticket_feedback ?> -- Thanks for your feedback!</h4>
-
-        <?php } ?>
 
         <!-- End comments/feedback -->
 
@@ -136,13 +163,13 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
                 $ticket_reply_by_display = nullable_htmlentities($row['contact_name']);
                 $user_initials = initials($row['contact_name']);
                 $user_avatar = $row['contact_photo'];
-                $avatar_link = "..//uploads/clients/$session_client_id/$user_avatar";
+                $avatar_link = "/includes/uploads/clients/$session_client_id/$user_avatar";
             } else {
                 $ticket_reply_by_display = nullable_htmlentities($row['user_name']);
                 $user_id = intval($row['user_id']);
                 $user_avatar = $row['user_avatar'];
                 $user_initials = initials($row['user_name']);
-                $avatar_link = "..//uploads/users/$user_id/$user_avatar";
+                $avatar_link = "/includes/uploads/users/$user_id/$user_avatar";
             }
             ?>
 
@@ -185,7 +212,7 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
 
         ?>
 
-        <script src="../js/pretty_content.js"></script>
+        <script src="/includes/js/pretty_content.js"></script>
 
     <?php
     } else {

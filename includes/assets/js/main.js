@@ -492,14 +492,24 @@ if (typeof $ !== 'undefined') {
       // Search JSON
       var searchJson = 'search-vertical.json'; // For vertical layout
       if ($('#layout-menu').hasClass('menu-horizontal')) {
-        var searchJson = 'search-horizontal.json'; // For vertical layout
+        var searchJson = 'search-horizontal.json'; // For horizontal layout
       }
       // Search API AJAX call
-      var searchData = $.ajax({
-        url: assetsPath + 'json/' + searchJson, //? Use your own search api instead
+      var searchData = null;
+      $.ajax({
+        url: '/ajax/ajax.php?search=true',
+        type: 'GET',
         dataType: 'json',
-        async: false
-      }).responseJSON;
+        async: false,  // Keeping the request synchronous
+        success: function(data) {
+          searchData = data;
+        },
+        error: function(xhr, status, error) {
+          console.error("Error: " + error);
+        }
+      });
+
+      console.log(searchData);
       // Init typeahead on searchInput
       searchInput.each(function () {
         var $this = $(this);
@@ -514,14 +524,14 @@ if (typeof $ !== 'undefined') {
               }
             },
             // ? Add/Update blocks as per need
-            // Pages
+            // Clients
             {
-              name: 'pages',
+              name: 'clients',
               display: 'name',
               limit: 5,
-              source: filterConfig(searchData.pages),
+              source: filterConfig(searchData.clients),
               templates: {
-                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Pages</h6>',
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Clients</h6>',
                 suggestion: function ({ url, icon, name }) {
                   return (
                     '<a href="' +
@@ -538,88 +548,162 @@ if (typeof $ !== 'undefined') {
                     '</a>'
                   );
                 },
-                notFound:
-                  '<div class="not-found px-3 py-2">' +
-                  '<h6 class="suggestions-header text-primary mb-2">Pages</h6>' +
-                  '<p class="py-2 mb-0"><i class="bx bx-error-circle bx-xs me-2"></i> No Results Found</p>' +
-                  '</div>'
               }
             },
-            // Files
+            // Contacts
             {
-              name: 'files',
+              name: 'contacts',
               display: 'name',
-              limit: 4,
-              source: filterConfig(searchData.files),
+              limit: 5,
+              source: filterConfig(searchData.contacts),
               templates: {
-                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Files</h6>',
-                suggestion: function ({ src, name, subtitle, meta }) {
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Contacts</h6>',
+                suggestion: function ({ url, icon, name }) {
                   return (
-                    '<a href="javascript:;">' +
-                    '<div class="d-flex w-50">' +
-                    '<img class="me-3" src="' +
-                    assetsPath +
-                    src +
-                    '" alt="' +
+                    '<a href="' +
+                    url +
+                    '">' +
+                    '<div>' +
+                    '<i class="bx ' +
+                    icon +
+                    ' me-2"></i>' +
+                    '<span class="align-middle">' +
                     name +
-                    '" height="32">' +
-                    '<div class="w-75">' +
-                    '<h6 class="mb-0">' +
-                    name +
-                    '</h6>' +
-                    '<small class="text-muted">' +
-                    subtitle +
-                    '</small>' +
-                    '</div>' +
-                    '</div>' +
-                    '<small class="text-muted">' +
-                    meta +
-                    '</small>' +
-                    '</a>'
-                  );
-                },
-                notFound:
-                  '<div class="not-found px-3 py-2">' +
-                  '<h6 class="suggestions-header text-primary mb-2">Files</h6>' +
-                  '<p class="py-2 mb-0"><i class="bx bx-error-circle bx-xs me-2"></i> No Results Found</p>' +
-                  '</div>'
-              }
-            },
-            // Members
-            {
-              name: 'members',
-              display: 'name',
-              limit: 4,
-              source: filterConfig(searchData.members),
-              templates: {
-                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Members</h6>',
-                suggestion: function ({ name, src, subtitle }) {
-                  return (
-                    '<a href="app-user-view-account.html">' +
-                    '<div class="d-flex align-items-center">' +
-                    '<img class="rounded-circle me-3" src="' +
-                    assetsPath +
-                    src +
-                    '" alt="' +
-                    name +
-                    '" height="32">' +
-                    '<div class="user-info">' +
-                    '<h6 class="mb-0">' +
-                    name +
-                    '</h6>' +
-                    '<small class="text-muted">' +
-                    subtitle +
-                    '</small>' +
-                    '</div>' +
+                    '</span>' +
                     '</div>' +
                     '</a>'
                   );
                 },
-                notFound:
-                  '<div class="not-found px-3 py-2">' +
-                  '<h6 class="suggestions-header text-primary mb-2">Members</h6>' +
-                  '<p class="py-2 mb-0"><i class="bx bx-error-circle bx-xs me-2"></i> No Results Found</p>' +
-                  '</div>'
+              }
+            },
+            // Tickets
+            {
+              name: 'tickets',
+              display: 'name',
+              limit: 5,
+              source: filterConfig(searchData.tickets),
+              templates: {
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Tickets</h6>',
+                suggestion: function ({ url, icon, name }) {
+                  return (
+                    '<a href="' +
+                    url +
+                    '">' +
+                    '<div>' +
+                    '<i class="bx ' +
+                    icon +
+                    ' me-2"></i>' +
+                    '<span class="align-middle">' +
+                    name +
+                    '</span>' +
+                    '</div>' +
+                    '</a>'
+                  );
+                },
+              }
+            },
+            // Documents
+            {
+              name: 'documents',
+              display: 'name',
+              limit: 5,
+              source: filterConfig(searchData.documents),
+              templates: {
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Documents</h6>',
+                suggestion: function ({ url, icon, name }) {
+                  return (
+                    '<a href="' +
+                    url +
+                    '">' +
+                    '<div>' +
+                    '<i class="bx ' +
+                    icon +
+                    ' me-2"></i>' +
+                    '<span class="align-middle">' +
+                    name +
+                    '</span>' +
+                    '</div>' +
+                    '</a>'
+                  );
+                },
+              }
+            },
+            // Logins
+            {
+              name: 'logins',
+              display: 'name',
+              limit: 5,
+              source: filterConfig(searchData.logins),
+              templates: {
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Logins</h6>',
+                suggestion: function ({ url, icon, name }) {
+                  return (
+                    '<a href="' +
+                    url +
+                    '">' +
+                    '<div>' +
+                    '<i class="bx ' +
+                    icon +
+                    ' me-2"></i>' +
+                    '<span class="align-middle">' +
+                    name +
+                    '</span>' +
+                    '</div>' +
+                    '</a>'
+                  );
+                },
+              }
+            },
+            // Ticket Replies
+            {
+              name: 'ticket-replies',
+              display: 'name',
+              limit: 5,
+              source: filterConfig(searchData.ticketReplies),
+              templates: {
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Ticket Replies</h6>',
+                suggestion: function ({ url, icon, name }) {
+                  return (
+                    '<a href="' +
+                    url +
+                    '">' +
+                    '<div>' +
+                    '<i class="bx ' +
+                    icon +
+                    ' me-2"></i>' +
+                    '<span class="align-middle">' +
+                    name +
+                    '</span>' +
+                    '</div>' +
+                    '</a>'
+                  );
+                },
+              }
+            },
+            // Assets
+            {
+              name: 'assets',
+              display: 'name',
+              limit: 5,
+              source: filterConfig(searchData.assets),
+              templates: {
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Assets</h6>',
+                suggestion: function ({ url, icon, name }) {
+                  return (
+                    '<a href="' +
+                    url +
+                    '">' +
+                    '<div>' +
+                    '<i class="bx ' +
+                    icon +
+                    ' me-2"></i>' +
+                    '<span class="align-middle">' +
+                    name +
+                    '</span>' +
+                    '</div>' +
+                    '</a>'
+                  );
+                },
               }
             }
           )

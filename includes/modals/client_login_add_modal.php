@@ -1,4 +1,11 @@
 <?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+
+<?php 
+
+$client_id = intval($_GET['client_id']);
+
+?>
+
 <div class="modal" id="addLoginModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -10,7 +17,7 @@
             </div>
             <form action="/post.php" method="post" autocomplete="off">
 
-                <div class="modal-body bg-white">
+                <div class="modal-body">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
@@ -233,9 +240,9 @@
 
                     </div>
                 </div>
-                <div class="modal-footer bg-white">
-                    <button type="submit" name="add_login" class="btn btn-label-primary text-bold"></i>Create</button>
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
+                <div class="modal-footer">
+                    <button type="submit" name="add_login" class="btn btn-label-primary">Create</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </form>
         </div>

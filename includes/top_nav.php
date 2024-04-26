@@ -408,7 +408,7 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                                         </ul>
                                     </li>
                                     <li class="dropdown-menu-footer border-top p-3">
-                                        <button class="btn btn-primary text-uppercase w-100">view all notifications</button>
+                                        <a class="btn btn-primary text-uppercase w-100" href="/pages/notifications.php">view all notifications</a>
                                     </li>
                                 </ul>
                             </li>
@@ -510,7 +510,7 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                                     </li>
                                 <?php } ?>
 
-                                <li class="breadcrumb-item active" aria-current="page"><?= $page_name ?></li>
+                                <li class="breadcrumb-item active" aria-current="page"><?= ucwords($page_name) ?></li>
                             </ol>
                         </nav>
                     </h4>

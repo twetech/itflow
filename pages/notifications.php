@@ -43,7 +43,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM notifications LEFT JOIN clients ON n
                         if (empty($client_name)) {
                             $client_name_display = "-";
                         } else {
-                            $client_name_display = "<a href='client_overview.php?client_id=$client_id'>$client_name</a>";
+                            $client_name_display = "<a href='/pages/client/client_overview.php?client_id=$client_id'>$client_name</a>";
                         }
 
                         ?>
@@ -70,6 +70,7 @@ $sql = mysqli_query($mysqli, "SELECT * FROM notifications LEFT JOIN clients ON n
         <?php } ?>
 
     </div>
+</div>
 
 <?php
 require_once '/var/www/develop.twe.tech/includes/footer.php';
