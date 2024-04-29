@@ -1,11 +1,11 @@
 <?php
 
-if (file_exists("/var/www/develop.twe.tech/includes/config.php")) {
-    include "/var/www/develop.twe.tech/includes/config.php";
+if (file_exists("/var/www/portal.twe.tech/includes/config.php")) {
+    include "/var/www/portal.twe.tech/includes/config.php";
 
 }
 
-include "/var/www/develop.twe.tech/includes/functions/functions.php";
+include "/var/www/portal.twe.tech/includes/functions/functions.php";
 
 include "database_version.php";
 
@@ -71,9 +71,9 @@ if (isset($_POST['add_database'])) {
     $new_config .= "\$repo_branch = 'master';\n";
     $new_config .= "\$installation_id = '$installation_id';\n";
 
-    if (file_put_contents("/var/www/develop.twe.tech/includes/config.php", $new_config) !== false && file_exists('config.php')) {
+    if (file_put_contents("/var/www/portal.twe.tech/includes/config.php", $new_config) !== false && file_exists('config.php')) {
 
-        include "/var/www/develop.twe.tech/includes/config.php";
+        include "/var/www/portal.twe.tech/includes/config.php";
 
 
         // Name of the file
@@ -357,7 +357,7 @@ if (isset($_POST['add_telemetry'])) {
     }
 
     //final setup stages
-    $myfile = fopen("/var/www/develop.twe.tech/includes/config.php", "a");
+    $myfile = fopen("/var/www/portal.twe.tech/includes/config.php", "a");
 
     $txt = "\$config_enable_setup = 0;\n\n";
 

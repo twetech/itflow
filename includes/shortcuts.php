@@ -48,6 +48,18 @@
             'name' => 'Tickets',
             'description' => 'Manage Tickets'
         ],
+        'Products' => [
+            'icon' => 'bx bx-box',
+            'link' => '/pages/products.php',
+            'name' => 'Products',
+            'description' => 'Manage Products'
+        ],
+        'Recurring By Client' => [
+            'icon' => 'bx bx-repeat',
+            'link' => '/pages/report/report_recurring_by_client.php',
+            'name' => 'Recurring By Client',
+            'description' => 'Manage Recurring'
+        ],
         
 
 

@@ -1,5 +1,5 @@
 
-<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+<?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
 
 <?php
 $invoice_id = isset($_GET['invoice_id']) ? intval($_GET['invoice_id']) : 0;
@@ -50,6 +50,22 @@ if (mysqli_num_rows($products_sql) > 0) {
                             <textarea class="form-control mb-1" rows="2" id="desc" name="description" placeholder="Enter a Description"></textarea>
                         </div>
                         <hr>
+                        <div class="col-md-12 col-12 mb-md-0 mb-3 ps-md-0">
+                            <p class="mb-2 repeater-title">Category</p>
+                            <select class="form-select mb-2" name="category" id="category" style="width: 100%;" required>
+                                <option value="" selected disabled>Select Category</option>
+                                <?php
+                                $category_sql = "SELECT * FROM categories";
+                                $category_result = mysqli_query($mysqli, $category_sql);
+
+                                while ($category_row = mysqli_fetch_assoc($category_result)) {
+                                    $category_id = $category_row['category_id'];
+                                    $category_name = $category_row['category_name'];
+                                    ?>
+                                    <option value="<?=$category_id?>"><?=$category_name?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-7 col-12 mb-md-0 mb-3 ps-md-0">

@@ -11,7 +11,7 @@ if (isset($_POST['add_quote'])) {
 
     global $mysqli, $session_company_currency, $config_quote_prefix, $config_quote_next_number, $session_ip, $session_user_agent, $session_user_id;
 
-    require_once '/var/www/develop.twe.tech/post/models/quote_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/quote_model.php';
 
     $client = intval($_POST['client']);
 
@@ -214,7 +214,7 @@ if (isset($_POST['quote_note'])) {
 
 if (isset($_POST['edit_quote'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/quote_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/quote_model.php';
 
     $quote_id = intval($_POST['quote_id']);
 

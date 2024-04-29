@@ -4,7 +4,7 @@
 $sort = "contact_name";
 $order = "ASC";
 
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 
 //Rebuild URL
@@ -24,7 +24,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-users mr-2"></i>Contacts</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_contact_add_modal.php">
+                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_contact_add_modal.php?client_id=<?php echo $client_id; ?>">
                         <i class="fas fa-plus mr-2"></i>New Contact
                     </button>
                     <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
@@ -230,4 +230,4 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 <?php
 
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+require_once '/var/www/portal.twe.tech/includes/footer.php';

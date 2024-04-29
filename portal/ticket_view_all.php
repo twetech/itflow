@@ -4,7 +4,7 @@
  * Primary contact view: all tickets
  */
 
-require_once '/var/www/develop.twe.tech/includes/inc_portal.php';
+require_once '/var/www/portal.twe.tech/includes/inc_portal.php';
 
 
 

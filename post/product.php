@@ -12,7 +12,7 @@ if (isset($_POST['add_product'])) {
 
     global $mysqli, $session_company_currency, $session_name, $session_ip, $session_user_agent, $session_user_id;
 
-    require_once '/var/www/develop.twe.tech/post/models/product_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/product_model.php';
 
 
     mysqli_query($mysqli,"INSERT INTO products SET product_name = '$name', product_description = '$description', product_price = '$price', product_cost = $cost, product_currency_code = '$session_company_currency', product_tax_id = $tax, product_category_id = $category");
@@ -28,7 +28,7 @@ if (isset($_POST['add_product'])) {
 
 if (isset($_POST['edit_product'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/product_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/product_model.php';
 
 
     $product_id = intval($_POST['product_id']);

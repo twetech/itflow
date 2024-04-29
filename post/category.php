@@ -9,7 +9,7 @@ global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_i
 
 if (isset($_POST['add_category'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/category_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/category_model.php';
 
 
     mysqli_query($mysqli,"INSERT INTO categories SET category_name = '$name', category_type = '$type', category_color = '$color'");
@@ -25,7 +25,7 @@ if (isset($_POST['add_category'])) {
 
 if (isset($_POST['edit_category'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/category_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/category_model.php';
 
 
     $category_id = intval($_POST['category_id']);

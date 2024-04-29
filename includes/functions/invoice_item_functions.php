@@ -17,6 +17,7 @@ function createInvoiceItem(
     $tax_id = $item['item_tax_id'];
     $item_order = $item['item_order'];
     $invoice_id = $item['item_invoice_id'];
+    $category_id = $item['item_category_id'];
     $discount = $item['item_discount'];
     $product_id = $item['item_product_id'];
     $subtotal = $price * $qty;
@@ -92,7 +93,7 @@ function createInvoiceItem(
 
     $total = $subtotal + $tax_amount - $discount;
 
-    mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$name', item_description = '$description', item_quantity = $qty, item_product_id = $product_id, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_discount = $discount, item_order = $item_order, item_tax_id = $tax_id, item_invoice_id = $invoice_id");
+    mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$name', item_description = '$description', item_quantity = $qty, item_product_id = $product_id, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_discount = $discount, item_order = $item_order, item_tax_id = $tax_id, item_invoice_id = $invoice_id, item_category_id = $category_id");
 
 
     //add up all line items

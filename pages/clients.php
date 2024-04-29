@@ -6,7 +6,7 @@ $order = "DESC";
 
 $datatable_order = "[[0, 'asc']]";
 
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 // Leads Query
 
@@ -33,12 +33,7 @@ $sql = mysqli_query(
     LEFT JOIN locations ON clients.client_id = locations.location_client_id AND location_primary = 1
     LEFT JOIN client_tags ON client_tags.client_tag_client_id = clients.client_id
     LEFT JOIN tags ON tags.tag_id = client_tags.client_tag_tag_id
-    WHERE (clients.client_name LIKE '%$q%' OR clients.client_type LIKE '%$q%' OR clients.client_referral LIKE '%$q%'
-           OR contacts.contact_email LIKE '%$q%' OR contacts.contact_name LIKE '%$q%' OR contacts.contact_phone LIKE '%$phone_query%'
-           OR contacts.contact_mobile LIKE '%$phone_query%' OR locations.location_address LIKE '%$q%'
-           OR locations.location_city LIKE '%$q%' OR locations.location_state LIKE '%$q%' OR locations.location_zip LIKE '%$q%'
-           OR tags.tag_name LIKE '%$q%' OR clients.client_tax_id_number LIKE '%$q%')
-      AND clients.client_archived_at IS NULL
+    WHERE clients.client_archived_at IS NULL
       AND clients.client_lead = $leads
     GROUP BY clients.client_id
     ORDER BY $sort $order
@@ -277,5 +272,5 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <?php
 
 
-require_once "/var/www/develop.twe.tech/includes/footer.php";
+require_once "/var/www/portal.twe.tech/includes/footer.php";
 

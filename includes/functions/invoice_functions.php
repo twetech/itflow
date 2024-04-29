@@ -383,3 +383,22 @@ function addInvoiceToTicket(
 
     mysqli_query($mysqli,"UPDATE invoices SET invoice_ticket_id = $ticket_id WHERE invoice_id = $invoice_id");
 }
+
+function getInvoiceBadgeColor($invoice_status)
+{
+    if ($invoice_status == "Sent") {
+        $invoice_badge_color = "warning";
+    } elseif ($invoice_status == "Viewed") {
+        $invoice_badge_color = "info";
+    } elseif ($invoice_status == "Partial") {
+        $invoice_badge_color = "primary";
+    } elseif ($invoice_status == "Paid") {
+        $invoice_badge_color = "success";
+    } elseif ($invoice_status == "Cancelled") {
+        $invoice_badge_color = "danger";
+    } else {
+        $invoice_badge_color = "secondary";
+    }
+
+    return $invoice_badge_color;
+}

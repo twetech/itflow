@@ -1,14 +1,14 @@
 <?php
-require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all_admin.php";
 
 require_once "database_version.php";
 
-require_once "/var/www/develop.twe.tech/includes/tenant_db.php";
+require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
 
-require_once "/var/www/develop.twe.tech/includes/config.php";
+require_once "/var/www/portal.twe.tech/includes/config.php";
 
 
-$folderPath = '/var/www/develop.twe.tech/uploads';
+$folderPath = '/var/www/portal.twe.tech/uploads';
 
 function countFilesInDirectory($dir) {
     $count = 0;
@@ -320,5 +320,5 @@ $webServer = $_SERVER['SERVER_SOFTWARE'];
 
 <?php
 
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+require_once '/var/www/portal.twe.tech/includes/footer.php';
 

@@ -1,10 +1,10 @@
 <?php
 // Not including the guest header as we don't want any HTML output
-require_once "/var/www/develop.twe.tech/includes/tenant_db.php";
+require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
 
-require_once "/var/www/develop.twe.tech/includes/config.php";
+require_once "/var/www/portal.twe.tech/includes/config.php";
 
-require_once "/var/www/develop.twe.tech/includes/functions/functions.php";
+require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
 
 
 $ip = sanitizeInput(getIP());

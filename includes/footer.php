@@ -7,8 +7,8 @@
 </div>
 
 <?php
-    require_once "/var/www/develop.twe.tech/includes/inc_confirm_modal.php";
-    require_once "/var/www/develop.twe.tech/includes/inc_dynamic_modal.php";
+    require_once "/var/www/portal.twe.tech/includes/inc_confirm_modal.php";
+    require_once "/var/www/portal.twe.tech/includes/inc_dynamic_modal.php";
     function renderMenuItems($items, $level = 0, $isLast = true) {
         $itemCount = count($items);
         $firstItem = true; // Track the first item at this level
@@ -99,6 +99,8 @@
 <!-- endbuild -->
 
 <!-- Vendors JS -->
+<script src="/includes/assets/vendor/libs/select2/select2.js"></script>
+
 
 <script src="/includes/assets/vendor/libs/block-ui/block-ui.js"></script>
 <script src="/includes/assets/vendor/libs/sortablejs/sortable.js"></script>

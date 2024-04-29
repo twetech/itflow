@@ -358,6 +358,7 @@ function getMonthlyMarkup($year, $month)
             $total_cost += $items_row['product_cost'] * $items_row['item_quantity'];
         }
     }
+    $total_cost == 0 ? $total_cost = 1 : $total_cost;
     
     return $total_amount / $total_cost;
 }

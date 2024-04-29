@@ -91,24 +91,7 @@ function getAssetIcon($asset_type)
     return $device_icon;
 }
 
-function getInvoiceBadgeColor($invoice_status)
-{
-    if ($invoice_status == "Sent") {
-        $invoice_badge_color = "warning text-white";
-    } elseif ($invoice_status == "Viewed") {
-        $invoice_badge_color = "info";
-    } elseif ($invoice_status == "Partial") {
-        $invoice_badge_color = "primary";
-    } elseif ($invoice_status == "Paid") {
-        $invoice_badge_color = "success";
-    } elseif ($invoice_status == "Cancelled") {
-        $invoice_badge_color = "danger";
-    } else {
-        $invoice_badge_color = "secondary";
-    }
 
-    return $invoice_badge_color;
-}
 
 function timeAgo($datetime)
 {
@@ -302,7 +285,7 @@ function generateReadablePassword($security_level)
 
 function createiCalStr($datetime, $title, $description, $location)
 {
-    require_once "/var/www/develop.twe.tech/includes/plugins/zapcal/zapcallib.php";
+    require_once "/var/www/portal.twe.tech/includes/plugins/zapcal/zapcallib.php";
 
     // Create the iCal object
     $cal_event = new ZCiCal();

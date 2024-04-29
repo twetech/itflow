@@ -1,8 +1,8 @@
 <?php
 
-require_once "/var/www/develop.twe.tech/portal/guest_header.php";
+require_once "/var/www/portal.twe.tech/portal/guest_header.php";
 
-require_once "/var/www/develop.twe.tech/portal/portal_header.php";
+require_once "/var/www/portal.twe.tech/portal/portal_header.php";
 
 if (!isset($_GET['invoice_id'], $_GET['url_key'])) {
     echo "<br><h2>Oops, something went wrong! Please raise a ticket if you believe this is an error.</h2>";
@@ -76,7 +76,7 @@ $company_email = nullable_htmlentities($row['company_email']);
 $company_website = nullable_htmlentities($row['company_website']);
 $company_logo = nullable_htmlentities($row['company_logo']);
 if (!empty($company_logo)) {
-    $company_logo_base64 = base64_encode(file_get_contents("/uploads/settings/$company_logo"));
+    $company_logo_base64 = base64_encode(file_get_contents("/var/www/portal.twe.tech/uploads/settings/$company_logo"));
 }
 $company_locale = nullable_htmlentities($row['company_locale']);
 $config_invoice_footer = nullable_htmlentities($row['config_invoice_footer']);
@@ -156,42 +156,53 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
 <div class="card invoice-preview-card">
 <div class="card-body">
 <div class="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column p-sm-3 p-0">
-  <div class="mb-xl-0 mb-4">
+<div class="row">
+  <div class="col-4">
     <div class="d-flex svg-illustration mb-3 gap-2">
-      <span class="app-brand-text demo text-body fw-bold"><?php echo $company_name; ?></span>
+      <img src="data:image/png;base64,<?php echo $company_logo_base64; ?>" class="w-100 mt-4" alt="logo" />
     </div>
+  </div>
+  <div class="col-3">
+    <h4><?php echo $company_name; ?></h4>
     <p class="mb-1"><?php echo $company_address; ?></p>
     <p class="mb-1"><?php echo "$company_city $company_state $company_zip"; ?></p>
     <p class="mb-1"><?php echo $company_phone; ?></p>
     <p class="mb-0"><?php echo $company_email; ?></p>
   </div>
-  <div>
-    <h4>Invoice <?php echo "$invoice_prefix$invoice_number"; ?></h4>
-    <div class="mb-2">
-      <span class="me-1">Date Issued:</span>
-      <span class="fw-medium"><div class="">
-        <?php echo $invoice_date; ?>
-      </div></span>
+  <div class="col-5">
+    <div class="d-flex justify-content-end">
+      <div class="d-flex flex-column text-end">
+        <h4>Invoice <?php echo "$invoice_prefix$invoice_number"; ?></h4>
+        <div class="mb-2">
+          <span class="me-1">Date Issued:</span>
+          <span class="fw-medium"><div class="">
+            <?php echo $invoice_date; ?>
+          </div></span>
+        </div>
+        <div>
+          <span class="me-1">Date Due:</span>
+          <span class="fw-medium"><div class="<?php echo $invoice_color; ?>"><?php echo $invoice_due; ?></div></span>
+        </div>
+      </div>
     </div>
-    <div>
-      <span class="me-1">Date Due:</span>
-      <span class="fw-medium"><div class="<?php echo $invoice_color; ?>"><?php echo $invoice_due; ?></div></span>
-    </div>
+    </div>    
   </div>
-</div>
+</div>  
+
+
 </div>
 <hr class="my-0" />
 <div class="card-body">
-<div class="row p-sm-3 p-0">
-  <div class="col-xl-6 col-md-12 col-sm-5 col-12 mb-xl-0 mb-md-4 mb-sm-0 mb-4">
-    <h6 class="pb-2">Invoice To:</h6>
-    <p><h4><strong><?php echo $client_name; ?></strong></h4></p>
-    <p><?php echo $location_address; ?></p>
-    <p><?php echo "$location_city $location_state $location_zip"; ?></p>
-    <p><?php echo "$contact_phone $contact_extension"; ?></p>
-    <p><?php echo $contact_mobile; ?></p>
-    <p><?php echo $contact_email; ?></p>
-  </div>
+<div class="row">
+    <div class="col-7">
+      <h6 class="pb-2 m-1 text-end">Invoice To:</h6>
+    </div>
+    <div class="col text-end">
+      <strong class="truncate-text"><?php echo $client_name; ?></strong><br>
+      <?= $location_address; ?><br>
+      <?= $location_city . ", " . $location_state . " " . $location_zip; ?><br>
+      <a href="mailto:<?= $contact_email; ?>"><?= $contact_email; ?></a><br>
+    </div>
 </div>
 </div>
 <div class="table-responsive">
@@ -236,11 +247,14 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
     <?php } ?>
     <tr>
       <td colspan="4" class="align-top px-4 py-5">
-        <p class="mb-2">
-          <span class="me-1 fw-medium">Salesperson:</span>
-          <span>Alfie Solomons</span>
-        </p>
-        <span>Thanks for your business</span>
+      <div class="row">
+        <?php if ($invoice_note !== "") { ?>
+          <div class="col-12">
+            <span class="fw-medium">Note:</span>
+            <span><?php echo $invoice_note; ?></span>
+          </div>
+        <?php } ?>
+      </div>
       </td>
       <td class="text-end px-4 py-5">
         <p class="mb-2">Subtotal:</p>
@@ -259,15 +273,6 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
 </table>
 </div>
 
-<div class="card-body">
-<div class="row">
-  <div class="col-12">
-    <span class="fw-medium">Note:</span>
-    <span>It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance
-      projects. Thank You!</span>
-  </div>
-</div>
-</div>
 </div>
 </div>
 <!-- /Invoice -->

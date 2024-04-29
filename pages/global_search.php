@@ -1,9 +1,9 @@
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 // Initialize the HTML Purifier to prevent XSS
-require "/var/www/develop.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/portal.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);
@@ -118,6 +118,7 @@ if (isset($_GET['query'])) {
             <h4 class="text-center"><i class="fas fa-fw fa-search mr-2"></i>Global Search</h4>
             <hr>
         </div>
+
 
         <?php if (mysqli_num_rows($sql_clients) > 0) { ?>
 
@@ -715,9 +716,31 @@ if (isset($_GET['query'])) {
 
 <?php
 
+} else {
+
+    ?>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="get" action="/pages/global_search.php">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="query" placeholder="Search..." required>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-search"></i></button>
+                </div>
+            </form>
+            <hr>
+            <div class="alert alert-info text-center">
+                <i class="fas fa-fw fa-info-circle mr-2"></i>Enter a search query above to begin.
+            </div>
+        </div>
+    </div>
+
+    <?php
+
 }
 
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+
+require_once '/var/www/portal.twe.tech/includes/footer.php';
 
 ?>
 
