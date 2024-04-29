@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/develop.twe.tech/portal/guest_header.php";
+require_once "/var/www/portal.twe.tech/portal/guest_header.php";
 
 
 if (!isset($_GET['quote_id'], $_GET['url_key'])) {

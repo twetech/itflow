@@ -12,7 +12,7 @@ if (isset($_POST['edit_company'])) {
     validateCSRFToken($_POST['csrf_token']);
     validateAdminRole();
 
-    require_once '/var/www/develop.twe.tech/post/models/setting_company_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/setting_company_model.php';
 
 
     $sql = mysqli_query($mysqli,"SELECT company_logo FROM companies WHERE company_id = 1");
@@ -26,13 +26,13 @@ if (isset($_POST['edit_company'])) {
 
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "/uploads/settings/";
+            $upload_file_dir = "/var/www/portal.twe.tech/uploads/settings/";
             $dest_path = $upload_file_dir . $new_file_name;
 
             move_uploaded_file($file_tmp_path, $dest_path);
 
             // Delete old file
-            unlink("/uploads/settings/$existing_file_name");
+            unlink("/var/www/portal.twe.tech/uploads/settings/$existing_file_name");
 
             // Set Logo
             mysqli_query($mysqli,"UPDATE companies SET company_logo = '$new_file_name' WHERE company_id = 1");

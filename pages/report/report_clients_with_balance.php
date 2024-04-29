@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/inc_all_reports.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all_reports.php";
 
 validateAccountantRole();
 
@@ -79,5 +79,5 @@ validateAccountantRole();
 </div>
 
 <?php
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+require_once '/var/www/portal.twe.tech/includes/footer.php';
 

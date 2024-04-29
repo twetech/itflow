@@ -5,7 +5,7 @@
 $sort = "ticket_number";
 $order = "DESC";
 
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 
 // Ticket status from GET
@@ -35,6 +35,7 @@ if (isset($_GET['status']) && is_array($_GET['status']) && !empty($_GET['status'
 
 // Ticket assignment status filter
 if (isset($_GET['assigned']) & !empty($_GET['assigned'])) {
+    $ticket_assigned_filter = 'AND ticket_assigned_to = '.$session_user_id;
     // Unassigned
     if ($_GET['assigned'] == 'unassigned') {
         $ticket_assigned_filter = 'AND ticket_assigned_to = 0';
@@ -98,7 +99,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
     }
 </style>
 <div class="card">
-    <?php require_once '/var/www/develop.twe.tech/includes/support_card_header.php'; ?>
+    <?php require_once '/var/www/portal.twe.tech/includes/support_card_header.php'; ?>
     <div class="card-body">
         <form id="bulkActions" action="/post/" method="post">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
@@ -327,4 +328,4 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/footer.php";
+require_once "/var/www/portal.twe.tech/includes/footer.php";

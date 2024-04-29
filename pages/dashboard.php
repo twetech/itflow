@@ -1,5 +1,5 @@
 <?php
-require_once '/var/www/develop.twe.tech/includes/inc_all.php';
+require_once '/var/www/portal.twe.tech/includes/inc_all.php';
 
 if (isset($_GET['year'])) {
     $year = intval($_GET['year']);
@@ -282,5 +282,5 @@ if ($user_config_dashboard_technical_enable == 1) {
 </div>
 <?php } 
 
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+require_once '/var/www/portal.twe.tech/includes/footer.php';
 ?>

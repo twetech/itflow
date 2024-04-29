@@ -1,6 +1,6 @@
 <?php 
 
-if (!file_exists("/var/www/develop.twe.tech/includes/config.php")) {
+if (!file_exists("/var/www/portal.twe.tech/includes/config.php")) {
 	header("Location: setup.php");
 }
 else {

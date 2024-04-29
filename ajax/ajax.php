@@ -6,15 +6,15 @@
  * Always returns data in JSON format, unless otherwise specified
  */
 
-require_once "/var/www/develop.twe.tech/includes/tenant_db.php";
+require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
 
-require_once "/var/www/develop.twe.tech/includes/config.php";
+require_once "/var/www/portal.twe.tech/includes/config.php";
 
-require_once "/var/www/develop.twe.tech/includes/functions/functions.php";
+require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
 
-require_once "/var/www/develop.twe.tech/includes/check_login.php";
+require_once "/var/www/portal.twe.tech/includes/check_login.php";
 
-require_once "/var/www/develop.twe.tech/includes/rfc6238.php";
+require_once "/var/www/portal.twe.tech/includes/rfc6238.php";
 
 
 /*
@@ -675,7 +675,7 @@ if (isset($_GET['get_modal'])) {
     $item_id = $_GET['item_id'];
     foreach ($modal as $modal_name) {
 
-        require_once "/var/www/develop.twe.tech/includes/modals/$modal_name.php";
+        require_once "/var/www/portal.twe.tech/includes/modals/$modal_name.php";
     }
     
 
@@ -691,9 +691,6 @@ if (isset($_GET['search'])) {
     $assets=[];
 
     $search = sanitizeInput($_GET['search']);
-    if ($search == true) {
-        $search = '';
-    }
 
     $client_sql = mysqli_query($mysqli,
         "SELECT client_id, client_name AS name
@@ -744,8 +741,9 @@ if (isset($_GET['search'])) {
     );
 
     $ticket_reply_sql = mysqli_query($mysqli,
-        "SELECT ticket_reply_id, ticket_reply AS name
+        "SELECT ticket_reply_id, ticket_reply, ticket_reply_ticket_id, ticket_subject AS name
         FROM ticket_replies
+        LEFT JOIN tickets ON ticket_reply_ticket_id = ticket_id
         WHERE ticket_reply LIKE '%$search%'
         AND ticket_reply_archived_at IS NULL
         ORDER BY ticket_reply
@@ -821,8 +819,8 @@ if (isset($_GET['search'])) {
     $response['tickets'] = $tickets;
     $response['documents'] = $documents;
     $response['logins'] = $logins;
-    $response['ticket_replies'] = $ticket_replies;
     $response['assets'] = $assets;
 
     echo json_encode($response);
+
 }

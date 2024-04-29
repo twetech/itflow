@@ -213,7 +213,7 @@ if (isset($_GET['delete_ticket'])) {
     validateAdminRole();
     $ticket_id = intval($_GET['delete_ticket']);
     $return_data = deleteTicket(['ticket_id' => $ticket_id]);
-    referWithAlert($return_data['message'], $return_data['alert_type'], "tickets.php");
+    referWithAlert($return_data['message'], $return_data['alert_type'], "/pages/tickets.php");
 }
 
 if (isset($_POST['bulk_assign_ticket'])) {
@@ -1018,7 +1018,7 @@ if (isset($_POST['add_invoice_from_ticket'])) {
 
     $total = $subtotal + $tax_amount;
 
-    mysqli_query($mysqli, "INSERT INTO invoice_items SET item_name = '$item_name', item_description = '$item_description', item_quantity = $qty, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_order = 1, item_tax_id = $tax_id, item_invoice_id = $invoice_id");
+    mysqli_query($mysqli, "INSERT INTO invoice_items SET item_name = '$item_name', item_description = '$item_description', item_quantity = $qty, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_order = 1, item_tax_id = $tax_id, item_invoice_id = $invoice_id, item_discount = 0, item_product_id = 0, item_category_id = 0");
 
 
     // Check for products in db and add to invoice
@@ -1128,7 +1128,7 @@ if (isset($_POST['add_recurring_ticket'])) {
 
     validateTechRole();
 
-    require_once '/var/www/develop.twe.tech/post/models/recurring_ticket_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/recurring_ticket_model.php';
 
     $start_date = sanitizeInput($_POST['start_date']);
 
@@ -1156,7 +1156,7 @@ if (isset($_POST['edit_recurring_ticket'])) {
 
     validateTechRole();
 
-    require_once '/var/www/develop.twe.tech/post/models/recurring_ticket_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/recurring_ticket_model.php';
 
     $scheduled_ticket_id = intval($_POST['scheduled_ticket_id']);
     $next_run_date = sanitizeInput($_POST['next_date']);

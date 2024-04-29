@@ -8,7 +8,7 @@ $invoice_id = intval($_GET['invoice_id']);
 $margin_goal = 18;
 
 
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 
 
@@ -25,7 +25,7 @@ if (isset($_GET['invoice_id'])) {
 
     if (mysqli_num_rows($sql) == 0) {
         echo '<h1 class="text-secondary mt-5" style="text-align: center">Nothing to see here</h1>';
-        require_once '/var/www/develop.twe.tech/includes/footer.php';
+        require_once '/var/www/portal.twe.tech/includes/footer.php';
 
         exit();
     }
@@ -290,6 +290,11 @@ if (isset($_GET['invoice_id'])) {
                             } else {
                                 $item_markup = 0;  // Default or error value if cost is zero
                             }
+                        } else {
+                            $item_cost = 0;
+                            $item_profit = 0;
+                            $item_margin = 0;
+                            $item_markup = 0;
                         }
 
                     ?>
@@ -322,7 +327,7 @@ if (isset($_GET['invoice_id'])) {
                                         </div>
                                         <div class="col-md-2 col-12 mb-md-0 mb-3">
                                             <p class="mb-2 repeater-title">Qty</p>
-                                            <input type="number" name="qty"  class="form-control invoice-item-qty" value="<?=$item_qty?>" placeholder="<?=$item_qty?>" min="1" max="" />
+                                            <input type="number" name="qty"  class="form-control invoice-item-qty" value="<?=$item_qty?>" placeholder="<?=$item_qty?>" min="" max="" />
                                         </div>
                                         <div class="col-md-1 col-12 pe-0">
                                             <p class="mb-2 repeater-title">Line Total</p>
@@ -369,22 +374,28 @@ if (isset($_GET['invoice_id'])) {
                                                 <div class="dropdown-divider"></div>
                                                 <div class="row g-3">
                                                     <div class="col">
-                                                        <label for="productInput" class="form-label">Product</label>
-                                                        <select class="form-select select2" name="product_id" id="product_id" style="width: 100%;">
-                                                            <?php
-                                                            $product_sql = "SELECT * FROM products";
-                                                            $product_result = mysqli_query($mysqli, $product_sql);
+                                                    <label for="product_id" class="form-label">Product</label>
+                                                        <div class="input-group">
+                                                            <select class="form-select select2" name="product_id" id="product_id">
+                                                                <?php
+                                                                $product_sql = "SELECT * FROM products ORDER BY product_name";
+                                                                $product_result = mysqli_query($mysqli, $product_sql);
 
-                                                            while ($product_row = mysqli_fetch_assoc($product_result)) {
-                                                                $product_id = $product_row['product_id'];
-                                                                $product_name = $product_row['product_name'];
-                                                                ?>
+                                                                while ($product_row = mysqli_fetch_assoc($product_result)) {
+                                                                    $product_id = $product_row['product_id'];
+                                                                    $product_name = $product_row['product_name'];
+                                                                    ?>
 
-                                                                <option value="<?=$product_id?>" <?php if ($product_id == $item_product_id) { echo 'selected'; } ?>>
-                                                                    <?=$product_name?>
-                                                                </option>
-                                                            <?php } ?>
-                                                        </select>
+                                                                    <option value="<?=$product_id?>" <?php if ($product_id == $item_product_id) { echo 'selected'; } ?>>
+                                                                        <?=$product_name?>
+                                                                    </option>
+                                                                <?php } ?>
+                                                            </select>
+                                                            <button type="submit" name="add_item_product" class="btn btn-primary mt-2">
+                                                                <i class="bx bx-plus"></i>
+                                                            </button>                                                            
+                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -447,26 +458,35 @@ if (isset($_GET['invoice_id'])) {
             <div class="card mb-4">
                 <div class="card-body">
                     <?php if ($invoice_status == 'Draft') { ?>
-                        <button class="btn btn-primary dropdown-toggle d-grid w-100 d-flex align-items-center justify-content-center text-nowrap" type="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-fw fa-paper-plane me-1"></i>Send
-                        </button>
-                        <div class="dropdown-menu">
-                            <?php if (!empty($config_smtp_host) && !empty($contact_email)) { ?>
-                                <a class="dropdown-item" href="/post.php?email_invoice=<?php echo $invoice_id; ?>">
-                                    <i class="fas fa-fw fa-paper-plane mr-2"></i>Send Email
+                        <div class="d-grid d-flex my-3 w-100">
+                            <button class="btn btn-primary dropdown-toggle d-grid w-100 d-flex align-items-center justify-content-center text-nowrap" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-fw fa-paper-plane me-1"></i>Send
+                            </button>
+                            <div class="dropdown-menu">
+                                <?php if (!empty($config_smtp_host) && !empty($contact_email)) { ?>
+                                    <a class="dropdown-item" href="/post.php?email_invoice=<?php echo $invoice_id; ?>">
+                                        <i class="fas fa-fw fa-paper-plane mr-2"></i>Send Email
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                <?php } ?>
+                                <a class="dropdown-item" href="/post.php?mark_invoice_sent=<?php echo $invoice_id; ?>">
+                                    <i class="fas fa-fw fa-check mr-2"></i>Mark Sent
                                 </a>
-                                <div class="dropdown-divider"></div>
-                            <?php } ?>
-                            <a class="dropdown-item" href="/post.php?mark_invoice_sent=<?php echo $invoice_id; ?>">
-                                <i class="fas fa-fw fa-check mr-2"></i>Mark Sent
-                            </a>
+                            </div>
                         </div>
                     <?php } ?>
-                    <div class="d-flex my-3">
-                        <a target="_blank" href="/portal/portal/guest_view_invoice.php?invoice_id=<?php echo "$invoice_id&url_key=$invoice_url_key"; ?>" class="btn btn-label-primary w-100 me-3">Preview</a>
+                    <div class="d-grid d-flex  my-3 w-100">
+                        <a target="_blank" href="/portal/guest_view_invoice.php?invoice_id=<?php echo "$invoice_id&url_key=$invoice_url_key"; ?>" class="btn btn-label-primary me-3 w-100">
+                            <i class="bx bx-show me-1"></i>
+                            View
+                        </a>
                         <button class="btn btn-primary d-grid w-100 loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="invoice_payment_add_modal.php?invoice_id=<?=$invoice_id?>&balance=<?=$balance?>">
                             <span class="d-flex align-items-center justify-content-center text-nowrap"><i class="bx bx-dollar bx-xs me-1"></i>Add Payment</span>
                         </button>
+                    </div>
+                    <div class="d-grid d-flex my-3">
+                        <a href="/post.php?cancel_invoice=<?=$invoice_id?>" class="btn btn-label-danger me-3 w-100"><i class="bx bx-x-circle me-1"></i>Cancel</a>
+                        <a href="/post.php?delete_invoice=<?=$invoice_id?>" class="btn btn-danger me-3 w-100"><i class="bx bx-trash me-1"></i></a>
                     </div>
                     <hr class="my-0" />
 
@@ -606,5 +626,5 @@ $(document).ready(function() {
 
 <?php
 }
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+require_once '/var/www/portal.twe.tech/includes/footer.php';
 ?>

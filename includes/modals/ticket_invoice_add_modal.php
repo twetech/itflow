@@ -1,4 +1,4 @@
-<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+<?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
 <?php
 
 $ticket_id = isset($_GET['ticket_id']) ? intval($_GET['ticket_id']) : 0;
@@ -19,6 +19,10 @@ $row = mysqli_fetch_array($ticket_total_reply_time);
 $ticket_total_reply_time = nullable_htmlentities($row['ticket_total_reply_time']);
 
 $client_id = intval($ticket_row['ticket_client_id']);
+$client_sql = mysqli_query($mysqli, "SELECT * FROM clients WHERE client_id = $client_id");
+$client_row = mysqli_fetch_array($client_sql);
+$client_rate = floatval($client_row['client_rate']);
+
 
 // Check if ticket_id and invoice_id are set in the URL
 $addToExistingInvoice = isset($_GET['ticket_id']) && isset($_GET['invoice_id']);
@@ -38,35 +42,29 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                    <?php
-                        if (mysqli_num_rows($sql_invoices) > 0) {
-                        ?>
-                                    <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
-                    <ul class="nav nav-pills  mb-3">
-                        <li class="nav-item">
-                            <?php if (!$addToExistingInvoice): ?>
-                                <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
-                            <?php else: ?>
-                                <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
-                            <?php endif; ?>
-                        </li>
-                        <li class="nav-item">
-                            <?php if ($addToExistingInvoice): ?>
-                                <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
-                            <?php else: ?>
-                                <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
-                            <?php endif; ?>
-                        </li>
-                        <?php
-                        } else {
-                            ?>
-                            <div class="alert alert-warning" role="alert">
-                                <i class="fa fa-fw fa-exclamation-triangle mr-2"></i>No draft invoices found. Please create a new invoice first.
-                            </div>
-                            <?php
-                        }
-                        ?>
-                    </ul>
+                        <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
+                        <ul class="nav nav-pills  mb-3">
+                            <?php if (mysqli_num_rows($sql_invoices) > 0) { ?>
+                                <li class="nav-item">
+                                    <?php if (!$addToExistingInvoice): ?>
+                                        <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
+                                    <?php else: ?>
+                                        <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-create-invoice"><i class="fa fa-fw fa-check mr-2"></i>Create New Invoice</a>
+                                    <?php endif; ?>
+                                </li>
+                                <li class="nav-item">
+                                    <?php if ($addToExistingInvoice): ?>
+                                        <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
+                                    <?php else: ?>
+                                        <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-add-to-invoice"><i class="fa fa-fw fa-plus mr-2"></i>Add to Existing Invoice</a>
+                                    <?php endif; ?>
+                                </li>
+                            <?php } else { ?>
+                                <div class="alert alert-warning" role="alert">
+                                    <i class="fa fa-fw fa-exclamation-triangle mr-2"></i>No draft invoices found. Please create a new invoice first.
+                                </div> 
+                            <?php } ?>
+                        </ul>
 
                     <hr>
 
@@ -233,7 +231,6 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                                 <span class="input-group-text"><i class="fa fa-fw fa-piggy-bank"></i></span>
                             </div>
                             <select class="form-control select2" id='select2' name="tax_id" required>
-                                <option value="0">None</option>
                                 <?php
 
                                 $taxes_sql = mysqli_query($mysqli, "SELECT * FROM taxes WHERE tax_archived_at IS NULL ORDER BY tax_name ASC");
@@ -242,11 +239,13 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                                     $tax_name = nullable_htmlentities($row['tax_name']);
                                     $tax_percent = floatval($row['tax_percent']);
                                     ?>
-                                    <option value="<?php echo $tax_id_select; ?>"><?php echo "$tax_name $tax_percent%"; ?></option>
+                                    <option <?= $tax_id_select == 0 ? 'selected' : '' ?> value="<?php echo $tax_id_select; ?>"><?php echo "$tax_name $tax_percent%"; ?></option>
 
                                     <?php
                                 }
                                 ?>
+                                <option value="0">None</option>
+
                             </select>
 
                         </div>

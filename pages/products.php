@@ -7,7 +7,7 @@ $order = "ASC";
 // TODO: Put this in company settings
 $margin_goal = 18;
 
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 
 //Rebuild URL
@@ -19,7 +19,6 @@ $sql = mysqli_query(
     LEFT JOIN categories ON product_category_id = category_id
     LEFT JOIN taxes ON product_tax_id = tax_id
     WHERE product_archived_at IS NULL
-    AND (product_name LIKE '%$q%' OR product_description LIKE '%$q%' OR category_name LIKE '%$q%' OR product_price LIKE '%$q%' OR tax_name LIKE '%$q%' OR tax_percent LIKE '%$q%')
     ORDER BY $sort $order"
 );
 
@@ -88,7 +87,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <td class="text-right"><?php echo numfmt_format_currency($currency_format, $product_price, $product_currency_code); ?></td>
                             <td class="text-right">
                                 <?php
-                                $margin = (($product_price - $product_cost) / $product_price) * 100;
+                                if ($product_price != 0) {
+                                    $margin = (($product_price - $product_cost) / $product_price) * 100;
+                                } else {
+                                    $margin = 0;
+                                }
                                 if ($row['product_cost'] != null) {
                                     if ($margin < $margin_goal) {
                                         echo "<span class='text-danger'>";
@@ -135,4 +138,4 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/footer.php";
+require_once "/var/www/portal.twe.tech/includes/footer.php";

@@ -9,7 +9,7 @@ global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_i
 
 if (isset($_POST['add_invoice'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/invoice_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/invoice_model.php';
 
     $parameters['invoice_client_id'] = intval($_POST['client']);
     $parameters['invoice_date'] = sanitizeInput($_POST['date']);
@@ -23,7 +23,7 @@ if (isset($_POST['add_invoice'])) {
 
 if (isset($_POST['edit_invoice'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/invoice_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/invoice_model.php';
 
     $invoice_id = intval($_POST['invoice_id']);
     $due = sanitizeInput($_POST['due']);
@@ -155,10 +155,11 @@ if (isset($_GET['cancel_invoice'])) {
 }
 
 if (isset($_GET['delete_invoice'])) {
-    $invoice_id = intval($_GET['delete_invoice']);
 
-    deleteInvoice($invoice_id);
-    referWithAlert("Invoice deleted");
+    $invoice['invoice_id'] = intval($_GET['delete_invoice']);
+
+    deleteInvoice($invoice);
+    referWithAlert("Invoice deleted", "success", "/pages/invoices.php");
 }
 
 if (isset($_POST['add_invoice_item'])) {
@@ -171,6 +172,7 @@ if (isset($_POST['add_invoice_item'])) {
     $discount = sanitizeInput($_POST['discount']);
     $tax_id = intval($_POST['tax_id']);
     $item_order = intval($_POST['item_order']);
+    $item_category_id = intval($_POST['category']);
 
     $item = [];
     $item['item_invoice_id'] = $invoice_id;
@@ -182,6 +184,7 @@ if (isset($_POST['add_invoice_item'])) {
     $item['item_order'] = $item_order;
     $item['item_discount'] = $discount;
     $item['item_product_id'] = intval($_POST['product_id']);
+    $item['item_category_id'] = $item_category_id;
 
 
     createInvoiceItem("invoice", $item);
@@ -207,9 +210,9 @@ if (isset($_POST['edit_item'])) {
     $description = sanitizeInput($_POST['description']);
     $qty = floatval($_POST['qty']);
     $price = floatval($_POST['price']);
-    $discount = floatval($_POST['discount']);
+    $discount = sanitizeInput($_POST['discount']);
     $tax_id = intval($_POST['tax_id']);
-    $categery_id = intval($_POST['category_id']);
+    $categery_id = intval($_POST['category']);
     $product_id = intval($_POST['product_id']);
 
     $item = [];
@@ -485,4 +488,22 @@ if (isset($_GET['delete_credit'])) {
 
     deleteCredit($credit_id);
     referWithAlert("Credit deleted", "success");
+}
+
+if (isset($_POST['add_item_product'])) {
+    $item_name = sanitizeInput($_POST['name']);
+    $item_description = sanitizeInput($_POST['description']);
+    $item_price = floatval($_POST['price']);
+    $item_tax_id = intval($_POST['tax']);
+    $item_category_id = intval($_POST['category']);
+
+    $product = [];
+
+    $product['product_name'] = $item_name;
+    $product['product_description'] = $item_description;
+    $product['product_price'] = $item_price;
+    $product['product_tax_id'] = $item_tax_id;
+    $product['product_category_id'] = $item_category_id;
+
+    createProduct($product);
 }

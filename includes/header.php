@@ -41,15 +41,15 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.1/css/responsive.bootstrap5.css" />
     <link rel="stylesheet" href="/includes/assets/vendor/libs/spinkit/spinkit.css" />
+    <link rel="stylesheet" href="/includes/assets/vendor/libs/select2/select2.css" />
     <link rel="stylesheet" href="/includes/assets/vendor/libs/toastr/toastr.css" />
     <link rel="stylesheet" href="/includes/assets/vendor/libs/apex-charts/apex-charts.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
     <!-- Page CSS -->
 
-    <?php echo $page_css; ?>
+    <?= $page_css ?? ''?>
 
     <!-- Helpers -->
     <script src="/includes/assets/vendor/js/helpers.js"></script>

@@ -1,5 +1,5 @@
 <?php
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 
 if (isset($_GET['quote_id'])) {
@@ -345,7 +345,7 @@ if (isset($_GET['quote_id'])) {
                                     <?php
 
                                         if ($quote_status !== "Invoiced" && $quote_status !== "Accepted" && $quote_status !== "Declined") {
-                                            require "/var/www/develop.twe.tech/includes/modals/item_edit_modal.php";
+                                            require "/var/www/portal.twe.tech/includes/modals/item_edit_modal.php";
                                         }
                                     }
 
@@ -508,16 +508,16 @@ if (isset($_GET['quote_id'])) {
     </div>
 
 <?php
-    require_once "/var/www/develop.twe.tech/includes/modals/quote_edit_modal.php";
+    require_once "/var/www/portal.twe.tech/includes/modals/quote_edit_modal.php";
 
-    require_once "/var/www/develop.twe.tech/includes/modals/quote_to_invoice_modal.php";
+    require_once "/var/www/portal.twe.tech/includes/modals/quote_to_invoice_modal.php";
 
-    require_once "/var/www/develop.twe.tech/includes/modals/quote_copy_modal.php";
+    require_once "/var/www/portal.twe.tech/includes/modals/quote_copy_modal.php";
 
-    require_once "/var/www/develop.twe.tech/includes/modals/quote_note_modal.php";
+    require_once "/var/www/portal.twe.tech/includes/modals/quote_note_modal.php";
 }
 
-require_once "/var/www/develop.twe.tech/includes/footer.php";
+require_once "/var/www/portal.twe.tech/includes/footer.php";
 
 
 ?>

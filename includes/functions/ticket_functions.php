@@ -8,7 +8,7 @@ function createTicket(
 
     global $mysqli, $session_user_id, $session_name, $session_ip, $session_user_agent, $config_ticket_next_number, $config_ticket_prefix, $config_ticket_from_name, $config_ticket_from_email, $config_base_url, $config_smtp_host, $config_ticket_client_general_notifications;
 
-    $client_id = intval($parameters['ticket_client']);
+    $client_id = intval($parameters['ticket_client_id']);
     $assigned_to = intval($parameters['ticket_assigned_to']);
     $contact = intval($parameters['ticket_contact']);
     $subject = sanitizeInput($parameters['ticket_subject']);
@@ -226,9 +226,11 @@ function updateTicket(
                 $value = sanitizeInput($row['user_name']);
             }
             if ($key === 'Invoice') {
-                $sql = mysqli_query($mysqli, "SELECT invoice_number FROM invoices WHERE invoice_id = $value");
+                $sql = mysqli_query($mysqli, "SELECT invoice_number,invoice_prefix FROM invoices WHERE invoice_id = $value");
                 $row = mysqli_fetch_array($sql);
                 $value = sanitizeInput($row['invoice_number']);
+
+                
             }
             $ticket_reply .= "$key: $value, ";
         }

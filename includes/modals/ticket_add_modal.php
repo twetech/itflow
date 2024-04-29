@@ -1,4 +1,4 @@
-<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php";
+<?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php";
 
 $client_id = intval($_GET['client_id']);
 
@@ -76,7 +76,7 @@ $client_id = intval($_GET['client_id']);
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                         </div>
-                                        <select class="form-control select2" id='select2' name="client" required>
+                                        <select class="form-control select2" name="client_id" required>
                                             <option value="">- Client -</option>
                                             <?php
 

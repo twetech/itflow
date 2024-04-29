@@ -1,10 +1,10 @@
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 
 //Initialize the HTML Purifier to prevent XSS
-require "/var/www/develop.twe.tech/includes/modals/plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/portal.twe.tech/includes/modals/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);
@@ -289,19 +289,19 @@ $document_parent = intval($row['document_parent']);
 
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/modals/client_document_edit_modal.php";
+require_once "/var/www/portal.twe.tech/includes/modals/client_document_edit_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/modals/client_document_link_file_modal.php";
+require_once "/var/www/portal.twe.tech/includes/modals/client_document_link_file_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/modals/client_document_link_contact_modal.php";
+require_once "/var/www/portal.twe.tech/includes/modals/client_document_link_contact_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/modals/client_document_link_asset_modal.php";
+require_once "/var/www/portal.twe.tech/includes/modals/client_document_link_asset_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/modals/client_document_link_software_modal.php";
+require_once "/var/www/portal.twe.tech/includes/modals/client_document_link_software_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/modals/client_document_link_vendor_modal.php";
+require_once "/var/www/portal.twe.tech/includes/modals/client_document_link_vendor_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/modals/share_modal.php";
+require_once "/var/www/portal.twe.tech/includes/modals/share_modal.php";
 
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+require_once '/var/www/portal.twe.tech/includes/footer.php';
 

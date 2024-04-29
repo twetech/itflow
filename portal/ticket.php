@@ -4,10 +4,10 @@
  * Ticket detail page
  */
 
-require_once "/var/www/develop.twe.tech/includes/inc_portal.php";
+require_once "/var/www/portal.twe.tech/includes/inc_portal.php";
 
 //Initialize the HTML Purifier to prevent XSS
-require "/var/www/develop.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/portal.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);

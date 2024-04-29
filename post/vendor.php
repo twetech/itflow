@@ -11,7 +11,7 @@ global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_i
 
 if (isset($_POST['add_vendor_template'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/vendor_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/vendor_model.php';
 
 
     mysqli_query($mysqli,"INSERT INTO vendors SET vendor_name = '$name', vendor_description = '$description', vendor_contact_name = '$contact_name', vendor_phone = '$phone', vendor_extension = '$extension', vendor_email = '$email', vendor_website = '$website', vendor_hours = '$hours', vendor_sla = '$sla', vendor_code = '$code', vendor_account_number = '$account_number', vendor_notes = '$notes', vendor_template = 1, vendor_client_id = 0");
@@ -28,7 +28,7 @@ if (isset($_POST['add_vendor_template'])) {
 
 if (isset($_POST['edit_vendor_template'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/vendor_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/vendor_model.php';
 
 
     $vendor_id = intval($_POST['vendor_id']);
@@ -163,7 +163,7 @@ if (isset($_POST['add_vendor_from_template'])) {
 
 if (isset($_POST['add_vendor'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/vendor_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/vendor_model.php';
 
 
     $client_id = intval($_POST['client_id']); // Used if this vendor is under a contact otherwise its 0 for under company
@@ -182,7 +182,7 @@ if (isset($_POST['add_vendor'])) {
 
 if (isset($_POST['edit_vendor'])) {
 
-    require_once '/var/www/develop.twe.tech/post/models/vendor_model.php';
+    require_once '/var/www/portal.twe.tech/post/models/vendor_model.php';
 
 
     $vendor_id = intval($_POST['vendor_id']);

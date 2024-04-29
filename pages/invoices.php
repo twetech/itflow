@@ -3,7 +3,7 @@
 // Default Column Sortby/Order Filter
 $sort = "invoice_number";
 $order = "DESC";
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 $datatable_order = '[[4, "desc"]]';
 
@@ -84,9 +84,7 @@ $sql = mysqli_query(
     LEFT JOIN clients ON invoice_client_id = client_id
     LEFT JOIN categories ON invoice_category_id = category_id
     WHERE ($status_query)
-    $overdue_query
-    AND (CONCAT(invoice_prefix,invoice_number) LIKE '%$q%' OR invoice_scope LIKE '%$q%' OR client_name LIKE '%$q%' OR invoice_status LIKE '%$q%' OR invoice_amount LIKE '%$q%' OR category_name LIKE '%$q%')
-"
+    $overdue_query"
 );
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -102,12 +100,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
                                 <div>
                                     <h3><?php echo numfmt_format_currency($currency_format, $total_unpaid_amount, $session_company_currency); ?></h3>
-                                    <p><?php echo $unpaid_count; ?> Unpaid</p>
+                                    <a><?php echo $unpaid_count; ?> Unpaid</a>
                                 </div>
-                                <span class="badge bg-label-secondary rounded p-2 me-sm-4">
+                                <a href="/pages/invoices.php?status=Unpaid" class="badge bg-label-secondary rounded p-2 me-sm-4">
                                     <i class="bx bx-dollar
                                     bx-sm"></i>
-                                </span>
+                                </a>
                             </div>
                             <hr class="d-none d-sm-block d-lg-none me-4">
                         </div>
@@ -117,10 +115,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <h3><?php echo numfmt_format_currency($currency_format, $total_overdue_amount, $session_company_currency); ?></h3>
                                     <p><?php echo $overdue_count; ?> Overdue</p>
                                 </div>
-                                <span class="badge bg-label-secondary rounded p-2 me-sm-4">
+                                <a href="/pages/invoices.php?status=Overdue" class="badge bg-label-secondary rounded p-2 me-sm-4">
                                     <i class="bx bx-time
                                      bx-sm"></i>
-                                </span>
+                                </a>
                             </div>
                             <hr class="d-none d-sm-block d-lg-none me-4">
                         </div>
@@ -130,10 +128,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <h3><?php echo numfmt_format_currency($currency_format, $total_draft_amount, $session_company_currency); ?></h3>
                                     <p><?php echo $draft_count; ?> Draft</p>
                                 </div>
-                                <span class="badge bg-label-secondary rounded p-2 me-sm-4">
+                                <a href="/pages/invoices.php?status=Draft" class="badge bg-label-secondary rounded p-2 me-sm-4">
                                     <i class="bx bx-pencil
                                     bx-sm"></i>
-                                </span>
+                                </a>
                             </div>
                             <hr class="d-none d-sm-block d-lg-none me-4">
                         </div>
@@ -162,9 +160,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <th class="text-right">Amount</th>
                             <th>Date</th>
                             <th>Due</th>
-                            <th>Category</th>
                             <th>Status</th>
-                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -216,37 +212,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
                             <td><?php echo $invoice_date; ?></td>
                             <td class="<?php echo $overdue_color; ?>"><?php echo $invoice_due; ?></td>
-                            <td><?php echo $category_name; ?></td>
                             <td>
                               <span class="p-2 badge bg-label-<?php echo $invoice_badge_color; ?>">
                                   <?php echo $invoice_status; ?>
                               </span>
-                            </td>
-                            <td>
-                                <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
-                                        <i class="fas fa-ellipsis-h"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a href="#" class="dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="invoice_edit_modal.php?invoice_id=<?php echo $invoice_id; ?>">
-                                            <i class="fas fa-fw fa-edit mr-2"></i>Edit
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addInvoiceCopyModal<?php echo $invoice_id; ?>">
-                                            <i class="fas fa-fw fa-copy mr-2"></i>Copy
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <?php if (!empty($config_smtp_host)) { ?>
-                                            <a class="dropdown-item" href="/post.php?email_invoice=<?php echo $invoice_id; ?>">
-                                                <i class="fas fa-fw fa-paper-plane mr-2"></i>Send
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                        <?php } ?>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_invoice=<?php echo $invoice_id; ?>">
-                                            <i class="fas fa-fw fa-trash mr-2"></i>Delete
-                                        </a>
-                                    </div>
-                                </div>
                             </td>
                         </tr>
                         <?php
@@ -262,5 +231,5 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/footer.php";
+require_once "/var/www/portal.twe.tech/includes/footer.php";
 
