@@ -133,13 +133,9 @@
     // update every 10 seconds
     setInterval(updateTicketCountDisplay, 10000);
 
-    // Add event listener to modal
-    document.addEventListener('DOMContentLoaded', function() {
-        let modal = document.getElementById('openTicketsModal');
-        if (modal) {
-            $('#openTicketsModal').on('show.bs.modal', loadOpenTickets);
-        }
-    });
+    // Add event listener to modal open button
+    document.getElementById('openTicketsModal').addEventListener('click', loadOpenTickets);
+
 
     // Add event listener to clear all timers button
     document.getElementById('clearAllTimers').addEventListener('click', clearAllTimers);

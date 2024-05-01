@@ -74,7 +74,7 @@ if (isset($client_id)) {
             }
 
             $client_tag_id_array[] = $client_tag_id;
-            $client_tag_name_display_array[] = "<span class='badge text-light p-1 mr-1' style='background-color: $client_tag_color;'><i class='fa fa-fw fa-$client_tag_icon mr-2'></i>$client_tag_name</span>";
+            $client_tag_name_display_array[] = "<a href='/pages/clients.php?q=$client_tag_name'><span class='badge p-1 me-1' style='background-color: $client_tag_color;'><i class='fa fa-fw fa-$client_tag_icon mr-2'></i>$client_tag_name</span></a>";
         }
         $client_tags_display = implode('', $client_tag_name_display_array);
 

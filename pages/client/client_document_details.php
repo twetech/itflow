@@ -4,7 +4,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 
 //Initialize the HTML Purifier to prevent XSS
-require "/var/www/portal.twe.tech/includes/modals/plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/portal.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);
@@ -57,7 +57,7 @@ $document_parent = intval($row['document_parent']);
 
   <div class="col-md-9">
     <div class="card">
-      <div class="card-header bg-dark">
+      <div class="card-header">
 
         <h3><?php echo $document_name; ?> <?php if (!empty($document_description)) { ?><span class="h6 text-muted">(<?php echo $document_description; ?>)</span><?php } ?></h3>
 

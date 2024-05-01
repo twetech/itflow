@@ -44,7 +44,7 @@ if (isset($client_page)) {
         'icon' => 'bx bx-dollar',
         'children' => [
             ['title' => 'Invoices', 'link' => '/pages/client/client_invoices.php?client_id=' . $client_id, 'icon' => 'bx bx-receipt'],
-            ['title' => 'Estimates', 'link' => '/pages/client/client_quotes.php?client_id=' . $client_id, 'icon' => 'bx bx-message-square-detail'],
+            ['title' => 'Quotes', 'link' => '/pages/client/client_quotes.php?client_id=' . $client_id, 'icon' => 'bx bx-message-square-detail'],
             ['title' => 'Payments', 'link' => '/pages/client/client_payments.php?client_id=' . $client_id, 'icon' => 'bx bx-credit-card'],
             ['title' => 'Statements', 'link' => '/pages/client/client_statement.php?client_id=' . $client_id, 'icon' => 'bx bx-file'],
             ['title' => 'Credits', 'link' => '/pages/client/client_credits.php?client_id=' . $client_id, 'icon' => 'bx bx-money'],
@@ -422,6 +422,16 @@ $num_notifications = mysqli_num_rows($sql_notifications);
                                 </ul>
                             </li>
                             <!--/ Notification -->
+                            <?php if ($config_module_enable_ticketing == 1) { ?>
+                            <!-- Open Tickets -->
+                                <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+                                    <a class="nav-link loadModalContentBtn" href="#" data-toggle="modal" data-target="#dynamicModal" id="openTicketsModal" data-modal-file="top_nav_tickets_modal.php">
+                                        <i class="bx bx-first-aid bx-sm"></i>
+                                        <span class="badge rounded-pill badge-notifications" id="runningTicketsCount">0</span>
+                                    </a>
+                                </li>
+
+                            <?php } ?>
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">

@@ -2,14 +2,13 @@
 
 global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_id;
 
-
 /*
  * ITFlow - GET/POST request handler for quotes
  */
 
 if (isset($_POST['add_quote'])) {
 
-    global $mysqli, $session_company_currency, $config_quote_prefix, $config_quote_next_number, $session_ip, $session_user_agent, $session_user_id;
+    global $mysqli, $session_company_currency, $config_quote_prefix, $config_quote_next_number, $session_ip, $session_user_agent, $session_user_id, $currency_format;
 
     require_once '/var/www/portal.twe.tech/post/models/quote_model.php';
 
@@ -135,8 +134,11 @@ if (isset($_POST['add_quote_to_invoice'])) {
         $item_total = floatval($row['item_total']);
         $item_order = intval($row['item_order']);
         $tax_id = intval($row['item_tax_id']);
+        $item_discount = floatval($row['item_discount']);
+        $item_category_id = intval($row['item_category_id']);
+        $item_product_id = intval($row['item_product_id']);
 
-        mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$item_name', item_description = '$item_description', item_quantity = $item_quantity, item_price = $item_price, item_subtotal = $item_subtotal, item_tax = $item_tax, item_total = $item_total, item_order = $item_order, item_tax_id = $tax_id, item_invoice_id = $new_invoice_id");
+        mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$item_name', item_description = '$item_description', item_quantity = $item_quantity, item_price = $item_price, item_subtotal = $item_subtotal, item_tax = $item_tax, item_total = $item_total, item_order = $item_order, item_tax_id = $tax_id, item_invoice_id = $new_invoice_id, item_discount = $item_discount, item_category_id = $item_category_id, item_product_id = $item_product_id");
     }
 
     mysqli_query($mysqli,"UPDATE quotes SET quote_status = 'Invoiced' WHERE quote_id = $quote_id");
@@ -146,7 +148,7 @@ if (isset($_POST['add_quote_to_invoice'])) {
 
     $_SESSION['alert_message'] = "Quote copied to Invoice";
 
-    header("Location: invoice.php?invoice_id=$new_invoice_id");
+    header("Location: /pages/invoice.php?invoice_id=$new_invoice_id");
 
 }
 
@@ -159,8 +161,11 @@ if (isset($_POST['add_quote_item'])) {
     $price = floatval($_POST['price']);
     $tax_id = intval($_POST['tax_id']);
     $item_order = intval($_POST['item_order']);
+    $item_discount = floatval($_POST['item_discount']);
+    $item_category_id = intval($_POST['item_category_id']);
+    $item_product_id = intval($_POST['item_product_id']);
 
-    $subtotal = $price * $qty;
+    $subtotal = ($price - $item_discount) * $qty;
 
     if ($tax_id > 0) {
         $sql = mysqli_query($mysqli,"SELECT * FROM taxes WHERE tax_id = $tax_id");
@@ -173,7 +178,7 @@ if (isset($_POST['add_quote_item'])) {
 
     $total = $subtotal + $tax_amount;
 
-    mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$name', item_description = '$description', item_quantity = $qty, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_tax_id = $tax_id, item_order = $item_order, item_quote_id = $quote_id");
+    mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$name', item_description = '$description', item_quantity = $qty, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_tax_id = $tax_id, item_order = $item_order, item_quote_id = $quote_id, item_discount = $item_discount, item_category_id = $item_category_id, item_product_id = $item_product_id");
 
     //Get Discount
     $sql = mysqli_query($mysqli,"SELECT * FROM quotes WHERE quote_id = $quote_id");
@@ -396,7 +401,7 @@ if (isset($_GET['email_quote'])) {
     $config_base_url = sanitizeInput($config_base_url);
 
     $subject = "Quote [$quote_scope]";
-    $body = "Hello $contact_name,<br><br>Thank you for your inquiry, we are pleased to provide you with the following estimate.<br><br><br>$quote_scope<br>Total Cost: " . numfmt_format_currency($currency_format, $quote_amount, $quote_currency_code) . "<br><br><br>View and accept your estimate online <a href=\'https://$config_base_url/portal/guest_view_quote.php?quote_id=$quote_id&url_key=$quote_url_key\'>here</a><br><br><br>--<br>$company_name - Sales<br>$config_quote_from_email<br>$company_phone";
+    $body = "Hello $contact_name,<br><br>Thank you for your inquiry, we are pleased to provide you with the following estimate.<br><br><br>$quote_scope<br><br><br>View and accept your estimate online <a href=\'https://$config_base_url/portal/guest_view_quote.php?quote_id=$quote_id&url_key=$quote_url_key\'>here</a><br><br><br>--<br>$company_name - Sales<br>$config_quote_from_email<br>$company_phone";
 
     // Queue Mail
     $data = [
@@ -415,7 +420,7 @@ if (isset($_GET['email_quote'])) {
     mysqli_query($mysqli,"INSERT INTO history SET history_status = 'Sent', history_description = 'Email Quote Queued', history_quote_id = $quote_id");
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Quote', log_action = 'Email', log_description = '$session_name emailed Quote $quote_prefix$quote_number to $contact_email Email ID: ', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_client_id = $client_id, log_user_id = $session_user_id, log_entity_id = $quote_id");
 
-    $_SESSION['alert_message'] = "Quote has been queued successfully! <a class='text-bold text-light' href='admin_mail_queue.php'>Check Admin > Mail queue</a>";
+    $_SESSION['alert_message'] = "Quote has been queued successfully! <a class='text-bold text-light' href='/pages/admin/admin_mail_queue.php'>Check Admin > Mail queue</a>";
 
     //Don't change the status to sent if the status is anything but draft
     if ($quote_status == 'Draft') {

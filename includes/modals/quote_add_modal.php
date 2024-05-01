@@ -1,5 +1,13 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
 
+<?php
+
+if (isset($_GET['client_id'])) {
+    $client_id = intval($_GET['client_id']);
+}
+
+?>
+
 
 <div class="modal" id="addQuoteModal" tabindex="-1">
     <div class="modal-dialog">

@@ -115,20 +115,8 @@ $recurring_invoice_count = $row['num'];
                             $overdue_color = "";
                         }
 
-                        //Set Badge color based off of invoice status
-                        if ($invoice_status == "Sent") {
-                            $invoice_badge_color = "warning";
-                        } elseif ($invoice_status == "Viewed") {
-                            $invoice_badge_color = "info";
-                        } elseif ($invoice_status == "Partial") {
-                            $invoice_badge_color = "primary";
-                        } elseif ($invoice_status == "Paid") {
-                            $invoice_badge_color = "success";
-                        } elseif ($invoice_status == "Cancelled") {
-                            $invoice_badge_color = "danger";
-                        } else {
-                            $invoice_badge_color = "secondary";
-                        }
+                        $invoice_badge_color = getInvoiceBadgeColor($invoice_status);
+
                     ?>
                         <tr>
                             <td class="text-bold"><a href="/pages/invoice.php?invoice_id=<?php echo $invoice_id; ?>"><?php echo "$invoice_prefix$invoice_number"; ?></a></td>
@@ -140,14 +128,14 @@ $recurring_invoice_count = $row['num'];
                             </td>
                             <td><?php echo $category_name; ?></td>
                             <td>
-                                <span class="p-2 badge badge-<?php echo $invoice_badge_color; ?>">
-                                    <?php echo $invoice_status; ?>
-                                </span>
+                              <span class="p-2 badge bg-label-<?php echo $invoice_badge_color; ?>">
+                                  <?php echo $invoice_status; ?>
+                              </span>
                             </td>
                             <td>
                                 <div class="dropdown dropleft text-center">
-                                    <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
-                                        <i class="fas fa-ellipsis-h"></i>
+                                    <button class="btn btn-label-secondary btn-sm" type="button" data-bs-toggle="dropdown">
+                                        <i class="bx bx-plus"></i>
                                     </button>
                                     <div class="dropdown-menu">
                                         <?php if (!empty($config_smtp_host)) { ?>

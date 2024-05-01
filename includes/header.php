@@ -53,6 +53,7 @@
 
     <!-- Helpers -->
     <script src="/includes/assets/vendor/js/helpers.js"></script>
+    <script src="/includes/js/confirm_modal.js"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
     <script src="/includes/assets/vendor/js/template-customizer.js"></script>
@@ -60,7 +61,9 @@
     <script src="/includes/assets/js/config.js"></script>
 
     <!-- TinyMCE -->
-    <script src="https://cdn.tiny.cloud/1/78o64w2w2bmaf98z8p7idos4tjloc808tr1j9iv8efl63nce/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="/includes/dist/vendor/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+
+</head>
 
 <body>
     <!-- Layout wrapper -->
