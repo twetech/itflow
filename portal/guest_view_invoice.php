@@ -159,7 +159,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
 <div class="row">
   <div class="col-4">
     <div class="d-flex svg-illustration mb-3 gap-2">
-      <img src="data:image/png;base64,<?php echo $company_logo_base64; ?>" class="w-100 mt-4" alt="logo" />
+      <img src="data:image/png;base64,<?php echo $company_logo_base64; ?>" class="w-75 m-4 center-text" alt="logo" />
     </div>
   </div>
   <div class="col-3">
@@ -249,9 +249,18 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
       <td colspan="4" class="align-top px-4 py-5">
       <div class="row">
         <?php if ($invoice_note !== "") { ?>
-          <div class="col-12">
-            <span class="fw-medium">Note:</span>
-            <span><?php echo $invoice_note; ?></span>
+          <div class="col-10">
+            <div class="card m-4">
+              <div class="card-header">
+                <div class="card-title">
+                  <span>Note:</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <span><?php echo $invoice_note; ?></span>
+              </div>
+            </div>
+
           </div>
         <?php } ?>
       </div>
@@ -287,7 +296,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                 <a class="btn btn-label-secondary d-grid w-100 mb-3" target="_blank" href="./app-invoice-print.html">
                 Print
                 </a>
-                <a class="btn btn-primary d-grid w-100" href="portal/guest_pay_invoice_stripe.php?invoice_id=<?php echo $invoice_id; ?>&url_key=<?php echo $url_key; ?>">
+                <a class="btn btn-primary d-grid w-100" href="/portal/guest_pay_invoice_stripe.php?invoice_id=<?php echo $invoice_id; ?>&url_key=<?php echo $url_key; ?>">
                 <span class="d-flex align-items-center justify-content-center text-nowrap"><i class="bx bx-dollar bx-xs me-1"></i>
                     Pay Online <?php if($config_stripe_client_pays_fees == 1) { echo "(Gateway Fee: " .  numfmt_format_currency($currency_format, $gateway_fee, $invoice_currency_code) . ")"; } ?>
                 </span>

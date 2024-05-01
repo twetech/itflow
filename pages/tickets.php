@@ -99,7 +99,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
     }
 </style>
 <div class="card">
-    <?php require_once '/var/www/portal.twe.tech/includes/support_card_header.php'; ?>
+    <?php require_once '/var/www/portal.twe.tech/includes/support_card_header.php'; // Support Card Header ?>
     <div class="card-body">
         <form id="bulkActions" action="/post/" method="post">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
@@ -117,6 +117,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                         'Subject' => 2,
                                         'Assigned' => 3
                                     ];
+
                                 } else {
                                     $rows = [ 'Subject', 'Client', 'Number', 'Status', 'Assigned', 'Last Response', 'Created' ];
                                     $datatable_order = "[[6,'desc']]";
@@ -145,7 +146,6 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                         </thead>
                         <tbody>
                             <?php
-                            //TODO bring up my tickets first
                             while ($row = mysqli_fetch_array($sql)) {
                                 $ticket_id = intval($row['ticket_id']);
                                 $ticket_prefix = nullable_htmlentities($row['ticket_prefix']);

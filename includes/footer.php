@@ -110,6 +110,7 @@
 <script src="/includes/assets/vendor/libs/cleavejs/cleave.js"></script>
 <script src="/includes/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
 <script src="/includes/assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
+<script src="/includes/js/header_timers.js"></script>
 
 
 
@@ -140,7 +141,9 @@ document.querySelectorAll('textarea').forEach(function(textarea) {
 $(function () {
     $('.datatables-basic').DataTable({
         responsive: true,
-        order: <?= $datatable_order ?>});
+        order: <?= $datatable_order ?>
+        <?= $datatable_settings ?? '' ?>
+    });
 });
 
 </script>

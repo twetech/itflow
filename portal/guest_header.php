@@ -35,9 +35,9 @@ $browser = sanitizeInput(getWebBrowser($user_agent));
     <?php } ?>
 
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/includes/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/includes/dist/css/adminlte.min.css">
 
     <meta name="description" content="" />
 

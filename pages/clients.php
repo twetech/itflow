@@ -5,6 +5,7 @@ $sort = "client_accessed_at";
 $order = "DESC";
 
 $datatable_order = "[[0, 'asc']]";
+$datatable_settings = "columnDefs: [{ visible: false, targets: 0 }]";
 
 require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
@@ -69,12 +70,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <table class="datatables-basic table border-top">
                     <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                                <th data-priority="1">Name</th>
-                                <th data-priority="2">Primary Location</th>
-                                <th>Primary Contact</th>
-                                <?php if (($session_user_role == 3 || $session_user_role == 1) && $config_module_enable_accounting == 1) { ?> <th class="text-right " data-priority="3">Billing</th> <?php } ?>
-                                <?php if ($session_user_role == 3) { ?> <th class="text-center" data-priority="4">Action</th> <?php } ?>
-                        
+                        <th style="display: none;">Accessed At</th>
+                        <th data-priority="1">Name</th>
+                        <th data-priority="2">Primary Location</th>
+                        <th>Primary Contact</th>
+                        <?php if (($session_user_role == 3 || $session_user_role == 1) && $config_module_enable_accounting == 1) { ?> <th class="text-right " data-priority="3">Billing</th> <?php } ?>
+                        <?php if ($session_user_role == 3) { ?> <th class="text-center" data-priority="4">Action</th> <?php } ?>
+                
                     </tr>
                     </thead>
                     <tbody>
@@ -112,6 +114,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         $client_created_at = date('Y-m-d', strtotime($row['client_created_at']));
                         $client_updated_at = nullable_htmlentities($row['client_updated_at']);
                         $client_archive_at = nullable_htmlentities($row['client_archived_at']);
+                        $client_accessed_at = nullable_htmlentities($row['client_accessed_at']);
                         $client_is_lead = intval($row['client_lead']);
 
                         // Client Tags
@@ -133,7 +136,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             }
 
                             $client_tag_id_array[] = $client_tag_id;
-                            $client_tag_name_display_array[] = "<a href='clients.php?q=$client_tag_name'><span class='badge text-light p-1 mr-1' style='background-color: $client_tag_color;'><i class='fa fa-fw fa-$client_tag_icon mr-2'></i>$client_tag_name</span></a>";
+                            $client_tag_name_display_array[] = "<a href='/pages/clients.php?q=$client_tag_name'><span class='badge p-1 me-1' style='background-color: $client_tag_color;'><i class='fa fa-fw fa-$client_tag_icon mr-2'></i>$client_tag_name</span></a>";
                         }
                         $client_tags_display = implode('', $client_tag_name_display_array);
 
@@ -167,8 +170,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         ?>
                         <tr>
+
+                            <td style="display: none;"><?php echo $client_accessed_at; ?></td>
                             <td>
-                                <a class="font-weight-bold" href="/pages/client/client_overview.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?> <i class="fas fa-fw fa-arrow-circle-right"></i></a>
+                                <a href="/pages/client/client_overview.php?client_id=<?php echo $client_id; ?>">
+                                    <h4><i class="bx bx-right-arrow me-1"></i><?php echo $client_name; ?></h4>
+                                </a>
 
                                 <?php
                                 if (!empty($client_type)) {

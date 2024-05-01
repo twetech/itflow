@@ -485,8 +485,8 @@ if (isset($_GET['invoice_id'])) {
                         </button>
                     </div>
                     <div class="d-grid d-flex my-3">
-                        <a href="/post.php?cancel_invoice=<?=$invoice_id?>" class="btn btn-label-danger me-3 w-100"><i class="bx bx-x-circle me-1"></i>Cancel</a>
-                        <a href="/post.php?delete_invoice=<?=$invoice_id?>" class="btn btn-danger me-3 w-100"><i class="bx bx-trash me-1"></i></a>
+                        <a href="/post.php?cancel_invoice=<?=$invoice_id?>" class="btn btn-label-danger me-3 w-100 confirm-link"><i class="bx bx-x-circle me-1"></i>Cancel</a>
+                        <a href="/post.php?delete_invoice=<?=$invoice_id?>" class="btn btn-label-danger me-3 w-100 confirm-link"><i class="bx bx-trash me-1"></i></a>
                     </div>
                     <hr class="my-0" />
 

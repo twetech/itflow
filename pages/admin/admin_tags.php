@@ -67,8 +67,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
                         <tr>
                             <td>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#editTagModal<?php echo $tag_id; ?>">
-                                    <span class='badge text-light p-2 mr-1' style="background-color: <?php echo $tag_color; ?>"><i class="fa fa-fw fa-<?php echo $tag_icon; ?> mr-2"></i><?php echo $tag_name; ?></span>
+                                <a href="#" data-bs-toggle="modal" class="loadModalContentBtn" data-bs-target="#dynamicModal" data-modal-file="admin_tag_edit_modal.php?tag_id=<?php echo $tag_id; ?>">
+                                    <span class='badge p-2 mr-1' style="background-color: <?php echo $tag_color; ?>"><i class="fa fa-fw fa-<?php echo $tag_icon; ?> mr-2"></i><?php echo $tag_name; ?></span>
                                 </a>
                             </td>
                             <td><?php echo $tag_type; ?></td>
@@ -78,7 +78,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editTagModal<?php echo $tag_id; ?>">
+                                        <a class="dropdown-item loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="admin_tag_edit_modal.php?tag_id=<?php echo $tag_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>

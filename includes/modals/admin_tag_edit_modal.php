@@ -22,9 +22,8 @@ $tag_icon = nullable_htmlentities($row['tag_icon']);
         </button>
       </div>
       <form action="/post.php" method="post" autocomplete="off">
-        <input type="hidden" name="tag_id" value="<?php echo $tag_id; ?>">
         <div class="modal-body bg-white">
-          
+        <input type="hidden" name="tag_id" value="<?php echo $tag_id; ?>">
           <div class="form-group">
             <label>Name <strong class="text-danger">*</strong></label>
             <div class="input-group">

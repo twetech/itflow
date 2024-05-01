@@ -1,6 +1,6 @@
 <?php
 
-require_once 'portal/guest_header.php';
+require_once '/var/www/portal.twe.tech/portal/guest_header.php';
 
 function log_to_console($message) {
     $message = date("H:i:s") . " - $message - ".PHP_EOL;
@@ -27,7 +27,7 @@ $config_stripe_client_pays_fees = intval($stripe_vars['config_stripe_client_pays
 // Check Stripe is configured
 if ($config_stripe_enable == 0 || $config_stripe_account == 0 || empty($config_stripe_publishable) || empty($config_stripe_secret)) {
     echo "<br><h2>Stripe payments not enabled/configured</h2>";
-    require_once 'portal/guest_footer.php';
+    require_once '/var/www/portal.twe.tech/portal/guest_footer.php';
 
     exit();
 }
@@ -55,7 +55,7 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
     // Ensure we have a valid invoice
     if (!$sql || mysqli_num_rows($sql) !== 1) {
         echo "<br><h2>Oops, something went wrong! Please ensure you have the correct URL and have not already paid this invoice.</h2>";
-        require_once 'portal/guest_footer.php';
+        require_once 'guest_footer.php';
 
         exit();
     }
@@ -117,8 +117,8 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
         <div class="col-sm">
             <h3>Payment for Invoice: <?php echo $invoice_prefix . $invoice_number ?></h3>
             <br>
-                    <div class="card-datatable table-responsive container-fluid  pt-0">               
-                <table id=responsive class="responsive table">
+                <div class="card-datatable table-responsive container-fluid  pt-0">               
+                    <table id=responsive class="responsive table">
                     <thead>
                     <tr>
                         <th>Product</th>
@@ -207,7 +207,7 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
     $pi_cs = $_GET['payment_intent_client_secret'];
 
     // Initialize stripe
-    require_once 'vendor/stripe-php-10.5.0/init.php';
+    require_once '/var/www/portal.twe.tec/includes/dist/vendor/stripe-php-10.5.0/init.php';
 
     \Stripe\Stripe::setApiKey($config_stripe_secret);
 
@@ -388,4 +388,4 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
 }
 
 
-require_once 'portal/guest_footer.php';
+require_once '/var/www/portal.twe.tech/portal/guest_footer.php';

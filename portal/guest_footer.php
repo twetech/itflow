@@ -26,7 +26,6 @@
                 </div>
             </div>
             <div class="row">
-            <?php renderMenuItems($menuItems); ?>
             </div>
         </div>
     </div>

@@ -65,7 +65,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </form>
         <hr>
         <div class="card-datatable table-responsive container-fluid  pt-0">               
-<table class="datatables-basic table border-top">
+            <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) {
                                             echo "d-none";
                                         } ?>">
@@ -128,7 +128,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </td>
                             <td><?php echo $login_username_display; ?></td>
                             <td>
-                                <button class="btn p-0" type="button" data-bs-toggle="popover" data-trigger="focus" data-placement="top" data-content="<?php echo $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></button><button class="btn btn-sm clipboardjs" type="button" data-clipboard-text="<?php echo $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
+                                <button class="btn p-0" type="button" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-info" data-bs-placement="top" title="<?php echo $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary me-1"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></button><button class="btn btn-sm clipboardjs" type="button" data-clipboard-text="<?php echo $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
                             </td>
                             <td><?php echo $otp_display; ?></td>
                             <td><?php echo $login_uri_display; ?></td>
