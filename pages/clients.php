@@ -5,7 +5,8 @@ $sort = "client_accessed_at";
 $order = "DESC";
 
 $datatable_order = "[[0, 'asc']]";
-$datatable_settings = "columnDefs: [{ visible: false, targets: 0 }]";
+$datatable_settings = ",
+    columnDefs: [{ visible: false, targets: 0 }]";
 
 require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
@@ -72,6 +73,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     <tr>
                         <th style="display: none;">Accessed At</th>
                         <th data-priority="1">Name</th>
+                        <?php if ($session_mobile) { ?> <th>Tags</th> <?php } ?>
                         <th data-priority="2">Primary Location</th>
                         <th>Primary Contact</th>
                         <?php if (($session_user_role == 3 || $session_user_role == 1) && $config_module_enable_accounting == 1) { ?> <th class="text-right " data-priority="3">Billing</th> <?php } ?>
@@ -184,18 +186,35 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <?php echo $client_type; ?>
                                     </div>
                                 <?php } ?>
+
                                 <?php
-                                if (!empty($client_tags_display)) { ?>
-                                    <div class="mt-1">
-                                        <?php echo $client_tags_display; ?>
-                                    </div>
-                                <?php } ?>
+                                if (!$session_mobile) {
+                                    if (!empty($client_tags_display)) { ?>
+                                        <div class="mt-1">
+                                            <?php echo $client_tags_display; ?>
+                                        </div>
+
+                                <?php } } ?>
+
                                 <div class="mt-1 text-secondary">
                                     <small><strong>Created:</strong> <?php echo $client_created_at; ?></small>
                                 </div>
 
                             </td>
-                            <td><?php echo $location_address_display; ?></td>
+                            <?php if ($session_mobile) { ?>
+                                <td>
+                                    <?php if (!empty($client_tags_display)) { ?>
+                                        <div class="mt-1">
+                                            <?php echo $client_tags_display; ?>
+                                        </div>
+                                    <?php } ?>
+                                </td>
+                            <?php } ?>
+                            <td>
+                                <a href="//maps.<?php echo $session_map_source; ?>.com/?q=<?= urlencode($location_address.' '.$location_zip) ?>" target="_blank">
+                                    <?php echo $location_address_display; ?>
+                                </a>
+                            </td>
                             <td>
                                 <?php
                                 if (empty($contact_name) && empty($contact_phone) && empty($contact_mobile) && empty($client_email)) {

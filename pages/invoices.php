@@ -6,6 +6,27 @@ $order = "DESC";
 require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 $datatable_order = '[[4, "desc"]]';
+$datatable_settings = ",
+    columnDefs: [
+        {
+            targets: [4, 5],
+            render: DataTable.render.datetime('Do MMM YYYY')
+        },
+    ],
+    createdRow: function(row, data, dataIndex) {
+        // Assuming that the due date is in the 6th column (index 5)
+        var dueDateStr = data[5]; // Get the date string from the data array
+        var dueDate = new Date(dueDateStr); // Convert string to date
+        var now = new Date(); // Get today's date
+        now.setHours(0, 0, 0, 0); // Normalize the time to 00:00:00
+
+        // If the due date is earlier than today, color the fifth column red
+        if (dueDate < now) {
+            $(row).find('td').eq(5).css('color', 'red');
+        }
+    }
+
+    ";
 
 $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT('recurring_id') AS num FROM recurring WHERE recurring_archived_at IS NULL"));
 $recurring_invoice_count = $row['num'];

@@ -48,13 +48,13 @@ if (isset($_POST['edit_ticket'])) {
         'ticket_id' => intval($_POST['ticket_id']),
         'ticket_client_id' => intval($_POST['client_id']),
         'ticket_assigned_to' => intval($_POST['assigned_to']),
-        'ticket_contact' => intval($_POST['contact']),
+        'ticket_contact_id' => intval($_POST['contact']),
         'ticket_subject' => sanitizeInput($_POST['subject']),
         'ticket_priority' => sanitizeInput($_POST['priority']),
         'ticket_details' => mysqli_real_escape_string($mysqli, $_POST['details']),
         'ticket_vendor_ticket_number' => sanitizeInput($_POST['vendor_ticket_number']),
-        'ticket_vendor' => intval($_POST['vendor_id']),
-        'ticket_asset' => intval($_POST['asset_id']),
+        'ticket_vendor_id' => intval($_POST['vendor_id']),
+        'ticket_asset_id' => intval($_POST['asset_id']),
         'ticket_number' => intval($_POST['ticket_number']),
     ];
 
@@ -81,7 +81,7 @@ if (isset($_POST['edit_ticket_contact'])) {
 
     $parameters = [
         'ticket_id' => intval($_POST['ticket_id']),
-        'ticket_contact' => intval($_POST['contact'])
+        'ticket_contact_id' => intval($_POST['contact'])
     ];
 
     $return_data = updateTicket($parameters);

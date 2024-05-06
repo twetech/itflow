@@ -61,11 +61,11 @@ if (isset($_GET['ticket_id'])) {
 
         //Set Ticket Badge Color based of priority
         if ($ticket_priority == "High") {
-            $ticket_priority_display = "<span class='p-2 badge badge-danger'>$ticket_priority</span>";
+            $ticket_priority_display = "<span class='p-2 badge rounded-pill bg-label-danger'>$ticket_priority</span>";
         } elseif ($ticket_priority == "Medium") {
-            $ticket_priority_display = "<span class='p-2 badge badge-warning'>$ticket_priority</span>";
+            $ticket_priority_display = "<span class='p-2 badge rounded-pill bg-label-warning'>$ticket_priority</span>";
         } elseif ($ticket_priority == "Low") {
-            $ticket_priority_display = "<span class='p-2 badge badge-info'>$ticket_priority</span>";
+            $ticket_priority_display = "<span class='p-2 badge rounded-pill bg-label-info'>$ticket_priority</span>";
         } else {
             $ticket_priority_display = "-";
         }
@@ -74,7 +74,7 @@ if (isset($_GET['ticket_id'])) {
         // Ticket Status Display
         $ticket_status = nullable_htmlentities($row['ticket_status']);
         $ticket_status_color = getTicketStatusColor($ticket_status);
-        $ticket_status_display = "<span class='p-2 badge badge-$ticket_status_color'>$ticket_status</span>";
+        $ticket_status_display = "<span class='p-2 badge rounded-pill bg-label-$ticket_status_color'>$ticket_status</span>";
 
         $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_number']);
         $ticket_created_at = nullable_htmlentities($row['ticket_created_at']);
@@ -168,7 +168,7 @@ if (isset($_GET['ticket_id'])) {
             }
 
             $client_tag_id_array[] = $client_tag_id;
-            $client_tag_name_display_array[] = "<span class='badge text-light p-1 mr-1' style='background-color: $client_tag_color;'><i class='fa fa-fw fa-$client_tag_icon mr-2'></i>$client_tag_name</span>";
+            $client_tag_name_display_array[] = "<span class='w-100 badge text-truncate p-1 mr-1' style='background-color: $client_tag_color;'><i class='fa fa-fw fa-$client_tag_icon mr-2'></i>$client_tag_name</span>";
         }
         $client_tags_display = implode(' ', $client_tag_name_display_array);
 
@@ -338,14 +338,16 @@ if (isset($_GET['ticket_id'])) {
                                         <div class="card">
                                             <tr>
                                                 <td>
-                                                    <?= $ticket_reply; ?>
-                                                    <?php
-                                                        while ($ticket_attachment = mysqli_fetch_array($sql_ticket_reply_attachments)) {
-                                                            $name = nullable_htmlentities($ticket_attachment['ticket_attachment_name']);
-                                                            $ref_name = nullable_htmlentities($ticket_attachment['ticket_attachment_reference_name']);
-                                                            echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
-                                                        }
-                                                    ?>
+                                                    <div class="prettyContent">
+                                                        <?= $ticket_reply; ?>
+                                                        <?php
+                                                            while ($ticket_attachment = mysqli_fetch_array($sql_ticket_reply_attachments)) {
+                                                                $name = nullable_htmlentities($ticket_attachment['ticket_attachment_name']);
+                                                                $ref_name = nullable_htmlentities($ticket_attachment['ticket_attachment_reference_name']);
+                                                                echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
+                                                            }
+                                                        ?>                                                        
+                                                    </div>
                                                 </td>
                                                 <td class="date-time-ago">
                                                     <?= empty($ticket_reply_updated_at) ? $ticket_reply_created_at : $ticket_reply_updated_at; ?>
@@ -602,6 +604,13 @@ if (isset($_GET['ticket_id'])) {
                             </div>
                         </div>
                         <!-- End Client card -->
+                        <!-- Ticket Status -->
+                        <div class="card card-body card-outline mb-3">
+                            <h5 class="text-secondary">Status</h5>
+                            <div>
+                                <?= $ticket_status_display; ?>
+                            </div>
+                        </div>
                         <!-- Ticket Actions -->
                         <?php
                             if ($ticket_status != "Closed") {

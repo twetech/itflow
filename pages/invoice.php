@@ -148,7 +148,8 @@ if (isset($_GET['invoice_id'])) {
     <div class="row invoice-edit">
         <!-- Invoice Edit-->
         <div class="col-lg-9 col-12 mb-lg-0 mb-4">
-            <div class="card invoice-preview-card">
+
+        <div class="card invoice-preview-card">
                 <div class="card-body">
                     <div class="row p-sm-3 p-0">
                         <div class="col-md-6 mb-md-0 mb-4">

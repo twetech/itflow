@@ -38,6 +38,7 @@
             $firstItem = false; // After the first item has been rendered, set this to false
         }
     }
+
 ?>
 
 <footer class="content-footer footer bg-footer-theme">
@@ -92,7 +93,6 @@
 <script src="https://cdn.datatables.net/responsive/3.0.1/js/dataTables.responsive.js"></script>
 <script src="https://cdn.datatables.net/responsive/3.0.1/js/responsive.bootstrap5.js"></script>
 
-<script src="/includes/js/reformat_datetime.js"></script>
 
 <script src="/includes/assets/vendor/js/menu.js"></script>
 
@@ -105,6 +105,7 @@
 <script src="/includes/assets/vendor/libs/block-ui/block-ui.js"></script>
 <script src="/includes/assets/vendor/libs/sortablejs/sortable.js"></script>
 <script src="/includes/assets/vendor/libs/toastr/toastr.js"></script>
+<script src="/includes/plugins/moment/moment.min.js"></script>
 <script src="/includes/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 <script src="/includes/assets/vendor/libs/flatpickr/flatpickr.js"></script>
 <script src="/includes/assets/vendor/libs/cleavejs/cleave.js"></script>
@@ -112,6 +113,7 @@
 <script src="/includes/assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
 <script src="/includes/js/header_timers.js"></script>
 
+<script src="/includes/js/reformat_datetime.js"></script>
 
 
 <!-- Main JS -->
@@ -138,11 +140,16 @@ document.querySelectorAll('textarea').forEach(function(textarea) {
 
 <script>
 
+
 $(function () {
-    $('.datatables-basic').DataTable({
+    var datatable = $('.datatables-basic').DataTable({
         responsive: true,
         order: <?= $datatable_order ?>
         <?= $datatable_settings ?? '' ?>
+    });
+
+    datatable.on('init.dt', function () {
+        $(document).trigger('updateDateTime');
     });
 });
 

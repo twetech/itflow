@@ -210,12 +210,13 @@ function updateTicket(
         if ($key !== 'ticket_id') {
             //remove ticket_ from key
             $key = ucfirst(str_replace('ticket_', '', $key));
-            if ($key === 'Contact') {
+            if ($key === 'Contact_id') {
                 $sql = mysqli_query($mysqli, "SELECT contact_name FROM contacts WHERE contact_id = $value");
                 $row = mysqli_fetch_array($sql);
+                $key = 'Contact';
                 $value = sanitizeInput($row['contact_name']);
             }
-            if ($key === 'Client') {
+            if ($key === 'Client_id') {
                 $sql = mysqli_query($mysqli, "SELECT client_name FROM clients WHERE client_id = $value");
                 $row = mysqli_fetch_array($sql);
                 $value = sanitizeInput($row['client_name']);
@@ -225,13 +226,19 @@ function updateTicket(
                 $row = mysqli_fetch_array($sql);
                 $value = sanitizeInput($row['user_name']);
             }
-            if ($key === 'Invoice') {
+            if ($key === 'Invoice_id') {
                 $sql = mysqli_query($mysqli, "SELECT invoice_number,invoice_prefix FROM invoices WHERE invoice_id = $value");
                 $row = mysqli_fetch_array($sql);
                 $value = sanitizeInput($row['invoice_number']);
-
-                
             }
+            if ($key === 'Billable') {
+                if ($value == 1) {
+                    $value = 'Yes';
+                } else {
+                    $value = 'No';
+                }
+            }
+
             $ticket_reply .= "$key: $value, ";
         }
     }
