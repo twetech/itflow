@@ -53,6 +53,7 @@ ITFlow is engineered to streamline and integrate the essential functions of IT d
 - **Faster Response Times**: Dynamic modal loading significantly reduces latency when accessing large amounts of data.
 - **Flexible Data Management**: Enhanced features from Datatables.js allow for dynamic data handling capabilities not present in ITFlow - Classic.
 - **Modern Interface**: A premium theme ensures a contemporary and responsive user interface.
+- **Mobile Version**: A mobile optimized version on each page helps you get what you need where ever you may need it.
 - **Enhanced Search Functionality**: Type-ahead searching offers a more intuitive and quicker way to find information.
 - **Strategic Insights**: Greater emphasis on financial analytics helps in tracking and improving profit margins across various business aspects.
 - **Codebase Maintainability**: Refactoring into folders and standardized function use promotes easier maintenance and future upgrades.
