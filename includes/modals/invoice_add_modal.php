@@ -1,6 +1,6 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php";
 
-$client_id = intval($_GET['client_id']);
+$client_id = isset($_GET['client_id']) ? intval($_GET['client_id']) : null;
 ?>
 
 <div class="modal" id="addInvoiceModal" tabindex="-1">
