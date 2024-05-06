@@ -7,6 +7,28 @@ $order = "DESC";
 require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 
+$datatable_settings = ",
+    columnDefs: [
+        {
+            targets: [3, 4],
+            render: DataTable.render.datetime('Do MMM YYYY')
+        },
+    ],
+    createdRow: function(row, data, dataIndex) {
+        // Assuming that the due date is in the fifth column (index 4)
+        var dueDateStr = data[4]; // Get the date string from the data array
+        var dueDate = new Date(dueDateStr); // Convert string to date
+        var now = new Date(); // Get today's date
+        now.setHours(0, 0, 0, 0); // Normalize the time to 00:00:00
+
+        // If the due date is earlier than today, color the fifth column red
+        if (dueDate < now) {
+            $(row).find('td').eq(4).css('color', 'red');
+        }
+    }
+
+    ";
+
 //Rebuild URL
 
 $sql = mysqli_query(
@@ -43,29 +65,18 @@ $recurring_invoice_count = $row['num'];
         <form autocomplete="off">
             <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
             <div class="row">
-
-                <div class="col-md-4">
-                    <div class="input-group mb-3 mb-md-0">
-                        <input type="search" class="form-control" name="q" value="<?php if (isset($q)) {
-                                                                                        echo stripslashes(nullable_htmlentities($q));
-                                                                                    } ?>" placeholder="Search Invoices">
-                        <div class="input-group-append">
-                            <button class="btn btn-dark"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-md-8">
                     <div class="float-right">
                         <div class="btn-group float-right">
                             <a href="client_recurring_invoices.php?client_id=<?php echo $client_id; ?>" class="btn btn-label-primary"><i class="fa fa-fw fa-redo-alt mr-2"></i>Recurring | <b><?php echo $recurring_invoice_count; ?></b></a>
                             <?php if ($balance > 0) { ?>
-                                <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#addBulkPaymentModal"><i class="fa fa-credit-card mr-2"></i>Batch Payment</button>
+                                <button type="button" class="btn btn-default loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="invoice_payment_add_bulk_modal.php?client_id=<?php echo $client_id; ?>">
+                                    <i class="fa fa-credit-card mr-2"></i>Batch Payment
+                                </button>
                             <?php } ?>
                         </div>
                     </div>
                 </div>
-
             </div>
         </form>
         <hr>
@@ -122,9 +133,11 @@ $recurring_invoice_count = $row['num'];
                             <td class="text-bold"><a href="/pages/invoice.php?invoice_id=<?php echo $invoice_id; ?>"><?php echo "$invoice_prefix$invoice_number"; ?></a></td>
                             <td><?php echo $invoice_scope_display; ?></td>
                             <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
-                            <td><?php echo $invoice_date; ?></td>
                             <td>
-                                <div class="<?php echo $overdue_color; ?>"><?php echo $invoice_due; ?></div>
+                                <?= $invoice_date; ?>
+                            </td>
+                            <td>
+                                <?= $invoice_due; ?>
                             </td>
                             <td><?php echo $category_name; ?></td>
                             <td>
@@ -173,6 +186,5 @@ $recurring_invoice_count = $row['num'];
 </div>
 
 <?php
-
 
 require_once '/var/www/portal.twe.tech/includes/footer.php';

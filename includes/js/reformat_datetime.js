@@ -5,8 +5,12 @@ document.addEventListener("DOMContentLoaded", function() {
         // Parse the date text as UTC
         var date = moment.utc(elem.textContent);
 
-        // Replace the text with 'time ago' format followed by a new line and <small> element
-        elem.textContent = date.fromNow();
+        // If in datatable, dont do anything
+        if (elem.classList.contains('datatable')) {
+            // Do nothing
+        } else {
+            // Replace the text with the formatted date
+        }
     });
 
     // Select all elements with the class 'date-time-format'
@@ -15,8 +19,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Parse the date text as UTC
         var date = moment.utc(elem.textContent);
 
-        // Replace the text with 'formatted' format
-        elem.textContent = date.format('MMMM Do YYYY, h:mm:ss a');
+        // If in datatable, dont do anything
+        if (elem.classList.contains('datatable')) {
+            // Do nothing
+        } else {
+            // Replace the text with the formatted date
+            elem.textContent = date.format('YYYY-MM-DD HH:mm:ss');
+        }
     });
 
     var verboseElements = document.querySelectorAll('.date-time-worked');
@@ -38,4 +47,14 @@ document.addEventListener("DOMContentLoaded", function() {
         // Replace the element's text with the verbose format
         elem.textContent = verboseTime;
     });
+
+    function updateDateTimeAgo() {
+        $('.date-time-ago').each(function() {
+            var date = moment.utc($(this).text());
+            $(this).text(date.fromNow());
+        });
+    }
+    
+    // Attach the custom function to a custom event
+    $(document).on('updateDateTime', updateDateTimeAgo);
 });
