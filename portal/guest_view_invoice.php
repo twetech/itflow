@@ -289,13 +289,11 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
     <!-- Invoice Actions -->
     <div class="col-xl-3 col-md-4 col-12 invoice-actions">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body d-print-none">
                 <button class="btn btn-label-secondary d-grid w-100 mb-3">
                 Download
                 </button>
-                <a class="btn btn-label-secondary d-grid w-100 mb-3" target="_blank" href="./app-invoice-print.html">
-                Print
-                </a>
+                <a class="btn btn-label-secondary d-grid w-100 mb-3" target="_blank" onclick="window.print();">Print</a>
                 <a class="btn btn-primary d-grid w-100" href="/portal/guest_pay_invoice_stripe.php?invoice_id=<?php echo $invoice_id; ?>&url_key=<?php echo $url_key; ?>">
                 <span class="d-flex align-items-center justify-content-center text-nowrap"><i class="bx bx-dollar bx-xs me-1"></i>
                     Pay Online <?php if($config_stripe_client_pays_fees == 1) { echo "(Gateway Fee: " .  numfmt_format_currency($currency_format, $gateway_fee, $invoice_currency_code) . ")"; } ?>

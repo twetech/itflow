@@ -62,7 +62,7 @@
 
 <!-- Navbar -->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-print-none">
     <div class="container">
         <a class="navbar-brand" href="index.php"><?php echo nullable_htmlentities($session_company_name); ?></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
@@ -114,7 +114,7 @@
 <!-- Page content container -->
 <div class="container">
 
-    <div class="row mb-3">
+    <div class="row mb-3 d-print-none">
         <div class="col-md-1 text-center">
             <?php if (!empty($session_contact_photo)) { ?>
                 <img src="<?php echo "..//uploads/clients/$session_client_id/$session_contact_photo"; ?>" alt="..." height="50" width="50" class="rounded-circle mb-3img-responsive">

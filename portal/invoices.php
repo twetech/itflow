@@ -81,7 +81,7 @@ $invoices_sql = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_clie
                     <td><?php echo $invoice_date; ?></td>
                     <td class="<?php echo $overdue_color; ?>"><?php echo $invoice_due; ?></td>
                     <td>
-                        <span class="p-2 badge badge-<?php echo $invoice_badge_color; ?>">
+                        <span class="p-2 badge bg-label-<?php echo $invoice_badge_color; ?>">
                             <?php echo $invoice_status; ?>
                         </span>
                     </td>

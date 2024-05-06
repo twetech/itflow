@@ -79,8 +79,8 @@ if (isset($_POST['edit_contact'])) {
     $row = mysqli_fetch_array($sql);
     $existing_file_name = sanitizeInput($row['contact_photo']);
 
-    if (!file_exists("/uploads/clients/$client_id")) {
-        mkdir("/uploads/clients/$client_id");
+    if (!file_exists("/var/www/portal.twe.tech/uploads/clients/$client_id")) {
+        mkdir("/var/www/portal.twe.tech/uploads/clients/$client_id");
     }
 
     mysqli_query($mysqli,"UPDATE contacts SET contact_name = '$name', contact_title = '$title', contact_phone = '$phone', contact_extension = '$extension', contact_mobile = '$mobile', contact_email = '$email', contact_pin = '$pin', contact_notes = '$notes', contact_important = $contact_important, contact_billing = $contact_billing, contact_technical = $contact_technical, contact_auth_method = '$auth_method', contact_department = '$department', contact_location_id = $location_id WHERE contact_id = $contact_id");

@@ -109,7 +109,7 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
     <script src="https://js.stripe.com/v3/"></script>
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="/includes/plugins/jquery/jquery.min.js"></script>
 
     <div class="row pt-5">
 
@@ -194,7 +194,7 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
     </div>
 
     <!-- Include local JS that powers stripe -->
-    <script src="/includes/js/portal/guest_pay_invoice_stripe.js"></script>
+    <script src="/includes/js/guest_pay_invoice_stripe.js"></script>
 
     <?php
 
