@@ -9,7 +9,7 @@ global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_i
 
 if (isset($_POST['add_invoice'])) {
 
-    require_once '/var/www/portal.twe.tech/post/models/invoice_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/invoice_model.php';
 
     $parameters['invoice_client_id'] = intval($_POST['client']);
     $parameters['invoice_date'] = sanitizeInput($_POST['date']);
@@ -23,7 +23,7 @@ if (isset($_POST['add_invoice'])) {
 
 if (isset($_POST['edit_invoice'])) {
 
-    require_once '/var/www/portal.twe.tech/post/models/invoice_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/invoice_model.php';
 
     $invoice_id = intval($_POST['invoice_id']);
     $due = sanitizeInput($_POST['due']);

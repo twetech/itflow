@@ -60,7 +60,7 @@ if (isset($_POST['edit_your_user_details'])) {
             $file_tmp_path = $_FILES['file']['tmp_name'];
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "/var/www/portal.twe.tech/uploads/users/$session_user_id/";
+            $upload_file_dir = "/var/www/develop.twe.tech/uploads/users/$session_user_id/";
             $dest_path = $upload_file_dir . $new_file_name;
             move_uploaded_file($file_tmp_path, $dest_path);
 

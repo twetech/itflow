@@ -4,7 +4,7 @@
 $sort = "payment_date";
 $order = "DESC";
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 //Rebuild URL
@@ -122,6 +122,6 @@ $credits_num_rows = mysqli_num_rows($sql_credits);
     </div>
 </div>
 
-<?php require_once '/var/www/portal.twe.tech/includes/footer.php';
+<?php require_once '/var/www/develop.twe.tech/includes/footer.php';
  ?>
  

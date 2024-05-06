@@ -4,7 +4,7 @@
 $sort = "invoice_number";
 $order = "DESC";
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 $datatable_settings = ",
@@ -187,4 +187,4 @@ $recurring_invoice_count = $row['num'];
 
 <?php
 
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/develop.twe.tech/includes/footer.php';

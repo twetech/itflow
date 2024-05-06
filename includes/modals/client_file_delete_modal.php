@@ -1,4 +1,4 @@
-<?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 <script src="/includes/js/file_delete_modal.js"></script>
 <div class="modal" id="deleteFileModal" tabindex="-1">
     <div class="modal-dialog">

@@ -1,4 +1,4 @@
-<?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
 <?php
 $software_id = intval($_GET['software_id']);

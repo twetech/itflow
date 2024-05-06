@@ -204,7 +204,7 @@ function createBulkPayment(
     $reference = sanitizeInput($bulk_payment['reference']);
     $client_id = intval($bulk_payment['client_id']);
     $email_receipt = intval($bulk_payment['email_receipt']);
-    $total_client_balance = getClientBalance(['client_id' => $client_id]);
+    $total_client_balance = getClientBalance($client_id);
     $currency_code = readClient($client_id)['client_currency_code'];
 
     $email_body_invoices = "";

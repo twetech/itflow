@@ -4,7 +4,7 @@
 $sort = "custom_field_label";
 $order = "ASC";
 
-require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
 
 
 if (isset($_GET['table'])) {
@@ -115,7 +115,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     </div>
 
 <?php
-require_once "/var/www/portal.twe.tech/includes/modals/custom_field_create_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/custom_field_create_modal.php";
 
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

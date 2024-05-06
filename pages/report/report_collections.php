@@ -1,5 +1,5 @@
 <?php
-    require_once "/var/www/portal.twe.tech/includes/inc_all_reports.php";
+    require_once "/var/www/develop.twe.tech/includes/inc_all_reports.php";
 
     validateAccountantRole();
 
@@ -122,7 +122,7 @@
     </div>
 </div>
 
-<?php require_once '/var/www/portal.twe.tech/includes/footer.php';
+<?php require_once '/var/www/develop.twe.tech/includes/footer.php';
 
 
 ?>

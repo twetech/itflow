@@ -1,5 +1,5 @@
 
-<?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
 <div class="modal" id="editDocumentModal<?php echo $document_id; ?>" tabindex="-1">
     <div class="modal-dialog modal-xl">

@@ -8,7 +8,7 @@ if (isset($_GET['add_shortcut'])) {
 
     //check if the shortcut exists in the shortcuts map
 
-    require_once "/var/www/portal.twe.tech/includes/shortcuts.php";
+    require_once "/var/www/develop.twe.tech/includes/shortcuts.php";
 
     if (!array_key_exists($shortcut_key, $shortcutsMap)) {
         referWithAlert("Shortcut not found", "danger");

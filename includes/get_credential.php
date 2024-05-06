@@ -26,11 +26,11 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
     }
 }
 
-require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
+require_once "/var/www/develop.twe.tech/includes/tenant_db.php";
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/develop.twe.tech/includes/config.php";
 
-require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
+require_once "/var/www/develop.twe.tech/includes/functions/functions.php";
 
 
 // IP & User Agent for logging

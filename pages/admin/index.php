@@ -1,5 +1,5 @@
 <?php 
-require_once '/var/www/portal.twe.tech/includes/inc_all_admin.php';
+require_once '/var/www/develop.twe.tech/includes/inc_all_admin.php';
 
 ?>
 
@@ -7,4 +7,4 @@ require_once '/var/www/portal.twe.tech/includes/inc_all_admin.php';
 
 <?php
 
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/develop.twe.tech/includes/footer.php';

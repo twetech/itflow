@@ -4,7 +4,7 @@
 $sort = "domain_name";
 $order = "ASC";
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 //Rebuild URL
@@ -152,15 +152,15 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     </div>
 
 <?php
-require_once "/var/www/portal.twe.tech/includes/modals/client_domain_edit_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_domain_edit_modal.php";
 
-require_once "/var/www/portal.twe.tech/includes/modals/client_domain_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_domain_add_modal.php";
 
-require_once "/var/www/portal.twe.tech/includes/modals/client_domain_export_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/client_domain_export_modal.php";
 ?>
 
 <script src="/includes/js/domain_edit_modal.js"></script>
 <script src="/includes/js/bulk_actions.js"></script>
 
-<?php require_once '/var/www/portal.twe.tech/includes/footer.php';
+<?php require_once '/var/www/develop.twe.tech/includes/footer.php';
 

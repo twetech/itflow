@@ -1,3 +1,3 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
