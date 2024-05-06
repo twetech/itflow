@@ -1,8 +1,8 @@
 <?php
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 // Initialize the HTML Purifier to prevent XSS
-require "/var/www/develop.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/portal.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $datatable_order = '[[1, "desc"]]';
 
@@ -262,7 +262,7 @@ if (isset($_GET['ticket_id'])) {
                             while ($ticket_attachment = mysqli_fetch_array($sql_ticket_attachments)) {
                                 $name = nullable_htmlentities($ticket_attachment['ticket_attachment_name']);
                                 $ref_name = nullable_htmlentities($ticket_attachment['ticket_attachment_reference_name']);
-                                echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
+                                echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
                             }
                         ?>
                     </div>
@@ -344,7 +344,7 @@ if (isset($_GET['ticket_id'])) {
                                                             while ($ticket_attachment = mysqli_fetch_array($sql_ticket_reply_attachments)) {
                                                                 $name = nullable_htmlentities($ticket_attachment['ticket_attachment_name']);
                                                                 $ref_name = nullable_htmlentities($ticket_attachment['ticket_attachment_reference_name']);
-                                                                echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/develop.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
+                                                                echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
                                                             }
                                                         ?>                                                        
                                                     </div>
@@ -1028,7 +1028,7 @@ if (isset($_GET['ticket_id'])) {
     }
 }
 
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+require_once '/var/www/portal.twe.tech/includes/footer.php';
 
 ?>
 

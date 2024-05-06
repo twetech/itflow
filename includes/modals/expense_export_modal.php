@@ -1,4 +1,4 @@
-<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+<?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
 <div class="modal" id="exportExpensesModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
@@ -11,7 +11,7 @@
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
 
-                    <?php require_once "/var/www/develop.twe.tech/includes/inc_export_warning.php";
+                    <?php require_once "/var/www/portal.twe.tech/includes/inc_export_warning.php";
  ?>
 
                     <div class="form-group">

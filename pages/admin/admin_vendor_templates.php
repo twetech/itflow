@@ -4,7 +4,7 @@
 $sort = "vendor_name";
 $order = "ASC";
 
-require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all_admin.php";
 
 
 //Rebuild URL
@@ -20,7 +20,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 ?>
 
-<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
+<?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
 
     <div class="card">
         <div class="card-header py-2">
@@ -140,7 +140,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         <?php
 
-                        require "/var/www/develop.twe.tech/includes/modals/admin_vendor_template_edit_modal.php";
+                        require "/var/www/portal.twe.tech/includes/modals/admin_vendor_template_edit_modal.php";
 
                     }
 
@@ -155,7 +155,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     </div>
 
 <?php
-require_once "/var/www/develop.twe.tech/includes/modals/admin_vendor_template_add_modal.php";
+require_once "/var/www/portal.twe.tech/includes/modals/admin_vendor_template_add_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/footer.php";
+require_once "/var/www/portal.twe.tech/includes/footer.php";
 

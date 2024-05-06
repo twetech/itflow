@@ -1,5 +1,5 @@
 <?php
-require_once "/var/www/develop.twe.tech/includes/inc_all_settings.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
 
 
 $sql = mysqli_query($mysqli,"SELECT * FROM companies, settings WHERE companies.company_id = settings.company_id AND companies.company_id = 1");
@@ -145,5 +145,5 @@ $company_initials = nullable_htmlentities(initials($company_name));
     </div>
 
 <?php
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+require_once '/var/www/portal.twe.tech/includes/footer.php';
 
