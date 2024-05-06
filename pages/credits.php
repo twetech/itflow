@@ -90,7 +90,7 @@ $num_rows = mysqli_num_rows($sql);
                         }
 
                         // Get invoice prefix and number from DB
-                        if($payment_invoice != null) {
+                        if($payment_invoice != "Unassigned") {
                             $invoiceQuery = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_id = $payment_invoice");
                             $invoice = mysqli_fetch_array($invoiceQuery);
                             $invoice_prefix = sanitizeInput($invoice['invoice_prefix']);

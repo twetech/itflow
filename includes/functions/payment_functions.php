@@ -199,13 +199,13 @@ function createBulkPayment(
     $date = $bulk_payment['date'];
     $bulk_payment_amount = floatval($bulk_payment['amount']);
     $bulk_payment_amount_static = $bulk_payment_amount;
-    $currency_code = sanitizeInput($bulk_payment['currency_code']);
     $account = intval($bulk_payment['account']);
     $payment_method = sanitizeInput($bulk_payment['method']);
     $reference = sanitizeInput($bulk_payment['reference']);
     $client_id = intval($bulk_payment['client_id']);
     $email_receipt = intval($bulk_payment['email_receipt']);
-    $total_client_balance = floatval($bulk_payment['total_client_balance']);
+    $total_client_balance = getClientBalance(['client_id' => $client_id]);
+    $currency_code = readClient($client_id)['client_currency_code'];
 
     $email_body_invoices = "";
 
@@ -218,7 +218,7 @@ function createBulkPayment(
         $bulk_payment_amount = $total_client_balance;
 
         // Add Credit
-        $credit_query = "INSERT INTO credits SET credit_amount = $credit_amount, credit_currency_code = '$currency_code', credit_date = '$date', credit_reference = 'Overpayment: $reference', credit_client_id = $client_id, credit_account_id = $account";
+        $credit_query = "INSERT INTO credits SET credit_amount = $credit_amount, credit_currency_code = '$currency_code', credit_date = '$date', credit_reference = 'Overpayment: $reference', credit_client_id = $client_id, credit_account_id = $account, credit_payment_id = 0";
         mysqli_query($mysqli, $credit_query);
         $credit_id = mysqli_insert_id($mysqli);
     }
@@ -229,7 +229,7 @@ function createBulkPayment(
         AND invoice_status != 'Paid'
         AND invoice_status != 'Cancelled'
         AND invoice_client_id = $client_id
-        ORDER BY invoice_number ASC";
+        ORDER BY invoice_id ASC";
     $result_invoices = mysqli_query($mysqli, $sql_invoices);
 
     // Loop Through Each Invoice
