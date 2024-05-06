@@ -155,7 +155,7 @@ function readClient(
 
     $columns = isset($parameters['columns']) ? sanitizeInput($parameters['columns']) : '*';
 
-    $query = "SELECT $columns FROM clients $where_clause";
+    $query = "SELECT $columns FROM clients $where_clause LIMIT 1";
     $result = mysqli_query($mysqli, $query);
 
     $clients = [];

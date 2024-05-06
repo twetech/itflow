@@ -15,7 +15,6 @@ $sql = mysqli_query(
     LEFT JOIN invoices ON payment_invoice_id = invoice_id
     LEFT JOIN clients ON invoice_client_id = client_id
     LEFT JOIN accounts ON payment_account_id = account_id
-    AND (CONCAT(invoice_prefix,invoice_number) LIKE '%$q%' OR client_name LIKE '%$q%' OR account_name LIKE '%$q%' OR payment_method LIKE '%$q%' OR payment_reference LIKE '%$q%')
     ORDER BY $sort $order"
 );
 

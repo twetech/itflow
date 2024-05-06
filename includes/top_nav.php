@@ -99,6 +99,7 @@ if (isset($client_page)) {
             'children' => [
                 ['title' => 'Recurring Invoices', 'link' => '/pages/recurring_invoices.php', 'icon' => 'bx bx-receipt'],
                 ['title' => 'Payments', 'link' => '/pages/payments.php', 'icon' => 'bx bx-credit-card'],
+                ['title' => 'Credits', 'link' => '/pages/credits.php', 'icon' => 'bx bx-money'],
                 ['title' => 'Expenses', 'link' => '/pages/expenses.php', 'icon' => 'bx bx-money'],
                 ['title' => 'Transfers', 'link' => '/pages/transfers.php', 'icon' => 'bx bx-transfer'],
                 ['title' => 'Accounts', 'link' => '/pages/accounts.php', 'icon' => 'bx bx-wallet'],
@@ -259,6 +260,14 @@ $sql_notifications = mysqli_query(
 );
 $num_notifications = mysqli_num_rows($sql_notifications);
 
+if (isset($client_page)) {
+    $nav_title = 'TWE: '.$client_name;
+    $nav_title_link = '/pages/client/client_overview.php?client_id=' . $client_id;
+} else {
+    $nav_title = 'TWE Technologies';
+    $nav_title_link = '/pages/dashboard.php';
+}
+
 ?>
 
             
@@ -266,8 +275,8 @@ $num_notifications = mysqli_num_rows($sql_notifications);
             <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
                 <div class="container-xxl">
                     <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
-                        <a href="twe.tech" class="app-brand-link gap-2">
-                            <span class="app-brand-text demo menu-text fw-bold"><?= isset($tenant_brand) ? $tenant_brand : 'TWE Technologies' ?></span>
+                        <a href="<?= $nav_title_link ?>" class="app-brand-link gap-2">
+                            <span class="app-brand-text demo menu-text fw-bold"><?= $nav_title ?></span>
                             </span>
                         </a>
 

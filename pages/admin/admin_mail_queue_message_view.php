@@ -3,7 +3,7 @@
 require_once "/var/www/portal.twe.tech/includes/inc_all_admin.php";
 
 //Initialize the HTML Purifier to prevent XSS
-require "/var/www/portal.twe.tech/includes/modals/plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/portal.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);
