@@ -247,7 +247,7 @@ function renderUserShortcuts($shortcutsData, $shortcutsMap) {
     echo $html;
 }
 
-require_once "/var/www/portal.twe.tech/includes/shortcuts.php";
+require_once "/var/www/develop.twe.tech/includes/shortcuts.php";
 
 
 //get number of notifications
@@ -488,7 +488,7 @@ if (isset($client_page)) {
                     <div class="container-xxl flex-grow-1 container-p-y">
 
                     <?php if (isset($client_page)) { //if page is client page (client.php, client-*.php
-                        require_once "/var/www/portal.twe.tech/includes/inc_client_top_head.php";
+                        require_once "/var/www/develop.twe.tech/includes/inc_client_top_head.php";
                     }
                     ?>
                     <h4 class="font-weight-bold py-3 mb-4">

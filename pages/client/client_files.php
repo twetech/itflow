@@ -4,7 +4,7 @@
 $sort = "file_name";
 $order = "ASC";
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 // Folder
@@ -131,13 +131,13 @@ $num_of_files = mysqli_num_rows($sql);
                         </li>
 
                         <?php
-                        require "/var/www/portal.twe.tech/includes/modals/folder_rename_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/folder_rename_modal.php";
 
 
                     }
                     ?>
                 </ul>
-                <?php require_once "/var/www/portal.twe.tech/includes/modals/folder_create_modal.php";
+                <?php require_once "/var/www/develop.twe.tech/includes/modals/folder_create_modal.php";
  ?>
             </div>
 
@@ -217,7 +217,7 @@ $num_of_files = mysqli_num_rows($sql);
                         </div>
 
                         <?php
-                        require "/var/www/portal.twe.tech/includes/modals/client_file_view_modal.php";
+                        require "/var/www/develop.twe.tech/includes/modals/client_file_view_modal.php";
 
                     }
                     ?>
@@ -339,4 +339,4 @@ $num_of_files = mysqli_num_rows($sql);
 <?php
 
 
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/develop.twe.tech/includes/footer.php';

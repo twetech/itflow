@@ -1,5 +1,5 @@
 
-<?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
+<?php require_once "/var/www/develop.twe.tech/includes/inc_all_modal.php"; ?>
 
 <?php if (isset($_GET['invoice_id'])) {
     $invoice_id = intval($_GET['invoice_id']);

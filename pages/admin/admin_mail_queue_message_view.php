@@ -1,9 +1,9 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/inc_all_admin.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
 
 //Initialize the HTML Purifier to prevent XSS
-require "/var/www/portal.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/develop.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);
@@ -74,4 +74,4 @@ if ($email_status == 0) {
 
 <?php
 
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/develop.twe.tech/includes/footer.php';

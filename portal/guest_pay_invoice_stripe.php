@@ -1,6 +1,6 @@
 <?php
 
-require_once '/var/www/portal.twe.tech/portal/guest_header.php';
+require_once '/var/www/develop.twe.tech/portal/guest_header.php';
 
 function log_to_console($message) {
     $message = date("H:i:s") . " - $message - ".PHP_EOL;
@@ -27,7 +27,7 @@ $config_stripe_client_pays_fees = intval($stripe_vars['config_stripe_client_pays
 // Check Stripe is configured
 if ($config_stripe_enable == 0 || $config_stripe_account == 0 || empty($config_stripe_publishable) || empty($config_stripe_secret)) {
     echo "<br><h2>Stripe payments not enabled/configured</h2>";
-    require_once '/var/www/portal.twe.tech/portal/guest_footer.php';
+    require_once '/var/www/develop.twe.tech/portal/guest_footer.php';
 
     exit();
 }
@@ -388,4 +388,4 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
 }
 
 
-require_once '/var/www/portal.twe.tech/portal/guest_footer.php';
+require_once '/var/www/develop.twe.tech/portal/guest_footer.php';

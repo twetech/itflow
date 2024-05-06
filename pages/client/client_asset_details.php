@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 if (isset($_GET['asset_id'])) {
@@ -315,7 +315,7 @@ if (isset($_GET['asset_id'])) {
 
                                 <?php
 
-                                require "/var/www/portal.twe.tech/includes/modals/client_login_edit_modal.php";
+                                require "/var/www/develop.twe.tech/includes/modals/client_login_edit_modal.php";
 
                             }
 
@@ -502,7 +502,7 @@ if (isset($_GET['asset_id'])) {
 
     <?php
 
-    require_once "/var/www/portal.twe.tech/includes/modals/share_modal.php";
+    require_once "/var/www/develop.twe.tech/includes/modals/share_modal.php";
 
 
     ?>
@@ -541,5 +541,5 @@ if (isset($_GET['asset_id'])) {
 </script>
 
 <?php
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/develop.twe.tech/includes/footer.php';
 

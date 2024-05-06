@@ -9,7 +9,7 @@ global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_i
 
 if (isset($_POST['add_user'])) {
 
-    require_once '/var/www/portal.twe.tech/post/models/user_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/user_model.php';
 
     global $mysqli, $session_ip, $session_user_agent, $session_user_id, $session_name, $config_smtp_host, $config_mail_from_name, $config_mail_from_email, $config_ticket_from_email, $config_login_key_secret, $config_base_url;
 
@@ -100,7 +100,7 @@ if (isset($_POST['add_user'])) {
 
 if (isset($_POST['edit_user'])) {
 
-    require_once '/var/www/portal.twe.tech/post/models/user_model.php';
+    require_once '/var/www/develop.twe.tech/post/models/user_model.php';
 
     global $mysqli, $session_ip, $session_user_agent, $session_user_id, $session_name;
 

@@ -1,5 +1,5 @@
 <?php
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 ?>
 
@@ -48,7 +48,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all.php";
             <center>
                 <?php
 
-                require_once '/var/www/portal.twe.tech/includes/rfc6238.php';
+                require_once '/var/www/develop.twe.tech/includes/rfc6238.php';
 
                 //Generate a base32 Key
                 $secretkey = key32gen();
@@ -87,4 +87,4 @@ require_once "/var/www/portal.twe.tech/includes/inc_all.php";
     </div>
 
 <?php
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/develop.twe.tech/includes/footer.php';

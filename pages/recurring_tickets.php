@@ -4,7 +4,7 @@
 $sort = "scheduled_ticket_subject";
 $order = "ASC";
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/develop.twe.tech/includes/inc_all.php";
 
 
 //Rebuild URL
@@ -154,8 +154,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <script src="/includes/js/bulk_actions.js"></script>
 
 <?php
-require_once "/var/www/portal.twe.tech/includes/modals/recurring_ticket_add_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/recurring_ticket_add_modal.php";
 
-require_once "/var/www/portal.twe.tech/includes/modals/recurring_ticket_edit_modal.php";
+require_once "/var/www/develop.twe.tech/includes/modals/recurring_ticket_edit_modal.php";
 
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/develop.twe.tech/includes/footer.php';
