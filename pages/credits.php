@@ -4,7 +4,7 @@
 $sort = "client_id";
 $order = "DESC";
 
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 
 //Rebuild URL
@@ -131,5 +131,5 @@ $num_rows = mysqli_num_rows($sql);
     </div>
 </div>
 
-<?php require_once '/var/www/develop.twe.tech/includes/footer.php';
+<?php require_once '/var/www/portal.twe.tech/includes/footer.php';
  ?>

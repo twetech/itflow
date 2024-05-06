@@ -359,7 +359,7 @@ function deleteClient(
     mysqli_query($mysqli, "DELETE FROM vendors WHERE vendor_client_id = $client_id");
 
     //Delete Client Files
-    removeDirectory('/var/www/develop.twe.tech/uploads/clients/' . $client_id);
+    removeDirectory('/var/www/portal.twe.tech/uploads/clients/' . $client_id);
 
     //Finally Remove the Client
     mysqli_query($mysqli, "DELETE FROM clients WHERE client_id = $client_id");

@@ -3,7 +3,7 @@
 // Default Column Sortby/Order Filter
 $sort = "invoice_number";
 $order = "DESC";
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 $datatable_order = '[[4, "desc"]]';
 $datatable_settings = ",
@@ -252,5 +252,5 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/footer.php";
+require_once "/var/www/portal.twe.tech/includes/footer.php";
 

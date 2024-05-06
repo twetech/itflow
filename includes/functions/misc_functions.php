@@ -285,7 +285,7 @@ function generateReadablePassword($security_level)
 
 function createiCalStr($datetime, $title, $description, $location)
 {
-    require_once "/var/www/develop.twe.tech/includes/plugins/zapcal/zapcallib.php";
+    require_once "/var/www/portal.twe.tech/includes/plugins/zapcal/zapcallib.php";
 
     // Create the iCal object
     $cal_event = new ZCiCal();

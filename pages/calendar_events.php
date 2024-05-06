@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 
 if (isset($_GET['calendar_id'])) {
@@ -21,9 +21,9 @@ if (isset($_GET['calendar_id'])) {
 </div>
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/modals/calendar_event_add_modal.php";
+require_once "/var/www/portal.twe.tech/includes/modals/calendar_event_add_modal.php";
 
-require_once "/var/www/develop.twe.tech/includes/modals/calendar_add_modal.php";
+require_once "/var/www/portal.twe.tech/includes/modals/calendar_add_modal.php";
 
 
 //loop through IDs and create a modal for each
@@ -41,12 +41,12 @@ while ($row = mysqli_fetch_array($sql)) {
     $calendar_color = nullable_htmlentities($row['calendar_color']);
     $client_id = intval($row['event_client_id']);
 
-    require "/var/www/develop.twe.tech/includes/modals/calendar_event_edit_modal.php";
+    require "/var/www/portal.twe.tech/includes/modals/calendar_event_edit_modal.php";
 }
 
 ?>
 
-<?php require_once "/var/www/develop.twe.tech/includes/footer.php";
+<?php require_once "/var/www/portal.twe.tech/includes/footer.php";
 ?>
 
 <script src='/includes/plugins/fullcalendar-6.1.10/dist/index.global.js'></script>

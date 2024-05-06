@@ -1,10 +1,10 @@
 <?php
 
-require_once "/var/www/develop.twe.tech/includes/tenant_db.php";
+require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
 
-require_once "/var/www/develop.twe.tech/includes/config.php";
+require_once "/var/www/portal.twe.tech/includes/config.php";
 
-require_once "/var/www/develop.twe.tech/includes/functions/functions.php";
+require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
 
 
 session_start();
@@ -30,7 +30,7 @@ $browser = sanitizeInput(getWebBrowser($user_agent));
     Favicon
     If Fav Icon exists else use the default one 
     -->
-    <?php if(file_exists('/var/www/develop.twe.tech/uploads/favicon.ico')) { ?>
+    <?php if(file_exists('/var/www/portal.twe.tech/uploads/favicon.ico')) { ?>
         <link rel="icon" type="image/x-icon" href="//uploads/favicon.ico">
     <?php } ?>
 

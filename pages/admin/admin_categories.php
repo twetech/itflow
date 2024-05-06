@@ -4,7 +4,7 @@
 $sort = "category_name";
 $order = "ASC";
 
-require_once "/var/www/develop.twe.tech/includes/inc_all_admin.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all_admin.php";
 
 
 if (isset($_GET['category'])) {
@@ -182,4 +182,4 @@ if (isset($_GET['archived'])) {
 
 <?php
 
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+require_once '/var/www/portal.twe.tech/includes/footer.php';

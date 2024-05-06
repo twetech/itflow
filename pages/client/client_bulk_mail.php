@@ -1,5 +1,5 @@
 <?php
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 $sql = mysqli_query($mysqli, "SELECT * FROM contacts
     WHERE contact_client_id = $client_id
@@ -144,4 +144,4 @@ $sql = mysqli_query($mysqli, "SELECT * FROM contacts
 
 <?php
 
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+require_once '/var/www/portal.twe.tech/includes/footer.php';

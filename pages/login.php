@@ -3,7 +3,7 @@
 // Enforce a Content Security Policy for security against cross-site scripting
 header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
 
-if (!file_exists('/var/www/develop.twe.tech/includes/config.php')) {
+if (!file_exists('/var/www/portal.twe.tech/includes/config.php')) {
     header("Location: setup.php");
     exit;
 }
@@ -20,7 +20,7 @@ if (isset($_GET['tenant_id'])) {
     }
 }
 
-require_once "/var/www/develop.twe.tech/includes/config.php";
+require_once "/var/www/portal.twe.tech/includes/config.php";
 
 // Check if $mysqli is a valid connection
 if (!$mysqli) {
@@ -34,9 +34,9 @@ if ($config_https_only && (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'o
     exit;
 }
 
-require_once "/var/www/develop.twe.tech/includes/functions/functions.php";
+require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
 
-require_once "/var/www/develop.twe.tech/includes/rfc6238.php";
+require_once "/var/www/portal.twe.tech/includes/rfc6238.php";
 
 
 

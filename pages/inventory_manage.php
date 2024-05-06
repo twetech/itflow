@@ -4,7 +4,7 @@
 $sort = "inventory_created_at";
 $order = "DESC";
 
-require_once "/var/www/develop.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
 $inventory_product_id = intval($_GET["inventory_product_id"]);
 
@@ -137,4 +137,4 @@ $product_name = sanitizeInput($product_name_row[0]);
 
 <?php
 
-require_once '/var/www/develop.twe.tech/includes/footer.php';
+require_once '/var/www/portal.twe.tech/includes/footer.php';
