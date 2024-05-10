@@ -6,6 +6,8 @@ $order = "DESC";
 
 require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
+$datatable_order = "[[4, 'desc']]";
+
 
 $datatable_settings = ",
     columnDefs: [

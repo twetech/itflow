@@ -17,8 +17,14 @@ function removeDirectory($path)
 function mkdirMissing($dir)
 {
     if (!is_dir($dir)) {
-        mkdir($dir);
+        // Set the recursive parameter to true
+        if (!mkdir($dir, 0777, true)) {
+            // Handle the error if the directory could not be created
+            error_log("Error: Unable to create directory {$dir}");
+            return false;
+        }
     }
+    return true;
 }
 
 // Pass $_FILE['file'] to check an uploaded file before saving it

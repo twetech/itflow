@@ -23,7 +23,7 @@ require_once "/var/www/portal.twe.tech/includes/config.php";
 require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
 
 // Get settings for the "default" company
-require_once "get_settings.php";
+require_once "/var/www/portal.twe.tech/includes/get_settings.php";
 
 $config_ticket_prefix = sanitizeInput($config_ticket_prefix);
 $config_ticket_from_name = sanitizeInput($config_ticket_from_name);
@@ -86,23 +86,23 @@ file_put_contents($lock_file_path, "Locked");
 // PHP Mail Parser
 use PhpMimeMailParser\Parser;
 
-require_once "plugins/php-mime-mail-parser/src/Contracts/CharsetManager.php";
+require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Contracts/CharsetManager.php";
 
-require_once "plugins/php-mime-mail-parser/src/Contracts/Middleware.php";
+require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Contracts/Middleware.php";
 
-require_once "plugins/php-mime-mail-parser/src/Attachment.php";
+require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Attachment.php";
 
-require_once "plugins/php-mime-mail-parser/src/Charset.php";
+require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Charset.php";
 
-require_once "plugins/php-mime-mail-parser/src/Exception.php";
+require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Exception.php";
 
-require_once "plugins/php-mime-mail-parser/src/Middleware.php";
+require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Middleware.php";
 
-require_once "plugins/php-mime-mail-parser/src/MiddlewareStack.php";
+require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/MiddlewareStack.php";
 
-require_once "plugins/php-mime-mail-parser/src/MimePart.php";
+require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/MimePart.php";
 
-require_once "plugins/php-mime-mail-parser/src/Parser.php";
+require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Parser.php";
 
 
 // Allowed attachment extensions
@@ -124,11 +124,10 @@ function addTicket($contact_id, $contact_name, $contact_email, $client_id, $date
     $message = nl2br($message);
     $message = mysqli_escape_string($mysqli, "<i>Email from: $contact_email at $date:-</i> <br><br>$message");
 
-    mysqli_query($mysqli, "INSERT INTO tickets SET ticket_prefix = '$config_ticket_prefix', ticket_number = $ticket_number, ticket_subject = '$subject', ticket_details = '$message', ticket_priority = 'Low', ticket_status = 'New', ticket_created_by = 0, ticket_contact_id = $contact_id, ticket_client_id = $client_id");
+    mysqli_query($mysqli, "INSERT INTO tickets SET ticket_prefix = '$config_ticket_prefix', ticket_number = $ticket_number, ticket_subject = '$subject', ticket_details = '$message', ticket_priority = 'Low', ticket_status = 1, ticket_created_by = 0, ticket_contact_id = $contact_id, ticket_client_id = $client_id");
     $id = mysqli_insert_id($mysqli);
 
     // Logging
-    echo "Created new ticket.<br>";
     mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Ticket', log_action = 'Create', log_description = 'Email parser: Client contact $contact_email created ticket $config_ticket_prefix$ticket_number ($subject) ($id)', log_client_id = $client_id");
 
     // Process attachments (after ticket is logged as created)
@@ -180,6 +179,8 @@ function addTicket($contact_id, $contact_name, $contact_email, $client_id, $date
             'subject' => $subject_email,
             'body' => $body
         ];
+
+        
     }
 
     // Notify agent DL of the new ticket, if populated with a valid email
@@ -207,7 +208,6 @@ function addTicket($contact_id, $contact_name, $contact_email, $client_id, $date
     addToMailQueue($mysqli, $data);
 
     return true;
-
 }
 // End Add Ticket Function
 
@@ -246,7 +246,7 @@ function addReply($from_email, $date, $subject, $ticket_number, $message, $attac
         $client_name = sanitizeInput($row['client_name']);
 
         // Check ticket isn't closed - tickets can't be re-opened
-        if ($ticket_status == "Closed") {
+        if ($ticket_status == "5") {
             mysqli_query($mysqli, "INSERT INTO notifications SET notification_type = 'Ticket', notification = 'Email parser: $from_email attempted to re-open ticket $config_ticket_prefix$ticket_number (ID $ticket_id) - check inbox manually to see email', notification_action = 'ticket.php?ticket_id=$ticket_id', notification_client_id = $client_id");
 
             $email_subject = "Action required: This ticket is already closed";
@@ -363,18 +363,19 @@ function addReply($from_email, $date, $subject, $ticket_number, $message, $attac
         }
 
         // Update Ticket Last Response Field & set ticket to open as client has replied
-        mysqli_query($mysqli, "UPDATE tickets SET ticket_status = 'Open' WHERE ticket_id = $ticket_id AND ticket_client_id = $client_id LIMIT 1");
+        mysqli_query($mysqli, "UPDATE tickets SET ticket_status = '2' WHERE ticket_id = $ticket_id AND ticket_client_id = $client_id LIMIT 1");
 
         // App Notification
         mysqli_query($mysqli, "INSERT INTO notifications SET notification_type = 'Ticket', notification = 'Ticket $config_ticket_prefix$ticket_number - Subject: $subject - has been updated via email', notification_action = 'ticket.php?ticket_id=$ticket_id', notification_client_id = $client_id, notification_user_id = $ticket_assigned_to");
 
-        echo "Updated existing ticket.<br>";
+        echo date('Y-m-d H:i:s') . "Email parser: Client contact $from_email updated ticket $config_ticket_prefix$ticket_number ($subject) \n";
         mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Ticket', log_action = 'Update', log_description = 'Email parser: Client contact $from_email updated ticket $config_ticket_prefix$ticket_number ($subject)', log_client_id = $client_id");
 
         return true;
 
     } else {
         // Invalid ticket number
+        echo date('Y-m-d H:i:s') . "Email parser: Invalid ticket number $config_ticket_prefix$ticket_number\n";
         return false;
     }
 }
@@ -402,18 +403,24 @@ $list = imap_list($imap, "{{$imap_mailbox}}", "*");
 if (array_search("{{$imap_mailbox}}$imap_folder", $list) === false) {
     imap_createmailbox($imap, imap_utf7_encode("{{$imap_mailbox}}$imap_folder"));
     imap_subscribe($imap, imap_utf7_encode("{{$imap_mailbox}}$imap_folder"));
+    echo date('Y-m-d H:i:s') . " - Created ITFlow folder.\n";
 }
 
 // Search for unread ("UNSEEN") emails
 $emails = imap_search($imap, 'UNSEEN');
 
 if ($emails) {
-
+    echo date('Y-m-d H:i:s') . " - Processing " . count($emails) . " new emails.\n";
     // Sort
     rsort($emails);
 
+    $email_id = 0;
+
     // Loop through each email
     foreach ($emails as $email) {
+
+        echo date('Y-m-d H:i:s') . " - Processing email ID: $email_id\n";
+        $email_id++;
 
         // Default false
         $email_processed = false;
@@ -432,6 +439,7 @@ if ($emails) {
         $from_email = "itflow-guest@example.com";
         if (filter_var($from_array['address'], FILTER_VALIDATE_EMAIL)) {
             $from_email = sanitizeInput($from_array['address']);
+            echo date('Y-m-d H:i:s') . " - Email from: $from_email\n";
         }
 
         $from_domain = explode("@", $from_array['address']);
@@ -455,6 +463,7 @@ if ($emails) {
 
         // Check if we can identify a ticket number (in square brackets)
         if (preg_match("/\[$config_ticket_prefix\d+\]/", $subject, $ticket_number)) {
+            echo date('Y-m-d H:i:s') . " - Found ticket number in subject line: $ticket_number[0]\n";
 
             // Looks like there's a ticket number in the subject line (e.g. [TCK-091]
             // Process as a ticket reply
@@ -469,6 +478,7 @@ if ($emails) {
 
         } else {
             // Couldn't match this email to an existing ticket
+            echo date('Y-m-d H:i:s') . " - No ticket number found in subject line.\n";
 
             // Check if we can match the sender to a pre-existing contact
             $any_contact_sql = mysqli_query($mysqli, "SELECT * FROM contacts WHERE contact_email = '$from_email' LIMIT 1");
@@ -483,6 +493,7 @@ if ($emails) {
 
                 if (addTicket($contact_id, $contact_name, $contact_email, $client_id, $date, $subject, $message, $attachments)) {
                     $email_processed = true;
+                    echo date('Y-m-d H:i:s') . " - Created new ticket for existing contact.";
                 }
 
             } else {
@@ -507,40 +518,67 @@ if ($emails) {
                     $contact_id = mysqli_insert_id($mysqli);
 
                     // Logging for contact creation
-                    echo "Created new contact.<br>";
                     mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Contact', log_action = 'Create', log_description = 'Email parser: created contact $contact_name', log_client_id = $client_id");
 
                     if (addTicket($contact_id, $contact_name, $contact_email, $client_id, $date, $subject, $message, $attachments)) {
                         $email_processed = true;
+                        echo date('Y-m-d H:i:s') . " - Created new ticket for new contact.";
                     }
 
                 } else {
 
                     // Couldn't match this email to an existing ticket, existing contact or an existing client via the "from" domain
-                    //  In the future we might make a page where these can be nicely viewed / managed, but for now we'll just flag them in the Inbox as needing attention
+                    echo date('Y-m-d H:i:s') . " - Email from unknown contact, flagged for attention.\n";
 
+                    // Create a ticket for an unregistered contact
+                    $contact_name = $from_name; // This was already Sanitized above
+                    $contact_email = $from_email; // This was already Sanitized above
+                    $client_id = 0; // Unregistered client
+
+                    if (addTicket(0, $contact_name, $contact_email, $client_id, $date, $subject, $message, $attachments)) {
+                        $email_processed = true;
+                        echo date('Y-m-d H:i:s') . " - Created new ticket for unregistered contact.";
+                    }
                 }
-
             }
-
         }
 
         // Deal with the message (move it if processed, flag it if not)
         if ($email_processed) {
             imap_setflag_full($imap, $email, "\\Seen");
             imap_mail_move($imap, $email, $imap_folder);
+            echo date('Y-m-d H:i:s') . " - Processed email and moved to ITFlow folder.\n";
         } else {
             // Basically just flags all emails keep them unread and it doesnt move closed tickets
-            echo "Failed to process email - flagging for manual review.";
+            echo date('Y-m-d H:i:s') . " - Email not processed, flagged for attention.\n";
             imap_setflag_full($imap, $email, "\\Flagged");
         }
 
     }
 
+} else {
+    // echo datetimestamp and message
+    echo date('Y-m-d H:i:s') . " - No new emails to process.\n";
 }
+
+//if logfile is bigger than 10mb, rename it and create a new one
+$logfile = "/var/www/portal.twe.tech/cron/cron_ticket_email_parser.log";
+if (file_exists($logfile) && filesize($logfile) > 10000000) {
+    echo date('Y-m-d H:i:s') . " - Logfile is bigger than 10mb, renaming and creating a new one.\n";
+    rename($logfile, "/var/www/portal.twe.tech/cron/cron_mail_queue_" . date('Y-m-d_H-i-s') . ".log.bak");
+}
+
+//delete oldest logfile if there are more than 5 saved
+$files = glob("/var/www/portal.twe.tech/cron/cron_ticket_email_parser_*.log.bak");
+if (count($files) > 5) {
+    echo date('Y-m-d H:i:s') . " - Deleting oldest log file.\n";
+    unlink($files[0]);
+}
+
 
 imap_expunge($imap);
 imap_close($imap);
+
 
 // Remove the lock file
 unlink($lock_file_path);

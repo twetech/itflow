@@ -241,8 +241,8 @@ if (isset($_POST['bulk_assign_ticket'])) {
             $ticket_subject = sanitizeInput($row['ticket_subject']);
             $client_id = intval($row['ticket_client_id']);
 
-            if ($ticket_status == 'New' && $assigned_to !== 0) {
-                $ticket_status = 'Open';
+            if ($ticket_status == 1 && $assigned_to !== 0) {
+                $ticket_status = 2;
             }
 
             // Allow for un-assigning tickets

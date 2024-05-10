@@ -99,7 +99,6 @@
 <!-- endbuild -->
 
 <!-- Vendors JS -->
-<script src="/includes/assets/vendor/libs/select2/select2.js"></script>
 
 
 <script src="/includes/assets/vendor/libs/block-ui/block-ui.js"></script>
@@ -114,6 +113,8 @@
 <script src="/includes/js/header_timers.js"></script>
 
 <script src="/includes/js/reformat_datetime.js"></script>
+<script src="/includes/plugins/select2/js/select2.min.js"></script>
+
 
 
 <!-- Main JS -->
@@ -150,7 +151,10 @@ $(function () {
 
     datatable.on('init.dt', function () {
         $(document).trigger('updateDateTime');
+        // start any select2
     });
+
+    $(".select2").select2();
 });
 
 </script>

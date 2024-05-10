@@ -162,9 +162,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
                 <div class="w-px-400 mx-auto">
                     <!-- Logo -->
-                    <div class="login-logo">
+                    <div class="login-logo mb-4">
                         <?php if (!empty($company_logo)) { ?>
-                            <img alt="<?= $company_name ?> logo" height="110" width="380" class="img-fluid"
+                            <img alt="<?= $company_name ?> logo" height="110" width="380" class="img-fluid mb-4"
                                 src="<?php echo "/uploads/settings/$company_logo"; ?>">
                         <?php } else { ?>
                             <b><?= $company_name ?></b> <br>Client Portal Login</h2>
@@ -205,53 +205,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
                                     </div>
                                 </div>
                             </div>
+                            <div class="col text-center mt-2">
+                                <button type="submit" class="btn btn-success mb-3" name="login">Sign in</button>
+                            </div>
 
-                            <button type="submit" class="btn btn-success btn-block mb-3" name="login">Sign in</button>
-
-                            <hr>
+                            <div class="divider mt-2">
+                                <div class="divider-text">or</div>
+                            </div>
 
                             <?php
                             if (!empty($config_smtp_host)) { ?>
                                 <h6 class="text-center"><a href="login_reset.php">Forgot password?</a></h6>
                             <?php } ?>
 
-                        </form>
-
-                        <?php
-                        if (!empty($azure_client_id)) { ?>
-                            <hr>
-                            <div class="col text-center">
-                                <a href="login_microsoft.php">
-                                    <button type="button" class="btn btn-light">Login with Microsoft Azure AD</button>
-                                </a>
+                            <div class="divider">
+                                <div class="divider-text">Internal Logins</div>
                             </div>
-                        <?php } ?>
 
-                    </div>
+                        </form>
+                        <div class="col text-center">
+                        <a href="/pages/login.php">
+                                <button type="button" class="btn btn-label-secondary">Employee Login</button>
+                            </a>
+                            <a href="/pages/login.php">
+                                <button type="button" class="btn btn-label-secondary">Vendor Login</button>
+                            </a>
+                        </div>
 
-                    <p class="text-center">
-                        <span>New on our platform?</span>
-                        <a href="auth-register-cover.html">
-                            <span>Create an account</span>
-                        </a>
-                    </p>
-
-                    <div class="divider my-4">
-                        <div class="divider-text">or</div>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-                            <i class="tf-icons bx bxl-facebook"></i>
-                        </a>
-
-                        <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
-                            <i class="tf-icons bx bxl-google-plus"></i>
-                        </a>
-
-                        <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-                            <i class="tf-icons bx bxl-twitter"></i>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -302,32 +282,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     <script src="/includes/js/dynamic_modal_loading.js"></script>
 
     <!-- Page JS -->
-
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [
-                { value: 'First.Name', title: 'First Name' },
-                { value: 'Email', title: 'Email' },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-        });
-    </script>
-
-    <script>
-
-        $(function () {
-            $('.datatables-basic').DataTable({
-                responsive: true,
-                order: <?= $datatable_order ?>
-            });
-        });
-
-    </script>
 
     <script src="/includes/assets/js/cards-actions.js"></script>
 </body>

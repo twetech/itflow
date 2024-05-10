@@ -5,11 +5,11 @@ $sort = "invoice_number";
 $order = "DESC";
 require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
-$datatable_order = '[[4, "desc"]]';
+$datatable_order = '[[5, "desc"]]';
 $datatable_settings = ",
     columnDefs: [
         {
-            targets: [4, 5],
+            targets: [5, 6],
             render: DataTable.render.datetime('Do MMM YYYY')
         },
     ],
@@ -179,6 +179,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <th>Scope</th>
                             <th>Client</th>
                             <th class="text-right">Amount</th>
+                            <th class="text-right">Balance</th>
                             <th>Date</th>
                             <th>Due</th>
                             <th>Status</th>
@@ -224,13 +225,15 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         $invoice_badge_color = getInvoiceBadgeColor($invoice_status);
 
+                        $invoice_balance = getInvoiceBalance($invoice_id);
                         ?>
 
                         <tr>
                             <td class="text-bold"><a href="invoice.php?invoice_id=<?php echo $invoice_id; ?>"><?php echo "$invoice_number"; ?></a></td>
                             <td><?php echo $invoice_scope_display; ?></td>
-                            <td class="text-bold"><a href="client_invoices.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a></td>
+                            <td class="text-bold"><a href="/pages/client/client_invoices.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a></td>
                             <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
+                            <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $invoice_balance, $invoice_currency_code); ?></td>
                             <td><?php echo $invoice_date; ?></td>
                             <td class="<?php echo $overdue_color; ?>"><?php echo $invoice_due; ?></td>
                             <td>

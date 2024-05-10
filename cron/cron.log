@@ -1,0 +1,27 @@
+Checking for clients that are past due and sending collections emails.
+PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'client_status' in 'where clause' in /var/www/portal.twe.tech/cron/cron.php:746
+Stack trace:
+#0 /var/www/portal.twe.tech/cron/cron.php(746): mysqli_query()
+#1 {main}
+  thrown in /var/www/portal.twe.tech/cron/cron.php on line 746
+
+Fatal error: Uncaught mysqli_sql_exception: Unknown column 'client_status' in 'where clause' in /var/www/portal.twe.tech/cron/cron.php:746
+Stack trace:
+#0 /var/www/portal.twe.tech/cron/cron.php(746): mysqli_query()
+#1 {main}
+  thrown in /var/www/portal.twe.tech/cron/cron.php on line 746
+Checking for clients that are past due and sending collections emails.
+Client Internal Infrastructure is 137.34 months past due. Sending collections email.
+PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '1'><tr><th>Invoice</th><th>Issue Date</th><th>Total</th><th>Due Date</th></tr...' at line 1 in /var/www/portal.twe.tech/includes/functions/email_functions.php:145
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/email_functions.php(145): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(804): addToMailQueue()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/email_functions.php on line 145
+
+Fatal error: Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '1'><tr><th>Invoice</th><th>Issue Date</th><th>Total</th><th>Due Date</th></tr...' at line 1 in /var/www/portal.twe.tech/includes/functions/email_functions.php:145
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/email_functions.php(145): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(804): addToMailQueue()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/email_functions.php on line 145

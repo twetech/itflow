@@ -205,7 +205,7 @@ function createBulkPayment(
     $client_id = intval($bulk_payment['client_id']);
     $email_receipt = intval($bulk_payment['email_receipt']);
     $total_client_balance = getClientBalance($client_id);
-    $currency_code = readClient($client_id)['client_currency_code'];
+    $currency_code = getSettingValue('company_currency');
 
     $email_body_invoices = "";
 
@@ -246,7 +246,7 @@ function createBulkPayment(
         $invoice_balance = $invoice_amount - $amount_paid;
 
         if ($bulk_payment_amount <= 0) {
-            continue; // Exit the loop if no payment amount is left
+            break; // Stop the loop if the bulk payment amount is 0
         }
 
         if ($invoice_balance <= 0) {
@@ -283,10 +283,6 @@ function createBulkPayment(
     // Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Payment', log_action = 'Create', log_description = 'Bulk Payment of $bulk_payment_amount_static', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_client_id = $client_id, log_user_id = $session_user_id");
 
-    $return_data = [
-        'payment_id' => $payment_id,
-        'credit_id' => $credit_id
-    ];
 }
 
 function readPayment(
@@ -295,7 +291,7 @@ function readPayment(
     // Access global variables
     global $mysqli;
 
-    $sql = mysqli_query($mysqli,"SELECT * FROM payments WHERE payment_id = $payment_id");
+    $sql = mysqli_query($mysqli, "SELECT * FROM payments WHERE payment_id = $payment_id");
     $row = mysqli_fetch_array($sql);
 
     return $row;
@@ -342,4 +338,19 @@ function deletePayment(
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Payment', log_action = 'Delete', log_description = '$payment_id', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
+}
+
+function getPaymentsForInvoice(
+    $invoice_id
+) {
+    // Access global variables
+    global $mysqli;
+
+    $sql = mysqli_query($mysqli,"SELECT * FROM payments WHERE payment_invoice_id = $invoice_id ORDER BY payment_date ASC");
+    $payments = [];
+    while ($row = mysqli_fetch_array($sql)) {
+        $payments[] = $row;
+    }
+
+    return $payments;
 }

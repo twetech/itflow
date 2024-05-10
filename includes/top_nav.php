@@ -79,7 +79,7 @@ if (isset($client_page)) {
                 ['title' => 'Clients', 'link' => '/pages/clients.php', 'icon' => 'bx bx-briefcase'],
                 ['title' => 'Tickets', 'link' => '/pages/tickets.php', 'icon' => 'bx bx-first-aid'],
                 ['title' => 'Trips', 'link' => '/pages/trips.php', 'icon' => 'bx bx-car'],
-                ['title' => 'Tasks', 'link' => '/pages/tasks.php', 'icon' => 'bx bx-task'],
+                ['title' => 'Projects', 'link' => '/pages/projects.php', 'icon' => 'bx bx-task'],
                 ['title' => 'Calendar', 'link' => '/pages/calendar_events.php', 'icon' => 'bx bx-calendar-star']
             ]
         ],
@@ -272,7 +272,7 @@ if (isset($client_page)) {
 
             
             <!-- Navbar -->
-            <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+            <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme d-print-none" id="layout-navbar">
                 <div class="container-xxl">
                     <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
                         <a href="<?= $nav_title_link ?>" class="app-brand-link gap-2">
@@ -473,7 +473,7 @@ if (isset($client_page)) {
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Menu -->
-                    <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
+                    <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0 d-print-none">
                         <div class="container-xxl d-flex h-100">
                             <?php if (isset($client_page)) {
                                 renderMenu($clientMenuItems);
@@ -491,7 +491,7 @@ if (isset($client_page)) {
                         require_once "/var/www/portal.twe.tech/includes/inc_client_top_head.php";
                     }
                     ?>
-                    <h4 class="font-weight-bold py-3 mb-4">
+                    <h4 class="font-weight-bold py-3 mb-4 d-print-none">
                         <!-- breadcrumb -->
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
