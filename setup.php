@@ -7,24 +7,27 @@ if (file_exists("/var/www/portal.twe.tech/includes/config.php")) {
 
 include "/var/www/portal.twe.tech/includes/functions/functions.php";
 
-include "database_version.php";
+include "/var/www/portal.twe.tech/database/database_version.php";
 
 
 if (!isset($config_enable_setup)) {
     $config_enable_setup = 1;
 }
+/*
 
 if ($config_enable_setup == 0) {
     header("Location: tenant_login.php");
     exit;
 }
 
+
 if (isset($session_ip)) {
 	header('Location: /pages/dashboard.php');
 	exit();
 }
+*/
 
-include_once "settings_localization_array.php";
+include_once "/var/www/portal.twe.tech/includes/settings_localization_array.php";
 
 // Get a list of all available timezones
 $timezones = DateTimeZone::listIdentifiers();
@@ -308,67 +311,6 @@ if (isset($_POST['add_company_settings'])) {
 
 }
 
-if (isset($_POST['add_telemetry'])) {
-
-    if (isset($_POST['share_data']) && $_POST['share_data'] == 1) {
-
-        mysqli_query($mysqli,"UPDATE settings SET config_telemetry = 2");
-
-        $comments = sanitizeInput($_POST['comments']);
-
-        $sql = mysqli_query($mysqli,"SELECT * FROM companies WHERE company_id = 1");
-        $row = mysqli_fetch_array($sql);
-
-        $company_name = $row['company_name'];
-        $website = $row['company_website'];
-        $city = $row['company_city'];
-        $state = $row['company_state'];
-        $country = $row['company_country'];
-        $currency = $row['company_currency'];
-
-        $postdata = http_build_query(
-            array(
-                'installation_id' => "$installation_id",
-                'company_name' => "$company_name",
-                'website' => "$website",
-                'city' => "$city",
-                'state' => "$state",
-                'country' => "$country",
-                'currency' => "$currency",
-                'comments' => "$comments",
-                'collection_method' => 1
-            )
-        );
-
-        $opts = array('http' =>
-            array(
-                'method' => 'POST',
-                'header' => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
-
-        $context = stream_context_create($opts);
-
-        $result = file_get_contents('https://telemetry.itflow.org', false, $context);
-
-        echo $result;
-
-    }
-
-    //final setup stages
-    $myfile = fopen("/var/www/portal.twe.tech/includes/config.php", "a");
-
-    $txt = "\$config_enable_setup = 0;\n\n";
-
-    fwrite($myfile, $txt);
-
-    fclose($myfile);
-
-    header("Location: login.php");
-    exit;
-
-}
 
 ?>
 
@@ -383,12 +325,12 @@ if (isset($_POST['add_telemetry'])) {
     <title>ITFlow Setup</title>
 
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/includes/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/includes/dist/css/adminlte.min.css">
     <!-- Custom Style Sheet -->
-    <link href="plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
-    <link href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <link href="/includes/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="/includes/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet" type="text/css">
 
 </head>
 
