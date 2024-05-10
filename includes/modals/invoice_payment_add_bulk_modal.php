@@ -2,6 +2,7 @@
 
 <?php
     $client_id = intval($_GET['client_id']);
+    $balance = getClientBalance($client_id);
 ?>
 
 <div class="modal" id="addBulkPaymentModal" tabindex="-1">
@@ -18,7 +19,6 @@
                 <div class="modal-body bg-white">
                 <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
                 <input type="hidden" name="balance" value="<?php echo $balance; ?>">
-                <input type="hidden" name="currency_code" value="<?php echo $client_currency_code; ?>">
                     <div class="alert alert-info">
                         <h5>Batch Payment Notice</h5>
                         Batch Payment will settle invoices in order from the oldest to the newest.

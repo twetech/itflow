@@ -22,6 +22,7 @@ if (isset($_GET['ticket_id'])) {
         LEFT JOIN locations ON ticket_location_id = location_id
         LEFT JOIN assets ON ticket_asset_id = asset_id
         LEFT JOIN vendors ON ticket_vendor_id = vendor_id
+        LEFT JOIN ticket_statuses ON ticket_status = ticket_status_id
         WHERE ticket_id = $ticket_id LIMIT 1"
     );
 
@@ -72,7 +73,7 @@ if (isset($_GET['ticket_id'])) {
         $ticket_feedback = nullable_htmlentities($row['ticket_feedback']);
         
         // Ticket Status Display
-        $ticket_status = nullable_htmlentities($row['ticket_status']);
+        $ticket_status = nullable_htmlentities($row['ticket_status_name']);
         $ticket_status_color = getTicketStatusColor($ticket_status);
         $ticket_status_display = "<span class='p-2 badge rounded-pill bg-label-$ticket_status_color'>$ticket_status</span>";
 
@@ -131,11 +132,11 @@ if (isset($_GET['ticket_id'])) {
 
         if ($contact_id) {
             //Get Contact Ticket Stats
-            $ticket_related_open = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS ticket_related_open FROM tickets WHERE ticket_status != 'Closed' AND ticket_contact_id = $contact_id ");
+            $ticket_related_open = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS ticket_related_open FROM tickets WHERE ticket_status != 5 AND ticket_contact_id = $contact_id ");
             $row = mysqli_fetch_array($ticket_related_open);
             $ticket_related_open = intval($row['ticket_related_open']);
 
-            $ticket_related_closed = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS ticket_related_closed  FROM tickets WHERE ticket_status = 'Closed' AND ticket_contact_id = $contact_id ");
+            $ticket_related_closed = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS ticket_related_closed  FROM tickets WHERE ticket_status = 5 AND ticket_contact_id = $contact_id ");
             $row = mysqli_fetch_array($ticket_related_closed);
             $ticket_related_closed = intval($row['ticket_related_closed']);
 
@@ -239,6 +240,38 @@ if (isset($_GET['ticket_id'])) {
 
             $ticket_products_display .= "<div><span class='badge badge-secondary'>$product_name x$product_quantity</span><a href='post.php?delete_ticket_product=$ticket_product_id&ticket_id=$ticket_id' class='ml-2 text-danger'>✘</a></div>";
         }
+
+        // Get Tasks
+        $sql_tasks = mysqli_query( $mysqli, "SELECT * FROM tasks WHERE task_ticket_id = $ticket_id ORDER BY task_created_at ASC");
+        $task_count = mysqli_num_rows($sql_tasks);
+
+        // Get Completed Task Count
+        $sql_tasks_completed = mysqli_query($mysqli,
+            "SELECT * FROM tasks
+            WHERE task_ticket_id = $ticket_id
+            AND task_completed_at IS NOT NULL"
+        );
+        $completed_task_count = mysqli_num_rows($sql_tasks_completed);
+
+        // Tasks Completed Percent
+        if($task_count) {
+            $tasks_completed_percent = round(($completed_task_count / $task_count) * 100);
+        }
+
+        // Get all Assigned ticket Users as a comma-separated string
+        $sql_ticket_collaborators = mysqli_query($mysqli, "
+            SELECT GROUP_CONCAT(DISTINCT user_name SEPARATOR ', ') AS user_names
+            FROM users
+            LEFT JOIN ticket_replies ON user_id = ticket_reply_by 
+            WHERE ticket_reply_archived_at IS NULL AND ticket_reply_ticket_id = $ticket_id
+        ");
+
+        // Fetch the result
+        $row = mysqli_fetch_assoc($sql_ticket_collaborators);
+
+        // The user names in a comma-separated string
+        $ticket_collaborators = nullable_htmlentities($row['user_names']);
+
         
 ?>
 <div class="row">
@@ -537,6 +570,70 @@ if (isset($_GET['ticket_id'])) {
                     </div>
                 </form>
             </div>
+
+            <!-- Ticket Tasks -->
+            <!-- Tasks Card -->
+            <div class="card card-body card-outline card-dark">
+                <h5 class="text-secondary">Tasks</h5>
+                <form action="/post.php" method="post" autocomplete="off">
+                    <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
+                    <div class="form-group">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-fw fa-tasks"></i></span>
+                            </div>
+                            <input type="text" class="form-control" name="name" placeholder="Create Task">
+                            <div class="input-group-append">
+                                <button type="submit" name="add_task" class="btn btn-dark">
+                                    <i class="fas fa-fw fa-check"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <table class="table table-sm">
+                    <?php
+                    while($row = mysqli_fetch_array($sql_tasks)){
+                        $task_id = intval($row['task_id']);
+                        $task_name = nullable_htmlentities($row['task_name']);
+                        $task_description = nullable_htmlentities($row['task_description']);
+                        $task_completed_at = nullable_htmlentities($row['task_completed_at']);
+                    ?>
+                        <tr>
+                            <td>
+                                <?php if($task_completed_at) { ?>
+                                <i class="far fa-fw fa-check-square text-primary"></i>
+                                <?php } else { ?>
+                                <a href="/post.php?complete_task=<?php echo $task_id; ?>">
+                                    <i class="far fa-fw fa-square text-secondary"></i>
+                                </a>
+                                <?php } ?>
+                            </td>
+                            <td><?php echo $task_name; ?></td>
+                            <td>
+                                <div class="float-right">
+                                    <div class="dropdown dropleft text-center">
+                                        <button class="btn btn-link text-secondary btn-sm" type="button" data-bs-toggle="dropdown">
+                                            <i class="fas fa-fw fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editTaskModal<?php echo $task_id; ?>">
+                                                <i class="fas fa-fw fa-edit mr-2"></i>Edit
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item text-danger confirm-link" href="/post.php?delete_task=<?php echo $task_id; ?>">
+                                                <i class="fas fa-fw fa-trash-alt mr-2"></i>Delete
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    <?php
+                } ?>
+                </table>
+            </div>
         </div>
 
             <!-- Right -->
@@ -610,6 +707,18 @@ if (isset($_GET['ticket_id'])) {
                             <div>
                                 <?= $ticket_status_display; ?>
                             </div>
+                            <?php if($task_count) { ?>
+                                Tasks Completed<span class="float-right text-bold"><?php echo $tasks_completed_percent; ?>%</span>
+                                <div class="progress mt-2" style="height: 20px;">
+                                    <div class="progress-bar" style="width: <?php echo $tasks_completed_percent; ?>%;"><?php echo $completed_task_count; ?> / <?php echo $task_count; ?></div>
+                                </div>
+                                <?php } ?>
+
+                                <?php if($ticket_collaborators) { ?>
+                                <div class="mt-2">
+                                    <i class="fas fa-fw fa-users mr-2 text-secondary"></i><?php echo $ticket_collaborators; ?>
+                                </div>
+                            <?php } ?>
                         </div>
                         <!-- Ticket Actions -->
                         <?php

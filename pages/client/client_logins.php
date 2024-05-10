@@ -178,6 +178,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <!-- Include script to generate readable passwords for login entries -->
 <script src="/includes/js/logins_generate_password.js"></script>
 
+<script src="/includes/plugins/Show-Hide-Passwords-Bootstrap-4/bootstrap-show-password.min.js"></script>
+
 <?php
 
 require_once "/var/www/portal.twe.tech/includes/modals/client_login_add_modal.php";

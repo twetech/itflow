@@ -75,6 +75,7 @@ $company_phone = formatPhoneNumber($row['company_phone']);
 $company_email = nullable_htmlentities($row['company_email']);
 $company_website = nullable_htmlentities($row['company_website']);
 $company_logo = nullable_htmlentities($row['company_logo']);
+
 if (!empty($company_logo)) {
     $company_logo_base64 = base64_encode(file_get_contents("/var/www/portal.twe.tech/uploads/settings/$company_logo"));
 }
@@ -246,36 +247,55 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
 
     <?php } ?>
     <tr>
-      <td colspan="4" class="align-top px-4 py-5">
-      <div class="row">
-        <?php if ($invoice_note !== "") { ?>
-          <div class="col-10">
-            <div class="card m-4">
-              <div class="card-header">
-                <div class="card-title">
-                  <span>Note:</span>
-                </div>
-              </div>
-              <div class="card-body">
-                <span><?php echo $invoice_note; ?></span>
-              </div>
-            </div>
+      <td colspan="3" class="align-top px-4 py-5">
+        <h4 class=" text-center me-2">
+           <?php
+          $due_date = date('Y-m-d', strtotime($invoice_due));
+          $current_date = date('Y-m-d');
+          $days_until_due = floor((strtotime($due_date) - strtotime($current_date)) / (60 * 60 * 24));
+          if ($balance > 0){
+            if ($days_until_due > 0) {
+              echo "Due in $days_until_due days";
+            } elseif ($days_until_due == 0) {
+              echo "Due today";
+            } else {
+              echo "Past due";
+            }
+          } else {
+            echo "Paid";
+          }
+          ?>         
+        </h4>
 
-          </div>
+        <?php if ($invoice_note !== "") { ?>
+          <span>Note:</span>
+          <?php echo $invoice_note; ?>
         <?php } ?>
-      </div>
+
+        </div>
+        <div class="text-center"><?php echo nl2br($config_invoice_footer); ?></div>
       </td>
-      <td class="text-end px-4 py-5">
+      <td colspan="2" class="text-end px-4 py-5">
         <p class="mb-2">Subtotal:</p>
         <p class="mb-2">Discount:</p>
         <p class="mb-2">Tax:</p>
-        <p class="mb-0">Total:</p>
+        <p class="mb-<?= $amount_paid > 0 ? 4 : 0 ?>">Total:</p>
+        <?php 
+          if ($amount_paid > 0) { ?>
+            <p class="mb-2">Amount Paid:</p>
+            <p class="mb-0">Balance Due:</p>
+        <?php } ?>
       </td>
       <td class="px-4 py-5">
         <p class="fw-medium mb-2"><?php echo numfmt_format_currency($currency_format, $sub_total, $invoice_currency_code); ?></p>
         <p class="fw-medium mb-2"><?php echo numfmt_format_currency($currency_format, $invoice_discount, $invoice_currency_code); ?></p>
         <p class="fw-medium mb-2"><?php echo numfmt_format_currency($currency_format, $total_tax, $invoice_currency_code); ?></p>
-        <p class="fw-medium mb-0"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></p>
+        <p class="fw-medium mb-<?= $amount_paid > 0 ? 4 : 0 ?>"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></p>
+        <?php 
+          if ($amount_paid > 0) { ?>
+            <p class="fw-medium mb-2"><?php echo numfmt_format_currency($currency_format, $amount_paid, $invoice_currency_code); ?></p>
+            <p class="fw-medium mb-2"><?php echo numfmt_format_currency($currency_format, $balance, $invoice_currency_code); ?></p>
+        <?php } ?>
       </td>
     </tr>
   </tbody>
@@ -294,11 +314,14 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                 Download
                 </button>
                 <a class="btn btn-label-secondary d-grid w-100 mb-3" target="_blank" onclick="window.print();">Print</a>
-                <a class="btn btn-primary d-grid w-100" href="/portal/guest_pay_invoice_stripe.php?invoice_id=<?php echo $invoice_id; ?>&url_key=<?php echo $url_key; ?>">
-                <span class="d-flex align-items-center justify-content-center text-nowrap"><i class="bx bx-dollar bx-xs me-1"></i>
-                    Pay Online <?php if($config_stripe_client_pays_fees == 1) { echo "(Gateway Fee: " .  numfmt_format_currency($currency_format, $gateway_fee, $invoice_currency_code) . ")"; } ?>
-                </span>
-                </a>
+                <?php 
+                if ($balance > 0) { ?>
+                  <a class="btn btn-primary d-grid w-100" href="/portal/guest_pay_invoice_stripe.php?invoice_id=<?php echo $invoice_id; ?>&url_key=<?php echo $url_key; ?>">
+                    <span class="d-flex align-items-center justify-content-center text-nowrap"><i class="bx bx-dollar bx-xs me-1"></i>
+                        Pay Online <?php if($config_stripe_client_pays_fees == 1) { echo "(Gateway Fee: " .  numfmt_format_currency($currency_format, $gateway_fee, $invoice_currency_code) . ")"; } ?>
+                    </span>
+                  </a>
+                <?php } ?>
             </div>
         </div>
     </div>

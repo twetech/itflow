@@ -315,7 +315,7 @@ if (isset($_GET['invoice_id'])) {
                                         </div>
                                         <div class="col-md-3 col-12 mb-md-0 mb-3">
                                             <p class="mb-2 repeater-title">Unit Price</p>
-                                            <input type="text" name="price" class="form-control invoice-item-price mb-2" value="<?= $item_price ?>" placeholder="<?= $item_price ?>"/>
+                                            <input type="number" name="price" class="form-control invoice-item-price mb-2" value="<?= number_format($item_price, 2) ?>" placeholder="<?= number_format($item_price, 2) ?>"/>
                                             <div class="d-flex me-1">
                                                 <span class="discount me-1"  data-bs-toggle="tooltip" data-bs-placement="top" title="Discount: <?=numfmt_format_currency($currency_format, $item_discount, $client_currency_code)?>"><?=number_format($item_discount_percent, 0)?>%</span>
                                                 <span class="tax me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Tax: <?= numfmt_format_currency($currency_format, $item_tax, $client_currency_code)?>"><?=number_format($tax_percent, 3)?>%</span>
@@ -604,7 +604,7 @@ $(document).ready(function() {
 
     // Find all input, textarea, and select elements within any 'item-container' div
     document.querySelectorAll('.item-container input, .item-container textarea, .item-container select').forEach(function(element) {
-        element.addEventListener('change', function() {
+        element.addEventListener('focus', function() {
             // Find the closest parent element with the class 'item-container'
             var itemContainer = this.closest('.item-container');
 

@@ -141,35 +141,12 @@ function readClient(
 
     global $mysqli;
 
-    if (!empty($parameters['client_id'])) {
-        $client_id = sanitizeInput($parameters['client_id']);
-        $api_client_id = isset($parameters['api_key_client_id']) ? sanitizeInput($parameters['api_key_client_id']) : 0;
-        $where_clause = getAPIWhereClause("client", $client_id, $api_client_id);
-    } elseif (!empty($parameters['client_rmm_id'])) {
-        $client_rmm_id = $parameters['client_rmm_id'];
-        $api_client_id = isset($parameters['api_key_client_id']) ? sanitizeInput($parameters['api_key_client_id']) : 0;
-        $where_clause = getAPIWhereClause("client_rmm", $client_rmm_id, $api_client_id);
-    } else {
-        return ['status' => 'error', 'message' => 'No client ID or RMM ID provided'];
-    }
+    $client_id = $parameters['client_id'];
 
-    $columns = isset($parameters['columns']) ? sanitizeInput($parameters['columns']) : '*';
+    $sql = mysqli_query($mysqli, "SELECT * FROM clients WHERE client_id = $client_id LIMIT 1");
+    $row = mysqli_fetch_array($sql);
 
-    $query = "SELECT $columns FROM clients $where_clause LIMIT 1";
-    $result = mysqli_query($mysqli, $query);
-
-    $clients = [];
-
-    while ($row = mysqli_fetch_assoc($result)) {
-        $clients[] = $row;
-    }
-
-    if (empty($clients)) {
-        echo json_encode(['status' => 'error', 'message' => 'No client found']);
-        exit;
-    } else {
-        return $clients;
-    }
+    return $row;
 }
 
 function updateClient(
@@ -380,3 +357,5 @@ function getClientInitials($client_id) {
 
     return initials($client_name);
 }
+
+

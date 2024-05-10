@@ -463,6 +463,7 @@ if ($config_send_invoice_reminders == 1) {
     //$invoiceAlertArray = [$config_invoice_overdue_reminders];
     $invoiceAlertArray = [30,60,90,120,150,180,210,240,270,300,330,360,390,420,450,480,510,540,570,590,620,650,680,710,740];
 
+
     foreach ($invoiceAlertArray as $day) {
 
         $sql = mysqli_query(
@@ -491,7 +492,7 @@ if ($config_send_invoice_reminders == 1) {
             $client_name = sanitizeInput($row['client_name']);
             $contact_name = sanitizeInput($row['contact_name']);
             $contact_email = sanitizeInput($row['contact_email']);
-            $invoice_balance = calculateInvoiceBalance( $invoice_id);
+            $invoice_balance = getInvoiceBalance( $invoice_id);
 
             // Late Charges
 
@@ -735,6 +736,38 @@ while ($row = mysqli_fetch_array($sql_recurring_expenses)) {
 } //End Recurring Invoices Loop
 // Logging
 //mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Cron', log_action = 'Task', log_description = 'Cron created expenses from recurring expenses'");
+
+// Collections
+
+echo "Checking for clients that are past due and sending collections emails.\n";
+
+// Loop through all clients and check their past due months
+
+$sql_clients = mysqli_query($mysqli, "SELECT * FROM clients WHERE client_archived_at IS NULL AND client_net_terms > 0");
+
+while ($row = mysqli_fetch_array($sql_clients)) {
+    $client_id = intval($row['client_id']);
+
+
+    // Get the past due in months
+    $months_past_due = getClientPastDueBalance($client_id);
+
+    // Check if the past due is greater than client net terms and if so, send a collections email threatening termination
+    if ($months_past_due >= ($client_net_terms/30)) {
+
+        echo "Client $client_name is $months_past_due months past due. Sending collections email.\n";
+        clientSendDisconnect($client_id);
+
+        echo "Collections for $client_name finished.\n";
+
+    } else {
+        echo "Client $client_name is not past due: $months_past_due months past due.\n";
+    }
+}
+
+
+
+
 
 // TELEMETRY
 

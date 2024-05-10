@@ -7,11 +7,11 @@
 header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
 
 $session_company_id = 1;
-require_once '../config.php';
+require_once '/var/www/portal.twe.tech/includes/config.php';
 
-require_once '../functions.php';
+require_once '/var/www/portal.twe.tech/includes/functions/functions.php';
 
-require_once '../get_settings.php';
+require_once '/var/www/portal.twe.tech/includes/get_settings.php';
 
 
 if (empty($config_smtp_host)) {
@@ -61,10 +61,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
      */
     if (isset($_POST['password_reset_email_request'])) {
 
-        $email = sanitizeInput($_POST['email']);
+        $email = strtolower(sanitizeInput($_POST['email']));
 
         $sql = mysqli_query($mysqli, "SELECT contact_id, contact_name, contact_email, contact_client_id FROM contacts WHERE contact_email = '$email' AND contact_auth_method = 'local' AND contact_archived_at IS NULL LIMIT 1");
         $row = mysqli_fetch_assoc($sql);
+
+        if (mysqli_num_rows($sql) == 0) {
+            $sql = mysqli_query($mysqli, "SELECT contact_id, contact_name, contact_email, contact_client_id FROM contacts WHERE contact_email = '$email' AND contact_archived_at IS NULL LIMIT 1");
+            $row = mysqli_fetch_assoc($sql);
+
+            $update_sql = mysqli_query($mysqli, "UPDATE contacts SET contact_auth_method = 'local' WHERE contact_email = '$email' AND contact_archived_at IS NULL LIMIT 1");
+        }
 
         $id = intval($row['contact_id']);
         $name = sanitizeInput($row['contact_name']);
@@ -104,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             sleep(rand(2, 4)); // Mimic the e-mail send delay even if email is invalid to help prevent user enumeration
         }
 
-        $_SESSION['login_message'] = "If your account exists, a reset link is on it's way!";
+        $_SESSION['login_message'] = "If your account exists, a reset link has been added to queue! Please note this may take up to 5 minutes to send. Check your spam folder if you don't see it";
 
         /*
          * Do password reset

@@ -183,33 +183,22 @@ function calculateAccountBalance($account_id)
 
     return $balance;
 }
-
-function calculateInvoiceBalance($invoice_id)
+function getClientRecurringInvoicesTotal($client_id)
 {
     global $mysqli;
 
-    $invoice_id_int = intval($invoice_id);
-    $sql_invoice = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_id = $invoice_id_int");
-    $row = mysqli_fetch_array($sql_invoice);
-    $invoice_amount = floatval($row['invoice_amount']);
+    $sql = "SELECT SUM(recurring_amount) AS recurring_total FROM recurring WHERE recurring_client_id = $client_id AND recurring_frequency = 'month'";
+    $result = mysqli_query($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $total = floatval($row['recurring_total']) ?? 0;
 
-    $sql_payments = mysqli_query(
-        $mysqli,
-        "SELECT SUM(payment_amount) AS total_payments FROM payments
-        WHERE payment_invoice_id = $invoice_id
-        "
-    );
+    $year_sql = "SELECT SUM(recurring_amount) AS recurring_total FROM recurring WHERE recurring_client_id = $client_id AND recurring_frequency = 'year'";
+    $year_result = mysqli_query($mysqli, $year_sql);
+    $year_row = mysqli_fetch_assoc($year_result);
+    $year_total = floatval($year_row['recurring_total']) ?? 0;
 
-    $row = mysqli_fetch_array($sql_payments);
-    $total_payments = floatval($row['total_payments']);
-
-    $balance = $invoice_amount - $total_payments;
-
-    if ($balance == '') {
-        $balance = '0.00';
-    }
-
-    return $balance;
+    $monthly_total = ($year_total / 12) + $total;
+    return $monthly_total;
 }
 
 function getClientBalance($client_id, $credits = false) {
@@ -246,6 +235,52 @@ function getClientBalance($client_id, $credits = false) {
         }
         return $balance;
     }
+}
+
+function getClientPastDueBalance($client_id, $credits = false) {
+
+    global $mysqli;
+
+     //Add up all the payments for the invoice and get the total amount paid to the invoice
+    $sql_invoice_amounts = mysqli_query($mysqli, "SELECT SUM(invoice_amount) AS invoice_amounts FROM invoices WHERE invoice_client_id = $client_id AND invoice_status NOT LIKE 'Draft' AND invoice_status NOT LIKE 'Cancelled' AND invoice_due < CURDATE()");
+    $row = mysqli_fetch_array($sql_invoice_amounts);
+
+    $invoice_amounts = floatval($row['invoice_amounts']);
+
+    $sql_amount_paid = mysqli_query($mysqli, "SELECT SUM(payment_amount) AS amount_paid FROM payments, invoices WHERE payment_invoice_id = invoice_id AND invoice_client_id = $client_id");
+    $row = mysqli_fetch_array($sql_amount_paid);
+
+    $amount_paid = floatval($row['amount_paid']);
+
+    if ($credits) {
+        $sql_credits = mysqli_query($mysqli, "SELECT SUM(credit_amount) AS credit_amounts FROM credits WHERE credit_client_id = $client_id");
+        $row = mysqli_fetch_array($sql_credits);
+        $credit_amounts = floatval($row['credit_amounts']);
+
+        $balance = $invoice_amounts - ($amount_paid + $credit_amounts);
+
+    } else {
+        $balance = $invoice_amounts - $amount_paid;
+    }
+
+    if ($balance < 0) {
+        $balance = 0;
+    }
+    
+    return $balance;
+}
+
+function getClientPastDueMonths($client_id) {
+
+    $monthly = getClientRecurringInvoicesTotal($client_id);
+    $balance = getClientPastDueBalance($client_id);
+
+    if ($monthly == 0) {
+        return 0;
+    }
+
+    return $balance / $monthly;
+
 }
 
 function getMonthlyExpenses($year, $month, $number = false)
@@ -297,7 +332,6 @@ function getMonthlyUnassignedTickets($year, $month)
 {
     return 0;
 }
-
 
 function getMonthlyInvoices($year, $month, $number = false)
 
@@ -361,4 +395,97 @@ function getMonthlyMarkup($year, $month)
     $total_cost == 0 ? $total_cost = 1 : $total_cost;
     
     return $total_amount / $total_cost;
+}
+
+
+
+function clientSendDisconnect($client_id){
+
+    $client_sql = 
+
+    // Get the primary contact
+    $sql_contact = mysqli_query($mysqli, "SELECT * FROM contacts WHERE contact_client_id = $client_id AND contact_primary = 1");
+    $contact = mysqli_fetch_array($sql_contact);
+    $contact_id = intval($contact['contact_id']);
+    $contact_name = sanitizeInput($contact['contact_name']);
+    $contact_email = sanitizeInput($contact['contact_email']);
+
+
+    $past_due_invoices = [];
+    $past_due_invoices_num = 0;
+
+    $sql_past_due_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_status != 'Draft' AND invoice_status != 'Paid' AND invoice_status != 'Cancelled' AND invoice_client_id = $client_id AND invoice_due < CURDATE()");
+    while ($row = mysqli_fetch_array($sql_past_due_invoices)) {
+        $past_due_invoices[] = [
+            'invoice_id' => intval($row['invoice_id']),
+            'invoice_prefix' => sanitizeInput($row['invoice_prefix']),
+            'invoice_number' => intval($row['invoice_number']),
+            'invoice_scope' => sanitizeInput($row['invoice_scope']),
+            'invoice_date' => sanitizeInput($row['invoice_date']),
+            'invoice_due' => sanitizeInput($row['invoice_due']),
+            'invoice_amount' => floatval($row['invoice_amount']),
+            'invoice_currency_code' => sanitizeInput($row['invoice_currency_code']),
+            'invoice_url_key' => sanitizeInput($row['invoice_url_key'])
+        ];
+        $past_due_invoices_num++;
+    }
+    // Send collections email
+    $subject = "[URGENT] $company_name Collections Notice";
+    $body = "Hello $client_name,<br><br>Our records indicate that you have $past_due_invoices_num past due invoices. This has become an urgent matter based on the status of your account. Please review the details below and make payment as soon as possible to avoid service interruption.<br><br>";
+    $body .= '<table border="1"><tr><th>Invoice</th><th>Issue Date</th><th>Total</th><th>Due Date</th></tr>';
+    foreach ($past_due_invoices as $invoice) {
+        $body .= "<tr><td>$invoice[invoice_prefix]$invoice[invoice_number]</td><td>$invoice[invoice_date]</td><td>" . numfmt_format_currency($currency_format, $invoice['invoice_amount'], $invoice['invoice_currency_code']) . "</td><td>$invoice[invoice_due]</td></tr>";
+    }
+    $body .= "</table><br><br>";
+    $body .= "To view your invoices, please click <a href='https://$config_base_url/portal/invoices.php'>here</a>.<br><br>";
+
+    // Mysqli escape body
+
+    $body = mysqli_real_escape_string($mysqli, $body);
+
+    $data = [
+        [
+            'from' => $config_invoice_from_email,
+            'from_name' => $config_invoice_from_name,
+            'recipient' => $contact_email,
+            'recipient_name' => $contact_name,
+            'subject' => $subject,
+            'body' => $body
+        ]
+    ];
+    $mail = addToMailQueue($mysqli, $data);
+
+    if ($mail === true) {
+        mysqli_query($mysqli, "INSERT INTO history SET history_status = 'Sent', history_description = 'Collections Email Sent', history_client_id = $client_id");
+        echo "Collections email sent to $contact_email\n";
+    } else {
+        mysqli_query($mysqli, "INSERT INTO history SET history_status = 'Draft', history_description = 'Collections Email Failed to Send', history_client_id = $client_id");
+
+        mysqli_query($mysqli, "INSERT INTO notifications SET notification_type = 'Mail', notification = 'Failed to send email to $contact_email'");
+        mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Mail', log_action = 'Error', log_description = 'Failed to send email to $contact_email regarding $subject. $mail'");
+    }
+
+    // Check if client has open collections ticket
+    $sql_open_collections_ticket = mysqli_query($mysqli, "SELECT * FROM tickets WHERE ticket_client_id = $client_id AND ticket_status != 5 AND ticket_subject = 'Collections Notice'");
+    if (mysqli_num_rows($sql_open_collections_ticket) == 0) {
+        // Create a collections ticket
+        $ticket_subject = "Collections Notice";
+        $ticket_details = "This is a collections notice for $client_name. Please review the past due invoices and make payment as soon as possible to avoid service interruption.";
+        $ticket_priority = "High";
+        $ticket_client_id = $client_id;
+
+        echo "Creating collections ticket for $client_name\n";
+
+        $ticket_parameters = [
+            'ticket_subject' => $ticket_subject,
+            'ticket_details' => $ticket_details,
+            'ticket_priority' => $ticket_priority,
+            'ticket_client_id' => $ticket_client_id
+        ];
+
+        $ticket_id = createTicket($mysqli, $ticket_parameters)['ticket_id'];
+
+        // Add notification for new collections ticket
+        mysqli_query($mysqli, "INSERT INTO notifications SET notification_type = 'Collections Ticket Created', notification = 'Collections Notice Ticket Created for $client_name', notification_action = '/pages/ticket.php?id=$ticket_id', notification_client_id = $client_id, notification_entity_id = $ticket_id");
+    }
 }

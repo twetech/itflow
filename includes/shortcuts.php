@@ -60,6 +60,12 @@
             'name' => 'Recurring By Client',
             'description' => 'Manage Recurring'
         ],
+        'Collections' => [
+            'icon' => 'bx bx-bar-chart',
+            'link' => '/pages/report/report_collections.php',
+            'name' => 'Collections Report',
+            'description' => 'Collections Report'
+        ],
         
 
 

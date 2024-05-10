@@ -402,3 +402,35 @@ function getInvoiceBadgeColor($invoice_status)
 
     return $invoice_badge_color;
 }
+
+function getInvoiceBalance($invoice_id)
+{
+    global $mysqli;
+
+    $invoice_id_int = intval($invoice_id);
+    $sql_invoice = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_id = $invoice_id_int");
+    $row = mysqli_fetch_array($sql_invoice);
+    $invoice_amount = floatval($row['invoice_amount']);
+
+    $sql_payments = mysqli_query(
+        $mysqli,
+        "SELECT SUM(payment_amount) AS total_payments FROM payments
+        WHERE payment_invoice_id = $invoice_id
+        "
+    );
+
+    $row = mysqli_fetch_array($sql_payments);
+    $total_payments = floatval($row['total_payments']);
+
+    $balance = $invoice_amount - $total_payments;
+
+    if ($balance == '') {
+        $balance = 0;
+    }
+
+    if ($balance < 0) {
+        $balance = 0;
+    }
+
+    return $balance;
+}

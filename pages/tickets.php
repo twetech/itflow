@@ -23,13 +23,13 @@ if (isset($_GET['status']) && is_array($_GET['status']) && !empty($_GET['status'
 } else {
     if (isset($_GET['status']) && ($_GET['status']) == 'Open') {
         $status = 'Open';
-        $ticket_status_snippet = "ticket_status != 'Closed'";
-    } elseif (isset($_GET['status']) && ($_GET['status']) == 'Closed') {
-        $status = 'Closed';
-        $ticket_status_snippet = "ticket_status = 'Closed'";
+        $ticket_status_snippet = "ticket_status != 5";
+    } elseif (isset($_GET['status']) && ($_GET['status']) == 5) {
+        $status = '5';
+        $ticket_status_snippet = "ticket_status = 5";
     } else {
         $status = 'Open';
-        $ticket_status_snippet = "ticket_status != 'Closed'";
+        $ticket_status_snippet = "ticket_status != 5";
     }
 }
 
@@ -63,17 +63,18 @@ $sql = mysqli_query(
     LEFT JOIN assets ON ticket_asset_id = asset_id
     LEFT JOIN locations ON ticket_location_id = location_id
     LEFT JOIN vendors ON ticket_vendor_id = vendor_id
+    LEFT JOIN ticket_statuses ON ticket_status = ticket_status_id
     WHERE $ticket_status_snippet " . $ticket_assigned_filter);
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 //Get Total tickets open
-$sql_total_tickets_open = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_open FROM tickets WHERE ticket_status != 'Closed'");
+$sql_total_tickets_open = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_open FROM tickets WHERE ticket_status != '5'");
 $row = mysqli_fetch_array($sql_total_tickets_open);
 $total_tickets_open = intval($row['total_tickets_open']);
 
 //Get Total tickets closed
-$sql_total_tickets_closed = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_closed FROM tickets WHERE ticket_status = 'Closed'");
+$sql_total_tickets_closed = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_closed FROM tickets WHERE ticket_status = '5'");
 $row = mysqli_fetch_array($sql_total_tickets_closed);
 $total_tickets_closed = intval($row['total_tickets_closed']);
 
@@ -83,12 +84,12 @@ $row = mysqli_fetch_array($sql_total_scheduled_tickets);
 $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
 
 //Get Unassigned tickets
-$sql_total_tickets_unassigned = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_unassigned FROM tickets WHERE ticket_assigned_to = '0' AND ticket_status != 'Closed'");
+$sql_total_tickets_unassigned = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_unassigned FROM tickets WHERE ticket_assigned_to = '0' AND ticket_status != '5'");
 $row = mysqli_fetch_array($sql_total_tickets_unassigned);
 $total_tickets_unassigned = intval($row['total_tickets_unassigned']);
 
 //Get Total tickets assigned to me
-$sql_total_tickets_assigned = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_assigned FROM tickets WHERE ticket_assigned_to = $session_user_id AND ticket_status != 'Closed'");
+$sql_total_tickets_assigned = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_assigned FROM tickets WHERE ticket_assigned_to = $session_user_id AND ticket_status != '5'");
 $row = mysqli_fetch_array($sql_total_tickets_assigned);
 $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 
@@ -152,7 +153,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                 $ticket_number = intval($row['ticket_number']);
                                 $ticket_subject = nullable_htmlentities($row['ticket_subject']);
                                 $ticket_priority = nullable_htmlentities($row['ticket_priority']);
-                                $ticket_status = nullable_htmlentities($row['ticket_status']);
+                                $ticket_status = nullable_htmlentities($row['ticket_status_name']);
                                 $ticket_billable = intval($row['ticket_billable']);
                                 $ticket_scheduled_for = nullable_htmlentities($row['ticket_schedule']);
                                 $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_number']);

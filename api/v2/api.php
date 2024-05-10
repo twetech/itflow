@@ -36,8 +36,8 @@
         
 */
 
-require $_SERVER['DOCUMENT_ROOT'] . '/config.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/functions.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/functions/functions.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/api/v2/objects.php';
 
 // Check the request method and get the object, parameters, and action from the request

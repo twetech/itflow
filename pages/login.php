@@ -8,10 +8,6 @@ if (!file_exists('/var/www/portal.twe.tech/includes/config.php')) {
     exit;
 }
 
-if (!isset($_GET['tenant_id'])) {
-    header("Location: /");
-    exit;
-}
 
 if (isset($_GET['tenant_id'])) {
     $_SESSION['database'] = $_GET['tenant_id'];
@@ -368,7 +364,7 @@ if (isset($_POST['login'])) {
 
                         <?php if($config_client_portal_enable == 1){ ?>
                         <hr>
-                            <h5 class="text-center">Looking for the <a href="/portal">Client Portal?</a></h5>
+                            <h5 class="text-center">Looking for the <a href="/">Client Portal?</a></h5>
                         <?php } ?>
 					</div>
 

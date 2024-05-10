@@ -41,8 +41,10 @@ if ($argv[1] !== $config_cron_key) {
 // Get system temp directory
 $temp_dir = sys_get_temp_dir();
 
+
 // Create the path for the lock file using the temp directory
 $lock_file_path = "{$temp_dir}/itflow_mail_queue_{$installation_id}.lock";
+
 
 // Check for lock file to prevent concurrent script runs
 if (file_exists($lock_file_path)) {
@@ -71,7 +73,7 @@ file_put_contents($lock_file_path, "Locked");
 
 // Get Mail Queue that has status of Queued and send it to the function sendSingleEmail() located in functions.php
 
-$sql_queue = mysqli_query($mysqli, "SELECT * FROM email_queue WHERE email_status = 0 AND email_queued_at <= NOW()");
+$sql_queue = mysqli_query($mysqli, "SELECT * FROM email_queue WHERE email_status = 0 AND email_queued_at <= NOW() LIMIT 10");
 
 if (mysqli_num_rows($sql_queue) > 0) {
     while ($row = mysqli_fetch_array($sql_queue)) {
@@ -123,6 +125,9 @@ if (mysqli_num_rows($sql_queue) > 0) {
             }
         }
     }
+    echo date('Y-m-d H:i:s') . " - Queued Mail Sent\n";
+} else {
+    $nothing_to_do = true;
 }
 
 //
@@ -182,7 +187,22 @@ if (mysqli_num_rows($sql_failed_queue) > 0) {
             }
         }
     }
+    echo date('Y-m-d H:i:s') . " - Failed Mail Retried\n";
+} else {
+    $nothing_to_do = true;
 }
+
+if (isset($nothing_to_do)) {
+    echo date('Y-m-d H:i:s') . " - Nothing to do\n";
+}
+
+//if logfile is bigger than 10mb, rename it and create a new one
+$logfile = "/var/www/portal.twe.tech/cron/cron_mail_queue.log";
+if (file_exists($logfile) && filesize($logfile) > 10000000) {
+    rename($logfile, "/var/www/portal.twe.tech/cron/cron_mail_queue_" . date('Y-m-d_H-i-s') . ".log.bak");
+}
+
+
 
 // Remove the lock file once mail has finished processing so it doesnt get overun causing possible duplicates
 unlink($lock_file_path);

@@ -9,20 +9,20 @@ function createTicket(
     global $mysqli, $session_user_id, $session_name, $session_ip, $session_user_agent, $config_ticket_next_number, $config_ticket_prefix, $config_ticket_from_name, $config_ticket_from_email, $config_base_url, $config_smtp_host, $config_ticket_client_general_notifications;
 
     $client_id = intval($parameters['ticket_client_id']);
-    $assigned_to = intval($parameters['ticket_assigned_to']);
-    $contact = intval($parameters['ticket_contact']);
+    $assigned_to = intval($parameters['ticket_assigned_to'] ?? 0);
+    $contact = intval($parameters['ticket_contact'] ?? 0);
     $subject = sanitizeInput($parameters['ticket_subject']);
-    $priority = sanitizeInput($parameters['ticket_priority']);
-    $details = mysqli_real_escape_string($mysqli, $parameters['ticket_details']);
-    $vendor_ticket_number = sanitizeInput($parameters['ticket_vendor_ticket_number']);
-    $vendor_id = intval($parameters['ticket_vendor']);
-    $asset_id = intval($parameters['ticket_asset']);
-    $use_primary_contact = intval($parameters['ticket_use_primary_contact']);
+    $priority = sanitizeInput($parameters['ticket_priority'] ?? 'Low');
+    $details = mysqli_real_escape_string($mysqli, $parameters['ticket_details'] ?? '');
+    $vendor_ticket_number = sanitizeInput($parameters['ticket_vendor_ticket_number'] ?? '');
+    $vendor_id = intval($parameters['ticket_vendor'] ?? 0);
+    $asset_id = intval($parameters['ticket_asset'] ?? 0);
+    $use_primary_contact = intval($parameters['ticket_use_primary_contact'] ?? 1);
 
     if ($assigned_to == 0) {
-        $ticket_status = 'New';
+        $ticket_status = intval($parameters['ticket_status'] ?? 1);
     } else {
-        $ticket_status = 'Open';
+        $ticket_status = intval($parameters['ticket_status'] ?? 2);
     }
 
     // Add the primary contact as the ticket contact if "Use primary contact" is checked
@@ -50,7 +50,7 @@ function createTicket(
 
     mysqli_query($mysqli, "UPDATE settings SET config_ticket_next_number = $new_config_ticket_next_number WHERE company_id = 1");
 
-    mysqli_query($mysqli, "INSERT INTO tickets SET ticket_prefix = '$config_ticket_prefix', ticket_number = $ticket_number, ticket_subject = '$subject', ticket_details = '$details', ticket_priority = '$priority', ticket_billable = '$billable', ticket_status = '$ticket_status', ticket_vendor_ticket_number = '$vendor_ticket_number', ticket_vendor_id = $vendor_id, ticket_asset_id = $asset_id, ticket_created_by = $session_user_id, ticket_assigned_to = $assigned_to, ticket_contact_id = $contact, ticket_client_id = $client_id, ticket_invoice_id = 0");
+    mysqli_query($mysqli, "INSERT INTO tickets SET ticket_prefix = '$config_ticket_prefix', ticket_number = $ticket_number, ticket_subject = '$subject', ticket_details = '$details', ticket_priority = '$priority', ticket_billable = '$billable', ticket_status = $ticket_status, ticket_vendor_ticket_number = '$vendor_ticket_number', ticket_vendor_id = $vendor_id, ticket_asset_id = $asset_id, ticket_created_by = $session_user_id, ticket_assigned_to = $assigned_to, ticket_contact_id = $contact, ticket_client_id = $client_id, ticket_invoice_id = 0");
 
     $ticket_id = mysqli_insert_id($mysqli);
 

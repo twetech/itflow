@@ -27,6 +27,12 @@ $(document).ready(function() {
 
                 // Trigger a custom event to indicate that the modal content has been loaded
                 $(document).trigger('modalContentLoaded');
+
+                $(".select2").select2(
+                    {
+                        dropdownParent: $('#dynamicModal .modal-content')
+                    }
+                );
                 
                 document.querySelectorAll('textarea').forEach(function(textarea) {
                     textarea.addEventListener('click', function initTinyMCE() {
