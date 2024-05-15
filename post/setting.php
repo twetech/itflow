@@ -11,13 +11,14 @@ if (isset($_POST['edit_company'])) {
 
     validateCSRFToken($_POST['csrf_token']);
     validateAdminRole();
+    $company_id = intval($_POST['company_id']);
 
-    require_once '/var/www/portal.twe.tech/post/models/setting_company_model.php';
+    require_once '/var/www/nestogy.io/post/models/setting_company_model.php';
 
 
-    $sql = mysqli_query($mysqli,"SELECT company_logo FROM companies WHERE company_id = 1");
+    $sql = mysqli_query($mysqli,"SELECT company_logo FROM companies WHERE company_id = $company_id");
     $row = mysqli_fetch_array($sql);
-    $existing_file_name = sanitizeInput($row['company_logo']);
+    $existing_file_name = isset($row['company_logo']) ? $row['company_logo'] : false;
 
     // Check to see if a file is attached
     if ($_FILES['file']['tmp_name'] != '') {
@@ -26,16 +27,18 @@ if (isset($_POST['edit_company'])) {
 
 
             // directory in which the uploaded file will be moved
-            $upload_file_dir = "/var/www/portal.twe.tech/uploads/settings/";
+            $upload_file_dir = "/var/www/nestogy.io/uploads/settings/";
             $dest_path = $upload_file_dir . $new_file_name;
 
             move_uploaded_file($file_tmp_path, $dest_path);
 
-            // Delete old file
-            unlink("/var/www/portal.twe.tech/uploads/settings/$existing_file_name");
+            // Delete old file if var not false
+            if($existing_file_name) {
+                unlink($upload_file_dir . $existing_file_name);
+            }
 
             // Set Logo
-            mysqli_query($mysqli,"UPDATE companies SET company_logo = '$new_file_name' WHERE company_id = 1");
+            mysqli_query($mysqli,"UPDATE companies SET company_logo = '$new_file_name' WHERE company_id = $company_id");
 
             $_SESSION['alert_message'] = 'File successfully uploaded.';
         }else{
@@ -44,7 +47,7 @@ if (isset($_POST['edit_company'])) {
         }
     }
 
-    mysqli_query($mysqli,"UPDATE companies SET company_name = '$name', company_address = '$address', company_city = '$city', company_state = '$state', company_zip = '$zip', company_country = '$country', company_phone = '$phone', company_email = '$email', company_website = '$website' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE companies SET company_name = '$name', company_address = '$address', company_city = '$city', company_state = '$state', company_zip = '$zip', company_country = '$country', company_phone = '$phone', company_email = '$email', company_website = '$website' WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Company', log_action = 'Modify', log_description = '$session_name modified company $name', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -64,9 +67,9 @@ if (isset($_POST['edit_localization'])) {
     $currency_code = sanitizeInput($_POST['currency_code']);
     $timezone = sanitizeInput($_POST['timezone']);
 
-    mysqli_query($mysqli,"UPDATE companies SET company_locale = '$locale', company_currency = '$currency_code' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE companies SET company_locale = '$locale', company_currency = '$currency_code' WHERE company_id = $company_id");
 
-    mysqli_query($mysqli,"UPDATE settings SET config_timezone = '$timezone' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_timezone = '$timezone' WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Company', log_action = 'Edit', log_description = '$session_name edited company localization settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -88,7 +91,7 @@ if (isset($_POST['edit_mail_smtp_settings'])) {
     $config_smtp_username = sanitizeInput($_POST['config_smtp_username']);
     $config_smtp_password = sanitizeInput($_POST['config_smtp_password']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_smtp_host = '$config_smtp_host', config_smtp_port = $config_smtp_port, config_smtp_encryption = '$config_smtp_encryption', config_smtp_username = '$config_smtp_username', config_smtp_password = '$config_smtp_password' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_smtp_host = '$config_smtp_host', config_smtp_port = $config_smtp_port, config_smtp_encryption = '$config_smtp_encryption', config_smtp_username = '$config_smtp_username', config_smtp_password = '$config_smtp_password' WHERE company_id = $company_id");
 
     // Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified SMTP mail settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -110,7 +113,7 @@ if (isset($_POST['edit_mail_imap_settings'])) {
     $config_imap_port = intval($_POST['config_imap_port']);
     $config_imap_encryption = sanitizeInput($_POST['config_imap_encryption']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_imap_host = '$config_imap_host', config_imap_port = $config_imap_port, config_imap_encryption = '$config_imap_encryption', config_imap_username = '$config_imap_username', config_imap_password = '$config_imap_password' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_imap_host = '$config_imap_host', config_imap_port = $config_imap_port, config_imap_encryption = '$config_imap_encryption', config_imap_username = '$config_imap_username', config_imap_password = '$config_imap_password' WHERE company_id = $company_id");
 
 
     // Logging
@@ -139,7 +142,7 @@ if (isset($_POST['edit_mail_from_settings'])) {
     $config_ticket_from_email = sanitizeInput($_POST['config_ticket_from_email']);
     $config_ticket_from_name = sanitizeInput($_POST['config_ticket_from_name']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_mail_from_email = '$config_mail_from_email', config_mail_from_name = '$config_mail_from_name', config_invoice_from_email = '$config_invoice_from_email', config_invoice_from_name = '$config_invoice_from_name', config_quote_from_email = '$config_quote_from_email', config_quote_from_name = '$config_quote_from_name', config_ticket_from_email = '$config_ticket_from_email', config_ticket_from_name = '$config_ticket_from_name' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_mail_from_email = '$config_mail_from_email', config_mail_from_name = '$config_mail_from_name', config_invoice_from_email = '$config_invoice_from_email', config_invoice_from_name = '$config_invoice_from_name', config_quote_from_email = '$config_quote_from_email', config_quote_from_name = '$config_quote_from_name', config_ticket_from_email = '$config_ticket_from_email', config_ticket_from_name = '$config_ticket_from_name' WHERE company_id = $company_id");
 
     // Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified Mail From settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -232,7 +235,7 @@ if (isset($_POST['edit_invoice_settings'])) {
     $config_recurring_next_number = intval($_POST['config_recurring_next_number']);
 
 
-    mysqli_query($mysqli,"UPDATE settings SET config_invoice_prefix = '$config_invoice_prefix', config_invoice_next_number = $config_invoice_next_number, config_invoice_footer = '$config_invoice_footer', config_invoice_late_fee_enable = $config_invoice_late_fee_enable, config_invoice_late_fee_percent = $config_invoice_late_fee_percent, config_recurring_prefix = '$config_recurring_prefix', config_recurring_next_number = $config_recurring_next_number WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_invoice_prefix = '$config_invoice_prefix', config_invoice_next_number = $config_invoice_next_number, config_invoice_footer = '$config_invoice_footer', config_invoice_late_fee_enable = $config_invoice_late_fee_enable, config_invoice_late_fee_percent = $config_invoice_late_fee_percent, config_recurring_prefix = '$config_recurring_prefix', config_recurring_next_number = $config_recurring_next_number WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Edit', log_description = '$session_name edited invoice settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -252,7 +255,7 @@ if (isset($_POST['edit_quote_settings'])) {
     $config_quote_next_number = intval($_POST['config_quote_next_number']);
     $config_quote_footer = sanitizeInput($_POST['config_quote_footer']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_quote_prefix = '$config_quote_prefix', config_quote_next_number = $config_quote_next_number, config_quote_footer = '$config_quote_footer' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_quote_prefix = '$config_quote_prefix', config_quote_next_number = $config_quote_next_number, config_quote_footer = '$config_quote_footer' WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified quote settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -274,7 +277,7 @@ if (isset($_POST['edit_ticket_settings'])) {
     $config_ticket_autoclose_hours = intval($_POST['config_ticket_autoclose_hours']);
     $config_ticket_new_ticket_notification_email = sanitizeInput($_POST['config_ticket_new_ticket_notification_email']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_ticket_prefix = '$config_ticket_prefix', config_ticket_next_number = $config_ticket_next_number, config_ticket_email_parse = $config_ticket_email_parse, config_ticket_autoclose = $config_ticket_autoclose, config_ticket_autoclose_hours = $config_ticket_autoclose_hours, config_ticket_new_ticket_notification_email = '$config_ticket_new_ticket_notification_email' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_ticket_prefix = '$config_ticket_prefix', config_ticket_next_number = $config_ticket_next_number, config_ticket_email_parse = $config_ticket_email_parse, config_ticket_autoclose = $config_ticket_autoclose, config_ticket_autoclose_hours = $config_ticket_autoclose_hours, config_ticket_new_ticket_notification_email = '$config_ticket_new_ticket_notification_email' WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified ticket settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -301,7 +304,7 @@ if (isset($_POST['edit_default_settings'])) {
     $net_terms = intval($_POST['net_terms']);
     $hourly_rate = floatval($_POST['hourly_rate']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_start_page = '$start_page', config_default_expense_account = $expense_account, config_default_payment_account = $payment_account, config_default_payment_method = '$payment_method', config_default_expense_payment_method = '$expense_payment_method', config_default_transfer_from_account = $transfer_from_account, config_default_transfer_to_account = $transfer_to_account, config_default_calendar = $calendar, config_default_net_terms = $net_terms, config_default_hourly_rate = $hourly_rate WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_start_page = '$start_page', config_default_expense_account = $expense_account, config_default_payment_account = $payment_account, config_default_payment_method = '$payment_method', config_default_expense_payment_method = '$expense_payment_method', config_default_transfer_from_account = $transfer_from_account, config_default_transfer_to_account = $transfer_to_account, config_default_calendar = $calendar, config_default_net_terms = $net_terms, config_default_hourly_rate = $hourly_rate WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified default settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -318,7 +321,7 @@ if (isset($_POST['edit_theme_settings'])) {
 
     $theme = preg_replace("/[^0-9a-zA-Z-]/", "", sanitizeInput($_POST['theme']));
 
-    mysqli_query($mysqli,"UPDATE settings SET config_theme = '$theme' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_theme = '$theme' WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified theme settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -380,7 +383,7 @@ if (isset($_POST['edit_notification_settings'])) {
     $config_recurring_auto_send_invoice = intval($_POST['config_recurring_auto_send_invoice']);
     $config_ticket_client_general_notifications = intval($_POST['config_ticket_client_general_notifications']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_send_invoice_reminders = $config_send_invoice_reminders, config_recurring_auto_send_invoice = $config_recurring_auto_send_invoice, config_enable_cron = $config_enable_cron, config_enable_alert_domain_expire = $config_enable_alert_domain_expire, config_ticket_client_general_notifications = $config_ticket_client_general_notifications WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_send_invoice_reminders = $config_send_invoice_reminders, config_recurring_auto_send_invoice = $config_recurring_auto_send_invoice, config_enable_cron = $config_enable_cron, config_enable_alert_domain_expire = $config_enable_alert_domain_expire, config_ticket_client_general_notifications = $config_ticket_client_general_notifications WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified notification settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -396,7 +399,7 @@ if (isset($_GET['generate_cron_key'])) {
 
     $key = randomString(32);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_cron_key = '$key' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_cron_key = '$key' WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name regenerated cron key', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -422,7 +425,7 @@ if (isset($_POST['edit_online_payment_settings'])) {
     $config_stripe_flat_fee = floatval($_POST['config_stripe_flat_fee']);
     $config_stripe_client_pays_fees = intval($_POST['config_stripe_client_pays_fees']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_stripe_enable = $config_stripe_enable, config_stripe_publishable = '$config_stripe_publishable', config_stripe_secret = '$config_stripe_secret', config_stripe_account = $config_stripe_account, config_stripe_expense_vendor = $config_stripe_expense_vendor, config_stripe_expense_category = $config_stripe_expense_category, config_stripe_percentage_fee = $config_stripe_percentage_fee, config_stripe_flat_fee = $config_stripe_flat_fee, config_stripe_client_pays_fees = $config_stripe_client_pays_fees WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_stripe_enable = $config_stripe_enable, config_stripe_publishable = '$config_stripe_publishable', config_stripe_secret = '$config_stripe_secret', config_stripe_account = $config_stripe_account, config_stripe_expense_vendor = $config_stripe_expense_vendor, config_stripe_expense_category = $config_stripe_expense_category, config_stripe_percentage_fee = $config_stripe_percentage_fee, config_stripe_flat_fee = $config_stripe_flat_fee, config_stripe_client_pays_fees = $config_stripe_client_pays_fees WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified online payment settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -440,7 +443,7 @@ if (isset($_POST['edit_integrations_settings'])) {
     $azure_client_id = sanitizeInput($_POST['azure_client_id']);
     $azure_client_secret = sanitizeInput($_POST['azure_client_secret']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_azure_client_id = '$azure_client_id', config_azure_client_secret = '$azure_client_secret' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_azure_client_id = '$azure_client_id', config_azure_client_secret = '$azure_client_secret' WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified integrations settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent',  log_user_id = $session_user_id");
@@ -467,7 +470,7 @@ if (isset($_POST['edit_ai_settings'])) {
     $url = sanitizeInput($_POST['url']);
     $api_key = sanitizeInput($_POST['api_key']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_ai_enable = $ai_enable, config_ai_provider = '$provider', config_ai_model = '$model', config_ai_url = '$url', config_ai_api_key = '$api_key' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_ai_enable = $ai_enable, config_ai_provider = '$provider', config_ai_model = '$model', config_ai_url = '$url', config_ai_api_key = '$api_key' WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Edit', log_description = '$session_name edited AI settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -487,7 +490,7 @@ if (isset($_POST['edit_module_settings'])) {
     $config_module_enable_accounting = intval($_POST['config_module_enable_accounting']);
     $config_client_portal_enable = intval($_POST['config_client_portal_enable']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_module_enable_itdoc = $config_module_enable_itdoc, config_module_enable_ticketing = $config_module_enable_ticketing, config_module_enable_accounting = $config_module_enable_accounting, config_client_portal_enable = $config_client_portal_enable WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_module_enable_itdoc = $config_module_enable_itdoc, config_module_enable_ticketing = $config_module_enable_ticketing, config_module_enable_accounting = $config_module_enable_accounting, config_client_portal_enable = $config_client_portal_enable WHERE company_id = $company_id");
 
     //Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified module settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -507,7 +510,7 @@ if (isset($_POST['edit_security_settings'])) {
     $config_login_key_required = intval($_POST['config_login_key_required']);
     $config_login_key_secret = sanitizeInput($_POST['config_login_key_secret']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_login_message = '$config_login_message', config_login_key_required = '$config_login_key_required', config_login_key_secret = '$config_login_key_secret' WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_login_message = '$config_login_message', config_login_key_required = '$config_login_key_required', config_login_key_secret = '$config_login_key_secret' WHERE company_id = $company_id");
 
     // Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified login key settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -524,7 +527,7 @@ if (isset($_POST['edit_telemetry_settings'])) {
 
     $config_telemetry = intval($_POST['config_telemetry']);
 
-    mysqli_query($mysqli,"UPDATE settings SET config_telemetry = $config_telemetry WHERE company_id = 1");
+    mysqli_query($mysqli,"UPDATE settings SET config_telemetry = $config_telemetry WHERE company_id = $company_id");
 
     // Logging
     mysqli_query($mysqli,"INSERT INTO logs SET log_type = 'Settings', log_action = 'Modify', log_description = '$session_name modified telemetry settings', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_user_id = $session_user_id");
@@ -757,7 +760,7 @@ if (isset($_GET['update'])) {
     // Send Telemetry if enabled during update
     if ($config_telemetry > 0 OR $config_telemetry = 2) {
 
-        $sql = mysqli_query($mysqli,"SELECT * FROM companies WHERE company_id = 1");
+        $sql = mysqli_query($mysqli,"SELECT * FROM companies WHERE company_id = $company_id");
         $row = mysqli_fetch_array($sql);
 
         $company_name = sanitizeInput($row['company_name']);

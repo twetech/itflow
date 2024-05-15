@@ -1,4 +1,4 @@
-<?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
+<?php require_once "/var/www/nestogy.io/includes/inc_all_modal.php"; ?>
 
 
 <div class="modal" id="exportUserModal" tabindex="-1">
@@ -13,7 +13,7 @@
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
 
-                    <?php require_once "/var/www/portal.twe.tech/includes/inc_export_warning.php";
+                    <?php require_once "/var/www/nestogy.io/includes/inc_export_warning.php";
  ?>
 
                 </div>

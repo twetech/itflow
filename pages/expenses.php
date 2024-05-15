@@ -4,7 +4,7 @@
 $sort = "expense_date";
 $order = "DESC";
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 //Rebuild URL
 
@@ -79,7 +79,7 @@ $recurring_expense_count = $row['num'];
                             if (empty($expense_receipt)) {
                                 $receipt_attached = "";
                             } else {
-                                $receipt_attached = "<a class='text-secondary mr-2' target='_blank' href=/var/www/portal.twe.tech/uploads/expenses/$expense_receipt' download='$expense_date-$vendor_name-$category_name-$expense_id.pdf'><i class='fa fa-file-pdf'></i></a>";
+                                $receipt_attached = "<a class='text-secondary mr-2' target='_blank' href=/var/www/nestogy.io/uploads/expenses/$expense_receipt' download='$expense_date-$vendor_name-$category_name-$expense_id.pdf'><i class='fa fa-file-pdf'></i></a>";
                             }
 
                             ?>
@@ -140,4 +140,4 @@ $recurring_expense_count = $row['num'];
 <script src="/includes/js/bulk_actions.js"></script>
 
 <?php
-require_once "/var/www/portal.twe.tech/includes/footer.php";
+require_once "/var/www/nestogy.io/includes/footer.php";

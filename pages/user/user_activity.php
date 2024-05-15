@@ -1,5 +1,5 @@
 <?php
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 
 $sql_recent_logins = mysqli_query($mysqli, "SELECT * FROM logs
@@ -92,4 +92,4 @@ $sql_recent_logs = mysqli_query($mysqli, "SELECT * FROM logs
 </div>
 
 <?php
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';

@@ -1,11 +1,11 @@
 <?php
-require_once "/var/www/portal.twe.tech/includes/inc_all_admin.php";
+require_once "/var/www/nestogy.io/includes/inc_all_admin.php";
 
 require_once "database_version.php";
 
-require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
+require_once "/var/www/nestogy.io/includes/tenant_db.php";
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/nestogy.io/includes/config.php";
 
 
 // Fetch the latest code changes but don't apply them
@@ -89,5 +89,5 @@ $git_log = shell_exec("git log $repo_branch..origin/$repo_branch --pretty=format
 
 <?php
 
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';
 

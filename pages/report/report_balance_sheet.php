@@ -1,5 +1,5 @@
 <?php
-require_once "/var/www/portal.twe.tech/includes/inc_all_reports.php";
+require_once "/var/www/nestogy.io/includes/inc_all_reports.php";
 validateAccountantRole();
 
 // Fetch accounts data
@@ -106,4 +106,4 @@ function display_account_section($mysqli, $accounts, $type) {
         </div>
     </div>
 
-    <?php require_once '/var/www/portal.twe.tech/includes/footer.php';    ?>
+    <?php require_once '/var/www/nestogy.io/includes/footer.php';    ?>

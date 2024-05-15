@@ -1,5 +1,5 @@
 <?php
-require "/var/www/portal.twe.tech/includes/inc_all.php";
+require "/var/www/nestogy.io/includes/inc_all.php";
 
 
 
@@ -403,7 +403,7 @@ if (isset($_GET['project_id'])) {
 
 <?php
 }
-require "/var/www/portal.twe.tech/includes/footer.php";
+require "/var/www/nestogy.io/includes/footer.php";
 
 ?>
 

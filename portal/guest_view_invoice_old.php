@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/portal/guest_header.php";
+require_once "/var/www/nestogy.io/portal/guest_header.php";
 
 if (!isset($_GET['invoice_id'], $_GET['url_key'])) {
     echo "<br><h2>Oops, something went wrong! Please raise a ticket if you believe this is an error.</h2>";

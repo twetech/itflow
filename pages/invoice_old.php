@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 
 if (isset($_GET['invoice_id'])) {
@@ -18,7 +18,7 @@ if (isset($_GET['invoice_id'])) {
 
     if (mysqli_num_rows($sql) == 0) {
         echo '<h1 class="text-secondary mt-5" style="text-align: center">Nothing to see here</h1>';
-        require_once '/var/www/portal.twe.tech/includes/footer.php';
+        require_once '/var/www/nestogy.io/includes/footer.php';
 
         exit();
     }
@@ -357,7 +357,7 @@ if (isset($_GET['invoice_id'])) {
                                     </tr>
                                     <?php
                                     if ($invoice_status !== "Paid" && $invoice_status !== "Cancelled") {
-                                        require "/var/www/portal.twe.tech/includes/modals/item_edit_modal.php";
+                                        require "/var/www/nestogy.io/includes/modals/item_edit_modal.php";
                                     }
                                 }
                                 ?>
@@ -1130,4 +1130,4 @@ if (isset($_GET['invoice_id'])) {
 </script>
 
 <?php
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';

@@ -8,7 +8,7 @@ $invoice_id = intval($_GET['invoice_id']);
 $margin_goal = 18;
 
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 
 
@@ -25,7 +25,7 @@ if (isset($_GET['invoice_id'])) {
 
     if (mysqli_num_rows($sql) == 0) {
         echo '<h1 class="text-secondary mt-5" style="text-align: center">Nothing to see here</h1>';
-        require_once '/var/www/portal.twe.tech/includes/footer.php';
+        require_once '/var/www/nestogy.io/includes/footer.php';
 
         exit();
     }
@@ -627,5 +627,5 @@ $(document).ready(function() {
 
 <?php
 }
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';
 ?>

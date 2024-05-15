@@ -6,7 +6,7 @@
 
 header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
 
-require_once "/var/www/portal.twe.tech/includes/inc_portal.php";
+require_once "/var/www/nestogy.io/includes/inc_portal.php";
 
 if ($session_contact_primary == 0 && !$session_contact_is_billing_contact) {
     header("Location: portal_post.php?logout");

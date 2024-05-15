@@ -4,11 +4,11 @@ header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Cache-Control: post-check=0, pre-check=0', false);
 header('Pragma: no-cache');
 
-require_once "/var/www/portal.twe.tech/portal/guest_header.php";
+require_once "/var/www/nestogy.io/portal/guest_header.php";
 
 
 //Initialize the HTML Purifier to prevent XSS
-require "/var/www/portal.twe.tech/includes/modals/plugins/htmlpurifier/HTMLPurifier.standalone.php";
+require "/var/www/nestogy.io/includes/modals/plugins/htmlpurifier/HTMLPurifier.standalone.php";
 
 $purifier_config = HTMLPurifier_Config::createDefault();
 $purifier_config->set('URI.AllowedSchemes', ['data' => true, 'src' => true, 'http' => true, 'https' => true]);

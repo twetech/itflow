@@ -1243,8 +1243,10 @@ DROP TABLE IF EXISTS `service_assets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `service_assets` (
+  `service_asset_id`int(11) NOT NULL AUTO_INCREMENT,
   `service_id` int(11) NOT NULL,
-  `asset_id` int(11) NOT NULL
+  `asset_id` int(11) NOT NULL,
+  PRIMARY KEY (`service_asset_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1256,8 +1258,10 @@ DROP TABLE IF EXISTS `service_certificates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `service_certificates` (
+  `service_certificate_id`int(11) NOT NULL AUTO_INCREMENT,
   `service_id` int(11) NOT NULL,
-  `certificate_id` int(11) NOT NULL
+  `certificate_id` int(11) NOT NULL,
+  PRIMARY KEY (`service_certificate_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1269,8 +1273,11 @@ DROP TABLE IF EXISTS `service_contacts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `service_contacts` (
+  `service_contact_id`int(11) NOT NULL AUTO_INCREMENT,
   `service_id` int(11) NOT NULL,
-  `contact_id` int(11) NOT NULL
+  `contact_id` int(11) NOT NULL,
+  PRIMARY KEY (`service_contact_id`)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1282,8 +1289,10 @@ DROP TABLE IF EXISTS `service_documents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `service_documents` (
+  `service_document_id`int(11) NOT NULL AUTO_INCREMENT,
   `service_id` int(11) NOT NULL,
-  `document_id` int(11) NOT NULL
+  `document_id` int(11) NOT NULL,
+  PRIMARY KEY (`service_document_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1295,8 +1304,10 @@ DROP TABLE IF EXISTS `service_domains`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `service_domains` (
+  `service_domain_id`int(11) NOT NULL AUTO_INCREMENT,
   `service_id` int(11) NOT NULL,
-  `domain_id` int(11) NOT NULL
+  `domain_id` int(11) NOT NULL,
+  PRIMARY KEY (`service_domain_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1308,8 +1319,10 @@ DROP TABLE IF EXISTS `service_logins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `service_logins` (
+  `service_login_id`int(11) NOT NULL AUTO_INCREMENT,
   `service_id` int(11) NOT NULL,
-  `login_id` int(11) NOT NULL
+  `login_id` int(11) NOT NULL,
+  PRIMARY KEY (`service_login_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1321,8 +1334,10 @@ DROP TABLE IF EXISTS `service_vendors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `service_vendors` (
+  `service_vendor_id`int(11) NOT NULL AUTO_INCREMENT,
   `service_id` int(11) NOT NULL,
-  `vendor_id` int(11) NOT NULL
+  `vendor_id` int(11) NOT NULL,
+  PRIMARY KEY (`service_vendor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

@@ -285,7 +285,7 @@ function generateReadablePassword($security_level)
 
 function createiCalStr($datetime, $title, $description, $location)
 {
-    require_once "/var/www/portal.twe.tech/includes/plugins/zapcal/zapcallib.php";
+    require_once "/var/www/nestogy.io/includes/plugins/zapcal/zapcallib.php";
 
     // Create the iCal object
     $cal_event = new ZCiCal();
@@ -353,4 +353,20 @@ function referWithAlert(
     $_SESSION['alert_type'] = $type;
     header("Location: " . $url);
     exit();
+}
+
+function getLocalization($locale)
+{
+    //if locale contains es, switch to spanish, otherwise use english
+    if (strpos($locale, 'es') !== false) {
+        // load localization for spanish
+        require_once "/var/www/nestogy.io/includes/localization/es.php";
+    }
+    else {
+        // load localization for english
+        require_once "/var/www/nestogy.io/includes/localization/en.php";
+    }
+
+
+    return $localization;
 }

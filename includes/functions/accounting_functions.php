@@ -397,9 +397,9 @@ function getMonthlyMarkup($year, $month)
     return $total_amount / $total_cost;
 }
 
-
-
 function clientSendDisconnect($client_id){
+
+    global $mysqli, $config_base_url, $config_invoice_from_email, $config_invoice_from_name;
 
     $client_sql = 
 
@@ -489,3 +489,47 @@ function clientSendDisconnect($client_id){
         mysqli_query($mysqli, "INSERT INTO notifications SET notification_type = 'Collections Ticket Created', notification = 'Collections Notice Ticket Created for $client_name', notification_action = '/pages/ticket.php?id=$ticket_id', notification_client_id = $client_id, notification_entity_id = $ticket_id");
     }
 }
+
+function convertCurrency($amount, $from_currency, $to_currency)
+{
+    global $mysqli;
+
+    // Lookup currency exchange rate in the database
+    $sql = "SELECT currency_conversion_rate FROM currency_conversion_rates
+        WHERE currency_conversion_from_currency_code = '$from_currency'
+        AND currency_conversion_to_currency_code = '$to_currency'
+        AND currency_conversion_updated_at > DATE_SUB(NOW(), INTERVAL 1 DAY)";
+    $result = mysqli_query($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    // Check number of rows returned
+    if (mysqli_num_rows($result) > 0) {
+        $conversion_rate = floatval($row['currency_conversion_rate']);
+    } else {
+        // If no conversion rate is found, fetch from the Exchange Rate API
+        global $exchange_rate_api_key, $exchange_rate_api_url;
+
+        $url = $exchange_rate_api_url . $exchange_rate_api_key . "/pair/" . $from_currency . "/" . $to_currency;
+        $response = file_get_contents($url);
+        $response = json_decode($response, true);
+        if ($response['result'] == 'success') {
+            $conversion_rate = floatval($response['conversion_rate']);
+            // Insert the new conversion rate into the database, be sure to update the existing rate if it already exists
+            $sql = "INSERT INTO currency_conversion_rates (currency_conversion_from_currency_code, currency_conversion_to_currency_code, currency_conversion_rate, currency_conversion_updated_at)
+                VALUES ('$from_currency', '$to_currency', $conversion_rate, NOW())
+                ON DUPLICATE KEY UPDATE currency_conversion_rate = $conversion_rate, currency_conversion_updated_at = NOW()";
+            mysqli_query($mysqli, $sql);
+
+            // Logging
+            error_log("Fetched conversion rate from API:" . $exchange_rate_api_url . $exchange_rate_api_key . "/pair/" . $from_currency . "/" . $to_currency);
+            
+        } else {
+            // Return 0 if the conversion rate cannot be found
+            error_log("Failed to fetch conversion rate from API:" . $exchange_rate_api_url . $exchange_rate_api_key . "/pair/" . $from_currency . "/" . $to_currency);
+            return 0;
+        }
+    }
+
+    return $amount * $conversion_rate;
+}
+

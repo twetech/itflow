@@ -1,5 +1,5 @@
 <?php 
-require_once '/var/www/portal.twe.tech/includes/inc_all_admin.php';
+require_once '/var/www/nestogy.io/includes/inc_all_admin.php';
 
 $sql_tenants = "SELECT * FROM tenants
                 LEFT JOIN clients ON tenants.tenant_client_id = clients.client_id
@@ -63,7 +63,7 @@ $tenants_count_row = mysqli_fetch_assoc($result_tenants_count);
                         <?php
 
                                 // Edit Tenant Modal
-                                require '/var/www/portal.twe.tech/includes/modals/tenant_edit_modal.php';
+                                require '/var/www/nestogy.io/includes/modals/tenant_edit_modal.php';
 
                             } while ($tenants_row = mysqli_fetch_assoc($result_tenants));
                         } else {
@@ -86,4 +86,4 @@ $tenants_count_row = mysqli_fetch_assoc($result_tenants_count);
 
 <?php
 
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';

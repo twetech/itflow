@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 
 if (isset($_GET['contact_id'])) {
@@ -112,7 +112,7 @@ if (isset($_GET['contact_id'])) {
                     <?php } ?>
                     <div class="mt-2"><i class="fa fa-fw fa-clock text-secondary mr-2"></i><?php echo date('Y-m-d', strtotime($contact_created_at)); ?></div>
 
-                    <?php require_once "/var/www/portal.twe.tech/includes/modals/client_contact_edit_modal.php";
+                    <?php require_once "/var/www/nestogy.io/includes/modals/client_contact_edit_modal.php";
  ?>
 
                 </div>
@@ -256,11 +256,11 @@ if (isset($_GET['contact_id'])) {
 
                                 <?php
 
-                                require "/var/www/portal.twe.tech/includes/modals/client_asset_edit_modal.php";
+                                require "/var/www/nestogy.io/includes/modals/client_asset_edit_modal.php";
 
-                                require "/var/www/portal.twe.tech/includes/modals/client_asset_copy_modal.php";
+                                require "/var/www/nestogy.io/includes/modals/client_asset_copy_modal.php";
 
-                                require "/var/www/portal.twe.tech/includes/modals/client_asset_interface_add_modal.php";
+                                require "/var/www/nestogy.io/includes/modals/client_asset_interface_add_modal.php";
 
 
                             }
@@ -367,7 +367,7 @@ if (isset($_GET['contact_id'])) {
 
                                 <?php
 
-                                require "/var/www/portal.twe.tech/includes/modals/client_login_edit_modal.php";
+                                require "/var/www/nestogy.io/includes/modals/client_login_edit_modal.php";
 
                             }
 
@@ -554,7 +554,7 @@ if (isset($_GET['contact_id'])) {
 
     <?php
 
-    require_once "/var/www/portal.twe.tech/includes/modals/share_modal.php";
+    require_once "/var/www/nestogy.io/includes/modals/share_modal.php";
 
 
     ?>
@@ -614,5 +614,5 @@ if (isset($_GET['contact_id'])) {
     </script>
 
 <?php
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';
 

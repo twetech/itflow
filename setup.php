@@ -1,13 +1,13 @@
 <?php
 
-if (file_exists("/var/www/portal.twe.tech/includes/config.php")) {
-    include "/var/www/portal.twe.tech/includes/config.php";
+if (file_exists("/var/www/nestogy.io/includes/config.php")) {
+    include "/var/www/nestogy.io/includes/config.php";
 
 }
 
-include "/var/www/portal.twe.tech/includes/functions/functions.php";
+include "/var/www/nestogy.io/includes/functions/functions.php";
 
-include "/var/www/portal.twe.tech/database/database_version.php";
+include "/var/www/nestogy.io/database/database_version.php";
 
 
 if (!isset($config_enable_setup)) {
@@ -27,7 +27,7 @@ if (isset($session_ip)) {
 }
 */
 
-include_once "/var/www/portal.twe.tech/includes/settings_localization_array.php";
+include_once "/var/www/nestogy.io/includes/settings_localization_array.php";
 
 // Get a list of all available timezones
 $timezones = DateTimeZone::listIdentifiers();
@@ -35,7 +35,7 @@ $timezones = DateTimeZone::listIdentifiers();
 if (isset($_POST['add_database'])) {
 
     // Check if database has been set up already. If it has, direct user to edit directly instead.
-    if (file_exists('config.php')) {
+    if (file_exists('/var/www/nestogy.io/includes/config.php')) {
         $_SESSION['alert_message'] = "Database already configured. Any further changes should be made by editing the config.php file.";
         header("Location: setup.php?user");
         exit;
@@ -74,9 +74,9 @@ if (isset($_POST['add_database'])) {
     $new_config .= "\$repo_branch = 'master';\n";
     $new_config .= "\$installation_id = '$installation_id';\n";
 
-    if (file_put_contents("/var/www/portal.twe.tech/includes/config.php", $new_config) !== false && file_exists('config.php')) {
+    if (file_put_contents("/var/www/nestogy.io/includes/config.php", $new_config) !== false && file_exists('config.php')) {
 
-        include "/var/www/portal.twe.tech/includes/config.php";
+        include "/var/www/nestogy.io/includes/config.php";
 
 
         // Name of the file
@@ -308,6 +308,7 @@ if (isset($_POST['add_company_settings'])) {
     $_SESSION['alert_message'] = "Company <strong>$name</strong> created!";
 
     header("Location: setup.php?telemetry");
+    exit;
 
 }
 

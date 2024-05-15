@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/inc_all_reports.php";
+require_once "/var/www/nestogy.io/includes/inc_all_reports.php";
 
 validateAccountantRole();
 
@@ -94,5 +94,5 @@ $sql_vendor_expenses = mysqli_query($mysqli, "
     </div>
 </div>
 
-<?php require_once '/var/www/portal.twe.tech/includes/footer.php';
+<?php require_once '/var/www/nestogy.io/includes/footer.php';
  ?>

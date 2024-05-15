@@ -6,7 +6,7 @@ $order = "DESC";
 
 // Set Datatable Order
 $datatable_order = "[[4, 'desc']]";
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 
 //Rebuild URL
@@ -133,7 +133,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         <?php
 
-                        require "/var/www/portal.twe.tech/includes/modals/quote_copy_modal.php";
+                        require "/var/www/nestogy.io/includes/modals/quote_copy_modal.php";
 
 
                     }
@@ -149,7 +149,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <?php
 
 
-require_once "/var/www/portal.twe.tech/includes/modals/quote_edit_modal.php";
+require_once "/var/www/nestogy.io/includes/modals/quote_edit_modal.php";
 
-require_once "/var/www/portal.twe.tech/includes/footer.php";
+require_once "/var/www/nestogy.io/includes/footer.php";
 

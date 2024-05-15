@@ -3,20 +3,14 @@
 // Enforce a Content Security Policy for security against cross-site scripting
 header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
 
-if (!file_exists('/var/www/portal.twe.tech/includes/config.php')) {
+if (!file_exists('/var/www/nestogy.io/includes/config.php')) {
     header("Location: setup.php");
     exit;
 }
 
 
-if (isset($_GET['tenant_id'])) {
-    $_SESSION['database'] = $_GET['tenant_id'];
-    if ($_SESSION['database'] == 'twe') {
-        $_SESSION['database'] = 'itflow';
-    }
-}
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/nestogy.io/includes/config.php";
 
 // Check if $mysqli is a valid connection
 if (!$mysqli) {
@@ -30,9 +24,9 @@ if ($config_https_only && (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'o
     exit;
 }
 
-require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
+require_once "/var/www/nestogy.io/includes/functions/functions.php";
 
-require_once "/var/www/portal.twe.tech/includes/rfc6238.php";
+require_once "/var/www/nestogy.io/includes/rfc6238.php";
 
 
 
@@ -112,12 +106,33 @@ if (isset($_POST['login'])) {
         $current_code = intval($_POST['current_code']);
     }
 
-    $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT * FROM users LEFT JOIN user_settings on users.user_id = user_settings.user_id WHERE user_email = '$email' AND user_archived_at IS NULL AND user_status = 1"));
+    $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT * FROM users
+        LEFT JOIN user_settings on users.user_id = user_settings.user_id
+        LEFT JOIN user_companies on users.user_id = user_companies.user_company_user_id
+        LEFT JOIN companies on user_companies.user_company_company_id = companies.company_id
+        LEFT JOIN settings on companies.company_id = settings.company_id
+        WHERE user_email = '$email' AND user_archived_at IS NULL AND user_status = 1"));
 
     // Check password
     if ($row && password_verify($password, $row['user_password'])) {
-
         // User password correct (partial login)
+        
+        error_log("User password correct (partial login)");
+
+        // Company info
+        $company_name = $row['company_name'];
+        $company_logo = $row['company_logo'];
+        $config_start_page = nullable_htmlentities($row['config_start_page']);
+        $config_login_message = nullable_htmlentities($row['config_login_message']);
+
+        // Mail
+        $config_smtp_host = $row['config_smtp_host'];
+        $config_smtp_port = intval($row['config_smtp_port']);
+        $config_smtp_encryption = $row['config_smtp_encryption'];
+        $config_smtp_username = $row['config_smtp_username'];
+        $config_smtp_password = $row['config_smtp_password'];
+        $config_mail_from_email = sanitizeInput($row['config_mail_from_email']);
+        $config_mail_from_name = sanitizeInput($row['config_mail_from_name']);
 
         // Set temporary user variables
         $user_name = sanitizeInput($row['user_name']);
@@ -155,6 +170,8 @@ if (isset($_POST['login'])) {
                 mysqli_query($mysqli, $updateTokenQuery);
             }
 
+            error_log("FULL LOGIN SUCCESS - 2FA not configured or was successful");
+
             // FULL LOGIN SUCCESS - 2FA not configured or was successful
 
             // Check this login isn't suspicious
@@ -188,10 +205,15 @@ if (isset($_POST['login'])) {
             if ($current_code !== 0) {
                 $extended_log = 'with 2FA';
             }
+            
+            if (empty($config_start_page)) {
+                $config_start_page = "/pages/dashboard.php";
+            }
 
             // Logging successful login
             mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Login', log_action = 'Success', log_description = '$user_name successfully logged in $extended_log', log_ip = '$ip', log_user_agent = '$user_agent', log_user_id = $user_id");
 
+            error_log("User $user_name successfully logged in");
             // Session info
             $_SESSION['user_id'] = $user_id;
             $_SESSION['user_name'] = $user_name;
@@ -218,9 +240,11 @@ if (isset($_POST['login'])) {
 
             }
 
-            if ($_GET['last_visited']) {
+            if (isset($_GET['last_visited'])) {
+                error_log("Redirecting to last visited page: " . base64_decode($_GET['last_visited']) );
                 header("Location: ".$_SERVER["REQUEST_SCHEME"] . "://" . $config_base_url . base64_decode($_GET['last_visited']) );
             } else {
+                error_log("Redirecting to start page: " . $config_start_page );
                 header("Location: $config_start_page");
             }
 

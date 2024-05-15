@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 
 $sql_recent_activities = mysqli_query(
@@ -368,5 +368,5 @@ $sql_asset_retire = mysqli_query(
 
 <?php
 
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';
 

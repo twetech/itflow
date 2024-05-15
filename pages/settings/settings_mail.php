@@ -1,5 +1,5 @@
 <?php
-require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
+require_once "/var/www/nestogy.io/includes/inc_all_settings.php";
  ?>
 
     <div class="card">
@@ -327,5 +327,5 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
 
     <?php } ?>
 
-<?php require_once '/var/www/portal.twe.tech/includes/footer.php';
+<?php require_once '/var/www/nestogy.io/includes/footer.php';
 

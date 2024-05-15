@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 
 if (isset($_GET['calendar_id'])) {
@@ -23,9 +23,9 @@ if (isset($_GET['calendar_id'])) {
 </div>
 
 <?php
-include "/var/www/portal.twe.tech/includes/modals/calendar_event_add_modal.php";
+include "/var/www/nestogy.io/includes/modals/calendar_event_add_modal.php";
 
-include "/var/www/portal.twe.tech/includes/modals/calendar_add_modal.php";
+include "/var/www/nestogy.io/includes/modals/calendar_add_modal.php";
 
 
 //loop through IDs and create a modal for each
@@ -42,7 +42,7 @@ while ($row = mysqli_fetch_array($sql)) {
     $calendar_name = nullable_htmlentities($row['calendar_name']);
     $calendar_color = nullable_htmlentities($row['calendar_color']);
 
-    require "/var/www/portal.twe.tech/includes/modals/calendar_event_edit_modal.php";
+    require "/var/www/nestogy.io/includes/modals/calendar_event_edit_modal.php";
 
 
 }
@@ -247,5 +247,5 @@ while ($row = mysqli_fetch_array($sql)) {
 </script>
 
 <?php
-require "/var/www/portal.twe.tech/includes/footer.php";
+require "/var/www/nestogy.io/includes/footer.php";
 
