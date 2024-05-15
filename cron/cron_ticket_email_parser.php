@@ -131,7 +131,7 @@ function addTicket($contact_id, $contact_name, $contact_email, $client_id, $date
     mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Ticket', log_action = 'Create', log_description = 'Email parser: Client contact $contact_email created ticket $config_ticket_prefix$ticket_number ($subject) ($id)', log_client_id = $client_id");
 
     // Process attachments (after ticket is logged as created)
-    mkdirMissing('uploads/tickets/');
+    mkdirMissing('/var/www/portal.twe.tech/uploads/tickets/');
     foreach ($attachments as $attachment) {
 
         // Get name and extension
@@ -143,7 +143,7 @@ function addTicket($contact_id, $contact_name, $contact_email, $client_id, $date
         if (in_array($att_extension, $allowed_extensions)) {
 
             // Setup directory for this ticket ID
-            $att_dir = "uploads/tickets/" . $id . "/";
+            $att_dir = "/var/www/portal.twe.tech/uploads/tickets/" . $id . "/";
             mkdirMissing($att_dir);
 
             // Save attachment with a random name
@@ -293,7 +293,7 @@ function addReply($from_email, $date, $subject, $ticket_number, $message, $attac
         $reply_id = mysqli_insert_id($mysqli);
 
         // Process attachments
-        mkdirMissing('uploads/tickets/');
+        mkdirMissing('/var/www/portal.twe.tech/uploads/tickets/');
         foreach ($attachments as $attachment) {
 
             // Get name and extension
@@ -305,7 +305,7 @@ function addReply($from_email, $date, $subject, $ticket_number, $message, $attac
             if (in_array($att_extension, $allowed_extensions)) {
 
                 // Setup directory for this ticket ID
-                $att_dir = "uploads/tickets/" . $ticket_id . "/";
+                $att_dir = "/var/www/portal.twe.tech/uploads/tickets/" . $ticket_id . "/";
                 mkdirMissing($att_dir);
 
                 // Save attachment with a random name
