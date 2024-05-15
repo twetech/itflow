@@ -42,6 +42,10 @@ function createCompany($data, $bool = true)
 
     $db_version = $company_1_settings['config_current_database_version'];
 
+    $company_settings_sql = mysqli_query($mysqli, "INSERT INTO settings SET
+    company_id = $company_id,
+    config_current_database_version = $db_version");
+
           
     if ($sql && $reseller_sql && $company_settings_sql) {
         if ($bool) {
