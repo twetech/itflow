@@ -13,7 +13,7 @@ function merge_into_number_get_details() {
 
     // Send a GET request to post.php as post.php?merge_ticket_get_json_details=true&merge_into_ticket_number=NUMBER
     jQuery.get(
-        "ajax.php",
+        "/ajax/ajax.php",
         {merge_ticket_get_json_details: 'true', merge_into_ticket_number: merge_into_ticket_number},
         function(data){
             // If we get a response from post.php, parse it as JSON

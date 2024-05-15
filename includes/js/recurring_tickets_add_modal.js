@@ -27,7 +27,7 @@ $(clientSelectDropdown).on('select2:select', function (e) {
 function populateContactsDropdown(client_id) {
     // Send a GET request to ajax.php as ajax.php?get_client_contacts=true&client_id=NUM
     jQuery.get(
-        "ajax.php",
+        "/ajax/ajax.php",
         {get_client_contacts: 'true', client_id: client_id},
         function(data) {
 

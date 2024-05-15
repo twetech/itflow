@@ -17,6 +17,7 @@ $sql_tax = mysqli_query($mysqli,
     "SELECT `tax_name`
     FROM `taxes`");
 
+
 ?>
 
     <div class="card">
@@ -70,46 +71,74 @@ $sql_tax = mysqli_query($mysqli,
                     </thead>
                     <tbody>
                         <?php
-                        while ($row = mysqli_fetch_array($sql_tax)) {
+                        if ($view == 'monthly') {
+                            //get all payments from db
+                            $sql = mysqli_query($mysqli, 
+                                "SELECT tax_name, payment_date, payment_amount, payment_id, tax_percent
+                                FROM payments
+                                LEFT JOIN invoices ON payments.payment_invoice_id = invoices.invoice_id
+                                LEFT JOIN invoice_items ON invoices.invoice_id = invoice_items.item_invoice_id
+                                LEFT JOIN taxes ON invoice_items.item_tax_id = taxes.tax_id
+                                WHERE YEAR(payment_date) = $year
+                                GROUP BY payment_id;");
+
+                            while ($row = mysqli_fetch_array($sql)) {
+                                $tax_name = $row['tax_name'];
+                                $payment_date = $row['payment_date'];
+                                $payment_amount = $row['payment_amount'];
+
+                                $tax_percent = $row['tax_percent'];
+
+                                if ($tax_name == null) {
+                                    $tax_name = 'No Tax';
+                                }
+
+                                $payment_month = date('n', strtotime($payment_date));
+
+                                if (isset($tax_collected[$tax_name][$payment_month])) {
+                                    $tax_collected[$tax_name][$payment_month]['total_tax_due'] += $payment_amount * ($tax_percent / 100);
+                                    $tax_collected[$tax_name][$payment_month]['total_payments'] += $payment_amount;
+                                } else {
+                                    $tax_collected[$tax_name][$payment_month]['total_tax_due'] = $payment_amount * ($tax_percent / 100);
+                                    $tax_collected[$tax_name][$payment_month]['total_payments'] = $payment_amount;
+                                }
+                            }                         
+
+                        // Get all taxes from db
+                        foreach ($tax_collected as $tax_name => $monthly_payments) {
+                        
                             echo "<tr>";
-                            echo "<td>" . $row['tax_name'] . "</td>";
+                            echo "<td>" . $tax_name . "</td>";
 
                             if ($view == 'monthly') {
                                 for ($i = 1; $i <= 12; $i++) {
-                                    $monthly_tax = getMonthlyTax($row['tax_name'], $i, $year, $mysqli);
-                                    echo "<td class='text-right'>" . numfmt_format_currency($currency_format, $monthly_tax, $company_currency) . "</td>";
-                                }
-                            } else {
-                                for ($q = 1; $q <= 4; $q++) {
-                                    $quarterly_tax = getQuarterlyTax($row['tax_name'], $q, $year, $mysqli);
-                                    echo "<td class='text-right'>" . numfmt_format_currency($currency_format, $quarterly_tax, $company_currency) . "</td>";
+                                    if (isset($monthly_payments[$i])) {
+                                        ?>
+                                        <td class=''>
+                                            <div class="">
+                                                <?php
+                                                echo numfmt_format_currency($currency_format, $monthly_payments[$i]['total_payments'], $company_currency);
+                                                ?>
+                                            </div>
+                                            <div class="small">
+                                                <?php
+                                                echo numfmt_format_currency($currency_format, $monthly_payments[$i]['total_tax_due'], $company_currency);
+                                                ?>
+                                            </div>
+                                        </td>
+                                        <?php
+                                    } else {
+                                        echo "<td class='text-right'>0</td>";
+                                    }
                                 }
                             }
 
-                            // Calculate total for row and echo bold
-                            $total_tax = getTotalTax($row['tax_name'], $year, $mysqli);
-                            echo "<td class='text-right text-bold'>" . numfmt_format_currency($currency_format, $total_tax, $company_currency) . "</td>";
-                            echo "</tr>";
+                            echo "<td class='text-right'>" . numfmt_format_currency($currency_format, array_sum($monthly_payments), $company_currency) . "</td>";
                         }
+                    }
+
+
                         ?>
-                        <tr>
-                            <th>Total</th>
-                                <?php
-                                if ($view == 'monthly') {
-                                    for ($i = 1; $i <= 12; $i++) {
-                                        $monthly_tax = getMonthlyTax($row['tax_name'], $i, $year, $mysqli);
-                                        echo "<th class='text-right'>" . numfmt_format_currency($currency_format, $monthly_tax, $company_currency) . "</th>";
-                                    }
-                                } else {
-                                    for ($q = 1; $q <= 4; $q++) {
-                                        $quarterly_tax = getQuarterlyTax($row['tax_name'], $q, $year, $mysqli);
-                                        echo "<th class='text-right'>" . numfmt_format_currency($currency_format, $quarterly_tax, $company_currency) . "</th>";
-                                    }
-                                }
-                            ?>
-                            <td></td>
-                        </tr>
-                        
                     </tbody>
                 </table>
             </div>

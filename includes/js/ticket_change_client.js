@@ -29,7 +29,7 @@ function populateChangeClientModal_Clients() {
 
     // Send a GET request to ajax.php as ajax.php?get_active_clients=true
     jQuery.get(
-        "ajax.php",
+        "/ajax/ajax.php",
         {get_active_clients: 'true'},
         function(data) {
 
@@ -64,7 +64,7 @@ function populateChangeClientModal_Clients() {
 function populateChangeClientModal_Contacts(client_id) {
     // Send a GET request to ajax.php as ajax.php?get_client_contacts=true&client_id=NUM
     jQuery.get(
-        "ajax.php",
+        "/ajax/ajax.php",
         {get_client_contacts: 'true', client_id: client_id},
         function(data) {
 

@@ -45,7 +45,7 @@
     <div class="container-fluid pt-5 pb-4">
         <div class="row">
             <div class="row">
-                <div class="col-12 col-sm-3 col-md-2 mb-4 mb-sm-4">
+                <div class="col-12 col-sm-3 col-md-2 mb-4 mb-sm-4 d-print-none">
                     <h4 class="fw-bold mb-3"><a href="https://twe.tech" target="_blank" class="footer-text">ITFlow-NG </a></h4>        <span>Get ready for a better ERP.</span>
                     <div class="social-icon my-3">
                     <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-facebook"><i class='bx bxl-facebook'></i></a>
@@ -131,8 +131,27 @@ document.querySelectorAll('textarea').forEach(function(textarea) {
         if (!tinymce.get(this.id)) {
             tinymce.init({
                 selector: '#' + this.id,
-                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                plugins: 'autosave markdown link image media table',
+                toolbar: 'undo redo | restoredraft | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                promotion: false,
+                newline_behavior: 'block',
+                autosave_prefix: 'tinymce-autosave-{path}{query}-{id}-',
+            });
+        }
+    }, { once: true });
+});
+
+document.querySelectorAll('.textarea').forEach(function(textarea) {
+    textarea.addEventListener('click', function initTinyMCE() {
+        // This check ensures that TinyMCE is initialized only once for each textarea
+        if (!tinymce.get(this.id)) {
+            tinymce.init({
+                selector: '#' + this.id,
+                plugins: 'autosave markdown link image media table',
+                toolbar: 'undo redo | restoredraft | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                promotion: false,
+                newline_behavior: 'block',
+                autosave_prefix: 'tinymce-autosave-{path}{query}-{id}-',
             });
         }
     }, { once: true });

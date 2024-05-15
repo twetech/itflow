@@ -129,11 +129,11 @@ if (mysqli_num_rows($sql) == 0) {
 
     if ($contact_id) {
         // Get Contact Ticket Stats
-        $ticket_related_open = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS ticket_related_open FROM tickets WHERE ticket_status != 'Closed' AND ticket_contact_id = $contact_id ");
+        $ticket_related_open = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS ticket_related_open FROM tickets WHERE ticket_status != 5 AND ticket_contact_id = $contact_id ");
         $row = mysqli_fetch_array($ticket_related_open);
         $ticket_related_open = intval($row['ticket_related_open']);
 
-        $ticket_related_closed = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS ticket_related_closed  FROM tickets WHERE ticket_status = 'Closed' AND ticket_contact_id = $contact_id ");
+        $ticket_related_closed = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS ticket_related_closed  FROM tickets WHERE ticket_status = 5 AND ticket_contact_id = $contact_id ");
         $row = mysqli_fetch_array($ticket_related_closed);
         $ticket_related_closed = intval($row['ticket_related_closed']);
 
@@ -343,12 +343,12 @@ if (mysqli_num_rows($sql) == 0) {
             <?php
                 $sql_ticket_watchers = mysqli_query($mysqli, "SELECT * FROM ticket_watchers WHERE watcher_ticket_id = $ticket_id ORDER BY watcher_email DESC");
 
-                if ($ticket_status !== "Closed" || mysqli_num_rows($sql_ticket_watchers) > 0) { ?>
+                if ($ticket_status !== 5 || mysqli_num_rows($sql_ticket_watchers) > 0) { ?>
 
                 <div class="card card-body card-outline mb-3">
                     <h5 class="text-secondary">Watchers</h5>
 
-                    <?php if ($ticket_status !== "Closed") { ?>
+                    <?php if ($ticket_status !== 5) { ?>
                     <div class="d-print-none">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#addTicketWatcherModal"><i
                                 class="fa fa-fw fa-plus mr-2"></i>Add a Watcher</a>
@@ -363,7 +363,7 @@ if (mysqli_num_rows($sql) == 0) {
                                 ?>
                     <div class='mt-1'>
                         <i class="fa fa-fw fa-eye text-secondary ml-1 mr-2"></i><?php echo $ticket_watcher_email; ?>
-                        <?php if ($ticket_status !== "Closed") { ?>
+                        <?php if ($ticket_status !== 5) { ?>
                         <a class="confirm-link" href="/post.php?delete_ticket_watcher=<?php echo $watcher_id; ?>">
                             <i class="fas fa-fw fa-times text-secondary ml-1"></i>
                         </a>
@@ -391,7 +391,7 @@ if (mysqli_num_rows($sql) == 0) {
 
                 <!-- Ticket closure info -->
                 <?php
-                        if ($ticket_status == "Closed") {
+                        if ($ticket_status == 5) {
                             $sql_closed_by = mysqli_query($mysqli, "SELECT * FROM tickets, users WHERE ticket_closed_by = user_id");
                             $row = mysqli_fetch_array($sql_closed_by);
                             $ticket_closed_by_display = nullable_htmlentities($row['user_name']);
@@ -409,7 +409,7 @@ if (mysqli_num_rows($sql) == 0) {
 
                 <?php
                         // Ticket scheduling
-                        if ($ticket_status !== "Closed") { ?>
+                        if ($ticket_status !== 5) { ?>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-calendar-check text-secondary ml-1 mr-2"></i>Scheduled: <a href="#"
                         data-bs-toggle="modal" data-bs-target="#editTicketScheduleModal">
@@ -665,7 +665,7 @@ if (mysqli_num_rows($sql) == 0) {
                 </a>
                 <?php }
 
-                        if ($ticket_status !== "Closed") { ?>
+                        if ($ticket_status !== 5) { ?>
                 <a href="/post.php?close_ticket=<?php echo $ticket_id; ?>"
                     class="btn btn-light btn-block confirm-link" id="ticket_close">
                     <i class="fas fa-fw fa-gavel mr-2"></i>Close Ticket

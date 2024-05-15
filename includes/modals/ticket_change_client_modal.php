@@ -1,4 +1,18 @@
+
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
+
+
+<?php
+$ticket_id = $_POST['ticket_id'];
+
+$ticket = readTicket($ticket_id)[$ticket_id];
+$ticket_number = $ticket['ticket_number'];
+$ticket_prefix = $ticket['ticket_prefix'];
+$ticket_client_id = $ticket['client_id'];
+
+$clients = readClients();
+?>
+
 <div class="modal" id="clientChangeTicketModal" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content bg-dark">
@@ -19,17 +33,10 @@
                                 <span class="input-group-text"><i class="fa fa-fw fa-users"></i></span>
                             </div>
                             <select class="form-control select2" id='select2' name="new_client_id" id="changeClientSelect" required>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>New Contact</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
-                            </div>
-                            <select class="form-control select2" id='select2' name="new_contact_id" id="changeContactSelect">
+                                <option value="">Select Client</option>
+                                <?php foreach ($clients as $client) : ?>
+                                    <option value="<?php echo $client['client_id']; ?>"><?php echo $client['client_name']; ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>

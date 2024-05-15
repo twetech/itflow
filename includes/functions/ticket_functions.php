@@ -244,10 +244,9 @@ function updateTicket(
     }
 
     $ticket_data = readTicket(['ticket_id' => $ticket_id]);
-    $ticket_number = $ticket_data[$ticket_id]['ticket_prefix'] . $ticket_data[$ticket_id]['ticket_number'];
-    $subject = $ticket_data[$ticket_id]['ticket_subject'];
-    $client_id = $ticket_data[$ticket_id]['ticket_client_id'];
-
+    $ticket_number = intval($ticket_data[$ticket_id]['ticket_prefix'] . $ticket_data[$ticket_id]['ticket_number']);
+    $subject = sanitizeInput($ticket_data[$ticket_id]['ticket_subject']);
+    $client_id = intval($ticket_data[$ticket_id]['ticket_client_id']);
 
     mysqli_query($mysqli, "INSERT INTO ticket_replies SET ticket_reply = '$ticket_reply', ticket_reply_type = 'Internal', ticket_reply_time_worked = '00:01:00', ticket_reply_by = $session_user_id, ticket_reply_ticket_id = $ticket_id");
 
@@ -283,7 +282,7 @@ function deleteTicket(
     $ticket_status = sanitizeInput($row['ticket_status']);
     $client_id = intval($row['ticket_client_id']);
 
-    if ($ticket_status !== 'Closed') {
+    if ($ticket_status !== 5) {
         mysqli_query($mysqli, "DELETE FROM tickets WHERE ticket_id = $ticket_id");
 
         // Delete all ticket replies
@@ -343,7 +342,7 @@ function getUnassignedTickets() {
 
     //Count the number of unassigned tickets
 
-    $sql = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS unassigned_tickets FROM tickets WHERE ticket_assigned_to = 0 AND ticket_status != 'Closed'");
+    $sql = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS unassigned_tickets FROM tickets WHERE ticket_assigned_to = 0 AND ticket_status != 5");
     $row = mysqli_fetch_array($sql);
     $unassigned_tickets = intval($row['unassigned_tickets']);
 
@@ -359,7 +358,7 @@ function getStaleTickets() {
     $sql = mysqli_query($mysqli,
     "SELECT COUNT(ticket_id) AS stale_tickets, ticket_status FROM tickets
     LEFT JOIN ticket_replies ON ticket_id = ticket_reply_ticket_id
-    WHERE ticket_status != 'Closed'
+    WHERE ticket_status != 5
     GROUP BY ticket_id HAVING MAX(ticket_reply_created_at) < DATE_SUB(NOW(), INTERVAL 3 DAY)
     ");
     $row = mysqli_fetch_array($sql);
@@ -368,7 +367,7 @@ function getStaleTickets() {
     // Count the number of tickets without a reply older than 3 days
     $sql = mysqli_query($mysqli,
     "SELECT COUNT(ticket_id) AS stale_tickets, ticket_status, ticket_id, ticket_created_at FROM tickets
-    WHERE ticket_status != 'Closed'
+    WHERE ticket_status != 5
     AND ticket_id NOT IN (SELECT ticket_reply_ticket_id FROM ticket_replies)
     AND ticket_created_at < DATE_SUB(NOW(), INTERVAL 3 DAY)
     ");

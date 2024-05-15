@@ -1,7 +1,7 @@
 function showOTPViaLoginID(login_id) {
     // Send a GET request to ajax.php as ajax.php?get_totp_token_via_id=true&login_id=ID
     jQuery.get(
-        "ajax.php", {
+        "/ajax/ajax.php", {
             get_totp_token_via_id: 'true',
             login_id: login_id
         },

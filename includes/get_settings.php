@@ -238,10 +238,7 @@ $asset_status_array = array (
 );
 
 $ticket_status_array = array (
-    'Open',
-    'On Hold',
-    'Auto Close',
-    'Closed'
+
 );
 
 $industry_select_array = array(

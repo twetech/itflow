@@ -48,6 +48,8 @@ if (isset($_GET['client_id'])) {
 
     $currency_code = getSettingValue("company_currency");
 
+    $transaction_invoices = [];
+
     ?>
 
     <ol class="breadcrumb d-print-none">
@@ -106,6 +108,7 @@ if (isset($_GET['client_id'])) {
                             <?php
                             while ($row = mysqli_fetch_assoc($result_client_unpaid_invoices)) {
                                 $invoice_id = intval($row['invoice_id']);
+                                
                                 $invoice_number = nullable_htmlentities($row['invoice_number']);
                                 $invoice_prefix = nullable_htmlentities($row['invoice_prefix']);
                                 $invoice_date = nullable_htmlentities($row['invoice_date']);
@@ -127,69 +130,85 @@ if (isset($_GET['client_id'])) {
                 <div class="col-md-12">
                     <div class="m-3">
                         <h4>All Invoices and Associated Payments</h4>
-                        <table class="table table-sm">
-                            <tr>
-                                <th>Date</th>
-                                <th>Transaction</th>
-                                <th>Amount</th>
-                                <th>Balance</th>
-                            </tr>
-                            <?php
-                            $sql_client_transactions = "SELECT * FROM invoices 
-                                LEFT JOIN payments ON invoices.invoice_id = payments.payment_invoice_id
-                                WHERE invoices.invoice_client_id = $client_id
-                                AND invoices.invoice_status NOT LIKE 'Draft'
-                                AND invoices.invoice_status NOT LIKE 'Cancelled'
-                                ORDER BY invoices.invoice_date DESC";
-                            $result_client_transactions = mysqli_query($mysqli, $sql_client_transactions);
-                            while ($row = mysqli_fetch_assoc($result_client_transactions)) {
-                                $transaction_date = nullable_htmlentities($row['invoice_date']);
-                                $transaction_type = "Invoice" . " " . $row['invoice_prefix'] . $row['invoice_number'];
-                                $transaction_amount = floatval($row['invoice_amount']);
-                                $transaction_balance = getInvoiceBalance($row['invoice_id']);
-                                $transaction_due_date = $row['invoice_due'];
-
-                                if ($transaction_balance <= 0) {
-                                    $transaction_balance = 0;
-                                }
-
-                                // IF due date has passed, add a warning class
-                                if ((strtotime($transaction_due_date) < strtotime(date("Y-m-d"))) && ($transaction_balance > 0)) {
-                                    $transaction_balance = "<span class='text-danger'>" . numfmt_format_currency($currency_format, $transaction_balance, $currency_code) . "</span>";
-                                } else {
-                                    $transaction_balance = numfmt_format_currency($currency_format, $transaction_balance, $currency_code);
-                                }
-                                ?>
+                        <div class="card-datatable table-responsive  pt-0">                
+                            <table class="datatables-basic table border-top">
                                 <tr>
-                                    <td><?= $transaction_date; ?></td>
-                                    <td><?= $transaction_type; ?></td>
-                                    <td><?= numfmt_format_currency($currency_format, $transaction_amount, $currency_code); ?></td>
-                                    <td><?= $transaction_balance ?></td>
+                                    <th hidden>Order</th>
+                                    <th>Date</th>
+                                    <th>Transaction</th>
+                                    <th>Amount</th>
+                                    <th>Balance</th>
                                 </tr>
                                 <?php
-                                $payments = getPaymentsForInvoice($row['invoice_id']) ?? [];
-                                foreach ($payments as $payment) {
-                                    $transaction_date = nullable_htmlentities($payment['payment_date']);
-                                    $transaction_type = $payment['payment_method'];
-                                    $transaction_amount = floatval($payment['payment_amount']);
-                                    if ($payment['payment_menthod'] != "Stripe") {
-                                        $transaction_type = $transaction_type. " " . $payment['payment_reference'];
+                                $sql_client_transactions = "SELECT * FROM invoices 
+                                    LEFT JOIN payments ON invoices.invoice_id = payments.payment_invoice_id
+                                    WHERE invoices.invoice_client_id = $client_id
+                                    AND invoices.invoice_status NOT LIKE 'Draft'
+                                    AND invoices.invoice_status NOT LIKE 'Cancelled'
+                                    ORDER BY invoices.invoice_date DESC";
+                                $result_client_transactions = mysqli_query($mysqli, $sql_client_transactions);
+                                $default_order = 0;
+                                while ($row = mysqli_fetch_assoc($result_client_transactions)) {
+
+                                    if (in_array($row['invoice_id'], $transaction_invoices)) {
+                                        continue;
                                     } else {
-                                        $stripe_ref_last_4 = "...".substr($payment['payment_reference'], -4);
-                                        $transaction_type = "Online Payment";
+                                        array_push($transaction_invoices, $row['invoice_id']);
                                     }
+
+                                    $transaction_date = nullable_htmlentities($row['invoice_date']);
+                                    $transaction_type = "Invoice" . " " . $row['invoice_prefix'] . $row['invoice_number'];
+                                    $transaction_amount = floatval($row['invoice_amount']);
+                                    $transaction_balance = getInvoiceBalance($row['invoice_id']);
+                                    $transaction_due_date = $row['invoice_due'];
+
+                                    if ($transaction_balance <= 0) {
+                                        $transaction_balance = 0;
+                                    }
+
+                                    // IF due date has passed, add a warning class
+                                    if ((strtotime($transaction_due_date) < strtotime(date("Y-m-d"))) && ($transaction_balance > 0)) {
+                                        $transaction_balance = "<span class='text-danger'>" . numfmt_format_currency($currency_format, $transaction_balance, $currency_code) . "</span>";
+                                    } else {
+                                        $transaction_balance = numfmt_format_currency($currency_format, $transaction_balance, $currency_code);
+                                    }
+                                    $default_order ++;
                                     ?>
-                                    <tr class="small">
+                                    <tr>
+                                        <td hidden><?= $default_order; ?></td>
                                         <td><?= $transaction_date; ?></td>
                                         <td><?= $transaction_type; ?></td>
                                         <td><?= numfmt_format_currency($currency_format, $transaction_amount, $currency_code); ?></td>
-                                        <td></td>
+                                        <td><?= $transaction_balance ?></td>
                                     </tr>
                                     <?php
-                                }
-                            }                                
-                            ?>
-                        </table>
+                                    $payments = getPaymentsForInvoice($row['invoice_id']) ?? [];
+                                    foreach ($payments as $payment) {
+                                        $transaction_date = nullable_htmlentities($payment['payment_date']);
+                                        $transaction_type = $payment['payment_method'];
+                                        $transaction_amount = floatval($payment['payment_amount']) *-1;
+                                        if ($payment['payment_menthod'] != "Stripe") {
+                                            $transaction_type = $transaction_type. " " . $payment['payment_reference'];
+                                        } else {
+                                            $stripe_ref_last_4 = "...".substr($payment['payment_reference'], -4);
+                                            $transaction_type = "Online Payment";
+                                        }
+                                        $default_order ++;
+                                        ?>
+                                        <tr class="small">
+                                            <td hidden><?= $default_order; ?></td>
+                                            <td><?= $transaction_date; ?></td>
+                                            <td ><i class="bx bx-credit-card"></i>
+                                                <?= $transaction_type; ?></td>
+                                            <td><?= numfmt_format_currency($currency_format, $transaction_amount, $currency_code); ?></td>
+                                            <td></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }                                
+                                ?>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

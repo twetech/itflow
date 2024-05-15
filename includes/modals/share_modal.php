@@ -11,7 +11,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="ajax.php" method="GET" id="newShareLink">
+            <form action="/ajax/ajax.php" method="GET" id="newShareLink">
                 <input type="hidden" name="client_id" id="share_client_id" value="">
                 <input type="hidden" name="item_type" id="share_item_type" value="">
                 <input type="hidden" name="item_ref_id" id="share_item_ref_id" value="">

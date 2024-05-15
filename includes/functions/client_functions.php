@@ -358,4 +358,27 @@ function getClientInitials($client_id) {
     return initials($client_name);
 }
 
+function readClients() {
+    global $mysqli;
+
+    $clients = [];
+    $sql = mysqli_query($mysqli, "SELECT * FROM clients WHERE client_archived_at IS NULL ORDER BY client_name ASC");
+    while($row = mysqli_fetch_array($sql)) {
+        $clients[] = $row;
+    }
+
+    return $clients;
+}
+
+function readContacts() {
+    global $mysqli;
+
+    $contacts = [];
+    $sql = mysqli_query($mysqli, "SELECT * FROM contacts WHERE contact_archived_at IS NULL ORDER BY contact_name ASC");
+    while($row = mysqli_fetch_array($sql)) {
+        $contacts[] = $row;
+    }
+
+    return $contacts;
+}
 

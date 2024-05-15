@@ -113,7 +113,9 @@ if (isset($_GET['invoice_id'])) {
         AND
             ticket_invoice_id = 0
         AND
-            ticket_status LIKE '%close%';
+            (ticket_status = 4 OR ticket_status = 5)
+        ORDER BY
+            ticket_id DESC
     "
     );
 
@@ -262,7 +264,11 @@ if (isset($_GET['invoice_id'])) {
 
                         // Calculate the discount percentage
                         if ($item_discount > 0) {
-                            $item_discount_percent = ($item_discount / $item_subtotal) * 100;
+                            if ($item_subtotal) {
+                                $item_discount_percent = ($item_discount / $item_subtotal) * 100;
+                            } else {
+                                $item_discount_percent = 0;  // Default or error value if subtotal is zero
+                            }
                         } else {
                             $item_discount_percent = 0;
                         }
@@ -308,14 +314,16 @@ if (isset($_GET['invoice_id'])) {
                                 <input type="hidden" name="item_id" value="<?=$item_id?>" />
                                 <div id="item<?=$item_id?>" class="d-flex border rounded position-relative pe-0 item-container">
                                     <div class="row w-100 m-0 p-3">
-                                        <div class="col-md-6 col-12 mb-md-0 mb-3 ps-md-0">
+                                        <div class="col-md-7 col-12 mb-md-0 mb-3 ps-md-0">
                                             <p class="mb-2 repeater-title">Item</p>
                                             <input type="text" class="form-control invoice-item-name mb-2" value="<?= $item_name ?>" name="name"/>
-                                            <textarea class="form-control" rows="2" id="item_<?=$item_id?>_description" name="description"><?= $item_description ?></textarea>
+                                            <textarea class="form-control" rows="1" id="item_<?=$item_id?>_description" name="description">
+                                                <?= $item_description ?>
+                                            </textarea>
                                         </div>
-                                        <div class="col-md-3 col-12 mb-md-0 mb-3">
+                                        <div class="col-md-2 col-12 mb-md-0 mb-3">
                                             <p class="mb-2 repeater-title">Unit Price</p>
-                                            <input type="number" name="price" class="form-control invoice-item-price mb-2" value="<?= number_format($item_price, 2) ?>" placeholder="<?= number_format($item_price, 2) ?>"/>
+                                            <input name="price" pattern="-?[0-9]*\.?[0-9]{0,2}" class="form-control invoice-item-price mb-2" value="<?= number_format($item_price, 2) ?>" placeholder="<?= number_format($item_price, 2) ?>"/>
                                             <div class="d-flex me-1">
                                                 <span class="discount me-1"  data-bs-toggle="tooltip" data-bs-placement="top" title="Discount: <?=numfmt_format_currency($currency_format, $item_discount, $client_currency_code)?>"><?=number_format($item_discount_percent, 0)?>%</span>
                                                 <span class="tax me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Tax: <?= numfmt_format_currency($currency_format, $item_tax, $client_currency_code)?>"><?=number_format($tax_percent, 3)?>%</span>
@@ -326,17 +334,17 @@ if (isset($_GET['invoice_id'])) {
                                                 <span class="margin me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Margin"><?=number_format($item_margin*100, 0)?>%</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-2 col-12 mb-md-0 mb-3">
+                                        <div class="col-md-1 col-12 mb-md-0 mb-3">
                                             <p class="mb-2 repeater-title">Qty</p>
-                                            <input type="number" name="qty"  class="form-control invoice-item-qty" value="<?=$item_qty?>" placeholder="<?=$item_qty?>" min="" max="" />
+                                            <input name="qty" pattern="-?[0-9]*\.?[0-9]{0,2}" class="form-control" value="<?=$item_qty?>" placeholder="<?=$item_qty?>" min="" max="" />
                                         </div>
-                                        <div class="col-md-1 col-12 pe-0">
+                                        <div class="col-md-2 col-12 pe-0">
                                             <p class="mb-2 repeater-title">Line Total</p>
                                             <p class="mb-0"><?=numfmt_format_currency($currency_format, $item_total, $client_currency_code)?></p>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column align-items-center justify-content-between border-start p-2">
-                                        <a href="/post.php?delete_invoice_item=<?=$item_id?>&invoice_id=<?=$invoice_id?>">
+                                        <a href="/post.php?delete_invoice_item=<?=$item_id?>&invoice_id=<?=$invoice_id?>" class="confirm-link">
                                             <i class="bx bx-x fs-4 text-muted cursor-pointer"></i>
                                         </a>
                                         <button id="SaveItem<?=$item_id?>" type="submit" name="edit_item" class="btn btn-link text-primary p-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Save Changes" hidden>
@@ -420,10 +428,17 @@ if (isset($_GET['invoice_id'])) {
                     <div class="row py-sm-3">
                         <div class="col-md-8 mb-md-0 mb-3">
                             <div class="mb-3">
-                                <label for="note" class="form-label fw-medium">Note:</label>
-                                <textarea class="form-control" rows="2" id="note">
-                                    <?=$invoice_note?>
-                                </textarea>
+                                <form action="/post.php" method="post" autocomplete="off">
+                                    <input type="hidden" name="invoice_id" value="<?=$invoice_id?>" />
+                                    <label for="note" class="form-label fw-medium">Note:</label>
+                                    <textarea class="form-control" rows="2" id="note" name="note" value="<?=$invoice_note?>">
+                                        <?=$invoice_note?>
+                                    </textarea>
+                                    <button type="submit" name="edit_invoice_note" class="btn btn-primary mt-2">
+                                        <i class="bx bx-save
+                                        "></i> Save Note
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <div class="col-md-4 d-flex justify-content-end">

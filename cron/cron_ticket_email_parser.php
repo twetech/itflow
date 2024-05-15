@@ -239,7 +239,7 @@ function addReply($from_email, $date, $subject, $ticket_number, $message, $attac
         // Get ticket details
         $ticket_id = intval($row['ticket_id']);
         $ticket_subject = sanitizeInput($row['ticket_subject']);
-        $ticket_status = sanitizeInput($row['ticket_status']);
+        $ticket_status = intval($row['ticket_status']);
         $ticket_reply_contact = intval($row['ticket_contact_id']);
         $ticket_contact_email = sanitizeInput($row['contact_email']);
         $client_id = intval($row['ticket_client_id']);

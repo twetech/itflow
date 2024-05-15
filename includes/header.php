@@ -36,7 +36,7 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="/includes/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="/includes/assets/vendor/libs/typeahead-js/typeahead.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <link rel="stylesheet" href="/includes/assets/vendor/libs/apex-charts/apex-charts.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.1/css/responsive.bootstrap5.css" />
@@ -59,6 +59,9 @@
     <script src="/includes/assets/vendor/js/template-customizer.js"></script>
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/includes/assets/js/config.js"></script>
+
+    <!-- Loading -->
+    
 
     <!-- TinyMCE -->
     <script src="/includes/dist/vendor/tinymce/tinymce.min.js" referrerpolicy="origin"></script>

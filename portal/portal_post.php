@@ -95,7 +95,7 @@ if (isset($_POST['add_ticket_comment'])) {
         $ticket_reply_id = mysqli_insert_id($mysqli);
 
         // Update Ticket Last Response Field & set ticket to open as client has replied
-        mysqli_query($mysqli, "UPDATE tickets SET ticket_status = 'Open' WHERE ticket_id = $ticket_id AND ticket_client_id = $session_client_id LIMIT 1");
+        mysqli_query($mysqli, "UPDATE tickets SET ticket_status = 2 WHERE ticket_id = $ticket_id AND ticket_client_id = $session_client_id LIMIT 1");
 
 
         // Get ticket details &  Notify the assigned tech (if any)
@@ -212,7 +212,7 @@ if (isset($_GET['close_ticket'])) {
     if (verifyContactTicketAccess($ticket_id, "Open")) {
 
         // Close ticket
-        mysqli_query($mysqli, "UPDATE tickets SET ticket_status = 'Closed', ticket_closed_at = NOW() WHERE ticket_id = $ticket_id AND ticket_client_id = $session_client_id");
+        mysqli_query($mysqli, "UPDATE tickets SET ticket_status = 5, ticket_closed_at = NOW() WHERE ticket_id = $ticket_id AND ticket_client_id = $session_client_id");
 
         // Add reply
         mysqli_query($mysqli, "INSERT INTO ticket_replies SET ticket_reply = 'Ticket closed by $session_contact_name.', ticket_reply_type = 'Client', ticket_reply_by = $session_contact_id, ticket_reply_ticket_id = $ticket_id");

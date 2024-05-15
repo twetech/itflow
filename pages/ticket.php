@@ -74,6 +74,7 @@ if (isset($_GET['ticket_id'])) {
         
         // Ticket Status Display
         $ticket_status = nullable_htmlentities($row['ticket_status_name']);
+        $ticket_status_id = intval($row['ticket_status_id']);
         $ticket_status_color = getTicketStatusColor($ticket_status);
         $ticket_status_display = "<span class='p-2 badge rounded-pill bg-label-$ticket_status_color'>$ticket_status</span>";
 
@@ -333,7 +334,7 @@ if (isset($_GET['ticket_id'])) {
                                         <th>Time</th>
                                         <th>Time Worked</th>
                                         <th data-priority="2">By</th>
-                                        <?php if ($ticket_status != "Closed") {
+                                        <?php if ($ticket_status != 5) {
                                             echo "<th data-priority='3'>Actions</th>";
                                         } ?>
                                     </tr>
@@ -402,7 +403,7 @@ if (isset($_GET['ticket_id'])) {
                                                     <?php } ?>
                                                     <?= $ticket_reply_by_display; ?>
                                                 </td>
-                                                <?php if ($ticket_status != "Closed") { ?>
+                                                <?php if ($ticket_status != 5) { ?>
                                                 <td>
                                                     <!-- Dropdown for edit and archive -->
                                                     <div class="dropdown dropleft text-center d-print-none">
@@ -459,7 +460,7 @@ if (isset($_GET['ticket_id'])) {
                     </div>
                     <div class="collapse">
                         <div class="card-body">
-                            <?php if ($ticket_status != "Closed") { ?>
+                            <?php if ($ticket_status != 5) { ?>
                                 <input type="hidden" name="ticket_id" id="ticket_id" value="<?= $ticket_id; ?>">
                                 <input type="hidden" name="client_id" id="client_id" value="<?= $client_id; ?>">
                                 <div class="row">
@@ -493,17 +494,24 @@ if (isset($_GET['ticket_id'])) {
                                                 <span class="input-group-text"><i class="fa fa-fw fa-thermometer-half"></i></span>
                                             </div>
                                             <select class="form-control select2" id='select2' name="status" required>
-                                                <option <?php if ($ticket_status == "Open") {
-                                                                        echo "selected";
-                                                                    } ?>>Open</option>
-                                                <option <?php if ($ticket_status == "On Hold") {
-                                                                        echo "selected";
-                                                                    } ?>>On Hold</option>
-                                                <?php if ($config_ticket_autoclose) { ?>
-                                                <option <?php if ($ticket_status == 'Auto Close') {
-                                                                            echo "selected";
-                                                                        } ?>>Auto Close</option>
-                                                <?php } ?>
+                                                <?php 
+                                                
+                                                $sql_ticket_statuses = mysqli_query($mysqli, "SELECT * FROM ticket_statuses WHERE ticket_status_active = 1 AND ticket_status_visible = 1
+                                                ORDER BY ticket_status_order ASC");
+                                                while ($row = mysqli_fetch_array($sql_ticket_statuses)) {
+                                                    $ticket_status_id = intval($row['ticket_status_id']);
+                                                    $ticket_status_name = nullable_htmlentities($row['ticket_status_name']);
+                                                    $ticket_status_color = nullable_htmlentities($row['ticket_status_color']);
+                                                    $ticket_status_reply_default = intval($row['ticket_status_reply_default']);
+
+                                                    $ticket_status_selected = $ticket_status_reply_default == 1 ? "selected" : "";
+
+                                                    echo "<option value='$ticket_status_id' style='background-color: $ticket_status_color;' $ticket_status_selected>$ticket_status_name</option>";
+                                                }
+
+                                                
+                                                ?>
+
                                             </select>
                                         </div>
                                     </div>
@@ -732,12 +740,12 @@ if (isset($_GET['ticket_id'])) {
                             if ($close_ticket_button || $invoice_ticket_button) {
                             ?>
                             <div class="card card-body card-outline card-dark mb-2 d-print-none">
-                                <?php if ($invoice_ticket_button) { ?>
+                                <?php if (isset($invoice_ticket_button)) { ?>
                                 <a href="#" class="btn btn-primary btn-block mb-3 loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_invoice_add_modal.php?ticket_id=<?= $ticket_id; ?>&ticket_total_reply_time=<?= $ticket_total_reply_time; ?>">
                                     <i class="fas fa-fw fa-file-invoice mr-2"></i>Invoice Ticket
                                 </a>
                                 <?php } ?>
-                                <?php if ($close_ticket_button) { ?>
+                                <?php if (isset($close_ticket_button)) { ?>
                                 <a href="/post.php?close_ticket=<?= $ticket_id; ?>" class="btn btn-secondary btn-block confirm-link" id="ticket_close">
                                     <i class="fas fa-fw fa-gavel mr-2"></i>Close Ticket
                                 </a>

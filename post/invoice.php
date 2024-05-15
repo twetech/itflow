@@ -32,6 +32,15 @@ if (isset($_POST['edit_invoice'])) {
     referWithAlert("Invoice edited", "success");
 }
 
+if (isset($_POST['edit_invoice_note'])) {
+
+    $invoice_id = intval($_POST['invoice_id']);
+    $note = sanitizeInput($_POST['note']);
+
+    mysqli_query($mysqli,"UPDATE invoices SET invoice_note = '$note' WHERE invoice_id = $invoice_id");
+    referWithAlert("Notes added", "success");
+}
+
 if (isset($_POST['add_invoice_copy'])) {
 
     $invoice_id = intval($_POST['invoice_id']);
@@ -207,7 +216,7 @@ if (isset($_POST['edit_item'])) {
     $recurring_id = intval($_POST['recurring_id']);
     $item_id = intval($_POST['item_id']);
     $name = sanitizeInput($_POST['name']);
-    $description = sanitizeInput($_POST['description']);
+    $description = ($_POST['description']);
     $qty = floatval($_POST['qty']);
     $price = floatval($_POST['price']);
     $discount = sanitizeInput($_POST['discount']);

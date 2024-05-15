@@ -4,9 +4,9 @@
 if (isset($client_page)) { 
     $clientMenuItems = [
     [
-        'title' => 'Home',
-        'icon' => 'bx bx-home',
-        'link' => '/pages/dashboard.php'
+        'title' => 'All Clients',
+        'icon' => 'bx bx-briefcase',
+        'link' => '/pages/clients.php'
     ],
     [
         'title' => 'Client Overview',
@@ -63,20 +63,14 @@ if (isset($client_page)) {
 } else {
     $menuItems = [
         [
-            'title' => 'Dashboard',
-            'icon' => 'bx bx-home',
-            'link' => '/pages/dashboard.php'
-        ],
-        [
-            'title' => 'Search',
-            'icon' => 'bx bx-search',
-            'link' => '/pages/global_search.php'
+            'title' => 'Clients',
+            'icon' => 'bx bx-briefcase',
+            'link' => '/pages/clients.php'
         ],
         [
             'title' => 'Support',
             'icon' => 'bx bx-support',
             'children' => [
-                ['title' => 'Clients', 'link' => '/pages/clients.php', 'icon' => 'bx bx-briefcase'],
                 ['title' => 'Tickets', 'link' => '/pages/tickets.php', 'icon' => 'bx bx-first-aid'],
                 ['title' => 'Trips', 'link' => '/pages/trips.php', 'icon' => 'bx bx-car'],
                 ['title' => 'Projects', 'link' => '/pages/projects.php', 'icon' => 'bx bx-task'],
@@ -262,11 +256,10 @@ $num_notifications = mysqli_num_rows($sql_notifications);
 
 if (isset($client_page)) {
     $nav_title = 'TWE: '.$client_name;
-    $nav_title_link = '/pages/client/client_overview.php?client_id=' . $client_id;
 } else {
     $nav_title = 'TWE Technologies';
-    $nav_title_link = '/pages/dashboard.php';
 }
+$nav_title_link = '/pages/dashboard.php';
 
 ?>
 

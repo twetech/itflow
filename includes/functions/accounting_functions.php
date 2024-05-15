@@ -108,7 +108,7 @@ function getUnbilledHours($year, $month)
     $sql = "SELECT SUM(ticket_reply_time_worked) AS total_unbilled_hours FROM ticket_replies
         LEFT JOIN tickets ON ticket_replies.ticket_reply_ticket_id = tickets.ticket_id
         WHERE YEAR(ticket_created_at) = $year
-        AND ticket_status = 'Closed'
+        AND ticket_status = 5
         AND ticket_billable = '1'
         AND ticket_invoice_id IS NULL $sql_month_query
     ";
@@ -401,7 +401,6 @@ function getMonthlyMarkup($year, $month)
 
 function clientSendDisconnect($client_id){
 
-    $client_sql = 
 
     // Get the primary contact
     $sql_contact = mysqli_query($mysqli, "SELECT * FROM contacts WHERE contact_client_id = $client_id AND contact_primary = 1");

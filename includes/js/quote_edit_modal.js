@@ -2,7 +2,7 @@ function populateQuoteEditModal(quote_id) {
 
     // Send a GET request to ajax.php as ajax.php?quote_get_json_details=true&quote_id=NUM
     jQuery.get(
-        "ajax.php",
+        "/ajax/ajax.php",
         {quote_get_json_details: 'true', quote_id: quote_id},
         function(data) {
 

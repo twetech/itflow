@@ -162,11 +162,11 @@ while ($row = mysqli_fetch_array($sql)) {
                 $event_title = json_encode($row['ticket_prefix'] . $row['ticket_number'] . " created - " . $row['ticket_subject'] . " " . $username . "{" . $ticket_status . "}");
                 $event_start = json_encode($row['ticket_created_at']);
 
-                if ($ticket_status == "New") {
+                if ($ticket_status == 1) {
                     $event_color = "red";
-                } elseif ($ticket_status == "Open") {
+                } elseif ($ticket_status == 2) {
                     $event_color = "blue";
-                }  elseif ($ticket_status == "On Hold") {
+                }  elseif ($ticket_status == 3) {
                     $event_color = "grey";
                 } else {
                     $event_color = "black";
@@ -188,7 +188,7 @@ while ($row = mysqli_fetch_array($sql)) {
                 }
 
                 if (strtotime($row['ticket_schedule']) < time()) {
-                    if ($row['ticket_status'] == 'On Hold') {
+                    if ($row['ticket_status'] == 3) {
                         $event_color = "red";
                     } else {
                         $event_color = "green";

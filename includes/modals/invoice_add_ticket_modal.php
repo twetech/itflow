@@ -27,10 +27,10 @@
                             $ticket_status = nullable_htmlentities($row['ticket_status']);
 
                             switch ($ticket_status) {
-                                case 'Closed':
+                                case 5:
                                     $ticket_status_class = 'badge-dark';
                                     break;
-                                case 'Auto Close':
+                                case 4:
                                     $ticket_status_class = 'badge-warning';
                                     break;
                                 default:

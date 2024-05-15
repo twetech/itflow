@@ -17,7 +17,7 @@ if (!isset($_GET['status'])) {
 } elseif (isset($_GET['status']) && ($_GET['status']) == 'Open') {
     $status = 'Open';
     $ticket_status_snippet = "ticket_status != '5'";
-} elseif (isset($_GET['status']) && ($_GET['status']) == '5') {
+} elseif (isset($_GET['status']) && ($_GET['status']) == 'Closed') {
     $status = 'Closed';
     $ticket_status_snippet = "ticket_status = '5'";
 } else {

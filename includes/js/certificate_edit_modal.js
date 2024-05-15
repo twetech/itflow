@@ -2,7 +2,7 @@ function populateCertificateEditModal(client_id, certificate_id) {
 
     // Send a GET request to post.php as post.php?certificate_get_json_details=true&client_id=NUM&certificate_id=NUM
     jQuery.get(
-        "ajax.php",
+        "/ajax/ajax.php",
         {certificate_get_json_details: 'true', client_id: client_id, certificate_id: certificate_id},
         function(data) {
 

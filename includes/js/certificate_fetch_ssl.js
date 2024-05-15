@@ -17,7 +17,7 @@ function fetchSSL(type)
 
     //Send a GET request to post.php as post.php?certificate_fetch_parse_json_details=TRUE&domain=DOMAIN
     jQuery.get(
-        "ajax.php",
+        "/ajax/ajax.php",
         {certificate_fetch_parse_json_details: 'TRUE', domain: domain},
         function(data) {
             //If we get a response from post.php, parse it as JSON

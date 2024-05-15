@@ -43,7 +43,7 @@ $sql_stale_tickets = mysqli_query(
     "SELECT * FROM tickets
     WHERE ticket_client_id = $client_id
     AND ticket_updated_at < CURRENT_DATE - INTERVAL 3 DAY
-    AND ticket_status != 'Closed'
+    AND ticket_status != 5
     ORDER BY ticket_updated_at DESC"
 );
 
@@ -354,7 +354,7 @@ $sql_asset_retire = mysqli_query(
 
             // Send a POST request to ajax.php as ajax.php with data client_set_notes=true, client_id=NUM, notes=NOTES
             jQuery.post(
-                "ajax.php",
+                "/ajax/ajax.php",
                 {
                     client_set_notes: 'TRUE',
                     client_id: client_id,

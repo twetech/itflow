@@ -7,22 +7,22 @@ $order = "DESC";
 
 require_once "/var/www/portal.twe.tech/includes/inc_all.php";
 
-if (isset($_GET['status']) && ($_GET['status']) == 'Open') {
+if (isset($_GET['status']) && ($_GET['status']) == 2) {
     $status = 'Open';
-    $ticket_status_snippet = "AND ticket_status != 'Closed'";
-} elseif (isset($_GET['status']) && ($_GET['status']) == 'Closed') {
+    $ticket_status_snippet = "AND ticket_status != 5";
+} elseif (isset($_GET['status']) && ($_GET['status']) == 5) {
     $status = 'Closed';
-    $ticket_status_snippet = "AND ticket_status = 'Closed'";
+    $ticket_status_snippet = "AND ticket_status = 5";
 } else {
     $status = 'Open';
-    $ticket_status_snippet = "AND ticket_status != 'Closed'";
+    $ticket_status_snippet = "AND ticket_status != 5";
 }
 
 if (($_GET['billable']) == '1') {
     if (isset($_GET['unbilled'])) {
         $billable = 1;
         $ticket_billable_snippet = "AND ticket_billable = 1 AND ticket_invoice_id = 0";
-        $ticket_status_snippet = 'AND (ticket_status = "Closed" OR ticket_status = "Auto-Close")';
+        $ticket_status_snippet = 'AND (ticket_status = 5 OR ticket_status = 4)';
     }
 } else {
     $billable = 0;
@@ -48,12 +48,12 @@ $sql = mysqli_query(
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 //Get Total tickets open
-$sql_total_tickets_open = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_open FROM tickets WHERE ticket_client_id = $client_id AND ticket_status != 'Closed'");
+$sql_total_tickets_open = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_open FROM tickets WHERE ticket_client_id = $client_id AND ticket_status != 5");
 $row = mysqli_fetch_array($sql_total_tickets_open);
 $total_tickets_open = intval($row['total_tickets_open']);
 
 //Get Total tickets closed
-$sql_total_tickets_closed = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_closed FROM tickets WHERE ticket_client_id = $client_id AND ticket_status = 'Closed'");
+$sql_total_tickets_closed = mysqli_query($mysqli, "SELECT COUNT(ticket_id) AS total_tickets_closed FROM tickets WHERE ticket_client_id = $client_id AND ticket_status = 5");
 $row = mysqli_fetch_array($sql_total_tickets_closed);
 $total_tickets_closed = intval($row['total_tickets_closed']);
 
@@ -106,7 +106,7 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
                     $ticket_updated_at = nullable_htmlentities($row['ticket_updated_at']);
                     $ticket_updated_at_time_ago = timeAgo($row['ticket_updated_at']);
                     if (empty($ticket_updated_at)) {
-                        if ($ticket_status == "Closed") {
+                        if ($ticket_status == 5) {
                             $ticket_updated_at_display = "<p>Never</p>";
                         } else {
                             $ticket_updated_at_display = "<p class='text-danger'>Never</p>";
@@ -130,7 +130,7 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
 
                     $ticket_assigned_to = intval($row['ticket_assigned_to']);
                     if (empty($ticket_assigned_to)) {
-                        if ($ticket_status == "Closed") {
+                        if ($ticket_status == 5) {
                             $ticket_assigned_to_display = "<p>Not Assigned</p>";
                         } else {
                             $ticket_assigned_to_display = "<p class='text-danger'>Not Assigned</p>";

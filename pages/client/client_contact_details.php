@@ -486,7 +486,7 @@ if (isset($_GET['contact_id'])) {
                                 $ticket_created_at = nullable_htmlentities($row['ticket_created_at']);
                                 $ticket_updated_at = nullable_htmlentities($row['ticket_updated_at']);
                                 if (empty($ticket_updated_at)) {
-                                    if ($ticket_status == "Closed") {
+                                    if ($ticket_status == 5) {
                                         $ticket_updated_at_display = "<p>Never</p>";
                                     } else {
                                         $ticket_updated_at_display = "<p class='text-danger'>Never</p>";
@@ -496,7 +496,7 @@ if (isset($_GET['contact_id'])) {
                                 }
                                 $ticket_closed_at = nullable_htmlentities($row['ticket_closed_at']);
 
-                                if ($ticket_status == "Open") {
+                                if ($ticket_status == 3) {
                                     $ticket_status_display = "<span class='p-2 badge badge-primary'>$ticket_status</span>";
                                 } elseif ($ticket_status == "Working") {
                                     $ticket_status_display = "<span class='p-2 badge badge-success'>$ticket_status</span>";
@@ -515,7 +515,7 @@ if (isset($_GET['contact_id'])) {
                                 }
                                 $ticket_assigned_to = intval($row['ticket_assigned_to']);
                                 if (empty($ticket_assigned_to)) {
-                                    if ($ticket_status == "Closed") {
+                                    if ($ticket_status == 5) {
                                         $ticket_assigned_to_display = "<p>Not Assigned</p>";
                                     } else {
                                         $ticket_assigned_to_display = "<p class='text-danger'>Not Assigned</p>";
@@ -567,7 +567,7 @@ if (isset($_GET['contact_id'])) {
 
             // Send a POST request to ajax.php as ajax.php with data contact_set_notes=true, contact_id=NUM, notes=NOTES
             jQuery.post(
-                "ajax.php",
+                "/ajax/ajax.php",
                 {
                     contact_set_notes: 'TRUE',
                     contact_id: contact_id,
@@ -583,7 +583,7 @@ if (isset($_GET['contact_id'])) {
         function generatePassword(type, id) {
             // Send a GET request to ajax.php as ajax.php?get_readable_pass=true
             jQuery.get(
-                "ajax.php", {
+                "/ajax/ajax.php", {
                     get_readable_pass: 'true'
                 },
                 function(data) {

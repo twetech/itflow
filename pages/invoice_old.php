@@ -105,7 +105,9 @@ if (isset($_GET['invoice_id'])) {
         AND
             ticket_invoice_id = 0
         AND
-            ticket_status LIKE '%close%';
+            (ticket_status = 4 OR ticket_status = 5)
+        ORDER BY
+            ticket_id DESC
     ");
 
 

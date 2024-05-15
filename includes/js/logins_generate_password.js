@@ -1,7 +1,7 @@
 function generatePassword(login_id) {
     // Send a GET request to ajax.php as ajax.php?get_readable_pass=true
     jQuery.get(
-        "ajax.php", {
+        "/ajax/ajax.php", {
             get_readable_pass: 'true'
         },
         function(data) {

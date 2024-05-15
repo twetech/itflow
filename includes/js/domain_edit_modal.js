@@ -2,7 +2,7 @@ function populateDomainEditModal(client_id, domain_id) {
 
     // Send a GET request to post.php as post.php?domain_get_json_details=true&client_id=NUM&domain_id=NUM
     jQuery.get(
-        "ajax.php",
+        "/ajax/ajax.php",
         {domain_get_json_details: 'true', client_id: client_id, domain_id: domain_id},
         function(data) {
 

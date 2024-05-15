@@ -2,7 +2,7 @@ function populateRecurringTicketEditModal(client_id, ticket_id) {
 
     // Send a GET request to ajax.php as ajax.php?recurring_ticket_get_json_details=true&client_id=NUM&ticket_id=NUM
     jQuery.get(
-        "ajax.php",
+        "/ajax/ajax.php",
         {recurring_ticket_get_json_details: 'true', client_id: client_id, ticket_id: ticket_id},
         function(data){
 

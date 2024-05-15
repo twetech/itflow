@@ -118,7 +118,7 @@ $rows = 0;
                             AND
                                 ticket_client_id = $client_id
                             AND
-                                ticket_status = 'Closed'
+                                ticket_status = 5
                             AND
                                 ticket_billable = 1
                         ");
@@ -137,7 +137,7 @@ $rows = 0;
                             AND
                                 ticket_client_id = $client_id
                             AND
-                                ticket_status = 'Closed'
+                                ticket_status = 5
                             AND
                                 ticket_billable = 1
                             AND

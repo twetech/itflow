@@ -22,6 +22,7 @@ if (isset($_POST['add_ticket'])) {
         'ticket_vendor' => intval($_POST['vendor_id']),
         'ticket_asset' => intval($_POST['asset_id']),
         'ticket_billable' => intval($_POST['billable']),
+        'ticket_status' => 1,
         'ticket_use_primary_contact' => intval($_POST['use_primary_contact']),
     ];
 
@@ -632,9 +633,9 @@ if (isset($_POST['add_ticket_reply'])) {
     $ticket_reply_id = mysqli_insert_id($mysqli);
 
     // Update Ticket Last Response Field
-    mysqli_query($mysqli, "UPDATE tickets SET ticket_status = '$ticket_status' WHERE ticket_id = $ticket_id");
+    mysqli_query($mysqli, "UPDATE tickets SET ticket_status = $ticket_status WHERE ticket_id = $ticket_id");
 
-    if ($ticket_status == 'Closed') {
+    if ($ticket_status == 5) {
         mysqli_query($mysqli, "UPDATE tickets SET ticket_closed_at = NOW() WHERE ticket_id = $ticket_id");
     }
 
@@ -674,10 +675,10 @@ if (isset($_POST['add_ticket_reply'])) {
 
             // Slightly different email subject/text depending on if this update closed the ticket or not
 
-            if ($ticket_status == 'Closed') {
+            if ($ticket_status == 5) {
                 $subject = "Ticket closed - [$ticket_prefix$ticket_number] - $ticket_subject | (do not reply)";
                 $body = "Hello $contact_name,<br><br>Your ticket regarding $ticket_subject has been closed.<br><br>--------------------------------<br>$ticket_reply<br>--------------------------------<br><br>We hope the request/issue was resolved to your satisfaction. If you need further assistance, please raise a new ticket using the below details. Please do not reply to this email. <br><br>Ticket: $ticket_prefix$ticket_number<br>Subject: $ticket_subject<br>Portal: https://$config_base_url/portal/ticket.php?id=$ticket_id<br><br>--<br>$company_name - Support<br>$config_ticket_from_email<br>$company_phone";
-            } elseif ($ticket_status == 'Auto Close') {
+            } elseif ($ticket_status == 4) {
                 $subject = "Ticket update - [$ticket_prefix$ticket_number] - $ticket_subject | (pending closure)";
                 $body = "<i style=\'color: #808080\'>##- Please type your reply above this line -##</i><br><br>Hello $contact_name,<br><br>Your ticket regarding $ticket_subject has been updated and is pending closure.<br><br>--------------------------------<br>$ticket_reply<br>--------------------------------<br><br>If your request/issue is resolved, you can simply ignore this email. If you need further assistance, please respond to let us know!  <br><br>Ticket: $ticket_prefix$ticket_number<br>Subject: $ticket_subject<br>Status: $ticket_status<br>Portal: https://$config_base_url/portal/ticket.php?id=$ticket_id<br><br>--<br>$company_name - Support<br>$config_ticket_from_email<br>$company_phone";
             } else {
@@ -835,13 +836,12 @@ if (isset($_POST['change_client_ticket'])) {
 
     $ticket_id = intval($_POST['ticket_id']);
     $client_id = intval($_POST['new_client_id']);
-    $contact_id = intval($_POST['new_contact_id']);
 
     // Set any/all existing replies to internal
     mysqli_query($mysqli, "UPDATE ticket_replies SET ticket_reply_type = 'Internal' WHERE ticket_reply_ticket_id = $ticket_id");
 
-    // Update ticket client & contact
-    mysqli_query($mysqli, "UPDATE tickets SET ticket_client_id = $client_id, ticket_contact_id = $contact_id WHERE ticket_id = $ticket_id LIMIT 1");
+    // Update ticket client
+    mysqli_query($mysqli, "UPDATE tickets SET ticket_client_id = $client_id, ticket_contact_id = 0 WHERE ticket_id = $ticket_id LIMIT 1");
 
     //Logging
     mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Ticket Reply', log_action = 'Modify', log_description = '$session_name modified ticket - client changed', log_ip = '$session_ip', log_user_agent = '$session_user_agent', log_client_id = $client_id, log_user_id = $session_user_id, log_entity_id = $ticket_id");
@@ -857,7 +857,7 @@ if (isset($_GET['close_ticket'])) {
 
     $ticket_id = intval($_GET['close_ticket']);
 
-    mysqli_query($mysqli, "UPDATE tickets SET ticket_status = 'Closed', ticket_closed_at = NOW(), ticket_closed_by = $session_user_id WHERE ticket_id = $ticket_id") or die(mysqli_error($mysqli));
+    mysqli_query($mysqli, "UPDATE tickets SET ticket_status = 5, ticket_closed_at = NOW(), ticket_closed_by = $session_user_id WHERE ticket_id = $ticket_id") or die(mysqli_error($mysqli));
 
     mysqli_query($mysqli, "INSERT INTO ticket_replies SET ticket_reply = 'Ticket closed.', ticket_reply_type = 'Internal', ticket_reply_time_worked = '00:01:00', ticket_reply_by = $session_user_id, ticket_reply_ticket_id = $ticket_id");
 
@@ -1266,7 +1266,7 @@ if (isset($_POST['edit_ticket_schedule'])) {
         "UPDATE tickets SET
         ticket_schedule = '$schedule',
         ticket_onsite = '$onsite',
-        ticket_status = 'On Hold'
+        ticket_status = 3
         WHERE ticket_id = $ticket_id"
     );
 
@@ -1275,7 +1275,7 @@ if (isset($_POST['edit_ticket_schedule'])) {
     //TODO make this configurable
     $start = date('Y-m-d H:i:s', strtotime($schedule) - 7200);
     $end = date('Y-m-d H:i:s', strtotime($schedule) + 7200);
-    $sql = mysqli_query($mysqli, "SELECT * FROM tickets WHERE ticket_schedule BETWEEN '$start' AND '$end' AND ticket_id != $ticket_id AND ticket_status = 'Scheduled'");
+    $sql = mysqli_query($mysqli, "SELECT * FROM tickets WHERE ticket_schedule BETWEEN '$start' AND '$end' AND ticket_id != $ticket_id AND ticket_status = 3");
     if (mysqli_num_rows($sql) > 0) {
         $conflicting_tickets = [];
         while ($row = mysqli_fetch_array($sql)) {
@@ -1438,7 +1438,7 @@ if (isset($_GET['cancel_ticket_schedule'])) {
     $ticket_schedule = sanitizeInput($row['ticket_schedule']);
     $ticket_cal_str = sanitizeInput($row['ticket_cal_str']);
 
-    mysqli_query($mysqli, "UPDATE tickets SET ticket_schedule = NULL, ticket_status = 'Open' WHERE ticket_id = $ticket_id");
+    mysqli_query($mysqli, "UPDATE tickets SET ticket_schedule = NULL, ticket_status = 2 WHERE ticket_id = $ticket_id");
 
     //Create iCal event
     $cal_str = createiCalStrCancel($ticket_cal_str);
