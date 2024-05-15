@@ -7,11 +7,11 @@
 header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
 
 $session_company_id = 1;
-require_once '/var/www/portal.twe.tech/includes/config.php';
+require_once '/var/www/nestogy.io/includes/config.php';
 
-require_once '/var/www/portal.twe.tech/includes/functions/functions.php';
+require_once '/var/www/nestogy.io/includes/functions/functions.php';
 
-require_once '/var/www/portal.twe.tech/includes/get_settings.php';
+require_once '/var/www/nestogy.io/includes/get_settings.php';
 
 
 if (empty($config_smtp_host)) {

@@ -1,9 +1,11 @@
 <?php
-require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 
-$sql = mysqli_query($mysqli,"SELECT * FROM companies, settings WHERE companies.company_id = settings.company_id AND companies.company_id = 1");
-
+$sql = mysqli_query($mysqli,"SELECT * FROM companies 
+    LEFT JOIN settings ON companies.company_id = settings.company_id
+    WHERE companies.company_id = $session_company_id");
+    
 $row = mysqli_fetch_array($sql);
 $company_id = intval($row['company_id']);
 $company_name = nullable_htmlentities($row['company_name']);
@@ -30,6 +32,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
         <div class="card-body">
             <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="company_id" value="<?php echo $company_id; ?>">
 
                 <div class="form-group">
                     <label>Name <strong class="text-danger">*</strong></label>
@@ -145,5 +148,5 @@ $company_initials = nullable_htmlentities(initials($company_name));
     </div>
 
 <?php
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';
 

@@ -9,7 +9,7 @@ global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_i
 
 if (isset($_POST['add_client'])) {
 
-    require_once '/var/www/portal.twe.tech/post/models/client_model.php';
+    require_once '/var/www/nestogy.io/post/models/client_model.php';
 
 
     validateAdminRole();
@@ -63,7 +63,7 @@ if (isset($_POST['add_client'])) {
 
 if (isset($_POST['edit_client'])) {
 
-    require_once '/var/www/portal.twe.tech/post/models/client_model.php';
+    require_once '/var/www/nestogy.io/post/models/client_model.php';
 
     validateAdminRole();
 

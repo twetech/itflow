@@ -10,12 +10,6 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-if (isset($_GET['tenant_id'])) {
-    $database = $_GET['tenant_id'];
-    if ($database == 'twe') {
-        $database = 'itflow';
-    }
-}
 
 //Check to see if setup is enabled
 if (!isset($config_enable_setup) || $config_enable_setup == 1) {
@@ -27,8 +21,10 @@ if (!isset($config_enable_setup) || $config_enable_setup == 1) {
 if (!isset($_SESSION['logged']) || !$_SESSION['logged']) {
     if ($_SERVER["REQUEST_URI"] == "/") {
         header("Location: /pages/login.php");
+        exit;
     } else {
         header("Location: /pages/login.php?last_visited=" . base64_encode($_SERVER["REQUEST_URI"]) );
+        exit;
     }
     exit;
 }
@@ -39,14 +35,58 @@ $session_user_agent = sanitizeInput($_SERVER['HTTP_USER_AGENT']);
 
 $session_user_id = intval($_SESSION['user_id']);
 
-$sql = mysqli_query($mysqli, "SELECT * FROM users, user_settings WHERE users.user_id = user_settings.user_id AND users.user_id = $session_user_id");
-$row = mysqli_fetch_array($sql);
+
+// Get companies associated with the user
+$sql = mysqli_query($mysqli, "SELECT * FROM users
+    LEFT JOIN user_companies ON user_id = user_company_user_id
+    WHERE user_id = $session_user_id");
+
+
+// if multiple companies, get the send to the company selection page which will set the session company_id
+if (mysqli_num_rows($sql) > 1) {
+    error_log("Multiple companies found for the user");
+    $session_multiple_companies = true;
+    if (!isset($_SESSION['company_id'])) {
+        error_log("No company_id set in session");
+        header("Location: /pages/company_select.php");
+        exit;
+    } else {
+        $session_company_id = intval($_SESSION['company_id']);
+        error_log("Company ID set in session: $session_company_id");
+    }
+
+} else if (mysqli_num_rows($sql) == 0) {
+    // No companies found for the user
+    echo "No companies found for the user";
+    exit;
+} else if (mysqli_num_rows($sql) == 1) {
+    // Set the session company_id
+    $row = mysqli_fetch_assoc($sql);
+    $session_company_id = intval($row['user_company_company_id']);
+    error_log("Company ID set in session: $session_company_id");
+    error_log("User ID set in session: $session_user_id");
+}
+
+
+
+// Get the user's details
+$sql = mysqli_query($mysqli, "SELECT * FROM users
+    LEFT JOIN user_settings ON users.user_id = user_settings.user_id
+    LEFT JOIN user_companies ON users.user_id = user_company_user_id
+    LEFT JOIN companies ON user_company_company_id = company_id
+    WHERE users.user_id = $session_user_id AND user_company_company_id = $session_company_id");
+
+$row = mysqli_fetch_assoc($sql);
+
+$session_user_id = intval($row['user_id']);
 $session_name = sanitizeInput($row['user_name']);
 $session_email = $row['user_email'];
 $session_avatar = $row['user_avatar'];
 $session_token = $row['user_token'];
 $session_user_role = intval($row['user_role']);
+$session_user_company_id = $session_company_id;
 if ($session_user_role == 3) {
+
     $session_user_role_display = "Administrator";
 } elseif ($session_user_role == 2) {
     $session_user_role_display = "Technician";
@@ -56,13 +96,11 @@ if ($session_user_role == 3) {
 $session_user_config_force_mfa = intval($row['user_config_force_mfa']);
 $user_config_records_per_page = intval($row['user_config_records_per_page']);
 
-$sql = mysqli_query($mysqli, "SELECT * FROM companies, settings WHERE settings.company_id = companies.company_id AND companies.company_id = 1");
-$row = mysqli_fetch_array($sql);
-
 $session_company_name = $row['company_name'];
 $session_company_country = $row['company_country'];
 $session_company_locale = $row['company_locale'];
 $session_company_currency = $row['company_currency'];
+$session_company_reseller = $row['company_reseller'] == 1 ? true : false;
 $session_timezone = $row['config_timezone'];
 
 // Set Timezone to the companies timezone
@@ -75,7 +113,7 @@ date_default_timezone_set($session_timezone);
 //Set Currency Format
 $currency_format = numfmt_create($session_company_locale, NumberFormatter::CURRENCY);
 
-require_once "/var/www/portal.twe.tech/includes/get_settings.php";
+require_once "/var/www/nestogy.io/includes/get_settings.php";
 
 
 //Detects if using an Apple device and uses Apple Maps instead of google
@@ -95,4 +133,8 @@ $session_mobile = isMobile();
 //Get Notification Count for the badge on the top nav
 $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT('notification_id') AS num FROM notifications WHERE (notification_user_id = $session_user_id OR notification_user_id = 0) AND notification_dismissed_at IS NULL"));
 $num_notifications = $row['num'];
+
+// Get localization array from localizations/ for the company's locale
+$localization = getLocalization($session_company_locale);
+
 

@@ -6,15 +6,15 @@
  * Always returns data in JSON format, unless otherwise specified
  */
 
-require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
+require_once "/var/www/nestogy.io/includes/tenant_db.php";
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/nestogy.io/includes/config.php";
 
-require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
+require_once "/var/www/nestogy.io/includes/functions/functions.php";
 
-require_once "/var/www/portal.twe.tech/includes/check_login.php";
+require_once "/var/www/nestogy.io/includes/check_login.php";
 
-require_once "/var/www/portal.twe.tech/includes/rfc6238.php";
+require_once "/var/www/nestogy.io/includes/rfc6238.php";
 
 
 /*
@@ -675,7 +675,7 @@ if (isset($_GET['get_modal'])) {
     $item_id = $_GET['item_id'];
     foreach ($modal as $modal_name) {
 
-        require_once "/var/www/portal.twe.tech/includes/modals/$modal_name.php";
+        require_once "/var/www/nestogy.io/includes/modals/$modal_name.php";
     }
     
 

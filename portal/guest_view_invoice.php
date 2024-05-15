@@ -1,8 +1,8 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/portal/guest_header.php";
+require_once "/var/www/nestogy.io/portal/guest_header.php";
 
-require_once "/var/www/portal.twe.tech/portal/portal_header.php";
+require_once "/var/www/nestogy.io/portal/portal_header.php";
 
 if (!isset($_GET['invoice_id'], $_GET['url_key'])) {
     echo "<br><h2>Oops, something went wrong! Please raise a ticket if you believe this is an error.</h2>";
@@ -77,7 +77,7 @@ $company_website = nullable_htmlentities($row['company_website']);
 $company_logo = nullable_htmlentities($row['company_logo']);
 
 if (!empty($company_logo)) {
-    $company_logo_base64 = base64_encode(file_get_contents("/var/www/portal.twe.tech/uploads/settings/$company_logo"));
+    $company_logo_base64 = base64_encode(file_get_contents("/var/www/nestogy.io/uploads/settings/$company_logo"));
 }
 $company_locale = nullable_htmlentities($row['company_locale']);
 $config_invoice_footer = nullable_htmlentities($row['config_invoice_footer']);

@@ -76,7 +76,7 @@ if(isset($_POST['edit_location'])){
 
     validateAdminRole();
 
-    require_once '/var/www/portal.twe.tech/post/models/client_locations_model.php';
+    require_once '/var/www/nestogy.io/post/models/client_locations_model.php';
 
 
     $location_id = intval($_POST['location_id']);

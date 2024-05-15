@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/inc_all_reports.php";
+require_once "/var/www/nestogy.io/includes/inc_all_reports.php";
 
 validateTechRole();
 
@@ -132,5 +132,5 @@ $sql_clients = mysqli_query($mysqli, "SELECT client_id, client_name FROM clients
     </div>
 
 <?php
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';
 

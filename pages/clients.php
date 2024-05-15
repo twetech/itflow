@@ -8,7 +8,7 @@ $datatable_order = "[[0, 'asc']]";
 $datatable_settings = ",
     columnDefs: [{ visible: false, targets: 0 }]";
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 // Leads Query
 
@@ -29,17 +29,25 @@ if($leads == 1){
 $sql = mysqli_query(
     $mysqli,
     "
-    SELECT SQL_CALC_FOUND_ROWS clients.*, contacts.*, locations.*, GROUP_CONCAT(tags.tag_name) AS tag_names
-    FROM clients
-    LEFT JOIN contacts ON clients.client_id = contacts.contact_client_id AND contact_primary = 1
-    LEFT JOIN locations ON clients.client_id = locations.location_client_id AND location_primary = 1
-    LEFT JOIN client_tags ON client_tags.client_tag_client_id = clients.client_id
-    LEFT JOIN tags ON tags.tag_id = client_tags.client_tag_tag_id
-    WHERE clients.client_archived_at IS NULL
-      AND clients.client_lead = $leads
-    GROUP BY clients.client_id
-    ORDER BY $sort $order
-   
+    SELECT SQL_CALC_FOUND_ROWS 
+    clients.*,
+    MAX(contacts.contact_id) AS contact_id,
+    MAX(contacts.contact_name) AS contact_name,
+    -- Include other necessary columns from contacts table using MAX or appropriate aggregate functions
+    MAX(locations.location_id) AS location_id,
+    MAX(locations.location_name) AS location_name,
+    -- Include other necessary columns from locations table using MAX or appropriate aggregate functions
+    GROUP_CONCAT(tags.tag_name) AS tag_names
+FROM clients
+LEFT JOIN contacts ON clients.client_id = contacts.contact_client_id AND contact_primary = 1
+LEFT JOIN locations ON clients.client_id = locations.location_client_id AND location_primary = 1
+LEFT JOIN client_tags ON client_tags.client_tag_client_id = clients.client_id
+LEFT JOIN tags ON tags.tag_id = client_tags.client_tag_tag_id
+WHERE clients.client_archived_at IS NULL
+  AND clients.client_lead = $leads
+  AND clients.client_company_id = $session_company_id
+GROUP BY clients.client_id
+ORDER BY $sort $order
 ");
 
 $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
@@ -298,5 +306,5 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <?php
 
 
-require_once "/var/www/portal.twe.tech/includes/footer.php";
+require_once "/var/www/nestogy.io/includes/footer.php";
 

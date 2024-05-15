@@ -4,7 +4,7 @@
 $sort = "software_name";
 $order = "ASC";
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 
 //Rebuild URL
@@ -153,7 +153,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         <?php
 
-                        require "/var/www/portal.twe.tech/includes/modals/client_software_edit_modal.php";
+                        require "/var/www/nestogy.io/includes/modals/client_software_edit_modal.php";
 
                     }
 
@@ -168,10 +168,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/modals/client_software_add_modal.php";
+require_once "/var/www/nestogy.io/includes/modals/client_software_add_modal.php";
 
-require_once "/var/www/portal.twe.tech/includes/modals/client_software_add_from_template_modal.php";
+require_once "/var/www/nestogy.io/includes/modals/client_software_add_from_template_modal.php";
 
-require_once "/var/www/portal.twe.tech/includes/modals/client_software_export_modal.php";
+require_once "/var/www/nestogy.io/includes/modals/client_software_export_modal.php";
 
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';

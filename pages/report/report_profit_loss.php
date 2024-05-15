@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/inc_all_reports.php";
+require_once "/var/www/nestogy.io/includes/inc_all_reports.php";
 
 validateAccountantRole();
 
@@ -432,5 +432,5 @@ $sql_categories_expense = mysqli_query($mysqli, "SELECT * FROM categories WHERE 
         </div>
     </div>
 
-<?php require_once '/var/www/portal.twe.tech/includes/footer.php';
+<?php require_once '/var/www/nestogy.io/includes/footer.php';
 

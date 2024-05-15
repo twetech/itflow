@@ -1,10 +1,10 @@
 <?php
-require_once '/var/www/portal.twe.tech/includes/inc_all_modal.php';
+require_once '/var/www/nestogy.io/includes/inc_all_modal.php';
 
 $ticket_id = intval($_GET['ticket_id']);
 
 // Initialize the HTML Purifier to prevent XSS
-require '/var/www/portal.twe.tech/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php';
+require '/var/www/nestogy.io/includes/plugins/htmlpurifier/HTMLPurifier.standalone.php';
 
 
 $purifier_config = HTMLPurifier_Config::createDefault();

@@ -5,7 +5,7 @@
 $sort = "ticket_number";
 $order = "DESC";
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 if (isset($_GET['status']) && ($_GET['status']) == 'Open') {
     $status = 'Open';
@@ -66,7 +66,7 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
 
 <div class="card">
 
-    <?php require_once '/var/www/portal.twe.tech/includes/support_card_header.php'; ?>
+    <?php require_once '/var/www/nestogy.io/includes/support_card_header.php'; ?>
 
     <div class="card-body">
 
@@ -207,6 +207,6 @@ $total_scheduled_tickets = intval($row['total_scheduled_tickets']);
 </div>
 
 <?php
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';
 
 ?>

@@ -4,15 +4,15 @@
  * Process GET/POST requests
  */
 
- require_once '/var/www/portal.twe.tech/includes/config.php';
+ require_once '/var/www/nestogy.io/includes/config.php';
 
- require_once '/var/www/portal.twe.tech/includes/get_settings.php';
+ require_once '/var/www/nestogy.io/includes/get_settings.php';
  
- require_once '/var/www/portal.twe.tech/includes/functions/functions.php';
+ require_once '/var/www/nestogy.io/includes/functions/functions.php';
  
- require_once '/var/www/portal.twe.tech/portal/check_login.php';
+ require_once '/var/www/nestogy.io/portal/check_login.php';
  
- require_once '/var/www/portal.twe.tech/portal/portal_functions.php';
+ require_once '/var/www/nestogy.io/portal/portal_functions.php';
  
 
 if (isset($_POST['add_ticket'])) {

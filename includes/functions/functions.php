@@ -15,7 +15,6 @@ function requireOnceAll($functionsPath) {
         if (in_array(basename($file), $skip)) {
             continue;
         }
-
         require_once $file;
     }
 }
@@ -23,7 +22,7 @@ function requireOnceAll($functionsPath) {
 // Load all functions -----------------------------------------
 // Other functions are categorized in different files
 
-$functionsPath = "/var/www/portal.twe.tech/includes/functions";
+$functionsPath = "/var/www/nestogy.io/includes/functions";
 
 // Require Once All in the functions folder
 requireOnceAll($functionsPath);

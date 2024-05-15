@@ -4,10 +4,10 @@ $cron = true;
 
 $document_root = dirname(__FILE__);
 
-require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
+require_once "/var/www/nestogy.io/includes/tenant_db.php";
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
-require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
+require_once "/var/www/nestogy.io/includes/config.php";
+require_once "/var/www/nestogy.io/includes/functions/functions.php";
 
 $sql_settings = mysqli_query($mysqli, "SELECT * FROM settings WHERE company_id = 1");
 
@@ -197,9 +197,9 @@ if (isset($nothing_to_do)) {
 }
 
 //if logfile is bigger than 10mb, rename it and create a new one
-$logfile = "/var/www/portal.twe.tech/cron/cron_mail_queue.log";
+$logfile = "/var/www/nestogy.io/cron/cron_mail_queue.log";
 if (file_exists($logfile) && filesize($logfile) > 10000000) {
-    rename($logfile, "/var/www/portal.twe.tech/cron/cron_mail_queue_" . date('Y-m-d_H-i-s') . ".log.bak");
+    rename($logfile, "/var/www/nestogy.io/cron/cron_mail_queue_" . date('Y-m-d_H-i-s') . ".log.bak");
 }
 
 

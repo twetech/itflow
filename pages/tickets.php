@@ -5,7 +5,7 @@
 $sort = "ticket_number";
 $order = "DESC";
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/nestogy.io/includes/inc_all.php";
 
 
 // Ticket status from GET
@@ -100,7 +100,7 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
     }
 </style>
 <div class="card">
-    <?php require_once '/var/www/portal.twe.tech/includes/support_card_header.php'; // Support Card Header ?>
+    <?php require_once '/var/www/nestogy.io/includes/support_card_header.php'; // Support Card Header ?>
     <div class="card-body">
         <form id="bulkActions" action="/post/" method="post">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
@@ -329,4 +329,4 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
 
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/footer.php";
+require_once "/var/www/nestogy.io/includes/footer.php";

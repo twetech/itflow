@@ -31,17 +31,18 @@ function createClient(
     $contact_mobile = $parameters['contact_mobile']??'';
     $contact_email = $parameters['contact_email']??'';
 
-    global $mysqli, $session_ip, $session_user_agent, $session_user_id;
+    global $mysqli, $session_ip, $session_user_agent, $session_user_id, $session_company_id;
 
     $extended_log_description = "";
 
     // Check if api_key_client_id is set
     if (isset($parameters['api_key_client_id'])) {
         $client_id = $parameters['api_key_client_id'];
-        $client = readClient($client_id);
-        if ($client) {
-            return $client;
-        }
+    }
+
+    //check if company can create more clients
+    if (!companyCanCreateClient($session_company_id)) {
+        return ['status' => 'error', 'message' => 'You have reached the maximum number of clients allowed.'];
     }
 
     // Create client
@@ -336,7 +337,7 @@ function deleteClient(
     mysqli_query($mysqli, "DELETE FROM vendors WHERE vendor_client_id = $client_id");
 
     //Delete Client Files
-    removeDirectory('/var/www/portal.twe.tech/uploads/clients/' . $client_id);
+    removeDirectory('/var/www/nestogy.io/uploads/clients/' . $client_id);
 
     //Finally Remove the Client
     mysqli_query($mysqli, "DELETE FROM clients WHERE client_id = $client_id");

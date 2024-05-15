@@ -1,8 +1,8 @@
 <?php
-require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
+require_once "/var/www/nestogy.io/includes/inc_all_settings.php";
 
 
-$sql = mysqli_query($mysqli,"SELECT * FROM companies, settings WHERE companies.company_id = settings.company_id AND companies.company_id = 1");
+$sql = mysqli_query($mysqli,"SELECT * FROM companies, settings WHERE companies.company_id = settings.company_id AND companies.company_id = $session_user_company_id");
 
 $row = mysqli_fetch_array($sql);
 $company_locale = nullable_htmlentities($row['company_locale']);
@@ -75,5 +75,5 @@ $timezones = DateTimeZone::listIdentifiers();
     </div>
 
 <?php
-require_once '/var/www/portal.twe.tech/includes/footer.php';
+require_once '/var/www/nestogy.io/includes/footer.php';
 

@@ -16,14 +16,14 @@ TODO:
 chdir(dirname(__FILE__));
 
 // Get ITFlow config & helper functions
-require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
+require_once "/var/www/nestogy.io/includes/tenant_db.php";
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/nestogy.io/includes/config.php";
 
-require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
+require_once "/var/www/nestogy.io/includes/functions/functions.php";
 
 // Get settings for the "default" company
-require_once "/var/www/portal.twe.tech/includes/get_settings.php";
+require_once "/var/www/nestogy.io/includes/get_settings.php";
 
 $config_ticket_prefix = sanitizeInput($config_ticket_prefix);
 $config_ticket_from_name = sanitizeInput($config_ticket_from_name);
@@ -86,23 +86,23 @@ file_put_contents($lock_file_path, "Locked");
 // PHP Mail Parser
 use PhpMimeMailParser\Parser;
 
-require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Contracts/CharsetManager.php";
+require_once "/var/www/nestogy.io/includes/plugins/php-mime-mail-parser/src/Contracts/CharsetManager.php";
 
-require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Contracts/Middleware.php";
+require_once "/var/www/nestogy.io/includes/plugins/php-mime-mail-parser/src/Contracts/Middleware.php";
 
-require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Attachment.php";
+require_once "/var/www/nestogy.io/includes/plugins/php-mime-mail-parser/src/Attachment.php";
 
-require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Charset.php";
+require_once "/var/www/nestogy.io/includes/plugins/php-mime-mail-parser/src/Charset.php";
 
-require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Exception.php";
+require_once "/var/www/nestogy.io/includes/plugins/php-mime-mail-parser/src/Exception.php";
 
-require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Middleware.php";
+require_once "/var/www/nestogy.io/includes/plugins/php-mime-mail-parser/src/Middleware.php";
 
-require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/MiddlewareStack.php";
+require_once "/var/www/nestogy.io/includes/plugins/php-mime-mail-parser/src/MiddlewareStack.php";
 
-require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/MimePart.php";
+require_once "/var/www/nestogy.io/includes/plugins/php-mime-mail-parser/src/MimePart.php";
 
-require_once "/var/www/portal.twe.tech/includes/plugins/php-mime-mail-parser/src/Parser.php";
+require_once "/var/www/nestogy.io/includes/plugins/php-mime-mail-parser/src/Parser.php";
 
 
 // Allowed attachment extensions
@@ -562,14 +562,14 @@ if ($emails) {
 }
 
 //if logfile is bigger than 10mb, rename it and create a new one
-$logfile = "/var/www/portal.twe.tech/cron/cron_ticket_email_parser.log";
+$logfile = "/var/www/nestogy.io/cron/cron_ticket_email_parser.log";
 if (file_exists($logfile) && filesize($logfile) > 10000000) {
     echo date('Y-m-d H:i:s') . " - Logfile is bigger than 10mb, renaming and creating a new one.\n";
-    rename($logfile, "/var/www/portal.twe.tech/cron/cron_mail_queue_" . date('Y-m-d_H-i-s') . ".log.bak");
+    rename($logfile, "/var/www/nestogy.io/cron/cron_mail_queue_" . date('Y-m-d_H-i-s') . ".log.bak");
 }
 
 //delete oldest logfile if there are more than 5 saved
-$files = glob("/var/www/portal.twe.tech/cron/cron_ticket_email_parser_*.log.bak");
+$files = glob("/var/www/nestogy.io/cron/cron_ticket_email_parser_*.log.bak");
 if (count($files) > 5) {
     echo date('Y-m-d H:i:s') . " - Deleting oldest log file.\n";
     unlink($files[0]);

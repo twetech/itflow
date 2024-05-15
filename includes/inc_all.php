@@ -1,16 +1,16 @@
 <?php
 
-require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
+// Enable all error reporting
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/nestogy.io/includes/config.php";
 
-require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
+require_once "/var/www/nestogy.io/includes/functions/functions.php";
 
-require_once "/var/www/portal.twe.tech/includes/check_login.php";
+require_once "/var/www/nestogy.io/includes/check_login.php";
 
-require_once "/var/www/portal.twe.tech/includes/header.php";
+require_once "/var/www/nestogy.io/includes/header.php";
 
-require_once "/var/www/portal.twe.tech/includes/inc_alert_feedback.php";
+require_once "/var/www/nestogy.io/includes/inc_alert_feedback.php";
 
 $page_name = $_SERVER['REQUEST_URI'];
 //remove /pages/ from the page name
@@ -33,6 +33,12 @@ if (strpos($page_name, 'client/client_') !== false) {
     $page_name = str_replace('_', ' ', $page_name);
     // Capitalize the first letter of each word in the page name
     $page_name = ucwords($page_name);
+
+} else if (strpos($page_name, 'reseller/') !== false) {
+    // set reseller_page to true
+    $reseller_page = true;
+    // remove reseller/ from the page name
+    $page_name = str_replace('reseller/', '', $page_name);
 
 } else if (strpos($page_name, 'report/report_') !== false) {
     // set page name to the name of the report
@@ -76,9 +82,10 @@ if (isset($_GET['client_id'])) {
 
 if (isset($client_page)) {
     if ($client_page){
-        require_once "/var/www/portal.twe.tech/includes/inc_all_client.php";
+        require_once "/var/www/nestogy.io/includes/inc_all_client.php";
     }
 }
+
 
 // Default datatable settings
 $datatable_order = "[[0, 'desc']]";
@@ -92,7 +99,7 @@ while ($row = mysqli_fetch_assoc($shortcuts_result)) {
     ];
 }
 
-require_once "/var/www/portal.twe.tech/includes/top_nav.php";
+require_once "/var/www/nestogy.io/includes/top_nav.php";
 
 
 

@@ -1,2 +1,3 @@
 <?php
-header('Location: /tenant_login.php');
+header('Location: /pages/login.php');
+exit;

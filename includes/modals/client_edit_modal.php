@@ -1,4 +1,4 @@
-<?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php";
+<?php require_once "/var/www/nestogy.io/includes/inc_all_modal.php";
 $client_id = $_GET['client_id'];
 
 $sql = mysqli_query($mysqli, "SELECT * FROM clients WHERE client_id = $client_id");

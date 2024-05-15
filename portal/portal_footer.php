@@ -13,7 +13,7 @@
 
 <p class="text-center"><?php echo nullable_htmlentities($session_company_name); ?></p>
 
-<?php require_once "/var/www/portal.twe.tech/includes/inc_confirm_modal.php"; ?>
+<?php require_once "/var/www/nestogy.io/includes/inc_confirm_modal.php"; ?>
 
 <!-- jQuery -->
 <script src="/includes/plugins/jquery/jquery.min.js"></script>
