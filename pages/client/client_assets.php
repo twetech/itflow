@@ -283,7 +283,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                                 </div>
                                                                 <input type="text" class="form-control" value="<?php echo $login_username; ?>" readonly>
                                                                 <div class="input-group-append">
-                                                                    <button class="btn btn-default clipboardjs" type="button" data-clipboard-text="<?php echo $login_username; ?>"><i class="fa fa-fw fa-copy"></i></button>
+                                                                    <button class="btn btn-label-secondary clipboardjs" type="button" data-clipboard-text="<?php echo $login_username; ?>"><i class="fa fa-fw fa-copy"></i></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -295,7 +295,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                                 </div>
                                                                 <input type="text" class="form-control" value="<?php echo $login_password; ?>" readonly autocomplete="off">
                                                                 <div class="input-group-append">
-                                                                    <button class="btn btn-default clipboardjs" type="button" data-clipboard-text="<?php echo $login_password; ?>"><i class="fa fa-fw fa-copy"></i></button>
+                                                                    <button class="btn btn-label-secondary clipboardjs" type="button" data-clipboard-text="<?php echo $login_password; ?>"><i class="fa fa-fw fa-copy"></i></button>
                                                                 </div>
                                                             </div>
                                                         </div>

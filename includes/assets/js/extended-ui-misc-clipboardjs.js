@@ -5,7 +5,7 @@
 'use strict';
 
 (function () {
-  const clipboardList = [].slice.call(document.querySelectorAll('.clipboard-btn'));
+  const clipboardList = [].slice.call(document.querySelectorAll('.clipboardjs'));
   if (ClipboardJS) {
     clipboardList.map(function (clipboardEl) {
       const clipboard = new ClipboardJS(clipboardEl);

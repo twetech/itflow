@@ -286,8 +286,8 @@ if (isset($_GET['ticket_id'])) {
                 </div>
                 <div class="card-body prettyContent" id="ticketDetails">
                     <div class="row">
-                        <div class="text-truncate">
-                            <?= $ticket_details; ?>
+                        <div class="col">
+                            
                         </div>
                     </div>
                     <div class="row">

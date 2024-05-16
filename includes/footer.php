@@ -111,6 +111,7 @@
 <script src="/includes/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
 <script src="/includes/assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
 <script src="/includes/js/header_timers.js"></script>
+<script src="/includes/assets/vendor/libs/clipboard/clipboard.js "></script>
 
 <script src="/includes/js/reformat_datetime.js"></script>
 <script src="/includes/plugins/select2/js/select2.min.js"></script>
@@ -131,15 +132,86 @@ document.querySelectorAll('textarea').forEach(function(textarea) {
         if (!tinymce.get(this.id)) {
             tinymce.init({
                 selector: '#' + this.id,
+                browser_spellcheck: true,
+                contextmenu: false,
+                resize: true,
+                min_height: 300,
+                max_height: 600,
+                promotion: false,
+                branding: false,
+                menubar: false,
+                statusbar: false,
+                toolbar: [
+                { name: 'styles', items: [ 'styles' ] },
+                { name: 'formatting', items: [ 'bold', 'italic', 'forecolor' ] },
+                { name: 'lists', items: [ 'bullist', 'numlist' ] },
+                { name: 'alignment', items: [ 'alignleft', 'aligncenter', 'alignright', 'alignjustify' ] },
+                { name: 'indentation', items: [ 'outdent', 'indent' ] },
+                { name: 'table', items: [ 'table' ] },
+                { name: 'extra', items: [ 'code', 'fullscreen' ] }
+                ],
+                mobile: {
+                    menubar: false,
+                    plugins: 'autosave lists autolink',
+                    toolbar: 'bold italic styles'
+                },
                 plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             });
         }
     }, { once: true });
 });
-</script>
 
-<script>
+
+// DateTime
+$('.datetimepicker').datetimepicker({
+});
+
+// Data Input Mask
+$('[data-mask]').inputmask();
+
+// ClipboardJS
+
+//Fix to allow Clipboard Copying within Bootstrap Modals
+//For use in Bootstrap Modals or with any other library that changes the focus you'll want to set the focused element as the container value.
+$.fn.modal.Constructor.prototype._enforceFocus = function() {};
+
+// Tooltip
+
+$('button').tooltip({
+  trigger: 'click',
+  placement: 'bottom'
+});
+
+function setTooltip(btn, message) {
+  $(btn).tooltip('hide')
+    .attr('data-original-title', message)
+    .tooltip('show');
+}
+
+function hideTooltip(btn) {
+  setTimeout(function() {
+    $(btn).tooltip('hide');
+  }, 1000);
+}
+
+// Clipboard
+
+var clipboard = new ClipboardJS('.clipboardjs');
+
+clipboard.on('success', function(e) {
+  setTooltip(e.trigger, 'Copied!');
+  hideTooltip(e.trigger);
+});
+
+clipboard.on('error', function(e) {
+  setTooltip(e.trigger, 'Failed!');
+  hideTooltip(e.trigger);
+});
+
+// Enable Popovers
+$(function () {
+  $('[data-bs-toggle="popover"]').popover()
+});
 
 
 $(function () {

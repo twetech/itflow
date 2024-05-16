@@ -26,7 +26,7 @@ $key = randomString(156);
                             </div>
                             <input type="text" class="form-control" value="<?php echo $key ?>" required disabled>
                             <div class="input-group-append">
-                                <button class="btn btn-default clipboardjs" type="button" data-clipboard-text="<?php echo $key; ?>"><i class="fa fa-fw fa-copy"></i></button>
+                                <button class="btn btn-label-secondary clipboardjs" type="button" data-clipboard-text="<?php echo $key; ?>"><i class="fa fa-fw fa-copy"></i></button>
                             </div>
                         </div>
                     </div>
