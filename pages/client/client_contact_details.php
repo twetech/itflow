@@ -64,39 +64,39 @@ if (isset($_GET['contact_id'])) {
 
             <div class="card">
                 <div class="card-body">
-                    <button type="button" class="btn btn-default float-right" data-bs-toggle="modal" data-bs-target="#editContactModal<?php echo $contact_id; ?>">
+                    <button type="button" class="btn btn-default float-right" data-bs-toggle="modal" data-bs-target="#editContactModal<?= $contact_id; ?>">
                         <i class="fas fa-fw fa-user-edit"></i>
                     </button>
-                    <h3 class="text-bold"><?php echo $contact_name; ?></h3>
+                    <h3 class="text-bold"><?= $contact_name; ?></h3>
                     <?php if ($contact_title) { ?>
-                        <div class="text-secondary"><?php echo $contact_title; ?></div>
+                        <div class="text-secondary"><?= $contact_title; ?></div>
                     <?php } ?>
 
                     <div class="text-center">
                         <?php if ($contact_photo) { ?>
-                            <img class="img-fluid rounded-circle mb-3p-3" alt="contact_photo" src="<?php echo "/uploads/clients/$client_id/$contact_photo"; ?>">
+                            <img class="img-fluid rounded-circle mb-3p-3" alt="contact_photo" src="<?= "/uploads/clients/$client_id/$contact_photo"; ?>">
                         <?php } else { ?>
                             <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-                                <span class="fa fa-stack-1x text-white"><?php echo $contact_initials; ?></span>
+                                <span class="fa fa-stack-1x text-white"><?= $contact_initials; ?></span>
                             </span>
                         <?php } ?>
                     </div>
                     <hr>
                     <?php if ($location_name) { ?>
-                        <div><i class="fa fa-fw fa-map-marker-alt text-secondary mr-2"></i><?php echo $location_name; ?></div>
+                        <div><i class="fa fa-fw fa-map-marker-alt text-secondary mr-2"></i><?= $location_name; ?></div>
                     <?php }
                     if ($contact_email) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-envelope text-secondary mr-2"></i><a href='mailto:<?php echo $contact_email; ?>'><?php echo $contact_email; ?></a><button class='btn btn-sm clipboardjs' data-clipboard-text='<?php echo $contact_email; ?>'><i class='far fa-copy text-secondary'></i></button></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-envelope text-secondary mr-2"></i><a href='mailto:<?= $contact_email; ?>'><?= $contact_email; ?></a><button class='btn btn-sm clipboardjs' data-clipboard-text='<?= $contact_email; ?>'><i class='far fa-copy text-secondary'></i></button></div>
                     <?php }
                     if ($contact_phone) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-phone text-secondary mr-2"></i><a href="tel:<?php echo "$contact_phone"?>"><?php echo "$contact_phone $contact_extension"; ?></a></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-phone text-secondary mr-2"></i><a href="tel:<?= "$contact_phone"?>"><?= "$contact_phone $contact_extension"; ?></a></div>
                     <?php }
                     if ($contact_mobile) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-mobile-alt text-secondary mr-2"></i><a href="tel:<?php echo $contact_mobile; ?>"><?php echo $contact_mobile; ?></a></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-mobile-alt text-secondary mr-2"></i><a href="tel:<?= $contact_mobile; ?>"><?= $contact_mobile; ?></a></div>
                     <?php }
                     if ($contact_pin) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-key text-secondary mr-2"></i><?php echo $contact_pin; ?></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-key text-secondary mr-2"></i><?= $contact_pin; ?></div>
                     <?php }
                     if ($contact_primary) { ?>
                         <div class="mt-2 text-success"><i class="fa fa-fw fa-check mr-2"></i>Primary Contact</div>
@@ -110,7 +110,7 @@ if (isset($_GET['contact_id'])) {
                     if ($contact_billing) { ?>
                         <div class="mt-2"><i class="fa fa-fw fa-check text-secondary mr-2"></i>Billing</div>
                     <?php } ?>
-                    <div class="mt-2"><i class="fa fa-fw fa-clock text-secondary mr-2"></i><?php echo date('Y-m-d', strtotime($contact_created_at)); ?></div>
+                    <div class="mt-2"><i class="fa fa-fw fa-clock text-secondary mr-2"></i><?= date('Y-m-d', strtotime($contact_created_at)); ?></div>
 
                     <?php require_once "/var/www/portal.twe.tech/includes/modals/client_contact_edit_modal.php";
  ?>
@@ -122,7 +122,7 @@ if (isset($_GET['contact_id'])) {
                 <div class="card-header">
                     <h5 class="card-title">Notes</h5>
                 </div>
-                <textarea class="form-control" rows=6 id="contactNotes" placeholder="Notes, eg Personal tidbits to spark convo, temperment, etc" onblur="updateContactNotes(<?php echo $contact_id ?>)"><?php echo $contact_notes ?></textarea>
+                <textarea class="form-control" rows=6 id="contactNotes" placeholder="Notes, eg Personal tidbits to spark convo, temperment, etc" onblur="updateContactNotes(<?= $contact_id ?>)"><?= $contact_notes ?></textarea>
             </div>
 
         </div>
@@ -132,12 +132,12 @@ if (isset($_GET['contact_id'])) {
 
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="client_overview.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a>
+                    <a href="client_overview.php?client_id=<?= $client_id; ?>"><?= $client_name; ?></a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="client_contacts.php?client_id=<?php echo $client_id; ?>">Contacts</a>
+                    <a href="client_contacts.php?client_id=<?= $client_id; ?>">Contacts</a>
                 </li>
-                <li class="breadcrumb-item active"><?php echo "$contact_name"; ?></li>
+                <li class="breadcrumb-item active"><?= "$contact_name"; ?></li>
             </ol>
 
             <div class="card <?php if ($asset_count == 0) { echo "d-none"; } ?>">
@@ -212,40 +212,40 @@ if (isset($_GET['contact_id'])) {
                                 ?>
                                 <tr>
                                     <th>
-                                        <i class="fa fa-fw text-secondary fa-<?php echo $device_icon; ?> mr-2"></i>
-                                        <a class="text-secondary" href="#" data-bs-toggle="modal" data-bs-target="#editAssetModal<?php echo $asset_id; ?>"><?php echo $asset_name; ?></a>
+                                        <i class="fa fa-fw text-secondary fa-<?= $device_icon; ?> mr-2"></i>
+                                        <a class="text-secondary" href="#" data-bs-toggle="modal" data-bs-target="#editAssetModal<?= $asset_id; ?>"><?= $asset_name; ?></a>
                                         <div class="mt-0">
-                                            <small class="text-muted"><?php echo $asset_description; ?></small>
+                                            <small class="text-muted"><?= $asset_description; ?></small>
                                         </div>
                                     </th>
-                                    <td><?php echo $asset_type; ?></td>
+                                    <td><?= $asset_type; ?></td>
                                     <td>
-                                        <?php echo $asset_make; ?>
+                                        <?= $asset_make; ?>
                                         <div class="mt-0">
-                                            <small class="text-muted"><?php echo $asset_model; ?></small>
+                                            <small class="text-muted"><?= $asset_model; ?></small>
                                         </div>
                                     </td>
-                                    <td><?php echo $asset_serial_display; ?></td>
+                                    <td><?= $asset_serial_display; ?></td>
 
-                                    <td><?php echo $asset_install_date_display; ?></td>
-                                    <td><?php echo $asset_status; ?></td>
+                                    <td><?= $asset_install_date_display; ?></td>
+                                    <td><?= $asset_status; ?></td>
                                     <td>
                                         <div class="dropdown dropleft text-center">
                                             <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addAssetInterfaceModal<?php echo $asset_id; ?>">Interfaces</a>
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAssetModal<?php echo $asset_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addAssetInterfaceModal<?= $asset_id; ?>">Interfaces</a>
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAssetModal<?= $asset_id; ?>">
                                                     <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                                 </a>
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#copyAssetModal<?php echo $asset_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#copyAssetModal<?= $asset_id; ?>">
                                                     <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                                 </a>
                                                 <?php if ($session_user_role == 3) { ?>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="/post.php?archive_asset=<?php echo $asset_id; ?>">
+                                                    <a class="dropdown-item text-danger" href="/post.php?archive_asset=<?= $asset_id; ?>">
                                                         <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                     </a>
-                                                    <a class="dropdown-item text-danger text-bold" href="/post.php?delete_asset=<?php echo $asset_id; ?>">
+                                                    <a class="dropdown-item text-danger text-bold" href="/post.php?delete_asset=<?= $asset_id; ?>">
                                                         <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                     </a>
                                                 <?php } ?>
@@ -331,32 +331,32 @@ if (isset($_GET['contact_id'])) {
                                 <tr>
                                     <td>
                                         <i class="fa fa-fw fa-key text-secondary"></i>
-                                        <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?php echo $login_id; ?>">
-                                            <?php echo $login_name; ?>
+                                        <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?= $login_id; ?>">
+                                            <?= $login_name; ?>
                                         </a>
                                     </td>
-                                    <td><?php echo $login_description; ?></td>
-                                    <td><?php echo $login_username_display; ?></td>
+                                    <td><?= $login_description; ?></td>
+                                    <td><?= $login_username_display; ?></td>
                                     <td>
-                                        <a tabindex="0" href="#" data-bs-toggle="popover" data-trigger="focus" data-placement="top" data-content="<?php echo $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></a><button class="btn btn-sm clipboardjs" data-clipboard-text="<?php echo $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
+                                        <a tabindex="0" href="#" data-bs-toggle="popover" data-trigger="focus" data-placement="top" data-content="<?= $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></a><button class="btn btn-sm clipboardjs" data-clipboard-text="<?= $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
                                     </td>
-                                    <td><?php echo $otp_display; ?></td>
-                                    <td><?php echo $login_uri_display; ?></td>
+                                    <td><?= $otp_display; ?></td>
+                                    <td><?= $login_uri_display; ?></td>
                                     <td>
                                         <div class="dropdown dropleft text-center">
                                             <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?php echo $login_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?= $login_id; ?>">
                                                     <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                                 </a>
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'Login', $login_id"; ?>)">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?= "$client_id, 'Login', $login_id"; ?>)">
                                                     <i class="fas fa-fw fa-share-alt mr-2"></i>Share
                                                 </a>
                                                 <?php if ($session_user_role == 3) { ?>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger text-bold" href="/post.php?delete_login=<?php echo $login_id; ?>">
+                                                    <a class="dropdown-item text-danger text-bold" href="/post.php?delete_login=<?= $login_id; ?>">
                                                         <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                     </a>
                                                 <?php } ?>
@@ -437,10 +437,10 @@ if (isset($_GET['contact_id'])) {
 
                                 ?>
                                 <tr>
-                                    <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareModal<?php echo $software_id; ?>"><?php echo "$software_name<br><span class='text-secondary'>$software_version</span>"; ?></a></td>
-                                    <td><?php echo $software_type; ?></td>
-                                    <td><?php echo $software_license_type; ?></td>
-                                    <td><?php echo "$seat_count / $software_seats"; ?></td>
+                                    <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareModal<?= $software_id; ?>"><?= "$software_name<br><span class='text-secondary'>$software_version</span>"; ?></a></td>
+                                    <td><?= $software_type; ?></td>
+                                    <td><?= $software_license_type; ?></td>
+                                    <td><?= "$seat_count / $software_seats"; ?></td>
                                 </tr>
 
                                 <?php
@@ -527,13 +527,13 @@ if (isset($_GET['contact_id'])) {
                                 ?>
 
                                 <tr>
-                                    <td><a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><span class="badge rounded-pill bg-label-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span></a></td>
-                                    <td><a href="/pages/ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a></td>
-                                    <td><?php echo $ticket_priority_display; ?></td>
-                                    <td><?php echo $ticket_status_display; ?></td>
-                                    <td><?php echo $ticket_assigned_to_display; ?></td>
-                                    <td><?php echo $ticket_updated_at_display; ?></td>
-                                    <td><?php echo $ticket_created_at; ?></td>
+                                    <td><a href="/pages/ticket.php?ticket_id=<?= $ticket_id; ?>"><span class="badge rounded-pill bg-label-secondary p-3"><?= "$ticket_prefix$ticket_number"; ?></span></a></td>
+                                    <td><a href="/pages/ticket.php?ticket_id=<?= $ticket_id; ?>"><?= $ticket_subject; ?></a></td>
+                                    <td><?= $ticket_priority_display; ?></td>
+                                    <td><?= $ticket_status_display; ?></td>
+                                    <td><?= $ticket_assigned_to_display; ?></td>
+                                    <td><?= $ticket_updated_at_display; ?></td>
+                                    <td><?= $ticket_created_at; ?></td>
                                 </tr>
 
                                 <?php

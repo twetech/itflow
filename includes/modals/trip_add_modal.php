@@ -20,7 +20,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                 </div>
-                                <input type="date" class="form-control" name="date" max="2999-12-31" value="<?php echo date("Y-m-d"); ?>" required>
+                                <input type="date" class="form-control" name="date" max="2999-12-31" value="<?= date("Y-m-d"); ?>" required>
                             </div>
                         </div>
 
@@ -68,7 +68,7 @@
                                     $location_state = nullable_htmlentities($row['location_state']);
                                     $location_zip = nullable_htmlentities($row['location_zip']);
                                     ?>
-                                    <option><?php echo "$location_address $location_city $location_state $location_zip"; ?></option>
+                                    <option><?= "$location_address $location_city $location_state $location_zip"; ?></option>
                                     <?php
                                 }
                             } ?>
@@ -99,7 +99,7 @@
                                     $user_id = intval($row['user_id']);
                                     $user_name = nullable_htmlentities($row['user_name']);
                                     ?>
-                                    <option <?php if ($session_user_id == $user_id) { echo "selected"; } ?> value="<?php echo $user_id; ?>"><?php echo $user_name; ?></option>
+                                    <option <?php if ($session_user_id == $user_id) { echo "selected"; } ?> value="<?= $user_id; ?>"><?= $user_name; ?></option>
 
                                     <?php
                                 }
@@ -109,7 +109,7 @@
                     </div>
 
                     <?php if (isset($_GET['client_id'])) { ?>
-                        <input type="hidden" name="client" value="<?php echo $client_id; ?>">
+                        <input type="hidden" name="client" value="<?= $client_id; ?>">
                     <?php }else{ ?>
 
                         <div class="form-group">
@@ -127,7 +127,7 @@
                                         $client_id = intval($row['client_id']);
                                         $client_name = nullable_htmlentities($row['client_name']);
                                         ?>
-                                        <option value="<?php echo $client_id; ?>"><?php echo $client_name; ?></option>
+                                        <option value="<?= $client_id; ?>"><?= $client_name; ?></option>
 
                                         <?php
                                     }

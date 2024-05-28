@@ -48,17 +48,17 @@ $sql_clients = mysqli_query($mysqli, "SELECT client_id, client_name FROM clients
 
                             <tr>
                                 <td>
-                                    <a href="/client_assets.php?client_id=<?php echo $client_id ?>">
-                                        <?php echo $client_name ?>
+                                    <a href="/client_assets.php?client_id=<?= $client_id ?>">
+                                        <?= $client_name ?>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="client_asset_details.php?client_id=<?php echo $client_id ?>&asset_id=<?php echo $asset_id ?>">
-                                        <?php echo $asset_name ?>
+                                    <a href="client_asset_details.php?client_id=<?= $client_id ?>&asset_id=<?= $asset_id ?>">
+                                        <?= $asset_name ?>
                                     </a>
                                 </td>
-                                <td><?php echo $asset_type ?></td>
-                                <td><?php echo $asset_status ?></td>
+                                <td><?= $asset_type ?></td>
+                                <td><?= $asset_status ?></td>
                             </tr>
                     <?php
                         }

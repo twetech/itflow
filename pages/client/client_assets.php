@@ -88,7 +88,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-desktop mr-2"></i>Assets</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_asset_add_modal.php?client_id=<?php echo $client_id; ?>&type=<?php echo stripslashes(nullable_htmlentities($_GET['type'])); ?>">
+                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_asset_add_modal.php?client_id=<?= $client_id; ?>&type=<?= stripslashes(nullable_htmlentities($_GET['type'])); ?>">
                         <i class="fas fa-plus mr-2"></i>New <?php if (!empty($_GET['type'])) { echo ucwords(strip_tags(nullable_htmlentities($_GET['type']))); } else { echo "Asset"; } ?>
                     </button>
                     <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
@@ -110,26 +110,26 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     <thead class="thead-light <?php if (!$num_rows[0]) { echo "d-none"; } ?>">
                     <tr>
 
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=asset_name&order=<?php echo $disp; ?>">Name</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=asset_name&order=<?= $disp; ?>">Name</a></th>
                         <?php if ($_GET['type'] !== 'virtual' && $_GET['type'] !== 'servers') { ?>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=asset_type&order=<?php echo $disp; ?>">Type</a></th>
+                            <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=asset_type&order=<?= $disp; ?>">Type</a></th>
                         <?php }
                         if ($_GET['type'] !== 'virtual') { ?>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=asset_make&order=<?php echo $disp; ?>">Model</a></th>
+                            <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=asset_make&order=<?= $disp; ?>">Model</a></th>
                         <?php }
                         if ($_GET['type'] !== 'virtual') { ?>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=asset_serial&order=<?php echo $disp; ?>">Serial</a></th>
+                            <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=asset_serial&order=<?= $disp; ?>">Serial</a></th>
                         <?php }
                         if ($_GET['type'] !== 'network' && $_GET['type'] !== 'other') { ?>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=asset_os&order=<?php echo $disp; ?>">OS</a></th>
+                            <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=asset_os&order=<?= $disp; ?>">OS</a></th>
                         <?php } ?>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=asset_ip&order=<?php echo $disp; ?>">IP</a></th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=asset_install_date&order=<?php echo $disp; ?>">Install Date</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=asset_ip&order=<?= $disp; ?>">IP</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=asset_install_date&order=<?= $disp; ?>">Install Date</a></th>
                         <?php if ($_GET['type'] !== 'network' && $_GET['type'] !== 'servers' && $_GET['type'] !== 'other') { ?>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=contact_name&order=<?php echo $disp; ?>">Assigned To</a></th>
+                            <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=contact_name&order=<?= $disp; ?>">Assigned To</a></th>
                         <?php } ?>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=location_name&order=<?php echo $disp; ?>">Location</a></th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=asset_status&order=<?php echo $disp; ?>">Status</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=location_name&order=<?= $disp; ?>">Location</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=asset_status&order=<?= $disp; ?>">Status</a></th>
                         <th class="text-center">Action</th>
                     </tr>
                     </thead>
@@ -219,51 +219,51 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
                         <tr>
                             <td>
-                                <a href="client_asset_details.php?client_id=<?php echo $client_id; ?>&asset_id=<?php echo $asset_id; ?>" class="text-dark">
+                                <a href="client_asset_details.php?client_id=<?= $client_id; ?>&asset_id=<?= $asset_id; ?>" class="text-dark">
                                     <div class="media">
-                                        <i class="fa fa-fw fa-2x fa-<?php echo $device_icon; ?> mr-3 mt-1"></i>
+                                        <i class="fa fa-fw fa-2x fa-<?= $device_icon; ?> mr-3 mt-1"></i>
                                         <div class="media-body">
-                                            <div><?php echo $asset_name; ?></div>
-                                            <div><small class="text-secondary"><?php echo $asset_description; ?></small></div>
+                                            <div><?= $asset_name; ?></div>
+                                            <div><small class="text-secondary"><?= $asset_description; ?></small></div>
                                         </div>
                                     </div>
                                 </a>
                             </td>
 
                             <?php if ($_GET['type'] !== 'virtual' && $_GET['type'] !== 'servers') { ?>
-                                <td><?php echo $asset_type; ?></td>
+                                <td><?= $asset_type; ?></td>
                             <?php } ?>
                             <?php if ($_GET['type'] !== 'virtual') { ?>
                                 <td>
-                                    <?php echo $asset_make; ?>
+                                    <?= $asset_make; ?>
                                     <div class="mt-0">
-                                        <small class="text-muted"><?php echo $asset_model; ?></small>
+                                        <small class="text-muted"><?= $asset_model; ?></small>
                                     </div>
                                 </td>
                             <?php } ?>
                             <?php if ($_GET['type'] !== 'virtual') { ?>
-                                <td><?php echo $asset_serial_display; ?></td>
+                                <td><?= $asset_serial_display; ?></td>
                             <?php } ?>
                             <?php if ($_GET['type'] !== 'network' && $_GET['type'] !== 'other') { ?>
-                                <td><?php echo $asset_os_display; ?></td>
+                                <td><?= $asset_os_display; ?></td>
                             <?php } ?>
-                            <td><?php echo $asset_ip_display; ?></td>
-                            <td><?php echo $asset_install_date_display; ?></td>
+                            <td><?= $asset_ip_display; ?></td>
+                            <td><?= $asset_install_date_display; ?></td>
                             <?php if ($_GET['type'] !== 'network' && $_GET['type'] !== 'other' && $_GET['type'] !== 'servers') { ?>
-                                <td><?php echo $contact_name_display; ?></td>
+                                <td><?= $contact_name_display; ?></td>
                             <?php } ?>
-                            <td><?php echo $location_name_display; ?></td>
-                            <td><?php echo $asset_status; ?></td>
+                            <td><?= $location_name_display; ?></td>
+                            <td><?= $asset_status; ?></td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <?php if ($login_count > 0) { ?>
-                                    <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#viewPasswordModal<?php echo $asset_id; ?>"><i class="fas fa-key text-dark"></i></button>
+                                    <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#viewPasswordModal<?= $asset_id; ?>"><i class="fas fa-key text-dark"></i></button>
 
-                                    <div class="modal" id="viewPasswordModal<?php echo $asset_id; ?>" tabindex="-1">
+                                    <div class="modal" id="viewPasswordModal<?= $asset_id; ?>" tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content bg-dark">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title"><i class="fa fa-fw fa-key mr-2"></i><?php echo $asset_name; ?></h5>
+                                                    <h5 class="modal-title"><i class="fa fa-fw fa-key mr-2"></i><?= $asset_name; ?></h5>
                                                     <button type="button" class="close text-white" data-bs-dismiss="modal">
                                                         <span>&times;</span>
                                                     </button>
@@ -281,9 +281,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"><i class="fa fa-user"></i></span>
                                                                 </div>
-                                                                <input type="text" class="form-control" value="<?php echo $login_username; ?>" readonly>
+                                                                <input type="text" class="form-control" value="<?= $login_username; ?>" readonly>
                                                                 <div class="input-group-append">
-                                                                    <button class="btn btn-default clipboardjs" type="button" data-clipboard-text="<?php echo $login_username; ?>"><i class="fa fa-fw fa-copy"></i></button>
+                                                                    <button class="btn btn-default clipboardjs" type="button" data-clipboard-text="<?= $login_username; ?>"><i class="fa fa-fw fa-copy"></i></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -293,9 +293,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
                                                                 </div>
-                                                                <input type="text" class="form-control" value="<?php echo $login_password; ?>" readonly autocomplete="off">
+                                                                <input type="text" class="form-control" value="<?= $login_password; ?>" readonly autocomplete="off">
                                                                 <div class="input-group-append">
-                                                                    <button class="btn btn-default clipboardjs" type="button" data-clipboard-text="<?php echo $login_password; ?>"><i class="fa fa-fw fa-copy"></i></button>
+                                                                    <button class="btn btn-default clipboardjs" type="button" data-clipboard-text="<?= $login_password; ?>"><i class="fa fa-fw fa-copy"></i></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -310,24 +310,24 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <?php } ?>
 
                                     <?php if (!empty($asset_uri)) { ?>
-                                        <a class="btn btn-default btn-sm" href="<?php echo $asset_uri; ?>" target="_blank"><i class="fas fa-fw fa-external-link-alt"></i></a>
+                                        <a class="btn btn-default btn-sm" href="<?= $asset_uri; ?>" target="_blank"><i class="fas fa-fw fa-external-link-alt"></i></a>
                                     <?php } ?>
                                     
                                     <div class="dropdown dropleft text-center">
                                         <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAssetModal<?php echo $asset_id; ?>">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAssetModal<?= $asset_id; ?>">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
-                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#copyAssetModal<?php echo $asset_id; ?>">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#copyAssetModal<?= $asset_id; ?>">
                                                 <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                             </a>
                                             <?php if ($session_user_role > 2) { ?>
-                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_asset=<?php echo $asset_id; ?>">
+                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_asset=<?= $asset_id; ?>">
                                                     <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                 </a>
                                                 <?php if ($config_destructive_deletes_enable) { ?>
-                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_asset=<?php echo $asset_id; ?>">
+                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_asset=<?= $asset_id; ?>">
                                                     <i class="fas fa-fw fa-archive mr-2"></i>Delete
                                                 </a>
                                                 <?php } ?>

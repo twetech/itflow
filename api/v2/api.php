@@ -36,7 +36,7 @@
         
 */
 
-require $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/config/config.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/functions/functions.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/api/v2/objects.php';
 

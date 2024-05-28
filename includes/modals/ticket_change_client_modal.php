@@ -3,12 +3,12 @@
 
 
 <?php
-$ticket_id = $_POST['ticket_id'];
+$ticket_id = $_GET['ticket_id'];
 
 $ticket = readTicket($ticket_id)[$ticket_id];
+
 $ticket_number = $ticket['ticket_number'];
 $ticket_prefix = $ticket['ticket_prefix'];
-$ticket_client_id = $ticket['client_id'];
 
 $clients = readClients();
 ?>
@@ -17,14 +17,14 @@ $clients = readClients();
     <div class="modal-dialog modal-md">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-people-carry mr-2"></i>Change <?php echo "$ticket_prefix$ticket_number"; ?> to another client</h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-people-carry mr-2"></i>Change <?= "$ticket_prefix$ticket_number"; ?> to another client</h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
+                <input type="hidden" name="ticket_id" value="<?= $ticket_id; ?>">
 
                     <div class="form-group">
                         <label>New Client <strong class="text-danger">*</strong></label>
@@ -35,7 +35,9 @@ $clients = readClients();
                             <select class="form-control select2" id='select2' name="new_client_id" id="changeClientSelect" required>
                                 <option value="">Select Client</option>
                                 <?php foreach ($clients as $client) : ?>
-                                    <option value="<?php echo $client['client_id']; ?>"><?php echo $client['client_name']; ?></option>
+                                    <option value="<?= $client['client_id']; ?>" <?= $client['client_id'] == $ticket_client_id ? 'selected' : '' ?>>
+                                        <?= $client['client_name']; ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

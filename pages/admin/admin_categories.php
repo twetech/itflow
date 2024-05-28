@@ -36,14 +36,14 @@ if (isset($_GET['archived'])) {
 <div class="card">
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-list-ul mr-2"></i>
-            <?php echo nullable_htmlentities($category); ?> Categories
+            <?= nullable_htmlentities($category); ?> Categories
         </h3>
         <?php
             if (!isset($_GET['archived'])) {
         ?>
         <div class="card-tools">
             <button type="button" class="btn btn-label-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i
-                    class="fas fa-plus mr-2"></i>New <?php echo nullable_htmlentities($category); ?> Category</button>
+                    class="fas fa-plus mr-2"></i>New <?= nullable_htmlentities($category); ?> Category</button>
         </div>
         <?php
             }
@@ -51,7 +51,7 @@ if (isset($_GET['archived'])) {
     </div>
     <div class="card-body">
         <form autocomplete="off">
-            <input type="hidden" name="category" value="<?php echo nullable_htmlentities($category); ?>">
+            <input type="hidden" name="category" value="<?= nullable_htmlentities($category); ?>">
             <div class="row">
                 <div class="col-sm-4 mb-2">
                     <div class="input-group">
@@ -59,7 +59,7 @@ if (isset($_GET['archived'])) {
                             value="<?php if (isset($q)) {
                                 echo stripslashes(nullable_htmlentities($q));
                             } ?>"
-                            placeholder="Search <?php echo nullable_htmlentities($category); ?> Categories ">
+                            placeholder="Search <?= nullable_htmlentities($category); ?> Categories ">
                         <div class="input-group-append">
                             <button class="btn btn-label-primary"><i class="fa fa-search"></i></button>
                         </div>
@@ -111,7 +111,7 @@ if (isset($_GET['archived'])) {
                 } ?>">
                     <tr>
                         <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Name</a>
+                                href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Name</a>
                         </th>
                         <th>Color</th>
                         <th class="text-center">Action</th>
@@ -128,10 +128,10 @@ if (isset($_GET['archived'])) {
                         ?>
                         <tr>
                             <td><a class="text-dark" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#editCategoryModal<?php echo $category_id; ?>">
-                                    <?php echo $category_name; ?>
+                                    data-bs-target="#editCategoryModal<?= $category_id; ?>">
+                                    <?= $category_name; ?>
                                 </a></td>
-                            <td><i class="fa fa-3x fa-circle" style="color:<?php echo $category_color; ?>;"></i></td>
+                            <td><i class="fa fa-3x fa-circle" style="color:<?= $category_color; ?>;"></i></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
                                     <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
@@ -142,22 +142,22 @@ if (isset($_GET['archived'])) {
                                         if ($category == "Archived") {
                                             ?>
                                             <a class="dropdown-item text-success confirm-link"
-                                                href="/post.php?unarchive_category=<?php echo $category_id; ?>">
+                                                href="/post.php?unarchive_category=<?= $category_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Unarchive
                                             </a>
                                             <a class="dropdown-item text-danger confirm-link"
-                                                href="/post.php?delete_category=<?php echo $category_id; ?>">
+                                                href="/post.php?delete_category=<?= $category_id; ?>">
                                                 <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                             </a>
                                             <?php
                                         } else {
                                             ?>
                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#editCategoryModal<?php echo $category_id; ?>">
+                                                data-bs-target="#editCategoryModal<?= $category_id; ?>">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
                                             <a class="dropdown-item text-danger confirm-link"
-                                                href="/post.php?archive_category=<?php echo $category_id; ?>">
+                                                href="/post.php?archive_category=<?= $category_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                             </a>
                                             <?php

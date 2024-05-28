@@ -1,5 +1,5 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
-<div class="modal" id="editInventoryLocations<?php echo $inventory_product_id; ?>" tabindex="-1">
+<div class="modal" id="editInventoryLocations<?= $inventory_product_id; ?>" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content bg-dark">
             <div class="modal-header">
@@ -11,8 +11,8 @@
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" id="inventory_product_id" name="inventory_product_id" value="<?php echo $inventory_product_id; ?>">
-                <input type="hidden" id="inventory_location_id" name="inventory_location_id" value="<?php echo $inventory_location_id; ?>">
+                <input type="hidden" id="inventory_product_id" name="inventory_product_id" value="<?= $inventory_product_id; ?>">
+                <input type="hidden" id="inventory_location_id" name="inventory_location_id" value="<?= $inventory_location_id; ?>">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="inventory_location_id">Move to location</label>
@@ -31,7 +31,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="inventory_quantity">Quantity</label>
-                            <input type="number" class="form-control" id="inventory_quantity" name="inventory_quantity" value="<?php echo $inventory_quantity; ?>">
+                            <input type="number" class="form-control" id="inventory_quantity" name="inventory_quantity" value="<?= $inventory_quantity; ?>">
                             <small class="form-text text-muted">Enter the quantity to move</small>
                         </div>
                     </div>

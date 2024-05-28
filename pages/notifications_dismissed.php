@@ -50,13 +50,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Date From</label>
-                                <input type="date" class="form-control" name="dtf" max="2999-12-31" value="<?php echo nullable_htmlentities($dtf); ?>">
+                                <input type="date" class="form-control" name="dtf" max="2999-12-31" value="<?= nullable_htmlentities($dtf); ?>">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Date To</label>
-                                <input type="date" class="form-control" name="dtt" max="2999-12-31" value="<?php echo nullable_htmlentities($dtt); ?>">
+                                <input type="date" class="form-control" name="dtt" max="2999-12-31" value="<?= nullable_htmlentities($dtt); ?>">
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th>
-                            <a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=notification_timestamp&order=<?php echo $disp; ?>">
+                            <a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=notification_timestamp&order=<?= $disp; ?>">
                                 Timestamp 
                                 <?php if($sort == "notification_timestamp") { ?>
                                     <i class="fa fa-sort-numeric<?php if ($disp == 'ASC') { echo "-up"; } else { echo "-down"; }?>"></i>
@@ -75,7 +75,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </a>
                         </th>
                         <th>
-                            <a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=notification_type&order=<?php echo $disp; ?>">
+                            <a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=notification_type&order=<?= $disp; ?>">
                                 Type
                                 <?php if($sort == "notification_type") { ?> 
                                     <i class="fa fa-sort-alpha<?php if ($disp == 'ASC') { echo "-up"; } else { echo "-down"; }?>"></i>
@@ -83,7 +83,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </a>
                         </th>
                         <th>
-                            <a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=notification&order=<?php echo $disp; ?>">
+                            <a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=notification&order=<?= $disp; ?>">
                                 Notification
                                 <?php if($sort == "notification") { ?>
                                     <i class="fa fa-sort-alpha<?php if ($disp == 'ASC') { echo "-up"; } else { echo "-down"; }?>"></i>
@@ -91,7 +91,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </a>
                         </th>
                         <th>
-                            <a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">
+                            <a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=client_name&order=<?= $disp; ?>">
                                 Client
                                 <?php if($sort == "client_name") { ?>
                                     <i class="fa fa-sort-alpha<?php if ($disp == 'ASC') { echo "-up"; } else { echo "-down"; }?>"></i>
@@ -99,7 +99,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </a>
                         </th>
                         <th>
-                            <a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=notification_dismissed_at&order=<?php echo $disp; ?>">
+                            <a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=notification_dismissed_at&order=<?= $disp; ?>">
                                 Dismissed At
                                 <?php if($sort == "notification_dismissed_at") { ?>
                                     <i class="fa fa-sort-numeric<?php if ($disp == 'ASC') { echo "-up"; } else { echo "-down"; }?>"></i>
@@ -107,7 +107,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             </a>
                         </th>
                         <th>
-                            <a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_name&order=<?php echo $disp; ?>">
+                            <a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=user_name&order=<?= $disp; ?>">
                                 Dismissed By
                                 <?php if($sort == "user_name") { ?>
                                     <i class="fa fa-sort-alpha<?php if ($disp == 'ASC') { echo "-up"; } else { echo "-down"; }?>"></i>
@@ -137,12 +137,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                     ?>
                     <tr>
-                        <td><?php echo $notification_timestamp; ?></td>
-                        <td><?php echo $notification_type; ?></td>
-                        <td><?php echo $notification; ?></td>
-                        <td><?php echo $client_name_display; ?></td>
-                        <td><?php echo $notification_dismissed_at; ?></td>
-                        <td><?php echo $user_name; ?></td>
+                        <td><?= $notification_timestamp; ?></td>
+                        <td><?= $notification_type; ?></td>
+                        <td><?= $notification; ?></td>
+                        <td><?= $client_name_display; ?></td>
+                        <td><?= $notification_dismissed_at; ?></td>
+                        <td><?= $user_name; ?></td>
 
                         <?php } ?>
 

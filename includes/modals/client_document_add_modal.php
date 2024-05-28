@@ -15,7 +15,7 @@ $client_id = intval($_GET['client_id']);
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
 
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" placeholder="Name" required autofocus>
@@ -49,7 +49,7 @@ $client_id = intval($_GET['client_id']);
                                     $folder_name = nullable_htmlentities($row['folder_name']);
 
                                     ?>
-                                    <option <?php if (isset($_GET['folder_id']) && $_GET['folder_id'] == $folder_id) echo "selected"; ?> value="<?php echo $folder_id ?>"><?php echo $folder_name; ?></option>
+                                    <option <?php if (isset($_GET['folder_id']) && $_GET['folder_id'] == $folder_id) echo "selected"; ?> value="<?= $folder_id ?>"><?= $folder_name; ?></option>
                                     <?php
                                 }
                                 ?>

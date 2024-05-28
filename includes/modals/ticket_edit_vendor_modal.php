@@ -25,20 +25,20 @@ $vendor_name = nullable_htmlentities($row['vendor_name']);
 
 
 ?>
-<div class="modal" id="editTicketVendorModal<?php echo $ticket_id; ?>" tabindex="-1">
+<div class="modal" id="editTicketVendorModal<?= $ticket_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-building mr-2"></i>Editing ticket Vendor: <strong><?php echo "$ticket_prefix$ticket_number"; ?></strong> - <?php echo $client_name; ?></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-building mr-2"></i>Editing ticket Vendor: <strong><?= "$ticket_prefix$ticket_number"; ?></strong> - <?= $client_name; ?></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <input type="hidden" name="ticket_number" value="<?php echo "$ticket_prefix$ticket_number"; ?>">
+                <input type="hidden" name="ticket_id" value="<?= $ticket_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+                <input type="hidden" name="ticket_number" value="<?= "$ticket_prefix$ticket_number"; ?>">
                     <div class="form-group">
                         <label>Vendor</label>
                         <div class="input-group">
@@ -54,7 +54,7 @@ $vendor_name = nullable_htmlentities($row['vendor_name']);
                                     $vendor_id_select = intval($row['vendor_id']);
                                     $vendor_name_select = nullable_htmlentities($row['vendor_name']);
                                     ?>
-                                    <option <?php if ($vendor_id == $vendor_id_select) { echo "selected"; } ?> value="<?php echo $vendor_id_select; ?>"><?php echo $vendor_name_select; ?></option>
+                                    <option <?php if ($vendor_id == $vendor_id_select) { echo "selected"; } ?> value="<?= $vendor_id_select; ?>"><?= $vendor_name_select; ?></option>
 
                                     <?php
                                 }

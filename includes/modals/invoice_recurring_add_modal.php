@@ -1,15 +1,15 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
-<div class="modal" id="addInvoiceRecurringModal<?php echo $invoice_id; ?>" tabindex="-1">
+<div class="modal" id="addInvoiceRecurringModal<?= $invoice_id; ?>" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content bg-dark">
       <div class="modal-header text-white">
-        <h5 class="modal-title"><i class="fas fa-fw fa-copy mr-2"></i>Make <?php echo "$invoice_prefix$invoice_number"; ?> Recurring</h5>
+        <h5 class="modal-title"><i class="fas fa-fw fa-copy mr-2"></i>Make <?= "$invoice_prefix$invoice_number"; ?> Recurring</h5>
         <button type="button" class="close text-white" data-bs-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <form action="/post.php" method="post" autocomplete="off">
-        <input type="hidden" name="invoice_id" value="<?php echo $invoice_id; ?>"> 
+        <input type="hidden" name="invoice_id" value="<?= $invoice_id; ?>"> 
         <div class="modal-body bg-white">
           
           <div class="form-group">

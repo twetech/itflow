@@ -22,11 +22,11 @@ $asset_name = nullable_htmlentities($row['asset_name']);
 
 ?>
 
-<div class="modal" id="editTicketAssetModal<?php echo $ticket_id; ?>" tabindex="-1">
+<div class="modal" id="editTicketAssetModal<?= $ticket_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-life-desktop mr-2"></i>Editing ticket Asset: <strong><?php echo "$ticket_prefix$ticket_number"; ?></strong> - <?php echo $client_name; ?></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-life-desktop mr-2"></i>Editing ticket Asset: <strong><?= "$ticket_prefix$ticket_number"; ?></strong> - <?= $client_name; ?></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -34,9 +34,9 @@ $asset_name = nullable_htmlentities($row['asset_name']);
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <input type="hidden" name="ticket_number" value="<?php echo "$ticket_prefix$ticket_number"; ?>">
+                <input type="hidden" name="ticket_id" value="<?= $ticket_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+                <input type="hidden" name="ticket_number" value="<?= "$ticket_prefix$ticket_number"; ?>">
                     <div class="form-group">
                         <label>Asset</label>
                         <div class="input-group">
@@ -53,7 +53,7 @@ $asset_name = nullable_htmlentities($row['asset_name']);
                                     $asset_name_select = nullable_htmlentities($row['asset_name']);
                                     $asset_contact_name_select = nullable_htmlentities($row['contact_name']);
                                     ?>
-                                    <option <?php if ($asset_id == $asset_id_select) { echo "selected"; } ?> value="<?php echo $asset_id_select; ?>"><?php echo "$asset_name_select - $asset_contact_name_select"; ?></option>
+                                    <option <?php if ($asset_id == $asset_id_select) { echo "selected"; } ?> value="<?= $asset_id_select; ?>"><?= "$asset_name_select - $asset_contact_name_select"; ?></option>
 
                                     <?php
                                 }

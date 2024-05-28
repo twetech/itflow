@@ -40,13 +40,13 @@ $recurring_expense_count = $row['num'];
 <table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=expense_date&order=<?php echo $disp; ?>">Date</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Vendor</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Category</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=expense_description&order=<?php echo $disp; ?>">Description</a></th>
-                            <th class="text-right"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=expense_amount&order=<?php echo $disp; ?>">Amount</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=account_name&order=<?php echo $disp; ?>">Account</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">Client</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=expense_date&order=<?= $disp; ?>">Date</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=vendor_name&order=<?= $disp; ?>">Vendor</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Category</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=expense_description&order=<?= $disp; ?>">Description</a></th>
+                            <th class="text-right"><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=expense_amount&order=<?= $disp; ?>">Amount</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=account_name&order=<?= $disp; ?>">Account</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=client_name&order=<?= $disp; ?>">Client</a></th>
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -85,13 +85,13 @@ $recurring_expense_count = $row['num'];
                             ?>
 
                             <tr>
-                                <td><?php echo $receipt_attached; ?> <a class="text-dark" href="#" title="Created: <?php echo $expense_created_at; ?>" data-bs-toggle="modal" data-bs-target="#editExpenseModal<?php echo $expense_id; ?>"><?php echo $expense_date; ?></a></td>
-                                <td><?php echo $vendor_name; ?></td>
-                                <td><?php echo $category_name; ?></td>
-                                <td><?php echo truncate($expense_description, 50); ?></td>
-                                <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $expense_amount, $expense_currency_code); ?></td>
-                                <td><?php echo $account_name; ?></td>
-                                <td><?php echo $client_name_display; ?></td>
+                                <td><?= $receipt_attached; ?> <a class="text-dark" href="#" title="Created: <?= $expense_created_at; ?>" data-bs-toggle="modal" data-bs-target="#editExpenseModal<?= $expense_id; ?>"><?= $expense_date; ?></a></td>
+                                <td><?= $vendor_name; ?></td>
+                                <td><?= $category_name; ?></td>
+                                <td><?= truncate($expense_description, 50); ?></td>
+                                <td class="text-bold text-right"><?= numfmt_format_currency($currency_format, $expense_amount, $expense_currency_code); ?></td>
+                                <td><?= $account_name; ?></td>
+                                <td><?= $client_name_display; ?></td>
                                 <td>
                                     <div class="dropdown dropleft text-center">
                                         <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
@@ -100,23 +100,23 @@ $recurring_expense_count = $row['num'];
                                         <div class="dropdown-menu">
                                             <?php
                                             if (!empty($expense_receipt)) { ?>
-                                                <a class="dropdown-item" href="<?php echo "/uploads/expenses/$expense_receipt"; ?>" download="<?php echo "$expense_date-$vendor_name-$category_name-$expense_id.pdf"; ?>">
+                                                <a class="dropdown-item" href="<?= "/uploads/expenses/$expense_receipt"; ?>" download="<?= "$expense_date-$vendor_name-$category_name-$expense_id.pdf"; ?>">
                                                     <i class="fas fa-fw fa-download mr-2"></i>Download
                                                 </a>
                                                 <div class="dropdown-divider"></div>
                                             <?php } ?>
-                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editExpenseModal<?php echo $expense_id; ?>">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editExpenseModal<?= $expense_id; ?>">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
-                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addExpenseCopyModal<?php echo $expense_id; ?>">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addExpenseCopyModal<?= $expense_id; ?>">
                                                 <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addExpenseRefundModal<?php echo $expense_id; ?>">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addExpenseRefundModal<?= $expense_id; ?>">
                                                 <i class="fas fa-fw fa-undo-alt mr-2"></i>Refund
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_expense=<?php echo $expense_id; ?>">
+                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_expense=<?= $expense_id; ?>">
                                                 <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                             </a>
                                         </div>

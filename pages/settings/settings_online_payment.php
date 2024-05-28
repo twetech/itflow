@@ -11,7 +11,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
     </div>
     <div class="card-body">
         <form action="/post.php" method="post" autocomplete="off">
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
             <input type="hidden" name="config_stripe_client_pays_fees" value="0">
 
             <div class="form-group">
@@ -29,7 +29,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-eye"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_stripe_publishable" placeholder="Stripe Publishable API Key (pk_...)" value="<?php echo nullable_htmlentities($config_stripe_publishable); ?>">
+                        <input type="text" class="form-control" name="config_stripe_publishable" placeholder="Stripe Publishable API Key (pk_...)" value="<?= nullable_htmlentities($config_stripe_publishable); ?>">
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-key"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_stripe_secret" placeholder="Stripe Secret API Key (sk_...)" value="<?php echo nullable_htmlentities($config_stripe_secret); ?>">
+                        <input type="text" class="form-control" name="config_stripe_secret" placeholder="Stripe Secret API Key (sk_...)" value="<?= nullable_htmlentities($config_stripe_secret); ?>">
                     </div>
                 </div>
 
@@ -58,7 +58,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                                 $account_name = nullable_htmlentities($row['account_name']);
                                 ?>
 
-                                <option value="<?php echo $account_id ?>" <?php if ($account_id == $config_stripe_account) { echo "selected"; } ?>><?php echo $account_name ?></option>
+                                <option value="<?= $account_id ?>" <?php if ($account_id == $config_stripe_account) { echo "selected"; } ?>><?= $account_name ?></option>
                             <?php
                             }
                             ?>
@@ -72,7 +72,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-percent"></i></span>
                         </div>
-                        <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="config_stripe_percentage_fee" placeholder="Enter Percentage" value="<?php echo $config_stripe_percentage_fee * 100; ?>">
+                        <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="config_stripe_percentage_fee" placeholder="Enter Percentage" value="<?= $config_stripe_percentage_fee * 100; ?>">
                     </div>
                     <small class="form-text text-muted">Please click <a href="https://stripe.com/pricing" target="_blank">here <i class="fas fa-fw fa-external-link-alt"></i></a> for the latest Stripe Fees.</small>
                 </div>
@@ -83,7 +83,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-shopping-cart"></i></span>
                         </div>
-                        <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="config_stripe_flat_fee" placeholder="0.030" value="<?php echo number_format($config_stripe_flat_fee, 2, '.', ''); ?>">
+                        <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="config_stripe_flat_fee" placeholder="0.030" value="<?= number_format($config_stripe_flat_fee, 2, '.', ''); ?>">
                     </div>
                     <small class="form-text text-muted">Please click <a href="https://stripe.com/pricing" target="_blank">here <i class="fas fa-fw fa-external-link-alt"></i></a> for the latest Stripe Fees.</small>
                 </div>
@@ -113,7 +113,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                                     $vendor_id = intval($row['vendor_id']);
                                     $vendor_name = nullable_htmlentities($row['vendor_name']);
                                     ?>
-                                    <option <?php if ($config_stripe_expense_vendor == $vendor_id) { ?> selected <?php } ?> value="<?php echo $vendor_id; ?>"><?php echo $vendor_name; ?></option>
+                                    <option <?php if ($config_stripe_expense_vendor == $vendor_id) { ?> selected <?php } ?> value="<?= $vendor_id; ?>"><?= $vendor_name; ?></option>
                                     <?php
                                 }
 
@@ -137,7 +137,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                                     $category_id = intval($row['category_id']);
                                     $category_name = nullable_htmlentities($row['category_name']);
                                     ?>
-                                    <option <?php if ($config_stripe_expense_category == $category_id) { ?> selected <?php } ?> value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
+                                    <option <?php if ($config_stripe_expense_category == $category_id) { ?> selected <?php } ?> value="<?= $category_id; ?>"><?= $category_name; ?></option>
                                     <?php
                                 }
 

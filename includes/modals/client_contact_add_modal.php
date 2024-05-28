@@ -27,7 +27,7 @@ if (isset($_GET['client_id'])) {
                 <input type="hidden" name="contact_billing" value="0">
                 <input type="hidden" name="contact_technical" value="0">
                 <!-- End prevent undefined errors -->
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details"><i class="fa fa-fw fa-user mr-2"></i>Details</a>
@@ -136,7 +136,7 @@ if (isset($_GET['client_id'])) {
                                             $location_id = intval($row['location_id']);
                                             $location_name = nullable_htmlentities($row['location_name']);
                                         ?>
-                                            <option value="<?php echo $location_id; ?>"><?php echo $location_name; ?></option>
+                                            <option value="<?= $location_id; ?>"><?= $location_name; ?></option>
                                         <?php } ?>
 
                                     </select>

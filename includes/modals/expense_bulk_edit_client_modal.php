@@ -25,7 +25,7 @@
                                 $client_id = intval($row['client_id']);
                                 $client_name = nullable_htmlentities($row['client_name']);
                                 ?>
-                                <option value="<?php echo $client_id; ?>"><?php echo $client_name; ?></option>
+                                <option value="<?= $client_id; ?>"><?= $client_name; ?></option>
 
                                 <?php
                             }

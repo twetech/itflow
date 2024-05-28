@@ -25,14 +25,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <div class="card-header py-2">
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-stream mr-2"></i>Services</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_service_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Service</button>
+                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_service_add_modal.php?client_id=<?= $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Service</button>
             </div>
         </div>
 
         <div class="card-body">
 
             <form autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                 <div class="row">
 
 
@@ -86,20 +86,20 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <tr>
                             <!-- Name/Category/Updated/Importance from DB -->
                             <td>
-                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#viewServiceModal<?php echo $service_id; ?>">
+                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#viewServiceModal<?= $service_id; ?>">
                                     <div class="media">
                                         <i class="fa fa-fw fa-2x fa-stream mr-3"></i>
                                         <div class="media-body">
-                                            <div><?php echo $service_name; ?></div>
-                                            <div><small class="text-secondary"><?php echo $service_description; ?></small></div>
+                                            <div><?= $service_name; ?></div>
+                                            <div><small class="text-secondary"><?= $service_description; ?></small></div>
                                         </div>
                                     </div>
                                 </a>
                         
                             </td>
-                            <td><?php echo $service_category ?></td>
-                            <td><?php echo $service_importance ?></td>
-                            <td><?php echo $service_updated_at ?></td>
+                            <td><?= $service_category ?></td>
+                            <td><?= $service_importance ?></td>
+                            <td><?= $service_updated_at ?></td>
 
                             <!-- Action -->
                             <td>
@@ -108,12 +108,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editServiceModal<?php echo $service_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editServiceModal<?= $service_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <?php if ($session_user_role == 3) { ?>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_service=<?php echo $service_id; ?>">
+                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_service=<?= $service_id; ?>">
                                                 <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                             </a>
                                         <?php } ?>

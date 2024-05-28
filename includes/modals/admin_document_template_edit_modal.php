@@ -9,29 +9,29 @@ $document_content = nullable_htmlentities($row['document_content']);
 $document_description = nullable_htmlentities($row['document_description']);
 ?>
 
-<div class="modal" id="editDocumentTemplateModal<?php echo $document_id; ?>" tabindex="-1">
+<div class="modal" id="editDocumentTemplateModal<?= $document_id; ?>" tabindex="-1">
     <div class="modal-dialog modal-xl">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-file-alt mr-2"></i>Editing template: <strong><?php echo $document_name; ?></strong></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-file-alt mr-2"></i>Editing template: <strong><?= $document_name; ?></strong></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="document_id" value="<?php echo $document_id; ?>">
+                <input type="hidden" name="document_id" value="<?= $document_id; ?>">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" name="name" value="<?php echo $document_name; ?>" placeholder="Name" required>
+                        <input type="text" class="form-control" name="name" value="<?= $document_name; ?>" placeholder="Name" required>
                     </div>
 
                     <div class="form-group">
-                        <textarea  class="form-control" name="content"><?php echo $document_content; ?></textarea>
+                        <textarea  class="form-control" name="content"><?= $document_content; ?></textarea>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" name="description" value="<?php echo $document_description; ?>" placeholder="Short summary">
+                        <input type="text" class="form-control" name="description" value="<?= $document_description; ?>" placeholder="Short summary">
                     </div>
 
                 </div>

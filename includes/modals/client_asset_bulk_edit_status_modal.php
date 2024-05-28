@@ -21,7 +21,7 @@
                         <select class="form-control select2" id='select2' name="bulk_status">
                             <option value="">- Status -</option>
                             <?php foreach($asset_status_array as $asset_status) { ?>
-                                <option><?php echo $asset_status; ?></option>
+                                <option><?= $asset_status; ?></option>
                             <?php } ?>
                         </select>
                     </div>

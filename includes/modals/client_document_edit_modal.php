@@ -1,11 +1,11 @@
 
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
 
-<div class="modal" id="editDocumentModal<?php echo $document_id; ?>" tabindex="-1">
+<div class="modal" id="editDocumentModal<?= $document_id; ?>" tabindex="-1">
     <div class="modal-dialog modal-xl">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-file-alt mr-2"></i>Editing document: <strong><?php echo $document_name; ?></strong></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-file-alt mr-2"></i>Editing document: <strong><?= $document_name; ?></strong></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -14,16 +14,16 @@
 
                 <div class="modal-body bg-white">
                 <input type="hidden" name="document_id" value="<?php if($document_parent == 0){ echo $document_id; } else { echo $document_parent; } ?>">
-                <input type="hidden" name="document_parent" value="<?php echo $document_parent; ?>">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <input type="hidden" name="created_by" value="<?php echo $document_created_by_id; ?>">
+                <input type="hidden" name="document_parent" value="<?= $document_parent; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+                <input type="hidden" name="created_by" value="<?= $document_created_by_id; ?>">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="name" value="<?php echo $document_name; ?>" placeholder="Name" required>
+                        <input type="text" class="form-control" name="name" value="<?= $document_name; ?>" placeholder="Name" required>
                     </div>
 
                     <?php if($config_ai_enable) { ?>
                     <div class="form-group">
-                        <textarea class="form-control tinymceai" id="textInput" name="content"><?php echo $document_content; ?></textarea>
+                        <textarea class="form-control tinymceai" id="textInput" name="content"><?= $document_content; ?></textarea>
                     </div>
                     
                     <div class="mb-3">
@@ -32,7 +32,7 @@
                     </div>
                     <?php } else { ?>
                     <div class="form-group">
-                        <textarea  class="form-control" name="content"><?php echo $document_content; ?></textarea>
+                        <textarea  class="form-control" name="content"><?= $document_content; ?></textarea>
                     </div>
                     <?php } ?>
                     
@@ -50,7 +50,7 @@
                                     $folder_id_select = intval($row['folder_id']);
                                     $folder_name_select = nullable_htmlentities($row['folder_name']);
                                     ?>
-                                    <option <?php if ($folder_id_select == $document_folder_id) echo "selected"; ?> value="<?php echo $folder_id_select ?>"><?php echo $folder_name_select; ?></option>
+                                    <option <?php if ($folder_id_select == $document_folder_id) echo "selected"; ?> value="<?= $folder_id_select ?>"><?= $folder_name_select; ?></option>
                                     <?php
                                 }
                                 ?>
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" name="description" value="<?php echo $document_description; ?>" placeholder="Short summary of changes">
+                        <input type="text" class="form-control" name="description" value="<?= $document_description; ?>" placeholder="Short summary of changes">
                     </div>
 
                 </div>

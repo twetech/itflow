@@ -39,19 +39,19 @@ $sql = mysqli_query($mysqli, "SELECT * FROM contacts
                     
                     <div class="form-group">
                         <select type="text" class="form-control select2" id='select2' name="mail_from">
-                            <option value="<?php echo nullable_htmlentities($config_mail_from_email); ?>">
-                                <?php echo nullable_htmlentities("$config_mail_from_name - $config_mail_from_email"); ?></option>
-                            <option value="<?php echo nullable_htmlentities($config_invoice_from_email); ?>">
-                                <?php echo nullable_htmlentities("$config_invoice_from_name - $config_invoice_from_email"); ?></option>
-                            <option value="<?php echo nullable_htmlentities($config_quote_from_email); ?>">
-                                <?php echo nullable_htmlentities("$config_quote_from_name - $config_quote_from_email"); ?></option>
-                            <option value="<?php echo nullable_htmlentities($config_ticket_from_email); ?>">
-                                <?php echo nullable_htmlentities("$config_ticket_from_name - $config_ticket_from_email"); ?></option>
+                            <option value="<?= nullable_htmlentities($config_mail_from_email); ?>">
+                                <?= nullable_htmlentities("$config_mail_from_name - $config_mail_from_email"); ?></option>
+                            <option value="<?= nullable_htmlentities($config_invoice_from_email); ?>">
+                                <?= nullable_htmlentities("$config_invoice_from_name - $config_invoice_from_email"); ?></option>
+                            <option value="<?= nullable_htmlentities($config_quote_from_email); ?>">
+                                <?= nullable_htmlentities("$config_quote_from_name - $config_quote_from_email"); ?></option>
+                            <option value="<?= nullable_htmlentities($config_ticket_from_email); ?>">
+                                <?= nullable_htmlentities("$config_ticket_from_name - $config_ticket_from_email"); ?></option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" name="mail_from_name" placeholder="From Name" value="<?php echo nullable_htmlentities($config_mail_from_name); ?>" required>
+                        <input type="text" class="form-control" name="mail_from_name" placeholder="From Name" value="<?= nullable_htmlentities($config_mail_from_name); ?>" required>
                     </div>
 
                     <div class="form-group">
@@ -116,17 +116,17 @@ $sql = mysqli_query($mysqli, "SELECT * FROM contacts
                                 <tr>
                                     <td>
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input bulk-select" name="contact_ids[]" value="<?php echo $contact_id; ?>">
+                                            <input type="checkbox" class="form-check-input bulk-select" name="contact_ids[]" value="<?= $contact_id; ?>">
                                         </div>
                                     </td>
-                                    <td><?php echo $client_name; ?></td>
+                                    <td><?= $client_name; ?></td>
                                     <td>
-                                        <a href="client_contact_details.php?client_id=<?php echo $contact_client_id; ?>&contact_id=<?php echo $contact_id; ?>" target="_blank">
-                                            <?php echo $contact_name; ?>
+                                        <a href="client_contact_details.php?client_id=<?= $contact_client_id; ?>&contact_id=<?= $contact_id; ?>" target="_blank">
+                                            <?= $contact_name; ?>
                                         </a>
                                     </td>
-                                    <td><?php echo $contact_title_display; ?></td>
-                                    <td><?php echo $contact_email; ?></td>
+                                    <td><?= $contact_title_display; ?></td>
+                                    <td><?= $contact_email; ?></td>
                                 </tr>
                                 <?php } ?>
                                 </tbody>

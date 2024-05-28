@@ -84,7 +84,7 @@ $client_id = intval($_GET['client_id']);
                                             while ($row = mysqli_fetch_array($sql)) {
                                                 $client_id = intval($row['client_id']);
                                                 $client_name = nullable_htmlentities($row['client_name']); ?>
-                                                <option value="<?php echo $client_id; ?>"><?php echo $client_name; ?></option>
+                                                <option value="<?= $client_id; ?>"><?= $client_name; ?></option>
 
                                             <?php } ?>
                                         </select>
@@ -133,7 +133,7 @@ $client_id = intval($_GET['client_id']);
                                         while ($row = mysqli_fetch_array($sql)) {
                                             $user_id = intval($row['user_id']);
                                             $user_name = nullable_htmlentities($row['user_name']); ?>
-                                            <option <?php if ($session_user_id == $user_id) { echo "selected"; } ?> value="<?php echo $user_id; ?>"><?php echo $user_name; ?></option>
+                                            <option <?php if ($session_user_id == $user_id) { echo "selected"; } ?> value="<?= $user_id; ?>"><?= $user_name; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -145,7 +145,7 @@ $client_id = intval($_GET['client_id']);
 
                             <div class="tab-pane fade" role="tabpanel" id="pills-contacts">
 
-                                <input type="hidden" name="client" value="<?php echo $client_id; ?>">
+                                <input type="hidden" name="client" value="<?= $client_id; ?>">
 
                                 <div class="form-group">
                                     <label>Contact</label>
@@ -180,7 +180,7 @@ $client_id = intval($_GET['client_id']);
                                                 }
 
                                                 ?>
-                                                <option value="<?php echo $contact_id; ?>" <?php if ($contact_primary == 1) { echo "selected"; } ?>><?php echo "$contact_name$contact_title_display$contact_primary_display$contact_technical_display"; ?></option>
+                                                <option value="<?= $contact_id; ?>" <?php if ($contact_primary == 1) { echo "selected"; } ?>><?= "$contact_name$contact_title_display$contact_primary_display$contact_technical_display"; ?></option>
 
                                             <?php } ?>
                                         </select>
@@ -200,7 +200,7 @@ $client_id = intval($_GET['client_id']);
                                             while ($row = mysqli_fetch_array($sql)) {
                                                 $contact_email = nullable_htmlentities($row['contact_email']);
                                                 ?>
-                                                <option><?php echo $contact_email; ?></option>
+                                                <option><?= $contact_email; ?></option>
 
                                             <?php } ?>
                                         </select>
@@ -227,7 +227,7 @@ $client_id = intval($_GET['client_id']);
                                                 $asset_name_select = nullable_htmlentities($row['asset_name']);
                                                 $asset_contact_name_select = nullable_htmlentities($row['contact_name']);
                                             ?>
-                                                <option value="<?php echo $asset_id_select; ?>"><?php echo "$asset_name_select - $asset_contact_name_select"; ?></option>
+                                                <option value="<?= $asset_id_select; ?>"><?= "$asset_name_select - $asset_contact_name_select"; ?></option>
 
                                             <?php } ?>
                                         </select>
@@ -253,7 +253,7 @@ $client_id = intval($_GET['client_id']);
                                                 $location_id_select = intval($row['location_id']);
                                                 $location_name_select = nullable_htmlentities($row['location_name']);
                                             ?>
-                                                <option value="<?php echo $location_id_select; ?>"><?php echo $location_name_select; ?></option>
+                                                <option value="<?= $location_id_select; ?>"><?= $location_name_select; ?></option>
 
                                             <?php } ?>
                                         </select>
@@ -278,7 +278,7 @@ $client_id = intval($_GET['client_id']);
                                             while ($row = mysqli_fetch_array($sql_vendors)) {
                                                 $vendor_id_select = intval($row['vendor_id']);
                                                 $vendor_name_select = nullable_htmlentities($row['vendor_name']); ?>
-                                                <option value="<?php echo $vendor_id_select; ?>"><?php echo $vendor_name_select; ?></option>
+                                                <option value="<?= $vendor_id_select; ?>"><?= $vendor_name_select; ?></option>
 
                                             <?php } ?>
                                         </select>

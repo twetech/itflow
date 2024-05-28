@@ -57,13 +57,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Date From</label>
-                                <input type="date" class="form-control" name="dtf" max="2999-12-31" value="<?php echo nullable_htmlentities($dtf); ?>">
+                                <input type="date" class="form-control" name="dtf" max="2999-12-31" value="<?= nullable_htmlentities($dtf); ?>">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Date To</label>
-                                <input type="date" class="form-control" name="dtt" max="2999-12-31" value="<?php echo nullable_htmlentities($dtt); ?>">
+                                <input type="date" class="form-control" name="dtt" max="2999-12-31" value="<?= nullable_htmlentities($dtt); ?>">
                             </div>
                         </div>
                     </div>
@@ -73,13 +73,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <div class="card-datatable table-responsive container-fluid  pt-0">                <table id=responsive class="responsive table table-sm table-striped table-borderless table-hover">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=email_id&order=<?php echo $disp; ?>">ID</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=email_queued_at&order=<?php echo $disp; ?>">Queued</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=email_from&order=<?php echo $disp; ?>">From</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=email_recipient&order=<?php echo $disp; ?>">To</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=email_subject&order=<?php echo $disp; ?>">Subject</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=email_status&order=<?php echo $disp; ?>">Status</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=email_attempts&order=<?php echo $disp; ?>">Attempts</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=email_id&order=<?= $disp; ?>">ID</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=email_queued_at&order=<?= $disp; ?>">Queued</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=email_from&order=<?= $disp; ?>">From</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=email_recipient&order=<?= $disp; ?>">To</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=email_subject&order=<?= $disp; ?>">Subject</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=email_status&order=<?= $disp; ?>">Status</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=email_attempts&order=<?= $disp; ?>">Attempts</a></th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -111,26 +111,26 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
 
                         <tr>
-                            <td><?php echo $email_id; ?></td>
-                            <td><?php echo $email_queued_at; ?></td>
-                            <td><?php echo "$email_from<br><small class='text-secondary'>$email_from_name</small>"?></td>
-                            <td><?php echo "$email_recipient<br><small class='text-secondary'>$email_recipient_name</small>"?></td>
-                            <td><?php echo $email_subject; ?></td>
-                            <td><?php echo $email_status_display; ?></td>
-                            <td><?php echo $email_attempts; ?></td>
+                            <td><?= $email_id; ?></td>
+                            <td><?= $email_queued_at; ?></td>
+                            <td><?= "$email_from<br><small class='text-secondary'>$email_from_name</small>"?></td>
+                            <td><?= "$email_recipient<br><small class='text-secondary'>$email_recipient_name</small>"?></td>
+                            <td><?= $email_subject; ?></td>
+                            <td><?= $email_status_display; ?></td>
+                            <td><?= $email_attempts; ?></td>
                             <td>
-                                <a class="btn btn-sm btn-light" href="admin_mail_queue_message_view.php?email_id=<?php echo $email_id; ?>">
+                                <a class="btn btn-sm btn-light" href="admin_mail_queue_message_view.php?email_id=<?= $email_id; ?>">
                                     <i class="fas fa-fw fa-eye"></i>
                                 </a>
 
                                 <!-- Show force resend if all retries have failed -->
                                 <?php if ($email_status == 2 && $email_attempts > 3) { ?>
-                                    <a class="btn btn-sm btn-success" href="/post.php?send_failed_mail=<?php echo $email_id; ?>"><i class="fas fa-fw fa-paper-plane"></i></a>
+                                    <a class="btn btn-sm btn-success" href="/post.php?send_failed_mail=<?= $email_id; ?>"><i class="fas fa-fw fa-paper-plane"></i></a>
                                 <?php } ?>
 
                                 <!-- Allow cancelling a message if it hasn't yet been picked up (e.g. stuck/bugged) -->
                                 <?php if ($email_status == 0) { ?>
-                                    <a class="btn btn-sm btn-danger confirm-link" href="/post.php?cancel_mail=<?php echo $email_id; ?>"><i class="fas fa-fw fa-trash"></i></a>
+                                    <a class="btn btn-sm btn-danger confirm-link" href="/post.php?cancel_mail=<?= $email_id; ?>"><i class="fas fa-fw fa-trash"></i></a>
                                 <?php } ?>
 
                             </td>

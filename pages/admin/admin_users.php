@@ -64,10 +64,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
-                    <th class="text-center"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_name&order=<?php echo $disp; ?>">Name</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_email&order=<?php echo $disp; ?>">Email</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_role&order=<?php echo $disp; ?>">Role</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_status&order=<?php echo $disp; ?>">Status</a></th>
+                    <th class="text-center"><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=user_name&order=<?= $disp; ?>">Name</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=user_email&order=<?= $disp; ?>">Email</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=user_role&order=<?= $disp; ?>">Role</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=user_status&order=<?= $disp; ?>">Status</a></th>
                     <th class="text-center">MFA</th>
                     <th>Last Login</th>
                     <th class="text-center">Action</th>
@@ -130,29 +130,29 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     ?>
                     <tr>
                         <td class="text-center">
-                            <a class="text-dark" href="#" <?php if ($user_id !== $session_user_id) {   // Prevent modifying self ?> data-bs-toggle="modal" data-bs-target="#editUserModal<?php echo $user_id; ?>" <?php } ?>>
+                            <a class="text-dark" href="#" <?php if ($user_id !== $session_user_id) {   // Prevent modifying self ?> data-bs-toggle="modal" data-bs-target="#editUserModal<?= $user_id; ?>" <?php } ?>>
                                 <div class="avatar-wrapper">
                                     <div class="avatar avatar-sm me-3">
                                         <?php if (!empty($user_avatar)) { ?>
-                                            <img class="img-fluid rounded-circle" src="<?php echo "/uploads/users/$user_id/$user_avatar"; ?>">
+                                            <img class="img-fluid rounded-circle" src="<?= "/uploads/users/$user_id/$user_avatar"; ?>">
                                         <?php } else { ?>
                                             <span class="fa-stack fa-2x">
                                                 <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-                                                <span class="fa fa-stack-1x text-white"><?php echo $user_initials; ?></span>
+                                                <span class="fa fa-stack-1x text-white"><?= $user_initials; ?></span>
                                             </span>
                                             <br>
                                         <?php } ?>
                                     </div>
                                 </div>
 
-                                <div class="text-secondary"><?php echo $user_name; ?></div>
+                                <div class="text-secondary"><?= $user_name; ?></div>
                             </a>
                         </td>
-                        <td><a href="mailto:<?php echo $user_email; ?>"><?php echo $user_email; ?></a></td>
-                        <td><?php echo $user_role_display; ?></td>
-                        <td><?php echo $user_status_display; ?></td>
-                        <td class="text-center"><?php echo $mfa_status_display; ?></td>
-                        <td><?php echo $last_login; ?></td>
+                        <td><a href="mailto:<?= $user_email; ?>"><?= $user_email; ?></a></td>
+                        <td><?= $user_role_display; ?></td>
+                        <td><?= $user_status_display; ?></td>
+                        <td class="text-center"><?= $mfa_status_display; ?></td>
+                        <td><?= $last_login; ?></td>
                         <td>
                             <?php if ($user_id !== $session_user_id) {   // Prevent modifying self ?>
                             <div class="dropdown dropleft text-center">
@@ -160,24 +160,24 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal<?php echo $user_id; ?>">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal<?= $user_id; ?>">
                                         <i class="fas fa-fw fa-user-edit mr-2"></i>Edit
                                     </a>
                                     <?php if ($remember_token_count > 0) { ?>
-                                    <a class="dropdown-item" href="/post.php?revoke_remember_me=<?php echo $user_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>"><i class="fas fa-fw fa-ban mr-2"></i>Revoke <?php echo $remmeber_token_count; ?> Remember Tokens
+                                    <a class="dropdown-item" href="/post.php?revoke_remember_me=<?= $user_id; ?>&csrf_token=<?= $_SESSION['csrf_token'] ?>"><i class="fas fa-fw fa-ban mr-2"></i>Revoke <?= $remmeber_token_count; ?> Remember Tokens
                                     </a>
                                     <?php } ?>
                                     <?php if ($user_status == 0) { ?>
-                                        <a class="dropdown-item text-success" href="/post.php?activate_user=<?php echo $user_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>">
+                                        <a class="dropdown-item text-success" href="/post.php?activate_user=<?= $user_id; ?>&csrf_token=<?= $_SESSION['csrf_token'] ?>">
                                             <i class="fas fa-fw fa-user-check mr-2"></i>Activate
                                         </a>
                                     <?php }elseif ($user_status == 1) { ?>
-                                        <a class="dropdown-item text-danger" href="/post.php?disable_user=<?php echo $user_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>">
+                                        <a class="dropdown-item text-danger" href="/post.php?disable_user=<?= $user_id; ?>&csrf_token=<?= $_SESSION['csrf_token'] ?>">
                                             <i class="fas fa-fw fa-user-slash mr-2"></i>Disable
                                         </a>
                                     <?php } ?>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#archiveUserModal<?php echo $user_id; ?>">
+                                    <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#archiveUserModal<?= $user_id; ?>">
                                         <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                     </a>
                                 </div>
@@ -199,7 +199,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 </div>
 <script>
     function generatePassword() {
-        document.getElementById("password").value = "<?php echo randomString() ?>"
+        document.getElementById("password").value = "<?= randomString() ?>"
     }
 </script>
 

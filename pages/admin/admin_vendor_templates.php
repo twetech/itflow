@@ -45,8 +45,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Vendor</a></th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_description&order=<?php echo $disp; ?>">Description</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=vendor_name&order=<?= $disp; ?>">Vendor</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=vendor_description&order=<?= $disp; ?>">Description</a></th>
                         <th>Contact</th>
                         <th class="text-center">Action</th>
                     </tr>
@@ -83,24 +83,24 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
                         <tr>
                             <th>
-                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editVendorTemplateModal<?php echo $vendor_id; ?>">
-                                    <i class="fa fa-fw fa-building text-secondary mr-2"></i><?php echo $vendor_name; ?>
+                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editVendorTemplateModal<?= $vendor_id; ?>">
+                                    <i class="fa fa-fw fa-building text-secondary mr-2"></i><?= $vendor_name; ?>
                                 </a>
                                 <?php
                                 if (!empty($vendor_account_number)) {
                                     ?>
                                     <br>
-                                    <small class="text-secondary"><?php echo $vendor_account_number; ?></small>
+                                    <small class="text-secondary"><?= $vendor_account_number; ?></small>
                                     <?php
                                 }
                                 ?>
                             </th>
-                            <td><?php echo $vendor_description_display; ?></td>
+                            <td><?= $vendor_description_display; ?></td>
                             <td>
                                 <?php
                                 if (!empty($vendor_contact_name)) {
                                     ?>
-                                    <i class="fa fa-fw fa-user text-secondary mr-2 mb-2"></i><?php echo $vendor_contact_name_display; ?>
+                                    <i class="fa fa-fw fa-user text-secondary mr-2 mb-2"></i><?= $vendor_contact_name_display; ?>
                                     <br>
                                     <?php
                                 } else {
@@ -108,12 +108,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 }
 
                                 if (!empty($vendor_phone)) { ?>
-                                    <i class="fa fa-fw fa-phone text-secondary mr-2 mb-2"></i><?php echo $vendor_phone; ?>
+                                    <i class="fa fa-fw fa-phone text-secondary mr-2 mb-2"></i><?= $vendor_phone; ?>
                                     <br>
                                 <?php }
 
                                 if (!empty($vendor_email)) { ?>
-                                    <i class="fa fa-fw fa-envelope text-secondary mr-2 mb-2"></i><?php echo $vendor_email; ?>
+                                    <i class="fa fa-fw fa-envelope text-secondary mr-2 mb-2"></i><?= $vendor_email; ?>
                                     <br>
                                 <?php } ?>
 
@@ -124,12 +124,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editVendorTemplateModal<?php echo $vendor_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editVendorTemplateModal<?= $vendor_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <?php if ($session_user_role == 3) { ?>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_vendor=<?php echo $vendor_id; ?>">
+                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_vendor=<?= $vendor_id; ?>">
                                                 <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                             </a>
                                         <?php } ?>

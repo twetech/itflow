@@ -63,13 +63,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Date From</label>
-                            <input onchange="this.form.submit()" type="date" class="form-control" name="dtf" max="2999-12-31" value="<?php echo nullable_htmlentities($dtf); ?>">
+                            <input onchange="this.form.submit()" type="date" class="form-control" name="dtf" max="2999-12-31" value="<?= nullable_htmlentities($dtf); ?>">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Date To</label>
-                            <input onchange="this.form.submit()" type="date" class="form-control" name="dtt" max="2999-12-31" value="<?php echo nullable_htmlentities($dtt); ?>">
+                            <input onchange="this.form.submit()" type="date" class="form-control" name="dtt" max="2999-12-31" value="<?= nullable_htmlentities($dtt); ?>">
                         </div>
                     </div>
                 </div>
@@ -80,12 +80,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                 <thead class="<?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=revenue_date&order=<?php echo $disp; ?>">Date</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Category</a></th>
-                    <th class="text-right"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=revenue_amount&order=<?php echo $disp; ?>">Amount</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=revenue_payment_method&order=<?php echo $disp; ?>">Method</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=revenue_reference&order=<?php echo $disp; ?>">Reference</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=account_name&order=<?php echo $disp; ?>">Account</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=revenue_date&order=<?= $disp; ?>">Date</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Category</a></th>
+                    <th class="text-right"><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=revenue_amount&order=<?= $disp; ?>">Amount</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=revenue_payment_method&order=<?= $disp; ?>">Method</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=revenue_reference&order=<?= $disp; ?>">Reference</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=account_name&order=<?= $disp; ?>">Account</a></th>
                     <th class="text-center">Action</th>
                 </tr>
                 </thead>
@@ -114,23 +114,23 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     ?>
 
                     <tr>
-                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#editRevenueModal<?php echo $revenue_id; ?>"><?php echo $revenue_date; ?></a></td>
-                        <td><?php echo $category_name; ?></td>
-                        <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $revenue_amount, $revenue_currency_code); ?></td>
-                        <td><?php echo $revenue_payment_method; ?></td>
-                        <td><?php echo $revenue_reference_display; ?></td>
-                        <td><?php echo $account_name; ?></td>
+                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#editRevenueModal<?= $revenue_id; ?>"><?= $revenue_date; ?></a></td>
+                        <td><?= $category_name; ?></td>
+                        <td class="text-bold text-right"><?= numfmt_format_currency($currency_format, $revenue_amount, $revenue_currency_code); ?></td>
+                        <td><?= $revenue_payment_method; ?></td>
+                        <td><?= $revenue_reference_display; ?></td>
+                        <td><?= $account_name; ?></td>
                         <td>
                             <div class="dropdown dropleft text-center">
                                 <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRevenueModal<?php echo $revenue_id; ?>">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRevenueModal<?= $revenue_id; ?>">
                                         <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_revenue=<?php echo $revenue_id; ?>">
+                                    <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_revenue=<?= $revenue_id; ?>">
                                         <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                     </a>
                                 </div>

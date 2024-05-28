@@ -12,7 +12,7 @@ $client_id = intval($_GET['client_id'])
         </button>
       </div>
       <form action="/post.php" method="post" autocomplete="off">
-        <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+        <input type="hidden" name="client_id" value="<?= $client_id; ?>">
         <div class="modal-body bg-white">
 
           <ul class="nav nav-pills  mb-3">
@@ -105,7 +105,7 @@ $client_id = intval($_GET['client_id'])
                       $location_id = intval($row['location_id']);
                       $location_name = nullable_htmlentities($row['location_name']);
                     ?>
-                    <option value="<?php echo $location_id; ?>"><?php echo $location_name; ?></option>
+                    <option value="<?= $location_id; ?>"><?= $location_name; ?></option>
 
                     <?php
                     }

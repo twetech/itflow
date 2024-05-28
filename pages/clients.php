@@ -52,7 +52,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <?php if ($session_user_role == 3) { ?>
                     <ul class="list-inline ml-auto mb0">
                         <li class="list-inline-item mr3">
-                            <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="text-dark loadModalContentBtn" data-modal-file="client_add_modal.php?leads=<?php echo $leads; ?>">
+                            <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="text-dark loadModalContentBtn" data-modal-file="client_add_modal.php?leads=<?= $leads; ?>">
                                 <i class="fa fa-fw fa-plus mr-2"></i><!-- Add Client -->
                             </a>
                         </li>
@@ -173,17 +173,17 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
                         <tr>
 
-                            <td style="display: none;"><?php echo $client_accessed_at; ?></td>
+                            <td style="display: none;"><?= $client_accessed_at; ?></td>
                             <td>
-                                <a href="/pages/client/client_overview.php?client_id=<?php echo $client_id; ?>">
-                                    <h4><i class="bx bx-right-arrow me-1"></i><?php echo $client_name; ?></h4>
+                                <a href="/pages/client/client_overview.php?client_id=<?= $client_id; ?>">
+                                    <h4><i class="bx bx-right-arrow me-1"></i><?= $client_name; ?></h4>
                                 </a>
 
                                 <?php
                                 if (!empty($client_type)) {
                                 ?>
                                     <div class="text-secondary mt-1">
-                                        <?php echo $client_type; ?>
+                                        <?= $client_type; ?>
                                     </div>
                                 <?php } ?>
 
@@ -191,13 +191,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 if (!$session_mobile) {
                                     if (!empty($client_tags_display)) { ?>
                                         <div class="mt-1">
-                                            <?php echo $client_tags_display; ?>
+                                            <?= $client_tags_display; ?>
                                         </div>
 
                                 <?php } } ?>
 
                                 <div class="mt-1 text-secondary">
-                                    <small><strong>Created:</strong> <?php echo $client_created_at; ?></small>
+                                    <small><strong>Created:</strong> <?= $client_created_at; ?></small>
                                 </div>
 
                             </td>
@@ -205,14 +205,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 <td>
                                     <?php if (!empty($client_tags_display)) { ?>
                                         <div class="mt-1">
-                                            <?php echo $client_tags_display; ?>
+                                            <?= $client_tags_display; ?>
                                         </div>
                                     <?php } ?>
                                 </td>
                             <?php } ?>
                             <td>
-                                <a href="//maps.<?php echo $session_map_source; ?>.com/?q=<?= urlencode($location_address.' '.$location_zip) ?>" target="_blank">
-                                    <?php echo $location_address_display; ?>
+                                <a href="//maps.<?= $session_map_source; ?>.com/?q=<?= urlencode($location_address.' '.$location_zip) ?>" target="_blank">
+                                    <?= $location_address_display; ?>
                                 </a>
                             </td>
                             <td>
@@ -223,7 +223,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                                 if (!empty($contact_name)) { ?>
                                     <div class="text-bold">
-                                        <i class="fa fa-fw fa-user text-secondary mr-2 mb-2"></i><?php echo $contact_name; ?>
+                                        <i class="fa fa-fw fa-user text-secondary mr-2 mb-2"></i><?= $contact_name; ?>
                                     </div>
                                 <?php } else {
                                     echo "-";
@@ -231,19 +231,19 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                                 if (!empty($contact_phone)) { ?>
                                     <div class="mt-1">
-                                        <i class="fa fa-fw fa-phone text-secondary mr-2 mb-2"></i><?php echo $contact_phone; ?> <?php if (!empty($contact_extension)) { echo "x$contact_extension"; } ?>
+                                        <i class="fa fa-fw fa-phone text-secondary mr-2 mb-2"></i><?= $contact_phone; ?> <?php if (!empty($contact_extension)) { echo "x$contact_extension"; } ?>
                                     </div>
                                 <?php }
 
                                 if (!empty($contact_mobile)) { ?>
                                     <div class="mt-1">
-                                        <i class="fa fa-fw fa-mobile-alt text-secondary mr-2"></i><?php echo $contact_mobile; ?>
+                                        <i class="fa fa-fw fa-mobile-alt text-secondary mr-2"></i><?= $contact_mobile; ?>
                                     </div>
                                 <?php }
 
                                 if (!empty($contact_email)) { ?>
                                     <div class="mt-1">
-                                        <i class="fa fa-fw fa-envelope text-secondary mr-2"></i><a href="mailto:<?php echo $contact_email; ?>"><?php echo $contact_email; ?></a><button class='btn btn-sm clipboardjs' data-clipboard-text='<?php echo $contact_email; ?>'><i class='far fa-copy text-secondary'></i></button>
+                                        <i class="fa fa-fw fa-envelope text-secondary mr-2"></i><a href="mailto:<?= $contact_email; ?>"><?= $contact_email; ?></a><button class='btn btn-sm clipboardjs' data-clipboard-text='<?= $contact_email; ?>'><i class='far fa-copy text-secondary'></i></button>
                                     </div>
                                 <?php } ?>
                             </td>
@@ -252,16 +252,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <?php if (($session_user_role == 3 || $session_user_role == 1) && $config_module_enable_accounting == 1) { ?>
                                 <td class="text-right">
                                     <div class="mt-1">
-                                        <span class="text-secondary">Balance</span> <span class="<?php echo $balance_text_color; ?>"><?php echo numfmt_format_currency($currency_format, $balance, $session_company_currency); ?></span>
+                                        <span class="text-secondary">Balance</span> <span class="<?= $balance_text_color; ?>"><?= numfmt_format_currency($currency_format, $balance, $session_company_currency); ?></span>
                                     </div>
                                     <div class="mt-1">
-                                        <span class="text-secondary">Paid</span> <?php echo numfmt_format_currency($currency_format, $amount_paid, $session_company_currency); ?>
+                                        <span class="text-secondary">Paid</span> <?= numfmt_format_currency($currency_format, $amount_paid, $session_company_currency); ?>
                                     </div>
                                     <div class="mt-1">
-                                        <span class="text-secondary">Monthly</span> <?php echo numfmt_format_currency($currency_format, $recurring_monthly, $session_company_currency); ?>
+                                        <span class="text-secondary">Monthly</span> <?= numfmt_format_currency($currency_format, $recurring_monthly, $session_company_currency); ?>
                                     </div>
                                     <div class="mt-1">
-                                        <span class="text-secondary">Hourly Rate</span> <?php echo numfmt_format_currency($currency_format, $client_rate, $session_company_currency); ?>
+                                        <span class="text-secondary">Hourly Rate</span> <?= numfmt_format_currency($currency_format, $client_rate, $session_company_currency); ?>
                                     </div>
                                 </td>
                             <?php } ?>
@@ -275,11 +275,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_edit_modal.php?client_id=<?php echo $client_id; ?>">
+                                                <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_edit_modal.php?client_id=<?= $client_id; ?>">
                                                     <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                                 </a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_client=<?php echo $client_id; ?>">
+                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_client=<?= $client_id; ?>">
                                                     <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                 </a>
                                             </div>

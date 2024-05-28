@@ -32,7 +32,7 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
 
         $ticket_prefix = nullable_htmlentities($ticket_row['ticket_prefix']);
         $ticket_number = intval($ticket_row['ticket_number']);
-        $ticket_status = nullable_htmlentities($ticket_row['ticket_status']);
+        $ticket_status = intval($ticket_row['ticket_status']);
         $ticket_priority = nullable_htmlentities($ticket_row['ticket_priority']);
         $ticket_subject = nullable_htmlentities($ticket_row['ticket_subject']);
         $ticket_details = $purifier->purify($ticket_row['ticket_details']);
@@ -48,34 +48,37 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
             <li class="breadcrumb-item">
                 <a href="tickets.php">Tickets</a>
             </li>
-            <li class="breadcrumb-item active">Ticket <?php echo $ticket_number; ?></li>
+            <li class="breadcrumb-item active">Ticket <?= $ticket_number; ?></li>
         </ol>
 
         <div class="card me-2">
             <div class="card-header header-elements">
                 <span class="me-2">
-                    Ticket <?php echo $ticket_prefix, $ticket_number ?>
+                    Ticket <?= $ticket_prefix, $ticket_number ?>
                 </span>
                 <div class="header-elements ms-auto">
-                    <?php if ($ticket_status !== "Closed") { ?>
-                        <a href="portal_post.php?close_ticket=<?php echo $ticket_id; ?>" class="btn btn-xs btn-outline-success confirm-link"><i class="fas fa-fw fa-check text-success"></i> Close ticket</a>
+                    <?php if ($ticket_status !== 5) { 
+                        error_log("Ticket status: $ticket_status");
+                        ?>
+                        
+                        <a href="portal_post.php?close_ticket=<?= $ticket_id; ?>" class="btn btn-xs btn-outline-success confirm-link"><i class="fas fa-fw fa-check text-success"></i> Close ticket</a>
                     <?php } ?>
                 </div>
             </div>
 
             <div class="card-body">
-                <h5><strong>Subject:</strong> <?php echo $ticket_subject ?></h5>
+                <h5><strong>Subject:</strong> <?= $ticket_subject ?></h5>
                 <hr>
                 <p>
-                    <strong>State:</strong> <?php echo $ticket_status ?>
+                    <strong>State:</strong> <?= $ticket_status ?>
                     <br>
-                    <strong>Priority:</strong> <?php echo $ticket_priority ?>
+                    <strong>Priority:</strong> <?= $ticket_priority ?>
                     <br>
-                    <?php if (!empty($ticket_assigned_to) && $ticket_status !== "Closed") { ?>
-                        <strong>Assigned to: </strong> <?php echo $ticket_assigned_to ?>
+                    <?php if (!empty($ticket_assigned_to) && $ticket_status !== 5) { ?>
+                        <strong>Assigned to: </strong> <?= $ticket_assigned_to ?>
                     <?php } ?>
                 </p>
-                <?php echo $ticket_details ?>
+                <?= $ticket_details ?>
             </div>
         </div>
 
@@ -83,10 +86,10 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
 
         <div class="card me-2">
             <div class="card-body">
-                <?php if ($ticket_status !== "Closed") { ?>
+                <?php if ($ticket_status !== 5) { ?>
                     <form action="portal_post.php" enctype="multipart/form-data" method="post">
                         <div class="row">
-                            <input type="hidden" name="ticket_id" value="<?php echo $ticket_id ?>">
+                            <input type="hidden" name="ticket_id" value="<?= $ticket_id ?>">
                             <div class="col-12 form-group">
                                 <textarea  class="form-control mb-2" name="comment" placeholder="Add comments.."></textarea>
                             </div>
@@ -107,7 +110,7 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
                     <h4>Rate your ticket</h4>
 
                     <form action="portal_post.php" method="post">
-                        <input type="hidden" name="ticket_id" value="<?php echo $ticket_id ?>">
+                        <input type="hidden" name="ticket_id" value="<?= $ticket_id ?>">
 
                         <button type="submit" class="btn btn-label-success btn-lg" name="add_ticket_feedback" value="Good" onclick="this.form.submit()">
                             <span class="fa fa-smile" aria-hidden="true"></span> Good
@@ -120,7 +123,7 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
 
                 <?php } else { ?>
 
-                    <h4>Rated <?php echo $ticket_feedback ?> -- Thanks for your feedback!</h4>
+                    <h4>Rated <?= $ticket_feedback ?> -- Thanks for your feedback!</h4>
 
                     <?php if ($ticket_feedback == "Bad") { ?>
                         <p>Thats not what we wanted to hear. We have alerted management, and someone will be in touch to discuss further and listen to feedback.</p>
@@ -180,29 +183,29 @@ if (isset($_GET['id']) && intval($_GET['id'])) {
                             <?php
                             if (!empty($user_avatar)) {
                                 ?>
-                                <img src="<?php echo $avatar_link ?>" alt="User Avatar" class="img-fluid mr-3 rounded-circle">
+                                <img src="<?= $avatar_link ?>" alt="User Avatar" class="img-fluid mr-3 rounded-circle">
                                 <?php
                             } else {
                                 ?>
                                 <span class="fa-stack fa-2x">
                                     <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-                                    <span class="fa fa-stack-1x text-white"><?php echo $user_initials; ?></span>
+                                    <span class="fa fa-stack-1x text-white"><?= $user_initials; ?></span>
                                 </span>
                                 <?php
                             }
                             ?>
 
                             <div class="media-body">
-                                <?php echo $ticket_reply_by_display; ?>
+                                <?= $ticket_reply_by_display; ?>
                                 <br>
-                                <small class="text-muted"><?php echo $ticket_reply_created_at; ?> <?php if (!empty($ticket_reply_updated_at)) { echo "(edited: $ticket_reply_updated_at)"; } ?></small>
+                                <small class="text-muted"><?= $ticket_reply_created_at; ?> <?php if (!empty($ticket_reply_updated_at)) { echo "(edited: $ticket_reply_updated_at)"; } ?></small>
                             </div>
                         </div>
                     </h3>
                 </div>
 
                 <div class="card-body prettyContent">
-                    <?php echo $ticket_reply; ?>
+                    <?= $ticket_reply; ?>
                 </div>
             </div>
 

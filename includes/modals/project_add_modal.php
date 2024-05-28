@@ -38,7 +38,7 @@
                                     $project_template_id = intval($row['project_template_id']);
                                     $project_template_name = nullable_htmlentities($row['project_template_name']);
                                 ?>
-                                <option value="<?php echo $project_template_id; ?>"><?php echo $project_template_name; ?></option>
+                                <option value="<?= $project_template_id; ?>"><?= $project_template_name; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -84,7 +84,7 @@
                                 while ($row = mysqli_fetch_array($sql)) {
                                     $user_id = intval($row['user_id']);
                                     $user_name = nullable_htmlentities($row['user_name']); ?>
-                                    <option value="<?php echo $user_id; ?>"><?php echo $user_name; ?></option>
+                                    <option value="<?= $user_id; ?>"><?= $user_name; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -105,7 +105,7 @@
                                     $client_id = intval($row['client_id']);
                                     $client_name = nullable_htmlentities($row['client_name']);
                                 ?>
-                                <option value="<?php echo $client_id; ?>"><?php echo $client_name; ?></option>
+                                <option value="<?= $client_id; ?>"><?= $client_name; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

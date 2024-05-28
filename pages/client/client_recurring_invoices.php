@@ -26,7 +26,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fas fa-fw fa-redo-alt mr-2"></i>Recurring Invoices</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="recurring_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Recurring</button>
+                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="recurring_add_modal.php?client_id=<?= $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Recurring</button>
                 <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportRecurringModal">
@@ -38,7 +38,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     </div>
     <div class="card-body">
         <form autocomplete="off">
-            <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+            <input type="hidden" name="client_id" value="<?= $client_id; ?>">
             <div class="row">
 
                 <div class="col-md-4">
@@ -53,7 +53,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <div class="col-md-8">
                     <div class="float-right">
                         <div class="btn-group float-right">
-                            <a href="client_invoices.php?client_id=<?php echo $client_id; ?>" class="btn btn-label-primary"><i class="fa fa-fw fa-file-invoice mr-2"></i>Back to Invoices</a>
+                            <a href="client_invoices.php?client_id=<?= $client_id; ?>" class="btn btn-label-primary"><i class="fa fa-fw fa-file-invoice mr-2"></i>Back to Invoices</a>
                         </div>
                     </div>
                 </div>
@@ -65,14 +65,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_number&order=<?php echo $disp; ?>">Number</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_scope&order=<?php echo $disp; ?>">Scope</a></th>
-                    <th class="text-right"><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_amount&order=<?php echo $disp; ?>">Amount</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_frequency&order=<?php echo $disp; ?>">Frequency</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_last_sent&order=<?php echo $disp; ?>">Last Sent</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_next_date&order=<?php echo $disp; ?>">Next Date</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Category</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_status&order=<?php echo $disp; ?>">Status</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=recurring_number&order=<?= $disp; ?>">Number</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=recurring_scope&order=<?= $disp; ?>">Scope</a></th>
+                    <th class="text-right"><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=recurring_amount&order=<?= $disp; ?>">Amount</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=recurring_frequency&order=<?= $disp; ?>">Frequency</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=recurring_last_sent&order=<?= $disp; ?>">Last Sent</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=recurring_next_date&order=<?= $disp; ?>">Next Date</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Category</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=recurring_status&order=<?= $disp; ?>">Status</a></th>
                     <th class="text-center">Action</th>
                 </tr>
                 </thead>
@@ -108,16 +108,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     ?>
 
                     <tr>
-                        <td class="text-bold"><a href="recurring_invoice.php?recurring_id=<?php echo $recurring_id; ?>"><?php echo "$recurring_prefix$recurring_number"; ?></a></td>
-                        <td><?php echo $recurring_scope; ?></td>
-                        <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $recurring_amount, $recurring_currency_code); ?></td>
-                        <td><?php echo ucwords($recurring_frequency); ?>ly</td>
-                        <td><?php echo $recurring_last_sent; ?></td>
-                        <td><?php echo $recurring_next_date; ?></td>
-                        <td><?php echo $category_name; ?></td>
+                        <td class="text-bold"><a href="recurring_invoice.php?recurring_id=<?= $recurring_id; ?>"><?= "$recurring_prefix$recurring_number"; ?></a></td>
+                        <td><?= $recurring_scope; ?></td>
+                        <td class="text-bold text-right"><?= numfmt_format_currency($currency_format, $recurring_amount, $recurring_currency_code); ?></td>
+                        <td><?= ucwords($recurring_frequency); ?>ly</td>
+                        <td><?= $recurring_last_sent; ?></td>
+                        <td><?= $recurring_next_date; ?></td>
+                        <td><?= $category_name; ?></td>
                         <td>
-                        <span class="p-2 badge badge-<?php echo $status_badge_color; ?>">
-                        <?php echo $status; ?>
+                        <span class="p-2 badge badge-<?= $status_badge_color; ?>">
+                        <?= $status; ?>
                         </span>
                         </td>
                         <td>
@@ -126,11 +126,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="recurring_invoice.php?recurring_id=<?php echo $recurring_id; ?>">
+                                    <a class="dropdown-item" href="recurring_invoice.php?recurring_id=<?= $recurring_id; ?>">
                                         <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_recurring=<?php echo $recurring_id; ?>">
+                                    <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_recurring=<?= $recurring_id; ?>">
                                         <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                     </a>
                                 </div>

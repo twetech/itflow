@@ -56,7 +56,7 @@
                                             $calendar_name = nullable_htmlentities($row['calendar_name']);
                                             $calendar_color = nullable_htmlentities($row['calendar_color']);
                                             ?>
-                                            <option <?php if ($config_default_calendar == $calendar_id) { echo "selected"; } ?> data-content="<i class='fa fa-circle mr-2' style='color:<?php echo $calendar_color; ?>;'></i> <?php echo $calendar_name; ?>" value="<?php echo $calendar_id; ?>"><?php echo $calendar_name; ?></option>
+                                            <option <?php if ($config_default_calendar == $calendar_id) { echo "selected"; } ?> data-content="<i class='fa fa-circle mr-2' style='color:<?= $calendar_color; ?>;'></i> <?= $calendar_name; ?>" value="<?= $calendar_id; ?>"><?= $calendar_name; ?></option>
                                         <?php } ?>
 
                                     </select>
@@ -121,7 +121,7 @@
                         <div class="tab-pane fade" role="tabpanel" id="pills-attendees">
 
                             <?php if (isset($client_id)) { ?>
-                                <input type="hidden" name="client" value="<?php echo $client_id; ?>">
+                                <input type="hidden" name="client" value="<?= $client_id; ?>">
                             <?php } else{ ?>
 
                                 <div class="form-group">
@@ -140,7 +140,7 @@
                                                 $client_name = nullable_htmlentities($row['client_name']);
                                                 $contact_email = nullable_htmlentities($row['contact_email']);
                                                 ?>
-                                                <option value="<?php echo $client_id; ?>"><?php echo $client_name; ?></option>
+                                                <option value="<?= $client_id; ?>"><?= $client_name; ?></option>
 
                                             <?php } ?>
                                         </select>

@@ -120,8 +120,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="col-sm-12 col-lg-4">
                             <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
                                 <div>
-                                    <h3><?php echo numfmt_format_currency($currency_format, $total_unpaid_amount, $session_company_currency); ?></h3>
-                                    <a><?php echo $unpaid_count; ?> Unpaid</a>
+                                    <h3><?= numfmt_format_currency($currency_format, $total_unpaid_amount, $session_company_currency); ?></h3>
+                                    <a><?= $unpaid_count; ?> Unpaid</a>
                                 </div>
                                 <a href="/pages/invoices.php?status=Unpaid" class="badge bg-label-secondary rounded p-2 me-sm-4">
                                     <i class="bx bx-dollar
@@ -133,8 +133,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="col-sm-6 col-lg-4">
                             <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
                                 <div>
-                                    <h3><?php echo numfmt_format_currency($currency_format, $total_overdue_amount, $session_company_currency); ?></h3>
-                                    <p><?php echo $overdue_count; ?> Overdue</p>
+                                    <h3><?= numfmt_format_currency($currency_format, $total_overdue_amount, $session_company_currency); ?></h3>
+                                    <p><?= $overdue_count; ?> Overdue</p>
                                 </div>
                                 <a href="/pages/invoices.php?status=Overdue" class="badge bg-label-secondary rounded p-2 me-sm-4">
                                     <i class="bx bx-time
@@ -146,8 +146,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <div class="col-sm-6 col-lg-4">
                             <div class="d-flex justify-content-between align-items-start card-widget-1 pb-3 pb-sm-0">
                                 <div>
-                                    <h3><?php echo numfmt_format_currency($currency_format, $total_draft_amount, $session_company_currency); ?></h3>
-                                    <p><?php echo $draft_count; ?> Draft</p>
+                                    <h3><?= numfmt_format_currency($currency_format, $total_draft_amount, $session_company_currency); ?></h3>
+                                    <p><?= $draft_count; ?> Draft</p>
                                 </div>
                                 <a href="/pages/invoices.php?status=Draft" class="badge bg-label-secondary rounded p-2 me-sm-4">
                                     <i class="bx bx-pencil
@@ -229,16 +229,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
 
                         <tr>
-                            <td class="text-bold"><a href="invoice.php?invoice_id=<?php echo $invoice_id; ?>"><?php echo "$invoice_number"; ?></a></td>
-                            <td><?php echo $invoice_scope_display; ?></td>
-                            <td class="text-bold"><a href="/pages/client/client_invoices.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a></td>
-                            <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
-                            <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $invoice_balance, $invoice_currency_code); ?></td>
-                            <td><?php echo $invoice_date; ?></td>
-                            <td class="<?php echo $overdue_color; ?>"><?php echo $invoice_due; ?></td>
+                            <td class="text-bold"><a href="invoice.php?invoice_id=<?= $invoice_id; ?>"><?= "$invoice_number"; ?></a></td>
+                            <td><?= $invoice_scope_display; ?></td>
+                            <td class="text-bold"><a href="/pages/client/client_invoices.php?client_id=<?= $client_id; ?>"><?= $client_name; ?></a></td>
+                            <td class="text-bold text-right"><?= numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
+                            <td class="text-bold text-right"><?= numfmt_format_currency($currency_format, $invoice_balance, $invoice_currency_code); ?></td>
+                            <td><?= $invoice_date; ?></td>
+                            <td class="<?= $overdue_color; ?>"><?= $invoice_due; ?></td>
                             <td>
-                              <span class="p-2 badge bg-label-<?php echo $invoice_badge_color; ?>">
-                                  <?php echo $invoice_status; ?>
+                              <span class="p-2 badge bg-label-<?= $invoice_badge_color; ?>">
+                                  <?= $invoice_status; ?>
                               </span>
                             </td>
                         </tr>

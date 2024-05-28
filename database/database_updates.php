@@ -428,7 +428,7 @@ if (LATEST_DATABASE_VERSION > CURRENT_DATABASE_VERSION) {
         mysqli_query($mysqli, "ALTER TABLE `contacts` ADD `contact_token_expire` DATETIME NULL DEFAULT NULL AFTER `contact_password_reset_token`");
 
         // Update config.php var with new version var for use with docker
-        file_put_contents("/var/www/portal.twe.tech/includes/config.php", "\$repo_branch = 'master';" . PHP_EOL, FILE_APPEND);
+        file_put_contents("/var/www/portal.twe.tech/includes/config/config.php", "\$repo_branch = 'master';" . PHP_EOL, FILE_APPEND);
 
 
         // Then, update the database to the next sequential version
@@ -792,7 +792,7 @@ if (LATEST_DATABASE_VERSION > CURRENT_DATABASE_VERSION) {
         $installation_id = randomString(32);
 
         // Update config.php var with new version var for use with docker
-        file_put_contents("/var/www/portal.twe.tech/includes/config.php", "\n\$installation_id = '$installation_id';" . PHP_EOL, FILE_APPEND);
+        file_put_contents("/var/www/portal.twe.tech/includes/config/config.php", "\n\$installation_id = '$installation_id';" . PHP_EOL, FILE_APPEND);
 
 
         mysqli_query($mysqli, "UPDATE `settings` SET `config_current_database_version` = '0.3.6'");

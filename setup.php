@@ -1,7 +1,7 @@
 <?php
 
-if (file_exists("/var/www/portal.twe.tech/includes/config.php")) {
-    include "/var/www/portal.twe.tech/includes/config.php";
+if (file_exists("/var/www/portal.twe.tech/includes/config/config.php")) {
+    include "/var/www/portal.twe.tech/includes/config/config.php";
 
 }
 
@@ -74,9 +74,9 @@ if (isset($_POST['add_database'])) {
     $new_config .= "\$repo_branch = 'master';\n";
     $new_config .= "\$installation_id = '$installation_id';\n";
 
-    if (file_put_contents("/var/www/portal.twe.tech/includes/config.php", $new_config) !== false && file_exists('config.php')) {
+    if (file_put_contents("/var/www/portal.twe.tech/includes/config/config.php", $new_config) !== false && file_exists('config.php')) {
 
-        include "/var/www/portal.twe.tech/includes/config.php";
+        include "/var/www/portal.twe.tech/includes/config/config.php";
 
 
         // Name of the file
@@ -410,7 +410,7 @@ if (isset($_POST['add_company_settings'])) {
                 if (!empty($_SESSION['alert_message'])) {
                     ?>
                     <div class="alert alert-info" id="alert">
-                        <?php echo nullable_htmlentities($_SESSION['alert_message']); ?>
+                        <?= nullable_htmlentities($_SESSION['alert_message']); ?>
                         <button class='close' data-bs-dismiss='alert'>&times;</button>
                     </div>
                     <?php
@@ -632,7 +632,7 @@ if (isset($_POST['add_company_settings'])) {
                                         <select class="form-control select2" id='select2' name="country" required>
                                             <option value="">- Country -</option>
                                             <?php foreach($countries_array as $country_name) { ?>
-                                                <option><?php echo $country_name; ?></option>
+                                                <option><?= $country_name; ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -679,7 +679,7 @@ if (isset($_POST['add_company_settings'])) {
                                         <select class="form-control select2" id='select2' name="locale" required>
                                             <option value="">- Select a Language -</option>
                                             <?php foreach($locales_array as $locale_code => $locale_name) { ?>
-                                                <option value="<?php echo $locale_code; ?>"><?php echo $locale_name; ?></option>
+                                                <option value="<?= $locale_code; ?>"><?= $locale_name; ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -694,7 +694,7 @@ if (isset($_POST['add_company_settings'])) {
                                         <select class="form-control select2" id='select2' name="currency_code" required>
                                             <option value="">- Select a Currency -</option>
                                             <?php foreach($currencies_array as $currency_code => $currency_name) { ?>
-                                                <option value="<?php echo $currency_code; ?>"><?php echo "$currency_code - $currency_name"; ?></option>
+                                                <option value="<?= $currency_code; ?>"><?= "$currency_code - $currency_name"; ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -709,7 +709,7 @@ if (isset($_POST['add_company_settings'])) {
                                         <select class="form-control select2" id='select2' name="timezone" required>
                                             <option value="">- Select a Timezone -</option>
                                             <?php foreach ($timezones as $tz) { ?>
-                                                <option value="<?php echo $tz; ?>"><?php echo $tz; ?></option>
+                                                <option value="<?= $tz; ?>"><?= $tz; ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>

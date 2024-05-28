@@ -5,7 +5,7 @@ require_once "database_version.php";
 
 require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/portal.twe.tech/includes/config/config.php";
 
 
 $folderPath = '/var/www/portal.twe.tech/uploads';
@@ -246,9 +246,9 @@ $webServer = $_SERVER['SERVER_SOFTWARE'];
                     ?>
 
                     <tr>
-                        <td><?php echo $table; ?></td>
-                        <td><?php echo $columns; ?></td>
-                        <td><?php echo $rows; ?></td>
+                        <td><?= $table; ?></td>
+                        <td><?= $columns; ?></td>
+                        <td><?= $rows; ?></td>
                     </tr>
                 <?php
                 }

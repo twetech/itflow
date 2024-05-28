@@ -24,7 +24,7 @@ $quote_category_id = intval($row['quote_category_id']);
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title text-white"><i class="fas fa-fw fa-comment-dollar mr-2"></i>Editing quote: <span class="text-bold">
-                    <?php echo "$quote_prefix$quote_number"; ?></span> - <span class="text" id="editQuoteHeaderClient"><?php echo $client_name; ?></span></h5>
+                    <?= "$quote_prefix$quote_number"; ?></span> - <span class="text" id="editQuoteHeaderClient"><?= $client_name; ?></span></h5>
                 </span> - <span class="text" id="editQuoteHeaderClient"></span></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
@@ -33,7 +33,7 @@ $quote_category_id = intval($row['quote_category_id']);
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="quote_id" id="editQuoteID" value="<?php echo $quote_id; ?>">
+                <input type="hidden" name="quote_id" id="editQuoteID" value="<?= $quote_id; ?>">
 
                     <div class="form-group">
                         <label>Quote Date</label>
@@ -42,7 +42,7 @@ $quote_category_id = intval($row['quote_category_id']);
                                 <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                             </div>
                             <input type="date" class="form-control" name="date" id="editQuoteDate" max="2999-12-31" value="
-                            <?php echo $quote_date; ?>" required>
+                            <?= $quote_date; ?>" required>
                         </div>
                     </div>
 
@@ -53,7 +53,7 @@ $quote_category_id = intval($row['quote_category_id']);
                                 <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                             </div>
                             <input type="date" class="form-control" name="expire" id="editQuoteExpire" max="2999-12-31" value="
-                            <?php echo $quote_expire; ?>" required>
+                            <?= $quote_expire; ?>" required>
                         </div>
                     </div>
 
@@ -72,7 +72,7 @@ $quote_category_id = intval($row['quote_category_id']);
                                     $category_id = intval($row['category_id']);
                                     $category_name = nullable_htmlentities($row['category_name']);
                                     ?>
-                                    <option value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
+                                    <option value="<?= $category_id; ?>"><?= $category_name; ?></option>
 
                                     <?php
                                 }
@@ -91,7 +91,7 @@ $quote_category_id = intval($row['quote_category_id']);
                             <div class='input-group-prepend'>
                                 <span class='input-group-text'><i class='fa fa-fw fa-dollar-sign'></i></span>
                             </div>
-                            <input type='text' class='form-control' inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" name='quote_discount' placeholder='0.00' value="<?php echo number_format($quote_discount, 2, '.', ''); ?>">
+                            <input type='text' class='form-control' inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" name='quote_discount' placeholder='0.00' value="<?= number_format($quote_discount, 2, '.', ''); ?>">
                         </div>
                     </div>
 
@@ -102,7 +102,7 @@ $quote_category_id = intval($row['quote_category_id']);
                                 <span class="input-group-text"><i class="fa fa-fw fa-comment"></i></span>
                             </div>
                             <input type="text" class="form-control" name="scope" id="editQuoteScope" placeholder="Quick description" value="
-                            <?php echo $quote_scope; ?>">
+                            <?= $quote_scope; ?>">
                         </div>
                     </div>
 

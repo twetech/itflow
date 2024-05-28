@@ -32,8 +32,8 @@ $num_rows = mysqli_num_rows($sql);
 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=tax_name&order=<?php echo $disp; ?>">Name</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=tax_percent&order=<?php echo $disp; ?>">Percent</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=tax_name&order=<?= $disp; ?>">Name</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=tax_percent&order=<?= $disp; ?>">Percent</a></th>
                         <th class="text-center">Action</th>
                     </tr>
                     </thead>
@@ -47,19 +47,19 @@ $num_rows = mysqli_num_rows($sql);
 
                         ?>
                         <tr>
-                            <td><a class="text-dark text-bold" href="#" data-bs-toggle="modal" data-bs-target="#editTaxModal<?php echo $tax_id; ?>"><?php echo $tax_name; ?></a></td>
-                            <td><?php echo "$tax_percent%"; ?></td>
+                            <td><a class="text-dark text-bold" href="#" data-bs-toggle="modal" data-bs-target="#editTaxModal<?= $tax_id; ?>"><?= $tax_name; ?></a></td>
+                            <td><?= "$tax_percent%"; ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
                                     <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editTaxModal<?php echo $tax_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editTaxModal<?= $tax_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_tax=<?php echo $tax_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>">
+                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_tax=<?= $tax_id; ?>&csrf_token=<?= $_SESSION['csrf_token'] ?>">
                                             <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                         </a>
                                     </div>

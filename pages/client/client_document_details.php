@@ -40,17 +40,17 @@ $document_parent = intval($row['document_parent']);
 
 <ol class="breadcrumb d-print-none">
   <li class="breadcrumb-item">
-    <a href="client_overview.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a>
+    <a href="client_overview.php?client_id=<?= $client_id; ?>"><?= $client_name; ?></a>
   </li>
   <li class="breadcrumb-item">
-    <a href="client_documents.php?client_id=<?php echo $client_id; ?>">Documents</a>
+    <a href="client_documents.php?client_id=<?= $client_id; ?>">Documents</a>
   </li>
   <?php if ($document_folder_id > 0) { ?>
   <li class="breadcrumb-item">
-    <a href="client_documents.php?client_id=<?php echo $client_id; ?>&folder_id=<?php echo $document_folder_id; ?>"><i class="fas fa-fw fa-folder-open mr-2"></i><?php echo $folder_name; ?></a>
+    <a href="client_documents.php?client_id=<?= $client_id; ?>&folder_id=<?= $document_folder_id; ?>"><i class="fas fa-fw fa-folder-open mr-2"></i><?= $folder_name; ?></a>
   </li>
   <?php } ?>
-  <li class="breadcrumb-item active"><i class="fas fa-file"></i> <?php echo $document_name; ?> <?php if(!empty($document_archived_at)){ echo "<span class='text-danger ml-2'>(ARCHIVED on $document_archived_at)</span>"; } ?></li>
+  <li class="breadcrumb-item active"><i class="fas fa-file"></i> <?= $document_name; ?> <?php if(!empty($document_archived_at)){ echo "<span class='text-danger ml-2'>(ARCHIVED on $document_archived_at)</span>"; } ?></li>
 </ol>
 
 <div class="row">
@@ -59,17 +59,17 @@ $document_parent = intval($row['document_parent']);
     <div class="card">
       <div class="card-header">
 
-        <h3><?php echo $document_name; ?> <?php if (!empty($document_description)) { ?><span class="h6 text-muted">(<?php echo $document_description; ?>)</span><?php } ?></h3>
+        <h3><?= $document_name; ?> <?php if (!empty($document_description)) { ?><span class="h6 text-muted">(<?= $document_description; ?>)</span><?php } ?></h3>
 
         <div class="row">
-          <div class="col"><strong>Date:</strong> <?php echo date('Y-m-d', strtotime($document_created_at)); ?></div>
+          <div class="col"><strong>Date:</strong> <?= date('Y-m-d', strtotime($document_created_at)); ?></div>
           <?php if(!empty($document_created_by_name)){ ?>
-          <div class="col"><strong>Prepared By:</strong> <?php echo $document_created_by_name; ?></div>
+          <div class="col"><strong>Prepared By:</strong> <?= $document_created_by_name; ?></div>
           <?php } ?>
         </div>
       </div>
       <div class="card-body prettyContent">
-        <?php echo $document_content; ?>
+        <?= $document_content; ?>
       </div>
     </div>
   </div>
@@ -77,11 +77,11 @@ $document_parent = intval($row['document_parent']);
 	<div class="col-md-3 d-print-none">
     <div class="row">
       <div class="col-12 mb-3">
-        <button type="button" class="btn btn-label-primary mr-2" data-bs-toggle="modal" data-bs-target="#editDocumentModal<?php echo $document_id; ?>">
+        <button type="button" class="btn btn-label-primary mr-2" data-bs-toggle="modal" data-bs-target="#editDocumentModal<?= $document_id; ?>">
           <i class="fas fa-fw fa-edit mr-2"></i>Edit
         </button>
         <button type="button" class="btn btn-light mr-2" data-bs-toggle="modal" data-bs-target="#shareModal"
-          onclick="populateShareModal(<?php echo "$client_id, 'Document', $document_id"; ?>)">
+          onclick="populateShareModal(<?= "$client_id, 'Document', $document_id"; ?>)">
           <i class="fas fa-fw fa-share mr-2"></i>Share
         </button>
         <button type="button" class="btn btn-light" onclick="window.print();"><i class="fas fa-fw fa-print mr-2"></i>Print</button>
@@ -113,8 +113,8 @@ $document_parent = intval($row['document_parent']);
 
         ?>
         <div class="ml-2">
-          <a href="client_files.php?client_id=<?php echo $client_id; ?>&folder_id=<?php echo $folder_id; ?>&q=<?php echo $file_name; ?>" target="_blank"><?php echo $file_name; ?></a>
-          <a class="confirm-link" href="/post.php?unlink_file_from_document&file_id=<?php echo $file_id; ?>&document_id=<?php echo $document_id; ?>">
+          <a href="client_files.php?client_id=<?= $client_id; ?>&folder_id=<?= $folder_id; ?>&q=<?= $file_name; ?>" target="_blank"><?= $file_name; ?></a>
+          <a class="confirm-link" href="/post.php?unlink_file_from_document&file_id=<?= $file_id; ?>&document_id=<?= $document_id; ?>">
             <i class="fas fa-fw fa-trash-alt text-secondary float-right"></i>
           </a>
         </div>
@@ -144,8 +144,8 @@ $document_parent = intval($row['document_parent']);
 
         ?>
         <div class="ml-2">
-          <a href="client_contact_details.php?client_id=<?php echo $client_id; ?>&contact_id=<?php echo $contact_id; ?>" target="_blank"><?php echo $contact_name; ?></a>
-          <a class="confirm-link float-right" href="/post.php?unlink_contact_from_document&contact_id=<?php echo $contact_id; ?>&document_id=<?php echo $document_id; ?>">
+          <a href="client_contact_details.php?client_id=<?= $client_id; ?>&contact_id=<?= $contact_id; ?>" target="_blank"><?= $contact_name; ?></a>
+          <a class="confirm-link float-right" href="/post.php?unlink_contact_from_document&contact_id=<?= $contact_id; ?>&document_id=<?= $document_id; ?>">
             <i class="fas fa-fw fa-trash-alt text-secondary"></i>
           </a>
         </div>
@@ -175,8 +175,8 @@ $document_parent = intval($row['document_parent']);
 
         ?>
         <div class="ml-2">
-          <a href="client_asset_details.php?client_id=<?php echo $client_id; ?>&asset_id=<?php echo $asset_id; ?>" target="_blank"><?php echo $asset_name; ?></a>
-          <a class="confirm-link float-right" href="/post.php?unlink_asset_from_document&asset_id=<?php echo $asset_id; ?>&document_id=<?php echo $document_id; ?>">
+          <a href="client_asset_details.php?client_id=<?= $client_id; ?>&asset_id=<?= $asset_id; ?>" target="_blank"><?= $asset_name; ?></a>
+          <a class="confirm-link float-right" href="/post.php?unlink_asset_from_document&asset_id=<?= $asset_id; ?>&document_id=<?= $document_id; ?>">
             <i class="fas fa-fw fa-trash-alt text-secondary"></i>
           </a>
         </div>
@@ -206,8 +206,8 @@ $document_parent = intval($row['document_parent']);
 
         ?>
         <div class="ml-2">
-          <a href="client_software.php?client_id=<?php echo $client_id; ?>&q=<?php echo $software_name; ?>" target="_blank"><?php echo $software_name; ?></a>
-          <a class="confirm-link float-right" href="/post.php?unlink_software_from_document&software_id=<?php echo $software_id; ?>&document_id=<?php echo $document_id; ?>">
+          <a href="client_software.php?client_id=<?= $client_id; ?>&q=<?= $software_name; ?>" target="_blank"><?= $software_name; ?></a>
+          <a class="confirm-link float-right" href="/post.php?unlink_software_from_document&software_id=<?= $software_id; ?>&document_id=<?= $document_id; ?>">
             <i class="fas fa-fw fa-trash-alt text-secondary"></i>
           </a>
         </div>
@@ -237,8 +237,8 @@ $document_parent = intval($row['document_parent']);
 
         ?>
         <div class="ml-2">
-          <a href="client_vendors.php?client_id=<?php echo $client_id; ?>&q=<?php echo $vendor_name; ?>" target="_blank"><?php echo $vendor_name; ?></a>
-          <a class="confirm-link float-right" href="/post.php?unlink_vendor_from_document&vendor_id=<?php echo $vendor_id; ?>&document_id=<?php echo $document_id; ?>">
+          <a href="client_vendors.php?client_id=<?= $client_id; ?>&q=<?= $vendor_name; ?>" target="_blank"><?= $vendor_name; ?></a>
+          <a class="confirm-link float-right" href="/post.php?unlink_vendor_from_document&vendor_id=<?= $vendor_id; ?>&document_id=<?= $document_id; ?>">
             <i class="fas fa-fw fa-trash-alt text-secondary"></i>
           </a>
         </div>
@@ -267,9 +267,9 @@ $document_parent = intval($row['document_parent']);
 
         ?>
         <div class="mt-1 <?php if($document_id == $revision_document_id){ echo "text-bold"; } ?>">
-          <i class="fas fa-fw fa-history text-secondary mr-2"></i><a href="?client_id=<?php echo $client_id; ?>&document_id=<?php echo $revision_document_id; ?>"><?php echo "  $revision_document_created_date"; ?></a><?php if($document_parent == $revision_document_id){ echo "<span class='float-right'>(Parent)</span>"; 
+          <i class="fas fa-fw fa-history text-secondary mr-2"></i><a href="?client_id=<?= $client_id; ?>&document_id=<?= $revision_document_id; ?>"><?= "  $revision_document_created_date"; ?></a><?php if($document_parent == $revision_document_id){ echo "<span class='float-right'>(Parent)</span>"; 
             } else { ?>
-              <a class="confirm-link float-right" href="/post.php?delete_document_version=<?php echo $revision_document_id; ?>">
+              <a class="confirm-link float-right" href="/post.php?delete_document_version=<?= $revision_document_id; ?>">
                 <i class="fas fa-fw fa-trash-alt text-secondary"></i>
               </a>
             <?php 

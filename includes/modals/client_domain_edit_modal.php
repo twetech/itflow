@@ -12,7 +12,7 @@
 
                 <div class="modal-body bg-white">
                 <input type="hidden" name="domain_id" value="" id="editDomainId">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-overview">Overview</a>

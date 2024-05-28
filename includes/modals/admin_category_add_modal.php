@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-list-ul mr-2"></i>New <?php echo nullable_htmlentities($category); ?> Category</h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-list-ul mr-2"></i>New <?= nullable_htmlentities($category); ?> Category</h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -12,7 +12,7 @@
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="type" value="<?php echo nullable_htmlentities($category); ?>">
+                <input type="hidden" name="type" value="<?= nullable_htmlentities($category); ?>">
 
                     <div class="form-group">
                         <label>Name <strong class="text-danger">*</strong></label>

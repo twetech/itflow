@@ -28,7 +28,7 @@
                                 $contact_id = intval($row['contact_id']);
                                 $contact_name = nullable_htmlentities($row['contact_name']);
                                 ?>
-                                <option value="<?php echo $contact_id; ?>"><?php echo $contact_name; ?></option>
+                                <option value="<?= $contact_id; ?>"><?= $contact_name; ?></option>
 
                             <?php } ?>
 

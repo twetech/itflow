@@ -29,7 +29,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             </h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="vendor_add_modal.php?client_id=<?php echo $client_id; ?>">
+                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="vendor_add_modal.php?client_id=<?= $client_id; ?>">
                         <i class="fas fa-plus mr-2"></i>New Vendor
                     </button>
                     <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
@@ -47,17 +47,17 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </div>
         <div class="card-body">
             <form autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <input type="hidden" name="archived" value="<?php echo $archived; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+                <input type="hidden" name="archived" value="<?= $archived; ?>">
                 <div class="row">
 
 
                     <div class="col-md-8">
                          <div class="float-right">
                             <?php if($archived == 1){ ?>
-                            <a href="?client_id=<?php echo $client_id; ?>&archived=0" class="btn btn-label-primary"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
+                            <a href="?client_id=<?= $client_id; ?>&archived=0" class="btn btn-label-primary"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
                             <?php } else { ?>
-                            <a href="?client_id=<?php echo $client_id; ?>&archived=1" class="btn btn-default"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
+                            <a href="?client_id=<?= $client_id; ?>&archived=1" class="btn btn-default"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
                             <?php } ?>
                         </div>
                     </div>
@@ -69,7 +69,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Vendor</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=vendor_name&order=<?= $disp; ?>">Vendor</a></th>
                         <th>Contact</th>
                         <th>Website</th>
                         <th class="text-center">Action</th>
@@ -108,12 +108,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
                         <tr>
                             <td>
-                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editVendorModal<?php echo $vendor_id; ?>">
+                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editVendorModal<?= $vendor_id; ?>">
                                     <div class="media">
                                         <i class="fa fa-fw fa-2x fa-building mr-3"></i>
                                         <div class="media-body">
-                                            <div><?php echo $vendor_name; ?></div>
-                                            <div><small class="text-secondary"><?php echo $vendor_description; ?></small></div>
+                                            <div><?= $vendor_name; ?></div>
+                                            <div><small class="text-secondary"><?= $vendor_description; ?></small></div>
                                         </div>
                                     </div>
                                 </a>
@@ -122,40 +122,40 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <td>
                                 <?php
                                 if (!empty($vendor_contact_name)) { ?>
-                                    <i class="fa fa-fw fa-user text-secondary mr-2 mb-2"></i><?php echo $vendor_contact_name_display; ?>
+                                    <i class="fa fa-fw fa-user text-secondary mr-2 mb-2"></i><?= $vendor_contact_name_display; ?>
                                     <br>
                                 <?php } else {
                                     echo $vendor_contact_name_display;
                                 }
 
                                 if (!empty($vendor_phone)) { ?>
-                                    <i class="fa fa-fw fa-phone text-secondary mr-2 mb-2"></i><?php echo $vendor_phone; ?>
+                                    <i class="fa fa-fw fa-phone text-secondary mr-2 mb-2"></i><?= $vendor_phone; ?>
                                     <br>
                                 <?php }
 
                                 if (!empty($vendor_email)) { ?>
-                                    <i class="fa fa-fw fa-envelope text-secondary mr-2 mb-2"></i><?php echo $vendor_email; ?>
+                                    <i class="fa fa-fw fa-envelope text-secondary mr-2 mb-2"></i><?= $vendor_email; ?>
                                     <br>
                                 <?php } ?>
                             </td>
-                             <td><?php echo $vendor_website_display; ?></td>
+                             <td><?= $vendor_website_display; ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
                                     <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editVendorModal<?php echo $vendor_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editVendorModal<?= $vendor_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <?php if ($session_user_role == 3) { ?>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_vendor=<?php echo $vendor_id; ?>">
+                                            <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_vendor=<?= $vendor_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                             </a>
                                             <?php if ($config_destructive_deletes_enable) { ?>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_vendor=<?php echo $vendor_id; ?>">
+                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_vendor=<?= $vendor_id; ?>">
                                                 <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                             </a>
                                             <?php } ?>

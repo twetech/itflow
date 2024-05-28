@@ -6,7 +6,7 @@ $document_root = dirname(__FILE__);
 
 require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/portal.twe.tech/includes/config/config.php";
 require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
 
 $sql_settings = mysqli_query($mysqli, "SELECT * FROM settings WHERE company_id = 1");

@@ -31,7 +31,7 @@ $sql_categories = mysqli_query($mysqli, "SELECT * FROM categories WHERE category
                 while ($row = mysqli_fetch_array($sql_expense_years)) {
                     $expense_year = $row['expense_year'];
                     ?>
-                    <option <?php if ($year == $expense_year) { ?> selected <?php } ?> > <?php echo $expense_year; ?></option>
+                    <option <?php if ($year == $expense_year) { ?> selected <?php } ?> > <?= $expense_year; ?></option>
 
                 <?php } ?>
 
@@ -67,7 +67,7 @@ $sql_categories = mysqli_query($mysqli, "SELECT * FROM categories WHERE category
                     ?>
 
                     <tr>
-                        <td><?php echo $category_name; ?></td>
+                        <td><?= $category_name; ?></td>
 
                         <?php
 
@@ -80,11 +80,11 @@ $sql_categories = mysqli_query($mysqli, "SELECT * FROM categories WHERE category
 
 
                             ?>
-                            <td class="text-right"><a class="text-dark" href="expenses.php?q=<?php echo $category_name; ?>&dtf=<?php echo "$year-$month"; ?>-01&dtt=<?php echo "$year-$month"; ?>-31"><?php echo numfmt_format_currency($currency_format, $expense_amount_for_month, $session_company_currency); ?></a></td>
+                            <td class="text-right"><a class="text-dark" href="expenses.php?q=<?= $category_name; ?>&dtf=<?= "$year-$month"; ?>-01&dtt=<?= "$year-$month"; ?>-31"><?= numfmt_format_currency($currency_format, $expense_amount_for_month, $session_company_currency); ?></a></td>
 
                         <?php } ?>
 
-                        <th class="text-right"><a class="text-dark" href="expenses.php?q=<?php echo $category_name; ?>&dtf=<?php echo $year; ?>-01-01&dtt=<?php echo $year; ?>-12-31"><?php echo numfmt_format_currency($currency_format, $total_expense_for_all_months, $session_company_currency); ?></a></th>
+                        <th class="text-right"><a class="text-dark" href="expenses.php?q=<?= $category_name; ?>&dtf=<?= $year; ?>-01-01&dtt=<?= $year; ?>-12-31"><?= numfmt_format_currency($currency_format, $total_expense_for_all_months, $session_company_currency); ?></a></th>
                     </tr>
 
                 <?php } ?>
@@ -102,11 +102,11 @@ $sql_categories = mysqli_query($mysqli, "SELECT * FROM categories WHERE category
 
                         ?>
 
-                        <th class="text-right"><a class="text-dark" href="expenses.php?dtf=<?php echo "$year-$month"; ?>-01&dtt=<?php echo "$year-$month"; ?>-31"><?php echo numfmt_format_currency($currency_format, $expense_total_amount_for_month, $session_company_currency); ?></a></th>
+                        <th class="text-right"><a class="text-dark" href="expenses.php?dtf=<?= "$year-$month"; ?>-01&dtt=<?= "$year-$month"; ?>-31"><?= numfmt_format_currency($currency_format, $expense_total_amount_for_month, $session_company_currency); ?></a></th>
 
                     <?php } ?>
 
-                    <th class="text-right"><a class="text-dark" href="expenses.php?dtf=<?php echo $year; ?>-01-01&dtt=<?php echo $year; ?>-12-31"><?php echo numfmt_format_currency($currency_format, $total_expense_for_all_months, $session_company_currency); ?></th>
+                    <th class="text-right"><a class="text-dark" href="expenses.php?dtf=<?= $year; ?>-01-01&dtt=<?= $year; ?>-12-31"><?= numfmt_format_currency($currency_format, $total_expense_for_all_months, $session_company_currency); ?></th>
                 </tr>
                 </tbody>
             </table>

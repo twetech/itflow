@@ -75,9 +75,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=inventory_date&order=<?php echo $disp; ?>">Product Name</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Quantity</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Locations</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=inventory_date&order=<?= $disp; ?>">Product Name</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=vendor_name&order=<?= $disp; ?>">Quantity</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Locations</a></th>
                             <th class="text-center">Manage product</th>
                         </tr>
                         </thead>
@@ -93,12 +93,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             ?>
 
                             <tr>
-                                <td><?php echo $inventory_name; ?></td>
-                                <td><?php echo $inventory_quantity; ?></td>
-                                <td><?php echo $inventory_locations; ?></td>
+                                <td><?= $inventory_name; ?></td>
+                                <td><?= $inventory_quantity; ?></td>
+                                <td><?= $inventory_locations; ?></td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="inventory_manage.php?inventory_product_id=<?php echo $inventory_product_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="inventory_manage.php?inventory_product_id=<?= $inventory_product_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
                                     </div>
                                 </td>
 

@@ -11,7 +11,7 @@
             </div>
 
             <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
 
                 <div class="modal-body bg-white">
 
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="form-group">
-                        <textarea class="form-control" rows="8" name="notes" placeholder="Enter some notes"><?php echo $contact_notes; ?></textarea>
+                        <textarea class="form-control" rows="8" name="notes" placeholder="Enter some notes"><?= $contact_notes; ?></textarea>
                     </div>
 
                     <div class="form-row">

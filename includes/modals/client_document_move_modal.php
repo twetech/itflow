@@ -1,9 +1,9 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
-<div class="modal" id="moveDocumentModal<?php echo $document_id; ?>" tabindex="-1">
+<div class="modal" id="moveDocumentModal<?= $document_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-file-alt mr-2"></i>Moving document: <strong><?php echo $document_name; ?></strong></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-file-alt mr-2"></i>Moving document: <strong><?= $document_name; ?></strong></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -11,8 +11,8 @@
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="document_id" value="<?php echo $document_id; ?>">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="document_id" value="<?= $document_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                     <div class="form-group">
                         <label>Move Document to</label>
                         <div class="input-group">
@@ -27,7 +27,7 @@
                                     $folder_id_select = intval($row['folder_id']);
                                     $folder_name_select = nullable_htmlentities($row['folder_name']);
                                     ?>
-                                    <option <?php if ($folder_id_select == $document_folder_id) echo "selected"; ?> value="<?php echo $folder_id_select ?>"><?php echo $folder_name_select; ?></option>
+                                    <option <?php if ($folder_id_select == $document_folder_id) echo "selected"; ?> value="<?= $folder_id_select ?>"><?= $folder_name_select; ?></option>
                                     <?php
                                 }
                                 ?>

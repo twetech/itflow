@@ -14,14 +14,14 @@ $client_id = intval($row['project_client_id']);
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-fw fa-life-ring mr-2"></i>Adding Ticket to Project: <strong><?php echo $project_name; ?></strong></h5>
+                <h5 class="modal-title"><i class="fas fa-fw fa-life-ring mr-2"></i>Adding Ticket to Project: <strong><?= $project_name; ?></strong></h5>
                 <button type="button" class="close text-white" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <form action="post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="project_id" value="<?php echo $project_id; ?>">
+                <input type="hidden" name="project_id" value="<?= $project_id; ?>">
                     <div class="form-group">
                         <label>Ticket <strong class="text-danger">*</strong></label>
                         <div class="input-group">
@@ -37,7 +37,7 @@ $client_id = intval($row['project_client_id']);
                                     $ticket_id_select = intval($row['ticket_id']);
                                     $ticket_subject_select = nullable_htmlentities($row['ticket_subject']);
                                     ?>
-                                    <option value="<?php echo $ticket_id_select; ?>"><?php echo $ticket_subject_select; ?></option>
+                                    <option value="<?= $ticket_id_select; ?>"><?= $ticket_subject_select; ?></option>
                                     <?php
                                 }
 

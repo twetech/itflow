@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-desktop mr-2"></i>Link Asset to <strong><?php echo $document_name; ?></strong></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-desktop mr-2"></i>Link Asset to <strong><?= $document_name; ?></strong></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -12,8 +12,8 @@
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <input type="hidden" name="document_id" value="<?php echo $document_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+                <input type="hidden" name="document_id" value="<?= $document_id; ?>">
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -41,7 +41,7 @@
                                     $asset_name = nullable_htmlentities($row['asset_name']);
 
                                     ?>
-                                    <option value="<?php echo $asset_id ?>"><?php echo $asset_name; ?></option>
+                                    <option value="<?= $asset_id ?>"><?= $asset_name; ?></option>
                                     <?php
                                 }
                                 ?>

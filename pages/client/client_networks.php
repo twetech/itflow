@@ -29,7 +29,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-network-wired mr-2"></i>Networks</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_network_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Network</button>
+                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_network_add_modal.php?client_id=<?= $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Network</button>
                     <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportNetworkModal">
@@ -42,7 +42,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </div>
         <div class="card-body">
             <form autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                 <div class="row">
 
                     <div class="col-md-8">
@@ -66,7 +66,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <hr>
             <div class="card-datatable table-responsive container-fluid  pt-0">
                 <form id="bulkActions" action="/post.php" method="post">
-                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                        
 <table class="datatables-basic table border-top">
@@ -77,12 +77,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <input class="form-check-input" id="selectAllCheckbox"  type="checkbox" onclick="checkAll(this)">
                                 </div>
                             </td>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sb; ?>&sort=network_name&order=<?php echo $disp; ?>">Name</a></th>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sb; ?>&sort=network_vlan&order=<?php echo $disp; ?>">vLAN</a></th>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sb; ?>&sort=network&order=<?php echo $disp; ?>">Network</a></th>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sb; ?>&sort=network_gateway&order=<?php echo $disp; ?>">Gateway</a></th>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sb; ?>&sort=network_dhcp_range&order=<?php echo $disp; ?>">DHCP Range</a></th>
-                            <th><a class="text-secondary" href="?<?php echo $url_query_strings_sb; ?>&sort=location_name&order=<?php echo $disp; ?>">Location</a></th>
+                            <th><a class="text-secondary" href="?<?= $url_query_strings_sb; ?>&sort=network_name&order=<?= $disp; ?>">Name</a></th>
+                            <th><a class="text-secondary" href="?<?= $url_query_strings_sb; ?>&sort=network_vlan&order=<?= $disp; ?>">vLAN</a></th>
+                            <th><a class="text-secondary" href="?<?= $url_query_strings_sb; ?>&sort=network&order=<?= $disp; ?>">Network</a></th>
+                            <th><a class="text-secondary" href="?<?= $url_query_strings_sb; ?>&sort=network_gateway&order=<?= $disp; ?>">Gateway</a></th>
+                            <th><a class="text-secondary" href="?<?= $url_query_strings_sb; ?>&sort=network_dhcp_range&order=<?= $disp; ?>">DHCP Range</a></th>
+                            <th><a class="text-secondary" href="?<?= $url_query_strings_sb; ?>&sort=location_name&order=<?= $disp; ?>">Location</a></th>
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -118,37 +118,37 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             ?>
                             <tr>
                                 <td>
-                                    <a class="text-dark" href="#" data-bs-toggle="modal" onclick="populateNetworkEditModal(<?php echo $client_id, ",", $network_id ?>)" data-bs-target="#editNetworkModal">
+                                    <a class="text-dark" href="#" data-bs-toggle="modal" onclick="populateNetworkEditModal(<?= $client_id, ",", $network_id ?>)" data-bs-target="#editNetworkModal">
                                         <div class="media">
                                             <i class="fa fa-fw fa-2x fa-network-wired mr-3"></i>
                                             <div class="media-body">
-                                                <div><?php echo $network_name; ?></div>
-                                                <div><small class="text-secondary"><?php echo $network_description; ?></small></div>
+                                                <div><?= $network_name; ?></div>
+                                                <div><small class="text-secondary"><?= $network_description; ?></small></div>
                                             </div>
                                         </div>
                                     </a>
                                 </td>
-                                <td><?php echo $network_vlan_display; ?></td>
-                                <td><?php echo $network; ?></td>
-                                <td><?php echo $network_gateway; ?></td>
-                                <td><?php echo $network_dhcp_range_display; ?></td>
-                                <td><?php echo $location_name_display; ?></td>
+                                <td><?= $network_vlan_display; ?></td>
+                                <td><?= $network; ?></td>
+                                <td><?= $network_gateway; ?></td>
+                                <td><?= $network_dhcp_range_display; ?></td>
+                                <td><?= $location_name_display; ?></td>
                                 <td>
                                     <div class="dropdown dropleft text-center">
                                         <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" onclick="populateNetworkEditModal(<?php echo $client_id, ",", $network_id ?>)" data-bs-target="#editNetworkModal">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" onclick="populateNetworkEditModal(<?= $client_id, ",", $network_id ?>)" data-bs-target="#editNetworkModal">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
                                             <?php if ($session_user_role == 3) { ?>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_network=<?php echo $network_id; ?>">
+                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_network=<?= $network_id; ?>">
                                                     <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                 </a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_network=<?php echo $network_id; ?>">
+                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_network=<?= $network_id; ?>">
                                                     <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                 </a>
                                             <?php } ?>

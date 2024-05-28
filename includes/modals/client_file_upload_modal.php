@@ -9,7 +9,7 @@
                 </button>
             </div>
             <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                 <div class="modal-body bg-white">
 
                     
@@ -38,7 +38,7 @@
                                     $folder_name = nullable_htmlentities($row['folder_name']);
 
                                     ?>
-                                    <option <?php if (isset($_GET['folder_id']) && $_GET['folder_id'] == $folder_id) echo "selected"; ?> value="<?php echo $folder_id ?>"><?php echo $folder_name; ?></option>
+                                    <option <?php if (isset($_GET['folder_id']) && $_GET['folder_id'] == $folder_id) echo "selected"; ?> value="<?= $folder_id ?>"><?= $folder_name; ?></option>
                                     <?php
                                 }
                                 ?>

@@ -19,7 +19,7 @@ $client_name = nullable_htmlentities($row['client_name']);
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-eye mr-2"></i>Adding a ticket Watcher: <strong><?php echo "$ticket_prefix$ticket_number"; ?></strong> - <?php echo $client_name; ?></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-eye mr-2"></i>Adding a ticket Watcher: <strong><?= "$ticket_prefix$ticket_number"; ?></strong> - <?= $client_name; ?></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -27,9 +27,9 @@ $client_name = nullable_htmlentities($row['client_name']);
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <input type="hidden" name="ticket_number" value="<?php echo "$ticket_prefix$ticket_number"; ?>">
+                <input type="hidden" name="ticket_id" value="<?= $ticket_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+                <input type="hidden" name="ticket_number" value="<?= "$ticket_prefix$ticket_number"; ?>">
                     <div class="form-group">
                         <label>Watcher Email</label>
                         <div class="input-group">
@@ -46,7 +46,7 @@ $client_name = nullable_htmlentities($row['client_name']);
                                     $contact_name_select = nullable_htmlentities($row['contact_name']);
                                     $contact_email_select = nullable_htmlentities($row['contact_email']);
                                     ?>
-                                    <option value="<?php echo $contact_email_select; ?>"><?php echo "$contact_name_select - $contact_email_select"; ?></option>
+                                    <option value="<?= $contact_email_select; ?>"><?= "$contact_name_select - $contact_email_select"; ?></option>
 
                                     <?php
                                 }

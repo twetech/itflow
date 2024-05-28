@@ -25,7 +25,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fas fa-fw fa-cube mr-2"></i>Software & Licenses</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="software_add_modal.php?client_id=<?php echo $client_id; ?>">
+                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="software_add_modal.php?client_id=<?= $client_id; ?>">
                         <i class="fas fa-plus mr-2"></i>New License
                     </button>
                     <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
@@ -43,17 +43,17 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </div>
         <div class="card-body">
             <form autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <input type="hidden" name="archived" value="<?php echo $archived; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+                <input type="hidden" name="archived" value="<?= $archived; ?>">
                 <div class="row">
 
 
                     <div class="col-md-8">
                         <div class="float-right">
                             <?php if($archived == 1){ ?>
-                            <a href="?client_id=<?php echo $client_id; ?>&archived=0" class="btn btn-label-primary"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
+                            <a href="?client_id=<?= $client_id; ?>&archived=0" class="btn btn-label-primary"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
                             <?php } else { ?>
-                            <a href="?client_id=<?php echo $client_id; ?>&archived=1" class="btn btn-default"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
+                            <a href="?client_id=<?= $client_id; ?>&archived=1" class="btn btn-default"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
                             <?php } ?>
                         </div>
                     </div>
@@ -65,10 +65,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=software_name&order=<?php echo $disp; ?>">Software</a></th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=software_type&order=<?php echo $disp; ?>">Type</a></th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=software_license_type&order=<?php echo $disp; ?>">License Type</a></th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=software_seats&order=<?php echo $disp; ?>">Seats</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=software_name&order=<?= $disp; ?>">Software</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=software_type&order=<?= $disp; ?>">Type</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=software_license_type&order=<?= $disp; ?>">License Type</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=software_seats&order=<?= $disp; ?>">Seats</a></th>
                         <th class="text-center">Action</th>
                     </tr>
                     </thead>
@@ -114,35 +114,35 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
                         <tr>
                             <td>
-                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareModal<?php echo $software_id; ?>">
+                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareModal<?= $software_id; ?>">
                                     <div class="media">
                                         <i class="fa fa-fw fa-2x fa-cube mr-3"></i>
                                         <div class="media-body">
-                                            <div><?php echo "$software_name <span>$software_version</span>"; ?></div>
-                                            <div><small class="text-secondary"><?php echo $software_description; ?></small></div>
+                                            <div><?= "$software_name <span>$software_version</span>"; ?></div>
+                                            <div><small class="text-secondary"><?= $software_description; ?></small></div>
                                         </div>
                                     </div>
                                 </a>
                             </td>
-                            <td><?php echo $software_type; ?></td>
-                            <td><?php echo $software_license_type; ?></td>
-                            <td><?php echo "$seat_count / $software_seats"; ?></td>
+                            <td><?= $software_type; ?></td>
+                            <td><?= $software_license_type; ?></td>
+                            <td><?= "$seat_count / $software_seats"; ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
                                     <button class="btn btn-light btn-sm" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareModal<?php echo $software_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareModal<?= $software_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_software=<?php echo $software_id; ?>">
+                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_software=<?= $software_id; ?>">
                                             <i class="fas fa-fw fa-archive mr-2"></i>Archive and<br><small>Remove Licenses</small></a>
                                         <?php if ($session_user_role == 3) { ?>
                                             <?php if ($config_destructive_deletes_enable) { ?>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_software=<?php echo $software_id; ?>">
+                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_software=<?= $software_id; ?>">
                                                 <i class="fas fa-fw fa-trash mr-2"></i>Delete and<br><small>Remove Licenses</small></a>
                                             <?php } ?>
                                         <?php } ?>

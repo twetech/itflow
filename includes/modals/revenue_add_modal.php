@@ -19,7 +19,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                 </div>
-                                <input type="date" class="form-control" name="date" max="2999-12-31" value="<?php echo date("Y-m-d"); ?>" required>
+                                <input type="date" class="form-control" name="date" max="2999-12-31" value="<?= date("Y-m-d"); ?>" required>
                             </div>
                         </div>
 
@@ -32,7 +32,7 @@
                                 <select class="form-control select2" id='select2' name="currency_code" required>
                                     <option value="">- Currency -</option>
                                     <?php foreach($currencies_array as $currency_code => $currency_name) { ?>
-                                        <option <?php if ($session_company_currency == $currency_code) { echo "selected"; } ?> value="<?php echo $currency_code; ?>"><?php echo "$currency_code - $currency_name"; ?></option>
+                                        <option <?php if ($session_company_currency == $currency_code) { echo "selected"; } ?> value="<?= $currency_code; ?>"><?= "$currency_code - $currency_name"; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -84,7 +84,7 @@
                                         $balance = $opening_balance + $total_payments + $total_revenues - $total_expenses;
 
                                         ?>
-                                        <option <?php if ($config_default_payment_account == $account_id) { echo "selected"; } ?> value="<?php echo $account_id; ?>"><?php echo $account_name; ?> [ <?php echo numfmt_format_currency($currency_format, $balance, $account_currency_code); ?> ]</option>
+                                        <option <?php if ($config_default_payment_account == $account_id) { echo "selected"; } ?> value="<?= $account_id; ?>"><?= $account_name; ?> [ <?= numfmt_format_currency($currency_format, $balance, $account_currency_code); ?> ]</option>
 
                                         <?php
                                     }
@@ -108,7 +108,7 @@
                                         $category_id = intval($row['category_id']);
                                         $category_name = nullable_htmlentities($row['category_name']);
                                         ?>
-                                        <option value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
+                                        <option value="<?= $category_id; ?>"><?= $category_name; ?></option>
 
                                         <?php
                                     }
@@ -143,7 +143,7 @@
                                     while ($row = mysqli_fetch_array($sql)) {
                                         $category_name = nullable_htmlentities($row['category_name']);
                                         ?>
-                                        <option><?php echo $category_name; ?></option>
+                                        <option><?= $category_name; ?></option>
 
                                         <?php
                                     }

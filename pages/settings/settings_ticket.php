@@ -8,7 +8,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
         </div>
         <div class="card-body">
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                 <input type="hidden" name="config_ticket_email_parse" value="0">
                 <input type="hidden" name="config_ticket_autoclose" value="0">
 
@@ -18,7 +18,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-life-ring"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_ticket_prefix" placeholder="Ticket Prefix" value="<?php echo nullable_htmlentities($config_ticket_prefix); ?>" pattern="^[A-Za-z-]+$" title="Only letters and hyphens are allowed" required>
+                        <input type="text" class="form-control" name="config_ticket_prefix" placeholder="Ticket Prefix" value="<?= nullable_htmlentities($config_ticket_prefix); ?>" pattern="^[A-Za-z-]+$" title="Only letters and hyphens are allowed" required>
                     </div>
                 </div>
 
@@ -28,7 +28,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-barcode"></i></span>
                         </div>
-                        <input type="number" min="0" class="form-control" name="config_ticket_next_number" placeholder="Next Ticket Number" value="<?php echo intval($config_ticket_next_number); ?>" required>
+                        <input type="number" min="0" class="form-control" name="config_ticket_next_number" placeholder="Next Ticket Number" value="<?= intval($config_ticket_next_number); ?>" required>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-clock"></i></span>
                         </div>
-                        <input type="number" min="72" class="form-control" name="config_ticket_autoclose_hours" placeholder="Enter the number of hours to auto close ticket" value="<?php echo intval($config_ticket_autoclose_hours); ?>">
+                        <input type="number" min="72" class="form-control" name="config_ticket_autoclose_hours" placeholder="Enter the number of hours to auto close ticket" value="<?= intval($config_ticket_autoclose_hours); ?>">
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-bell"></i></span>
                         </div>
-                        <input type="email" class="form-control" name="config_ticket_new_ticket_notification_email" placeholder="Address to notify for new tickets, leave bank for none" value="<?php echo nullable_htmlentities($config_ticket_new_ticket_notification_email); ?>">
+                        <input type="email" class="form-control" name="config_ticket_new_ticket_notification_email" placeholder="Address to notify for new tickets, leave bank for none" value="<?= nullable_htmlentities($config_ticket_new_ticket_notification_email); ?>">
                     </div>
                 </div>
 

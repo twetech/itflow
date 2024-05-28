@@ -59,7 +59,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
             <div class="card-datatable table-responsive container-fluid  pt-0">
                 <form id="bulkActions" action="/post.php" method="post">
-                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                        
 <table class="datatables-basic table border-top">
@@ -70,11 +70,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <input class="form-check-input" type="checkbox" onclick="checkAll(this)">
                                 </div>
                             </td>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=api_key_name&order=<?php echo $disp; ?>">Name</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=api_key_client_id&order=<?php echo $disp; ?>">Client</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=api_key_secret&order=<?php echo $disp; ?>">Secret</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=api_key_created_at&order=<?php echo $disp; ?>">Created</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=api_key_expire&order=<?php echo $disp; ?>">Expires</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=api_key_name&order=<?= $disp; ?>">Name</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=api_key_client_id&order=<?= $disp; ?>">Client</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=api_key_secret&order=<?= $disp; ?>">Secret</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=api_key_created_at&order=<?= $disp; ?>">Created</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=api_key_expire&order=<?= $disp; ?>">Expires</a></th>
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -100,15 +100,15 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             ?>
                             <tr>
 
-                                <td class="text-bold"><?php echo $api_key_name; ?></td>
+                                <td class="text-bold"><?= $api_key_name; ?></td>
 
-                                <td><?php echo $api_key_client; ?></td>
+                                <td><?= $api_key_client; ?></td>
 
-                                <td><?php echo $api_key_secret; ?></td>
+                                <td><?= $api_key_secret; ?></td>
 
-                                <td><?php echo $api_key_created_at; ?></td>
+                                <td><?= $api_key_created_at; ?></td>
 
-                                <td><?php echo $api_key_expire; ?></td>
+                                <td><?= $api_key_expire; ?></td>
 
                                 <td>
                                     <div class="dropdown dropleft text-center">
@@ -116,7 +116,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_api_key=<?php echo $api_key_id; ?>&csrf_token=<?php echo $_SESSION['csrf_token'] ?>">
+                                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_api_key=<?= $api_key_id; ?>&csrf_token=<?= $_SESSION['csrf_token'] ?>">
                                                 <i class="fas fa-fw fa-times mr-2"></i>Revoke
                                             </a>
                                         </div>

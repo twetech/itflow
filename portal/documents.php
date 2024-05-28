@@ -4,7 +4,7 @@
  * Docs for PTC / technical contacts
  */
 
-header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
+
 
 require_once "/var/www/portal.twe.tech/includes/inc_portal.php";
 
@@ -39,7 +39,7 @@ $documents_sql = mysqli_query($mysqli, "SELECT document_id, document_name, docum
                 ?>
 
                 <tr>
-                    <td><a href="document.php?id=<?php echo $document_id?>">
+                    <td><a href="document.php?id=<?= $document_id?>">
                             <?php
                             if (!empty($folder_name)) {
                                 echo "$folder_name / ";
@@ -48,7 +48,7 @@ $documents_sql = mysqli_query($mysqli, "SELECT document_id, document_name, docum
                             ?>
                         </a>
                     </td>
-                    <td><?php echo $document_created_at; ?></td>
+                    <td><?= $document_created_at; ?></td>
                 </tr>
             <?php } ?>
 

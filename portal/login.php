@@ -4,10 +4,10 @@
  * Landing / Home page for the client portal
  */
 
-header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
+
 
 $session_company_id = 1;
-require_once '/var/www/portal.twe.tech/includes/config.php';
+require_once '/var/www/portal.twe.tech/includes/config/config.php';
 
 require_once '/var/www/portal.twe.tech/includes/get_settings.php';
 
@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
                     <div class="login-logo mb-4">
                         <?php if (!empty($company_logo)) { ?>
                             <img alt="<?= $company_name ?> logo" height="110" width="380" class="img-fluid mb-4"
-                                src="<?php echo "/uploads/settings/$company_logo"; ?>">
+                                src="<?= "/uploads/settings/$company_logo"; ?>">
                         <?php } else { ?>
                             <b><?= $company_name ?></b> <br>Client Portal Login</h2>
                         <?php } ?>
@@ -173,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
                     <!-- /Logo -->
                     <div class="card-body login-card-body">
                         <?php if (!empty($config_login_message)) { ?>
-                            <p class="login-box-msg px-0"><?php echo nl2br($config_login_message); ?></p>
+                            <p class="login-box-msg px-0"><?= nl2br($config_login_message); ?></p>
                         <?php } ?>
                         <?php
                         if (!empty($_SESSION['login_message'])) { ?>

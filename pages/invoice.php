@@ -156,12 +156,12 @@ if (isset($_GET['invoice_id'])) {
                     <div class="row p-sm-3 p-0">
                         <div class="col-md-6 mb-md-0 mb-4">
                             <div class="d-flex svg-illustration mb-4 gap-2">
-                                <span class="app-brand-text demo text-body fw-bold"><?php echo $company_name; ?></span>
+                                <span class="app-brand-text demo text-body fw-bold"><?= $company_name; ?></span>
                             </div>
-                            <p class="mb-1"><?php echo $company_address; ?></p>
-                            <p class="mb-1"><?php echo "$company_city $company_state $company_zip"; ?></p>
-                            <p class="mb-1"><?php echo "$company_phone $company_email"; ?></p>
-                            <p class="mb-0"><?php echo $company_website; ?></p>
+                            <p class="mb-1"><?= $company_address; ?></p>
+                            <p class="mb-1"><?= "$company_city $company_state $company_zip"; ?></p>
+                            <p class="mb-1"><?= "$company_phone $company_email"; ?></p>
+                            <p class="mb-0"><?= $company_website; ?></p>
                         </div>
                         <div class="col-md-6">
                             <dl class="row mb-2">
@@ -170,7 +170,7 @@ if (isset($_GET['invoice_id'])) {
                                 </dt>
                                 <dd class="col-sm-6 d-flex justify-content-md-end">
                                     <div class="w-px-150">
-                                        <input type="text" class="form-control" disabled placeholder="<?php echo "$invoice_number"; ?>" value="<?php echo "$invoice_number"; ?>" id="invoiceId" />
+                                        <input type="text" class="form-control" disabled placeholder="<?= "$invoice_number"; ?>" value="<?= "$invoice_number"; ?>" id="invoiceId" />
                                     </div>
                                 </dd>
                                 <dt class="col-sm-6 mb-2 mb-sm-0 text-md-end">
@@ -214,13 +214,13 @@ if (isset($_GET['invoice_id'])) {
                     <div class="row p-sm-3 p-0">
                         <div class="col-md-6 col-sm-5 col-12 mb-sm-0 mb-4">
                             <h6 class="pb-2">Invoice To:</h6>
-                            <p class="mb-1"><strong><?php echo $contact_name; ?></strong></p>
-                            <p class="mb-1"><strong><?php echo $client_name; ?></strong></p>
-                            <p class="mb-1"><?php echo $location_address; ?></p>
-                            <p class="mb-1"><?php echo "$location_city $location_state $location_zip"; ?></p>
-                            <p class="mb-1"><?php echo "$contact_phone $contact_extension"; ?></p>
-                            <p class="mb-1"><?php echo $contact_mobile; ?></p>
-                            <p class="mb-0"><?php echo $contact_email; ?></p>
+                            <p class="mb-1"><strong><?= $contact_name; ?></strong></p>
+                            <p class="mb-1"><strong><?= $client_name; ?></strong></p>
+                            <p class="mb-1"><?= $location_address; ?></p>
+                            <p class="mb-1"><?= "$location_city $location_state $location_zip"; ?></p>
+                            <p class="mb-1"><?= "$contact_phone $contact_extension"; ?></p>
+                            <p class="mb-1"><?= $contact_mobile; ?></p>
+                            <p class="mb-0"><?= $contact_email; ?></p>
 
 
                         </div>
@@ -327,7 +327,6 @@ if (isset($_GET['invoice_id'])) {
                                             <div class="d-flex me-1">
                                                 <span class="discount me-1"  data-bs-toggle="tooltip" data-bs-placement="top" title="Discount: <?=numfmt_format_currency($currency_format, $item_discount, $client_currency_code)?>"><?=number_format($item_discount_percent, 0)?>%</span>
                                                 <span class="tax me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Tax: <?= numfmt_format_currency($currency_format, $item_tax, $client_currency_code)?>"><?=number_format($tax_percent, 3)?>%</span>
-
                                             </div>
                                             <div class="d-flex me-1">
                                                 <span class="markup me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Markup: <?=numfmt_format_currency($currency_format, $item_profit, $client_currency_code)?>"><?=number_format($item_markup*100, 0)?>%</span>
@@ -355,8 +354,8 @@ if (isset($_GET['invoice_id'])) {
                                             </i>
                                             <div class="dropdown-menu dropdown-menu-end w-px-300 p-3" aria-labelledby="dropdownMenuButton">
                                                 <div class="row g-3">
-                                                    <div class="col-6" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $invoice_currency_code; ?> or end with % ">
-                                                        <label for="discountInput" class="form-label">Discount (<?php echo $invoice_currency_code; ?>) </label>
+                                                    <div class="col-6" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= $invoice_currency_code; ?> or end with % ">
+                                                        <label for="discountInput" class="form-label">Discount (<?= $invoice_currency_code; ?>) </label>
                                                         <input class="form-control" name="discount" id="discount" <?=$item_discount ? 'value="'.$item_discount.'"' : 'placeholder="0%"'?> />
                                                     </div>
                                                     <div class="col-md-6">
@@ -480,19 +479,19 @@ if (isset($_GET['invoice_id'])) {
                             </button>
                             <div class="dropdown-menu">
                                 <?php if (!empty($config_smtp_host) && !empty($contact_email)) { ?>
-                                    <a class="dropdown-item" href="/post.php?email_invoice=<?php echo $invoice_id; ?>">
+                                    <a class="dropdown-item" href="/post.php?email_invoice=<?= $invoice_id; ?>">
                                         <i class="fas fa-fw fa-paper-plane mr-2"></i>Send Email
                                     </a>
                                     <div class="dropdown-divider"></div>
                                 <?php } ?>
-                                <a class="dropdown-item" href="/post.php?mark_invoice_sent=<?php echo $invoice_id; ?>">
+                                <a class="dropdown-item" href="/post.php?mark_invoice_sent=<?= $invoice_id; ?>">
                                     <i class="fas fa-fw fa-check mr-2"></i>Mark Sent
                                 </a>
                             </div>
                         </div>
                     <?php } ?>
                     <div class="d-grid d-flex  my-3 w-100">
-                        <a target="_blank" href="/portal/guest_view_invoice.php?invoice_id=<?php echo "$invoice_id&url_key=$invoice_url_key"; ?>" class="btn btn-label-primary me-3 w-100">
+                        <a target="_blank" href="/portal/guest_view_invoice.php?invoice_id=<?= "$invoice_id&url_key=$invoice_url_key"; ?>" class="btn btn-label-primary me-3 w-100">
                             <i class="bx bx-show me-1"></i>
                             View
                         </a>
@@ -542,6 +541,59 @@ if (isset($_GET['invoice_id'])) {
                     </div>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header text-bold">
+                    <i class="fa fa-cog mr-2"></i>Tickets
+                    <div class="card-tools">
+
+
+                        <?php if (mysqli_num_rows($sql_tickets_billable) > 0) { ?>
+                        <a class="btn btn-tool" href="#" data-bs-toggle="modal" data-bs-target="#addTicketModal">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        <?php } ?>
+
+
+                        <a class="btn btn-tool" href="tickets.php?client_id=<?= $client_id; ?>">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+
+                        </button>
+
+
+                </div>
+
+                <div class="card-body">
+                    <div class="card-datatable table-responsive container-fluid  pt-0">
+                        <?php
+                            while ($row = mysqli_fetch_array($sql_tickets)) {
+                                $ticket_id = intval($row['ticket_id']);
+                                $ticket_created_at = nullable_htmlentities($row['ticket_created_at']);
+                                $ticket_subject = nullable_htmlentities($row['ticket_subject']);
+                                $ticket_status = nullable_htmlentities($row['ticket_status']);
+                                $ticket_priority = nullable_htmlentities($row['ticket_priority']);
+                                $ticket_assigned_to_id = intval($row['ticket_assigned_to']);
+                                $ticket_total_time_worked = floatval($row['total_time_worked']);
+
+                                $sql_assigned_to = mysqli_query($mysqli, "SELECT * FROM users WHERE user_id = $ticket_assigned_to_id");
+                                $row = mysqli_fetch_array($sql_assigned_to);
+                                $ticket_assigned_to = nullable_htmlentities($row['user_name']);
+                                ?>
+                                <span 
+
+
+                                <?php
+                            }
+                        ?>
+                    </div>
+                </div>
         </div>
         <!-- /Invoice Actions -->
     </div>
@@ -555,7 +607,7 @@ $(document).ready(function() {
         // Bind event handlers to the inputs after the modal content has been loaded
         // Get the description of the selected product
         $(function() {
-            var availableProducts = <?php echo $json_products?>;
+            var availableProducts = <?= $json_products?>;
             var zIndex = $('#name').css('z-index');
 
             $("#name").autocomplete({

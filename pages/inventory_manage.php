@@ -37,7 +37,7 @@ $product_name = sanitizeInput($product_name_row[0]);
 
     <div class="card">
         <div class="card-header py-2">
-            <h3 class="card-title mt-2"><i class="fas fa-fw fa-box mr-2"></i>Inventory product: <?php echo $product_name?> </h3>
+            <h3 class="card-title mt-2"><i class="fas fa-fw fa-box mr-2"></i>Inventory product: <?= $product_name?> </h3>
         </div>
 
         <div class="card-body">
@@ -45,7 +45,7 @@ $product_name = sanitizeInput($product_name_row[0]);
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="input-group">
-                            <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search <?php echo $product?>">
+                            <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search <?= $product?>">
                             <div class="input-group-append">
                                 <button class="btn btn-label-primary"><i class="fa fa-search"></i></button>
                             </div>
@@ -83,9 +83,9 @@ $product_name = sanitizeInput($product_name_row[0]);
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
 
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Location</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Quantity</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Unit Cost</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Location</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=vendor_name&order=<?= $disp; ?>">Quantity</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Unit Cost</a></th>
                             <th class="text-center">Manage location</th>
                         </tr>
                         </thead>
@@ -107,16 +107,16 @@ $product_name = sanitizeInput($product_name_row[0]);
                                     <div class="form-check
                                     ">
                                         <input class="form-check
-                                        -input" type="checkbox" name="selected[]" value="<?php echo $inventory_id; ?>">
+                                        -input" type="checkbox" name="selected[]" value="<?= $inventory_id; ?>">
 
                                     </div>
                                 </td>
-                                <td><?php echo $inventory_locations; ?></td>
-                                <td><?php echo $inventory_quantity; ?></td>
-                                <td><?php echo numfmt_format_currency($currency_format, $inventory_unit_cost, $config_currency_format)?></td>
+                                <td><?= $inventory_locations; ?></td>
+                                <td><?= $inventory_quantity; ?></td>
+                                <td><?= numfmt_format_currency($currency_format, $inventory_unit_cost, $config_currency_format)?></td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="inventory_location_manage.php?inventory_location_id=<?php echo $inventory_location_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="inventory_location_manage.php?inventory_location_id=<?= $inventory_location_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
                                     </div>
                                 </td>
 

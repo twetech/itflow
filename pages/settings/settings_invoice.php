@@ -8,7 +8,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
         </div>
         <div class="card-body">
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                 <h4>Invoice</h4>
 
@@ -18,7 +18,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-barcode"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_invoice_prefix" placeholder="Invoice Prefix" value="<?php echo nullable_htmlentities($config_invoice_prefix); ?>" required>
+                        <input type="text" class="form-control" name="config_invoice_prefix" placeholder="Invoice Prefix" value="<?= nullable_htmlentities($config_invoice_prefix); ?>" required>
                     </div>
                 </div>
 
@@ -28,13 +28,13 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-barcode"></i></span>
                         </div>
-                        <input type="number" min="0" class="form-control" name="config_invoice_next_number" placeholder="Next Invoice Number" value="<?php echo intval($config_invoice_next_number); ?>" required>
+                        <input type="number" min="0" class="form-control" name="config_invoice_next_number" placeholder="Next Invoice Number" value="<?= intval($config_invoice_next_number); ?>" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Invoice Footer</label>
-                    <textarea class="form-control" rows="4" name="config_invoice_footer"><?php echo nullable_htmlentities($config_invoice_footer); ?></textarea>
+                    <textarea class="form-control" rows="4" name="config_invoice_footer"><?= nullable_htmlentities($config_invoice_footer); ?></textarea>
                 </div>
 
                 <h5>Invoice Late Fees</h5>
@@ -52,7 +52,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-percent"></i></span>
                         </div>
-                        <input type="number" class="form-control" min="0" max="100" step="0.01" name="config_invoice_late_fee_percent" value="<?php echo $config_invoice_late_fee_percent; ?>">
+                        <input type="number" class="form-control" min="0" max="100" step="0.01" name="config_invoice_late_fee_percent" value="<?= $config_invoice_late_fee_percent; ?>">
                     </div>
                     <small class="text-secondary">We recommend updating the invoice footer to include policies on your late charges. This will be applied every 30 days after the invoice Due Date.</small>
                 </div>
@@ -67,7 +67,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-barcode"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_recurring_prefix" placeholder="Recurring Prefix" value="<?php echo nullable_htmlentities($config_recurring_prefix); ?>" required>
+                        <input type="text" class="form-control" name="config_recurring_prefix" placeholder="Recurring Prefix" value="<?= nullable_htmlentities($config_recurring_prefix); ?>" required>
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-barcode"></i></span>
                         </div>
-                        <input type="number" min="0" class="form-control" name="config_recurring_next_number" placeholder="Next Recurring Number" value="<?php echo intval($config_recurring_next_number); ?>" required>
+                        <input type="number" min="0" class="form-control" name="config_recurring_next_number" placeholder="Next Recurring Number" value="<?= intval($config_recurring_next_number); ?>" required>
                     </div>
                 </div>
 

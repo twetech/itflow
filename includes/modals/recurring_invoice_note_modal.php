@@ -9,10 +9,10 @@
         </button>
       </div>
       <form action="/post.php" method="post" autocomplete="off">
-        <input type="hidden" name="recurring_id" value="<?php echo $recurring_id; ?>">
+        <input type="hidden" name="recurring_id" value="<?= $recurring_id; ?>">
         <div class="modal-body bg-white">  
           <div class="form-group">
-            <textarea class="form-control" rows="8" name="note" placeholder="Enter some notes"><?php echo $recurring_note; ?></textarea>
+            <textarea class="form-control" rows="8" name="note" placeholder="Enter some notes"><?= $recurring_note; ?></textarea>
           </div>
         </div>
         <div class="modal-footer bg-white">

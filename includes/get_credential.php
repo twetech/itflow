@@ -28,7 +28,7 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
 
 require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/portal.twe.tech/includes/config/config.php";
 
 require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
 

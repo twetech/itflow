@@ -41,11 +41,11 @@ if (isset($session_ip)) {
 					</a>
 
                     <?php if(!empty($config_login_message)){ ?>
-                        <p class="login-box-msg px-0"><?php echo nl2br($config_login_message); ?></p>
+                        <p class="login-box-msg px-0"><?= nl2br($config_login_message); ?></p>
                     <?php } ?>
 
                     <?php if (isset($response)) { ?>
-                        <p><?php echo $response; ?></p>
+                        <p><?= $response; ?></p>
                     <?php } ?>
 
 					<div class="u-login-form">

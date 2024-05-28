@@ -68,7 +68,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
         <div class="card-datatable table-responsive container-fluid  pt-0">
             <form id="bulkActions" action="/post.php" method="post">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                    
 <table class="datatables-basic table border-top">
@@ -101,19 +101,19 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                             <tr>
 
-                                <th><a href="client_recurring_tickets.php?client_id=<?php echo $scheduled_ticket_client_id; ?>"><?php echo $scheduled_ticket_client_name ?></a>
+                                <th><a href="client_recurring_tickets.php?client_id=<?= $scheduled_ticket_client_id; ?>"><?= $scheduled_ticket_client_name ?></a>
                                 </th>
 
                                 <td>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#editRecurringTicketModal" onclick="populateRecurringTicketEditModal(<?php echo $scheduled_ticket_client_id, ",", $scheduled_ticket_id ?>)"> <?php echo $scheduled_ticket_subject ?>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#editRecurringTicketModal" onclick="populateRecurringTicketEditModal(<?= $scheduled_ticket_client_id, ",", $scheduled_ticket_id ?>)"> <?= $scheduled_ticket_subject ?>
                                     </a>
                                 </td>
 
-                                <td><?php echo $scheduled_ticket_priority ?></td>
+                                <td><?= $scheduled_ticket_priority ?></td>
 
-                                <td><?php echo $scheduled_ticket_frequency ?></td>
+                                <td><?= $scheduled_ticket_frequency ?></td>
 
-                                <td class="text-bold"><?php echo $scheduled_ticket_next_run ?></td>
+                                <td class="text-bold"><?= $scheduled_ticket_next_run ?></td>
 
                                 <td>
                                     <div class="dropdown dropleft text-center">
@@ -121,13 +121,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRecurringTicketModal" onclick="populateRecurringTicketEditModal(<?php echo $scheduled_ticket_client_id, ",", $scheduled_ticket_id ?>)">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRecurringTicketModal" onclick="populateRecurringTicketEditModal(<?= $scheduled_ticket_client_id, ",", $scheduled_ticket_id ?>)">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
                                             <?php
                                             if ($session_user_role == 3) { ?>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_recurring_ticket=<?php echo $scheduled_ticket_id; ?>">
+                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_recurring_ticket=<?= $scheduled_ticket_id; ?>">
                                                     <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                 </a>
                                             <?php } ?>

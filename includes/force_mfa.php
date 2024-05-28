@@ -1,7 +1,7 @@
 <?php
 require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/portal.twe.tech/includes/config/config.php";
 
 include_once "/var/www/portal.twe.tech/includes/functions/functions.php";
 
@@ -18,7 +18,7 @@ require_once "header.php";
     <div class="card-body">
 
         <form action="/post.php" method="post" autocomplete="off">
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
             <?php if (empty($session_token)) { ?>
                 <button type="submit" name="enable_2fa" class="btn btn-success btn-block mt-3"><i class="fa fa-fw fa-lock"></i><br> Enable 2FA</button>
@@ -47,7 +47,7 @@ require_once "header.php";
                 ?>
             </center>
 
-            <input type="hidden" name="token" value="<?php echo $secretkey; ?>">
+            <input type="hidden" name="token" value="<?= $secretkey; ?>">
 
         </form>
 

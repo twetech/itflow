@@ -4,7 +4,7 @@
  * Includes for all pages (except login)
  */
 
-require_once '/var/www/portal.twe.tech/includes/config.php';
+require_once '/var/www/portal.twe.tech/includes/config/config.php';
 
 require_once '/var/www/portal.twe.tech/includes/get_settings.php';
 

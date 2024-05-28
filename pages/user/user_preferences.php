@@ -10,7 +10,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all.php";
     <div class="card-body">
 
         <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
             <?php if ($session_user_role > 1) { ?>
 

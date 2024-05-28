@@ -18,7 +18,7 @@ $inventory_location_user_name = nullable_htmlentities($row['user_name']);
 ?>
 
 
-<div class="modal" id="editLocationModal<?php echo $inventory_location_id; ?>" tabindex="-1">
+<div class="modal" id="editLocationModal<?= $inventory_location_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header text-white">
@@ -32,39 +32,39 @@ $inventory_location_user_name = nullable_htmlentities($row['user_name']);
                 <div class="modal-body bg-white">
                     <div class="form-group">
                         <label>Name <strong class="text-danger">*</strong></label>
-                        <input type="text" class="form-control" name="name" value="<?php echo $inventory_location_name; ?>" placeholder="Location name" required autofocus>
+                        <input type="text" class="form-control" name="name" value="<?= $inventory_location_name; ?>" placeholder="Location name" required autofocus>
                     </div>
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
-                <input type="hidden" name="inventory_location_id" value="<?php echo $inventory_location_id; ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="inventory_location_id" value="<?= $inventory_location_id; ?>">
 
                     <div class="form-group">
                         <label>Description <strong class="text-danger">*</strong></label>
-                        <input type="text" class="form-control" name="description" value="<?php echo $inventory_location_description; ?>" placeholder="Description" required>
+                        <input type="text" class="form-control" name="description" value="<?= $inventory_location_description; ?>" placeholder="Description" required>
                     </div>
 
                     <div class="form-group">
                         <label>Address</label>
-                        <input type="text" class="form-control" name="address" value="<?php echo $inventory_location_address; ?>" placeholder="Address (Optional)">
+                        <input type="text" class="form-control" name="address" value="<?= $inventory_location_address; ?>" placeholder="Address (Optional)">
                     </div>
 
                     <div class="form-group">
                         <label>City</label>
-                        <input type="text" class="form-control" name="city" value="<?php echo $inventory_location_city; ?>" placeholder="City (Optional)">
+                        <input type="text" class="form-control" name="city" value="<?= $inventory_location_city; ?>" placeholder="City (Optional)">
                     </div>
 
                     <div class="form-group">
                         <label>State</label>
-                        <input type="text" class="form-control" name="state" value="<?php echo $inventory_location_state; ?>" placeholder="State (Optional)">
+                        <input type="text" class="form-control" name="state" value="<?= $inventory_location_state; ?>" placeholder="State (Optional)">
                     </div>
 
                     <div class="form-group">
                         <label>Zip</label>
-                        <input type="text" class="form-control" name="zip" value="<?php echo $inventory_location_zip; ?>" placeholder="Zip (Optional)">
+                        <input type="text" class="form-control" name="zip" value="<?= $inventory_location_zip; ?>" placeholder="Zip (Optional)">
                     </div>
 
                     <div class="form-group">
                         <label>Country</label>
-                        <input type="text" class="form-control" name="country" value="<?php echo $inventory_location_country; ?>" placeholder="Country (Optional)">
+                        <input type="text" class="form-control" name="country" value="<?= $inventory_location_country; ?>" placeholder="Country (Optional)">
                     </div>
 
                     <div class="form-group">

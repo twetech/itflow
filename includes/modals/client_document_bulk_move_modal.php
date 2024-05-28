@@ -25,7 +25,7 @@
                                 $folder_id_select = intval($row['folder_id']);
                                 $folder_name_select = nullable_htmlentities($row['folder_name']);
                                 ?>
-                                <option value="<?php echo $folder_id_select ?>"><?php echo $folder_name_select; ?></option>
+                                <option value="<?= $folder_id_select ?>"><?= $folder_name_select; ?></option>
                                 <?php
                             }
                             ?>

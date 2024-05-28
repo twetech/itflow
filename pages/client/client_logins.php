@@ -26,7 +26,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-key mr-2"></i>Logins</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_login_add_modal.php?client_id=<?php echo $client_id; ?>">
+                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_login_add_modal.php?client_id=<?= $client_id; ?>">
                     <i class="fas fa-plus mr-2"></i>New Login
                 </button>
                 <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
@@ -44,7 +44,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     </div>
     <div class="card-body">
         <form autocomplete="off">
-            <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+            <input type="hidden" name="client_id" value="<?= $client_id; ?>">
             <div class="row">
 
                 <div class="col-md-4">
@@ -70,11 +70,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                             echo "d-none";
                                         } ?>">
                     <tr>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=login_name&order=<?php echo $disp; ?>">Name</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=login_name&order=<?= $disp; ?>">Name</a></th>
                         <th>Username</th>
                         <th>Password</th>
                         <th>OTP</th>
-                        <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=login_uri&order=<?php echo $disp; ?>">URI</a></th>
+                        <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=login_uri&order=<?= $disp; ?>">URI</a></th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -116,41 +116,41 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     ?>
                         <tr class="<?php if (!empty($login_important)) { echo "text-bold"; } ?>">
                             <td>
-                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?php echo $login_id; ?>">
+                                <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?= $login_id; ?>">
                                     <div class="media">
                                         <i class="fa fa-fw fa-2x fa-key mr-3"></i>
                                         <div class="media-body">
-                                            <div><?php echo $login_name; ?></div>
-                                            <div><small class="text-secondary"><?php echo $login_description; ?></small></div>
+                                            <div><?= $login_name; ?></div>
+                                            <div><small class="text-secondary"><?= $login_description; ?></small></div>
                                         </div>
                                     </div>
                                 </a>
                             </td>
-                            <td><?php echo $login_username_display; ?></td>
+                            <td><?= $login_username_display; ?></td>
                             <td>
-                                <button class="btn p-0" type="button" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-info" data-bs-placement="top" title="<?php echo $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary me-1"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></button><button class="btn btn-sm clipboardjs" type="button" data-clipboard-text="<?php echo $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
+                                <button class="btn p-0" type="button" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-info" data-bs-placement="top" title="<?= $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary me-1"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></button><button class="btn btn-sm clipboardjs" type="button" data-clipboard-text="<?= $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
                             </td>
-                            <td><?php echo $otp_display; ?></td>
-                            <td><?php echo $login_uri_display; ?></td>
+                            <td><?= $otp_display; ?></td>
+                            <td><?= $login_uri_display; ?></td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <?php if ($login_uri) { ?>
-                                    <a href="<?php echo $login_uri; ?>" target="_blank" class="btn btn-default btn-sm"><i class="fa fa-fw fa-external-link-alt"></i></a>
+                                    <a href="<?= $login_uri; ?>" target="_blank" class="btn btn-default btn-sm"><i class="fa fa-fw fa-external-link-alt"></i></a>
                                     <?php } ?>
                                     <div class="dropdown dropleft text-center">
                                         <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?php echo $login_id; ?>">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?= $login_id; ?>">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
-                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'Login', $login_id"; ?>)">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?= "$client_id, 'Login', $login_id"; ?>)">
                                                 <i class="fas fa-fw fa-share mr-2"></i>Share
                                             </a>
                                             <?php if ($session_user_role == 3) { ?>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger text-bold" href="/post.php?delete_login=<?php echo $login_id; ?>">
+                                                <a class="dropdown-item text-danger text-bold" href="/post.php?delete_login=<?= $login_id; ?>">
                                                     <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                 </a>
                                             <?php } ?>

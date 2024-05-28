@@ -1,9 +1,9 @@
 <?php
 
 // Enforce a Content Security Policy for security against cross-site scripting
-header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
 
-if (!file_exists('/var/www/portal.twe.tech/includes/config.php')) {
+
+if (!file_exists('/var/www/portal.twe.tech/includes/config/config.php')) {
     header("Location: setup.php");
     exit;
 }
@@ -16,7 +16,7 @@ if (isset($_GET['tenant_id'])) {
     }
 }
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/portal.twe.tech/includes/config/config.php";
 
 // Check if $mysqli is a valid connection
 if (!$mysqli) {
@@ -292,7 +292,7 @@ if (isset($_POST['login'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?php echo nullable_htmlentities($company_name); ?> | Login</title>
+    <title><?= nullable_htmlentities($company_name); ?> | Login</title>
     <meta name="robots" content="noindex">
     <link rel="stylesheet" href="/includes/plugins/fontawesome-free/css/all.min.css">
     <meta charset="utf-8">
@@ -320,15 +320,15 @@ if (isset($_POST['login'])) {
 			<div class="row">
 				<div class="col-lg-6 d-flex flex-column justify-content-center align-items-center bg-white mnh-100vh login-box">
 					<a class="u-login-form py-3 mb-auto login-logo" href="index.html">
-                        <img alt="<?=nullable_htmlentities($company_name)?> logo" height="110" width="380" class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>">
+                        <img alt="<?=nullable_htmlentities($company_name)?> logo" height="110" width="380" class="img-fluid" src="<?= "/uploads/settings/$company_logo"; ?>">
 					</a>
 
                     <?php if(!empty($config_login_message)){ ?>
-                        <p class="login-box-msg px-0"><?php echo nl2br($config_login_message); ?></p>
+                        <p class="login-box-msg px-0"><?= nl2br($config_login_message); ?></p>
                     <?php } ?>
 
                     <?php if (isset($response)) { ?>
-                        <p><?php echo $response; ?></p>
+                        <p><?= $response; ?></p>
                     <?php } ?>
 
 					<div class="u-login-form">

@@ -34,14 +34,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=quote_number&order=<?php echo $disp; ?>">Number</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=quote_scope&order=<?php echo $disp; ?>">Scope</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">Client</a></th>
-                        <th class="text-right"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=quote_amount&order=<?php echo $disp; ?>">Amount</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=quote_date&order=<?php echo $disp; ?>">Date</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=quote_expire&order=<?php echo $disp; ?>">Expire</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Category</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=quote_status&order=<?php echo $disp; ?>">Status</a></th>
+                        <th>Number</a></th>
+                        <th>Scope</a></th>
+                        <th>Client</a></th>
+                        <th class="text-right">Amount</a></th>
+                        <th>Date</a></th>
+                        <th>Expire</a></th>
+                        <th>Category</a></th>
+                        <th>Status</a></th>
                         <th class="text-center">Action</th>
                     </tr>
                     </thead>
@@ -92,16 +92,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
 
                         <tr>
-                            <td class="text-bold"><a href="quote.php?quote_id=<?php echo $quote_id; ?>"><?php echo "$quote_prefix$quote_number"; ?></a></td>
-                            <td><?php echo $quote_scope_display; ?></td>
-                            <td class="text-bold"><a href="client_quotes.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a></td>
-                            <td class="text-right text-bold"><?php echo numfmt_format_currency($currency_format, $quote_amount, $quote_currency_code); ?></td>
-                            <td><?php echo $quote_date; ?></td>
-                            <td><?php echo $quote_expire; ?></td>
-                            <td><?php echo $category_name; ?></td>
+                            <td class="text-bold"><a href="/quote.php?quote_id=<?= $quote_id; ?>"><?= "$quote_prefix$quote_number"; ?></a></td>
+                            <td><?= $quote_scope_display; ?></td>
+                            <td class="text-bold"><a href="/pages/client/client_quotes.php?client_id=<?= $client_id; ?>"><?= $client_name; ?></a></td>
+                            <td class="text-right text-bold"><?= numfmt_format_currency($currency_format, $quote_amount, $quote_currency_code); ?></td>
+                            <td><?= $quote_date; ?></td>
+                            <td><?= $quote_expire; ?></td>
+                            <td><?= $category_name; ?></td>
                             <td>
-                                <span class="p-2 badge bg-label-<?php echo $quote_badge_color; ?>">
-                                    <?php echo $quote_status; ?>
+                                <span class="p-2 badge bg-label-<?= $quote_badge_color; ?>">
+                                    <?= $quote_status; ?>
                                 </span>
                             </td>
                             <td>
@@ -110,20 +110,20 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a href="#" class="dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="quote_edit_modal.php?quote_id=<?php echo $quote_id; ?>">
+                                        <a href="#" class="dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="quote_edit_modal.php?quote_id=<?= $quote_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
-                                        <a href="#" class="dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="quote_copy_modal.php?quote_id=<?php echo $quote_id; ?>">
+                                        <a href="#" class="dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="quote_copy_modal.php?quote_id=<?= $quote_id; ?>">
                                             <i class="fas fa-fw fa-copy mr-2"></i>Copy
                                         </a>
                                         <div class="dropdown-divider"></div>
                                         <?php if (!empty($config_smtp_host)) { ?>
-                                            <a class="dropdown-item" href="/post.php?email_quote=<?php echo $quote_id; ?>">
+                                            <a class="dropdown-item" href="/post.php?email_quote=<?= $quote_id; ?>">
                                                 <i class="fas fa-fw fa-paper-plane mr-2"></i>Email
                                             </a>
                                             <div class="dropdown-divider"></div>
                                         <?php } ?>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_quote=<?php echo $quote_id; ?>">
+                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_quote=<?= $quote_id; ?>">
                                             <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                         </a>
                                     </div>

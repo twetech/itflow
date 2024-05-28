@@ -35,23 +35,23 @@ $num_rows = mysqli_num_rows($sql);
                 <thead class="text-dark <?php if ($num_rows == 0) { echo "d-none"; } ?>">
                     <tr>
                         <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=credit_client&order=<?php echo $disp; ?>">Client Name</a></th>
+                                href="?<?= $url_query_strings_sort; ?>&sort=credit_client&order=<?= $disp; ?>">Client Name</a></th>
                         <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=credit_account&order=<?php echo $disp; ?>">Account
+                                href="?<?= $url_query_strings_sort; ?>&sort=credit_account&order=<?= $disp; ?>">Account
                                 Name</a></th>
                         <th class="text-right
                             <?php if ($sort == "credit_amount") { echo "sorting-$order"; } ?>">
                             <a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=credit_amount&order=<?php echo $disp; ?>">Amount</a>
+                                href="?<?= $url_query_strings_sort; ?>&sort=credit_amount&order=<?= $disp; ?>">Amount</a>
                         </th>
                         <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=credit_date&order=<?php echo $disp; ?>">Date</a>
+                                href="?<?= $url_query_strings_sort; ?>&sort=credit_date&order=<?= $disp; ?>">Date</a>
                         </th>
                         <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=credit_reference&order=<?php echo $disp; ?>">Reference</a>
+                                href="?<?= $url_query_strings_sort; ?>&sort=credit_reference&order=<?= $disp; ?>">Reference</a>
                         </th>
                         <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=credit_payment&order=<?php echo $disp; ?>">Origin</a>
+                                href="?<?= $url_query_strings_sort; ?>&sort=credit_payment&order=<?= $disp; ?>">Origin</a>
                         </th>
 
                         <th>Actions</th>
@@ -109,19 +109,19 @@ $num_rows = mysqli_num_rows($sql);
                         ?>
 
                         <tr>
-                            <td><a href="client_overview.php?client_id=<?php echo $credit_client_id; ?>"><?php echo $client_name; ?></a>
-                            <td><?php echo $account_name; ?></td>
+                            <td><a href="client_overview.php?client_id=<?= $credit_client_id; ?>"><?= $client_name; ?></a>
+                            <td><?= $account_name; ?></td>
                             <td class="text-right
                                 <?php if ($sort == "credit_amount") { echo "sorting-$order"; } ?>">
-                                <?php echo $credit_display_amount; ?>
+                                <?= $credit_display_amount; ?>
                             </td>
-                            <td><?php echo $credit_date; ?></td>
-                            <td><?php echo $credit_reference; ?></td>
-                            <td><a href="client_payments.php?client_id=<?php echo $credit_client_id; ?>"><?php echo $payment_invoice_display; ?></a></td>
+                            <td><?= $credit_date; ?></td>
+                            <td><?= $credit_reference; ?></td>
+                            <td><a href="client_payments.php?client_id=<?= $credit_client_id; ?>"><?= $payment_invoice_display; ?></a></td>
                             <td>
-                                <a href="/post.php?apply_credit=<?php echo $credit_id; ?>" class="btn btn-sm btn-soft-primary"
+                                <a href="/post.php?apply_credit=<?= $credit_id; ?>" class="btn btn-sm btn-soft-primary"
                                 title="Apply"><i class="fas fa-credit-card"></i></a>
-                                <a href="/post.php?delete_credit=<?php echo $credit_id; ?>" class="btn btn-sm btn-danger"
+                                <a href="/post.php?delete_credit=<?= $credit_id; ?>" class="btn btn-sm btn-danger"
                                 title="Delete"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>

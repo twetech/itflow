@@ -112,7 +112,7 @@ $sql_asset_retire = mysqli_query(
                 </div>
                 <div class="collapse">
                     <div class="card-body p-1">
-                        <textarea class="form-control" rows=8 id="clientNotes" placeholder="Enter quick notes here" onblur="updateClientNotes(<?php echo $client_id ?>)"><?php echo $client_notes ?></textarea>
+                        <textarea class="form-control" rows=8 id="clientNotes" placeholder="Enter quick notes here" onblur="updateClientNotes(<?= $client_id ?>)"><?= $client_notes ?></textarea>
                     </div>
                 </div>
             </div>
@@ -143,17 +143,17 @@ $sql_asset_retire = mysqli_query(
                                 ?>
                                 <tr>
                                     <td>
-                                        <a href="client_contact_details.php?client_id=<?php echo $client_id; ?>&contact_id=<?php echo $contact_id; ?>" class="text-bold"><?php echo $contact_name; ?></a>
+                                        <a href="client_contact_details.php?client_id=<?= $client_id; ?>&contact_id=<?= $contact_id; ?>" class="text-bold"><?= $contact_name; ?></a>
                                         <br>
-                                        <small class="text-secondary"><?php echo $contact_title; ?></small>
+                                        <small class="text-secondary"><?= $contact_title; ?></small>
                                     </td>
                                     <td>
                                         <?php if (!empty($contact_phone)) { ?>
-                                            <?php echo "<i class='fa fa-fw fa-phone text-secondary'></i> $contact_phone $contact_extension"; ?>
+                                            <?= "<i class='fa fa-fw fa-phone text-secondary'></i> $contact_phone $contact_extension"; ?>
                                         <?php } ?>
                                         <?php if (!empty($contact_mobile)) { ?>
                                             <br>
-                                            <div class="text-secondary"><i class='fa fa-fw fa-mobile-alt text-secondary'></i> <?php echo "$contact_mobile"; ?></div>
+                                            <div class="text-secondary"><i class='fa fa-fw fa-mobile-alt text-secondary'></i> <?= "$contact_mobile"; ?></div>
                                         <?php } ?>
                                     </td>
                                 </tr>
@@ -194,8 +194,8 @@ $sql_asset_retire = mysqli_query(
                             ?>
                             <p class="mb-1">
                                 <i class="fa fa-fw fa-globe text-secondary mr-1"></i>
-                                <a href="client_domains.php?client_id=<?php echo $client_id; ?>&q=<?php echo $domain_name; ?>"><?php echo $domain_name; ?></a>
-                                <span>-- <?php echo $domain_expire_human; ?> <small class="text-muted"><?php echo $domain_expire; ?></small></span>
+                                <a href="client_domains.php?client_id=<?= $client_id; ?>&q=<?= $domain_name; ?>"><?= $domain_name; ?></a>
+                                <span>-- <?= $domain_expire_human; ?> <small class="text-muted"><?= $domain_expire; ?></small></span>
                             </p>
                             <?php
                         }
@@ -212,8 +212,8 @@ $sql_asset_retire = mysqli_query(
                             ?>
                             <p class="mb-1">
                                 <i class="fa fa-fw fa-laptop text-secondary mr-1"></i>
-                                <a href="client_assets.php?client_id=<?php echo $client_id; ?>&q=<?php echo $asset_name; ?>"><?php echo $asset_name; ?></a>
-                                <span>-- <?php echo $asset_warranty_expire_human; ?> <small class="text-muted"><?php echo $asset_warranty_expire; ?></small></span>
+                                <a href="client_assets.php?client_id=<?= $client_id; ?>&q=<?= $asset_name; ?>"><?= $asset_name; ?></a>
+                                <span>-- <?= $asset_warranty_expire_human; ?> <small class="text-muted"><?= $asset_warranty_expire; ?></small></span>
                             </p>
 
 
@@ -232,8 +232,8 @@ $sql_asset_retire = mysqli_query(
                             ?>
                             <p class="mb-1">
                                 <i class="fa fa-fw fa-laptop text-secondary mr-1"></i>
-                                <a href="client_assets.php?client_id=<?php echo $client_id; ?>&q=<?php echo $asset_name; ?>"><?php echo $asset_name; ?></a>
-                                <span>-- <?php echo $asset_install_date_human; ?> <small class="text-muted"><?php echo $asset_install_date; ?></small></span>
+                                <a href="client_assets.php?client_id=<?= $client_id; ?>&q=<?= $asset_name; ?>"><?= $asset_name; ?></a>
+                                <span>-- <?= $asset_install_date_human; ?> <small class="text-muted"><?= $asset_install_date; ?></small></span>
                             </p>
 
                             <?php
@@ -251,8 +251,8 @@ $sql_asset_retire = mysqli_query(
                             ?>
                             <p class="mb-1">
                                 <i class="fa fa-fw fa-cube text-secondary mr-1"></i>
-                                <a href="client_software.php?client_id=<?php echo $client_id; ?>&q=<?php echo $software_name; ?>"><?php echo $software_name; ?></a>
-                                <span>-- <?php echo $software_expire_human; ?> <small class="text-muted"><?php echo $software_expire; ?></small></span>
+                                <a href="client_software.php?client_id=<?= $client_id; ?>&q=<?= $software_name; ?>"><?= $software_name; ?></a>
+                                <span>-- <?= $software_expire_human; ?> <small class="text-muted"><?= $software_expire; ?></small></span>
                             </p>
 
                             <?php
@@ -291,9 +291,9 @@ $sql_asset_retire = mysqli_query(
 
                                 ?>
                                 <tr>
-                                    <td><a href="ticket.php?ticket_id=<?php echo $ticket_id?>"><?php echo "$ticket_prefix$ticket_number"; ?></a></td>
-                                    <td><?php echo $ticket_subject; ?></td>
-                                    <td><?php echo $ticket_created_at_human; ?> <small class="text-muted"><?php echo $ticket_created_at; ?></small></td>
+                                    <td><a href="ticket.php?ticket_id=<?= $ticket_id?>"><?= "$ticket_prefix$ticket_number"; ?></a></td>
+                                    <td><?= $ticket_subject; ?></td>
+                                    <td><?= $ticket_created_at_human; ?> <small class="text-muted"><?= $ticket_created_at; ?></small></td>
                                 </tr>
 
                                 <?php
@@ -330,8 +330,8 @@ $sql_asset_retire = mysqli_query(
 
                                 ?>
                                 <tr>
-                                    <td><?php echo $log_created_at_time_ago; ?></td>
-                                    <td><?php echo $log_description; ?></td>
+                                    <td><?= $log_created_at_time_ago; ?></td>
+                                    <td><?= $log_description; ?></td>
                                 </tr>
 
                                 <?php

@@ -74,11 +74,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         ?>
                         <tr>
-                            <td><?php echo $item_name; ?></td>
-                            <td><?php echo $item_type ?></td>
-                            <td><?php echo $item_note ?></td>
-                            <td><?php echo "$item_views / $item_view_limit" ?></td>
-                            <td><?php echo $item_expire_at ?></td>
+                            <td><?= $item_name; ?></td>
+                            <td><?= $item_type ?></td>
+                            <td><?= $item_note ?></td>
+                            <td><?= "$item_views / $item_view_limit" ?></td>
+                            <td><?= $item_expire_at ?></td>
                             <td>
                                 <?php if ($session_user_role == 3) { ?>
                                     <div class="dropdown dropleft text-center">
@@ -86,7 +86,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item text-danger confirm-link" href="/post.php?deactivate_shared_item=<?php echo $item_id; ?>">
+                                            <a class="dropdown-item text-danger confirm-link" href="/post.php?deactivate_shared_item=<?= $item_id; ?>">
                                                 <i class="fas fa-fw fa-times mr-2"></i>Deactivate
                                             </a>
                                         </div>

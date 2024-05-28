@@ -134,8 +134,8 @@ if (isset($_GET['project_id'])) {
             <div class="media">
                 <i class="fa fa-fw fa-2x fa-project-diagram text-secondary mr-3"></i>
                 <div class="media-body">
-                    <h3 class="mb-0"><?php echo $project_name; ?><?php echo $project_status_display; ?></h3>
-                    <div><small class="text-secondary"><?php echo $project_description; ?></small></div>
+                    <h3 class="mb-0"><?= $project_name; ?><?= $project_status_display; ?></h3>
+                    <div><small class="text-secondary"><?= $project_description; ?></small></div>
                 </div>
             </div>
         </div>
@@ -143,14 +143,14 @@ if (isset($_GET['project_id'])) {
             <div class="media">
                 <i class="fa fa-fw fa-2x fa-users text-secondary mr-3"></i>
                 <div class="media-body">
-                    <h3 class="mb-0"><?php echo $client_name; ?></h3>
-                    <?php echo $project_manager_display; ?>
-                    <div class='text-secondary'><i class='fa fa-fw fa-clock mr-2'></i><?php echo $project_due; ?></div>
-                    <?php echo $project_completed_date_display; ?>
+                    <h3 class="mb-0"><?= $client_name; ?></h3>
+                    <?= $project_manager_display; ?>
+                    <div class='text-secondary'><i class='fa fa-fw fa-clock mr-2'></i><?= $project_due; ?></div>
+                    <?= $project_completed_date_display; ?>
                     <!-- Time tracking -->
                     <?php if ($ticket_total_reply_time) { ?>
                         <div>
-                            <i class="far fa-fw fa-clock text-secondary mr-2"></i>Total time worked: <?php echo $ticket_total_reply_time; ?>
+                            <i class="far fa-fw fa-clock text-secondary mr-2"></i>Total time worked: <?= $ticket_total_reply_time; ?>
                         </div>
                     <?php } ?>
                 </div>
@@ -161,18 +161,18 @@ if (isset($_GET['project_id'])) {
             <?php if($ticket_count) { ?>
             <div class="progress" style="height: 20px;">
                 <i class="fa fas fa-fw fa-life-ring mr-2"></i>
-                <div class="progress-bar bg-primary" style="width: <?php echo $tickets_closed_percent; ?>%;"><?php echo $closed_ticket_count; ?> / <?php echo $ticket_count; ?></div>
+                <div class="progress-bar bg-primary" style="width: <?= $tickets_closed_percent; ?>%;"><?= $closed_ticket_count; ?> / <?= $ticket_count; ?></div>
             </div>
             <?php } ?>
             <?php if($task_count) { ?>
             <div class="progress mt-2" style="height: 20px;">
                 <i class="fa fas fa-fw fa-tasks mr-2"></i>
-                <div class="progress-bar bg-secondary" style="width: <?php echo $tasks_completed_percent; ?>%;"><?php echo $completed_task_count; ?> / <?php echo $task_count; ?></div>
+                <div class="progress-bar bg-secondary" style="width: <?= $tasks_completed_percent; ?>%;"><?= $completed_task_count; ?> / <?= $task_count; ?></div>
             </div>
             <?php } ?>
             <?php if($ticket_collaborators) { ?>
             <div class=mt-1>
-                <i class="fas fa-fw fa-users mr-2 text-secondary"></i><?php echo $ticket_collaborators; ?>
+                <i class="fas fa-fw fa-users mr-2 text-secondary"></i><?= $ticket_collaborators; ?>
             </div>
             <?php } ?>
         </div>
@@ -180,11 +180,11 @@ if (isset($_GET['project_id'])) {
         <div class="col-sm-3">
             <div class="btn-group float-right d-print-none">
                 <?php if($tickets_closed_percent == 100 && empty($project_completed_at)) { ?>
-                <a class="btn btn-primary btn-sm confirm-link" href="/post.php?close_project=<?php echo $project_id; ?>">
+                <a class="btn btn-primary btn-sm confirm-link" href="/post.php?close_project=<?= $project_id; ?>">
                     <i class="fas fa-fw fa-check mr-2"></i>Close
                 </a>
                 <?php } else { ?>
-                <button type="button" href="#!" class="btn btn-label-secondary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="project_ticket_add_modal.php?project_id=<?php echo $project_id; ?>">
+                <button type="button" href="#!" class="btn btn-label-secondary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="project_ticket_add_modal.php?project_id=<?= $project_id; ?>">
                     <i class="fas fa-fw fa-plus mr-2"></i>Add Ticket
                 </button>
                 <?php } ?>
@@ -194,19 +194,19 @@ if (isset($_GET['project_id'])) {
                     </button>
                     <div class="dropdown-menu">
                         <?php if(empty($project_completed_at)) { ?>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editProjectModal<?php echo $project_id; ?>">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editProjectModal<?= $project_id; ?>">
                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                         </a>
                         <div class="dropdown-divider"></div>
                         <?php } ?>
                         <?php if ($session_user_role == 3) { ?>
-                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?archive_project=<?php echo $project_id; ?>">
+                            <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?archive_project=<?= $project_id; ?>">
                                 <i class="fas fa-fw fa-archive mr-2"></i>Archive
                             </a>
                         <?php } ?>
                         <?php if ($session_user_role == 3) { ?>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger confirm-link" href="/post.php?delete_project=<?php echo $project_id; ?>">
+                            <a class="dropdown-item text-danger confirm-link" href="/post.php?delete_project=<?= $project_id; ?>">
                                 <i class="fas fa-fw fa-trash mr-2"></i>Delete
                             </a>
                         <?php } ?>
@@ -329,29 +329,29 @@ if (isset($_GET['project_id'])) {
 
                                 <!-- Ticket Number -->
                                 <td>
-                                    <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><span class="badge badge-pill badge-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span></a>
+                                    <a href="ticket.php?ticket_id=<?= $ticket_id; ?>"><span class="badge badge-pill badge-secondary p-3"><?= "$ticket_prefix$ticket_number"; ?></span></a>
                                 </td>
 
                                 <!-- Ticket Subject -->
                                 <td>
-                                    <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a>
+                                    <a href="ticket.php?ticket_id=<?= $ticket_id; ?>"><?= $ticket_subject; ?></a>
                                 </td>
 
                                 <!-- Ticket Priority -->
-                                <td><?php echo $ticket_priority_display; ?></a></td>
+                                <td><?= $ticket_priority_display; ?></a></td>
 
                                 <!-- Ticket Status -->
                                 <td>
-                                    <span class='badge badge-pill text-light p-2' style="background-color: <?php echo $ticket_status_color; ?>"><?php echo $ticket_status_name; ?></span>
+                                    <span class='badge badge-pill text-light p-2' style="background-color: <?= $ticket_status_color; ?>"><?= $ticket_status_name; ?></span>
                                 </td>
 
                                 <!-- Ticket Assigned agent -->
-                                <td><?php echo $ticket_assigned_to_display; ?></td>
+                                <td><?= $ticket_assigned_to_display; ?></td>
 
                                 <!-- Ticket Last Response -->
                                 <td>
-                                    <div><?php echo $ticket_updated_at_display; ?></div>
-                                    <div><?php echo $ticket_reply_by_display; ?></div>
+                                    <div><?= $ticket_updated_at_display; ?></div>
+                                    <div><?= $ticket_reply_by_display; ?></div>
                                 </td>
                             </tr>
 
@@ -384,11 +384,11 @@ if (isset($_GET['project_id'])) {
                             <?php if($task_completed_at) { ?>
                             <i class="far fa-fw fa-check-square text-primary mr-3"></i>
                             <?php } else { ?>
-                            <a href="/post.php?complete_task=<?php echo $task_id; ?>">
+                            <a href="/post.php?complete_task=<?= $task_id; ?>">
                                 <i class="far fa-fw fa-square text-secondary mr-3"></i>
                             </a>
                             <?php } ?>
-                            <?php echo $task_name; ?>
+                            <?= $task_name; ?>
                         </td>
                     </tr>
                 <?php } ?>

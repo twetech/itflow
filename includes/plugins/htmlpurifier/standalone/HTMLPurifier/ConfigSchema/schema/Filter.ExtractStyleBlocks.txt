@@ -52,7 +52,7 @@ EXTERNAL: CSSTidy
 </head>
 <body>
   <div>
-    <?php echo $html; ?>
+    <?= $html; ?>
   </div>
 </b]]><![CDATA[ody>
 </html>

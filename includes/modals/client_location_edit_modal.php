@@ -21,11 +21,11 @@ $location_notes = nullable_htmlentities($row['location_notes']);
 ?>
 
 
-<div class="modal" id="editLocationModal<?php echo $location_id; ?>" tabindex="-1">
+<div class="modal" id="editLocationModal<?= $location_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Editing location: <strong><?php echo $location_name; ?></strong></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Editing location: <strong><?= $location_name; ?></strong></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -34,20 +34,20 @@ $location_notes = nullable_htmlentities($row['location_notes']);
 
                 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="location_id" value="<?php echo $location_id; ?>">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="location_id" value="<?= $location_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $location_id; ?>">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?= $location_id; ?>">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-address<?php echo $location_id; ?>">Address</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-address<?= $location_id; ?>">Address</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-contact<?php echo $location_id; ?>">Contact</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-contact<?= $location_id; ?>">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes<?php echo $location_id; ?>">Notes</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes<?= $location_id; ?>">Notes</a>
                         </li>
                     </ul>
 
@@ -55,7 +55,7 @@ $location_notes = nullable_htmlentities($row['location_notes']);
 
                     <div class="tab-content">
 
-                        <div class="tab-pane fade show active" id="pills-details<?php echo $location_id; ?>">
+                        <div class="tab-pane fade show active" id="pills-details<?= $location_id; ?>">
 
                             <div class="form-group">
                                 <label>Location Name <strong class="text-danger">*</strong> / <span class="text-secondary">Primary</span></label>
@@ -63,7 +63,7 @@ $location_notes = nullable_htmlentities($row['location_notes']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-map-marker"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="name" placeholder="Name of location" value="<?php echo $location_name; ?>" required>
+                                    <input type="text" class="form-control" name="name" placeholder="Name of location" value="<?= $location_name; ?>" required>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <input type="checkbox" name="location_primary" value="1" <?php if ($location_primary == 1) { echo "checked"; } ?>>
@@ -78,13 +78,13 @@ $location_notes = nullable_htmlentities($row['location_notes']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-angle-right"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="description" placeholder="Short Description" value="<?php echo $location_description; ?>">
+                                    <input type="text" class="form-control" name="description" placeholder="Short Description" value="<?= $location_description; ?>">
                                 </div>
                             </div>
 
                             <div class="mb-3" style="text-align: center;">
                                 <?php if (!empty($location_photo)) { ?>
-                                    <img class="img-fluid" src="<?php echo "/uploads/clients/$client_id/$location_photo"; ?>">
+                                    <img class="img-fluid" src="<?= "/uploads/clients/$client_id/$location_photo"; ?>">
                                 <?php } ?>
                             </div>
 
@@ -95,7 +95,7 @@ $location_notes = nullable_htmlentities($row['location_notes']);
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-address<?php echo $location_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-address<?= $location_id; ?>">
 
                             <div class="form-group">
                                 <label>Address</label>
@@ -103,7 +103,7 @@ $location_notes = nullable_htmlentities($row['location_notes']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-map-marker-alt"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="address" placeholder="Street Address" value="<?php echo $location_address; ?>">
+                                    <input type="text" class="form-control" name="address" placeholder="Street Address" value="<?= $location_address; ?>">
                                 </div>
                             </div>
 
@@ -113,7 +113,7 @@ $location_notes = nullable_htmlentities($row['location_notes']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-city"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="city" placeholder="City" value="<?php echo $location_city; ?>">
+                                    <input type="text" class="form-control" name="city" placeholder="City" value="<?= $location_city; ?>">
                                 </div>
                             </div>
 
@@ -123,7 +123,7 @@ $location_notes = nullable_htmlentities($row['location_notes']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-flag"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="state" placeholder="State or Province" value="<?php echo $location_state; ?>">
+                                    <input type="text" class="form-control" name="state" placeholder="State or Province" value="<?= $location_state; ?>">
                                 </div>
                             </div>
 
@@ -133,7 +133,7 @@ $location_notes = nullable_htmlentities($row['location_notes']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fab fa-fw fa-usps"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="zip" placeholder="Zip or Postal Code" value="<?php echo $location_zip; ?>">
+                                    <input type="text" class="form-control" name="zip" placeholder="Zip or Postal Code" value="<?= $location_zip; ?>">
                                 </div>
                             </div>
 
@@ -146,7 +146,7 @@ $location_notes = nullable_htmlentities($row['location_notes']);
                                     <select class="form-control select2" id='select2' name="country">
                                         <option value="">- Country -</option>
                                         <?php foreach($countries_array as $country_name) { ?>
-                                            <option <?php if ($location_country == $country_name) { echo "selected"; } ?>><?php echo $country_name; ?></option>
+                                            <option <?php if ($location_country == $country_name) { echo "selected"; } ?>><?= $country_name; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -154,7 +154,7 @@ $location_notes = nullable_htmlentities($row['location_notes']);
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-contact<?php echo $location_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-contact<?= $location_id; ?>">
 
                             <div class="form-group">
                                 <label>Contact</label>
@@ -178,7 +178,7 @@ $location_notes = nullable_htmlentities($row['location_notes']);
                                             }
 
                                             ?>
-                                            <option <?php if ($location_contact_id == $contact_id_select) { echo "selected"; } ?> value="<?php echo $contact_id_select; ?>"><?php echo "$contact_archived_display$contact_name_select"; ?></option>
+                                            <option <?php if ($location_contact_id == $contact_id_select) { echo "selected"; } ?> value="<?= $contact_id_select; ?>"><?= "$contact_archived_display$contact_name_select"; ?></option>
                                         <?php } ?>
 
                                     </select>
@@ -191,7 +191,7 @@ $location_notes = nullable_htmlentities($row['location_notes']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="phone" placeholder="Phone Number" value="<?php echo $location_phone; ?>">
+                                    <input type="text" class="form-control" name="phone" placeholder="Phone Number" value="<?= $location_phone; ?>">
                                 </div>
                             </div>
 
@@ -201,20 +201,20 @@ $location_notes = nullable_htmlentities($row['location_notes']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-clock"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="hours" placeholder="Hours of operation" value="<?php echo $location_hours; ?>">
+                                    <input type="text" class="form-control" name="hours" placeholder="Hours of operation" value="<?= $location_hours; ?>">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" name="notes" placeholder="Notes, eg Parking Info, Building Access etc"><?php echo $location_notes; ?></textarea>
+                                <textarea class="form-control" rows="5" name="notes" placeholder="Notes, eg Parking Info, Building Access etc"><?= $location_notes; ?></textarea>
                             </div>
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-notes<?php echo $location_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-notes<?= $location_id; ?>">
 
                             <div class="form-group">
-                                <textarea class="form-control" rows="12" name="notes" placeholder="Notes, eg Parking Info, Building Access etc"><?php echo $location_notes; ?></textarea>
+                                <textarea class="form-control" rows="12" name="notes" placeholder="Notes, eg Parking Info, Building Access etc"><?= $location_notes; ?></textarea>
                             </div>
 
                         </div>

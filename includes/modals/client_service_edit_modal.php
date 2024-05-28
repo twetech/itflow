@@ -1,29 +1,29 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
-<div class="modal" id="editServiceModal<?php echo $service_id ?>" tabindex="-1">
+<div class="modal" id="editServiceModal<?= $service_id ?>" tabindex="-1">
   <div class="modal-dialog modal-md">
     <div class="modal-content bg-dark">
       <div class="modal-header">
-        <h5 class="modal-title text-white"><i class="fa fa-fw fa-stream mr-2"></i>Editing service: <strong><?php echo $service_name; ?></strong></h5>
+        <h5 class="modal-title text-white"><i class="fa fa-fw fa-stream mr-2"></i>Editing service: <strong><?= $service_name; ?></strong></h5>
         <button type="button" class="close text-white" data-bs-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
       <form action="/post.php" method="post" autocomplete="off">
-        <input type="hidden" name="client_id" value="<?php echo $client_id ?>">
-        <input type="hidden" name="service_id" value="<?php echo $service_id ?>">
+        <input type="hidden" name="client_id" value="<?= $client_id ?>">
+        <input type="hidden" name="service_id" value="<?= $service_id ?>">
 
         <div class="modal-body bg-white">
 
           <ul class="nav nav-pills  mb-3">
             <li class="nav-item">
-              <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-overview<?php echo $service_id ?>">Overview</a>
+              <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-overview<?= $service_id ?>">Overview</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-general<?php echo $service_id ?>">General</a>
+              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-general<?= $service_id ?>">General</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-assets<?php echo $service_id ?>">Assets</a>
+              <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-assets<?= $service_id ?>">Assets</a>
             </li>
           </ul>
 
@@ -31,7 +31,7 @@
 
           <div class="tab-content">
 
-            <div class="tab-pane fade show active" id="pills-overview<?php echo $service_id ?>">
+            <div class="tab-pane fade show active" id="pills-overview<?= $service_id ?>">
 
               <div class="form-group">
                 <label>Name <strong class="text-danger">*</strong></label>
@@ -39,7 +39,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-fw fa-stream"></i></span>
                   </div>
-                  <input type="text" class="form-control" name="name" placeholder="Name of Service" value="<?php echo $service_name ?>" required>
+                  <input type="text" class="form-control" name="name" placeholder="Name of Service" value="<?= $service_name ?>" required>
                 </div>
               </div>
 
@@ -49,7 +49,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-fw fa-info-circle"></i></span>
                   </div>
-                  <input type="text" class="form-control" name="description" placeholder="Description of Service" value="<?php echo $service_description ?>" required>
+                  <input type="text" class="form-control" name="description" placeholder="Description of Service" value="<?= $service_description ?>" required>
                 </div>
               </div>
 
@@ -60,7 +60,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-fw fa-info"></i></span>
                   </div>
-                  <input type="text" class="form-control" name="category" placeholder="Category" value="<?php echo $service_category ?>">
+                  <input type="text" class="form-control" name="category" placeholder="Category" value="<?= $service_category ?>">
                 </div>
               </div>
 
@@ -84,17 +84,17 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-fw fa-hdd"></i></span>
                   </div>
-                  <input type="text" class="form-control" name="backup" placeholder="Backup strategy" value="<?php echo $service_backup ?>">
+                  <input type="text" class="form-control" name="backup" placeholder="Backup strategy" value="<?= $service_backup ?>">
                 </div>
               </div>
 
               <div class="form-group">
                 <label>Notes</label>
-                <textarea class="form-control" rows="3" placeholder="Enter some notes" name="note"><?php echo $service_notes ?></textarea>
+                <textarea class="form-control" rows="3" placeholder="Enter some notes" name="note"><?= $service_notes ?></textarea>
               </div>
             </div>
 
-            <div class="tab-pane fade" role="tabpanel" id="pills-general<?php echo $service_id ?>">
+            <div class="tab-pane fade" role="tabpanel" id="pills-general<?= $service_id ?>">
 
               <div class="form-group">
                 <label for="contacts">Contacts</label>
@@ -173,7 +173,7 @@
             </div>
 
 
-            <div class="tab-pane fade" role="tabpanel" id="pills-assets<?php echo $service_id ?>">
+            <div class="tab-pane fade" role="tabpanel" id="pills-assets<?= $service_id ?>">
 
               <div class="form-group">
                 <label for="assets">Assets</label>

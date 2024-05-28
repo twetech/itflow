@@ -254,15 +254,15 @@ if (isset($_POST['export_client_pdf'])) {
 
         var docDefinition = {
             info: {
-                title: '<?php echo strtoAZaz09($client_name); ?>-IT Documentation',
-                author: <?php echo json_encode($session_company_name); ?>
+                title: '<?= strtoAZaz09($client_name); ?>-IT Documentation',
+                author: <?= json_encode($session_company_name); ?>
             },
 
             pageMargins: [ 15, 15, 15, 15 ],
 
             content: [
                 {
-                    text: <?php echo json_encode($client_name); ?>,
+                    text: <?= json_encode($client_name); ?>,
                     style: 'title'
                 },
 
@@ -276,7 +276,7 @@ if (isset($_POST['export_client_pdf'])) {
                                     style: 'itemHeader'
                                 },
                                 {
-                                    text: <?php echo json_encode($location_address); ?>,
+                                    text: <?= json_encode($location_address); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -286,7 +286,7 @@ if (isset($_POST['export_client_pdf'])) {
                                     style: 'itemHeader'
                                 },
                                 {
-                                    text: <?php echo json_encode("$location_city $location_state $location_zip"); ?>,
+                                    text: <?= json_encode("$location_city $location_state $location_zip"); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -296,7 +296,7 @@ if (isset($_POST['export_client_pdf'])) {
                                     style: 'itemHeader'
                                 },
                                 {
-                                    text: <?php echo json_encode($contact_phone); ?>,
+                                    text: <?= json_encode($contact_phone); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -306,7 +306,7 @@ if (isset($_POST['export_client_pdf'])) {
                                     style: 'itemHeader'
                                 },
                                 {
-                                    text: <?php echo json_encode($client_website); ?>,
+                                    text: <?= json_encode($client_website); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -316,7 +316,7 @@ if (isset($_POST['export_client_pdf'])) {
                                     style: 'itemHeader'
                                 },
                                 {
-                                    text: <?php echo json_encode($contact_name); ?>,
+                                    text: <?= json_encode($contact_name); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -326,7 +326,7 @@ if (isset($_POST['export_client_pdf'])) {
                                     style: 'itemHeader'
                                 },
                                 {
-                                    text: <?php echo json_encode($contact_email); ?>,
+                                    text: <?= json_encode($contact_email); ?>,
                                     style: 'item'
                                 }
                             ]
@@ -389,27 +389,27 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($contact_name); ?>,
+                                    text: <?= json_encode($contact_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($contact_title); ?>,
+                                    text: <?= json_encode($contact_title); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($contact_department); ?>,
+                                    text: <?= json_encode($contact_department); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($contact_email); ?>,
+                                    text: <?= json_encode($contact_email); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode("$contact_phone $contact_extension"); ?>,
+                                    text: <?= json_encode("$contact_phone $contact_extension"); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($contact_mobile); ?>,
+                                    text: <?= json_encode($contact_mobile); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -460,15 +460,15 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($location_name); ?>,
+                                    text: <?= json_encode($location_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode("$location_address $location_city $location_state $location_zip"); ?>,
+                                    text: <?= json_encode("$location_address $location_city $location_state $location_zip"); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($location_phone); ?>,
+                                    text: <?= json_encode($location_phone); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -528,23 +528,23 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($vendor_name); ?>,
+                                    text: <?= json_encode($vendor_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($vendor_description); ?>,
+                                    text: <?= json_encode($vendor_description); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($vendor_phone); ?>,
+                                    text: <?= json_encode($vendor_phone); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($vendor_website); ?>,
+                                    text: <?= json_encode($vendor_website); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($vendor_account_number); ?>,
+                                    text: <?= json_encode($vendor_account_number); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -602,23 +602,23 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($login_name); ?>,
+                                    text: <?= json_encode($login_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($login_description); ?>,
+                                    text: <?= json_encode($login_description); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($login_username); ?>,
+                                    text: <?= json_encode($login_username); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($login_password); ?>,
+                                    text: <?= json_encode($login_password); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($login_uri); ?>,
+                                    text: <?= json_encode($login_uri); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -718,43 +718,43 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($asset_name); ?>,
+                                    text: <?= json_encode($asset_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_type); ?>,
+                                    text: <?= json_encode($asset_type); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode("$asset_make $asset_model"); ?>,
+                                    text: <?= json_encode("$asset_make $asset_model"); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_serial); ?>,
+                                    text: <?= json_encode($asset_serial); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_os); ?>,
+                                    text: <?= json_encode($asset_os); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_purchase_date); ?>,
+                                    text: <?= json_encode($asset_purchase_date); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_warranty_expire); ?>,
+                                    text: <?= json_encode($asset_warranty_expire); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_install_date); ?>,
+                                    text: <?= json_encode($asset_install_date); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($contact_name); ?>,
+                                    text: <?= json_encode($contact_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($location_name); ?>,
+                                    text: <?= json_encode($location_name); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -836,39 +836,39 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($asset_name); ?>,
+                                    text: <?= json_encode($asset_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode("$asset_make $asset_model"); ?>,
+                                    text: <?= json_encode("$asset_make $asset_model"); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_serial); ?>,
+                                    text: <?= json_encode($asset_serial); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_os); ?>,
+                                    text: <?= json_encode($asset_os); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_ip); ?>,
+                                    text: <?= json_encode($asset_ip); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_purchase_date); ?>,
+                                    text: <?= json_encode($asset_purchase_date); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_warranty_expire); ?>,
+                                    text: <?= json_encode($asset_warranty_expire); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_install_date); ?>,
+                                    text: <?= json_encode($asset_install_date); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($location_name); ?>,
+                                    text: <?= json_encode($location_name); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -929,19 +929,19 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($asset_name); ?>,
+                                    text: <?= json_encode($asset_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_os); ?>,
+                                    text: <?= json_encode($asset_os); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_ip); ?>,
+                                    text: <?= json_encode($asset_ip); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_install_date); ?>,
+                                    text: <?= json_encode($asset_install_date); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -1023,39 +1023,39 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($asset_name); ?>,
+                                    text: <?= json_encode($asset_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_type); ?>,
+                                    text: <?= json_encode($asset_type); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode("$asset_make $asset_model"); ?>,
+                                    text: <?= json_encode("$asset_make $asset_model"); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_serial); ?>,
+                                    text: <?= json_encode($asset_serial); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_ip); ?>,
+                                    text: <?= json_encode($asset_ip); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_purchase_date); ?>,
+                                    text: <?= json_encode($asset_purchase_date); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_warranty_expire); ?>,
+                                    text: <?= json_encode($asset_warranty_expire); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_install_date); ?>,
+                                    text: <?= json_encode($asset_install_date); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($location_name); ?>,
+                                    text: <?= json_encode($location_name); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -1137,39 +1137,39 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($asset_name); ?>,
+                                    text: <?= json_encode($asset_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_type); ?>,
+                                    text: <?= json_encode($asset_type); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode("$asset_make $asset_model"); ?>,
+                                    text: <?= json_encode("$asset_make $asset_model"); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_serial); ?>,
+                                    text: <?= json_encode($asset_serial); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_ip); ?>,
+                                    text: <?= json_encode($asset_ip); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_purchase_date); ?>,
+                                    text: <?= json_encode($asset_purchase_date); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_warranty_expire); ?>,
+                                    text: <?= json_encode($asset_warranty_expire); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($asset_install_date); ?>,
+                                    text: <?= json_encode($asset_install_date); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($location_name); ?>,
+                                    text: <?= json_encode($location_name); ?>,
                                     style: 'item'
                                 }
 
@@ -1228,24 +1228,24 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($software_name); ?>,
+                                    text: <?= json_encode($software_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($software_type); ?>,
+                                    text: <?= json_encode($software_type); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($software_license_type); ?>,
+                                    text: <?= json_encode($software_license_type); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($software_key); ?>,
+                                    text: <?= json_encode($software_key); ?>,
                                     style: 'item'
                                 },
 
                                 {
-                                    text: <?php echo json_encode($software_notes); ?>,
+                                    text: <?= json_encode($software_notes); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -1303,23 +1303,23 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($network_name); ?>,
+                                    text: <?= json_encode($network_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($network_vlan); ?>,
+                                    text: <?= json_encode($network_vlan); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($network); ?>,
+                                    text: <?= json_encode($network); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($network_gateway); ?>,
+                                    text: <?= json_encode($network_gateway); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($network_dhcp_range); ?>,
+                                    text: <?= json_encode($network_dhcp_range); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -1362,11 +1362,11 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($domain_name); ?>,
+                                    text: <?= json_encode($domain_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($domain_expire); ?>,
+                                    text: <?= json_encode($domain_expire); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -1419,19 +1419,19 @@ if (isset($_POST['export_client_pdf'])) {
 
                             [
                                 {
-                                    text: <?php echo json_encode($certificate_name); ?>,
+                                    text: <?= json_encode($certificate_name); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($certificate_domain); ?>,
+                                    text: <?= json_encode($certificate_domain); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($certificate_issued_by); ?>,
+                                    text: <?= json_encode($certificate_issued_by); ?>,
                                     style: 'item'
                                 },
                                 {
-                                    text: <?php echo json_encode($certificate_expire); ?>,
+                                    text: <?= json_encode($certificate_expire); ?>,
                                     style: 'item'
                                 }
                             ],
@@ -1481,8 +1481,8 @@ if (isset($_POST['export_client_pdf'])) {
         };
 
 
-        //pdfMake.createPdf(docDefinition).download('<?php echo strtoAZaz09($client_name); ?>-IT_Documentation-<?php echo date('Y-m-d'); ?>');
-        pdfMake.createPdf(docDefinition).download('<?php echo strtoAZaz09($client_name); ?>-IT_Documentation-<?php echo date('Y-m-d'); ?>');
+        //pdfMake.createPdf(docDefinition).download('<?= strtoAZaz09($client_name); ?>-IT_Documentation-<?= date('Y-m-d'); ?>');
+        pdfMake.createPdf(docDefinition).download('<?= strtoAZaz09($client_name); ?>-IT_Documentation-<?= date('Y-m-d'); ?>');
 
     </script>
 

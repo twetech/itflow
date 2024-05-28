@@ -11,8 +11,8 @@
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <input type="hidden" name="folder_location" value="<?php echo $folder_location; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+                <input type="hidden" name="folder_location" value="<?= $folder_location; ?>">
                     <div class="form-group">
                         <label>Name <strong class="text-danger">*</strong></label>
                         <div class="input-group">

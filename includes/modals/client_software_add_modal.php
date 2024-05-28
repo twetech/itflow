@@ -10,7 +10,7 @@
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
@@ -69,7 +69,7 @@
                                     <select class="form-control select2" id='select2' name="type" required>
                                         <option value="">- Type -</option>
                                         <?php foreach ($software_types_array as $software_type) { ?>
-                                            <option><?php echo $software_type; ?></option>
+                                            <option><?= $software_type; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -88,7 +88,7 @@
                                     <select class="form-control select2" id='select2' name="license_type">
                                         <option value="">- Select a License Type -</option>
                                         <?php foreach ($license_types_array as $license_type) { ?>
-                                            <option><?php echo $license_type; ?></option>
+                                            <option><?= $license_type; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -151,7 +151,7 @@
                                             $asset_type = nullable_htmlentities($row['asset_type']);
                                             $contact_name = nullable_htmlentities($row['contact_name']);
                                         ?>
-                                            <option value="<?php echo $asset_id; ?>"><?php echo "$asset_name - $contact_name"; ?></option>
+                                            <option value="<?= $asset_id; ?>"><?= "$asset_name - $contact_name"; ?></option>
                                         <?php } ?>
 
                                     </select>
@@ -175,7 +175,7 @@
                                             $contact_email = nullable_htmlentities($row['contact_email']);
                                             
                                             ?>
-                                            <option value="<?php echo $contact_id; ?>"><?php echo "$contact_name - $contact_email"; ?></option>
+                                            <option value="<?= $contact_id; ?>"><?= "$contact_name - $contact_email"; ?></option>
                                         <?php } ?>
 
                                     </select>

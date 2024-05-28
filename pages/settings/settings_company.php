@@ -29,7 +29,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
         </div>
         <div class="card-body">
             <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                 <div class="form-group">
                     <label>Name <strong class="text-danger">*</strong></label>
@@ -37,13 +37,13 @@ $company_initials = nullable_htmlentities(initials($company_name));
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-building"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="name" placeholder="Company Name" value="<?php echo $company_name; ?>" required>
+                        <input type="text" class="form-control" name="name" placeholder="Company Name" value="<?= $company_name; ?>" required>
                     </div>
                 </div>
 
                 <div class="card col-md-2">
                     <div class="card-body">
-                        <img class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>">
+                        <img class="img-fluid" src="<?= "/uploads/settings/$company_logo"; ?>">
                     </div>
                 </div>
 
@@ -57,7 +57,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-map-marker-alt"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="address" placeholder="Street Address" value="<?php echo $company_address; ?>">
+                        <input type="text" class="form-control" name="address" placeholder="Street Address" value="<?= $company_address; ?>">
                     </div>
                 </div>
 
@@ -67,7 +67,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-city"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="city" placeholder="City" value="<?php echo $company_city; ?>">
+                        <input type="text" class="form-control" name="city" placeholder="City" value="<?= $company_city; ?>">
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-flag"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="state" placeholder="State or Province" value="<?php echo $company_state; ?>">
+                        <input type="text" class="form-control" name="state" placeholder="State or Province" value="<?= $company_state; ?>">
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fab fa-fw fa-usps"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="zip" placeholder="Zip or Postal Code" value="<?php echo $company_zip; ?>">
+                        <input type="text" class="form-control" name="zip" placeholder="Zip or Postal Code" value="<?= $company_zip; ?>">
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
                         <select class="form-control select2" id='select2' name="country">
                             <option value="">- Country -</option>
                             <?php foreach($countries_array as $country_name) { ?>
-                                <option <?php if ($company_country == $country_name) { echo "selected"; } ?>><?php echo $country_name; ?></option>
+                                <option <?php if ($company_country == $country_name) { echo "selected"; } ?>><?= $country_name; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -112,7 +112,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-phone"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="phone" placeholder="Phone Number" value="<?php echo $company_phone; ?>">
+                        <input type="text" class="form-control" name="phone" placeholder="Phone Number" value="<?= $company_phone; ?>">
                     </div>
                 </div>
 
@@ -122,7 +122,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" name="email" placeholder="Email address" value="<?php echo $company_email; ?>">
+                        <input type="email" class="form-control" name="email" placeholder="Email address" value="<?= $company_email; ?>">
                     </div>
                 </div>
 
@@ -132,7 +132,7 @@ $company_initials = nullable_htmlentities(initials($company_name));
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-globe"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="website" placeholder="Website address" value="<?php echo $company_website; ?>">
+                        <input type="text" class="form-control" name="website" placeholder="Website address" value="<?= $company_website; ?>">
                     </div>
                 </div>
 

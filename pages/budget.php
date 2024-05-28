@@ -34,11 +34,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=budget_year&order=<?php echo $disp; ?>">Year</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=budget_month&order=<?php echo $disp; ?>">Month</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Category</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=budget_description&order=<?php echo $disp; ?>">Description</a></th>
-                        <th class="text-right"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=budget_amount&order=<?php echo $disp; ?>">Amount</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=budget_year&order=<?= $disp; ?>">Year</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=budget_month&order=<?= $disp; ?>">Month</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Category</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=budget_description&order=<?= $disp; ?>">Description</a></th>
+                        <th class="text-right"><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=budget_amount&order=<?= $disp; ?>">Amount</a></th>
                         <th class="text-center">Action</th>
                     </tr>
                     </thead>
@@ -57,22 +57,22 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
 
                         <tr>
-                            <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editBudgetModal<?php echo $budget_id; ?>"><?php echo $budget_year; ?></a></td>
-                            <td><?php echo $budget_month; ?></td>
-                            <td><?php echo $category_name; ?></td>
-                            <td><?php echo truncate($budget_description, 50); ?></td>
-                            <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $budget_amount, $session_company_currency); ?></td>
+                            <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editBudgetModal<?= $budget_id; ?>"><?= $budget_year; ?></a></td>
+                            <td><?= $budget_month; ?></td>
+                            <td><?= $category_name; ?></td>
+                            <td><?= truncate($budget_description, 50); ?></td>
+                            <td class="text-bold text-right"><?= numfmt_format_currency($currency_format, $budget_amount, $session_company_currency); ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
                                     <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editBudgetModal<?php echo $budget_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editBudgetModal<?= $budget_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_budget=<?php echo $budget_id; ?>">
+                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_budget=<?= $budget_id; ?>">
                                             <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                         </a>
                                     </div>

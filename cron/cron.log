@@ -133,3 +133,284 @@ Stack trace:
 #1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
 #2 {main}
   thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+Checking for clients that are past due and sending collections emails.
+PHP Warning:  Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+
+Warning: Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+Client Hessbrook Law Firm is 0 months past due. Sending collections email.
+PHP Warning:  Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Warning: Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Warning:  Trying to access array offset on value of type null in /var/www/portal.twe.tech/cron/cron.php on line 432
+
+Warning: Trying to access array offset on value of type null in /var/www/portal.twe.tech/cron/cron.php on line 432
+Checking for clients that are past due and sending collections emails.
+PHP Warning:  Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+
+Warning: Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+PHP Warning:  Undefined variable $client_name in /var/www/portal.twe.tech/cron/cron.php on line 759
+
+Warning: Undefined variable $client_name in /var/www/portal.twe.tech/cron/cron.php on line 759
+Client  is 0 months past due. Sending collections email.
+PHP Warning:  Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Warning: Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+Checking for clients that are past due and sending collections emails.
+PHP Warning:  Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+
+Warning: Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+PHP Warning:  Undefined variable $client_name in /var/www/portal.twe.tech/cron/cron.php on line 759
+
+Warning: Undefined variable $client_name in /var/www/portal.twe.tech/cron/cron.php on line 759
+Client  is 0 months past due. Sending collections email.
+PHP Warning:  Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Warning: Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+Checking for clients that are past due and sending collections emails.
+PHP Warning:  Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+
+Warning: Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+Client Star Consulting Group is 0 months past due. Sending collections email.
+PHP Warning:  Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Warning: Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+Checking for clients that are past due and sending collections emails.
+PHP Warning:  Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+
+Warning: Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+Client Integrated Shredder Technology is 0 months past due. Sending collections email.
+PHP Warning:  Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Warning: Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+Checking for clients that are past due and sending collections emails.
+PHP Warning:  Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+
+Warning: Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+PHP Warning:  Undefined variable $client_name in /var/www/portal.twe.tech/cron/cron.php on line 759
+
+Warning: Undefined variable $client_name in /var/www/portal.twe.tech/cron/cron.php on line 759
+Client  is 0 months past due. Sending collections email.
+PHP Warning:  Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Warning: Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+Checking for clients that are past due and sending collections emails.
+PHP Warning:  Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+
+Warning: Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+Client Wilson County Covered Storage is 0 months past due. Sending collections email.
+PHP Warning:  Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Warning: Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+Checking for clients that are past due and sending collections emails.
+PHP Warning:  Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+
+Warning: Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+Client Healing Hands Veterinary Hospital is 0 months past due. Sending collections email.
+PHP Warning:  Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Warning: Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Warning:  Trying to access array offset on value of type null in /var/www/portal.twe.tech/cron/cron.php on line 432
+
+Warning: Trying to access array offset on value of type null in /var/www/portal.twe.tech/cron/cron.php on line 432
+PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's GoDaddy account and found some of the M365 accounts had expired so I worked...' at line 1 in /var/www/portal.twe.tech/includes/functions/email_functions.php:145
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/email_functions.php(145): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(448): addToMailQueue()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/email_functions.php on line 145
+
+Fatal error: Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's GoDaddy account and found some of the M365 accounts had expired so I worked...' at line 1 in /var/www/portal.twe.tech/includes/functions/email_functions.php:145
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/email_functions.php(145): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(448): addToMailQueue()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/email_functions.php on line 145
+PHP Warning:  Trying to access array offset on value of type null in /var/www/portal.twe.tech/cron/cron.php on line 432
+
+Warning: Trying to access array offset on value of type null in /var/www/portal.twe.tech/cron/cron.php on line 432
+Checking for clients that are past due and sending collections emails.
+PHP Warning:  Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+
+Warning: Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+PHP Warning:  Undefined variable $client_name in /var/www/portal.twe.tech/cron/cron.php on line 759
+
+Warning: Undefined variable $client_name in /var/www/portal.twe.tech/cron/cron.php on line 759
+Client  is 0 months past due. Sending collections email.
+PHP Warning:  Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Warning: Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Warning:  Trying to access array offset on value of type null in /var/www/portal.twe.tech/cron/cron.php on line 432
+
+Warning: Trying to access array offset on value of type null in /var/www/portal.twe.tech/cron/cron.php on line 432
+PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's laptop would not connect to WiFi.&nbsp; No WiFi adapters were listed in Dev...' at line 1 in /var/www/portal.twe.tech/includes/functions/email_functions.php:145
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/email_functions.php(145): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(448): addToMailQueue()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/email_functions.php on line 145
+
+Fatal error: Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's laptop would not connect to WiFi.&nbsp; No WiFi adapters were listed in Dev...' at line 1 in /var/www/portal.twe.tech/includes/functions/email_functions.php:145
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/email_functions.php(145): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(448): addToMailQueue()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/email_functions.php on line 145
+Checking for clients that are past due and sending collections emails.
+PHP Warning:  Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+
+Warning: Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+Client AZ Ventures is 0 months past due. Sending collections email.
+PHP Warning:  Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Warning: Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+Checking for clients that are past due and sending collections emails.
+PHP Warning:  Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+
+Warning: Undefined variable $client_net_terms in /var/www/portal.twe.tech/cron/cron.php on line 757
+Client AZ Ventures is 0 months past due. Sending collections email.
+PHP Warning:  Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Warning: Undefined variable $mysqli in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406
+
+Fatal error: Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /var/www/portal.twe.tech/includes/functions/accounting_functions.php:406
+Stack trace:
+#0 /var/www/portal.twe.tech/includes/functions/accounting_functions.php(406): mysqli_query()
+#1 /var/www/portal.twe.tech/cron/cron.php(760): clientSendDisconnect()
+#2 {main}
+  thrown in /var/www/portal.twe.tech/includes/functions/accounting_functions.php on line 406

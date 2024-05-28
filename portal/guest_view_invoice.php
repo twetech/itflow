@@ -160,29 +160,29 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
 <div class="row">
   <div class="col-4">
     <div class="d-flex svg-illustration mb-3 gap-2">
-      <img src="data:image/png;base64,<?php echo $company_logo_base64; ?>" class="w-75 m-4 center-text" alt="logo" />
+      <img src="data:image/png;base64,<?= $company_logo_base64; ?>" class="w-75 m-4 center-text" alt="logo" />
     </div>
   </div>
   <div class="col-3">
-    <h4><?php echo $company_name; ?></h4>
-    <p class="mb-1"><?php echo $company_address; ?></p>
-    <p class="mb-1"><?php echo "$company_city $company_state $company_zip"; ?></p>
-    <p class="mb-1"><?php echo $company_phone; ?></p>
-    <p class="mb-0"><?php echo $company_email; ?></p>
+    <h4><?= $company_name; ?></h4>
+    <p class="mb-1"><?= $company_address; ?></p>
+    <p class="mb-1"><?= "$company_city $company_state $company_zip"; ?></p>
+    <p class="mb-1"><?= $company_phone; ?></p>
+    <p class="mb-0"><?= $company_email; ?></p>
   </div>
   <div class="col-5">
     <div class="d-flex justify-content-end">
       <div class="d-flex flex-column text-end">
-        <h4>Invoice <?php echo "$invoice_prefix$invoice_number"; ?></h4>
+        <h4>Invoice <?= "$invoice_prefix$invoice_number"; ?></h4>
         <div class="mb-2">
           <span class="me-1">Date Issued:</span>
           <span class="fw-medium"><div class="">
-            <?php echo $invoice_date; ?>
+            <?= $invoice_date; ?>
           </div></span>
         </div>
         <div>
           <span class="me-1">Date Due:</span>
-          <span class="fw-medium"><div class="<?php echo $invoice_color; ?>"><?php echo $invoice_due; ?></div></span>
+          <span class="fw-medium"><div class="<?= $invoice_color; ?>"><?= $invoice_due; ?></div></span>
         </div>
       </div>
     </div>
@@ -199,7 +199,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
       <h6 class="pb-2 m-1 text-end">Invoice To:</h6>
     </div>
     <div class="col text-end">
-      <strong class="truncate-text"><?php echo $client_name; ?></strong><br>
+      <strong class="truncate-text"><?= $client_name; ?></strong><br>
       <?= $location_address; ?><br>
       <?= $location_city . ", " . $location_state . " " . $location_zip; ?><br>
       <a href="mailto:<?= $contact_email; ?>"><?= $contact_email; ?></a><br>
@@ -237,12 +237,12 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
         ?>
 
         <tr>
-            <td><?php echo $item_name; ?></td>
-            <td><?php echo nl2br($item_description); ?></td>
-            <td class="text-center"><?php echo $item_quantity; ?></td>
-            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_price, $invoice_currency_code); ?></td>
-            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_tax, $invoice_currency_code); ?></td>
-            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_total, $invoice_currency_code); ?></td>
+            <td><?= $item_name; ?></td>
+            <td><?= nl2br($item_description); ?></td>
+            <td class="text-center"><?= $item_quantity; ?></td>
+            <td class="text-right"><?= numfmt_format_currency($currency_format, $item_price, $invoice_currency_code); ?></td>
+            <td class="text-right"><?= numfmt_format_currency($currency_format, $item_tax, $invoice_currency_code); ?></td>
+            <td class="text-right"><?= numfmt_format_currency($currency_format, $item_total, $invoice_currency_code); ?></td>
         </tr>
 
     <?php } ?>
@@ -269,11 +269,11 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
 
         <?php if ($invoice_note !== "") { ?>
           <span>Note:</span>
-          <?php echo $invoice_note; ?>
+          <?= $invoice_note; ?>
         <?php } ?>
 
         </div>
-        <div class="text-center"><?php echo nl2br($config_invoice_footer); ?></div>
+        <div class="text-center"><?= nl2br($config_invoice_footer); ?></div>
       </td>
       <td colspan="2" class="text-end px-4 py-5">
         <p class="mb-2">Subtotal:</p>
@@ -287,14 +287,14 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
         <?php } ?>
       </td>
       <td class="px-4 py-5">
-        <p class="fw-medium mb-2"><?php echo numfmt_format_currency($currency_format, $sub_total, $invoice_currency_code); ?></p>
-        <p class="fw-medium mb-2"><?php echo numfmt_format_currency($currency_format, $invoice_discount, $invoice_currency_code); ?></p>
-        <p class="fw-medium mb-2"><?php echo numfmt_format_currency($currency_format, $total_tax, $invoice_currency_code); ?></p>
-        <p class="fw-medium mb-<?= $amount_paid > 0 ? 4 : 0 ?>"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></p>
+        <p class="fw-medium mb-2"><?= numfmt_format_currency($currency_format, $sub_total, $invoice_currency_code); ?></p>
+        <p class="fw-medium mb-2"><?= numfmt_format_currency($currency_format, $invoice_discount, $invoice_currency_code); ?></p>
+        <p class="fw-medium mb-2"><?= numfmt_format_currency($currency_format, $total_tax, $invoice_currency_code); ?></p>
+        <p class="fw-medium mb-<?= $amount_paid > 0 ? 4 : 0 ?>"><?= numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></p>
         <?php 
           if ($amount_paid > 0) { ?>
-            <p class="fw-medium mb-2"><?php echo numfmt_format_currency($currency_format, $amount_paid, $invoice_currency_code); ?></p>
-            <p class="fw-medium mb-2"><?php echo numfmt_format_currency($currency_format, $balance, $invoice_currency_code); ?></p>
+            <p class="fw-medium mb-2"><?= numfmt_format_currency($currency_format, $amount_paid, $invoice_currency_code); ?></p>
+            <p class="fw-medium mb-2"><?= numfmt_format_currency($currency_format, $balance, $invoice_currency_code); ?></p>
         <?php } ?>
       </td>
     </tr>
@@ -316,7 +316,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                 <a class="btn btn-label-secondary d-grid w-100 mb-3" target="_blank" onclick="window.print();">Print</a>
                 <?php 
                 if ($balance > 0) { ?>
-                  <a class="btn btn-primary d-grid w-100" href="/portal/guest_pay_invoice_stripe.php?invoice_id=<?php echo $invoice_id; ?>&url_key=<?php echo $url_key; ?>">
+                  <a class="btn btn-primary d-grid w-100" href="/portal/guest_pay_invoice_stripe.php?invoice_id=<?= $invoice_id; ?>&url_key=<?= $url_key; ?>">
                     <span class="d-flex align-items-center justify-content-center text-nowrap"><i class="bx bx-dollar bx-xs me-1"></i>
                         Pay Online <?php if($config_stripe_client_pays_fees == 1) { echo "(Gateway Fee: " .  numfmt_format_currency($currency_format, $gateway_fee, $invoice_currency_code) . ")"; } ?>
                     </span>

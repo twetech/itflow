@@ -34,7 +34,7 @@ $sql_tax = mysqli_query($mysqli,
                     while ($row = mysqli_fetch_array($sql_all_years)) {
                         $all_years = intval($row['all_years']);
                         ?>
-                        <option <?php if ($year == $all_years) { echo "selected"; } ?> > <?php echo $all_years; ?></option>
+                        <option <?php if ($year == $all_years) { echo "selected"; } ?> > <?= $all_years; ?></option>
 
                         <?php
                     }

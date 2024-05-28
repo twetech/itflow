@@ -45,17 +45,17 @@ $tenants_count_row = mysqli_fetch_assoc($result_tenants_count);
                                 <tr>
                                     <td>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="tenant<?php echo $tenants_row['tenant_id']; ?>">
-                                            <label class="custom-control-label" for="tenant<?php echo $tenants_row['tenant_id']; ?>"></label>
+                                            <input type="checkbox" class="custom-control-input" id="tenant<?= $tenants_row['tenant_id']; ?>">
+                                            <label class="custom-control-label" for="tenant<?= $tenants_row['tenant_id']; ?>"></label>
                                         </div>
                                     </td>
-                                    <td><?php echo $tenants_row['client_name']; ?></td>
-                                    <td><?php echo $tenants_row['tenant_database']; ?></td>
-                                    <td><?php echo $tenants_row['tenant_status']; ?></td>
+                                    <td><?= $tenants_row['client_name']; ?></td>
+                                    <td><?= $tenants_row['tenant_database']; ?></td>
+                                    <td><?= $tenants_row['tenant_status']; ?></td>
                                     <td>
                                         <form method="post" action="post.php">
-                                            <input type="hidden" name="tenant_id" value="<?php echo $tenants_row['tenant_id']; ?>">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editTenant<?php echo $tenants_row['tenant_id']; ?>" class="btn btn-label-primary btn-sm">Edit</a>
+                                            <input type="hidden" name="tenant_id" value="<?= $tenants_row['tenant_id']; ?>">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#editTenant<?= $tenants_row['tenant_id']; ?>" class="btn btn-label-primary btn-sm">Edit</a>
                                             <button type="submit" name="delete_tenant" class="btn btn-danger btn-sm">Disable</button>
                                         </form>
                                     </td>

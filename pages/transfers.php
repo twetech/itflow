@@ -34,12 +34,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=transfer_date&order=<?php echo $disp; ?>">Date</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=transfer_account_from&order=<?php echo $disp; ?>">From Account</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=transfer_account_to&order=<?php echo $disp; ?>">To Account</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=transfer_method&order=<?php echo $disp; ?>">Method</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=transfer_notes&order=<?php echo $disp; ?>">Notes</a></th>
-                        <th class="text-right"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=transfer_amount&order=<?php echo $disp; ?>">Amount</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=transfer_date&order=<?= $disp; ?>">Date</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=transfer_account_from&order=<?= $disp; ?>">From Account</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=transfer_account_to&order=<?= $disp; ?>">To Account</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=transfer_method&order=<?= $disp; ?>">Method</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=transfer_notes&order=<?= $disp; ?>">Notes</a></th>
+                        <th class="text-right"><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=transfer_amount&order=<?= $disp; ?>">Amount</a></th>
                         <th class="text-center">Action</th>
                     </tr>
                     </thead>
@@ -90,23 +90,23 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         ?>
                         <tr>
-                            <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editTransferModal<?php echo $transfer_id; ?>"><?php echo $transfer_date; ?></a></td>
-                            <td><?php echo "$account_from_archived_display$account_name_from"; ?></td>
-                            <td><?php echo "$account_to_archived_display$account_name_to"; ?></td>
-                            <td><?php echo $transfer_method_display; ?></td>
-                            <td><?php echo $transfer_notes_display; ?></td>
-                            <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $transfer_amount, $session_company_currency); ?></td>
+                            <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editTransferModal<?= $transfer_id; ?>"><?= $transfer_date; ?></a></td>
+                            <td><?= "$account_from_archived_display$account_name_from"; ?></td>
+                            <td><?= "$account_to_archived_display$account_name_to"; ?></td>
+                            <td><?= $transfer_method_display; ?></td>
+                            <td><?= $transfer_notes_display; ?></td>
+                            <td class="text-bold text-right"><?= numfmt_format_currency($currency_format, $transfer_amount, $session_company_currency); ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
                                     <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editTransferModal<?php echo $transfer_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editTransferModal<?= $transfer_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_transfer=<?php echo $transfer_id; ?>">
+                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_transfer=<?= $transfer_id; ?>">
                                             <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                         </a>
                                     </div>

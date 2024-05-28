@@ -18,7 +18,7 @@
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-credit-card mr-2"></i><?php echo "$invoice_prefix$invoice_number"; ?>: Make Payment</h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-credit-card mr-2"></i><?= "$invoice_prefix$invoice_number"; ?>: Make Payment</h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -26,9 +26,9 @@
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="invoice_id" value="<?php echo $invoice_id; ?>">
-                <input type="hidden" name="balance" value="<?php echo $balance; ?>">
-                <input type="hidden" name="currency_code" value="<?php echo $client_currency_code; ?>">
+                <input type="hidden" name="invoice_id" value="<?= $invoice_id; ?>">
+                <input type="hidden" name="balance" value="<?= $balance; ?>">
+                <input type="hidden" name="currency_code" value="<?= $client_currency_code; ?>">
                     <div class="form-row">
                         <div class="col-md">
 
@@ -38,7 +38,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                     </div>
-                                    <input type="date" class="form-control" name="date" max="2999-12-31" value="<?php echo date("Y-m-d"); ?>" required>
+                                    <input type="date" class="form-control" name="date" max="2999-12-31" value="<?= date("Y-m-d"); ?>" required>
                                 </div>
                             </div>
 
@@ -52,7 +52,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-dollar-sign"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="amount" value="<?php echo number_format($balance, 2, '.', ''); ?>" placeholder="0.00" required>
+                                    <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="amount" value="<?= number_format($balance, 2, '.', ''); ?>" placeholder="0.00" required>
                                 </div>
                             </div>
 
@@ -93,8 +93,8 @@
 
                                 ?>
                                     <option <?php if ($config_default_payment_account == $account_id) { echo "selected"; } ?>
-                                        value="<?php echo $account_id; ?>">
-                                        <?php echo $account_name; ?> [$<?php echo number_format($account_balance, 2); ?>]
+                                        value="<?= $account_id; ?>">
+                                        <?= $account_name; ?> [$<?= number_format($account_balance, 2); ?>]
                                     </option>
 
                                 <?php
@@ -120,7 +120,7 @@
                                 ?>
                                     <option <?php if ($config_default_payment_method == $category_name) {
                                                 echo "selected";
-                                            } ?>><?php echo $category_name; ?></option>
+                                            } ?>><?= $category_name; ?></option>
 
                                 <?php
                                 }
@@ -145,7 +145,7 @@
                             <label>Email Receipt</label>
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="customControlAutosizing" name="email_receipt" value="1" checked>
-                                <label class="custom-control-label" for="customControlAutosizing"><?php echo $contact_email; ?></label>
+                                <label class="custom-control-label" for="customControlAutosizing"><?= $contact_email; ?></label>
                             </div>
                         </div>
 

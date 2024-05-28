@@ -16,11 +16,11 @@ $invoice_created_at = nullable_htmlentities($row['invoice_created_at']);
 
 ?>
 
-<div class="modal" id="editInvoiceModal<?php echo $invoice_id; ?>" tabindex="-1">
+<div class="modal" id="editInvoiceModal<?= $invoice_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-fw fa-file-invoice mr-2"></i>Editing invoice: <strong><?php echo "$invoice_prefix$invoice_number"; ?></strong> - <?php echo $client_name; ?></h5>
+                <h5 class="modal-title"><i class="fas fa-fw fa-file-invoice mr-2"></i>Editing invoice: <strong><?= "$invoice_prefix$invoice_number"; ?></strong> - <?= $client_name; ?></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -28,7 +28,7 @@ $invoice_created_at = nullable_htmlentities($row['invoice_created_at']);
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="invoice_id" value="<?php echo $invoice_id; ?>">
+                <input type="hidden" name="invoice_id" value="<?= $invoice_id; ?>">
 
                     <div class="form-group">
                         <label>Invoice Date <strong class="text-danger">*</strong></label>
@@ -36,7 +36,7 @@ $invoice_created_at = nullable_htmlentities($row['invoice_created_at']);
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                             </div>
-                            <input type="date" class="form-control" name="date" max="2999-12-31" value="<?php echo $invoice_date; ?>" required>
+                            <input type="date" class="form-control" name="date" max="2999-12-31" value="<?= $invoice_date; ?>" required>
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@ $invoice_created_at = nullable_htmlentities($row['invoice_created_at']);
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-calendar-alt"></i></span>
                             </div>
-                            <input type="date" class="form-control" name="due" max="2999-12-31" value="<?php echo $invoice_due; ?>" required>
+                            <input type="date" class="form-control" name="due" max="2999-12-31" value="<?= $invoice_due; ?>" required>
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@ $invoice_created_at = nullable_htmlentities($row['invoice_created_at']);
                                 ?>
                                     <option <?php if ($category_id == $category_id_select) {
                                                 echo "selected";
-                                            } ?> value="<?php echo $category_id_select; ?>"><?php echo $category_name_select; ?></option>
+                                            } ?> value="<?= $category_id_select; ?>"><?= $category_name_select; ?></option>
 
                                 <?php
                                 }
@@ -85,7 +85,7 @@ $invoice_created_at = nullable_htmlentities($row['invoice_created_at']);
                             <div class='input-group-prepend'>
                                 <span class='input-group-text'><i class='fa fa-fw fa-dollar-sign'></i></span>
                             </div>
-                            <input type='text' class='form-control' inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" name='invoice_discount' placeholder='0.00' value="<?php echo number_format($invoice_discount, 2, '.', ''); ?>">
+                            <input type='text' class='form-control' inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" name='invoice_discount' placeholder='0.00' value="<?= number_format($invoice_discount, 2, '.', ''); ?>">
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@ $invoice_created_at = nullable_htmlentities($row['invoice_created_at']);
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-comment"></i></span>
                             </div>
-                            <input type="text" class="form-control" name="scope" placeholder="Quick description" value="<?php echo $invoice_scope; ?>">
+                            <input type="text" class="form-control" name="scope" placeholder="Quick description" value="<?= $invoice_scope; ?>">
                         </div>
                     </div>
 

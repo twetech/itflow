@@ -15,11 +15,11 @@ $calendar_id = intval($row['calendar_id']);
 $client_id = intval($row['client_id']);
 ?>
 
-<div class="modal" id="editEventModal<?php echo $event_id; ?>" tabindex="-1">
+<div class="modal" id="editEventModal<?= $event_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-calendar mr-2"></i><?php echo $event_title; ?></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-calendar mr-2"></i><?= $event_title; ?></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -28,17 +28,17 @@ $client_id = intval($row['client_id']);
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
+                <input type="hidden" name="event_id" value="<?= $event_id; ?>">
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-event<?php echo $event_id; ?>"><i class="fa fa-fw fa-calendar mr-2"></i>Event</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-event<?= $event_id; ?>"><i class="fa fa-fw fa-calendar mr-2"></i>Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $event_id; ?>"><i class="fa fa-fw fa-info-circle mr-2"></i>Details</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-details<?= $event_id; ?>"><i class="fa fa-fw fa-info-circle mr-2"></i>Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-attendees<?php echo $event_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Attendees</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-attendees<?= $event_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Attendees</a>
                         </li>
                     </ul>
 
@@ -46,7 +46,7 @@ $client_id = intval($row['client_id']);
 
                     <div class="tab-content">
 
-                        <div class="tab-pane fade show active" id="pills-event<?php echo $event_id; ?>">
+                        <div class="tab-pane fade show active" id="pills-event<?= $event_id; ?>">
 
                             <div class="form-group">
                                 <label>Title <strong class="text-danger">*</strong></label>
@@ -54,7 +54,7 @@ $client_id = intval($row['client_id']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-calendar-day"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="title" value="<?php echo $event_title; ?>" placeholder="Title of the event" required>
+                                    <input type="text" class="form-control" name="title" value="<?= $event_title; ?>" placeholder="Title of the event" required>
                                 </div>
                             </div>
 
@@ -73,7 +73,7 @@ $client_id = intval($row['client_id']);
                                             $calendar_name_select = nullable_htmlentities($row['calendar_name']);
                                             $calendar_color_select = nullable_htmlentities($row['calendar_color']);
                                             ?>
-                                            <option data-content="<i class='fa fa-circle mr-2' style='color:<?php echo $calendar_color_select; ?>;'></i> <?php echo $calendar_name_select; ?>"<?php if ($calendar_id == $calendar_id_select) { echo "selected"; } ?> value="<?php echo $calendar_id_select; ?>"><?php echo $calendar_name_select; ?></option>
+                                            <option data-content="<i class='fa fa-circle mr-2' style='color:<?= $calendar_color_select; ?>;'></i> <?= $calendar_name_select; ?>"<?php if ($calendar_id == $calendar_id_select) { echo "selected"; } ?> value="<?= $calendar_id_select; ?>"><?= $calendar_name_select; ?></option>
 
                                         <?php } ?>
                                     </select>
@@ -86,7 +86,7 @@ $client_id = intval($row['client_id']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-calendar-check"></i></span>
                                     </div>
-                                    <input type="datetime-local" class="form-control" name="start" value="<?php echo date('Y-m-d\TH:i:s', strtotime($event_start)); ?>" required>
+                                    <input type="datetime-local" class="form-control" name="start" value="<?= date('Y-m-d\TH:i:s', strtotime($event_start)); ?>" required>
                                 </div>
                             </div>
                                 
@@ -95,7 +95,7 @@ $client_id = intval($row['client_id']);
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-calendar-day"></i></span>
                                     </div>
-                                    <input type="datetime-local" class="form-control" name="end" value="<?php echo date('Y-m-d\TH:i:s', strtotime($event_end)); ?>"required>
+                                    <input type="datetime-local" class="form-control" name="end" value="<?= date('Y-m-d\TH:i:s', strtotime($event_end)); ?>"required>
                                 </div>
                             </div>
 
@@ -117,29 +117,29 @@ $client_id = intval($row['client_id']);
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-details<?php echo $event_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-details<?= $event_id; ?>">
                             <div class="form-group">
                                 <label>Location</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-map-marker-alt"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="location" value="<?php echo $event_location; ?>" placeholder="Location of the event">
+                                    <input type="text" class="form-control" name="location" value="<?= $event_location; ?>" placeholder="Location of the event">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" rows="8" name="description" placeholder="Enter a description"><?php echo $event_description; ?></textarea>
+                                <textarea class="form-control" rows="8" name="description" placeholder="Enter a description"><?= $event_description; ?></textarea>
                             </div>
                             
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-attendees<?php echo $event_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-attendees<?= $event_id; ?>">
 
                             <?php if (isset($_GET['client_id'])) { ?>
-                                <input type="hidden" name="client" value="<?php echo $client_id; ?>">
+                                <input type="hidden" name="client" value="<?= $client_id; ?>">
                             <?php } else { ?>
 
                                 <div class="form-group">
@@ -158,7 +158,7 @@ $client_id = intval($row['client_id']);
                                                 $client_name_select = nullable_htmlentities($row['client_name']);
                                                 $contact_email_select = nullable_htmlentities($row['contact_email']);
                                                 ?>
-                                                <option <?php if ($client_id == $client_id_select) { echo "selected"; } ?> value="<?php echo $client_id_select; ?>"><?php echo $client_name_select; ?></option>
+                                                <option <?php if ($client_id == $client_id_select) { echo "selected"; } ?> value="<?= $client_id_select; ?>"><?= $client_name_select; ?></option>
 
                                             <?php } ?>
 
@@ -170,8 +170,8 @@ $client_id = intval($row['client_id']);
 
                             <?php if (!empty($config_smtp_host)) { ?>
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing<?php echo $event_id; ?>" name="email_event" value="1" >
-                                    <label class="custom-control-label" for="customControlAutosizing<?php echo $event_id; ?>">Email Event</label>
+                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing<?= $event_id; ?>" name="email_event" value="1" >
+                                    <label class="custom-control-label" for="customControlAutosizing<?= $event_id; ?>">Email Event</label>
                                 </div>
                             <?php } ?>
 
@@ -181,7 +181,7 @@ $client_id = intval($row['client_id']);
 
                 </div>
                 <div class="modal-footer bg-white">
-                    <a class="btn btn-default text-danger mr-auto" href="/post.php?delete_event=<?php echo $event_id; ?>"><i class="fa fa-calendar-times mr-2"></i>Delete</a>
+                    <a class="btn btn-default text-danger mr-auto" href="/post.php?delete_event=<?= $event_id; ?>"><i class="fa fa-calendar-times mr-2"></i>Delete</a>
                     <button type="submit" name="edit_event" class="btn btn-label-primary text-bold"></i>Save</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"></i>Cancel</button>
                 </div>

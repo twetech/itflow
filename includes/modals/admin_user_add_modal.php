@@ -11,7 +11,7 @@
                 </button>
             </div>
                 <div class="modal-body bg-white">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                     <div class="form-group">
                         <label>Name <strong class="text-danger">*</strong></label>
                         <div class="input-group">

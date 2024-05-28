@@ -6,7 +6,7 @@
     <div class="card-header-elements">
         <span class="badge rounded-pill bg-label-secondary p-2">Total: <?=$total_tickets_open + $total_tickets_closed?></span> |
         <a href="<?= isset($client_id) ? "/pages/client/client_" : "/pages/" ?>tickets.php?status=Open&assigned=all<?= isset($client_id) ? "&client_id=$client_id" : "" ?>" class="badge rounded-pill bg-label-success p-2">Open: <?=$total_tickets_open?></a> |
-        <a href="<?= isset($client_id) ? "/pages/client/client_" : "/pages/" ?>tickets.php?status=Closed&assigned=all<?= isset($client_id) ? "&client_id=$client_id" : "" ?>" class="badge rounded-pill bg-label-danger p-2">Closed: <?=$total_tickets_closed?></a>
+        <a href="<?= isset($client_id) ? "/pages/client/client_" : "/pages/" ?>tickets.php?status=5&assigned=all<?= isset($client_id) ? "&client_id=$client_id" : "" ?>" class="badge rounded-pill bg-label-danger p-2">Closed: <?=$total_tickets_closed?></a>
     </div>
     <div class="card-header-elements ms-auto">
         <div class="btn-group">
@@ -16,18 +16,18 @@
                     <i class="fa fa-fw fa-envelope m-2"></i>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="?status=Open&assigned=<?php echo $session_user_id ?>">Active tickets (<?php echo $user_active_assigned_tickets ?>)</a>
-                    <a class="dropdown-item " href="?status=Closed&assigned=<?php echo $session_user_id ?>">Closed tickets</a>
+                    <a class="dropdown-item" href="?status=Open&assigned=<?= $session_user_id ?>">Active tickets (<?= $user_active_assigned_tickets ?>)</a>
+                    <a class="dropdown-item " href="?status=5&assigned=<?= $session_user_id ?>">Closed tickets</a>
                 </div>
             </div>
             <?php if (!isset($_GET['client_id'])) { ?>
                 <a href="?assigned=unassigned" class="btn btn-label-danger">
-                    <strong><?=$session_mobile ? "" : "Unassigned"?> : <?php echo " ".$total_tickets_unassigned; ?></strong>
+                    <strong><?=$session_mobile ? "" : "Unassigned"?> : <?= " ".$total_tickets_unassigned; ?></strong>
                     <span class="tf-icons fa fa-fw fa-exclamation-triangle mr-2"></span>
                 </a> 
             <?php } ?>
             <a href="<?=isset($_GET['client_id']) ? "/pages/client/client_" : '/pages/'?>recurring_tickets.php" class="btn btn-label-info">
-            <strong><?=$session_mobile ? "" : "Recurring"?>: <?php echo $total_scheduled_tickets; ?> </strong>
+            <strong><?=$session_mobile ? "" : "Recurring"?>: <?= $total_scheduled_tickets; ?> </strong>
                 <span class="tf-icons fa fa-fw fa-redo-alt mr-2"></span>
             </a>
             <?php if ($session_user_role == 3) { ?>

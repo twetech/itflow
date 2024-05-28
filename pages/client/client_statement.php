@@ -57,13 +57,13 @@ if (isset($_GET['client_id'])) {
             <a href="clients.php">Clients</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="client_invoices.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a>
+            <a href="client_invoices.php?client_id=<?= $client_id; ?>"><?= $client_name; ?></a>
         </li>
     </ol>
 
     <div class="card">
     <div class="card-header py-2">
-        <h3 class="card-title mt-2"><i class="fas fa-fw fa-balance-scale mr-2"></i>Statement for <?php echo $client_name ?></h3>
+        <h3 class="card-title mt-2"><i class="fas fa-fw fa-balance-scale mr-2"></i>Statement for <?= $client_name ?></h3>
         <div class="card-tools">
             <button type="button" class="btn btn-label-primary d-print-none" onclick="window.print();"><i class="fas fa-fw fa-print mr-2"></i>Print</button>
         </div>
@@ -77,19 +77,19 @@ if (isset($_GET['client_id'])) {
                         <table class="table table-sm table-borderless">
                             <tr>
                                 <td>Client Name:</td>
-                                <td><?php echo $client_name; ?></td>
+                                <td><?= $client_name; ?></td>
                             </tr>
                             <tr>
                                 <td>Net Terms:</td>
-                                <td><?php echo $client_net_terms; ?> days</td>
+                                <td><?= $client_net_terms; ?> days</td>
                             </tr>
                             <tr>
                                 <td>Current Balance:</td>
-                                <td><?php echo numfmt_format_currency($currency_format, $client_balance, $currency_code); ?></td>
+                                <td><?= numfmt_format_currency($currency_format, $client_balance, $currency_code); ?></td>
                             </tr>
                             <tr>
                                 <td>Past Due:</td>
-                                <td><?php echo numfmt_format_currency($currency_format, getClientPastDueBalance($client_id), $currency_code); ?></td>
+                                <td><?= numfmt_format_currency($currency_format, getClientPastDueBalance($client_id), $currency_code); ?></td>
                             </tr>
                         </table>                        
                     </div>
@@ -116,10 +116,10 @@ if (isset($_GET['client_id'])) {
                                 $invoice_amount = nullable_htmlentities($row['invoice_amount']);
                                 ?>
                                 <tr>
-                                    <td><a href="/pages/invoice.php?invoice_id=<?php echo $invoice_id; ?>"><?php echo $invoice_prefix . $invoice_number; ?></a></td>
-                                    <td><?php echo $invoice_date; ?></td>
-                                    <td><?php echo $invoice_due; ?></td>
-                                    <td><?php echo numfmt_format_currency($currency_format, $invoice_amount, $currency_code); ?></td>
+                                    <td><a href="/pages/invoice.php?invoice_id=<?= $invoice_id; ?>"><?= $invoice_prefix . $invoice_number; ?></a></td>
+                                    <td><?= $invoice_date; ?></td>
+                                    <td><?= $invoice_due; ?></td>
+                                    <td><?= numfmt_format_currency($currency_format, $invoice_amount, $currency_code); ?></td>
                                 </tr>
                                 <?php
                             }

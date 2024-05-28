@@ -66,10 +66,10 @@ function display_account_section($mysqli, $accounts, $type) {
         <div class="card-datatable table-responsive container-fluid  pt-0">
             <div class="text-center">
                 <h2 class="text-dark">
-                    <?php echo nullable_htmlentities($session_company_name); ?>
+                    <?= nullable_htmlentities($session_company_name); ?>
                 </h2>
                 <h3 class="text-dark">Balance Sheet</h3>
-                <h5 class="text-dark">As of <?php echo date("F j, Y"); ?></h5>
+                <h5 class="text-dark">As of <?= date("F j, Y"); ?></h5>
             </div>
             <div>
             <table id=responsive class="responsive table table-sm">

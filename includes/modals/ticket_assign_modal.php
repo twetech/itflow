@@ -13,18 +13,18 @@ $ticket_prefix = $row['ticket_prefix'];
 $client_name = $row['client_name'];
 
 ?>
-<div class="modal" id="assignTicketModal<?php echo $ticket_id; ?>" tabindex="-1">
+<div class="modal" id="assignTicketModal<?= $ticket_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-user-check mr-2"></i>Assigning Ticket: <strong><?php echo "$ticket_prefix$ticket_number"; ?></strong> - <?php echo $client_name; ?></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-user-check mr-2"></i>Assigning Ticket: <strong><?= "$ticket_prefix$ticket_number"; ?></strong> - <?= $client_name; ?></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
+                <input type="hidden" name="ticket_id" value="<?= $ticket_id; ?>">
                     <div class="form-group">
                         <label>Assign to</label>
                         <div class="input-group">
@@ -45,7 +45,7 @@ $client_name = $row['client_name'];
                                     $user_name_select = nullable_htmlentities($row['user_name']);
 
                                     ?>
-                                    <option value="<?php echo $user_id_select; ?>" <?php if ($user_id_select  == $ticket_assigned_to) { echo "selected"; } ?>><?php echo $user_name_select; ?></option>
+                                    <option value="<?= $user_id_select; ?>" <?php if ($user_id_select  == $ticket_assigned_to) { echo "selected"; } ?>><?= $user_name_select; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

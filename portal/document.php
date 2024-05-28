@@ -4,7 +4,7 @@
  * Docs for PTC / technical contacts
  */
 
-header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
+
 
 require_once "/var/www/portal.twe.tech/includes/inc_portal.php";
 
@@ -39,8 +39,8 @@ $document_content = $purifier->purify($row['document_content']);
 
 <div class="card">
     <div class="card-body prettyContent">
-        <h3><?php echo $document_name; ?></h3>
-        <?php echo $document_content; ?>
+        <h3><?= $document_name; ?></h3>
+        <?= $document_content; ?>
     </div>
 </div>
 

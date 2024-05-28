@@ -10,7 +10,7 @@
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <?php if (isset($client_id)) { ?>
-                       <input type="hidden" name="client" value="<?php echo $client_id; ?>>">
+                       <input type="hidden" name="client" value="<?= $client_id; ?>>">
                 <?php } ?>
 
                 <div class="modal-body bg-white">
@@ -81,7 +81,7 @@
                                         while ($row = mysqli_fetch_array($sql)) {
                                             $user_id = intval($row['user_id']);
                                             $user_name = nullable_htmlentities($row['user_name']); ?>
-                                            <option value="<?php echo $user_id; ?>"><?php echo $user_name; ?></option>
+                                            <option value="<?= $user_id; ?>"><?= $user_name; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -107,7 +107,7 @@
                                             $selectable_client_id = intval($row['client_id']);
                                             $client_name = nullable_htmlentities($row['client_name']); ?>
 
-                                            <option value="<?php echo $selectable_client_id; ?>" <?php if (isset($client_id) && $client_id == $selectable_client_id) {echo "selected"; } ?>><?php echo $client_name; ?></option>
+                                            <option value="<?= $selectable_client_id; ?>" <?php if (isset($client_id) && $client_id == $selectable_client_id) {echo "selected"; } ?>><?= $client_name; ?></option>
 
                                         <?php } ?>
                                     </select>
@@ -156,7 +156,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-calendar-day"></i></span>
                                     </div>
-                                    <input class="form-control" type="date" name="start_date" min="<?php echo date("Y-m-d"); ?>" max="2999-12-31" required>
+                                    <input class="form-control" type="date" name="start_date" min="<?= date("Y-m-d"); ?>" max="2999-12-31" required>
                                 </div>
                             </div>
 
@@ -181,7 +181,7 @@
                                                 $asset_id_select = intval($row['asset_id']);
                                                 $asset_name_select = nullable_htmlentities($row['asset_name']);
                                                 ?>
-                                                <option value="<?php echo $asset_id_select; ?>"><?php echo $asset_name_select; ?></option>
+                                                <option value="<?= $asset_id_select; ?>"><?= $asset_name_select; ?></option>
 
                                             <?php } ?>
                                         </select>

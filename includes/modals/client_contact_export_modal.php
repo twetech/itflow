@@ -12,7 +12,7 @@
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
 
                     <?php require_once "/var/www/portal.twe.tech/includes/inc_export_warning.php";
  ?>

@@ -33,16 +33,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_number&order=<?php echo $disp; ?>">Number</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_next_date&order=<?php echo $disp; ?>">Next Date</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_scope&order=<?php echo $disp; ?>">Scope</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">Client</a></th>
-                    <th class="text-right"><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_amount&order=<?php echo $disp; ?>">Amount</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_frequency&order=<?php echo $disp; ?>">Frequency</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_last_sent&order=<?php echo $disp; ?>">Last Sent</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=recurring_number&order=<?= $disp; ?>">Number</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=recurring_next_date&order=<?= $disp; ?>">Next Date</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=recurring_scope&order=<?= $disp; ?>">Scope</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=client_name&order=<?= $disp; ?>">Client</a></th>
+                    <th class="text-right"><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=recurring_amount&order=<?= $disp; ?>">Amount</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=recurring_frequency&order=<?= $disp; ?>">Frequency</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=recurring_last_sent&order=<?= $disp; ?>">Last Sent</a></th>
 
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Category</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=recurring_status&order=<?php echo $disp; ?>">Status</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Category</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=recurring_status&order=<?= $disp; ?>">Status</a></th>
                     <th class="text-center">Action</th>
                 </tr>
                 </thead>
@@ -82,18 +82,18 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                     <tr>
                         <td class="text-bold">
-                            <a href="recurring_invoice.php?recurring_id=<?php echo $recurring_id; ?>"><?php echo "$recurring_prefix$recurring_number"; ?></a>
+                            <a href="recurring_invoice.php?recurring_id=<?= $recurring_id; ?>"><?= "$recurring_prefix$recurring_number"; ?></a>
                         </td>
-                        <td class="text-bold"><?php echo $recurring_next_date; ?></td>
-                        <td><?php echo $recurring_scope; ?></td>
-                        <td class="text-bold"><a href="client_recurring_invoices.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a></td>
-                        <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $recurring_amount, $recurring_currency_code); ?></td>
-                        <td><?php echo ucwords($recurring_frequency); ?>ly</td>
-                        <td><?php echo $recurring_last_sent; ?></td>
-                        <td><?php echo $category_name; ?></td>
+                        <td class="text-bold"><?= $recurring_next_date; ?></td>
+                        <td><?= $recurring_scope; ?></td>
+                        <td class="text-bold"><a href="client_recurring_invoices.php?client_id=<?= $client_id; ?>"><?= $client_name; ?></a></td>
+                        <td class="text-bold text-right"><?= numfmt_format_currency($currency_format, $recurring_amount, $recurring_currency_code); ?></td>
+                        <td><?= ucwords($recurring_frequency); ?>ly</td>
+                        <td><?= $recurring_last_sent; ?></td>
+                        <td><?= $category_name; ?></td>
                         <td>
-                            <span class="p-2 badge badge-<?php echo $status_badge_color; ?>">
-                                <?php echo $status; ?>
+                            <span class="p-2 badge badge-<?= $status_badge_color; ?>">
+                                <?= $status; ?>
                             </span>
 
                         </td>
@@ -103,11 +103,11 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRecurringModal<?php echo $recurring_id; ?>">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRecurringModal<?= $recurring_id; ?>">
                                         <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_recurring=<?php echo $recurring_id; ?>">
+                                    <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_recurring=<?= $recurring_id; ?>">
                                         <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                     </a>
                                 </div>

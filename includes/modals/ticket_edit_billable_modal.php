@@ -13,13 +13,13 @@ $ticket_prefix = $row['ticket_prefix'];
 
 ?>
 
-<div class="modal" id="editTicketBillableModal<?php echo $ticket_id; ?>" tabindex="-1">
+<div class="modal" id="editTicketBillableModal<?= $ticket_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title">
                     <i class="fa fa-fw fa-user mr-2"></i>
-                    Edit Billable Status for <strong><?php echo "$ticket_prefix$ticket_number"; ?></strong>
+                    Edit Billable Status for <strong><?= "$ticket_prefix$ticket_number"; ?></strong>
                 </h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
@@ -27,7 +27,7 @@ $ticket_prefix = $row['ticket_prefix'];
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                    <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
+                    <input type="hidden" name="ticket_id" value="<?= $ticket_id; ?>">
                     <input type="hidden" name="set_billable_status" value="1">
                     <div class="form-group">
                         <label>Billable</label>

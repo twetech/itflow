@@ -1,10 +1,10 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
 
-<div class="modal" id="addAssetInterfaceModal<?php echo $asset_id; ?>" tabindex="-1">
+<div class="modal" id="addAssetInterfaceModal<?= $asset_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-ethernet"></i> <i class="fa fa-fw fa-<?php echo $device_icon; ?>"></i> <?php echo $asset_name; ?></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-ethernet"></i> <i class="fa fa-fw fa-<?= $device_icon; ?>"></i> <?= $asset_name; ?></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -12,17 +12,17 @@
 
             <form action="/post.php" method="post" autocomplete="off">
 
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <input type="hidden" name="asset_id" value="<?php echo $asset_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+                <input type="hidden" name="asset_id" value="<?= $asset_id; ?>">
 
                 <div class="modal-body bg-white">
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-interfaces<?php echo $asset_id; ?>">Interfaces</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-interfaces<?= $asset_id; ?>">Interfaces</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-create<?php echo $asset_id; ?>">Create</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-create<?= $asset_id; ?>">Create</a>
                         </li>
                     </ul>
 
@@ -30,12 +30,12 @@
 
                     <div class="tab-content">
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-interfaces<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-interfaces<?= $asset_id; ?>">
 
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-create<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-create<?= $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Interface Number</label>
@@ -84,7 +84,7 @@
                                             $network = nullable_htmlentities($row['network']);
 
                                             ?>
-                                            <option value="<?php echo $network_id; ?>"><?php echo $network_name; ?> - <?php echo $network; ?></option>
+                                            <option value="<?= $network_id; ?>"><?= $network_name; ?> - <?= $network; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

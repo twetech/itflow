@@ -1,9 +1,9 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
-<div class="modal" id="viewServiceModal<?php echo $service_id ?>" tabindex="-1">
+<div class="modal" id="viewServiceModal<?= $service_id ?>" tabindex="-1">
     <div class="modal-dialog modal-xl">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title text-white"><i class="fa fa-fw fa-stream mr-2"></i><?php echo $service_name; ?></h5>
+                <h5 class="modal-title text-white"><i class="fa fa-fw fa-stream mr-2"></i><?= $service_name; ?></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -14,12 +14,12 @@
                     <!-- Main/Left side -->
                     <div class="col-8 border-right">
                         <div class="col-12">
-                            <h4>Service Overview: <?php echo "$service_name $service_importance_display"; ?></h4>
-                            <b>Description:</b> <?php echo $service_description; ?> <br>
-                            <b>Backup Info:</b> <?php echo $service_backup; ?> <br><br>
+                            <h4>Service Overview: <?= "$service_name $service_importance_display"; ?></h4>
+                            <b>Description:</b> <?= $service_description; ?> <br>
+                            <b>Backup Info:</b> <?= $service_backup; ?> <br><br>
 
                             <h5><i class="fas fa-fw fa-sticky-note mr-2"></i>Notes</h5>
-                            <div style="white-space: pre-line"><?php echo $service_notes; ?></div>
+                            <div style="white-space: pre-line"><?= $service_notes; ?></div>
                             <hr>
 
                             <!-- Assets -->

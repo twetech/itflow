@@ -40,30 +40,15 @@ $credits_num_rows = mysqli_num_rows($sql_credits);
             <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=payment_date&order=<?php echo $disp; ?>">Payment
-                                Date</a></th>
-                        <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_date&order=<?php echo $disp; ?>">Invoice
-                                Date</a></th>
-                        <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_number&order=<?php echo $disp; ?>">Invoice</a>
-                        </th>
-                        <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=client_name&order=<?php echo $disp; ?>">Client</a>
-                        </th>
-                        <th class="text-right"><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=payment_amount&order=<?php echo $disp; ?>">Amount</a>
-                        </th>
-                        <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=payment_method&order=<?php echo $disp; ?>">Payment
-                                Method</a></th>
-                        <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=payment_reference&order=<?php echo $disp; ?>">Reference</a>
-                        </th>
-                        <th><a class="text-dark"
-                                href="?<?php echo $url_query_strings_sort; ?>&sort=account_name&order=<?php echo $disp; ?>">Account</a>
-                        </th>
+                        <th>Payment Date</th>
+                        <th>Invoice Date</th>
+                        <th>Invoice</th>
+                        <th>Client </th>
+                        <th class="text-right">Amount </th>
+                        <th>Payment Method</th>
+                        <th>Reference </th>
+                        <th>Account </th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,6 +65,7 @@ $credits_num_rows = mysqli_num_rows($sql_credits);
                         $payment_amount = floatval($row['payment_amount']);
                         $payment_currency_code = nullable_htmlentities($row['payment_currency_code']);
                         $payment_reference = nullable_htmlentities($row['payment_reference']);
+                        $payment_id = intval($row['payment_id']);
                         if (empty($payment_reference)) {
                             $payment_reference_display = "-";
                         } else {
@@ -98,20 +84,39 @@ $credits_num_rows = mysqli_num_rows($sql_credits);
                         ?>
 
                     <tr>
-                        <td><?php echo $payment_date; ?></td>
-                        <td><?php echo $invoice_date; ?></td>
-                        <td><a
-                                href="invoice.php?invoice_id=<?php echo $invoice_id; ?>"><?php echo "$invoice_prefix$invoice_number"; ?></a>
+                        <td><?= $payment_date; ?></td>
+                        <td><?= $invoice_date; ?></td>
+                        <td>
+                            <a href="/pages/invoice.php?invoice_id=<?= $invoice_id; ?>">
+                                <?= "$invoice_prefix$invoice_number"; ?>
+                            </a>
                         </td>
-                        <td><a
-                                href="client_payments.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a>
+                        <td>
+                            <a href="/pages/client/client_payments.php?client_id=<?= $client_id; ?>">
+                                <?= $client_name; ?>
+                            </a>
                         </td>
                         <td class="text-right">
-                            <?php echo numfmt_format_currency($currency_format, $payment_amount, $payment_currency_code); ?>
+                            <?= numfmt_format_currency($currency_format, $payment_amount, $payment_currency_code); ?>
                         </td>
-                        <td><?php echo $payment_method; ?></td>
-                        <td><?php echo $payment_reference_display; ?></td>
-                        <td><?php echo "$account_archived_display$account_name"; ?></td>
+                        <td><?= $payment_method; ?></td>
+                        <td><?= $payment_reference_display; ?></td>
+                        <td><?= "$account_archived_display$account_name"; ?></td>
+                        <td>
+                            <?php if ($payment_method == "Stripe") { ?>
+                                <a href="/post.php?stripe_payment_refund=<?= $payment_id; ?>" class="btn btn-sm btn-danger" title="Refund Payment">
+                                    <i class="fas fa-fw fa-undo"></i>
+                                </a>
+                            <?php } else if ($payment_reference == "Credit Applied") { ?>
+                                <a href="/post.php?credit_payment_refund=<?= $payment_id; ?>" class="btn btn-sm btn-danger" title="Refund Payment">
+                                    <i class="fas fa-fw fa-undo"></i>
+                                </a>
+                            <?php } else { ?>
+                                <a href="/post.php?payment_refund=<?= $payment_id; ?>" class="btn btn-sm btn-danger" title="Refund Payment">
+                                    <i class="fas fa-fw fa-undo"></i>
+                                </a>
+                            <?php } ?>
+
                     </tr>
 
                     <?php } ?>

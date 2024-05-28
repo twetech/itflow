@@ -15,18 +15,18 @@ $client_name = $client_data[$client_id]['client_name'];
 
 ?>
 
-<div class="modal" id="editTicketPriorityModal<?php echo $ticket_id; ?>" tabindex="-1">
+<div class="modal" id="editTicketPriorityModal<?= $ticket_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-thermometer-half mr-2"></i>Editing ticket priority: <strong><?php echo "$ticket_prefix$ticket_number"; ?></strong> <?php echo $client_name; ?></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-thermometer-half mr-2"></i>Editing ticket priority: <strong><?= "$ticket_prefix$ticket_number"; ?></strong> <?= $client_name; ?></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <div class="modal-body bg-white">
-            <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
-            <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+            <input type="hidden" name="ticket_id" value="<?= $ticket_id; ?>">
+            <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                 <div class="form-group">
                     <label>Priority</label>
                     <div class="input-group">

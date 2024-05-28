@@ -52,7 +52,7 @@ $sql_years_select = mysqli_query(
                     $year_select = date('Y');
                 }
             ?>
-                <option <?php if ($year == $year_select) { echo "selected"; } ?>> <?php echo $year_select; ?></option>
+                <option <?php if ($year == $year_select) { echo "selected"; } ?>> <?= $year_select; ?></option>
 
             <?php
             }
@@ -194,12 +194,12 @@ if ($user_config_dashboard_financial_enable == 1) {
     <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12">
             <!-- small box -->
-            <a class="small-box bg-primary" href="payments.php?dtf=<?php echo $year; ?>-01-01&dtt=<?php echo $year; ?>-12-31">
+            <a class="small-box bg-primary" href="payments.php?dtf=<?= $year; ?>-01-01&dtt=<?= $year; ?>-12-31">
                 <div class="inner">
-                    <h3><?php echo numfmt_format_currency($currency_format, $total_income, "$session_company_currency"); ?></h3>
+                    <h3><?= numfmt_format_currency($currency_format, $total_income, "$session_company_currency"); ?></h3>
                     <p>Income</p>
                     <hr>
-                    <small>Receivables: <?php echo numfmt_format_currency($currency_format, $receivables, "$session_company_currency"); ?></h3></small>
+                    <small>Receivables: <?= numfmt_format_currency($currency_format, $receivables, "$session_company_currency"); ?></h3></small>
                 </div>
                 <div class="icon">
                     <i class="fa fa-hand-holding-usd"></i>
@@ -210,9 +210,9 @@ if ($user_config_dashboard_financial_enable == 1) {
 
         <div class="col-lg-4 col-md-6 col-sm-12">
             <!-- small box -->
-            <a class="small-box bg-danger" href="expenses.php?dtf=<?php echo $year; ?>-01-01&dtt=<?php echo $year; ?>-12-31">
+            <a class="small-box bg-danger" href="expenses.php?dtf=<?= $year; ?>-01-01&dtt=<?= $year; ?>-12-31">
                 <div class="inner">
-                    <h3><?php echo numfmt_format_currency($currency_format, $total_expenses, "$session_company_currency"); ?></h3>
+                    <h3><?= numfmt_format_currency($currency_format, $total_expenses, "$session_company_currency"); ?></h3>
                     <p>Expenses</p>
                 </div>
                 <div class="icon">
@@ -226,7 +226,7 @@ if ($user_config_dashboard_financial_enable == 1) {
             <!-- small box -->
             <a class="small-box bg-success" href="report_profit_loss.php">
                 <div class="inner">
-                    <h3><?php echo numfmt_format_currency($currency_format, $profit, "$session_company_currency"); ?></h3>
+                    <h3><?= numfmt_format_currency($currency_format, $profit, "$session_company_currency"); ?></h3>
                     <p>Profit</p>
                 </div>
                 <div class="icon">
@@ -240,7 +240,7 @@ if ($user_config_dashboard_financial_enable == 1) {
             <!-- small box -->
             <a class="small-box bg-info" href="report_recurring_by_client.php">
                 <div class="inner">
-                    <h3><?php echo numfmt_format_currency($currency_format, $recurring_monthly_total, "$session_company_currency"); ?></h3>
+                    <h3><?= numfmt_format_currency($currency_format, $recurring_monthly_total, "$session_company_currency"); ?></h3>
                     <p>Monthly Recurring Income</p>
                 </div>
                 <div class="icon">
@@ -254,7 +254,7 @@ if ($user_config_dashboard_financial_enable == 1) {
             <!-- small box -->
             <a class="small-box bg-pink" href="report_expense_by_vendor.php">
                 <div class="inner">
-                    <h3><?php echo numfmt_format_currency($currency_format, $recurring_expense_monthly_total, "$session_company_currency"); ?></h3>
+                    <h3><?= numfmt_format_currency($currency_format, $recurring_expense_monthly_total, "$session_company_currency"); ?></h3>
                     <p>Monthly Recurring Expense</p>
                 </div>
                 <div class="icon">
@@ -270,7 +270,7 @@ if ($user_config_dashboard_financial_enable == 1) {
                 <!-- small box -->
                 <a class="small-box bg-secondary" href="report_tickets_unbilled.php">
                     <div class="inner">
-                        <h3><?php echo $unbilled_tickets; ?></h3>
+                        <h3><?= $unbilled_tickets; ?></h3>
                         <p>Unbilled Ticket<?php if ($unbilled_tickets > 1 || $unbilled_tickets = 0) {
                                                 echo "s";
                                             } ?></p>
@@ -285,9 +285,9 @@ if ($user_config_dashboard_financial_enable == 1) {
 
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <!-- small box -->
-                <a class="small-box bg-secondary" href="recurring_invoices.php?dtf=<?php echo $year; ?>-01-01&dtt=<?php echo $year; ?>-12-31">
+                <a class="small-box bg-secondary" href="recurring_invoices.php?dtf=<?= $year; ?>-01-01&dtt=<?= $year; ?>-12-31">
                     <div class="inner">
-                        <h3><?php echo $recurring_invoices_added; ?></h3>
+                        <h3><?= $recurring_invoices_added; ?></h3>
                         <p>Recurring Invoices Added</p>
                     </div>
                     <div class="icon">
@@ -300,9 +300,9 @@ if ($user_config_dashboard_financial_enable == 1) {
 
         <div class="col-lg-4 col-6">
             <!-- small box -->
-            <a class="small-box bg-secondary" href="clients.php?dtf=<?php echo $year; ?>-01-01&dtt=<?php echo $year; ?>-12-31">
+            <a class="small-box bg-secondary" href="clients.php?dtf=<?= $year; ?>-01-01&dtt=<?= $year; ?>-12-31">
                 <div class="inner">
-                    <h3><?php echo $clients_added; ?></h3>
+                    <h3><?= $clients_added; ?></h3>
                     <p>New Clients</p>
                 </div>
                 <div class="icon">
@@ -314,9 +314,9 @@ if ($user_config_dashboard_financial_enable == 1) {
 
         <div class="col-lg-4 col-6">
             <!-- small box -->
-            <a class="small-box bg-secondary" href="vendors.php?dtf=<?php echo $year; ?>-01-01&dtt=<?php echo $year; ?>-12-31">
+            <a class="small-box bg-secondary" href="vendors.php?dtf=<?= $year; ?>-01-01&dtt=<?= $year; ?>-12-31">
                 <div class="inner">
-                    <h3><?php echo $vendors_added; ?></h3>
+                    <h3><?= $vendors_added; ?></h3>
                     <p>New Vendors</p>
                 </div>
                 <div class="icon">
@@ -328,9 +328,9 @@ if ($user_config_dashboard_financial_enable == 1) {
 
         <div class="col-lg-4 col-md-6 col-sm-12">
             <!-- small box -->
-            <a class="small-box bg-secondary" href="trips.php?dtf=<?php echo $year; ?>-01-01&dtt=<?php echo $year; ?>-12-31">
+            <a class="small-box bg-secondary" href="trips.php?dtf=<?= $year; ?>-01-01&dtt=<?= $year; ?>-12-31">
                 <div class="inner">
-                    <h3><?php echo number_format($total_miles, 2); ?></h3>
+                    <h3><?= number_format($total_miles, 2); ?></h3>
                     <p>Miles Traveled</p>
                 </div>
                 <div class="icon">
@@ -428,7 +428,7 @@ if ($user_config_dashboard_financial_enable == 1) {
 
                             ?>
                                 <tr>
-                                    <td><?php echo $account_name; ?></td>
+                                    <td><?= $account_name; ?></td>
                                     <?php
                                     $sql_payments = mysqli_query($mysqli, "SELECT SUM(payment_amount) AS total_payments FROM payments WHERE payment_account_id = $account_id");
                                     $row = mysqli_fetch_array($sql_payments);
@@ -448,7 +448,7 @@ if ($user_config_dashboard_financial_enable == 1) {
                                         $balance = '0.00';
                                     }
                                     ?>
-                                    <td class="text-right"><?php echo numfmt_format_currency($currency_format, $balance, "$session_company_currency"); ?></td>
+                                    <td class="text-right"><?= numfmt_format_currency($currency_format, $balance, "$session_company_currency"); ?></td>
                                 </tr>
                             <?php
                             }
@@ -489,10 +489,10 @@ if ($user_config_dashboard_financial_enable == 1) {
                                 $client_name = nullable_htmlentities($row['client_name']);
                             ?>
                                 <tr>
-                                    <td><?php echo $payment_date; ?></td>
-                                    <td><?php echo $client_name; ?></td>
-                                    <td><?php echo "$invoice_prefix$invoice_number"; ?></td>
-                                    <td class="text-right"><?php echo numfmt_format_currency($currency_format, $payment_amount, "$session_company_currency"); ?></td>
+                                    <td><?= $payment_date; ?></td>
+                                    <td><?= $client_name; ?></td>
+                                    <td><?= "$invoice_prefix$invoice_number"; ?></td>
+                                    <td class="text-right"><?= numfmt_format_currency($currency_format, $payment_amount, "$session_company_currency"); ?></td>
                                 </tr>
                             <?php
                             }
@@ -532,10 +532,10 @@ if ($user_config_dashboard_financial_enable == 1) {
 
                             ?>
                                 <tr>
-                                    <td><?php echo $expense_date; ?></td>
-                                    <td><?php echo $vendor_name; ?></td>
-                                    <td><?php echo $category_name; ?></td>
-                                    <td class="text-right"><?php echo numfmt_format_currency($currency_format, $expense_amount, "$session_company_currency"); ?></td>
+                                    <td><?= $expense_date; ?></td>
+                                    <td><?= $vendor_name; ?></td>
+                                    <td><?= $category_name; ?></td>
+                                    <td class="text-right"><?= numfmt_format_currency($currency_format, $expense_amount, "$session_company_currency"); ?></td>
                                 </tr>
                             <?php
                             }
@@ -660,9 +660,9 @@ if ($user_config_dashboard_technical_enable == 1) {
 
         <div class="col-lg-4 col-6">
             <!-- small box -->
-            <a class="small-box bg-secondary" href="clients.php?date_from=<?php echo $year; ?>-01-01&date_to=<?php echo $year; ?>-12-31">
+            <a class="small-box bg-secondary" href="clients.php?date_from=<?= $year; ?>-01-01&date_to=<?= $year; ?>-12-31">
                 <div class="inner">
-                    <h3><?php echo $clients_added; ?></h3>
+                    <h3><?= $clients_added; ?></h3>
                     <p>New Clients</p>
                 </div>
                 <div class="icon">
@@ -675,7 +675,7 @@ if ($user_config_dashboard_technical_enable == 1) {
         <div class="col-lg-4 col-6">
             <a class="small-box bg-success">
                 <div class="inner">
-                    <h3><?php echo $contacts_added; ?></h3>
+                    <h3><?= $contacts_added; ?></h3>
                     <p>New Contacts</p>
                 </div>
                 <div class="icon">
@@ -688,7 +688,7 @@ if ($user_config_dashboard_technical_enable == 1) {
         <div class="col-lg-4 col-6">
             <a class="small-box bg-info" href="/report_all_assets_by_client.php">
                 <div class="inner">
-                    <h3><?php echo $assets_added; ?></h3>
+                    <h3><?= $assets_added; ?></h3>
                     <p>New Assets</p>
                 </div>
                 <div class="icon">
@@ -701,7 +701,7 @@ if ($user_config_dashboard_technical_enable == 1) {
         <div class="col-lg-4 col-6">
             <a class="small-box bg-danger" href="tickets.php">
                 <div class="inner">
-                    <h3><?php echo $active_tickets; ?></h3>
+                    <h3><?= $active_tickets; ?></h3>
                     <p>Active Tickets</p>
                 </div>
                 <div class="icon">
@@ -714,7 +714,7 @@ if ($user_config_dashboard_technical_enable == 1) {
         <div class="col-lg-4 col-6">
             <a class="small-box bg-warning">
                 <div class="inner">
-                    <h3><?php echo $expiring_domains; ?></h3>
+                    <h3><?= $expiring_domains; ?></h3>
                     <p>Expiring Domains</p>
                 </div>
                 <div class="icon">
@@ -727,7 +727,7 @@ if ($user_config_dashboard_technical_enable == 1) {
         <div class="col-lg-4 col-6">
             <a class="small-box bg-primary">
                 <div class="inner">
-                    <h3><?php echo $expiring_certificates; ?></h3>
+                    <h3><?= $expiring_certificates; ?></h3>
                     <p>Expiring Certificates</p>
                 </div>
                 <div class="icon">
@@ -815,19 +815,19 @@ if ($user_config_dashboard_technical_enable == 1) {
                                     <tr class="<?php if (empty($ticket_updated_at)) {
                                                     echo "text-bold";
                                                 } ?>">
-                                        <td><a class="text-dark" href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo "$ticket_prefix$ticket_number"; ?></a></td>
+                                        <td><a class="text-dark" href="ticket.php?ticket_id=<?= $ticket_id; ?>"><?= "$ticket_prefix$ticket_number"; ?></a></td>
                                         <td>
-                                            <a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a>
+                                            <a href="ticket.php?ticket_id=<?= $ticket_id; ?>"><?= $ticket_subject; ?></a>
                                         </td>
                                         <td>
-                                            <a href="client_tickets.php?client_id=<?php echo $client_id; ?>"><strong><?php echo $client_name; ?></strong></a>
+                                            <a href="client_tickets.php?client_id=<?= $client_id; ?>"><strong><?= $client_name; ?></strong></a>
                                         </td>
-                                        <td><?php echo $contact_display; ?></td>
-                                        <td><span class='p-2 badge badge-pill badge-<?php echo $ticket_priority_color; ?>'><?php echo $ticket_priority; ?></span></td>
+                                        <td><?= $contact_display; ?></td>
+                                        <td><span class='p-2 badge badge-pill badge-<?= $ticket_priority_color; ?>'><?= $ticket_priority; ?></span></td>
                                         <td>
-                                            <span class='badge badge-pill text-light p-2' style="background-color: <?php echo $ticket_status_color; ?>"><?php echo $ticket_status_name; ?></span>
+                                            <span class='badge badge-pill text-light p-2' style="background-color: <?= $ticket_status_color; ?>"><?= $ticket_status_name; ?></span>
                                         </td>
-                                        <td><?php echo $ticket_updated_at_display; ?></td>
+                                        <td><?= $ticket_updated_at_display; ?></td>
                                     </tr>
 
                                 <?php
@@ -898,7 +898,7 @@ require_once '/var/www/portal.twe.tech/includes/footer.php';
 
 
                         ?>
-                            <?php echo "$income_for_month,"; ?>
+                            <?= "$income_for_month,"; ?>
 
                         <?php
 
@@ -937,7 +937,7 @@ require_once '/var/www/portal.twe.tech/includes/footer.php';
 
 
                         ?>
-                            <?php echo "$income_for_month,"; ?>
+                            <?= "$income_for_month,"; ?>
 
                         <?php
 
@@ -972,7 +972,7 @@ require_once '/var/www/portal.twe.tech/includes/footer.php';
                             }
 
                         ?>
-                            <?php echo "$invoice_for_month,"; ?>
+                            <?= "$invoice_for_month,"; ?>
 
                         <?php
 
@@ -1009,7 +1009,7 @@ require_once '/var/www/portal.twe.tech/includes/footer.php';
 
 
                         ?>
-                            <?php echo "$expenses_for_month,"; ?>
+                            <?= "$expenses_for_month,"; ?>
 
                         <?php
 
@@ -1088,7 +1088,7 @@ require_once '/var/www/portal.twe.tech/includes/footer.php';
 
 
                     ?>
-                        <?php echo "$trip_miles_for_month,"; ?>
+                        <?= "$trip_miles_for_month,"; ?>
 
                     <?php
 

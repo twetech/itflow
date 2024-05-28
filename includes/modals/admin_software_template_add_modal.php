@@ -51,7 +51,7 @@
                             <select class="form-control select2" id='select2' name="type" required>
                                 <option value="">- Type -</option>
                                 <?php foreach($software_types_array as $software_type) { ?>
-                                    <option><?php echo $software_type; ?></option>
+                                    <option><?= $software_type; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -66,7 +66,7 @@
                             <select class="form-control select2" id='select2' name="license_type">
                                 <option value="">- Select a License Type -</option>
                                 <?php foreach($license_types_array as $license_type) { ?>
-                                    <option><?php echo $license_type; ?></option>
+                                    <option><?= $license_type; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

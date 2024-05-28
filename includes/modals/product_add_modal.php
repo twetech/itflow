@@ -37,7 +37,7 @@
                                     $category_id = intval($row['category_id']);
                                     $category_name = nullable_htmlentities($row['category_name']);
                                     ?>
-                                    <option value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
+                                    <option value="<?= $category_id; ?>"><?= $category_name; ?></option>
 
                                     <?php
                                 }
@@ -79,7 +79,7 @@
                                             $tax_name = nullable_htmlentities($row['tax_name']);
                                             $tax_percent = floatval($row['tax_percent']);
                                             ?>
-                                            <option value="<?php echo $tax_id; ?>"><?php echo "$tax_name $tax_percent%"; ?></option>
+                                            <option value="<?= $tax_id; ?>"><?= "$tax_name $tax_percent%"; ?></option>
 
                                             <?php
                                         }

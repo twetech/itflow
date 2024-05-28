@@ -29,7 +29,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
     <div class="card-body">
         <form autocomplete="off">
-            <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+            <input type="hidden" name="client_id" value="<?= $client_id; ?>">
             <div class="row">
 
                 <div class="col-md-4">
@@ -52,14 +52,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=log_created_at&order=<?php echo $disp; ?>">Timestamp</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_name&order=<?php echo $disp; ?>">User</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=log_type&order=<?php echo $disp; ?>">Type</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=log_action&order=<?php echo $disp; ?>">Action</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=log_description&order=<?php echo $disp; ?>">Description</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=log_ip&order=<?php echo $disp; ?>">IP Address</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=log_user_agent&order=<?php echo $disp; ?>">User Agent</a></th>
-                    <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=log_entity_id&order=<?php echo $disp; ?>">Entity ID</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=log_created_at&order=<?= $disp; ?>">Timestamp</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=user_name&order=<?= $disp; ?>">User</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=log_type&order=<?= $disp; ?>">Type</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=log_action&order=<?= $disp; ?>">Action</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=log_description&order=<?= $disp; ?>">Description</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=log_ip&order=<?= $disp; ?>">IP Address</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=log_user_agent&order=<?= $disp; ?>">User Agent</a></th>
+                    <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=log_entity_id&order=<?= $disp; ?>">Entity ID</a></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -87,14 +87,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     ?>
 
                     <tr>
-                        <td><?php echo $log_created_at; ?></td>
-                        <td><?php echo $user_name_display; ?></td>
-                        <td><?php echo $log_type; ?></td>
-                        <td><?php echo $log_action; ?></td>
-                        <td><?php echo $log_description; ?></td>
-                        <td><?php echo $log_ip; ?></td>
-                        <td><?php echo "$log_user_os<br>$log_user_browser"; ?></td>
-                        <td><?php echo $log_entity_id; ?></td>
+                        <td><?= $log_created_at; ?></td>
+                        <td><?= $user_name_display; ?></td>
+                        <td><?= $log_type; ?></td>
+                        <td><?= $log_action; ?></td>
+                        <td><?= $log_description; ?></td>
+                        <td><?= $log_ip; ?></td>
+                        <td><?= "$log_user_os<br>$log_user_browser"; ?></td>
+                        <td><?= $log_entity_id; ?></td>
                     </tr>
 
                     <?php

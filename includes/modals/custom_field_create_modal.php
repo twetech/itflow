@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-th-list mr-2"></i>Create <?php echo nullable_htmlentities($table); ?> field</h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-th-list mr-2"></i>Create <?= nullable_htmlentities($table); ?> field</h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -11,7 +11,7 @@
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="table" value="<?php echo nullable_htmlentities($table); ?>">
+                <input type="hidden" name="table" value="<?= nullable_htmlentities($table); ?>">
 
                     <div class="form-group">
                         <label>Label <strong class="text-danger">*</strong></label>

@@ -37,7 +37,7 @@ $location_name = sanitizeInput($location_name_row[0]);
 
     <div class="card">
         <div class="card-header py-2">
-            <h3 class="card-title mt-2"><i class="fas fa-fw fa-box mr-2"></i>Inventory location: <?php echo $location_name?> </h3>
+            <h3 class="card-title mt-2"><i class="fas fa-fw fa-box mr-2"></i>Inventory location: <?= $location_name?> </h3>
         </div>
 
         <div class="card-body">
@@ -82,10 +82,10 @@ $location_name = sanitizeInput($location_name_row[0]);
 <table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Item Name</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Quantity</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Unit Cost</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Location</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=vendor_name&order=<?= $disp; ?>">Item Name</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=vendor_name&order=<?= $disp; ?>">Quantity</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Unit Cost</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Location</a></th>
                             <th class="text-center">Manage product</th>
                         </tr>
                         </thead>
@@ -105,18 +105,18 @@ $location_name = sanitizeInput($location_name_row[0]);
                                     <div class="form-check
                                     ">
                                         <input class="form-check
-                                        -input" type="checkbox" name="selected[]" value="<?php echo $inventory_id; ?>">
+                                        -input" type="checkbox" name="selected[]" value="<?= $inventory_id; ?>">
 
                                     </div>
                                 </td>
-                                <td><?php echo $inventory_name; ?></td>
-                                <td><?php echo $inventory_quantity; ?></td>
-                                <td><?php echo numfmt_format_currency($currency_format, $inventory_unit_cost, $config_currency_format)?></td>
-                                <td><?php echo $inventory_locations; ?></td>
+                                <td><?= $inventory_name; ?></td>
+                                <td><?= $inventory_quantity; ?></td>
+                                <td><?= numfmt_format_currency($currency_format, $inventory_unit_cost, $config_currency_format)?></td>
+                                <td><?= $inventory_locations; ?></td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="inventory_manage.php?inventory_product_id=<?php echo $inventory_product_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#editInventoryLocations<?php echo $inventory_product_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-map-marker-alt"></i></a>
+                                        <a href="inventory_manage.php?inventory_product_id=<?= $inventory_product_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#editInventoryLocations<?= $inventory_product_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-map-marker-alt"></i></a>
                                     </div>
                                 </td>
                                 

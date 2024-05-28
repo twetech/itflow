@@ -17,7 +17,7 @@ $client_id = intval($_GET['client_id']);
             <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                    <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                    <input type="hidden" name="client_id" value="<?= $client_id; ?>">
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
@@ -124,7 +124,7 @@ $client_id = intval($_GET['client_id']);
                                     <select class="form-control select2" id='select2' name="country">
                                         <option value="">- Country -</option>
                                         <?php foreach($countries_array as $country_name) { ?>
-                                            <option <?php if ($session_company_country == $country_name) { echo "selected"; } ?> ><?php echo $country_name; ?></option>
+                                            <option <?php if ($session_company_country == $country_name) { echo "selected"; } ?> ><?= $country_name; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -149,7 +149,7 @@ $client_id = intval($_GET['client_id']);
                                             $contact_id = $row['contact_id'];
                                             $contact_name = nullable_htmlentities($row['contact_name']);
                                             ?>
-                                            <option value="<?php echo $contact_id; ?>"><?php echo $contact_name; ?></option>
+                                            <option value="<?= $contact_id; ?>"><?= $contact_name; ?></option>
                                         <?php } ?>
 
                                     </select>

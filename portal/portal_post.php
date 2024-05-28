@@ -4,7 +4,7 @@
  * Process GET/POST requests
  */
 
- require_once '/var/www/portal.twe.tech/includes/config.php';
+ require_once '/var/www/portal.twe.tech/includes/config/config.php';
 
  require_once '/var/www/portal.twe.tech/includes/get_settings.php';
  

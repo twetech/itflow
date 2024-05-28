@@ -142,49 +142,49 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
             <div class="float-right">
                 <a class="btn btn-light" data-bs-toggle="collapse" href="#collapsePreviousInvoices"><i class="fas fa-fw fa-history mr-2"></i>Invoice History</a>
                 <a class="btn btn-label-primary" href="#" onclick="window.print();"><i class="fas fa-fw fa-print mr-2"></i>Print</a>
-                <a class="btn btn-label-primary" href="#" onclick="pdfMake.createPdf(docDefinition).download('<?php echo strtoAZaz09(html_entity_decode("$invoice_date-$company_name-Invoice-$invoice_prefix$invoice_number")); ?>');"><i class="fa fa-fw fa-download mr-2"></i>Download</a>
+                <a class="btn btn-label-primary" href="#" onclick="pdfMake.createPdf(docDefinition).download('<?= strtoAZaz09(html_entity_decode("$invoice_date-$company_name-Invoice-$invoice_prefix$invoice_number")); ?>');"><i class="fa fa-fw fa-download mr-2"></i>Download</a>
                 <?php
                 if ($invoice_status !== "Paid" && $invoice_status  !== "Cancelled" && $invoice_status !== "Draft" && $config_stripe_enable == 1) { ?>
-                    <a class="btn btn-success" href="portal/guest_pay_invoice_stripe.php?invoice_id=<?php echo $invoice_id; ?>&url_key=<?php echo $url_key; ?>"><i class="fa fa-fw fa-credit-card mr-2"></i>Pay Online <?php if($config_stripe_client_pays_fees == 1) { echo "(Gateway Fee: " .  numfmt_format_currency($currency_format, $gateway_fee, $invoice_currency_code) . ")"; } ?></a>
+                    <a class="btn btn-success" href="portal/guest_pay_invoice_stripe.php?invoice_id=<?= $invoice_id; ?>&url_key=<?= $url_key; ?>"><i class="fa fa-fw fa-credit-card mr-2"></i>Pay Online <?php if($config_stripe_client_pays_fees == 1) { echo "(Gateway Fee: " .  numfmt_format_currency($currency_format, $gateway_fee, $invoice_currency_code) . ")"; } ?></a>
                 <?php } ?>
             </div>
         </div>
         <div class="card-body">
             <div class="row mb-4">
                 <div class="col-2">
-                    <img class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>">
+                    <img class="img-fluid" src="<?= "/uploads/settings/$company_logo"; ?>">
                 </div>
                 <div class="col-10">
                     <?php if ($invoice_status == "Paid") { ?>
                         <div class="ribbon-wrapper">
                             <div class="ribbon bg-success">
-                                <?php echo $invoice_status; ?>
+                                <?= $invoice_status; ?>
                             </div>
                         </div>
                     <?php } ?>
-                    <h3 class="text-right mt-5"><strong>Invoice</strong><br><small class="text-secondary"><?php echo "$invoice_prefix$invoice_number"; ?></small></h3>
+                    <h3 class="text-right mt-5"><strong>Invoice</strong><br><small class="text-secondary"><?= "$invoice_prefix$invoice_number"; ?></small></h3>
                 </div>
             </div>
             <div class="row mb-4">
                 <div class="col">
                     <ul class="list-unstyled">
-                        <li><h4><strong><?php echo $company_name; ?></strong></h4></li>
-                        <li><?php echo $company_address; ?></li>
-                        <li><?php echo "$company_city $company_state $company_zip"; ?></li>
-                        <li><?php echo $company_phone; ?></li>
-                        <li><?php echo $company_email; ?></li>
+                        <li><h4><strong><?= $company_name; ?></strong></h4></li>
+                        <li><?= $company_address; ?></li>
+                        <li><?= "$company_city $company_state $company_zip"; ?></li>
+                        <li><?= $company_phone; ?></li>
+                        <li><?= $company_email; ?></li>
                     </ul>
 
                 </div>
                 <div class="col">
 
                     <ul class="list-unstyled text-right">
-                        <li><h4><strong><?php echo $client_name; ?></strong></h4></li>
-                        <li><?php echo $location_address; ?></li>
-                        <li><?php echo "$location_city $location_state $location_zip"; ?></li>
-                        <li><?php echo "$contact_phone $contact_extension"; ?></li>
-                        <li><?php echo $contact_mobile; ?></li>
-                        <li><?php echo $contact_email; ?></li>
+                        <li><h4><strong><?= $client_name; ?></strong></h4></li>
+                        <li><?= $location_address; ?></li>
+                        <li><?= "$location_city $location_state $location_zip"; ?></li>
+                        <li><?= "$contact_phone $contact_extension"; ?></li>
+                        <li><?= $contact_mobile; ?></li>
+                        <li><?= $contact_email; ?></li>
                     </ul>
 
                 </div>
@@ -196,11 +196,11 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                     <table id=responsive class="responsive table">
                         <tr>
                             <td>Date</td>
-                            <td class="text-right"><?php echo $invoice_date; ?></td>
+                            <td class="text-right"><?= $invoice_date; ?></td>
                         </tr>
                         <tr class="text-bold">
                             <td>Due</td>
-                            <td class="text-right"><div class="<?php echo $invoice_color; ?>"><?php echo $invoice_due; ?></div></td>
+                            <td class="text-right"><div class="<?= $invoice_color; ?>"><?= $invoice_due; ?></div></td>
                         </tr>
                     </table>
                 </div>
@@ -240,12 +240,12 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                                     ?>
 
                                     <tr>
-                                        <td><?php echo $item_name; ?></td>
-                                        <td><?php echo nl2br($item_description); ?></td>
-                                        <td class="text-center"><?php echo $item_quantity; ?></td>
-                                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_price, $invoice_currency_code); ?></td>
-                                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_tax, $invoice_currency_code); ?></td>
-                                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_total, $invoice_currency_code); ?></td>
+                                        <td><?= $item_name; ?></td>
+                                        <td><?= nl2br($item_description); ?></td>
+                                        <td class="text-center"><?= $item_quantity; ?></td>
+                                        <td class="text-right"><?= numfmt_format_currency($currency_format, $item_price, $invoice_currency_code); ?></td>
+                                        <td class="text-right"><?= numfmt_format_currency($currency_format, $item_tax, $invoice_currency_code); ?></td>
+                                        <td class="text-right"><?= numfmt_format_currency($currency_format, $item_total, $invoice_currency_code); ?></td>
                                     </tr>
 
                                 <?php } ?>
@@ -262,7 +262,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                     <?php if (!empty($invoice_note)) { ?>
                         <div class="card">
                             <div class="card-body">
-                                <?php echo nl2br($invoice_note); ?>
+                                <?= nl2br($invoice_note); ?>
                             </div>
                         </div>
                     <?php } ?>
@@ -272,14 +272,14 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                         <tbody>
                         <tr class="border-bottom">
                             <td>Subtotal</td>
-                            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $sub_total, $invoice_currency_code); ?></td>
+                            <td class="text-right"><?= numfmt_format_currency($currency_format, $sub_total, $invoice_currency_code); ?></td>
                         </tr>
                         <?php
                         if ($invoice_discount > 0) {
                             ?>
                             <tr class="border-bottom">
                                 <td>Discount</td>
-                                <td class="text-right">-<?php echo numfmt_format_currency($currency_format, $invoice_discount, $invoice_currency_code); ?></td>
+                                <td class="text-right">-<?= numfmt_format_currency($currency_format, $invoice_discount, $invoice_currency_code); ?></td>
                             </tr>
                         <?php
                         }
@@ -287,24 +287,24 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                         <?php if ($total_tax > 0) { ?>
                             <tr class="border-bottom">
                                 <td>Tax</td>
-                                <td class="text-right"><?php echo numfmt_format_currency($currency_format, $total_tax, $invoice_currency_code); ?></td>
+                                <td class="text-right"><?= numfmt_format_currency($currency_format, $total_tax, $invoice_currency_code); ?></td>
                             </tr>
                         <?php } ?>
                         <tr class="border-bottom">
                             <td>Total</td>
-                            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
+                            <td class="text-right"><?= numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
                         </tr>
                         <?php if ($amount_paid > 0) { ?>
                             <tr class="border-bottom">
                                 <td><div class="text-success">Paid</div></td>
-                                <td class="text-right text-success"><?php echo numfmt_format_currency($currency_format, $amount_paid, $invoice_currency_code); ?></td>
+                                <td class="text-right text-success"><?= numfmt_format_currency($currency_format, $amount_paid, $invoice_currency_code); ?></td>
                             </tr>
                         <?php
                         } 
                         ?>
                         <tr class="border-bottom">
                             <td><strong>Balance</strong></td>
-                            <td class="text-right"><strong><?php echo numfmt_format_currency($currency_format, $balance, $invoice_currency_code); ?></strong></td>
+                            <td class="text-right"><strong><?= numfmt_format_currency($currency_format, $balance, $invoice_currency_code); ?></strong></td>
                         </tr>
 
                         </tbody>
@@ -314,7 +314,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
 
             <hr class="mt-5">
 
-            <div class="text-center"><?php echo nl2br($config_invoice_footer); ?></div>
+            <div class="text-center"><?= nl2br($config_invoice_footer); ?></div>
         </div>
     </div>
 
@@ -324,11 +324,11 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
 
         var docDefinition = {
             info: {
-                title: <?php echo json_encode(html_entity_decode($company_name) . "- Invoice") ?>,
-                author: <?php echo json_encode(html_entity_decode($company_name)) ?>
+                title: <?= json_encode(html_entity_decode($company_name) . "- Invoice") ?>,
+                author: <?= json_encode(html_entity_decode($company_name)) ?>
             },
 
-            //watermark: {text: '<?php echo $invoice_status; ?>', color: 'lightgrey', opacity: 0.3, bold: true, italics: false},
+            //watermark: {text: '<?= $invoice_status; ?>', color: 'lightgrey', opacity: 0.3, bold: true, italics: false},
 
             content: [
                 // Header
@@ -336,7 +336,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                     columns: [
                         <?php if (!empty($company_logo_base64)) { ?>
                         {
-                            image: <?php echo json_encode("data:image;base64,$company_logo_base64") ?>,
+                            image: <?= json_encode("data:image;base64,$company_logo_base64") ?>,
                             width: 120
                         },
                         <?php } ?>
@@ -348,7 +348,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                                 width: '*'
                             },
                             {
-                                text: <?php echo json_encode(html_entity_decode("$invoice_prefix$invoice_number")) ?>,
+                                text: <?= json_encode(html_entity_decode("$invoice_prefix$invoice_number")) ?>,
                                 style: 'invoiceNumber',
                                 width: '*'
                             },
@@ -359,11 +359,11 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                 {
                     columns: [
                         {
-                            text: <?php echo json_encode(html_entity_decode($company_name)) ?>,
+                            text: <?= json_encode(html_entity_decode($company_name)) ?>,
                             style: 'invoiceBillingTitle',
                         },
                         {
-                            text: <?php echo json_encode(html_entity_decode($client_name)) ?>,
+                            text: <?= json_encode(html_entity_decode($client_name)) ?>,
                             style: 'invoiceBillingTitleClient',
                         },
                     ]
@@ -372,11 +372,11 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                 {
                     columns: [
                         {
-                            text: <?php echo json_encode(html_entity_decode("$company_address \n $company_city $company_state $company_zip \n $company_phone \n $company_website")) ?>,
+                            text: <?= json_encode(html_entity_decode("$company_address \n $company_city $company_state $company_zip \n $company_phone \n $company_website")) ?>,
                             style: 'invoiceBillingAddress'
                         },
                         {
-                            text: <?php echo json_encode(html_entity_decode("$location_address \n $location_city $location_state $location_zip \n $contact_email \n $contact_phone")) ?>,
+                            text: <?= json_encode(html_entity_decode("$location_address \n $location_city $location_state $location_zip \n $contact_email \n $contact_phone")) ?>,
                             style: 'invoiceBillingAddressClient'
                         },
                     ]
@@ -406,7 +406,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                                     style: 'invoiceDateTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(html_entity_decode($invoice_date)) ?>,
+                                    text: <?= json_encode(html_entity_decode($invoice_date)) ?>,
                                     style: 'invoiceDateValue'
                                 },
                             ],
@@ -417,7 +417,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                                     style: 'invoiceDueDateTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(html_entity_decode($invoice_due)) ?>,
+                                    text: <?= json_encode(html_entity_decode($invoice_due)) ?>,
                                     style: 'invoiceDueDateValue'
                                 },
                             ],
@@ -483,28 +483,28 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                             [
                                 [
                                     {
-                                        text: <?php echo json_encode($item_name) ?>,
+                                        text: <?= json_encode($item_name) ?>,
                                         style:'itemTitle'
                                     },
                                     {
-                                        text: <?php echo json_encode($item_description) ?>,
+                                        text: <?= json_encode($item_description) ?>,
                                         style:'itemDescription'
                                     }
                                 ],
                                 {
-                                    text: <?php echo json_encode($item_quantity) ?>,
+                                    text: <?= json_encode($item_quantity) ?>,
                                     style: 'itemQty'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $item_price, $invoice_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $item_price, $invoice_currency_code)) ?>,
                                     style: 'itemNumber'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $item_tax, $invoice_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $item_tax, $invoice_currency_code)) ?>,
                                     style: 'itemNumber'
                                 },
                                 {
-                                    text:  <?php echo json_encode(numfmt_format_currency($currency_format, $item_total, $invoice_currency_code)) ?>,
+                                    text:  <?= json_encode(numfmt_format_currency($currency_format, $item_total, $invoice_currency_code)) ?>,
                                     style: 'itemNumber'
                                 }
                             ],
@@ -538,7 +538,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                             [
                                 {
                                     rowSpan: '*',
-                                    text: <?php echo json_encode(html_entity_decode($invoice_note)) ?>,
+                                    text: <?= json_encode(html_entity_decode($invoice_note)) ?>,
                                     style: 'notesText'
                                 },
                                 {
@@ -546,7 +546,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                                     style: 'itemsFooterSubTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $sub_total, $invoice_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $sub_total, $invoice_currency_code)) ?>,
                                     style: 'itemsFooterSubValue'
                                 }
                             ],
@@ -558,7 +558,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                                     style: 'itemsFooterSubTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, -$invoice_discount, $invoice_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, -$invoice_discount, $invoice_currency_code)) ?>,
                                     style: 'itemsFooterSubValue'
                                 }
                             ],
@@ -571,7 +571,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                                     style: 'itemsFooterSubTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $total_tax, $invoice_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $total_tax, $invoice_currency_code)) ?>,
                                     style: 'itemsFooterSubValue'
                                 }
                             ],
@@ -583,7 +583,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                                     style: 'itemsFooterSubTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code)) ?>,
                                     style: 'itemsFooterSubValue'
                                 }
                             ],
@@ -595,7 +595,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                                     style: 'itemsFooterSubTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $amount_paid, $invoice_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $amount_paid, $invoice_currency_code)) ?>,
                                     style: 'itemsFooterSubValue'
                                 }
                             ],
@@ -607,7 +607,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                                     style: 'itemsFooterTotalTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $balance, $invoice_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $balance, $invoice_currency_code)) ?>,
 
                                     style: 'itemsFooterTotalTitle'
                                 }
@@ -618,7 +618,7 @@ $sql_invoice_items = mysqli_query($mysqli, "SELECT * FROM invoice_items WHERE it
                 },
                 // TERMS / FOOTER
                 {
-                    text: <?php echo json_encode(html_entity_decode($config_invoice_footer)) ?>,
+                    text: <?= json_encode(html_entity_decode($config_invoice_footer)) ?>,
                     style: 'documentFooterCenter'
                 }
             ], //End Content,
@@ -811,10 +811,10 @@ if (mysqli_num_rows($sql) > 1) { ?>
                     ?>
 
                     <tr <?php if ($_GET['invoice_id'] == $invoice_id) { echo "class='table-active'"; } ?>>
-                        <th class="text-center"><a href="portal/guest_view_invoice.php?invoice_id=<?php echo $invoice_id; ?>&url_key=<?php echo $invoice_url_key; ?>"><?php echo "$invoice_prefix$invoice_number"; ?></a></th>
-                        <td><?php echo $invoice_date; ?></td>
-                        <td class="text-danger text-bold"><?php echo $invoice_due; ?> (<?php echo $days; ?> Days Late)</td>
-                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
+                        <th class="text-center"><a href="portal/guest_view_invoice.php?invoice_id=<?= $invoice_id; ?>&url_key=<?= $invoice_url_key; ?>"><?= "$invoice_prefix$invoice_number"; ?></a></th>
+                        <td><?= $invoice_date; ?></td>
+                        <td class="text-danger text-bold"><?= $invoice_due; ?> (<?= $days; ?> Days Late)</td>
+                        <td class="text-right"><?= numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
                     </tr>
 
                     <?php
@@ -869,10 +869,10 @@ if (mysqli_num_rows($sql) > 1) { ?>
                     ?>
 
                     <tr <?php if ($_GET['invoice_id'] == $invoice_id) { echo "class='table-active'"; } ?>>
-                        <th class="text-center"><a href="portal/guest_view_invoice.php?invoice_id=<?php echo $invoice_id; ?>&url_key=<?php echo $invoice_url_key; ?>"><?php echo "$invoice_prefix$invoice_number"; ?></a></th>
-                        <td><?php echo $invoice_date; ?></td>
-                        <td><?php echo $invoice_due; ?> (Due in <?php echo $days; ?> Days)</td>
-                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
+                        <th class="text-center"><a href="portal/guest_view_invoice.php?invoice_id=<?= $invoice_id; ?>&url_key=<?= $invoice_url_key; ?>"><?= "$invoice_prefix$invoice_number"; ?></a></th>
+                        <td><?= $invoice_date; ?></td>
+                        <td><?= $invoice_due; ?> (Due in <?= $days; ?> Days)</td>
+                        <td class="text-right"><?= numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
                     </tr>
 
                 <?php } ?>
@@ -925,10 +925,10 @@ if (mysqli_num_rows($sql) > 1) { ?>
                     ?>
 
                     <tr <?php if ($_GET['invoice_id'] == $invoice_id) { echo "class='table-active'"; } ?>>
-                        <th class="text-center"><a href="portal/guest_view_invoice.php?invoice_id=<?php echo $invoice_id; ?>&url_key=<?php echo $invoice_url_key; ?>"><?php echo "$invoice_prefix$invoice_number"; ?></a></th>
-                        <td><?php echo $invoice_date; ?></td>
-                        <td><?php echo $invoice_due; ?></td>
-                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
+                        <th class="text-center"><a href="portal/guest_view_invoice.php?invoice_id=<?= $invoice_id; ?>&url_key=<?= $invoice_url_key; ?>"><?= "$invoice_prefix$invoice_number"; ?></a></th>
+                        <td><?= $invoice_date; ?></td>
+                        <td><?= $invoice_due; ?></td>
+                        <td class="text-right"><?= numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
                     </tr>
 
                     <tr>
@@ -961,7 +961,7 @@ if (mysqli_num_rows($sql) > 1) { ?>
                         ?>
 
                         <tr>
-                            <td colspan="4"><?php echo $payment_date; ?> - <?php echo numfmt_format_currency($currency_format, $payment_amount, $payment_currency_code); ?> - <?php echo $payment_method; ?> - <?php echo $payment_reference; ?> - <?php echo $days; ?> <?php echo $payment_note; ?></td>
+                            <td colspan="4"><?= $payment_date; ?> - <?= numfmt_format_currency($currency_format, $payment_amount, $payment_currency_code); ?> - <?= $payment_method; ?> - <?= $payment_reference; ?> - <?= $days; ?> <?= $payment_note; ?></td>
                         </tr>
 
                     <?php } ?>

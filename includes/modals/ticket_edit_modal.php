@@ -24,11 +24,11 @@ $vendor_id = intval($row['ticket_vendor_id']);
 $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_number']);
 ?>
 
-<div class="modal" id="editTicketModal<?php echo $ticket_id; ?>" tabindex="-1">
+<div class="modal" id="editTicketModal<?= $ticket_id; ?>" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-life-ring mr-2"></i>Editing ticket: <strong><?php echo "$ticket_prefix$ticket_number"; ?></strong> - <?php echo $client_name; ?></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-life-ring mr-2"></i>Editing ticket: <strong><?= "$ticket_prefix$ticket_number"; ?></strong> - <?= $client_name; ?></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -36,24 +36,24 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                <input type="hidden" name="ticket_number" value="<?php echo "$ticket_prefix$ticket_number"; ?>">
+                <input type="hidden" name="ticket_id" value="<?= $ticket_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+                <input type="hidden" name="ticket_number" value="<?= "$ticket_prefix$ticket_number"; ?>">
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?= $ticket_id; ?>"><i class="fa fa-fw fa-life-ring mr-2"></i>Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-contacts<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Contact</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-contacts<?= $ticket_id; ?>"><i class="fa fa-fw fa-users mr-2"></i>Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-assets<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-desktop mr-2"></i>Asset</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-assets<?= $ticket_id; ?>"><i class="fa fa-fw fa-desktop mr-2"></i>Asset</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-locations<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Location</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-locations<?= $ticket_id; ?>"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Location</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-vendors<?php echo $ticket_id; ?>"><i class="fa fa-fw fa-building mr-2"></i>Vendor</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-vendors<?= $ticket_id; ?>"><i class="fa fa-fw fa-building mr-2"></i>Vendor</a>
                         </li>
                     </ul>
 
@@ -61,7 +61,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
 
                     <div class="tab-content">
 
-                        <div class="tab-pane fade show active" id="pills-details<?php echo $ticket_id; ?>">
+                        <div class="tab-pane fade show active" id="pills-details<?= $ticket_id; ?>">
 
                             <div class="form-group">
                                 <label>Subject <strong class="text-danger">*</strong></label>
@@ -69,12 +69,12 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="subject" value="<?php echo $ticket_subject; ?>" placeholder="Subject" required>
+                                    <input type="text" class="form-control" name="subject" value="<?= $ticket_subject; ?>" placeholder="Subject" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <textarea  class="form-control" rows="8" name="details"><?php echo $ticket_details; ?></textarea>
+                                <textarea  class="form-control" rows="8" name="details"><?= $ticket_details; ?></textarea>
                             </div>
 
                             <div class="form-group">
@@ -110,7 +110,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-contacts<?php echo $ticket_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-contacts<?= $ticket_id; ?>">
 
                             <div class="form-group">
                                 <label>Contact</label>
@@ -145,7 +145,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
                                             }
                                             
                                             ?>
-                                            <option value="<?php echo $contact_id_select; ?>" <?php if ($contact_id_select  == $contact_id) { echo "selected"; } ?>><?php echo "$contact_name_select$contact_title_display_select$contact_primary_display_select$contact_technical_display_select"; ?></option>
+                                            <option value="<?= $contact_id_select; ?>" <?php if ($contact_id_select  == $contact_id) { echo "selected"; } ?>><?= "$contact_name_select$contact_title_display_select$contact_primary_display_select$contact_technical_display_select"; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -153,7 +153,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-assets<?php echo $ticket_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-assets<?= $ticket_id; ?>">
 
                             <div class="form-group">
                                 <label>Asset</label>
@@ -171,7 +171,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
                                             $asset_name_select = nullable_htmlentities($row['asset_name']);
                                             $asset_contact_name_select = nullable_htmlentities($row['contact_name']);
                                             ?>
-                                            <option <?php if ($asset_id == $asset_id_select) { echo "selected"; } ?> value="<?php echo $asset_id_select; ?>"><?php echo "$asset_name_select - $asset_contact_name_select"; ?></option>
+                                            <option <?php if ($asset_id == $asset_id_select) { echo "selected"; } ?> value="<?= $asset_id_select; ?>"><?= "$asset_name_select - $asset_contact_name_select"; ?></option>
 
                                             <?php
                                         }
@@ -182,7 +182,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-locations<?php echo $ticket_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-locations<?= $ticket_id; ?>">
 
                             <div class="form-group">
                                 <label>Location</label>
@@ -199,7 +199,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
                                             $location_id_select = intval($row['location_id']);
                                             $location_name_select = nullable_htmlentities($row['location_name']);
                                             ?>
-                                            <option <?php if ($location_id == $location_id_select) { echo "selected"; } ?> value="<?php echo $location_id_select; ?>"><?php echo $location_name_select; ?></option>
+                                            <option <?php if ($location_id == $location_id_select) { echo "selected"; } ?> value="<?= $location_id_select; ?>"><?= $location_name_select; ?></option>
 
                                             <?php
                                         }
@@ -210,7 +210,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-vendors<?php echo $ticket_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-vendors<?= $ticket_id; ?>">
 
                             <div class="form-group">
                                 <label>Vendor</label>
@@ -227,7 +227,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
                                             $vendor_id_select = intval($row['vendor_id']);
                                             $vendor_name_select = nullable_htmlentities($row['vendor_name']);
                                             ?>
-                                            <option <?php if ($vendor_id == $vendor_id_select) { echo "selected"; } ?> value="<?php echo $vendor_id_select; ?>"><?php echo $vendor_name_select; ?></option>
+                                            <option <?php if ($vendor_id == $vendor_id_select) { echo "selected"; } ?> value="<?= $vendor_id_select; ?>"><?= $vendor_name_select; ?></option>
 
                                             <?php
                                         }
@@ -242,7 +242,7 @@ $ticket_vendor_ticket_number = nullable_htmlentities($row['ticket_vendor_ticket_
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="vendor_ticket_number" placeholder="Vendor ticket number" value="<?php echo $ticket_vendor_ticket_number; ?>">
+                                    <input type="text" class="form-control" name="vendor_ticket_number" placeholder="Vendor ticket number" value="<?= $ticket_vendor_ticket_number; ?>">
                                 </div>
                             </div>
 

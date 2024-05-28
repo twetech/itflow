@@ -33,9 +33,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=account_name&order=<?php echo $disp; ?>">Name</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=account_type_name&order=<?php echo $disp; ?>">Type</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=account_currency_code&order=<?php echo $disp; ?>">Currency</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=account_name&order=<?= $disp; ?>">Name</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=account_type_name&order=<?= $disp; ?>">Type</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=account_currency_code&order=<?= $disp; ?>">Currency</a></th>
                         <th class="text-right">Balance</th>
                         <th class="text-center">Action</th>
                     </tr>
@@ -68,22 +68,22 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         ?>
 
                         <tr>
-                            <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editAccountModal<?php echo $account_id; ?>"><?php echo $account_name; ?></a></td>
-                            <td><?php echo $account_type_name; ?></td>
-                            <td><?php echo $account_currency_code; ?></td>
-                            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $balance, $account_currency_code); ?></td>
+                            <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editAccountModal<?= $account_id; ?>"><?= $account_name; ?></a></td>
+                            <td><?= $account_type_name; ?></td>
+                            <td><?= $account_currency_code; ?></td>
+                            <td class="text-right"><?= numfmt_format_currency($currency_format, $balance, $account_currency_code); ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
                                     <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAccountModal<?php echo $account_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editAccountModal<?= $account_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <?php if ($balance == 0 && $account_id != $config_stripe_account) { //Cannot Archive an Account until it reaches 0 Balance and cant be selected as an online account ?>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger" href="/post.php?archive_account=<?php echo $account_id; ?>">
+                                            <a class="dropdown-item text-danger" href="/post.php?archive_account=<?= $account_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                             </a>
                                         <?php } ?>

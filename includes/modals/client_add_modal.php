@@ -11,7 +11,7 @@ $leads = $_GET['leads'];
     <div class="modal-body">
             <input type="hidden" name="lead" value="0">
             <input type="hidden" name="net_terms" value="0">
-            <input type="hidden" name="currency_code" value="<?php echo $session_company_currency; ?>">
+            <input type="hidden" name="currency_code" value="<?= $session_company_currency; ?>">
             <ul class="nav nav-pills mb-3">
                 <li class="nav-item">
                     <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details">Details</a>
@@ -64,7 +64,7 @@ $leads = $_GET['leads'];
                                 $referral_sql = mysqli_query($mysqli, "SELECT * FROM categories WHERE category_type = 'Referral' AND category_archived_at IS NULL ORDER BY category_name ASC");
                                 while ($row = mysqli_fetch_array($referral_sql)) {
                                     $referral = nullable_htmlentities($row['category_name']); ?>
-                                    <option><?php echo $referral; ?></option>
+                                    <option><?= $referral; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -142,7 +142,7 @@ $leads = $_GET['leads'];
                             <select class="form-control select2" id='select2' name="country">
                                 <option value="">- Country -</option>
                                 <?php foreach($countries_array as $country_name) { ?>
-                                    <option <?php if ($session_company_country == $country_name) { echo "selected"; } ?> ><?php echo $country_name; ?></option>
+                                    <option <?php if ($session_company_country == $country_name) { echo "selected"; } ?> ><?= $country_name; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -210,7 +210,7 @@ $leads = $_GET['leads'];
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-clock"></i></span>
                             </div>
-                            <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="rate" placeholder="0.00" value="<?php echo "$config_default_hourly_rate"; ?>">
+                            <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="rate" placeholder="0.00" value="<?= "$config_default_hourly_rate"; ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -222,7 +222,7 @@ $leads = $_GET['leads'];
                             <select class="form-control select2" id='select2' name="currency_code" required>
                                 <option value="">- Currency -</option>
                                 <?php foreach($currencies_array as $currency_code => $currency_name) { ?>
-                                    <option <?php if ($session_company_currency == $currency_code) { echo "selected"; } ?> value="<?php echo $currency_code; ?>"><?php echo "$currency_code - $currency_name"; ?></option>
+                                    <option <?php if ($session_company_currency == $currency_code) { echo "selected"; } ?> value="<?= $currency_code; ?>"><?= "$currency_code - $currency_name"; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -235,7 +235,7 @@ $leads = $_GET['leads'];
                             </div>
                             <select class="form-control select2" id='select2' name="net_terms">
                                 <?php foreach($net_terms_array as $net_term_value => $net_term_name) { ?>
-                                    <option <?php if ($config_default_net_terms == $net_term_value) { echo "selected"; } ?> value="<?php echo $net_term_value; ?>"><?php echo $net_term_name; ?></option>
+                                    <option <?php if ($config_default_net_terms == $net_term_value) { echo "selected"; } ?> value="<?= $net_term_value; ?>"><?= $net_term_name; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -269,7 +269,7 @@ $leads = $_GET['leads'];
                                     $tag_id_select = intval($row['tag_id']);
                                     $tag_name_select = nullable_htmlentities($row['tag_name']);
                                     ?>
-                                    <option value="<?php echo $tag_id_select; ?>"><?php echo $tag_name_select; ?></option>
+                                    <option value="<?= $tag_id_select; ?>"><?= $tag_name_select; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

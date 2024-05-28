@@ -9,7 +9,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all.php";
     </div>
     <div class="card-body">
         <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
             <div class="form-group">
                 <label>Your New Password <strong class="text-danger">*</strong></label>
@@ -36,7 +36,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all.php";
     </div>
     <div class="card-body">
         <form action="/post.php" method="post" autocomplete="off">
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
             <?php if (empty($session_token)) { ?>
                 <button type="submit" name="enable_2fa" class="btn btn-success btn-block mt-3"><i class="fa fa-fw fa-lock"></i><br> Enable 2FA</button>
@@ -64,7 +64,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all.php";
                 ?>
             </center>
 
-            <input type="hidden" name="token" value="<?php echo $secretkey; ?>">
+            <input type="hidden" name="token" value="<?= $secretkey; ?>">
 
         </form>
 

@@ -14,7 +14,7 @@ $client_id = intval($_GET['client_id']);
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
@@ -67,7 +67,7 @@ $client_id = intval($_GET['client_id']);
                                             $vendor_id = intval($row['vendor_id']);
                                             $vendor_name = nullable_htmlentities($row['vendor_name']);
                                             ?>
-                                            <option value="<?php echo $vendor_id; ?>"><?php echo $vendor_name; ?></option>
+                                            <option value="<?= $vendor_id; ?>"><?= $vendor_name; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -88,7 +88,7 @@ $client_id = intval($_GET['client_id']);
                                             $vendor_id = intval($row['vendor_id']);
                                             $vendor_name = nullable_htmlentities($row['vendor_name']);
                                             ?>
-                                            <option value="<?php echo $vendor_id; ?>"><?php echo $vendor_name; ?></option>
+                                            <option value="<?= $vendor_id; ?>"><?= $vendor_name; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

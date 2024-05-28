@@ -29,7 +29,7 @@
                                     $vendor_template_name = nullable_htmlentities($row['vendor_name']);
 
                                     ?>
-                                    <option value="<?php echo $vendor_template_id ?>"><?php echo $vendor_template_name; ?></option>
+                                    <option value="<?= $vendor_template_id ?>"><?= $vendor_template_name; ?></option>
                                 <?php } ?>
 
                             </select>

@@ -26,7 +26,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fas fa-route mr-2"></i>Trips</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="trip_add_modal.php?client_id=<?php echo $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Trip</button>
+                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="trip_add_modal.php?client_id=<?= $client_id; ?>"><i class="fas fa-plus mr-2"></i>New Trip</button>
                     <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item text-dark" href="#" data-bs-toggle="modal" data-bs-target="#exportTripModal">
@@ -39,7 +39,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </div>
         <div class="card-body">
             <form autocomplete="off">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="float-right">
@@ -53,12 +53,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=trip_date&order=<?php echo $disp; ?>">Date</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=user_name&order=<?php echo $disp; ?>">Driver</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=trip_purpose&order=<?php echo $disp; ?>">Purpose</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=trip_source&order=<?php echo $disp; ?>">From</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=trip_destination&order=<?php echo $disp; ?>">To</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=trip_miles&order=<?php echo $disp; ?>">Miles</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=trip_date&order=<?= $disp; ?>">Date</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=user_name&order=<?= $disp; ?>">Driver</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=trip_purpose&order=<?= $disp; ?>">Purpose</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=trip_source&order=<?= $disp; ?>">From</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=trip_destination&order=<?= $disp; ?>">To</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=trip_miles&order=<?= $disp; ?>">Miles</a></th>
                         <th class="text-center">Action</th>
                     </tr>
                     </thead>
@@ -90,30 +90,30 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         ?>
                         <tr>
-                            <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editTripModal<?php echo $trip_id; ?>"><?php echo $trip_date; ?></a></td>
-                            <td><?php echo $user_name_display; ?></td>
-                            <td><?php echo $trip_purpose; ?></td>
-                            <td><?php echo $trip_source; ?></td>
-                            <td><?php echo $trip_destination; ?></td>
-                            <td><?php echo "$trip_miles $round_trip_display"; ?></td>
+                            <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editTripModal<?= $trip_id; ?>"><?= $trip_date; ?></a></td>
+                            <td><?= $user_name_display; ?></td>
+                            <td><?= $trip_purpose; ?></td>
+                            <td><?= $trip_source; ?></td>
+                            <td><?= $trip_destination; ?></td>
+                            <td><?= "$trip_miles $round_trip_display"; ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
                                     <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="//maps.google.com?q=<?php echo $trip_source; ?> to <?php echo $trip_destination; ?>" target="_blank">
+                                        <a class="dropdown-item" href="//maps.google.com?q=<?= $trip_source; ?> to <?= $trip_destination; ?>" target="_blank">
                                             <i class="fa fa-fw fa-map-marker-alt mr-2"></i>Map it
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editTripModal<?php echo $trip_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editTripModal<?= $trip_id; ?>">
                                             <i class="fa fa-fw fa-edit mr-2"></i>Edit
                                         </a>
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addTripCopyModal<?php echo $trip_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addTripCopyModal<?= $trip_id; ?>">
                                             <i class="fa fa-fw fa-copy mr-2"></i>Copy
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_trip=<?php echo $trip_id; ?>">
+                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_trip=<?= $trip_id; ?>">
                                             <i class="fa fa-fw fa-trash mr-2"></i>Delete
                                         </a>
                                     </div>

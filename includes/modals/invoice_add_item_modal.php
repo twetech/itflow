@@ -94,7 +94,7 @@ if (mysqli_num_rows($products_sql) > 0) {
                     <div class="row">
                         <div class="col-md-4 col-12 mb-md-0 mb-3 ps-md-0">
                             <p class="mb-2 repeater-title">Unit Price</p>
-                            <input type="text" class="form-control" pattern="-?[0-9]*\.?[0-9]{0,2}" style="text-align: right;" id="price" name="price" placeholder="Price (<?php echo $invoice_currency_code; ?>)">
+                            <input type="text" class="form-control" pattern="-?[0-9]*\.?[0-9]{0,2}" style="text-align: right;" id="price" name="price" placeholder="Price (<?= $invoice_currency_code; ?>)">
                         </div>
                         <div class="col-md-3 col-12 mb-md-0 mb-3 ps-md-0">
                             <p class="mb-2 repeater-title">Qty</p>

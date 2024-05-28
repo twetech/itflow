@@ -103,7 +103,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
 
             <div class="float-right">
                 <a class="btn btn-label-primary" href="#" onclick="window.print();"><i class="fas fa-fw fa-print mr-2"></i>Print</a>
-                <a class="btn btn-label-primary" href="#" onclick="pdfMake.createPdf(docDefinition).download('<?php echo strtoAZaz09(html_entity_decode("$quote_date-$company_name-QUOTE-$quote_prefix$quote_number")); ?>');">
+                <a class="btn btn-label-primary" href="#" onclick="pdfMake.createPdf(docDefinition).download('<?= strtoAZaz09(html_entity_decode("$quote_date-$company_name-QUOTE-$quote_prefix$quote_number")); ?>');">
                     <i class="fa fa-fw fa-download mr-2"></i>Download
                 </a>
             </div>
@@ -112,10 +112,10 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
 
             <div class="row mb-4">
                 <div class="col-sm-2">
-                    <img class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>">
+                    <img class="img-fluid" src="<?= "/uploads/settings/$company_logo"; ?>">
                 </div>
                 <div class="col-sm-10">
-                    <h3 class="text-right"><strong>Quote</strong><br><small class="text-secondary"><?php echo "$quote_prefix$quote_number"; ?></small></h3>
+                    <h3 class="text-right"><strong>Quote</strong><br><small class="text-secondary"><?= "$quote_prefix$quote_number"; ?></small></h3>
                 </div>
             </div>
 
@@ -123,11 +123,11 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
 
                 <div class="col-sm">
                     <ul class="list-unstyled">
-                        <li><h4><strong><?php echo $company_name; ?></strong></h4></li>
-                        <li><?php echo $company_address; ?></li>
-                        <li><?php echo "$company_city $company_state $company_zip"; ?></li>
-                        <li><?php echo $company_phone; ?></li>
-                        <li><?php echo $company_email; ?></li>
+                        <li><h4><strong><?= $company_name; ?></strong></h4></li>
+                        <li><?= $company_address; ?></li>
+                        <li><?= "$company_city $company_state $company_zip"; ?></li>
+                        <li><?= $company_phone; ?></li>
+                        <li><?= $company_email; ?></li>
                     </ul>
 
                 </div>
@@ -135,12 +135,12 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                 <div class="col-sm">
 
                     <ul class="list-unstyled text-right">
-                        <li><h4><strong><?php echo $client_name; ?></strong></h4></li>
-                        <li><?php echo $location_address; ?></li>
-                        <li><?php echo "$location_city $location_state $location_zip"; ?></li>
-                        <li><?php echo "$contact_phone $contact_extension"; ?></li>
-                        <li><?php echo $contact_mobile; ?></li>
-                        <li><?php echo $contact_email; ?></li>
+                        <li><h4><strong><?= $client_name; ?></strong></h4></li>
+                        <li><?= $location_address; ?></li>
+                        <li><?= "$location_city $location_state $location_zip"; ?></li>
+                        <li><?= "$contact_phone $contact_extension"; ?></li>
+                        <li><?= $contact_mobile; ?></li>
+                        <li><?= $contact_email; ?></li>
                     </ul>
 
                 </div>
@@ -152,11 +152,11 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                     <table id=responsive class="responsive table">
                         <tr>
                             <td>Date</td>
-                            <td class="text-right"><?php echo $quote_date; ?></td>
+                            <td class="text-right"><?= $quote_date; ?></td>
                         </tr>
                         <tr class="text-bold">
                             <td>Expire</td>
-                            <td class="text-right"><?php echo $quote_expire; ?></td>
+                            <td class="text-right"><?= $quote_expire; ?></td>
                         </tr>
                     </table>
                 </div>
@@ -198,12 +198,12 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                                     ?>
 
                                     <tr>
-                                        <td><?php echo $item_name; ?></td>
-                                        <td><?php echo nl2br($item_description); ?></td>
-                                        <td class="text-center"><?php echo $item_quantity; ?></td>
-                                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_price, $quote_currency_code); ?></td>
-                                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_tax, $quote_currency_code); ?></td>
-                                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_total, $quote_currency_code); ?></td>
+                                        <td><?= $item_name; ?></td>
+                                        <td><?= nl2br($item_description); ?></td>
+                                        <td class="text-center"><?= $item_quantity; ?></td>
+                                        <td class="text-right"><?= numfmt_format_currency($currency_format, $item_price, $quote_currency_code); ?></td>
+                                        <td class="text-right"><?= numfmt_format_currency($currency_format, $item_tax, $quote_currency_code); ?></td>
+                                        <td class="text-right"><?= numfmt_format_currency($currency_format, $item_total, $quote_currency_code); ?></td>
                                     </tr>
 
                                     <?php
@@ -224,7 +224,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                     <?php if (!empty($quote_note)) { ?>
                         <div class="card">
                             <div class="card-body">
-                                <?php echo nl2br($quote_note); ?>
+                                <?= nl2br($quote_note); ?>
                             </div>
                         </div>
                     <?php } ?>
@@ -235,23 +235,23 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                         <tbody>
                         <tr class="border-bottom">
                             <td>Subtotal</td>
-                            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $sub_total, $quote_currency_code); ?></td>
+                            <td class="text-right"><?= numfmt_format_currency($currency_format, $sub_total, $quote_currency_code); ?></td>
                         </tr>
                         <?php if ($quote_discount > 0) { ?>
                             <tr class="border-bottom">
                                 <td>Discount</td>
-                                <td class="text-right"><?php echo numfmt_format_currency($currency_format, -$quote_discount, $quote_currency_code); ?></td>
+                                <td class="text-right"><?= numfmt_format_currency($currency_format, -$quote_discount, $quote_currency_code); ?></td>
                             </tr>
                         <?php } ?>
                         <?php if ($total_tax > 0) { ?>
                             <tr class="border-bottom">
                                 <td>Tax</td>
-                                <td class="text-right"><?php echo numfmt_format_currency($currency_format, $total_tax, $quote_currency_code); ?></td>
+                                <td class="text-right"><?= numfmt_format_currency($currency_format, $total_tax, $quote_currency_code); ?></td>
                             </tr>
                         <?php } ?>
                         <tr class="border-bottom">
                             <td><strong>Total</strong></td>
-                            <td class="text-right"><strong><?php echo numfmt_format_currency($currency_format, $quote_amount, $quote_currency_code); ?></strong></td>
+                            <td class="text-right"><strong><?= numfmt_format_currency($currency_format, $quote_amount, $quote_currency_code); ?></strong></td>
                         </tr>
                         </tbody>
                     </table>
@@ -260,15 +260,15 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
 
             <hr class="mt-5">
 
-            <div class="text-center"><?php echo nl2br($config_quote_footer); ?></div>
+            <div class="text-center"><?= nl2br($config_quote_footer); ?></div>
             <div class="">
                 <?php
                     if ($quote_status == "Sent" || $quote_status == "Viewed" && strtotime($quote_expire) > strtotime("now")) {
                         ?>
-                        <a class="btn btn-success" href="portal/guest_post.php?accept_quote=<?php echo $quote_id; ?>&url_key=<?php echo $url_key; ?>">
+                        <a class="btn btn-success" href="/portal/guest_post.php?accept_quote=<?= $quote_id; ?>&url_key=<?= $url_key; ?>">
                             <i class="fas fa-fw fa-thumbs-up mr-2"></i>Accept
                         </a>
-                        <a class="btn btn-danger" href="portal/guest_post.php?decline_quote=<?php echo $quote_id; ?>&url_key=<?php echo $url_key; ?>">
+                        <a class="btn btn-danger" href="/portal/guest_post.php?decline_quote=<?= $quote_id; ?>&url_key=<?= $url_key; ?>">
                             <i class="fas fa-fw fa-thumbs-down mr-2"></i>Decline
                         </a>
                     <?php } ?>
@@ -283,11 +283,11 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
 
         var docDefinition = {
             info: {
-                title: <?php echo json_encode(html_entity_decode($company_name) . "- Quote") ?>,
-                author: <?php echo json_encode(html_entity_decode($company_name)) ?>
+                title: <?= json_encode(html_entity_decode($company_name) . "- Quote") ?>,
+                author: <?= json_encode(html_entity_decode($company_name)) ?>
             },
 
-            //watermark: {text: '<?php echo $quote_status; ?>', color: 'lightgrey', opacity: 0.3, bold: true, italics: false},
+            //watermark: {text: '<?= $quote_status; ?>', color: 'lightgrey', opacity: 0.3, bold: true, italics: false},
 
             content: [
                 // Header
@@ -295,7 +295,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                     columns: [
                         <?php if (!empty($company_logo_base64)) { ?>
                         {
-                            image: <?php echo json_encode("data:image;base64,$company_logo_base64") ?>,
+                            image: <?= json_encode("data:image;base64,$company_logo_base64") ?>,
                             width: 120
                         },
                         <?php } ?>
@@ -307,7 +307,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                                 width: '*'
                             },
                             {
-                                text: <?php echo json_encode(html_entity_decode("$quote_prefix$quote_number")) ?>,
+                                text: <?= json_encode(html_entity_decode("$quote_prefix$quote_number")) ?>,
                                 style: 'invoiceNumber',
                                 width: '*'
                             },
@@ -318,11 +318,11 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                 {
                     columns: [
                         {
-                            text: <?php echo json_encode(html_entity_decode($company_name)) ?>,
+                            text: <?= json_encode(html_entity_decode($company_name)) ?>,
                             style: 'invoiceBillingTitle'
                         },
                         {
-                            text: <?php echo json_encode(html_entity_decode($client_name)) ?>,
+                            text: <?= json_encode(html_entity_decode($client_name)) ?>,
                             style: 'invoiceBillingTitleClient'
                         },
                     ]
@@ -331,11 +331,11 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                 {
                     columns: [
                         {
-                            text: <?php echo json_encode(html_entity_decode("$company_address \n $company_city $company_state $company_zip \n $company_phone \n $company_website")) ?>,
+                            text: <?= json_encode(html_entity_decode("$company_address \n $company_city $company_state $company_zip \n $company_phone \n $company_website")) ?>,
                             style: 'invoiceBillingAddress'
                         },
                         {
-                            text: <?php echo json_encode(html_entity_decode("$location_address \n $location_city $location_state $location_zip \n $contact_email \n $contact_phone")) ?>,
+                            text: <?= json_encode(html_entity_decode("$location_address \n $location_city $location_state $location_zip \n $contact_email \n $contact_phone")) ?>,
                             style: 'invoiceBillingAddressClient'
                         },
                     ]
@@ -365,7 +365,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                                     style: 'invoiceDateTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(html_entity_decode($quote_date)) ?>,
+                                    text: <?= json_encode(html_entity_decode($quote_date)) ?>,
                                     style: 'invoiceDateValue'
                                 },
                             ],
@@ -376,7 +376,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                                     style: 'invoiceDueDateTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(html_entity_decode($quote_expire)) ?>,
+                                    text: <?= json_encode(html_entity_decode($quote_expire)) ?>,
                                     style: 'invoiceDueDateValue'
                                 },
                             ],
@@ -442,28 +442,28 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                             [
                                 [
                                     {
-                                        text: <?php echo json_encode($item_name) ?>,
+                                        text: <?= json_encode($item_name) ?>,
                                         style: 'itemTitle'
                                     },
                                     {
-                                        text: <?php echo json_encode($item_description) ?>,
+                                        text: <?= json_encode($item_description) ?>,
                                         style: 'itemDescription'
                                     }
                                 ],
                                 {
-                                    text: <?php echo $item_quantity ?>,
+                                    text: <?= $item_quantity ?>,
                                     style: 'itemQty'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $item_price, $quote_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $item_price, $quote_currency_code)) ?>,
                                     style: 'itemNumber'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $item_tax, $quote_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $item_tax, $quote_currency_code)) ?>,
                                     style: 'itemNumber'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $item_total, $quote_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $item_total, $quote_currency_code)) ?>,
                                     style: 'itemNumber'
                                 }
                             ],
@@ -497,7 +497,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                             [
                                 {
                                     rowSpan: '*',
-                                    text: <?php echo json_encode(html_entity_decode($quote_note)) ?>,
+                                    text: <?= json_encode(html_entity_decode($quote_note)) ?>,
                                     style: 'notesText'
                                 },
                                 {
@@ -505,7 +505,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                                     style: 'itemsFooterSubTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $sub_total, $quote_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $sub_total, $quote_currency_code)) ?>,
                                     style: 'itemsFooterSubValue'
                                 }
                             ],
@@ -517,7 +517,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                                     style: 'itemsFooterSubTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, -$quote_discount, $quote_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, -$quote_discount, $quote_currency_code)) ?>,
                                     style: 'itemsFooterSubValue'
                                 }
                             ],
@@ -530,7 +530,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                                     style: 'itemsFooterSubTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $total_tax, $quote_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $total_tax, $quote_currency_code)) ?>,
                                     style: 'itemsFooterSubValue'
                                 }
                             ],
@@ -542,7 +542,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                                     style: 'itemsFooterTotalTitle'
                                 },
                                 {
-                                    text: <?php echo json_encode(numfmt_format_currency($currency_format, $quote_amount, $quote_currency_code)) ?>,
+                                    text: <?= json_encode(numfmt_format_currency($currency_format, $quote_amount, $quote_currency_code)) ?>,
                                     style: 'itemsFooterTotalValue'
                                 }
                             ],
@@ -552,7 +552,7 @@ if ($quote_status == "Draft" || $quote_status == "Sent" || $quote_status == "Vie
                 },
                 // TERMS / FOOTER
                 {
-                    text: <?php echo json_encode("$config_quote_footer"); ?>,
+                    text: <?= json_encode("$config_quote_footer"); ?>,
                     style: 'documentFooterCenter'
                 }
             ], //End Content,

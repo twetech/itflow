@@ -28,7 +28,7 @@ $client_name = nullable_htmlentities($row['client_name']);
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
                     <div class="form-row">
-                    <input type="hidden" id="current_ticket_id" name="ticket_id" value="<?php echo $ticket_id; ?>">
+                    <input type="hidden" id="current_ticket_id" name="ticket_id" value="<?= $ticket_id; ?>">
                         <div class="form-group">
                             <label for="product_id">Product</label>
                             <select class="form-control select2" id='select2' id="product_id" name="product_id" required>

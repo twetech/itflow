@@ -50,7 +50,7 @@ if ($email_status == 0) {
   <li class="breadcrumb-item">
     <a href="admin_mail_queue.php"><i class="fas fa-fw fa-mail-bulk mr-2"></i>Mail Queue</a>
   </li>
-  <li class="breadcrumb-item active"><i class="fas fa-fw fa-envelope-open mr-2"></i><?php echo $email_subject; ?></li>
+  <li class="breadcrumb-item active"><i class="fas fa-fw fa-envelope-open mr-2"></i><?= $email_subject; ?></li>
 </ol>
 
 <div class="row">
@@ -58,12 +58,12 @@ if ($email_status == 0) {
   <div class="col-md-12">
     <div class="card">
       <div class="card-header bg-dark">
-        <div>From: <?php echo "$email_from_name <small>($email_from)</small>"; ?></div>
-        <div>To: <?php echo "$email_recipient_name <small>($email_recipient)</small>"; ?></div>
-        <div>Subject: <?php echo $email_subject; ?></div>
+        <div>From: <?= "$email_from_name <small>($email_from)</small>"; ?></div>
+        <div>To: <?= "$email_recipient_name <small>($email_recipient)</small>"; ?></div>
+        <div>Subject: <?= $email_subject; ?></div>
       </div>
       <div class="card-body prettyContent">
-        <?php echo $email_content; ?>
+        <?= $email_content; ?>
       </div>
     </div>
   </div>

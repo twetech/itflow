@@ -12,7 +12,7 @@ $budget_category_id = intval($row['budget_category_id']);
 ?>
 
 
-<div class="modal" id="editBudgetModal<?php echo $budget_id; ?>" tabindex="-1">
+<div class="modal" id="editBudgetModal<?= $budget_id; ?>" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content bg-dark">
             <div class="modal-header">
@@ -23,7 +23,7 @@ $budget_category_id = intval($row['budget_category_id']);
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                    <input type="hidden" name="budget_id" value="<?php echo $budget_id; ?>">
+                    <input type="hidden" name="budget_id" value="<?= $budget_id; ?>">
 
                     <div class="form-row">
 
@@ -57,7 +57,7 @@ $budget_category_id = intval($row['budget_category_id']);
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                 </div>
-                                <input type="text" class="form-control" inputmode="numeric" pattern="^[0-9]{4}$" name="year" placeholder="2024" value="<?php echo $budget_year; ?>" required>
+                                <input type="text" class="form-control" inputmode="numeric" pattern="^[0-9]{4}$" name="year" placeholder="2024" value="<?= $budget_year; ?>" required>
                             </div>
                         </div>
 
@@ -65,7 +65,7 @@ $budget_category_id = intval($row['budget_category_id']);
 
                     <div class="form-group">
                         <label>Description <strong class="text-danger">*</strong></label>
-                        <textarea class="form-control" rows="6" name="description" placeholder="Enter a description" required><?php echo $budget_description; ?></textarea>
+                        <textarea class="form-control" rows="6" name="description" placeholder="Enter a description" required><?= $budget_description; ?></textarea>
                     </div>
 
                     <div class="form-row">
@@ -76,7 +76,7 @@ $budget_category_id = intval($row['budget_category_id']);
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-dollar-sign"></i></span>
                                 </div>
-                                <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="amount" value="<?php echo number_format($budget_amount, 2, '.', ''); ?>" placeholder="0.00" required>
+                                <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="amount" value="<?= number_format($budget_amount, 2, '.', ''); ?>" placeholder="0.00" required>
                             </div>
                         </div>
 
@@ -94,7 +94,7 @@ $budget_category_id = intval($row['budget_category_id']);
                                         $category_id_select = intval($row['category_id']);
                                         $category_name_select = nullable_htmlentities($row['category_name']);
                                         ?>
-                                        <option <?php if ($budget_category_id == $category_id_select) { ?> selected <?php } ?> value="<?php echo $category_id_select; ?>"><?php echo $category_name_select; ?></option>
+                                        <option <?php if ($budget_category_id == $category_id_select) { ?> selected <?php } ?> value="<?= $category_id_select; ?>"><?= $category_name_select; ?></option>
                                         <?php
                                     }
 

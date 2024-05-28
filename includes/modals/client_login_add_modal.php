@@ -18,7 +18,7 @@ $client_id = intval($_GET['client_id']);
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
                             <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details">Details</a>
@@ -140,7 +140,7 @@ $client_id = intval($_GET['client_id']);
                                             $contact_id = intval($row['contact_id']);
                                             $contact_name = nullable_htmlentities($row['contact_name']);
                                             ?>
-                                            <option value="<?php echo $contact_id; ?>"><?php echo $contact_name; ?></option>
+                                            <option value="<?= $contact_id; ?>"><?= $contact_name; ?></option>
 
                                             <?php
                                         }
@@ -164,7 +164,7 @@ $client_id = intval($_GET['client_id']);
                                             $vendor_id = intval($row['vendor_id']);
                                             $vendor_name = nullable_htmlentities($row['vendor_name']);
                                             ?>
-                                            <option value="<?php echo $vendor_id; ?>"><?php echo $vendor_name; ?></option>
+                                            <option value="<?= $vendor_id; ?>"><?= $vendor_name; ?></option>
 
                                             <?php
                                         }
@@ -195,7 +195,7 @@ $client_id = intval($_GET['client_id']);
                                             }
 
                                             ?>
-                                            <option value="<?php echo $asset_id; ?>"><?php echo $asset_display_string; ?></option>
+                                            <option value="<?= $asset_id; ?>"><?= $asset_display_string; ?></option>
 
                                             <?php
                                         }
@@ -219,7 +219,7 @@ $client_id = intval($_GET['client_id']);
                                             $software_id = intval($row['software_id']);
                                             $software_name = nullable_htmlentities($row['software_name']);
                                             ?>
-                                            <option value="<?php echo $software_id; ?>"><?php echo $software_name; ?></option>
+                                            <option value="<?= $software_id; ?>"><?= $software_name; ?></option>
 
                                             <?php
                                         }

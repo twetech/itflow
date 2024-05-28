@@ -121,14 +121,14 @@ $num_rows = mysqli_num_rows($sql);
                         ?>
                         <tr>
                             <td><a class="text-dark text-bold" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#editAccountTypeModal<?php echo $account_type_id; ?>">
-                                    <?php echo $account_type_parent_name; ?>
+                                    data-bs-target="#editAccountTypeModal<?= $account_type_id; ?>">
+                                    <?= $account_type_parent_name; ?>
                                 </a></td>
                             <td>
-                                <?php echo $account_type_name; ?>
+                                <?= $account_type_name; ?>
                             </td>
                             <td>
-                                <?php echo $account_type_description; ?>
+                                <?= $account_type_description; ?>
                             </td>
                             <td>
                                 <div class="dropdown dropleft text-center">
@@ -137,18 +137,18 @@ $num_rows = mysqli_num_rows($sql);
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#editAccountTypeModal<?php echo $account_type_id; ?>">
+                                            data-bs-target="#editAccountTypeModal<?= $account_type_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>
                                         <?php if ($archived == NULL) { ?>
                                             <a class="dropdown-item text-danger confirm-link"
-                                                href="/post.php?archive_account_type=<?php echo $account_type_id; ?>">
+                                                href="/post.php?archive_account_type=<?= $account_type_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                             </a>
                                         <?php } else { ?>
                                             <a class="dropdown-item text-success confirm-link"
-                                                href="/post.php?unarchive_account_type=<?php echo $account_type_id; ?>">
+                                                href="/post.php?unarchive_account_type=<?= $account_type_id; ?>">
                                                 <i class="fas fa-fw fa-archive mr-2"></i>Unarchive
                                             </a>
                                         <?php } ?>

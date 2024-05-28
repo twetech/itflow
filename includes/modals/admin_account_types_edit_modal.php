@@ -9,22 +9,22 @@ $account_type_description = nullable_htmlentities($row['account_type_description
 $account_parent = intval($row['account_parent']);
 ?>
 
-<div class="modal" id="editAccountTypeModal<?php echo $account_type_id; ?>" tabindex="-1">
+<div class="modal" id="editAccountTypeModal<?= $account_type_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-fw fa-balance-scale mr-2"></i>Editing account type: <strong><?php echo $account_type_name; ?></strong></h5>
+                <h5 class="modal-title"><i class="fas fa-fw fa-balance-scale mr-2"></i>Editing account type: <strong><?= $account_type_name; ?></strong></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="account_type_id" value="<?php echo $account_type_id; ?>">
+                <input type="hidden" name="account_type_id" value="<?= $account_type_id; ?>">
 
                     <div class="form-group">
                         <label>Name <strong class="text-danger">*</strong></label>
-                        <input type="text" class="form-control" name="name" value="<?php echo $account_type_name; ?>" required>
+                        <input type="text" class="form-control" name="name" value="<?= $account_type_name; ?>" required>
                     </div>
 
                     <div class="form-group">
@@ -38,7 +38,7 @@ $account_parent = intval($row['account_parent']);
 
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" name="description" placeholder="Description"><?php echo $account_type_description; ?></textarea>
+                        <textarea class="form-control" name="description" placeholder="Description"><?= $account_type_description; ?></textarea>
                     </div>
                 </div>
                 <div class="modal-footer bg-white">

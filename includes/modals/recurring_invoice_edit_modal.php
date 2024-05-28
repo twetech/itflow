@@ -1,9 +1,9 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
-<div class="modal" id="editRecurringModal<?php echo $recurring_id; ?>" tabindex="-1">
+<div class="modal" id="editRecurringModal<?= $recurring_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-fw fa-redo-alt mr-2"></i>Editing Recur Invoice: <strong><?php echo "$recurring_prefix$recurring_number"; ?></strong></h5>
+                <h5 class="modal-title"><i class="fas fa-fw fa-redo-alt mr-2"></i>Editing Recur Invoice: <strong><?= "$recurring_prefix$recurring_number"; ?></strong></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -11,7 +11,7 @@
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="recurring_id" value="<?php echo $recurring_id; ?>">
+                <input type="hidden" name="recurring_id" value="<?= $recurring_id; ?>">
 
                     <div class="form-group">
                         <label>Scope</label>
@@ -19,7 +19,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-comment"></i></span>
                             </div>
-                            <input type="text" class="form-control" name="scope" placeholder="Quick description" value="<?php echo $recurring_scope; ?>">
+                            <input type="text" class="form-control" name="scope" placeholder="Quick description" value="<?= $recurring_scope; ?>">
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                             </div>
-                            <input type="date" class="form-control" name="next_date" max="2999-12-31" value="<?php echo $recurring_next_date; ?>" required>
+                            <input type="date" class="form-control" name="next_date" max="2999-12-31" value="<?= $recurring_next_date; ?>" required>
                         </div>
                     </div>
 
@@ -62,7 +62,7 @@
                                     $category_id_select = intval($row['category_id']);
                                     $category_name_select = nullable_htmlentities($row['category_name']);
                                 ?>
-                                    <option <?php if ($category_id == $category_id_select) { ?> selected <?php } ?> value="<?php echo $category_id_select; ?>"><?php echo $category_name_select; ?></option>
+                                    <option <?php if ($category_id == $category_id_select) { ?> selected <?php } ?> value="<?= $category_id_select; ?>"><?= $category_name_select; ?></option>
 
                                 <?php
                                 }
@@ -80,7 +80,7 @@
                             <div class='input-group-prepend'>
                                 <span class='input-group-text'><i class='fa fa-fw fa-dollar-sign'></i></span>
                             </div>
-                            <input type='text' class='form-control' inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" name='recurring_discount' placeholder='0.00' value="<?php echo number_format($recurring_discount, 2, '.', ''); ?>">
+                            <input type='text' class='form-control' inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" name='recurring_discount' placeholder='0.00' value="<?= number_format($recurring_discount, 2, '.', ''); ?>">
                         </div>
                     </div>
 

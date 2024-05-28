@@ -115,35 +115,35 @@ if (isset($_GET['asset_id'])) {
 
             <div class="card">
                 <div class="card-header">
-                    <button type="button" class="btn btn-light float-right" data-bs-toggle="modal" data-bs-target="#editAssetModal<?php echo $asset_id; ?>">
+                    <button type="button" class="btn btn-light float-right" data-bs-toggle="modal" data-bs-target="#editAssetModal<?= $asset_id; ?>">
                         <i class="fas fa-fw fa-edit"></i>
                     </button>
-                    <h3 class="text-bold"><i class="fa fa-fw text-secondary fa-<?php echo $device_icon; ?> mr-3"></i><?php echo $asset_name; ?></h3>
+                    <h3 class="text-bold"><i class="fa fa-fw text-secondary fa-<?= $device_icon; ?> mr-3"></i><?= $asset_name; ?></h3>
                     <?php if ($asset_description) { ?>
-                        <div class="text-secondary"><?php echo $asset_description; ?></div>
+                        <div class="text-secondary"><?= $asset_description; ?></div>
                     <?php } ?>
                 </div>
                 <div class="card-body">
                     <?php if ($asset_type) { ?>
-                        <div><i class="fa fa-fw fa-tag text-secondary mr-3"></i><?php echo $asset_type; ?></div>
+                        <div><i class="fa fa-fw fa-tag text-secondary mr-3"></i><?= $asset_type; ?></div>
                     <?php }
                     if ($asset_make) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-circle text-secondary mr-3"></i><?php echo "$asset_make $asset_model"; ?></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-circle text-secondary mr-3"></i><?= "$asset_make $asset_model"; ?></div>
                     <?php }
                     if ($asset_os) { ?>
-                        <div class="mt-2"><i class="fab fa-fw fa-windows text-secondary mr-3"></i><?php echo "$asset_os"; ?></div>
+                        <div class="mt-2"><i class="fab fa-fw fa-windows text-secondary mr-3"></i><?= "$asset_os"; ?></div>
                     <?php }
                     if ($asset_serial) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-barcode text-secondary mr-3"></i><?php echo $asset_serial; ?></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-barcode text-secondary mr-3"></i><?= $asset_serial; ?></div>
                     <?php }
                     if ($asset_purchase_date) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-shopping-cart text-secondary mr-3"></i><?php echo date('Y-m-d', strtotime($asset_purchase_date)); ?></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-shopping-cart text-secondary mr-3"></i><?= date('Y-m-d', strtotime($asset_purchase_date)); ?></div>
                     <?php }
                     if ($asset_install_date) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-calendar-check text-secondary mr-3"></i><?php echo date('Y-m-d', strtotime($asset_install_date)); ?></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-calendar-check text-secondary mr-3"></i><?= date('Y-m-d', strtotime($asset_install_date)); ?></div>
                     <?php }
                     if ($asset_warranty_expire) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-exclamation-triangle text-secondary mr-3"></i><?php echo date('Y-m-d', strtotime($asset_warranty_expire)); ?></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-exclamation-triangle text-secondary mr-3"></i><?= date('Y-m-d', strtotime($asset_warranty_expire)); ?></div>
                     <?php } ?>
                 </div>
             </div>
@@ -154,19 +154,19 @@ if (isset($_GET['asset_id'])) {
                 </div>
                 <div class="card-body">
                     <?php if ($asset_ip) { ?>
-                        <div><i class="fa fa-fw fa-globe text-secondary mr-3"></i><?php echo $asset_ip; ?></div>
+                        <div><i class="fa fa-fw fa-globe text-secondary mr-3"></i><?= $asset_ip; ?></div>
                     <?php } ?>
                     <?php if ($asset_nat_ip) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-random text-secondary mr-3"></i><?php echo $asset_nat_ip; ?></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-random text-secondary mr-3"></i><?= $asset_nat_ip; ?></div>
                     <?php }
                     if ($asset_mac) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-ethernet text-secondary mr-3"></i><?php echo $asset_mac; ?></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-ethernet text-secondary mr-3"></i><?= $asset_mac; ?></div>
                     <?php }
                     if ($asset_uri) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-link text-secondary mr-3"></i><a href="<?php echo $asset_uri; ?>" target="_blank">Link</a></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-link text-secondary mr-3"></i><a href="<?= $asset_uri; ?>" target="_blank">Link</a></div>
                     <?php }
                     if ($asset_uri_2) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-link text-secondary mr-3"></i><a href="<?php echo $asset_uri; ?>" target="_blank">Link 2</a></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-link text-secondary mr-3"></i><a href="<?= $asset_uri; ?>" target="_blank">Link 2</a></div>
                     <?php } ?>
                 </div>
             </div>
@@ -178,19 +178,19 @@ if (isset($_GET['asset_id'])) {
                 </div>
                 <div class="card-body">
                     <?php if ($location_name) { ?>
-                        <div><i class="fa fa-fw fa-map-marker-alt text-secondary mr-3"></i><?php echo $location_name_display; ?></div>
+                        <div><i class="fa fa-fw fa-map-marker-alt text-secondary mr-3"></i><?= $location_name_display; ?></div>
                     <?php }
                     if ($contact_name) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-user text-secondary mr-3"></i><?php echo $contact_name_display; ?></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-user text-secondary mr-3"></i><?= $contact_name_display; ?></div>
                     <?php }
                     if ($contact_email) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-envelope text-secondary mr-3"></i><a href='mailto:<?php echo $contact_email; ?>'><?php echo $contact_email; ?></a><button class='btn btn-sm clipboardjs' data-clipboard-text='<?php echo $contact_email; ?>'><i class='far fa-copy text-secondary'></i></button></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-envelope text-secondary mr-3"></i><a href='mailto:<?= $contact_email; ?>'><?= $contact_email; ?></a><button class='btn btn-sm clipboardjs' data-clipboard-text='<?= $contact_email; ?>'><i class='far fa-copy text-secondary'></i></button></div>
                     <?php }
                     if ($contact_phone) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-phone text-secondary mr-3"></i><?php echo formatPhoneNumber($contact_phone); echo " $contact_extension"; ?></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-phone text-secondary mr-3"></i><?= formatPhoneNumber($contact_phone); echo " $contact_extension"; ?></div>
                     <?php }
                     if ($contact_mobile) { ?>
-                        <div class="mt-2"><i class="fa fa-fw fa-mobile-alt text-secondary mr-3"></i><?php echo formatPhoneNumber($contact_mobile); ?></div>
+                        <div class="mt-2"><i class="fa fa-fw fa-mobile-alt text-secondary mr-3"></i><?= formatPhoneNumber($contact_mobile); ?></div>
                     <?php } ?>
                 
                 </div>
@@ -200,7 +200,7 @@ if (isset($_GET['asset_id'])) {
                 <div class="card-header">
                     <h5 class="card-title">Notes</h5>
                 </div>
-                <textarea class="form-control" rows=6 id="assetNotes" placeholder="Enter quick notes here" onblur="updateAssetNotes(<?php echo $asset_id ?>)"><?php echo $asset_notes ?></textarea>    
+                <textarea class="form-control" rows=6 id="assetNotes" placeholder="Enter quick notes here" onblur="updateAssetNotes(<?= $asset_id ?>)"><?= $asset_notes ?></textarea>    
             </div>
 
             <?php require_once "client_asset_edit_modal.php"; ?>
@@ -214,12 +214,12 @@ if (isset($_GET['asset_id'])) {
                     <a href="clients.php">Clients</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="client_overview.php?client_id=<?php echo $client_id; ?>"><?php echo $client_name; ?></a>
+                    <a href="client_overview.php?client_id=<?= $client_id; ?>"><?= $client_name; ?></a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="client_assets.php?client_id=<?php echo $client_id; ?>">Assets</a>
+                    <a href="client_assets.php?client_id=<?= $client_id; ?>">Assets</a>
                 </li>
-                <li class="breadcrumb-item active"><?php echo $asset_name; ?></li>
+                <li class="breadcrumb-item active"><?= $asset_name; ?></li>
             </ol>
 
             <div class="card <?php if ($login_count == 0) { echo "d-none"; } ?>">
@@ -279,32 +279,32 @@ if (isset($_GET['asset_id'])) {
                                 <tr>
                                     <td>
                                         <i class="fa fa-fw fa-key text-secondary"></i>
-                                        <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?php echo $login_id; ?>">
-                                            <?php echo $login_name; ?>
+                                        <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?= $login_id; ?>">
+                                            <?= $login_name; ?>
                                         </a>
                                     </td>
-                                    <td><?php echo $login_description; ?></td>
-                                    <td><?php echo $login_username_display; ?></td>
+                                    <td><?= $login_description; ?></td>
+                                    <td><?= $login_username_display; ?></td>
                                     <td>
-                                        <a tabindex="0" href="#" data-bs-toggle="popover" data-trigger="focus" data-placement="top" data-content="<?php echo $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></a><button class="btn btn-sm clipboardjs" data-clipboard-text="<?php echo $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
+                                        <a tabindex="0" href="#" data-bs-toggle="popover" data-trigger="focus" data-placement="top" data-content="<?= $login_password; ?>"><i class="fas fa-2x fa-ellipsis-h text-secondary"></i><i class="fas fa-2x fa-ellipsis-h text-secondary"></i></a><button class="btn btn-sm clipboardjs" data-clipboard-text="<?= $login_password; ?>"><i class="far fa-copy text-secondary"></i></button>
                                     </td>
-                                    <td><?php echo $otp_display; ?></td>
-                                    <td><?php echo $login_uri_display; ?></td>
+                                    <td><?= $otp_display; ?></td>
+                                    <td><?= $login_uri_display; ?></td>
                                     <td>
                                         <div class="dropdown dropleft text-center">
                                             <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?php echo $login_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editLoginModal<?= $login_id; ?>">
                                                     <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                                 </a>
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'Login', $login_id"; ?>)">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?= "$client_id, 'Login', $login_id"; ?>)">
                                                     <i class="fas fa-fw fa-share-alt mr-2"></i>Share
                                                 </a>
                                                 <?php if ($session_user_role == 3) { ?>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger text-bold" href="/post.php?delete_login=<?php echo $login_id; ?>">
+                                                    <a class="dropdown-item text-danger text-bold" href="/post.php?delete_login=<?= $login_id; ?>">
                                                         <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                     </a>
                                                 <?php } ?>
@@ -385,10 +385,10 @@ if (isset($_GET['asset_id'])) {
 
                                 ?>
                                 <tr>
-                                    <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareModal<?php echo $software_id; ?>"><?php echo "$software_name<br><span class='text-secondary'>$software_version</span>"; ?></a></td>
-                                    <td><?php echo $software_type; ?></td>
-                                    <td><?php echo $software_license_type; ?></td>
-                                    <td><?php echo "$seat_count / $software_seats"; ?></td>
+                                    <td><a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareModal<?= $software_id; ?>"><?= "$software_name<br><span class='text-secondary'>$software_version</span>"; ?></a></td>
+                                    <td><?= $software_type; ?></td>
+                                    <td><?= $software_license_type; ?></td>
+                                    <td><?= "$seat_count / $software_seats"; ?></td>
                                 </tr>
 
                                 <?php
@@ -475,13 +475,13 @@ if (isset($_GET['asset_id'])) {
                                 ?>
 
                                 <tr>
-                                    <td><a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><span class="badge rounded-pill bg-label-secondary p-3"><?php echo "$ticket_prefix$ticket_number"; ?></span></a></td>
-                                    <td><a href="ticket.php?ticket_id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a></td>
-                                    <td><?php echo $ticket_priority_display; ?></td>
-                                    <td><?php echo $ticket_status_display; ?></td>
-                                    <td><?php echo $ticket_assigned_to_display; ?></td>
-                                    <td><?php echo $ticket_updated_at_display; ?></td>
-                                    <td><?php echo $ticket_created_at; ?></td>
+                                    <td><a href="ticket.php?ticket_id=<?= $ticket_id; ?>"><span class="badge rounded-pill bg-label-secondary p-3"><?= "$ticket_prefix$ticket_number"; ?></span></a></td>
+                                    <td><a href="ticket.php?ticket_id=<?= $ticket_id; ?>"><?= $ticket_subject; ?></a></td>
+                                    <td><?= $ticket_priority_display; ?></td>
+                                    <td><?= $ticket_status_display; ?></td>
+                                    <td><?= $ticket_assigned_to_display; ?></td>
+                                    <td><?= $ticket_updated_at_display; ?></td>
+                                    <td><?= $ticket_created_at; ?></td>
                                 </tr>
 
                                 <?php

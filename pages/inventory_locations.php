@@ -35,7 +35,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="input-group">
-                            <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search <?php echo $product?>">
+                            <input type="search" class="form-control" name="q" value="<?php if (isset($q)) { echo stripslashes(nullable_htmlentities($q)); } ?>" placeholder="Search <?= $product?>">
                             <div class="input-group-append">
                                 <button class="btn btn-label-primary"><i class="fa fa-search"></i></button>
                             </div>
@@ -72,10 +72,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=vendor_name&order=<?php echo $disp; ?>">Name</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Description</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">User Responsible</a></th>
-                            <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=category_name&order=<?php echo $disp; ?>">Total Quantity</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=vendor_name&order=<?= $disp; ?>">Name</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Description</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">User Responsible</a></th>
+                            <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=category_name&order=<?= $disp; ?>">Total Quantity</a></th>
                             <th class="text-center">Manage Inventory</th>
                         </tr>
                         </thead>
@@ -97,16 +97,16 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <tr>
                                 <td class="bg-light pr-0">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="selected[]" value="<?php echo $location_id; ?>">
+                                        <input class="form-check-input" type="checkbox" name="selected[]" value="<?= $location_id; ?>">
                                     </div>
                                 </td>
-                                <td><?php echo $location_name; ?></td>
-                                <td><?php echo $location_description; ?></td>
-                                <td><?php echo $location_user; ?></td>
-                                <td><?php echo $location_qty; ?></td>
+                                <td><?= $location_name; ?></td>
+                                <td><?= $location_description; ?></td>
+                                <td><?= $location_user; ?></td>
+                                <td><?= $location_qty; ?></td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="inventory_location_manage.php?inventory_location_id=<?php echo $location_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="inventory_location_manage.php?inventory_location_id=<?= $location_id; ?>" class="btn btn-label-primary btn-sm"><i class="fas fa-fw fa-edit"></i></a>
                                     </div>
                                 </td>
 

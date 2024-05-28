@@ -27,7 +27,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-map-marker-alt mr-2"></i>Locations</h3>
         <div class="card-tools">
             <div class="btn-group">
-                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_location_add_modal.php?client_id=<?php echo $client_id; ?>">
+                <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_location_add_modal.php?client_id=<?= $client_id; ?>">
                     <i class="fas fa-plus mr-2"></i>New Location
                 </button>
                 <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
@@ -45,8 +45,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     </div>
     <div class="card-body">
         <form autocomplete="off">
-            <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-            <input type="hidden" name="archived" value="<?php echo $archived; ?>">
+            <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+            <input type="hidden" name="archived" value="<?= $archived; ?>">
             <div class="row">
 
                 <div class="col-md-4">
@@ -61,9 +61,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                 <div class="col-md-8">
                     <div class="float-right">
                         <?php if($archived == 1){ ?>
-                        <a href="?client_id=<?php echo $client_id; ?>&archived=0" class="btn btn-label-primary"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
+                        <a href="?client_id=<?= $client_id; ?>&archived=0" class="btn btn-label-primary"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
                         <?php } else { ?>
-                        <a href="?client_id=<?php echo $client_id; ?>&archived=1" class="btn btn-default"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
+                        <a href="?client_id=<?= $client_id; ?>&archived=1" class="btn btn-default"><i class="fa fa-fw fa-archive mr-2"></i>Archived</a>
                         <?php } ?>
                     </div>
                 </div>
@@ -120,37 +120,37 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     ?>
                     <tr>
                         <td>
-                            <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editLocationModal<?php echo $location_id; ?>">
+                            <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editLocationModal<?= $location_id; ?>">
                                 <div class="media">
                                     <i class="fa fa-fw fa-2x fa-map-marker-alt mr-3"></i>
                                     <div class="media-body">
-                                        <div <?php if($location_primary) { echo "class='text-bold'"; } ?>><?php echo $location_name; ?></div>
-                                        <div><small class="text-secondary"><?php echo $location_description; ?></small></div>
-                                        <div><?php echo $location_primary_display; ?></div>
+                                        <div <?php if($location_primary) { echo "class='text-bold'"; } ?>><?= $location_name; ?></div>
+                                        <div><small class="text-secondary"><?= $location_description; ?></small></div>
+                                        <div><?= $location_primary_display; ?></div>
                                     </div>
                                 </div>
                             </a>
                         </td>
-                        <td><a href="//maps.<?php echo $session_map_source; ?>.com?q=<?php echo "$location_address $location_zip"; ?>" target="_blank"><?php echo $location_address; ?><br><?php echo "$location_city $location_state $location_zip"; ?></a></td>
-                        <td><?php echo $location_phone_display; ?></td>
-                        <td><?php echo $location_hours_display; ?></td>
+                        <td><a href="//maps.<?= $session_map_source; ?>.com?q=<?= "$location_address $location_zip"; ?>" target="_blank"><?= $location_address; ?><br><?= "$location_city $location_state $location_zip"; ?></a></td>
+                        <td><?= $location_phone_display; ?></td>
+                        <td><?= $location_hours_display; ?></td>
                         <td>
                             <div class="dropdown dropleft text-center">
                                 <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_location_edit_modal.php?location_id=<?php echo $location_id; ?>">
+                                    <a class="dropdown-item loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_location_edit_modal.php?location_id=<?= $location_id; ?>">
                                         <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                     </a>
                                     <?php if ($session_user_role == 3 && $location_primary == 0) { ?>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_location=<?php echo $location_id; ?>">
+                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_location=<?= $location_id; ?>">
                                             <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                         </a>
                                         <?php if ($config_destructive_deletes_enable) { ?>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_location=<?php echo $location_id; ?>">
+                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_location=<?= $location_id; ?>">
                                             <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                         </a>
                                         <?php } ?>

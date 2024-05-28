@@ -27,7 +27,7 @@ $client_id = isset($_GET['client_id']) ? intval($_GET['client_id']) : null;
                     </div>
 
                     <?php if (isset($_GET['client_id'])) { ?>
-                        <input type="hidden" name="client" value="<?php echo $client_id; ?>">
+                        <input type="hidden" name="client" value="<?= $client_id; ?>">
                     <?php }else{ ?>
 
                         <div class="form-group">
@@ -45,7 +45,7 @@ $client_id = isset($_GET['client_id']) ? intval($_GET['client_id']) : null;
                                         $client_id = intval($row['client_id']);
                                         $client_name = nullable_htmlentities($row['client_name']);
                                         ?>
-                                        <option value="<?php echo $client_id; ?>"><?php echo "$client_name"; ?></option>
+                                        <option value="<?= $client_id; ?>"><?= "$client_name"; ?></option>
 
                                         <?php
                                     }
@@ -71,7 +71,7 @@ $client_id = isset($_GET['client_id']) ? intval($_GET['client_id']) : null;
                                     $category_id = intval($row['category_id']);
                                     $category_name = nullable_htmlentities($row['category_name']);
                                     ?>
-                                    <option value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
+                                    <option value="<?= $category_id; ?>"><?= $category_name; ?></option>
 
                                     <?php
                                 }
@@ -89,7 +89,7 @@ $client_id = isset($_GET['client_id']) ? intval($_GET['client_id']) : null;
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                             </div>
-                            <input type="date" class="form-control" name="date" max="2999-12-31" value="<?php echo date("Y-m-d"); ?>" required>
+                            <input type="date" class="form-control" name="date" max="2999-12-31" value="<?= date("Y-m-d"); ?>" required>
                         </div>
                     </div>
 

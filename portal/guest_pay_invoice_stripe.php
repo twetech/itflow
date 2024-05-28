@@ -115,7 +115,7 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
 
         <!-- Show invoice details -->
         <div class="col-sm">
-            <h3>Payment for Invoice: <?php echo $invoice_prefix . $invoice_number ?></h3>
+            <h3>Payment for Invoice: <?= $invoice_prefix . $invoice_number ?></h3>
             <br>
                 <div class="card-datatable table-responsive container-fluid  pt-0">               
                     <table id=responsive class="responsive table">
@@ -138,9 +138,9 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
                         ?>
 
                         <tr>
-                            <td><?php echo $item_name; ?></td>
-                            <td class="text-center"><?php echo $item_quantity; ?></td>
-                            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $item_total, $invoice_currency_code); ?></td>
+                            <td><?= $item_name; ?></td>
+                            <td class="text-center"><?= $item_quantity; ?></td>
+                            <td class="text-right"><?= numfmt_format_currency($currency_format, $item_total, $invoice_currency_code); ?></td>
                         </tr>
 
                     <?php }
@@ -149,7 +149,7 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
                         <tr>
                             <td>Gateway Fees</td>
                             <td class="text-center">-</td>
-                            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $gateway_fee, $invoice_currency_code); ?></td>
+                            <td class="text-right"><?= numfmt_format_currency($currency_format, $gateway_fee, $invoice_currency_code); ?></td>
                         </tr>
                     <?php } ?>
 
@@ -162,7 +162,7 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
             <i><?php if ($invoice_discount > 0){ echo "Discount: " . numfmt_format_currency($currency_format, $invoice_discount, $invoice_currency_code); } ?>
             </i>
             <br>
-            <i><?php if (intval($amount_paid) > 0) { ?> Already paid: <?php echo numfmt_format_currency($currency_format, $amount_paid, $invoice_currency_code); } ?></i>
+            <i><?php if (intval($amount_paid) > 0) { ?> Already paid: <?= numfmt_format_currency($currency_format, $amount_paid, $invoice_currency_code); } ?></i>
         </div>
         <!-- End invoice details-->
 
@@ -170,10 +170,10 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
         <div class="col-sm offset-sm-1">
             <h1>Payment Total:</h1>
             <form id="payment-form">
-                <h1><?php echo numfmt_format_currency($currency_format, $balance_to_pay, $invoice_currency_code); ?></h1>
-                <input type="hidden" id="stripe_publishable_key" value="<?php echo $config_stripe_publishable ?>">
-                <input type="hidden" id="invoice_id" value="<?php echo $invoice_id ?>">
-                <input type="hidden" id="url_key" value="<?php echo $invoice_url_key ?>">
+                <h1><?= numfmt_format_currency($currency_format, $balance_to_pay, $invoice_currency_code); ?></h1>
+                <input type="hidden" id="stripe_publishable_key" value="<?= $config_stripe_publishable ?>">
+                <input type="hidden" id="invoice_id" value="<?= $invoice_id ?>">
+                <input type="hidden" id="url_key" value="<?= $invoice_url_key ?>">
                 <br>
                 <div id="link-authentication-element">
                     <!--Stripe.js injects the Link Authentication Element-->

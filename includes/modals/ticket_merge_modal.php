@@ -1,16 +1,16 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
-<div class="modal" id="mergeTicketModal<?php echo $ticket_id; ?>" tabindex="-1">
+<div class="modal" id="mergeTicketModal<?= $ticket_id; ?>" tabindex="-1">
     <div class="modal-dialog modal-md">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-clone mr-2"></i>Merge & Close <?php echo "$ticket_prefix$ticket_number"; ?> into another ticket</h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-clone mr-2"></i>Merge & Close <?= "$ticket_prefix$ticket_number"; ?> into another ticket</h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" id="current_ticket_id" name="ticket_id" value="<?php echo $ticket_id; ?>">
+                <input type="hidden" id="current_ticket_id" name="ticket_id" value="<?= $ticket_id; ?>">
 
                     <div class="form-group">
                         <label>Ticket number to merge this ticket into <strong class="text-danger">*</strong></label>

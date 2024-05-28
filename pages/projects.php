@@ -145,17 +145,17 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         <tr>
                             <td>
-                                <a class="text-dark" href="project_details.php?project_id=<?php echo $project_id; ?>">
-                                    <?php echo "$project_prefix$project_number"; ?>
+                                <a class="text-dark" href="project_details.php?project_id=<?= $project_id; ?>">
+                                    <?= "$project_prefix$project_number"; ?>
                                 </a>
                             </td>
                             <td>
-                                <a class="text-dark" href="project_details.php?project_id=<?php echo $project_id; ?>">
+                                <a class="text-dark" href="project_details.php?project_id=<?= $project_id; ?>">
                                     <div class="media">
                                         <i class="fa fa-fw fa-2x fa-project-diagram mr-3"></i>
                                         <div class="media-body">
-                                            <div><?php echo $project_name; ?></div>
-                                            <div><small class="text-secondary"><?php echo $project_description; ?></small></div>
+                                            <div><?= $project_name; ?></div>
+                                            <div><small class="text-secondary"><?= $project_description; ?></small></div>
                                         </div>
                                     </div>
                                 </a>
@@ -164,27 +164,27 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 <?php if($ticket_count) { ?>
                                 <div class="progress" style="height: 20px;">
                                     <i class="fa fas fa-fw fa-life-ring mr-2"></i>
-                                    <div class="progress-bar bg-primary" style="width: <?php echo $tickets_closed_percent; ?>%;"><?php echo $closed_ticket_count; ?> / <?php echo $ticket_count; ?></div>
+                                    <div class="progress-bar bg-primary" style="width: <?= $tickets_closed_percent; ?>%;"><?= $closed_ticket_count; ?> / <?= $ticket_count; ?></div>
                                 </div>
                                 <?php } else { echo "<div>-</div>"; } ?>
                                 <?php if($task_count) { ?>
                                 <div class="progress mt-2" style="height: 20px;">
                                     <i class="fa fas fa-fw fa-tasks mr-2"></i>
-                                    <div class="progress-bar bg-secondary" style="width: <?php echo $tasks_completed_percent; ?>%;"><?php echo $completed_task_count; ?> / <?php echo $task_count; ?></div>
+                                    <div class="progress-bar bg-secondary" style="width: <?= $tasks_completed_percent; ?>%;"><?= $completed_task_count; ?> / <?= $task_count; ?></div>
                                 </div>
                                 <?php } ?>
                             </td>
-                            <td><?php echo $project_due; ?></td>
+                            <td><?= $project_due; ?></td>
                             <?php if ($status == 1) { ?>
-                            <td><?php echo $project_completed_at_display; ?></td>
+                            <td><?= $project_completed_at_display; ?></td>
                             <?php } ?>
-                            <td><?php echo $project_manager_display; ?></td>
+                            <td><?= $project_manager_display; ?></td>
                             <td>
-                                <a href="client_tickets.php?client_id=<?php echo $client_id; ?>">
-                                    <?php echo $client_name; ?>
+                                <a href="client_tickets.php?client_id=<?= $client_id; ?>">
+                                    <?= $client_name; ?>
                                 </a>
                             </td>
-                            <td><?php echo $project_created_at_display; ?></td>
+                            <td><?= $project_created_at_display; ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
                                     <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="dropdown">
@@ -192,12 +192,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     </button>
                                     <div class="dropdown-menu">
                                         <?php if(empty($project_completed_at)) { ?>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editProjectModal<?php echo $project_id; ?>">
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editProjectModal<?= $project_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <div class="dropdown-divider"></div>
                                         <?php } ?>
-                                        <a class="dropdown-item text-danger confirm-link" href="post.php?delete_project=<?php echo $project_id; ?>">
+                                        <a class="dropdown-item text-danger confirm-link" href="post.php?delete_project=<?= $project_id; ?>">
                                             <i class="fas fa-fw fa-archive mr-2"></i>Delete
                                         </a>
                                     </div>

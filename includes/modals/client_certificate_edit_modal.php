@@ -12,7 +12,7 @@
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
                 <input type="hidden" name="certificate_id" value="" id="editCertificateId">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
 
                     <div class="form-group">
                         <label>Certificate Name <strong class="text-danger">*</strong></label>

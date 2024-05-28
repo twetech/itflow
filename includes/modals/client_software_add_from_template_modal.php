@@ -10,7 +10,7 @@
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
 
                     <label>Template</label>
                     <div class="form-group">
@@ -27,7 +27,7 @@
                                     $software_template_name = nullable_htmlentities($row['software_name']);
 
                                     ?>
-                                    <option value="<?php echo $software_template_id ?>"><?php echo $software_template_name; ?></option>
+                                    <option value="<?= $software_template_id ?>"><?= $software_template_name; ?></option>
                                 <?php } ?>
 
                             </select>

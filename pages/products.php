@@ -79,12 +79,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                         ?>
                         <tr>
-                            <th><a href="#" class="text-dark" data-bs-toggle="modal" data-bs-target="#editProductModal<?php echo $product_id; ?>"><?php echo $product_name; ?></a></th>
-                            <td><?php echo $category_name; ?></td>
-                            <td><?php echo $product_description_display; ?></td>
-                            <td><?php echo $tax_name_display; ?></td>
-                            <td><?php echo $tax_percent; ?>%</td>
-                            <td class="text-right"><?php echo numfmt_format_currency($currency_format, $product_price, $product_currency_code); ?></td>
+                            <th><a href="#" class="text-dark" data-bs-toggle="modal" data-bs-target="#editProductModal<?= $product_id; ?>"><?= $product_name; ?></a></th>
+                            <td><?= $category_name; ?></td>
+                            <td><?= $product_description_display; ?></td>
+                            <td><?= $tax_name_display; ?></td>
+                            <td><?= $tax_percent; ?>%</td>
+                            <td class="text-right"><?= numfmt_format_currency($currency_format, $product_price, $product_currency_code); ?></td>
                             <td class="text-right">
                                 <?php
                                 if ($product_price != 0) {

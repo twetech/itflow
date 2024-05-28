@@ -21,7 +21,7 @@ if (isset($_GET['client_id'])) {
 
             <form action="/post.php" method="post" autocomplete="off">
 
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
 
                 <div class="modal-body bg-white">
 
@@ -81,7 +81,7 @@ if (isset($_GET['client_id'])) {
                                     <select class="form-control select2" id='select2' name="type" required>
                                         <option value="">- Type -</option>
                                         <?php foreach($asset_types_array as $asset_type => $asset_icon) { ?>
-                                            <option><?php echo $asset_type; ?></option>
+                                            <option><?= $asset_type; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -153,7 +153,7 @@ if (isset($_GET['client_id'])) {
                                             $network = nullable_htmlentities($row['network']);
 
                                             ?>
-                                            <option value="<?php echo $network_id; ?>"><?php echo $network_name; ?> - <?php echo $network; ?></option>
+                                            <option value="<?= $network_id; ?>"><?= $network_name; ?> - <?= $network; ?></option>
 
                                         <?php } ?>
                                     </select>
@@ -234,7 +234,7 @@ if (isset($_GET['client_id'])) {
                                             $location_id = intval($row['location_id']);
                                             $location_name = nullable_htmlentities($row['location_name']);
                                             ?>
-                                            <option value="<?php echo $location_id; ?>"><?php echo $location_name; ?></option>
+                                            <option value="<?= $location_id; ?>"><?= $location_name; ?></option>
                                         <?php } ?>
 
                                     </select>
@@ -256,7 +256,7 @@ if (isset($_GET['client_id'])) {
                                             $contact_id = intval($row['contact_id']);
                                             $contact_name = nullable_htmlentities($row['contact_name']);
                                             ?>
-                                            <option value="<?php echo $contact_id; ?>"><?php echo $contact_name; ?></option>
+                                            <option value="<?= $contact_id; ?>"><?= $contact_name; ?></option>
 
                                         <?php } ?>
 
@@ -273,7 +273,7 @@ if (isset($_GET['client_id'])) {
                                     <select class="form-control select2" id='select2' name="status">
                                         <option value="">- Status -</option>
                                         <?php foreach($asset_status_array as $asset_status) { ?>
-                                            <option><?php echo $asset_status; ?></option>
+                                            <option><?= $asset_status; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -298,7 +298,7 @@ if (isset($_GET['client_id'])) {
                                             $vendor_id = intval($row['vendor_id']);
                                             $vendor_name = nullable_htmlentities($row['vendor_name']);
                                             ?>
-                                            <option value="<?php echo $vendor_id; ?>"><?php echo $vendor_name; ?></option>
+                                            <option value="<?= $vendor_id; ?>"><?= $vendor_name; ?></option>
 
                                         <?php } ?>
                                     </select>

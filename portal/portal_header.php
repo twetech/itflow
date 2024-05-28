@@ -64,7 +64,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-print-none">
     <div class="container">
-        <a class="navbar-brand" href="index.php"><?php echo nullable_htmlentities($session_company_name); ?></a>
+        <a class="navbar-brand" href="index.php"><?= nullable_htmlentities($session_company_name); ?></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -96,7 +96,7 @@
             <ul class="nav navbar-nav pull-right">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                        <?php echo stripslashes(nullable_htmlentities($session_contact_name)); ?>
+                        <?= stripslashes(nullable_htmlentities($session_contact_name)); ?>
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="profile.php"><i class="fas fa-fw fa-user mr-2"></i>Account</a>
@@ -117,19 +117,19 @@
     <div class="row mb-3 d-print-none">
         <div class="col-md-1 text-center">
             <?php if (!empty($session_contact_photo)) { ?>
-                <img src="<?php echo "..//uploads/clients/$session_client_id/$session_contact_photo"; ?>" alt="..." height="50" width="50" class="rounded-circle mb-3img-responsive">
+                <img src="<?= "..//uploads/clients/$session_client_id/$session_contact_photo"; ?>" alt="..." height="50" width="50" class="rounded-circle mb-3img-responsive">
 
             <?php } else { ?>
 
                 <span class="fa-stack fa-2x rounded-left">
                     <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-                    <span class="fa fa-stack-1x text-white"><?php echo $session_contact_initials; ?></span>
+                    <span class="fa fa-stack-1x text-white"><?= $session_contact_initials; ?></span>
                 </span>
             <?php } ?>
         </div>
 
         <div class="col-md-11 p-0">
-            <h4>Welcome, <strong><?php echo stripslashes(nullable_htmlentities($session_contact_name)); ?></strong>!</h4>
+            <h4>Welcome, <strong><?= stripslashes(nullable_htmlentities($session_contact_name)); ?></strong>!</h4>
             <hr>
         </div>
     </div>

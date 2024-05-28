@@ -14,28 +14,28 @@ $user_token = nullable_htmlentities($row['user_token']);
 $user_config_force_mfa = nullable_htmlentities($row['user_config_force_mfa']);
 ?>
 
-<div class="modal" id="editUserModal<?php echo $user_id; ?>" tabindex="-1">
+<div class="modal" id="editUserModal<?= $user_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fas fa-fw fa-user-edit mr-2"></i>Editing user:
-                    <strong><?php echo $user_name; ?></strong></h5>
+                    <strong><?= $user_name; ?></strong></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
-                <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="user_id" value="<?= $user_id; ?>">
                 <div class="modal-body bg-white">
 
                     <center class="mb-3">
                         <?php if (!empty($user_avatar)) { ?>
-                            <img class="img-fluid" src="<?php echo "/uploads/users/$user_id/$user_avatar"; ?>">
+                            <img class="img-fluid" src="<?= "/uploads/users/$user_id/$user_avatar"; ?>">
                         <?php } else { ?>
                             <span class="fa-stack fa-4x">
               <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-              <span class="fa fa-stack-1x text-white"><?php echo $user_initials; ?></span>
+              <span class="fa fa-stack-1x text-white"><?= $user_initials; ?></span>
             </span>
                         <?php } ?>
                     </center>
@@ -47,7 +47,7 @@ $user_config_force_mfa = nullable_htmlentities($row['user_config_force_mfa']);
                                 <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                             </div>
                             <input type="text" class="form-control" name="name" placeholder="Full Name"
-                                   value="<?php echo $user_name; ?>" required>
+                                   value="<?= $user_name; ?>" required>
                         </div>
                     </div>
 
@@ -58,7 +58,7 @@ $user_config_force_mfa = nullable_htmlentities($row['user_config_force_mfa']);
                                 <span class="input-group-text"><i class="fa fa-fw fa-envelope"></i></span>
                             </div>
                             <input type="email" class="form-control" name="email" placeholder="Email Address"
-                                   value="<?php echo $user_email; ?>" required>
+                                   value="<?= $user_email; ?>" required>
                         </div>
                     </div>
 
@@ -107,8 +107,8 @@ $user_config_force_mfa = nullable_htmlentities($row['user_config_force_mfa']);
 
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="forceMFACheckBox<?php echo $user_id; ?>" name="force_mfa" value="1" <?php if($user_config_force_mfa == 1){ echo "checked"; } ?>>
-                            <label for="forceMFACheckBox<?php echo $user_id; ?>" class="custom-control-label">
+                            <input class="custom-control-input" type="checkbox" id="forceMFACheckBox<?= $user_id; ?>" name="force_mfa" value="1" <?php if($user_config_force_mfa == 1){ echo "checked"; } ?>>
+                            <label for="forceMFACheckBox<?= $user_id; ?>" class="custom-control-label">
                                 Force MFA
                             </label>
                         </div>

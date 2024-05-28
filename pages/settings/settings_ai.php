@@ -9,7 +9,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
     </div>
     <div class="card-body">
         <form action="/post.php" method="post" autocomplete="off">
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
             <div class="form-group">
                 <label>AI Provider</label>
@@ -32,7 +32,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-fw fa-robot"></i></span>
                     </div>
-                    <input type="text" class="form-control" name="model" value="<?php echo nullable_htmlentities($config_ai_model); ?>" placeholder="ex gpt-4">
+                    <input type="text" class="form-control" name="model" value="<?= nullable_htmlentities($config_ai_model); ?>" placeholder="ex gpt-4">
                 </div>
             </div>
 
@@ -42,7 +42,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-fw fa-globe"></i></span>
                     </div>
-                    <input type="url" class="form-control" name="url" value="<?php echo nullable_htmlentities($config_ai_url); ?>" placeholder="ex https://ai.company.ext/api">
+                    <input type="url" class="form-control" name="url" value="<?= nullable_htmlentities($config_ai_url); ?>" placeholder="ex https://ai.company.ext/api">
                 </div>
             </div>
 
@@ -52,7 +52,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-fw fa-key"></i></span>
                     </div>
-                    <input type="text" class="form-control" name="api_key" value="<?php echo nullable_htmlentities($config_ai_api_key); ?>" placeholder="Enter API key here">
+                    <input type="text" class="form-control" name="api_key" value="<?= nullable_htmlentities($config_ai_api_key); ?>" placeholder="Enter API key here">
                 </div>
             </div>
 

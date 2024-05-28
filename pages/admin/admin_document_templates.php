@@ -55,13 +55,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
           <tr>
             <th>
-              <a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=document_name&order=<?php echo $disp; ?>">Template Name</a>
+              <a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=document_name&order=<?= $disp; ?>">Template Name</a>
             </th>
             <th>
-              <a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=document_created_at&order=<?php echo $disp; ?>">Created</a>
+              <a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=document_created_at&order=<?= $disp; ?>">Created</a>
             </th>
             <th>
-              <a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=document_updated_at&order=<?php echo $disp; ?>">Updated</a>
+              <a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=document_updated_at&order=<?= $disp; ?>">Updated</a>
             </th>
             <th class="text-center">
               Action
@@ -85,26 +85,26 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
           <tr>
             <td>
-              <a class="text-bold" href="admin_document_template_details.php?document_id=<?php echo $document_id; ?>"><i class="fas fa-fw fa-file-alt text-dark"></i> <?php echo $document_name; ?></a>
-              <div class="mt-1 text-secondary"><?php echo $document_description; ?></div>
+              <a class="text-bold" href="admin_document_template_details.php?document_id=<?= $document_id; ?>"><i class="fas fa-fw fa-file-alt text-dark"></i> <?= $document_name; ?></a>
+              <div class="mt-1 text-secondary"><?= $document_description; ?></div>
             </td>
             <td>
-              <?php echo $document_created_at; ?>
-              <div class="text-secondary"><?php echo $document_created_by_name; ?></div>
+              <?= $document_created_at; ?>
+              <div class="text-secondary"><?= $document_created_by_name; ?></div>
             </td>
-            <td><?php echo $document_updated_at; ?></td>
+            <td><?= $document_updated_at; ?></td>
             <td>
               <div class="dropdown dropleft text-center">
                 <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                   <i class="fas fa-ellipsis-h"></i>
                 </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editDocumentTemplateModal<?php echo $document_id; ?>">
+                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editDocumentTemplateModal<?= $document_id; ?>">
                     <i class="fas fa-fw fa-edit mr-2"></i>Edit
                   </a>
                   <?php if ($session_user_role == 3) { ?>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger text-bold" href="/post.php?delete_document=<?php echo $document_id; ?>">
+                    <a class="dropdown-item text-danger text-bold" href="/post.php?delete_document=<?= $document_id; ?>">
                       <i class="fas fa-fw fa-trash mr-2"></i>Delete
                     </a>
                   <?php } ?>

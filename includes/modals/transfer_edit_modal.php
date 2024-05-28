@@ -1,5 +1,5 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
-<div class="modal" id="editTransferModal<?php echo $transfer_id; ?>" tabindex="-1">
+<div class="modal" id="editTransferModal<?= $transfer_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
@@ -14,9 +14,9 @@
                 <div class="modal-body bg-white">
 
                     <div class="form-row">
-                <input type="hidden" name="expense_id" value="<?php echo $expense_id; ?>">
-                <input type="hidden" name="revenue_id" value="<?php echo $revenue_id; ?>">
-                <input type="hidden" name="transfer_id" value="<?php echo $transfer_id; ?>">
+                <input type="hidden" name="expense_id" value="<?= $expense_id; ?>">
+                <input type="hidden" name="revenue_id" value="<?= $revenue_id; ?>">
+                <input type="hidden" name="transfer_id" value="<?= $transfer_id; ?>">
 
                         <div class="form-group col-sm">
                             <label>Date <strong class="text-danger">*</strong></label>
@@ -24,7 +24,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                 </div>
-                                <input type="date" class="form-control" name="date" max="2999-12-31" value="<?php echo $transfer_date; ?>" required>
+                                <input type="date" class="form-control" name="date" max="2999-12-31" value="<?= $transfer_date; ?>" required>
                             </div>
                         </div>
 
@@ -34,7 +34,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-dollar-sign"></i></span>
                                 </div>
-                                <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="amount" placeholder="0.00" value="<?php echo number_format($transfer_amount, 2, '.', ''); ?>" required>
+                                <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="amount" placeholder="0.00" value="<?= number_format($transfer_amount, 2, '.', ''); ?>" required>
                             </div>
                         </div>
 
@@ -76,7 +76,7 @@
                                     $balance = $opening_balance + $total_payments + $total_revenues - $total_expenses;
 
                                     ?>
-                                    <option <?php if ($transfer_account_from == $account_id_select) { echo "selected"; } ?> value="<?php echo $account_id_select; ?>"><?php echo "$account_archived_display$account_name_select"; ?> [$<?php echo number_format($balance, 2); ?>]</option>
+                                    <option <?php if ($transfer_account_from == $account_id_select) { echo "selected"; } ?> value="<?= $account_id_select; ?>"><?= "$account_archived_display$account_name_select"; ?> [$<?= number_format($balance, 2); ?>]</option>
                                     <?php
                                 }
 
@@ -120,7 +120,7 @@
                                     $balance = $opening_balance + $total_payments + $total_revenues - $total_expenses;
 
                                     ?>
-                                    <option <?php if ($transfer_account_to == $account_id2) { echo "selected"; } ?> value="<?php echo $account_id2; ?>"><?php echo "$account_archived_display$account_name"; ?> [$<?php echo number_format($balance, 2); ?>]</option>
+                                    <option <?php if ($transfer_account_to == $account_id2) { echo "selected"; } ?> value="<?= $account_id2; ?>"><?= "$account_archived_display$account_name"; ?> [$<?= number_format($balance, 2); ?>]</option>
                                     <?php
                                 }
 
@@ -130,7 +130,7 @@
                     </div>
 
                     <div class="form-group">
-                        <textarea class="form-control" rows="5" name="notes" placeholder="Enter some notes"><?php echo $transfer_notes; ?></textarea>
+                        <textarea class="form-control" rows="5" name="notes" placeholder="Enter some notes"><?= $transfer_notes; ?></textarea>
                     </div>
 
                     <div class="form-group">
@@ -147,7 +147,7 @@
                                 while ($row = mysqli_fetch_array($sql_transfer_method_select)) {
                                     $category_name_select = nullable_htmlentities($row['category_name']);
                                 ?>
-                                    <option <?php if($transfer_method == $category_name_select) { echo "selected"; } ?> ><?php echo $category_name_select; ?></option>
+                                    <option <?php if($transfer_method == $category_name_select) { echo "selected"; } ?> ><?= $category_name_select; ?></option>
 
                                 <?php
                                 }

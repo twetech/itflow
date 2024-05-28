@@ -1,5 +1,5 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
-<div class="modal" id="editRevenueModal<?php echo $revenue_id; ?>" tabindex="-1">
+<div class="modal" id="editRevenueModal<?= $revenue_id; ?>" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content bg-dark">
             <div class="modal-header">
@@ -10,7 +10,7 @@
             </div>
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
-                <input type="hidden" name="revenue_id" value="<?php echo $revenue_id; ?>">
+                <input type="hidden" name="revenue_id" value="<?= $revenue_id; ?>">
 
                     <div class="form-row">
 
@@ -20,7 +20,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                 </div>
-                                <input type="date" class="form-control" name="date" max="2999-12-31" value="<?php echo $revenue_date; ?>" required>
+                                <input type="date" class="form-control" name="date" max="2999-12-31" value="<?= $revenue_date; ?>" required>
                             </div>
                         </div>
 
@@ -33,7 +33,7 @@
                                 <select class="form-control select2" id='select2' name="currency_code" required>
                                     <option value="">- Currency -</option>
                                     <?php foreach($currencies_array as $currency_code => $currency_name) { ?>
-                                        <option <?php if ($revenue_currency_code == $currency_code) { echo "selected"; } ?> value="<?php echo $currency_code; ?>"><?php echo "$currency_code - $currency_name"; ?></option>
+                                        <option <?php if ($revenue_currency_code == $currency_code) { echo "selected"; } ?> value="<?= $currency_code; ?>"><?= "$currency_code - $currency_name"; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -45,7 +45,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-dollar-sign"></i></span>
                                 </div>
-                                <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="amount" value="<?php echo number_format($revenue_amount, 2, '.', ''); ?>" placeholder="0.00" required>
+                                <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="amount" value="<?= number_format($revenue_amount, 2, '.', ''); ?>" placeholder="0.00" required>
                             </div>
                         </div>
 
@@ -90,7 +90,7 @@
                                         $balance = $opening_balance + $total_payments + $total_revenues - $total_expenses;
 
                                         ?>
-                                        <option <?php if ($account_id == $account_id_select) { echo "selected"; } ?> value="<?php echo $account_id_select; ?>"><?php echo $account_archived_display; ?> <?php echo $account_name_select; ?> [ <?php echo numfmt_format_currency($currency_format, $balance, $account_currency_code_select); ?> ]</option>
+                                        <option <?php if ($account_id == $account_id_select) { echo "selected"; } ?> value="<?= $account_id_select; ?>"><?= $account_archived_display; ?> <?= $account_name_select; ?> [ <?= numfmt_format_currency($currency_format, $balance, $account_currency_code_select); ?> ]</option>
 
                                         <?php
                                     }
@@ -114,7 +114,7 @@
                                         $category_id_select = intval($row['category_id']);
                                         $category_name = nullable_htmlentities($row['category_name']);
                                         ?>
-                                        <option <?php if ($category_id_select == $category_id) { echo "selected"; } ?> value="<?php echo $category_id_select; ?>"><?php echo $category_name; ?></option>
+                                        <option <?php if ($category_id_select == $category_id) { echo "selected"; } ?> value="<?= $category_id_select; ?>"><?= $category_name; ?></option>
 
                                         <?php
                                     }
@@ -130,7 +130,7 @@
 
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" rows="4" name="description"><?php echo $revenue_description; ?></textarea>
+                        <textarea class="form-control" rows="4" name="description"><?= $revenue_description; ?></textarea>
                     </div>
 
                     <div class="form-row">
@@ -149,7 +149,7 @@
                                     while ($row = mysqli_fetch_array($sql_categories)) {
                                         $category_name_select = nullable_htmlentities($row['category_name']);
                                         ?>
-                                        <option <?php if ($revenue_payment_method == $category_name_select) { echo "selected"; } ?>><?php echo "$category_name_select"; ?></option>
+                                        <option <?php if ($revenue_payment_method == $category_name_select) { echo "selected"; } ?>><?= "$category_name_select"; ?></option>
 
                                         <?php
                                     }
@@ -164,7 +164,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-fw fa-file-alt"></i></span>
                                 </div>
-                                <input type="text" class="form-control" name="reference" placeholder="Check #, trans #, etc" value="<?php echo $revenue_reference; ?>">
+                                <input type="text" class="form-control" name="reference" placeholder="Check #, trans #, etc" value="<?= $revenue_reference; ?>">
                             </div>
                         </div>
 

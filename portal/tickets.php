@@ -4,7 +4,7 @@
  * Landing / Home page for the client portal
  */
 
-header("Content-Security-Policy: default-src 'self' fonts.googleapis.com fonts.gstatic.com");
+
 
 require_once "/var/www/portal.twe.tech/includes/inc_portal.php";
 
@@ -70,12 +70,12 @@ $total_tickets = intval($row['total_tickets']);
 
                 <tr>
                     <td>
-                        <a href="ticket.php?id=<?php echo $ticket_id; ?>"><?php echo "$ticket_prefix$ticket_number"; ?></a>
+                        <a href="ticket.php?id=<?= $ticket_id; ?>"><?= "$ticket_prefix$ticket_number"; ?></a>
                     </td>
                     <td>
-                        <a href="ticket.php?id=<?php echo $ticket_id; ?>"><?php echo $ticket_subject; ?></a>
+                        <a href="ticket.php?id=<?= $ticket_id; ?>"><?= $ticket_subject; ?></a>
                     </td>
-                    <td><?php echo $ticket_status; ?></td>
+                    <td><?= $ticket_status; ?></td>
                 </tr>
             <?php
             }
@@ -91,11 +91,11 @@ $total_tickets = intval($row['total_tickets']);
 
         <hr>
 
-        <a href="?status=Open" class="btn btn-danger btn-block p-3 mb-3 text-left">My Open tickets | <strong><?php echo $total_tickets_open ?></strong></a>
+        <a href="?status=Open" class="btn btn-danger btn-block p-3 mb-3 text-left">My Open tickets | <strong><?= $total_tickets_open ?></strong></a>
 
-        <a href="?status=Closed" class="btn btn-success btn-block p-3 mb-3 text-left">Resolved tickets | <strong><?php echo $total_tickets_closed ?></strong></a>
+        <a href="?status=Closed" class="btn btn-success btn-block p-3 mb-3 text-left">Resolved tickets | <strong><?= $total_tickets_closed ?></strong></a>
 
-        <a href="?status=%" class="btn btn-light btn-block p-3 mb-3 text-left">All my tickets | <strong><?php echo $total_tickets ?></strong></a>
+        <a href="?status=%" class="btn btn-light btn-block p-3 mb-3 text-left">All my tickets | <strong><?= $total_tickets ?></strong></a>
         <?php
         if ($session_contact_primary == 1 || $session_contact_is_technical_contact) {
         ?>
@@ -112,4 +112,4 @@ $total_tickets = intval($row['total_tickets']);
 </div>
 
 <?php require_once "portal_footer.php";
- ?>
+?>

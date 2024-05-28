@@ -27,7 +27,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     <div class="card-header py-2">
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-calendar-check mr-2"></i>Recurring Tickets</h3>
         <div class='card-tools'>
-            <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="recurring_ticket_add_modal.php?client_id=<?php echo $client_id; ?>">
+            <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="recurring_ticket_add_modal.php?client_id=<?= $client_id; ?>">
                 <i class="fas fa-plus mr-2"></i>New Recurring Ticket
             </button>
         </div>
@@ -36,7 +36,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     <div class="card-body">
 
         <form autocomplete="off">
-            <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+            <input type="hidden" name="client_id" value="<?= $client_id; ?>">
             <div class="row">
 
                 <div class="col-md-4">
@@ -54,7 +54,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
         <div class="card-datatable table-responsive container-fluid  pt-0">
             <form id="bulk_actions" action="/post.php" method="post">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                    
 <table class="datatables-basic table border-top">
@@ -84,17 +84,17 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <tr>
                             <td>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="scheduled_ticket_ids[]" onchange="showBulkDeleteButton()" value="<?php echo $scheduled_ticket_id ?>">
+                                    <input class="form-check-input" type="checkbox" name="scheduled_ticket_ids[]" onchange="showBulkDeleteButton()" value="<?= $scheduled_ticket_id ?>">
                                 </div>
                             </td>
 
-                            <td class="text-bold"><a href="#" data-bs-toggle="modal" data-bs-target="#editRecurringTicketModal" onclick="populateRecurringTicketEditModal(<?php echo $client_id, ',', $scheduled_ticket_id ?>)"> <?php echo $scheduled_ticket_subject ?></a></td>
+                            <td class="text-bold"><a href="#" data-bs-toggle="modal" data-bs-target="#editRecurringTicketModal" onclick="populateRecurringTicketEditModal(<?= $client_id, ',', $scheduled_ticket_id ?>)"> <?= $scheduled_ticket_subject ?></a></td>
 
-                            <td><?php echo $scheduled_ticket_priority ?></td>
+                            <td><?= $scheduled_ticket_priority ?></td>
 
-                            <td><?php echo $scheduled_ticket_frequency ?></td>
+                            <td><?= $scheduled_ticket_frequency ?></td>
 
-                            <td><?php echo $scheduled_ticket_next_run ?></td>
+                            <td><?= $scheduled_ticket_next_run ?></td>
 
                             <td>
                                 <div class="dropdown dropleft text-center">
@@ -103,13 +103,13 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                           data-bs-target="#editRecurringTicketModal" onclick="populateRecurringTicketEditModal(<?php echo $client_id, ',', $scheduled_ticket_id ?>)">
+                                           data-bs-target="#editRecurringTicketModal" onclick="populateRecurringTicketEditModal(<?= $client_id, ',', $scheduled_ticket_id ?>)">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
                                         <?php
                                         if ($session_user_role == 3) { ?>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_recurring_ticket=<?php echo $scheduled_ticket_id; ?>">
+                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_recurring_ticket=<?= $scheduled_ticket_id; ?>">
                                             <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                         </a>
                                     </div>

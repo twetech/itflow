@@ -78,7 +78,7 @@ $client_id = intval($row['item_client_id']);
 
 <?php
     if (!empty($company_logo)) { ?>
-            <img alt="<?=nullable_htmlentities($company_name)?> logo" height="40" width="80" class="img-fluid" src="<?php echo "/uploads/settings/$company_logo"; ?>">
+            <img alt="<?=nullable_htmlentities($company_name)?> logo" height="40" width="80" class="img-fluid" src="<?= "/uploads/settings/$company_logo"; ?>">
         <?php
         } else {
             echo "<h3>$company_name</h3>";
@@ -176,24 +176,24 @@ if ($item_type == "Document") {
 
     ?>
 
-    <h4><?php echo $login_name; ?></h4>
+    <h4><?= $login_name; ?></h4>
     <table id=responsive class="responsive table col-md-3">
         <tr>
             <th>URL</th>
-            <td><?php echo $login_uri; ?></td>
+            <td><?= $login_uri; ?></td>
         </tr>
         <tr>
             <th>Username</th>
-            <td><?php echo $login_username ?></td>
+            <td><?= $login_username ?></td>
         </tr>
         <tr>
             <th>Password</th>
-            <td><?php echo $login_password ?></td>
+            <td><?= $login_password ?></td>
         </tr>
         <?php if(!empty($login_otp_secret)){ ?>
         <tr>
             <th>2FA (TOTP)</th>
-            <td><?php echo $otp_display ?></td>
+            <td><?= $otp_display ?></td>
         </tr>
         <?php } ?>
 
@@ -216,7 +216,7 @@ if ($item_type == "Document") {
         }
 
         function generatePassword() {
-            document.getElementById("password").value = "<?php echo randomString(); ?>"
+            document.getElementById("password").value = "<?= randomString(); ?>"
         }
     </script>
 
@@ -237,7 +237,7 @@ if ($item_type == "Document") {
 
 </div>
 <div class="card-footer">
-<?php echo "<i class='fas fa-phone fa-fw mr-2'></i>$company_phone | <i class='fas fa-globe fa-fw mr-2 ml-2'></i>$company_website"; ?>
+<?= "<i class='fas fa-phone fa-fw mr-2'></i>$company_phone | <i class='fas fa-globe fa-fw mr-2 ml-2'></i>$company_website"; ?>
 </div>
 
 <?php

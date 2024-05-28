@@ -24,7 +24,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <h3 class="card-title mt-2"><i class="fa fa-fw fa-users mr-2"></i>Contacts</h3>
             <div class="card-tools">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_contact_add_modal.php?client_id=<?php echo $client_id; ?>">
+                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_contact_add_modal.php?client_id=<?= $client_id; ?>">
                         <i class="fas fa-plus mr-2"></i>New Contact
                     </button>
                     <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
@@ -44,7 +44,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </div>
         <div class="card-body">
             <form id="bulkActions" action="/post.php" method="post">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                 <div class="card-datatable table-responsive container-fluid  pt-0">                    
                     <table class="datatables-basic table border-top">
                         <thead class="thead-light <?php if (!$num_rows[0]) { echo "d-none"; } ?>">
@@ -149,57 +149,57 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             ?>
                             <tr>
                                 <td>
-                                    <a class="text-dark" href="client_contact_details.php?client_id=<?php echo $client_id; ?>&contact_id=<?php echo $contact_id; ?>">
+                                    <a class="text-dark" href="client_contact_details.php?client_id=<?= $client_id; ?>&contact_id=<?= $contact_id; ?>">
                                         <div class="media">
                                             <?php if (!empty($contact_photo)) { ?>
                                                 <span class="fa-stack fa-2x mr-3 text-center">
-                                                    <img class="img-fluid rounded-circle" src="<?php echo "/uploads/clients/$client_id/$contact_photo"; ?>">
+                                                    <img class="img-fluid rounded-circle" src="<?= "/uploads/clients/$client_id/$contact_photo"; ?>">
                                                 </span>
                                             <?php } else { ?>
 
                                                 <span class="fa-stack fa-2x mr-3">
                                                     <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-                                                    <span class="fa fa-stack-1x text-white"><?php echo $contact_initials; ?></span>
+                                                    <span class="fa fa-stack-1x text-white"><?= $contact_initials; ?></span>
                                                 </span>
 
                                             <?php } ?>
 
                                             <div class="media-body">
-                                                <div class="<?php if(!empty($contact_important)) { echo "text-bold"; } ?>"><?php echo $contact_name; ?></div>
-                                                <?php echo $contact_title_display; ?>
-                                                <div><?php echo $contact_primary_display; ?></div>
+                                                <div class="<?php if(!empty($contact_important)) { echo "text-bold"; } ?>"><?= $contact_name; ?></div>
+                                                <?= $contact_title_display; ?>
+                                                <div><?= $contact_primary_display; ?></div>
                                                     
                                             </div>
                                         </div>
                                     </a>
                                 </td>
-                                <td><?php echo $contact_department_display; ?></td>
-                                <td><?php echo $contact_info_display; ?></td>
-                                <td><?php echo $location_name_display; ?></td>
+                                <td><?= $contact_department_display; ?></td>
+                                <td><?= $contact_info_display; ?></td>
+                                <td><?= $location_name_display; ?></td>
                                 <td>
                                     <div class="dropdown dropleft text-center">
                                         <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                             <i class="fas fa-ellipsis-h"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="client_contact_details.php?client_id=<?php echo $client_id; ?>&contact_id=<?php echo $contact_id; ?>">
+                                            <a class="dropdown-item" href="client_contact_details.php?client_id=<?= $client_id; ?>&contact_id=<?= $contact_id; ?>">
                                                 <i class="fas fa-fw fa-eye mr-2"></i>Details
                                             </a>
-                                            <a href="#" class="dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_contact_edit_modal.php?contact_id=<?php echo $contact_id; ?>">
+                                            <a href="#" class="dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_contact_edit_modal.php?contact_id=<?= $contact_id; ?>">
                                                 <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                             </a>
                                             <?php if ($session_user_role == 3 && $contact_primary == 0) { ?>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?anonymize_contact=<?php echo $contact_id; ?>">
+                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?anonymize_contact=<?= $contact_id; ?>">
                                                     <i class="fas fa-fw fa-user-secret mr-2"></i>Anonymize & Archive
                                                 </a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_contact=<?php echo $contact_id; ?>">
+                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_contact=<?= $contact_id; ?>">
                                                     <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                 </a>
                                                 <?php if ($config_destructive_deletes_enable) { ?>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_contact=<?php echo $contact_id; ?>">
+                                                <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_contact=<?= $contact_id; ?>">
                                                     <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                 </a>
                                                 <?php } ?>

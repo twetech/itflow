@@ -32,7 +32,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
     </div>
     <div class="card-body">
         <form autocomplete="off">
-            <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+            <input type="hidden" name="client_id" value="<?= $client_id; ?>">
             <div class="row">
 
                 <div class="col-md-4">
@@ -56,14 +56,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                 <tr>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=payment_date&order=<?php echo $disp; ?>">Payment Date</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_date&order=<?php echo $disp; ?>">Invoice Date</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_number&order=<?php echo $disp; ?>">Invoice</a></th>
-                    <th class="text-right"><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=invoice_amount&order=<?php echo $disp; ?>">Invoice Amount</a></th>
-                    <th class="text-right"><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=payment_amount&order=<?php echo $disp; ?>">Payment Amount</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=payment_method&order=<?php echo $disp; ?>">Method</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=payment_reference&order=<?php echo $disp; ?>">Reference</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=account_name&order=<?php echo $disp; ?>">Account</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=payment_date&order=<?= $disp; ?>">Payment Date</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=invoice_date&order=<?= $disp; ?>">Invoice Date</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=invoice_number&order=<?= $disp; ?>">Invoice</a></th>
+                    <th class="text-right"><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=invoice_amount&order=<?= $disp; ?>">Invoice Amount</a></th>
+                    <th class="text-right"><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=payment_amount&order=<?= $disp; ?>">Payment Amount</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=payment_method&order=<?= $disp; ?>">Method</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=payment_reference&order=<?= $disp; ?>">Reference</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=account_name&order=<?= $disp; ?>">Account</a></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -92,14 +92,14 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                     ?>
                     <tr>
-                        <td><?php echo $payment_date; ?></td>
-                        <td><?php echo $invoice_date; ?></td>
-                        <td class="text-bold"><a href="invoice.php?invoice_id=<?php echo $invoice_id; ?>"><?php echo "$invoice_prefix$invoice_number"; ?></a></td>
-                        <td class="text-right"><?php echo numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
-                        <td class="text-bold text-right"><?php echo numfmt_format_currency($currency_format, $payment_amount, $payment_currency_code); ?></td>
-                        <td><?php echo $payment_method; ?></td>
-                        <td><?php echo $payment_reference_display; ?></td>
-                        <td><?php echo $account_name; ?></td>
+                        <td><?= $payment_date; ?></td>
+                        <td><?= $invoice_date; ?></td>
+                        <td class="text-bold"><a href="invoice.php?invoice_id=<?= $invoice_id; ?>"><?= "$invoice_prefix$invoice_number"; ?></a></td>
+                        <td class="text-right"><?= numfmt_format_currency($currency_format, $invoice_amount, $invoice_currency_code); ?></td>
+                        <td class="text-bold text-right"><?= numfmt_format_currency($currency_format, $payment_amount, $payment_currency_code); ?></td>
+                        <td><?= $payment_method; ?></td>
+                        <td><?= $payment_reference_display; ?></td>
+                        <td><?= $account_name; ?></td>
                     </tr>
 
                 <?php } ?>

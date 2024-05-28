@@ -51,9 +51,9 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 <table class="datatables-basic table border-top">
                 <thead class="text-dark <?php if($num_rows[0] == 0){ echo "d-none"; } ?>">
                 <tr>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=software_name&order=<?php echo $disp; ?>">Template</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=software_type&order=<?php echo $disp; ?>">Type</a></th>
-                    <th><a class="text-secondary" href="?<?php echo $url_query_strings_sort; ?>&sort=software_license_type&order=<?php echo $disp; ?>">License Type</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=software_name&order=<?= $disp; ?>">Template</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=software_type&order=<?= $disp; ?>">Type</a></th>
+                    <th><a class="text-secondary" href="?<?= $url_query_strings_sort; ?>&sort=software_license_type&order=<?= $disp; ?>">License Type</a></th>
                     <th class="text-center">Action</th>
                 </tr>
                 </thead>
@@ -72,30 +72,30 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                     ?>
                     <tr>
                         <td>
-                            <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareTemplateModal<?php echo $software_id; ?>">
+                            <a class="text-dark" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareTemplateModal<?= $software_id; ?>">
                                 <div class="media">
                                     <i class="fa fa-fw fa-2x fa-cube mr-3"></i>
                                     <div class="media-body">
-                                        <div><?php echo "$software_name <span>$software_version</span>"; ?></div>
-                                        <div><small class="text-secondary"><?php echo $software_description; ?></small></div>
+                                        <div><?= "$software_name <span>$software_version</span>"; ?></div>
+                                        <div><small class="text-secondary"><?= $software_description; ?></small></div>
                                     </div>
                                 </div>
                             </a>
                         </td>
-                        <td><?php echo $software_type; ?></td>
-                        <td><?php echo $software_license_type; ?></td>
+                        <td><?= $software_type; ?></td>
+                        <td><?= $software_license_type; ?></td>
                         <td>
                             <div class="dropdown dropleft text-center">
                                 <button class="btn btn-light btn-sm" data-bs-toggle="dropdown">
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareTemplateModal<?php echo $software_id; ?>">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editSoftwareTemplateModal<?= $software_id; ?>">
                                         <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                     </a>
                                     <?php if($session_user_role == 3) { ?>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_software=<?php echo $software_id; ?>">
+                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_software=<?= $software_id; ?>">
                                             <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                         </a>
                                     <?php } ?>

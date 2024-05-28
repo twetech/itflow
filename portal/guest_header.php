@@ -2,7 +2,7 @@
 
 require_once "/var/www/portal.twe.tech/includes/tenant_db.php";
 
-require_once "/var/www/portal.twe.tech/includes/config.php";
+require_once "/var/www/portal.twe.tech/includes/config/config.php";
 
 require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
 
@@ -24,7 +24,7 @@ $browser = sanitizeInput(getWebBrowser($user_agent));
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="robots" content="noindex">
 
-    <title><?php echo nullable_htmlentities($config_app_name); ?></title>
+    <title><?= nullable_htmlentities($config_app_name); ?></title>
 
     <!-- 
     Favicon
@@ -102,8 +102,8 @@ $browser = sanitizeInput(getWebBrowser($user_agent));
                         $_SESSION['alert_type'] = "info";
                     }
                     ?>
-                    <div class="alert alert-<?php echo $_SESSION['alert_type']; ?>" id="alert">
-                        <?php echo nullable_htmlentities($_SESSION['alert_message']); ?>
+                    <div class="alert alert-<?= $_SESSION['alert_type']; ?>" id="alert">
+                        <?= nullable_htmlentities($_SESSION['alert_message']); ?>
                         <button class='close' data-bs-dismiss='alert'>&times;</button>
                     </div>
                     <?php

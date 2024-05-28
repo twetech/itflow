@@ -9,7 +9,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
     </div>
     <div class="card-body">
         <form action="/post.php" method="post" autocomplete="off">
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
             <div class="form-group">
                 <label>Start Page</label>
@@ -19,12 +19,12 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                     </div>
                     <select class="form-control select2" id='select2' name="start_page" data-tags="true" required>
                         <?php if (!in_array($config_start_page, array_keys($start_page_select_array))) { ?>
-                            <option selected> <?php echo nullable_htmlentities($config_start_page); ?></option>
+                            <option selected> <?= nullable_htmlentities($config_start_page); ?></option>
                         <?php } ?>
                         <?php foreach ($start_page_select_array as $start_page_value => $start_page_name) { ?>
                             <option <?php if ($start_page_value == $config_start_page) { echo "selected"; } ?>
-                                value="<?php echo nullable_htmlentities($start_page_value); ?>">
-                                <?php echo nullable_htmlentities($start_page_name); ?>
+                                value="<?= nullable_htmlentities($start_page_value); ?>">
+                                <?= nullable_htmlentities($start_page_name); ?>
                             </option>
                         <?php }?>
                     </select>
@@ -47,7 +47,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                             $calendar_name = nullable_htmlentities($row['calendar_name']); ?>
                             <option <?php if ($config_default_calendar == $calendar_id) {
                                         echo "selected";
-                                    } ?> value="<?php echo $calendar_id; ?>"><?php echo $calendar_name; ?></option>
+                                    } ?> value="<?= $calendar_id; ?>"><?= $calendar_name; ?></option>
                         <?php } ?>
 
                     </select>
@@ -70,7 +70,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                             $account_name = nullable_htmlentities($row['account_name']); ?>
                             <option <?php if ($config_default_transfer_from_account == $account_id) {
                                         echo "selected";
-                                    } ?> value="<?php echo $account_id; ?>"><?php echo $account_name; ?></option>
+                                    } ?> value="<?= $account_id; ?>"><?= $account_name; ?></option>
                         <?php } ?>
 
                     </select>
@@ -93,7 +93,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                             $account_name = nullable_htmlentities($row['account_name']); ?>
                             <option <?php if ($config_default_transfer_to_account == $account_id) {
                                         echo "selected";
-                                    } ?> value="<?php echo $account_id; ?>"><?php echo $account_name; ?></option>
+                                    } ?> value="<?= $account_id; ?>"><?= $account_name; ?></option>
                         <?php } ?>
 
                     </select>
@@ -116,7 +116,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                             $account_name = nullable_htmlentities($row['account_name']); ?>
                             <option <?php if ($config_default_payment_account == $account_id) {
                                         echo "selected";
-                                    } ?> value="<?php echo $account_id; ?>"><?php echo $account_name; ?></option>
+                                    } ?> value="<?= $account_id; ?>"><?= $account_name; ?></option>
                         <?php
                         }
                         ?>
@@ -141,7 +141,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                             $account_name = nullable_htmlentities($row['account_name']); ?>
                             <option <?php if ($config_default_expense_account == $account_id) {
                                         echo "selected";
-                                    } ?> value="<?php echo $account_id; ?>"><?php echo $account_name; ?></option>
+                                    } ?> value="<?= $account_id; ?>"><?= $account_name; ?></option>
                         <?php } ?>
 
                     </select>
@@ -163,7 +163,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                             $payment_method = nullable_htmlentities($row['category_name']); ?>
                             <option <?php if ($config_default_payment_method == $payment_method) {
                                         echo "selected";
-                                    } ?>><?php echo $payment_method; ?></option>
+                                    } ?>><?= $payment_method; ?></option>
                         <?php } ?>
 
                     </select>
@@ -185,7 +185,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                             $payment_method = nullable_htmlentities($row['category_name']); ?>
                             <option <?php if ($config_default_expense_payment_method == $payment_method) {
                                         echo "selected";
-                                    } ?>><?php echo $payment_method; ?></option>
+                                    } ?>><?= $payment_method; ?></option>
                         <?php } ?>
 
                     </select>
@@ -202,7 +202,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <?php foreach ($net_terms_array as $net_term_value => $net_term_name) { ?>
                             <option <?php if ($config_default_net_terms == $net_term_value) {
                                         echo "selected";
-                                    } ?> value="<?php echo $net_term_value; ?>"><?php echo $net_term_name; ?></option>
+                                    } ?> value="<?= $net_term_value; ?>"><?= $net_term_name; ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -214,7 +214,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-fw fa-clock"></i></span>
                     </div>
-                    <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="hourly_rate" value="<?php echo number_format($config_default_hourly_rate, 2, '.', ''); ?>" placeholder="0.00" required>
+                    <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]*\.?[0-9]{0,2}" name="hourly_rate" value="<?= number_format($config_default_hourly_rate, 2, '.', ''); ?>" placeholder="0.00" required>
                 </div>
             </div>
 

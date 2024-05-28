@@ -10,7 +10,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
         </div>
         <div class="card-body">
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                 <input type="hidden" name="config_ticket_client_general_notifications" value="0">
                 <input type="hidden" name="config_enable_cron" value="0">
                 <input type="hidden" name="config_enable_alert_domain_expire" value="0">
@@ -30,7 +30,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-key"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_cron_key" placeholder="Generate a CRON Key" value="<?php echo nullable_htmlentities($config_cron_key); ?>" readonly>
+                        <input type="text" class="form-control" name="config_cron_key" placeholder="Generate a CRON Key" value="<?= nullable_htmlentities($config_cron_key); ?>" readonly>
                         <div class="input-group-append">
                             <a href="/post.php?generate_cron_key" class="btn btn-light confirm-link"><i class="fas fa-fw fa-sync mr-2"></i>Generate</a>
                         </div>

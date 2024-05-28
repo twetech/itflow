@@ -49,7 +49,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
             <div class="card-tools">
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_document_add_modal.php?client_id=<?php echo $client_id; ?>">
+                    <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="client_document_add_modal.php?client_id=<?= $client_id; ?>">
                         <i class="fas fa-plus mr-2"></i>Create
                     </button>
                     <button type="button" class="btn btn-label-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
@@ -80,7 +80,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                     $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT COUNT('document_id') AS num FROM documents WHERE document_folder_id = 0 AND document_client_id = $client_id AND document_archived_at IS NULL"));
                                     $num_documents = intval($row['num']);
                                     ?>
-                                    <a class="nav-link <?php if ($get_folder_id == 0) { echo "active"; } ?>" href="?client_id=<?php echo $client_id; ?>&folder_id=0">/ <?php if ($num_documents > 0) { echo "<span class='badge rounded-pill bg-label-dark float-right mt-1'>$num_documents</span>"; } ?></a>
+                                    <a class="nav-link <?php if ($get_folder_id == 0) { echo "active"; } ?>" href="?client_id=<?= $client_id; ?>&folder_id=0">/ <?php if ($num_documents > 0) { echo "<span class='badge rounded-pill bg-label-dark float-right mt-1'>$num_documents</span>"; } ?></a>
                                 </div>
                                 <div class="col-2">
                                 </div>
@@ -100,7 +100,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                             <li class="nav-item">
                                 <div class="row">
                                     <div class="col-10">
-                                        <a class="nav-link <?php if ($get_folder_id == $folder_id) { echo "active"; } ?> " href="?client_id=<?php echo $client_id; ?>&folder_id=<?php echo $folder_id; ?>">
+                                        <a class="nav-link <?php if ($get_folder_id == $folder_id) { echo "active"; } ?> " href="?client_id=<?= $client_id; ?>&folder_id=<?= $folder_id; ?>">
                                             <?php
                                             if ($get_folder_id == $folder_id) { ?>
                                                 <i class="fas fa-fw fa-folder-open"></i>
@@ -108,7 +108,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                 <i class="fas fa-fw fa-folder"></i>
                                             <?php } ?>
 
-                                            <?php echo $folder_name; ?> <?php if ($num_documents > 0) { echo "<span class='badge rounded-pill bg-label-dark float-right mt-1'>$num_documents</span>"; } ?>
+                                            <?= $folder_name; ?> <?php if ($num_documents > 0) { echo "<span class='badge rounded-pill bg-label-dark float-right mt-1'>$num_documents</span>"; } ?>
                                         </a>
                                     </div>
                                     <div class="col-2">
@@ -117,12 +117,12 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#renameFolderModal<?php echo $folder_id; ?>">
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#renameFolderModal<?= $folder_id; ?>">
                                                     <i class="fas fa-fw fa-edit mr-2"></i>Rename
                                                 </a>
                                                 <?php if ($session_user_role == 3 && $num_documents == 0) { ?>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_folder=<?php echo $folder_id; ?>">
+                                                    <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_folder=<?= $folder_id; ?>">
                                                         <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                     </a>
                                                 <?php } ?>
@@ -145,8 +145,8 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                 <div class="col-md-9">
                     <form autocomplete="off">
-                        <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
-                        <input type="hidden" name="folder_id" value="<?php echo $get_folder_id; ?>">
+                        <input type="hidden" name="client_id" value="<?= $client_id; ?>">
+                        <input type="hidden" name="folder_id" value="<?= $get_folder_id; ?>">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="input-group mb-3 mb-md-0">
@@ -211,38 +211,38 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
 
                                     <tr>
                                         <td>
-                                            <a href="client_document_details.php?client_id=<?php echo $client_id; ?>&document_id=<?php echo $document_id; ?>"><i class="fas fa-fw fa-file-alt"></i> <?php echo $document_name; ?></a>
-                                            <div class="text-secondary mt-1"><?php echo $document_description; ?>
+                                            <a href="client_document_details.php?client_id=<?= $client_id; ?>&document_id=<?= $document_id; ?>"><i class="fas fa-fw fa-file-alt"></i> <?= $document_name; ?></a>
+                                            <div class="text-secondary mt-1"><?= $document_description; ?>
                                         </td>
                                         <td>
-                                            <?php echo $document_created_at; ?>
-                                            <div class="text-secondary mt-1"><?php echo $document_created_by_name; ?>
+                                            <?= $document_created_at; ?>
+                                            <div class="text-secondary mt-1"><?= $document_created_by_name; ?>
                                         </td>
-                                        <td><?php echo $document_updated_at; ?></td>
+                                        <td><?= $document_updated_at; ?></td>
                                         <td>
                                             <div class="dropdown dropleft text-center">
                                                 <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?php echo "$client_id, 'Document', $document_id"; ?>)">
+                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="populateShareModal(<?= "$client_id, 'Document', $document_id"; ?>)">
                                                         <i class="fas fa-fw fa-share mr-2"></i>Share
                                                     </a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#renameDocumentModal<?php echo $document_id; ?>">
+                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#renameDocumentModal<?= $document_id; ?>">
                                                         <i class="fas fa-fw fa-pencil-alt mr-2"></i>Rename
                                                     </a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#moveDocumentModal<?php echo $document_id; ?>">
+                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#moveDocumentModal<?= $document_id; ?>">
                                                         <i class="fas fa-fw fa-exchange-alt mr-2"></i>Move
                                                     </a>
                                                     <?php if ($session_user_role == 3) { ?>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_document=<?php echo $document_id; ?>">
+                                                        <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_document=<?= $document_id; ?>">
                                                             <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                                         </a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_document=<?php echo $document_id; ?>">
+                                                        <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_document=<?= $document_id; ?>">
                                                             <i class="fas fa-fw fa-trash mr-2"></i>Delete
                                                         </a>
                                                     <?php } ?>

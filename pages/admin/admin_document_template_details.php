@@ -36,22 +36,22 @@ $document_updated_at = nullable_htmlentities($row['document_updated_at']);
   <li class="breadcrumb-item">
     <a href="admin_document_templates.php">Document Templates</a>
   </li>
-  <li class="breadcrumb-item active"><i class="fas fa-file mr-2"></i><?php echo $document_name; ?></li>
+  <li class="breadcrumb-item active"><i class="fas fa-file mr-2"></i><?= $document_name; ?></li>
 </ol>
 
 <div class="card">
   <div class="card-header">
 
-    <h3 class="card-title mt-2"><i class="fa fa-fw fa-file mr-2"></i><?php echo $document_name; ?></h3>
+    <h3 class="card-title mt-2"><i class="fa fa-fw fa-file mr-2"></i><?= $document_name; ?></h3>
 
     <div class="card-tools">
-      <button type="button" class="btn btn-label-primary" data-bs-toggle="modal" data-bs-target="#editDocumentTemplateModal<?php echo $document_id; ?>">
+      <button type="button" class="btn btn-label-primary" data-bs-toggle="modal" data-bs-target="#editDocumentTemplateModal<?= $document_id; ?>">
         <i class="fas fa-edit mr-2"></i>Edit
       </button>
     </div>
   </div>
   <div class="card-body prettyContent">
-    <?php echo $document_content; ?>
+    <?= $document_content; ?>
   </div>
 </div>
 

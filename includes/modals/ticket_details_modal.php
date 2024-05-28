@@ -238,7 +238,7 @@ if (mysqli_num_rows($sql) == 0) {
 ?>
 
 <div class="modal-header">
-    <h5 class="modal-title"><i class="fa fa-fw fa-ticket-alt"></i> Ticket: <?php echo "$ticket_prefix$ticket_number"; ?>
+    <h5 class="modal-title"><i class="fa fa-fw fa-ticket-alt"></i> Ticket: <?= "$ticket_prefix$ticket_number"; ?>
     </h5>
     <button type="button" class="close" data-bs-dismiss="modal">
         <span>&times;</span>
@@ -247,17 +247,17 @@ if (mysqli_num_rows($sql) == 0) {
 <div class="modal-body">
             <!-- Client card -->
             <div class="card card-body card-outline card-primary mb-3">
-                <h5><strong><?php echo $client_name; ?></strong></h5>
+                <h5><strong><?= $client_name; ?></strong></h5>
                 <?php
                         if (!empty($location_phone)) { ?>
                 <div class="mt-1">
-                    <i class="fa fa-fw fa-phone text-secondary ml-1 mr-2 mb-2"></i><?php echo $location_phone; ?>
+                    <i class="fa fa-fw fa-phone text-secondary ml-1 mr-2 mb-2"></i><?= $location_phone; ?>
                 </div>
                 <?php } ?>
 
                 <?php
                         if (!empty($client_tags_display)) { ?>
-                <div class="mt-1"><?php echo $client_tags_display; ?></div>
+                <div class="mt-1"><?= $client_tags_display; ?></div>
                 <?php } ?>
             </div>
             <!-- End Client card -->
@@ -270,7 +270,7 @@ if (mysqli_num_rows($sql) == 0) {
 
                 <div>
                     <i class="fa fa-fw fa-user text-secondary ml-1 mr-2"></i><a href="#" data-bs-toggle="modal"
-                        data-bs-target="#editTicketContactModal<?php echo $ticket_id; ?>"><strong><?php echo $contact_name; ?></strong>
+                        data-bs-target="#editTicketContactModal<?= $ticket_id; ?>"><strong><?= $contact_name; ?></strong>
                     </a>
                 </div>
 
@@ -278,28 +278,28 @@ if (mysqli_num_rows($sql) == 0) {
 
                             if (!empty($location_name)) { ?>
                 <div class="mt-2">
-                    <i class="fa fa-fw fa-map-marker-alt text-secondary ml-1 mr-2"></i><?php echo $location_name; ?>
+                    <i class="fa fa-fw fa-map-marker-alt text-secondary ml-1 mr-2"></i><?= $location_name; ?>
                 </div>
                 <?php }
 
                             if (!empty($contact_email)) { ?>
                 <div class="mt-2">
                     <i class="fa fa-fw fa-envelope text-secondary ml-1 mr-2"></i><a
-                        href="mailto:<?php echo $contact_email; ?>"><?php echo $contact_email; ?></a>
+                        href="mailto:<?= $contact_email; ?>"><?= $contact_email; ?></a>
                 </div>
                 <?php }
 
                             if (!empty($contact_phone)) { ?>
                 <div class="mt-2">
                     <i class="fa fa-fw fa-phone text-secondary ml-1 mr-2"></i><a
-                        href="tel:<?php echo $contact_phone; ?>"><?php echo $contact_phone; ?></a>
+                        href="tel:<?= $contact_phone; ?>"><?= $contact_phone; ?></a>
                 </div>
                 <?php }
 
                             if (!empty($contact_mobile)) { ?>
                 <div class="mt-2">
                     <i class="fa fa-fw fa-mobile-alt text-secondary ml-1 mr-2"></i><a
-                        href="tel:<?php echo $contact_mobile; ?>"><?php echo $contact_mobile; ?></a>
+                        href="tel:<?= $contact_mobile; ?>"><?= $contact_mobile; ?></a>
                 </div>
                 <?php } ?>
 
@@ -321,17 +321,17 @@ if (mysqli_num_rows($sql) == 0) {
                 <div>
                     <i class="fa fa-fw fa-history text-secondary ml-1 mr-2"></i><b>Previous ticket:</b>
                     <a
-                        href="ticket.php?ticket_id=<?php echo $prev_ticket_id; ?>"><?php echo $prev_ticket_subject; ?></a>
+                        href="ticket.php?ticket_id=<?= $prev_ticket_id; ?>"><?= $prev_ticket_subject; ?></a>
                 </div>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-hourglass-start text-secondary ml-1 mr-2"></i><strong>Status:</strong>
-                    <span class="text-success"><?php echo $prev_ticket_status; ?></span>
+                    <span class="text-success"><?= $prev_ticket_status; ?></span>
                 </div>
                 <?php } ?>
 
                 <?php } else { ?>
                 <div class="d-print-none">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketContactModal<?php echo $ticket_id; ?>"><i
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketContactModal<?= $ticket_id; ?>"><i
                             class="fa fa-fw fa-plus mr-2"></i>Add a Contact</a>
                 </div>
                 <?php } ?>
@@ -362,9 +362,9 @@ if (mysqli_num_rows($sql) == 0) {
                                 $ticket_watcher_email = nullable_htmlentities($ticket_watcher_row['watcher_email']);
                                 ?>
                     <div class='mt-1'>
-                        <i class="fa fa-fw fa-eye text-secondary ml-1 mr-2"></i><?php echo $ticket_watcher_email; ?>
+                        <i class="fa fa-fw fa-eye text-secondary ml-1 mr-2"></i><?= $ticket_watcher_email; ?>
                         <?php if ($ticket_status !== 5) { ?>
-                        <a class="confirm-link" href="/post.php?delete_ticket_watcher=<?php echo $watcher_id; ?>">
+                        <a class="confirm-link" href="/post.php?delete_ticket_watcher=<?= $watcher_id; ?>">
                             <i class="fas fa-fw fa-times text-secondary ml-1"></i>
                         </a>
                         <?php }
@@ -378,15 +378,15 @@ if (mysqli_num_rows($sql) == 0) {
                 <h5 class="text-secondary">Details</h5>
                 <div>
                     <i class="fa fa-fw fa-thermometer-half text-secondary ml-1 mr-2"></i><a href="#" data-bs-toggle="modal"
-                        data-bs-target="#editTicketPriorityModal<?php echo $ticket_id; ?>"><?php echo $ticket_priority_display; ?></a>
+                        data-bs-target="#editTicketPriorityModal<?= $ticket_id; ?>"><?= $ticket_priority_display; ?></a>
                 </div>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-calendar text-secondary ml-1 mr-2"></i>Created:
-                    <?php echo $ticket_created_at; ?>
+                    <?= $ticket_created_at; ?>
                 </div>
                 <div class="mt-2">
                     <i class="fa fa-fw fa-history text-secondary ml-1 mr-2"></i>Updated:
-                    <strong><?php echo $ticket_updated_at; ?></strong>
+                    <strong><?= $ticket_updated_at; ?></strong>
                 </div>
 
                 <!-- Ticket closure info -->
@@ -398,11 +398,11 @@ if (mysqli_num_rows($sql) == 0) {
                         ?>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-user text-secondary ml-1 mr-2"></i>Closed by:
-                    <?php echo ucwords($ticket_closed_by_display); ?>
+                    <?= ucwords($ticket_closed_by_display); ?>
                 </div>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-comment-dots text-secondary ml-1 mr-2"></i>Feedback:
-                    <?php echo $ticket_feedback; ?>
+                    <?= $ticket_feedback; ?>
                 </div>
                 <?php } ?>
                 <!-- END Ticket closure info -->
@@ -413,7 +413,7 @@ if (mysqli_num_rows($sql) == 0) {
                 <div class="mt-1">
                     <i class="fa fa-fw fa-calendar-check text-secondary ml-1 mr-2"></i>Scheduled: <a href="#"
                         data-bs-toggle="modal" data-bs-target="#editTicketScheduleModal">
-                        <?php echo $ticket_scheduled_wording ?> </a>
+                        <?= $ticket_scheduled_wording ?> </a>
                 </div>
                 <?php }
 
@@ -421,7 +421,7 @@ if (mysqli_num_rows($sql) == 0) {
                         if (!empty($ticket_total_reply_time)) { ?>
                 <div class="mt-1">
                     <i class="far fa-fw fa-clock text-secondary ml-1 mr-2"></i>Total time worked:
-                    <?php echo $ticket_total_reply_time; ?>
+                    <?= $ticket_total_reply_time; ?>
                 </div>
                 <?php }
 
@@ -429,7 +429,7 @@ if (mysqli_num_rows($sql) == 0) {
                         if ($config_module_enable_accounting) { ?>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-dollar-sign text-secondary ml-1 mr-2"></i>Billable:
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketBillableModal<?php echo $ticket_id; ?>">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketBillableModal<?= $ticket_id; ?>">
                         <?php
                                     if ($ticket_billable == 1) {
                                         echo "<span class='badge rounded-pill bg-label-success p-2'>$</span>";
@@ -450,7 +450,7 @@ if (mysqli_num_rows($sql) == 0) {
                 <?php if ($asset_id == 0) { ?>
 
                 <div class="d-print-none">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketAssetModal<?php echo $ticket_id; ?>"><i
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketAssetModal<?= $ticket_id; ?>"><i
                             class="fa fa-fw fa-plus mr-2"></i>Add an Asset</a>
                 </div>
 
@@ -458,60 +458,60 @@ if (mysqli_num_rows($sql) == 0) {
 
                 <div>
                     <a
-                        href='client_asset_details.php?client_id=<?php echo $client_id ?>&asset_id=<?php echo $asset_id ?>'><i
-                            class="fa fa-fw fa-desktop text-secondary ml-1 mr-2"></i><strong><?php echo $asset_name; ?></strong></a>
+                        href='client_asset_details.php?client_id=<?= $client_id ?>&asset_id=<?= $asset_id ?>'><i
+                            class="fa fa-fw fa-desktop text-secondary ml-1 mr-2"></i><strong><?= $asset_name; ?></strong></a>
                 </div>
 
                 <?php if (!empty($asset_os)) { ?>
                 <div class="mt-1">
-                    <i class="fab fa-fw fa-microsoft text-secondary ml-1 mr-2"></i><?php echo $asset_os; ?>
+                    <i class="fab fa-fw fa-microsoft text-secondary ml-1 mr-2"></i><?= $asset_os; ?>
                 </div>
                 <?php }
 
                             if (!empty($asset_ip)) { ?>
                 <div class="mt-1">
-                    <i class="fa fa-fw fa-network-wired text-secondary ml-1 mr-2"></i><?php echo $asset_ip; ?>
+                    <i class="fa fa-fw fa-network-wired text-secondary ml-1 mr-2"></i><?= $asset_ip; ?>
                 </div>
                 <?php }
 
                             if (!empty($asset_make)) { ?>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-tag text-secondary ml-1 mr-2"></i>Model:
-                    <?php echo "$asset_make $asset_model"; ?>
+                    <?= "$asset_make $asset_model"; ?>
                 </div>
                 <?php }
 
                             if (!empty($asset_serial)) { ?>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-barcode text-secondary ml-1 mr-2"></i>Service Tag:
-                    <?php echo $asset_serial; ?>
+                    <?= $asset_serial; ?>
                 </div>
                 <?php }
 
                             if (!empty($asset_warranty_expire)) { ?>
                 <div class="mt-1">
                     <i class="far fa-fw fa-calendar-alt text-secondary ml-1 mr-2"></i>Warranty expires:
-                    <strong><?php echo $asset_warranty_expire ?></strong>
+                    <strong><?= $asset_warranty_expire ?></strong>
                 </div>
                 <?php }
 
                             if (!empty($asset_uri)) { ?>
                 <div class="mt-1">
-                    <i class="fa fa-fw fa-globe text-secondary ml-1 mr-2"></i><a href="<?php echo $asset_uri; ?>"
-                        target="_blank"><?php echo truncate($asset_uri, 25); ?></a>
+                    <i class="fa fa-fw fa-globe text-secondary ml-1 mr-2"></i><a href="<?= $asset_uri; ?>"
+                        target="_blank"><?= truncate($asset_uri, 25); ?></a>
                 </div>
                 <?php }
 
                         if ($ticket_asset_count > 0) { ?>
 
                 <button class="btn btn-block btn-light mt-2 d-print-none" data-bs-toggle="modal"
-                    data-bs-target="#assetTicketsModal">Service History (<?php echo $ticket_asset_count; ?>)</button>
+                    data-bs-target="#assetTicketsModal">Service History (<?= $ticket_asset_count; ?>)</button>
 
                 <div class="modal" id="assetTicketsModal" tabindex="-1">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content bg-dark">
                             <div class="modal-header">
-                                <h5 class="modal-title"><i class="fa fa-fw fa-desktop"></i> <?php echo $asset_name; ?>
+                                <h5 class="modal-title"><i class="fa fa-fw fa-desktop"></i> <?= $asset_name; ?>
                                 </h5>
                                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                                     <span>&times;</span>
@@ -533,8 +533,8 @@ if (mysqli_num_rows($sql) == 0) {
                                 <p>
                                     <i class="fas fa-fw fa-ticket-alt"></i>
                                     Ticket: <a
-                                        href="ticket.php?ticket_id=<?php echo $service_ticket_id; ?>"><?php echo "$service_ticket_prefix$service_ticket_number" ?></a>
-                                    <?php echo "on $service_ticket_created_at - <b>$service_ticket_subject</b> ($service_ticket_status)"; ?>
+                                        href="ticket.php?ticket_id=<?= $service_ticket_id; ?>"><?= "$service_ticket_prefix$service_ticket_number" ?></a>
+                                    <?= "on $service_ticket_created_at - <b>$service_ticket_subject</b> ($service_ticket_status)"; ?>
                                 </p>
                                 <?php
                                                 }
@@ -562,44 +562,44 @@ if (mysqli_num_rows($sql) == 0) {
                 <h5 class="text-secondary">Vendor</h5>
                 <?php if (empty($vendor_id)) { ?>
                 <div class="d-print-none">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketVendorModal<?php echo $ticket_id; ?>"><i
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editTicketVendorModal<?= $ticket_id; ?>"><i
                             class="fa fa-fw fa-plus mr-2"></i>Add a Vendor</a>
                 </div>
                 <?php } else { ?>
                 <div>
                     <i
-                        class="fa fa-fw fa-building text-secondary ml-1 mr-2"></i><strong><?php echo $vendor_name; ?></strong>
+                        class="fa fa-fw fa-building text-secondary ml-1 mr-2"></i><strong><?= $vendor_name; ?></strong>
                 </div>
                 <?php
 
                             if (!empty($vendor_contact_name)) { ?>
                 <div class="mt-1">
-                    <i class="fa fa-fw fa-user text-secondary ml-1 mr-2"></i><?php echo $vendor_contact_name; ?>
+                    <i class="fa fa-fw fa-user text-secondary ml-1 mr-2"></i><?= $vendor_contact_name; ?>
                 </div>
                 <?php }
 
                             if (!empty($ticket_vendor_ticket_number)) { ?>
                 <div class="mt-1">
-                    <i class="fa fa-fw fa-tag text-secondary ml-1 mr-2"></i><?php echo $ticket_vendor_ticket_number; ?>
+                    <i class="fa fa-fw fa-tag text-secondary ml-1 mr-2"></i><?= $ticket_vendor_ticket_number; ?>
                 </div>
                 <?php }
 
                             if (!empty($vendor_email)) { ?>
                 <div class="mt-1">
                     <i class="fa fa-fw fa-envelope text-secondary ml-1 mr-2"></i><a
-                        href="mailto:<?php echo $vendor_email; ?>"><?php echo $vendor_email; ?></a>
+                        href="mailto:<?= $vendor_email; ?>"><?= $vendor_email; ?></a>
                 </div>
                 <?php }
 
                             if (!empty($vendor_phone)) { ?>
                 <div class="mt-1">
-                    <i class="fa fa-fw fa-phone text-secondary ml-1 mr-2"></i><?php echo $vendor_phone; ?>
+                    <i class="fa fa-fw fa-phone text-secondary ml-1 mr-2"></i><?= $vendor_phone; ?>
                 </div>
                 <?php }
 
                             if (!empty($vendor_website)) { ?>
                 <div class="mt-1">
-                    <i class="fa fa-fw fa-globe text-secondary ml-1 mr-2"></i><?php echo $vendor_website; ?>
+                    <i class="fa fa-fw fa-globe text-secondary ml-1 mr-2"></i><?= $vendor_website; ?>
                 </div>
                 <?php } ?>
 
@@ -615,18 +615,18 @@ if (mysqli_num_rows($sql) == 0) {
             <div class="card card-body card-outline mb-3">
                 <h5 class="text-secondary">Products</h5>
                 <div class="d-print-none">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#addTicketProductModal<?php echo $ticket_id; ?>"><i
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#addTicketProductModal<?= $ticket_id; ?>"><i
                             class="fa fa-fw fa-plus mr-2"></i>Manage Products</a>
                 </div>
-                <?php echo $ticket_products_display; ?>
+                <?= $ticket_products_display; ?>
             </div>
             <?php
                     }
                     ?>
                 <!-- Assigned to -->
                 <form action="/post.php" method="post">
-                    <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
-                    <input type="hidden" name="ticket_status" value="<?php echo $ticket_status; ?>">
+                    <input type="hidden" name="ticket_id" value="<?= $ticket_id; ?>">
+                    <input type="hidden" name="ticket_status" value="<?= $ticket_status; ?>">
                     <div class="form-group">
                         <label>Assigned to</label>
                         <div class="input-group">
@@ -644,7 +644,7 @@ if (mysqli_num_rows($sql) == 0) {
                                     $user_name = nullable_htmlentities($row['user_name']); ?>
                                     <option <?php if ($ticket_assigned_to == $user_id) {
                                                 echo "selected";
-                                            } ?> value="<?php echo $user_id; ?>"><?php echo $user_name; ?></option>
+                                            } ?> value="<?= $user_id; ?>"><?= $user_name; ?></option>
                                 <?php } ?>
                             </select>
                             <div class="input-group-append d-print-none">
@@ -666,7 +666,7 @@ if (mysqli_num_rows($sql) == 0) {
                 <?php }
 
                         if ($ticket_status !== 5) { ?>
-                <a href="/post.php?close_ticket=<?php echo $ticket_id; ?>"
+                <a href="/post.php?close_ticket=<?= $ticket_id; ?>"
                     class="btn btn-light btn-block confirm-link" id="ticket_close">
                     <i class="fas fa-fw fa-gavel mr-2"></i>Close Ticket
                 </a>

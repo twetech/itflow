@@ -15,8 +15,8 @@ $key = randomString(156);
             <form action="/post.php" method="post" autocomplete="off">
                 <div class="modal-body bg-white">
 
-                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
-                    <input type="hidden" name="key" value="<?php echo $key ?>">
+                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                    <input type="hidden" name="key" value="<?= $key ?>">
 
                     <div class="form-group">
                         <label>API Key <strong class="text-danger">*</strong></label>
@@ -24,9 +24,9 @@ $key = randomString(156);
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-key"></i></span>
                             </div>
-                            <input type="text" class="form-control" value="<?php echo $key ?>" required disabled>
+                            <input type="text" class="form-control" value="<?= $key ?>" required disabled>
                             <div class="input-group-append">
-                                <button class="btn btn-default clipboardjs" type="button" data-clipboard-text="<?php echo $key; ?>"><i class="fa fa-fw fa-copy"></i></button>
+                                <button class="btn btn-default clipboardjs" type="button" data-clipboard-text="<?= $key; ?>"><i class="fa fa-fw fa-copy"></i></button>
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@ $key = randomString(156);
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                             </div>
-                            <input type="date" class="form-control" name="expire" min="<?php echo date('Y-m-d')?>" max="2999-12-31" required>
+                            <input type="date" class="form-control" name="expire" min="<?= date('Y-m-d')?>" max="2999-12-31" required>
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@ $key = randomString(156);
                                 while ($row = mysqli_fetch_array($sql)) {
                                     $client_id = intval($row['client_id']);
                                     $client_name = nullable_htmlentities($row['client_name']); ?>
-                                    <option value="<?php echo $client_id; ?>"><?php echo "$client_name  (Client ID: $client_id)"; ?></option>
+                                    <option value="<?= $client_id; ?>"><?= "$client_name  (Client ID: $client_id)"; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

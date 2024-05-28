@@ -32,10 +32,10 @@ $num_rows = mysqli_num_rows($sql);
 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows == 0) { echo "d-none"; } ?>">
                     <tr>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=inventory_location_name&order=<?php echo $disp; ?>">Name</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=inventory_location_description&order=<?php echo $disp; ?>">Description</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=inventory_location_user_id&order=<?php echo $disp; ?>">User Assigned</a></th>
-                        <th><a class="text-dark" href="?<?php echo $url_query_strings_sort; ?>&sort=inventory_location_city&order=<?php echo $disp; ?>">City</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=inventory_location_name&order=<?= $disp; ?>">Name</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=inventory_location_description&order=<?= $disp; ?>">Description</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=inventory_location_user_id&order=<?= $disp; ?>">User Assigned</a></th>
+                        <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=inventory_location_city&order=<?= $disp; ?>">City</a></th>
                         <th class="text-center">Action</th>
                     </tr>
                     </thead>
@@ -61,20 +61,20 @@ $num_rows = mysqli_num_rows($sql);
                         ?>
 
                         <tr>
-                            <td><a class="text-dark text-bold" href="#" data-bs-toggle="modal" data-bs-target="#editTaxModal<?php echo $inventory_location_id; ?>"><?php echo $inventory_location_name; ?></a></td>
-                            <td><?php echo $inventory_location_description; ?></td>
-                            <td><?php echo $inventory_location_user_name; ?></td>
-                            <td><?php echo $inventory_location_city; ?></td>
+                            <td><a class="text-dark text-bold" href="#" data-bs-toggle="modal" data-bs-target="#editTaxModal<?= $inventory_location_id; ?>"><?= $inventory_location_name; ?></a></td>
+                            <td><?= $inventory_location_description; ?></td>
+                            <td><?= $inventory_location_user_name; ?></td>
+                            <td><?= $inventory_location_city; ?></td>
                             <td>
                                 <div class="dropdown dropleft text-center">
                                     <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editLocationModal<?php echo $inventory_location_id; ?>">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editLocationModal<?= $inventory_location_id; ?>">
                                             <i class="fas fa-fw fa-edit mr-2"></i>Edit
                                         </a>
-                                        <a class="dropdown-item" href="/post.php?archive_inventory_location=<?php echo $inventory_location_id; ?>">
+                                        <a class="dropdown-item" href="/post.php?archive_inventory_location=<?= $inventory_location_id; ?>">
                                             <i class="fas fa-fw fa-archive mr-2"></i>Archive
                                         </a>
                                     </div>

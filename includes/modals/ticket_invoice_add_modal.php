@@ -42,7 +42,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                        <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
+                        <input type="hidden" name="ticket_id" value="<?= $ticket_id; ?>">
                         <ul class="nav nav-pills  mb-3">
                             <?php if (mysqli_num_rows($sql_invoices) > 0) { ?>
                                 <li class="nav-item">
@@ -82,7 +82,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
                                     </div>
-                                    <input type="date" class="form-control" name="date" max="2999-12-31" value="<?php echo date("Y-m-d"); ?>">
+                                    <input type="date" class="form-control" name="date" max="2999-12-31" value="<?= date("Y-m-d"); ?>">
                                 </div>
                             </div>
 
@@ -101,7 +101,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                                             $category_id = intval($row['category_id']);
                                             $category_name = nullable_htmlentities($row['category_name']);
                                             ?>
-                                            <option value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
+                                            <option value="<?= $category_id; ?>"><?= $category_name; ?></option>
 
                                             <?php
                                         }
@@ -119,7 +119,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-comment"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="scope" placeholder="Quick description" value="Ticket <?php echo "$ticket_prefix$ticket_number - $ticket_subject"; ?>">
+                                    <input type="text" class="form-control" name="scope" placeholder="Quick description" value="Ticket <?= "$ticket_prefix$ticket_number - $ticket_subject"; ?>">
                                 </div>
                             </div>
 
@@ -158,9 +158,9 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                                             if ($invoice_status == "Draft") {
 
                                             ?>
-                                            <option value="<?php echo $invoice_id; ?>" <?php if ($invoice_id == $_GET['invoice_id']) { 
+                                            <option value="<?= $invoice_id; ?>" <?php if ($invoice_id == $_GET['invoice_id']) { 
                                                 echo "selected";
-                                                }?>><?php echo "$invoice_prefix$invoice_number $invoice_scope"; ?></option>
+                                                }?>><?= "$invoice_prefix$invoice_number $invoice_scope"; ?></option>
                                             <?php
                                             }
                                         }
@@ -188,7 +188,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                         <label>Item Description</label>
                         <div class="input-group">
                             <textarea class="form-control" rows="5" name="item_description">
-                                <?php echo "# $contact_name - $asset_name - $ticket_date\nTicket $ticket_prefix$ticket_number\n$ticket_subject\nTT: $ticket_total_reply_time"; ?>
+                                <?= "# $contact_name - $asset_name - $ticket_date\nTicket $ticket_prefix$ticket_number\n$ticket_subject\nTT: $ticket_total_reply_time"; ?>
                             </textarea>
                         </div>
                     </div>
@@ -202,7 +202,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-balance-scale"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" name="qty" value="<?php echo roundToNearest15($ticket_total_reply_time); ?>" required>
+                                    <input type="text" class="form-control" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" name="qty" value="<?= roundToNearest15($ticket_total_reply_time); ?>" required>
                                 </div>
                             </div>
 
@@ -216,7 +216,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-dollar-sign"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" name="price" value="<?php echo number_format($client_rate, 2, '.', ''); ?>" required>
+                                    <input type="text" class="form-control" inputmode="numeric" pattern="-?[0-9]*\.?[0-9]{0,2}" name="price" value="<?= number_format($client_rate, 2, '.', ''); ?>" required>
                                 </div>
                             </div>
 
@@ -239,7 +239,7 @@ $sql_invoices = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_stat
                                     $tax_name = nullable_htmlentities($row['tax_name']);
                                     $tax_percent = floatval($row['tax_percent']);
                                     ?>
-                                    <option <?= $tax_id_select == 0 ? 'selected' : '' ?> value="<?php echo $tax_id_select; ?>"><?php echo "$tax_name $tax_percent%"; ?></option>
+                                    <option <?= $tax_id_select == 0 ? 'selected' : '' ?> value="<?= $tax_id_select; ?>"><?= "$tax_name $tax_percent%"; ?></option>
 
                                     <?php
                                 }

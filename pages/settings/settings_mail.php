@@ -8,7 +8,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
         </div>
         <div class="card-body">
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                 <div class="form-group">
                     <label>SMTP Host</label>
@@ -16,7 +16,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-server"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_smtp_host" placeholder="Mail Server Address" value="<?php echo nullable_htmlentities($config_smtp_host); ?>" required>
+                        <input type="text" class="form-control" name="config_smtp_host" placeholder="Mail Server Address" value="<?= nullable_htmlentities($config_smtp_host); ?>" required>
                     </div>
                 </div>
 
@@ -26,7 +26,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-plug"></i></span>
                         </div>
-                        <input type="number" min="0" class="form-control" name="config_smtp_port" placeholder="Mail Server Port Number" value="<?php echo intval($config_smtp_port); ?>" required>
+                        <input type="number" min="0" class="form-control" name="config_smtp_port" placeholder="Mail Server Port Number" value="<?= intval($config_smtp_port); ?>" required>
                     </div>
                 </div>
 
@@ -50,7 +50,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_smtp_username" placeholder="Username (Leave blank if no auth is required)" value="<?php echo nullable_htmlentities($config_smtp_username); ?>">
+                        <input type="text" class="form-control" name="config_smtp_username" placeholder="Username (Leave blank if no auth is required)" value="<?= nullable_htmlentities($config_smtp_username); ?>">
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" data-bs-toggle="password" name="config_smtp_password" placeholder="Password (Leave blank if no auth is required)" value="<?php echo nullable_htmlentities($config_smtp_password); ?>" autocomplete="new-password">
+                        <input type="password" class="form-control" data-bs-toggle="password" name="config_smtp_password" placeholder="Password (Leave blank if no auth is required)" value="<?= nullable_htmlentities($config_smtp_password); ?>" autocomplete="new-password">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fa fa-fw fa-eye"></i></span>
                         </div>
@@ -81,7 +81,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
         </div>
         <div class="card-body">
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                 <div class="form-group">
                     <label>IMAP Host</label>
@@ -89,7 +89,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-server"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_imap_host" placeholder="Incoming Mail Server Address (for email to ticket parsing)" value="<?php echo nullable_htmlentities($config_imap_host); ?>">
+                        <input type="text" class="form-control" name="config_imap_host" placeholder="Incoming Mail Server Address (for email to ticket parsing)" value="<?= nullable_htmlentities($config_imap_host); ?>">
                     </div>
                 </div>
 
@@ -99,7 +99,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-plug"></i></span>
                         </div>
-                        <input type="number" min="0" class="form-control" name="config_imap_port" placeholder="Incoming Mail Server Port Number (993)" value="<?php echo intval($config_imap_port); ?>">
+                        <input type="number" min="0" class="form-control" name="config_imap_port" placeholder="Incoming Mail Server Port Number (993)" value="<?= intval($config_imap_port); ?>">
                     </div>
                 </div>
 
@@ -156,7 +156,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
         </div>
         <div class="card-body">
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                 <p>Each of the "From Email" Addresses need to be able to send email on behalf of the SMTP user configured above
                 <h5>System Default</h5>
@@ -167,7 +167,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" name="config_mail_from_email" placeholder="Email Address (ex noreply@yourcompany.com)" value="<?php echo nullable_htmlentities($config_mail_from_email); ?>">
+                        <input type="email" class="form-control" name="config_mail_from_email" placeholder="Email Address (ex noreply@yourcompany.com)" value="<?= nullable_htmlentities($config_mail_from_email); ?>">
                     </div>
                 </div>
 
@@ -177,7 +177,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_mail_from_name" placeholder="Name (ex YourCompany)" value="<?php echo nullable_htmlentities($config_mail_from_name); ?>">
+                        <input type="text" class="form-control" name="config_mail_from_name" placeholder="Name (ex YourCompany)" value="<?= nullable_htmlentities($config_mail_from_name); ?>">
                     </div>
                 </div>
 
@@ -190,7 +190,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" name="config_invoice_from_email" placeholder="Email (ex billing@yourcompany.com)" value="<?php echo nullable_htmlentities($config_invoice_from_email); ?>">
+                        <input type="email" class="form-control" name="config_invoice_from_email" placeholder="Email (ex billing@yourcompany.com)" value="<?= nullable_htmlentities($config_invoice_from_email); ?>">
                     </div>
                 </div>
 
@@ -200,7 +200,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_invoice_from_name" placeholder="Name (ex CompanyName Billing)" value="<?php echo nullable_htmlentities($config_invoice_from_name); ?>">
+                        <input type="text" class="form-control" name="config_invoice_from_name" placeholder="Name (ex CompanyName Billing)" value="<?= nullable_htmlentities($config_invoice_from_name); ?>">
                     </div>
                 </div>
 
@@ -213,7 +213,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" name="config_quote_from_email" placeholder="Email (ex sales@yourcompany.com)" value="<?php echo nullable_htmlentities($config_quote_from_email); ?>">
+                        <input type="email" class="form-control" name="config_quote_from_email" placeholder="Email (ex sales@yourcompany.com)" value="<?= nullable_htmlentities($config_quote_from_email); ?>">
                     </div>
                 </div>
 
@@ -223,7 +223,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_quote_from_name" placeholder="Name (ex YourCompany Sales)" value="<?php echo nullable_htmlentities($config_quote_from_name); ?>">
+                        <input type="text" class="form-control" name="config_quote_from_name" placeholder="Name (ex YourCompany Sales)" value="<?= nullable_htmlentities($config_quote_from_name); ?>">
                     </div>
                 </div>
 
@@ -236,7 +236,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" name="config_ticket_from_email" placeholder="Email (ex support@yourcompany.com)" value="<?php echo nullable_htmlentities($config_ticket_from_email); ?>">
+                        <input type="email" class="form-control" name="config_ticket_from_email" placeholder="Email (ex support@yourcompany.com)" value="<?= nullable_htmlentities($config_ticket_from_email); ?>">
                     </div>
                 </div>
 
@@ -246,7 +246,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="config_ticket_from_name" placeholder="Name (ex YourCompany Support)" value="<?php echo nullable_htmlentities($config_ticket_from_name); ?>">
+                        <input type="text" class="form-control" name="config_ticket_from_name" placeholder="Name (ex YourCompany Support)" value="<?= nullable_htmlentities($config_ticket_from_name); ?>">
                     </div>
                 </div>
 
@@ -266,7 +266,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
         </div>
         <div class="card-body">
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                 <div class="input-group">
                     <select class="form-control select2" id='select2' name="test_email" required>
@@ -274,25 +274,25 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
                         <?php
                         if ($config_mail_from_email) {
                         ?>
-                        <option value="1"><?php echo nullable_htmlentities($config_mail_from_name); ?> (<?php echo nullable_htmlentities($config_mail_from_email); ?>)</option>
+                        <option value="1"><?= nullable_htmlentities($config_mail_from_name); ?> (<?= nullable_htmlentities($config_mail_from_email); ?>)</option>
                         <?php } ?>
 
                         <?php
                         if ($config_invoice_from_email) {
                         ?>
-                        <option value="2"><?php echo nullable_htmlentities($config_invoice_from_name); ?> (<?php echo nullable_htmlentities($config_invoice_from_email); ?>)</option>
+                        <option value="2"><?= nullable_htmlentities($config_invoice_from_name); ?> (<?= nullable_htmlentities($config_invoice_from_email); ?>)</option>
                         <?php } ?>
 
                         <?php
                         if ($config_quote_from_email) {
                         ?>
-                        <option value="3"><?php echo nullable_htmlentities($config_quote_from_name); ?> (<?php echo nullable_htmlentities($config_quote_from_email); ?>)</option>
+                        <option value="3"><?= nullable_htmlentities($config_quote_from_name); ?> (<?= nullable_htmlentities($config_quote_from_email); ?>)</option>
                         <?php } ?>
 
                         <?php
                         if ($config_ticket_from_email) {
                         ?>
-                        <option value="4"><?php echo nullable_htmlentities($config_ticket_from_name); ?> (<?php echo nullable_htmlentities($config_ticket_from_email); ?>)</option>
+                        <option value="4"><?= nullable_htmlentities($config_ticket_from_name); ?> (<?= nullable_htmlentities($config_ticket_from_email); ?>)</option>
                         <?php } ?>
 
                         
@@ -316,7 +316,7 @@ require_once "/var/www/portal.twe.tech/includes/inc_all_settings.php";
         </div>
         <div class="card-body">
             <form action="/post.php" method="post" autocomplete="off">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                 <div class="input-group-append">
                     <button type="submit" name="test_email_imap" class="btn btn-success"><i class="fas fa-fw fa-inbox mr-2"></i>Test</button>

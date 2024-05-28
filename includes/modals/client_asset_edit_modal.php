@@ -1,11 +1,11 @@
 
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
 
-<div class="modal" id="editAssetModal<?php echo $asset_id; ?>" tabindex="-1">
+<div class="modal" id="editAssetModal<?= $asset_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-<?php echo $device_icon; ?> mr-2"></i>Editing asset: <strong><?php echo $asset_name; ?></strong></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-<?= $device_icon; ?> mr-2"></i>Editing asset: <strong><?= $asset_name; ?></strong></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -13,24 +13,24 @@
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="asset_id" value="<?php echo $asset_id; ?>">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="asset_id" value="<?= $asset_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
 
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $asset_id; ?>">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?= $asset_id; ?>">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-network<?php echo $asset_id; ?>">Network</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-network<?= $asset_id; ?>">Network</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-assignment<?php echo $asset_id; ?>">Assignment</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-assignment<?= $asset_id; ?>">Assignment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-purchase<?php echo $asset_id; ?>">Purchase</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-purchase<?= $asset_id; ?>">Purchase</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes<?php echo $asset_id; ?>">Notes</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes<?= $asset_id; ?>">Notes</a>
                         </li>
                     </ul>
 
@@ -38,7 +38,7 @@
 
                     <div class="tab-content">
 
-                        <div class="tab-pane fade show active" id="pills-details<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade show active" id="pills-details<?= $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Name <strong class="text-danger">*</strong></label>
@@ -46,7 +46,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="name" placeholder="Name the asset" value="<?php echo $asset_name; ?>" required>
+                                    <input type="text" class="form-control" name="name" placeholder="Name the asset" value="<?= $asset_name; ?>" required>
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-angle-right"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="description" placeholder="Description of the asset" value="<?php echo $asset_description; ?>">
+                                    <input type="text" class="form-control" name="description" placeholder="Description of the asset" value="<?= $asset_description; ?>">
                                 </div>
                             </div>
 
@@ -68,7 +68,7 @@
                                     </div>
                                     <select class="form-control select2" id='select2' name="type" required>
                                         <?php foreach($asset_types_array as $asset_type_select => $asset_icon_select) { ?>
-                                            <option <?php if ($asset_type_select == $asset_type) { echo "selected"; } ?>><?php echo $asset_type_select; ?></option>
+                                            <option <?php if ($asset_type_select == $asset_type) { echo "selected"; } ?>><?= $asset_type_select; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -82,7 +82,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="make" placeholder="Manufacturer" value="<?php echo $asset_make; ?>">
+                                        <input type="text" class="form-control" name="make" placeholder="Manufacturer" value="<?= $asset_make; ?>">
                                     </div>
                                 </div>
 
@@ -92,7 +92,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="model" placeholder="Model Number" value="<?php echo $asset_model; ?>">
+                                        <input type="text" class="form-control" name="model" placeholder="Model Number" value="<?= $asset_model; ?>">
                                     </div>
                                 </div>
 
@@ -102,7 +102,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-barcode"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="serial" placeholder="Serial number" value="<?php echo $asset_serial; ?>">
+                                        <input type="text" class="form-control" name="serial" placeholder="Serial number" value="<?= $asset_serial; ?>">
                                     </div>
                                 </div>
                             <?php } ?>
@@ -114,14 +114,14 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fab fa-fw fa-windows"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="os" placeholder="ex Windows 10 Pro" value="<?php echo $asset_os; ?>">
+                                        <input type="text" class="form-control" name="os" placeholder="ex Windows 10 Pro" value="<?= $asset_os; ?>">
                                     </div>
                                 </div>
                             <?php } ?>
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-network<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-network<?= $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Network</label>
@@ -146,7 +146,7 @@
                                             }
 
                                             ?>
-                                            <option <?php if ($asset_network_id == $network_id_select) { echo "selected"; } ?> value="<?php echo $network_id_select; ?>"><?php echo $network_name_select_display; ?></option>
+                                            <option <?php if ($asset_network_id == $network_id_select) { echo "selected"; } ?> value="<?= $network_id_select; ?>"><?= $network_name_select_display; ?></option>
 
                                         <?php } ?>
                                     </select>
@@ -159,7 +159,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-ethernet"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="ip" value="<?php echo $asset_ip; ?>" placeholder="192.168.10.250" data-inputmask="'alias': 'ip'" data-mask>
+                                    <input type="text" class="form-control" name="ip" value="<?= $asset_ip; ?>" placeholder="192.168.10.250" data-inputmask="'alias': 'ip'" data-mask>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <input type="checkbox" name="dhcp" value="1" <?php if($asset_ip == 'DHCP'){ echo "checked"; } ?>>
@@ -174,7 +174,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-random"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="nat_ip" value="<?php echo $asset_nat_ip; ?>" placeholder="10.52.4.55" data-inputmask="'alias': 'ip'" data-mask>
+                                    <input type="text" class="form-control" name="nat_ip" value="<?= $asset_nat_ip; ?>" placeholder="10.52.4.55" data-inputmask="'alias': 'ip'" data-mask>
                                 </div>
                             </div>
 
@@ -184,7 +184,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-ethernet"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="mac" value="<?php echo $asset_mac; ?>" placeholder="MAC Address" data-inputmask="'alias': 'mac'" data-mask>
+                                    <input type="text" class="form-control" name="mac" value="<?= $asset_mac; ?>" placeholder="MAC Address" data-inputmask="'alias': 'mac'" data-mask>
                                 </div>
                             </div>
 
@@ -194,7 +194,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-globe"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="uri" placeholder="URI http:// ftp:// ssh: etc" value="<?php echo $asset_uri; ?>">
+                                    <input type="text" class="form-control" name="uri" placeholder="URI http:// ftp:// ssh: etc" value="<?= $asset_uri; ?>">
                                 </div>
                             </div>
 
@@ -204,13 +204,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-globe"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="uri_2" placeholder="URI http:// ftp:// ssh: etc" value="<?php echo $asset_uri_2; ?>">
+                                    <input type="text" class="form-control" name="uri_2" placeholder="URI http:// ftp:// ssh: etc" value="<?= $asset_uri_2; ?>">
                                 </div>
                             </div>
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-assignment<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-assignment<?= $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Location</label>
@@ -233,7 +233,7 @@
                                                 $location_name_select_display = $location_name_select;
                                             }
                                             ?>
-                                            <option <?php if ($asset_location_id == $location_id_select) { echo "selected"; } ?> value="<?php echo $location_id_select; ?>"><?php echo $location_name_select_display; ?></option>
+                                            <option <?php if ($asset_location_id == $location_id_select) { echo "selected"; } ?> value="<?= $location_id_select; ?>"><?= $location_name_select_display; ?></option>
 
                                         <?php } ?>
                                     </select>
@@ -261,8 +261,8 @@
                                                 $contact_name_select_display = $contact_name_select;
                                             }
                                             ?>
-                                            <option <?php if ($asset_contact_id == $contact_id_select) { echo "selected"; } ?> value="<?php echo $contact_id_select; ?>">
-                                                <?php echo $contact_name_select_display; ?>
+                                            <option <?php if ($asset_contact_id == $contact_id_select) { echo "selected"; } ?> value="<?= $contact_id_select; ?>">
+                                                <?= $contact_name_select_display; ?>
                                             </option>
 
                                         <?php } ?>
@@ -278,7 +278,7 @@
                                     </div>
                                     <select class="form-control select2" id='select2' name="status">
                                         <?php foreach($asset_status_array as $asset_status_select) { ?>
-                                            <option <?php if ($asset_status_select == $asset_status) { echo "selected"; } ?>><?php echo $asset_status_select; ?></option>
+                                            <option <?php if ($asset_status_select == $asset_status) { echo "selected"; } ?>><?= $asset_status_select; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -286,7 +286,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-purchase<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-purchase<?= $asset_id; ?>">
 
                             <div class="form-group">
                                 <label>Vendor</label>
@@ -309,7 +309,7 @@
                                                 $vendor_name_select_display = $vendor_name_select;
                                             }
                                             ?>
-                                            <option <?php if ($asset_vendor_id == $vendor_id_select) { echo "selected"; } ?> value="<?php echo $vendor_id_select; ?>"><?php echo $vendor_name_select_display; ?></option>
+                                            <option <?php if ($asset_vendor_id == $vendor_id_select) { echo "selected"; } ?> value="<?= $vendor_id_select; ?>"><?= $vendor_name_select_display; ?></option>
 
                                         <?php } ?>
                                     </select>
@@ -322,7 +322,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-calendar-check"></i></span>
                                     </div>
-                                    <input type="date" class="form-control" name="install_date" max="2999-12-31" value="<?php echo $asset_install_date; ?>">
+                                    <input type="date" class="form-control" name="install_date" max="2999-12-31" value="<?= $asset_install_date; ?>">
                                 </div>
                             </div>
 
@@ -333,7 +333,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-shopping-cart"></i></span>
                                         </div>
-                                        <input type="date" class="form-control" name="purchase_date" max="2999-12-31" value="<?php echo $asset_purchase_date; ?>">
+                                        <input type="date" class="form-control" name="purchase_date" max="2999-12-31" value="<?= $asset_purchase_date; ?>">
                                     </div>
                                 </div>
 
@@ -343,17 +343,17 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-fw fa-calendar-times"></i></span>
                                         </div>
-                                        <input type="date" class="form-control" name="warranty_expire" max="2999-12-31" value="<?php echo $asset_warranty_expire; ?>">
+                                        <input type="date" class="form-control" name="warranty_expire" max="2999-12-31" value="<?= $asset_warranty_expire; ?>">
                                     </div>
                                 </div>
                             <?php } ?>
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-notes<?php echo $asset_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-notes<?= $asset_id; ?>">
 
                             <div class="form-group">
-                                <textarea class="form-control" rows="8" placeholder="Enter some notes" name="notes"><?php echo $asset_notes; ?></textarea>
+                                <textarea class="form-control" rows="8" placeholder="Enter some notes" name="notes"><?= $asset_notes; ?></textarea>
                             </div>
 
                         </div>

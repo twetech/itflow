@@ -1,9 +1,9 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php"; ?>
-<div class="modal" id="editLoginModal<?php echo $login_id; ?>" tabindex="-1">
+<div class="modal" id="editLoginModal<?= $login_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-fw fa-key mr-2"></i>Editing login: <strong><?php echo $login_name; ?></strong></h5>
+                <h5 class="modal-title"><i class="fa fa-fw fa-key mr-2"></i>Editing login: <strong><?= $login_name; ?></strong></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -11,17 +11,17 @@
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="login_id" value="<?php echo $login_id; ?>">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="login_id" value="<?= $login_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?php echo $login_id; ?>">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-details<?= $login_id; ?>">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-relation<?php echo $login_id; ?>">Relation</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-relation<?= $login_id; ?>">Relation</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes<?php echo $login_id; ?>">Notes</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-notes<?= $login_id; ?>">Notes</a>
                         </li>
                     </ul>
 
@@ -29,7 +29,7 @@
 
                     <div class="tab-content">
 
-                        <div class="tab-pane fade show active" id="pills-details<?php echo $login_id; ?>">
+                        <div class="tab-pane fade show active" id="pills-details<?= $login_id; ?>">
 
                             <div class="form-group">
                                 <label>Name <strong class="text-danger">*</strong> / <span class="text-secondary">Important?</span></label>
@@ -37,7 +37,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-key"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="name" placeholder="Name of Login" value="<?php echo $login_name; ?>" required>
+                                    <input type="text" class="form-control" name="name" placeholder="Name of Login" value="<?= $login_name; ?>" required>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <input type="checkbox" name="important" value="1" <?php if ($login_important == 1) { echo "checked"; } ?>>
@@ -52,7 +52,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-angle-right"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="description" placeholder="Description" value="<?php echo $login_description; ?>">
+                                    <input type="text" class="form-control" name="description" placeholder="Description" value="<?= $login_description; ?>">
                                 </div>
                             </div>
 
@@ -62,7 +62,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="username" placeholder="Username" value="<?php echo $login_username; ?>">
+                                    <input type="text" class="form-control" name="username" placeholder="Username" value="<?= $login_username; ?>">
                                 </div>
                             </div>
 
@@ -72,12 +72,12 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-lock"></i></span>
                                     </div>
-                                    <input type="password" class="form-control" data-bs-toggle="password" name="password" placeholder="Password" value="<?php echo $login_password; ?>" required autocomplete="new-password">
+                                    <input type="password" class="form-control" data-bs-toggle="password" name="password" placeholder="Password" value="<?= $login_password; ?>" required autocomplete="new-password">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-fw fa-eye"></i></span>
                                     </div>
                                     <div class="input-group-append">
-                                        <button class="btn btn-default clipboardjs" type="button" data-clipboard-text="<?php echo $login_password; ?>"><i class="fa fa-fw fa-copy"></i></button>
+                                        <button class="btn btn-default clipboardjs" type="button" data-clipboard-text="<?= $login_password; ?>"><i class="fa fa-fw fa-copy"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-key"></i></span>
                                     </div>
-                                    <input type="password" class="form-control" data-bs-toggle="password" name="otp_secret" value="<?php echo $login_otp_secret; ?>" placeholder="Insert secret key">
+                                    <input type="password" class="form-control" data-bs-toggle="password" name="otp_secret" value="<?= $login_otp_secret; ?>" placeholder="Insert secret key">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-fw fa-eye"></i></span>
                                     </div>
@@ -101,13 +101,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-link"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="uri" placeholder="ex. http://192.168.1.1" value="<?php echo $login_uri; ?>">
+                                    <input type="text" class="form-control" name="uri" placeholder="ex. http://192.168.1.1" value="<?= $login_uri; ?>">
                                     <div class="input-group-append">
 
-                                        <a href="<?php echo $login_uri; ?>" class="input-group-text"><i class="fa fa-fw fa-link"></i></a>
+                                        <a href="<?= $login_uri; ?>" class="input-group-text"><i class="fa fa-fw fa-link"></i></a>
                                     </div>
                                     <div class="input-group-append">
-                                        <button class="input-group-text clipboardjs" type="button" data-clipboard-text="<?php echo $login_uri; ?>"><i class="fa fa-fw fa-copy"></i></button>
+                                        <button class="input-group-text clipboardjs" type="button" data-clipboard-text="<?= $login_uri; ?>"><i class="fa fa-fw fa-copy"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -118,19 +118,19 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-fw fa-link"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="uri_2" placeholder="ex. https://server.company.com:5001" value="<?php echo $login_uri_2; ?>">
+                                    <input type="text" class="form-control" name="uri_2" placeholder="ex. https://server.company.com:5001" value="<?= $login_uri_2; ?>">
                                     <div class="input-group-append">
-                                        <a href="<?php echo $login_uri_2; ?>" class="input-group-text"><i class="fa fa-fw fa-link"></i></a>
+                                        <a href="<?= $login_uri_2; ?>" class="input-group-text"><i class="fa fa-fw fa-link"></i></a>
                                     </div>
                                     <div class="input-group-append">
-                                        <button class="input-group-text clipboardjs" type="button" data-clipboard-text="<?php echo $login_uri_2; ?>"><i class="fa fa-fw fa-copy"></i></button>
+                                        <button class="input-group-text clipboardjs" type="button" data-clipboard-text="<?= $login_uri_2; ?>"><i class="fa fa-fw fa-copy"></i></button>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-relation<?php echo $login_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-relation<?= $login_id; ?>">
 
                             <div class="form-group">
                                 <label>Contact</label>
@@ -147,7 +147,7 @@
                                             $contact_id_select = intval($row['contact_id']);
                                             $contact_name_select = nullable_htmlentities($row['contact_name']);
                                             ?>
-                                            <option <?php if ($login_contact_id == $contact_id_select) { echo "selected"; } ?> value="<?php echo $contact_id_select; ?>"><?php echo $contact_name_select; ?></option>
+                                            <option <?php if ($login_contact_id == $contact_id_select) { echo "selected"; } ?> value="<?= $contact_id_select; ?>"><?= $contact_name_select; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -168,7 +168,7 @@
                                             $vendor_id_select = intval($row['vendor_id']);
                                             $vendor_name_select = nullable_htmlentities($row['vendor_name']);
                                             ?>
-                                            <option <?php if ($login_vendor_id == $vendor_id_select) { echo "selected"; } ?> value="<?php echo $vendor_id_select; ?>"><?php echo $vendor_name_select; ?></option>
+                                            <option <?php if ($login_vendor_id == $vendor_id_select) { echo "selected"; } ?> value="<?= $vendor_id_select; ?>"><?= $vendor_name_select; ?></option>
                                         <?php } ?>
 
                                     </select>
@@ -197,7 +197,7 @@
                                             }
 
                                             ?>
-                                            <option <?php if ($login_asset_id == $asset_id_select) { echo "selected"; } ?> value="<?php echo $asset_id_select; ?>"><?php echo $asset_select_display_string; ?></option>
+                                            <option <?php if ($login_asset_id == $asset_id_select) { echo "selected"; } ?> value="<?= $asset_id_select; ?>"><?= $asset_select_display_string; ?></option>
 
                                         <?php } ?>
                                     </select>
@@ -219,7 +219,7 @@
                                             $software_id_select = intval($row['software_id']);
                                             $software_name_select = nullable_htmlentities($row['software_name']);
                                             ?>
-                                            <option <?php if ($login_software_id == $software_id_select) { echo "selected"; } ?> value="<?php echo $software_id_select; ?>"><?php echo $software_name_select; ?></option>
+                                            <option <?php if ($login_software_id == $software_id_select) { echo "selected"; } ?> value="<?= $software_id_select; ?>"><?= $software_name_select; ?></option>
 
                                         <?php } ?>
                                     </select>
@@ -228,10 +228,10 @@
 
                         </div>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-notes<?php echo $login_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-notes<?= $login_id; ?>">
 
                             <div class="form-group">
-                                <textarea class="form-control" rows="12" placeholder="Enter some notes" name="note"><?php echo $login_note; ?></textarea>
+                                <textarea class="form-control" rows="12" placeholder="Enter some notes" name="note"><?= $login_note; ?></textarea>
                             </div>
 
                         </div>

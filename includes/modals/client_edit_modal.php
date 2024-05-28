@@ -21,12 +21,12 @@ $client_created_at = $row['client_created_at'];
 
 ?>
 
-<div class="modal" id="editClientModal<?php echo $client_id; ?>" tabindex="-1">
+<div class="modal" id="editClientModal<?= $client_id; ?>" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-fw fa-user-edit mr-2"></i>Editing: <strong>
-                        <?php echo $client_name; ?>
+                        <?= $client_name; ?>
                     </strong></h5>
                 <button type="button" class="close text-white" data-bs-dismiss="modal">
                     <span>&times;</span>
@@ -35,25 +35,25 @@ $client_created_at = $row['client_created_at'];
             <form action="/post.php" method="post" autocomplete="off">
 
                 <div class="modal-body bg-white">
-                <input type="hidden" name="client_id" value="<?php echo $client_id; ?>">
+                <input type="hidden" name="client_id" value="<?= $client_id; ?>">
                 <input type="hidden" name="lead" value="0">
                 <input type="hidden" name="currency_code" value="<?php if (empty($currency_code)) {
                     echo $session_company_currency;
                 } else {
                     echo $currency_code;
                 } ?>">
-                <input type="hidden" name="net_terms" value="<?php echo $client_net_terms; ?>">
+                <input type="hidden" name="net_terms" value="<?= $client_net_terms; ?>">
                     <ul class="nav nav-pills  mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-client-details<?php echo $client_id; ?>">Details</a>
+                            <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#pills-client-details<?= $client_id; ?>">Details</a>
                         </li>
                         <?php if ($config_module_enable_accounting) { ?>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-client-billing<?php echo $client_id; ?>">Billing</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-client-billing<?= $client_id; ?>">Billing</a>
                         </li>
                         <?php } ?>
                         <li class="nav-item">
-                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-client-more<?php echo $client_id; ?>">More</a>
+                            <a class="nav-link" role="tab" data-bs-toggle="tab" href="#pills-client-more<?= $client_id; ?>">More</a>
                         </li>
                     </ul>
 
@@ -61,7 +61,7 @@ $client_created_at = $row['client_created_at'];
 
                     <div class="tab-content">
 
-                        <div class="tab-pane fade show active" id="pills-client-details<?php echo $client_id; ?>">
+                        <div class="tab-pane fade show active" id="pills-client-details<?= $client_id; ?>">
 
                             <div class="form-group">
                                 <label>Name <strong class="text-danger">*</strong></label>
@@ -70,7 +70,7 @@ $client_created_at = $row['client_created_at'];
                                         <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
                                     </div>
                                     <input type="text" class="form-control" name="name" placeholder="Name or Company"
-                                        value="<?php echo $client_name; ?>" required>
+                                        value="<?= $client_name; ?>" required>
                                 </div>
                             </div>
 
@@ -81,7 +81,7 @@ $client_created_at = $row['client_created_at'];
                                         <span class="input-group-text"><i class="fa fa-fw fa-briefcase"></i></span>
                                     </div>
                                     <input type="text" class="form-control" name="type" placeholder="Industry"
-                                        value="<?php echo $client_type; ?>">
+                                        value="<?= $client_type; ?>">
                                 </div>
                             </div>
 
@@ -102,7 +102,7 @@ $client_created_at = $row['client_created_at'];
                                             <option <?php if ($client_referral == $referral) {
                                                 echo "selected";
                                             } ?>>
-                                                <?php echo $referral; ?>
+                                                <?= $referral; ?>
                                             </option>
 
                                             <?php
@@ -119,7 +119,7 @@ $client_created_at = $row['client_created_at'];
                                         <span class="input-group-text"><i class="fa fa-fw fa-globe"></i></span>
                                     </div>
                                     <input type="text" class="form-control" name="website" placeholder="ex. google.com"
-                                        value="<?php echo $client_website; ?>">
+                                        value="<?= $client_website; ?>">
                                 </div>
                             </div>
 
@@ -138,7 +138,7 @@ $client_created_at = $row['client_created_at'];
 
                         <?php if ($config_module_enable_accounting) { ?>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-client-billing<?php echo $client_id; ?>">     
+                        <div class="tab-pane fade" role="tabpanel" id="pills-client-billing<?= $client_id; ?>">     
 
                             <div class="form-group">
                                 <label>Hourly Rate</label>
@@ -148,7 +148,7 @@ $client_created_at = $row['client_created_at'];
                                     </div>
                                     <input type="text" class="form-control" inputmode="numeric"
                                         pattern="[0-9]*\.?[0-9]{0,2}" name="rate" placeholder="0.00"
-                                        value="<?php echo number_format($client_rate, 2, '.', ''); ?>">
+                                        value="<?= number_format($client_rate, 2, '.', ''); ?>">
                                 </div>
                             </div>
 
@@ -163,8 +163,8 @@ $client_created_at = $row['client_created_at'];
                                         <?php foreach ($currencies_array as $currency_code => $currency_name) { ?>
                                             <option <?php if ($client_currency_code == $currency_code) {
                                                 echo "selected";
-                                            } ?> value="<?php echo $currency_code; ?>">
-                                                <?php echo "$currency_code - $currency_name"; ?>
+                                            } ?> value="<?= $currency_code; ?>">
+                                                <?= "$currency_code - $currency_name"; ?>
                                             </option>
                                         <?php } ?>
                                     </select>
@@ -182,8 +182,8 @@ $client_created_at = $row['client_created_at'];
                                         <?php foreach ($net_terms_array as $net_term_value => $net_term_name) { ?>
                                             <option <?php if ($net_term_value == $client_net_terms) {
                                                 echo "selected";
-                                            } ?> value="<?php echo $net_term_value; ?>">
-                                                <?php echo $net_term_name; ?>
+                                            } ?> value="<?= $net_term_value; ?>">
+                                                <?= $net_term_name; ?>
                                             </option>
                                         <?php } ?>
                                     </select>
@@ -197,7 +197,7 @@ $client_created_at = $row['client_created_at'];
                                         <span class="input-group-text"><i class="fa fa-fw fa-balance-scale"></i></span>
                                     </div>
                                     <input type="text" class="form-control" name="tax_id_number"
-                                        placeholder="Tax ID Number" value="<?php echo $client_tax_id_number; ?>">
+                                        placeholder="Tax ID Number" value="<?= $client_tax_id_number; ?>">
                                 </div>
                             </div>
 
@@ -205,11 +205,11 @@ $client_created_at = $row['client_created_at'];
 
                         <?php } ?>
 
-                        <div class="tab-pane fade" role="tabpanel" id="pills-client-more<?php echo $client_id; ?>">
+                        <div class="tab-pane fade" role="tabpanel" id="pills-client-more<?= $client_id; ?>">
 
                             <div class="form-group">
                                 <textarea class="form-control" rows="8" placeholder="Enter some notes"
-                                    name="notes"><?php echo $client_notes; ?></textarea>
+                                    name="notes"><?= $client_notes; ?></textarea>
                             </div>
 
                             <div class="form-group">
@@ -226,7 +226,7 @@ $client_created_at = $row['client_created_at'];
                                             $tag_id_select = intval($row['tag_id']);
                                             $tag_name_select = nullable_htmlentities($row['tag_name']);
                                             ?>
-                                            <option value="<?php echo $tag_id_select; ?>" <?php if (in_array($tag_id_select, $client_tag_id_array)) { echo "selected"; } ?>><?php echo $tag_name_select; ?></option>
+                                            <option value="<?= $tag_id_select; ?>" <?php if (in_array($tag_id_select, $client_tag_id_array)) { echo "selected"; } ?>><?= $tag_name_select; ?></option>
                                         <?php } ?>
 
                                     </select>

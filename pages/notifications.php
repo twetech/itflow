@@ -48,11 +48,11 @@ $sql = mysqli_query($mysqli, "SELECT * FROM notifications LEFT JOIN clients ON n
 
                         ?>
                         <tr class="row-danger">
-                            <td><?php echo $notification_timestamp; ?></td>
-                            <td><?php echo $notification_type; ?></td>
-                            <td><?php echo $notification; ?></td>
-                            <td><?php echo $client_name_display; ?></td>
-                            <td class="text-center"><a class="btn btn-info btn-sm" href="/post.php?dismiss_notification=<?php echo $notification_id; ?>"><i class="fas fa-check"></a></td>
+                            <td><?= $notification_timestamp; ?></td>
+                            <td><?= $notification_type; ?></td>
+                            <td><?= $notification; ?></td>
+                            <td><?= $client_name_display; ?></td>
+                            <td class="text-center"><a class="btn btn-info btn-sm" href="/post.php?dismiss_notification=<?= $notification_id; ?>"><i class="fas fa-check"></a></td>
                         </tr>
 
                     <?php } ?>
