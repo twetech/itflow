@@ -6,6 +6,10 @@ $(document).ready(function() {
         var clickedElement = $(this);
         var modalFile = clickedElement.data('modal-file');
 
+        // Change modal body to loading message
+        $('#dynamicModal .modal-body').html('<div class="text-center"><i class="fas fa-spinner fa-spin fa-2x"></i></div>');
+        
+
         if (modalFile) {
             var fullPath = '/includes/modals/' + modalFile;
 
@@ -48,6 +52,35 @@ $(document).ready(function() {
                 });
 
                 
+            }).fail(function() {
+                console.error('Failed to load the modal content from ' + fullPath);
+            });
+        }
+    });
+
+    // Event delegation for reload modal content button
+    $(document).on('click', '.reloadModalContentBtn', function(e) {
+        e.preventDefault();
+
+        var clickedElement = $(this);
+        var modalFile = clickedElement.data('modal-file');
+
+        // Change modal body to loading message
+        $('#dynamicModal .modal-body').html('<div class="text-center"><i class="fas fa-spinner fa-spin fa-2x"></i></div>');
+
+        if (modalFile) {
+            var fullPath = '/includes/modals/' + modalFile;
+
+            $.get(fullPath, function(data) {
+                // Create a temporary div to hold the loaded content
+                var tempDiv = $('<div>').html(data);
+
+                // Output the loaded content to the console
+                // Extract and replace the modal title, body, and footer from the loaded content
+                $('#dynamicModalLabel').html(tempDiv.find('.modal-title').html());
+                $('#dynamicModal .modal-body').html(tempDiv.find('.modal-body').html());
+                $('#dynamicModal .modal-footer').html(tempDiv.find('.modal-footer').html());
+
             }).fail(function() {
                 console.error('Failed to load the modal content from ' + fullPath);
             });

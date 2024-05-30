@@ -1,6 +1,6 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php";
 
-$ticket_id = $_GET['ticket_id'];
+$ticket_id = intval($_GET['ticket_id']);
 
 $sql = "SELECT * FROM tickets WHERE ticket_id = $ticket_id";
 $result = mysqli_query($mysqli, $sql);

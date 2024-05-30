@@ -1,6 +1,6 @@
 <?php require_once "/var/www/portal.twe.tech/includes/inc_all_modal.php";
 
-$ticket_id = $_GET['ticket_id'];
+$ticket_id = intval($_GET['ticket_id']);
 
 $sql = "SELECT * FROM tickets LEFT JOIN clients ON tickets.ticket_client_id = clients.client_id WHERE ticket_id = $ticket_id";
 $result = mysqli_query($mysqli, $sql);

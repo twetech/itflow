@@ -22,12 +22,12 @@
             </div>
             <?php if (!isset($_GET['client_id'])) { ?>
                 <a href="?assigned=unassigned" class="btn btn-label-danger">
-                    <strong><?=$session_mobile ? "" : "Unassigned"?> : <?= " ".$total_tickets_unassigned; ?></strong>
+                    <strong><?=$session_mobile ? "" : "Unassigned:"?> <?= " ".$total_tickets_unassigned; ?></strong>
                     <span class="tf-icons fa fa-fw fa-exclamation-triangle mr-2"></span>
                 </a> 
             <?php } ?>
             <a href="<?=isset($_GET['client_id']) ? "/pages/client/client_" : '/pages/'?>recurring_tickets.php" class="btn btn-label-info">
-            <strong><?=$session_mobile ? "" : "Recurring"?>: <?= $total_scheduled_tickets; ?> </strong>
+            <strong><?=$session_mobile ? "" : "Recurring:"?> <?= $total_scheduled_tickets; ?> </strong>
                 <span class="tf-icons fa fa-fw fa-redo-alt mr-2"></span>
             </a>
             <?php if ($session_user_role == 3) { ?>

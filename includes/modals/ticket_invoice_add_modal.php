@@ -2,8 +2,12 @@
 <?php
 
 $ticket_id = isset($_GET['ticket_id']) ? intval($_GET['ticket_id']) : 0;
+$invoice_id = isset($_GET['invoice_id']) ? intval($_GET['invoice_id']) : 0;
+
+
 $ticket_sql = mysqli_query($mysqli, "SELECT * FROM tickets WHERE ticket_id = $ticket_id");
 $ticket_row = mysqli_fetch_array($ticket_sql);
+
 $ticket_prefix = nullable_htmlentities($ticket_row['ticket_prefix']);
 $ticket_number = intval($ticket_row['ticket_number']);
 $ticket_subject = nullable_htmlentities($ticket_row['ticket_subject']);

@@ -90,6 +90,8 @@ if (isset($_GET['invoice_id'])) {
             tickets
         LEFT JOIN
             ticket_replies ON tickets.ticket_id = ticket_replies.ticket_reply_ticket_id
+        LEFT JOIN 
+            ticket_statuses ON ticket_status = ticket_status_id
         WHERE
             ticket_invoice_id = $invoice_id
         GROUP BY
@@ -549,7 +551,7 @@ if (isset($_GET['invoice_id'])) {
 
 
                         <?php if (mysqli_num_rows($sql_tickets_billable) > 0) { ?>
-                        <a class="btn btn-tool" href="#" data-bs-toggle="modal" data-bs-target="#addTicketModal">
+                        <a class="btn btn-tool loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="invoice_add_ticket_modal.php?invoice_id=<?=$invoice_id?>">
                             <i class="fas fa-plus"></i>
                         </a>
                         <?php } ?>
@@ -571,28 +573,31 @@ if (isset($_GET['invoice_id'])) {
                 </div>
 
                 <div class="card-body">
-                    <div class="card-datatable table-responsive container-fluid  pt-0">
-                        <?php
-                            while ($row = mysqli_fetch_array($sql_tickets)) {
-                                $ticket_id = intval($row['ticket_id']);
-                                $ticket_created_at = nullable_htmlentities($row['ticket_created_at']);
-                                $ticket_subject = nullable_htmlentities($row['ticket_subject']);
-                                $ticket_status = nullable_htmlentities($row['ticket_status']);
-                                $ticket_priority = nullable_htmlentities($row['ticket_priority']);
-                                $ticket_assigned_to_id = intval($row['ticket_assigned_to']);
-                                $ticket_total_time_worked = floatval($row['total_time_worked']);
+                    <?php
+                        while ($row = mysqli_fetch_array($sql_tickets)) {
+                            $ticket_id = intval($row['ticket_id']);
+                            $ticket_created_at = nullable_htmlentities($row['ticket_created_at']);
+                            $ticket_subject = nullable_htmlentities($row['ticket_subject']);
+                            $ticket_status = nullable_htmlentities($row['ticket_status']);
+                            $ticket_priority = nullable_htmlentities($row['ticket_priority']);
+                            $ticket_assigned_to_id = intval($row['ticket_assigned_to']);
+                            $ticket_total_time_worked = floatval($row['total_time_worked']);
 
-                                $sql_assigned_to = mysqli_query($mysqli, "SELECT * FROM users WHERE user_id = $ticket_assigned_to_id");
-                                $row = mysqli_fetch_array($sql_assigned_to);
-                                $ticket_assigned_to = nullable_htmlentities($row['user_name']);
-                                ?>
-                                <span 
+                            $sql_assigned_to = mysqli_query($mysqli, "SELECT * FROM users WHERE user_id = $ticket_assigned_to_id");
+                            $row = mysqli_fetch_array($sql_assigned_to);
+                            $ticket_assigned_to = nullable_htmlentities($row['user_name']);
+                            ?>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <a href="/pages/ticket.php?ticket_id=<?=$ticket_id?>"><?=$ticket_subject?></a>
+                                    <p class="mb-0"><?=$ticket_status?> | <?=$ticket_priority?> | <?=$ticket_assigned_to?> | <?=$ticket_total_time_worked?></p>
+                                </div>
+                            </div>
 
 
-                                <?php
-                            }
-                        ?>
-                    </div>
+                            <?php
+                        }
+                    ?>
                 </div>
         </div>
         <!-- /Invoice Actions -->
