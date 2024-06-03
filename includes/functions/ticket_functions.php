@@ -378,3 +378,16 @@ function getStaleTickets() {
     return $stale_tickets;
 
 }
+
+function getTicketStatusName($status) {
+    global $mysqli;
+
+    $status_sql = "SELECT ticket_status_name FROM ticket_statuses WHERE ticket_status_id = $status";
+
+
+    $sql = mysqli_query($mysqli, $status_sql);
+    $row = mysqli_fetch_array($sql);
+    $status_name = sanitizeInput($row['ticket_status_name']);
+
+    return $status_name;
+}

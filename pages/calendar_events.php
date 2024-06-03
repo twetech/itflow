@@ -21,9 +21,12 @@ if (isset($_GET['calendar_id'])) {
 </div>
 <?php
 
+
 require_once "/var/www/portal.twe.tech/includes/modals/calendar_event_add_modal.php";
 
 require_once "/var/www/portal.twe.tech/includes/modals/calendar_add_modal.php";
+
+require_once "/var/www/portal.twe.tech/includes/footer.php";
 
 
 //loop through IDs and create a modal for each

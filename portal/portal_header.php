@@ -74,22 +74,27 @@
                 <li class="nav-item <?php if (basename($_SERVER['PHP_SELF']) == "index.php") {echo "active";} ?>">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == "tickets.php" || basename($_SERVER['PHP_SELF']) == "ticket_add.php" || basename($_SERVER['PHP_SELF']) == "ticket.php") {echo "active";} ?>" href="tickets.php">Tickets</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            Support
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="tickets.php">Tickets</a>
+                            <?php if ($session_contact_primary == 1 || $session_contact_is_technical_contact) { ?>
+                                <a class="dropdown-item" href="documents.php">Documents</a>
+                            <?php } ?>
+                        </div>
                     </li>
                 
                 <?php if (($session_contact_primary == 1 || $session_contact_is_billing_contact) && $config_module_enable_accounting == 1) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == "invoices.php") {echo "active";} ?>" href="invoices.php">Invoices</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == "quotes.php") {echo "active";} ?>" href="quotes.php">Quotes</a>
-                    </li>
-                <?php } ?>
-                <?php if ($session_contact_primary == 1 || $session_contact_is_technical_contact) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == "documents.php") {echo "active";} ?>" href="documents.php">Documents</a>
-                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            Accounting
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="invoices.php">Invoices</a>
+                            <a class="dropdown-item" href="guest_view_statement.php">Statement</a>
+                            <a class="dropdown-item" href="quotes.php">Quotes</a>
                 <?php } ?>
             </ul>
 

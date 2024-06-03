@@ -1,12 +1,12 @@
 <?php
 
 
-require_once "/var/www/portal.twe.tech/includes/inc_all.php";
+require_once "/var/www/portal.twe.tech/includes/inc_portal.php";
 
 
-if (isset($_GET['client_id'])) {
 
-    $client_id = intval($_GET['client_id']);
+    $client_id = $session_client_id;
+
 
     $sql_client_details = "
     SELECT
@@ -58,15 +58,6 @@ if (isset($_GET['client_id'])) {
         $outstanding_wording = "Outstanding";
     }
     ?>
-
-    <ol class="breadcrumb d-print-none">
-        <li class="breadcrumb-item">
-            <a href="clients.php">Clients</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="client_invoices.php?client_id=<?= $client_id; ?>"><?= $client_name; ?></a>
-        </li>
-    </ol>
 
     <div class="card">
     <div class="card-header py-2">
@@ -129,7 +120,8 @@ if (isset($_GET['client_id'])) {
                 <div class="coTmd-12">
                     <div class="m-3">
                         <h4>
-                            <a href="?client_id=<?= $client_id; ?>&max_rows=<?= $max_rows+10; ?>" class="text-secondary">
+                            
+                            <a href="?client_id=<?= $client_id; ?>&max_rows=<?= $max_rows+10; ?>" type="button" class="text-primary" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<i class='bx bx-bell bx-xs' ></i> <span>Click to see more transactions</span>">
                                 <?= $outstanding_wording; ?>
                             </a>
                             Invoices and Associated Payments
@@ -239,5 +231,4 @@ if (isset($_GET['client_id'])) {
 
 <?php require_once '/var/www/portal.twe.tech/includes/footer.php';
 
-                        }
 ?>

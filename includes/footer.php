@@ -106,6 +106,7 @@
 <script src="/includes/assets/vendor/libs/toastr/toastr.js"></script>
 <script src="/includes/plugins/moment/moment.min.js"></script>
 <script src="/includes/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+<script src="/includes/plugins/chart.js/Chart.min.js"></script>
 <script src="/includes/assets/vendor/libs/flatpickr/flatpickr.js"></script>
 <script src="/includes/assets/vendor/libs/cleavejs/cleave.js"></script>
 <script src="/includes/assets/vendor/libs/cleavejs/cleave-phone.js"></script>

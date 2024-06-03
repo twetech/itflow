@@ -15,7 +15,7 @@ function createInvoiceItem(
     $qty = $item['item_qty'];
     $price = $item['item_price'];
     $tax_id = $item['item_tax_id'];
-    $item_order = $item['item_order'];
+    $item_order = $item['item_order'] ?? 0;
     $invoice_id = $item['item_invoice_id'];
     $category_id = $item['item_category_id'];
     $discount = $item['item_discount'];

@@ -19,6 +19,13 @@ if(isset($_POST['change_records_per_page'])){
 
 }
 
+if(isset($_POST['change_max_rows'])){
+
+    $max_rows = intval($_POST['max_rows']);
+
+    header("Location: /" . $SERVER["HTTP_REFERER"] . "&max_rows=$max_rows");
+}
+
 // In app notifications
 
 if (isset($_GET['dismiss_notification'])) {

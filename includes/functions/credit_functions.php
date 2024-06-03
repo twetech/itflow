@@ -21,7 +21,7 @@ function applyCredit(
     if ($client_balance < $credit_amount) {
         //create a new credit for the remaining amount
         $new_credit_amount = $credit_amount - $client_balance;
-        $new_credit_query = "INSERT INTO credits credit_date = CURDATE(), credit_amount = $new_credit_amount, credit_client_id = $client_id, credit_currency_code = '$credit_currency_code', credit_reference = 'Credit Applied'";
+        $new_credit_query = "INSERT INTO credits SET credit_date = CURDATE(), credit_amount = $new_credit_amount, credit_client_id = $client_id, credit_currency_code = '$credit_currency_code', credit_reference = 'Credit Applied'";
         mysqli_query($mysqli, $new_credit_query);
         $new_credit_id = mysqli_insert_id($mysqli);
     } 

@@ -77,7 +77,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         <th data-priority="2">Primary Location</th>
                         <th>Primary Contact</th>
                         <?php if (($session_user_role == 3 || $session_user_role == 1) && $config_module_enable_accounting == 1) { ?> <th class="text-right " data-priority="3">Billing</th> <?php } ?>
-                        <?php if ($session_user_role == 3) { ?> <th class="text-center" data-priority="4">Action</th> <?php } ?>
                 
                     </tr>
                     </thead>
@@ -266,27 +265,6 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                                 </td>
                             <?php } ?>
 
-                            <!-- Show actions for Admin role only -->
-                            <?php if ($session_user_role == 3) { ?>
-                                <td>
-                                    <ul>
-                                        <div class="dropdown dropleft text-center">
-                                            <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a href="#!" data-bs-toggle="modal" data-bs-target="#dynamicModal" class="dropdown-item loadModalContentBtn" data-modal-file="client_edit_modal.php?client_id=<?= $client_id; ?>">
-                                                    <i class="fas fa-fw fa-edit mr-2"></i>Edit
-                                                </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger confirm-link" href="/post.php?archive_client=<?= $client_id; ?>">
-                                                    <i class="fas fa-fw fa-archive mr-2"></i>Archive
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                </td>
-                            <?php } ?>
                         </tr>
                         <?php } ?>
                     </tbody>

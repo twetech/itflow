@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
                 $_SESSION['client_logged_in'] = true;
                 $_SESSION['client_id'] = intval($row['contact_client_id']);
+                error_log("Client ID: " . $_SESSION['client_id']);
                 $_SESSION['contact_id'] = intval($row['contact_id']);
                 $_SESSION['login_method'] = "local";
 

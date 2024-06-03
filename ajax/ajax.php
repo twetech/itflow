@@ -689,9 +689,9 @@ if (isset($_GET['search'])) {
     $sql = "SELECT * FROM";
     $client_sql = "clients WHERE client_name LIKE '%$search%' OR client_type LIKE '%$search%' OR client_notes LIKE '%$search%'";
     $contact_sql = "contacts WHERE contact_name LIKE '%$search%' OR contact_email LIKE '%$search%' OR contact_phone LIKE '%$search%' OR contact_mobile LIKE '%$search%' OR contact_notes LIKE '%$search%'";
-    $ticket_sql = "tickets WHERE ticket_subject LIKE '%$search%' OR ticket_number LIKE '%$search%' OR ticket_description LIKE '%$search%'";
+    $ticket_sql = "tickets WHERE ticket_subject LIKE '%$search%' OR ticket_number LIKE '%$search%' OR ticket_details LIKE '%$search%'";
     $document_sql = "documents WHERE document_name LIKE '%$search%'";
-    $login_sql = "logins WHERE login_name LIKE '%$search%' or login_uri LIKE '%$search%' or login_notes LIKE '%$search%'";
+    $login_sql = "logins WHERE login_name LIKE '%$search%' or login_uri LIKE '%$search%'";
     $ticket_reply_sql = "ticket_replies WHERE reply_content LIKE '%$search%'";
     $asset_sql = "assets WHERE asset_name LIKE '%$search%' or asset_notes LIKE '%$search%' or asset_description LIKE '%$search%' OR asset_serial LIKE '%$search%' OR asset_mac LIKE '%$search%' or asset_make LIKE '%$search%' or asset_model LIKE '%$search%'";
 

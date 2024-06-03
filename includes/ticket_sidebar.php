@@ -1,5 +1,5 @@
 <!-- Right -->
-<div class="col<?= $session_mobile ? '' : '-3'; ?>">
+<div class="col<?= $session_mobile ? '' : '-3'; ?> ">
     <div class="card card-action mb-3">
         <div class="card-header">
             <div class="card-action-title row">
@@ -28,6 +28,10 @@
                                 <a href="#" class="dropdown-item loadModalContentBtn"  data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_change_client_modal.php?ticket_id=<?= $ticket_id; ?>">
                                     <i class="fas fa-fw fa-people-carry mr-2"></i>Change Client
                                 </a>
+                                <a href="#" class="dropdown-item loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_contact_modal.php?ticket_id=<?= $ticket_id; ?>">
+                                    <i class="fas fa-fw fa-user mr-2"></i>Change Contact
+                                </a>
+
                                 <?php if ($session_user_role == 3) { ?>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger text-bold confirm-link" href="/post.php?delete_ticket=<?= $ticket_id; ?>">
@@ -38,7 +42,6 @@
                         </div>
                     </li>
                 </ul>
-
             </div>
         </div>
         <div class="collapse <?= !$session_mobile ? 'show' : ''; ?>">
@@ -52,37 +55,96 @@
                     </div>
                     <?php } ?>
 
-                    <?php
-                            if (!empty($client_tags_display)) { ?>
-                    <div class="mt-1"><?= $client_tags_display; ?></div>
-                    <?php } ?>
+                <?php if (!empty($contact_id)) { ?>
+
+                    <!-- Contact table to replace card -->
+                    <table class="table table-sm table-borderless table-striped table-hover table-responsive-md">
+                        <thead>
+                            <tr>
+                                <th>Contact</th>
+                                <th><a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_contact_modal.php?ticket_id=<?= $ticket_id; ?>">Edit</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td><?= $contact_name; ?>
+                            </td>
+                            </tr>
+                            <?php if (!empty($location_name)) { ?>
+                            <tr>
+                                <td>Location:</td>
+                                <td><?= $location_name; ?></td>
+                            </tr>
+                            <?php }
+                            if (!empty($contact_email)) { ?>
+                            <tr>
+                                <td>Email:</td>
+                                <td><a href="mailto:<?= $contact_email; ?>"><?= $contact_email; ?></a></td>
+                            </tr>
+                            <?php }
+                            if (!empty($contact_phone)) { ?>
+                            <tr>
+                                <td>Phone:</td>
+                                <td><a href="tel:<?= $contact_phone; ?>"><?= $contact_phone; ?></a></td>
+                            </tr>
+                            <?php }
+                            if (!empty($contact_mobile)) { ?>
+                            <tr>
+                                <td>Mobile:</td>
+                                <td><a href="tel:<?= $contact_mobile; ?>"><?= $contact_mobile; ?></a></td>
+                            </tr>
+                            <?php } ?>
+                            <?php
+                            // Previous tickets
+                            $prev_ticket_id = $prev_ticket_subject = $prev_ticket_status = ''; // Default blank
+                            $sql_prev_ticket = "SELECT ticket_id, ticket_created_at, ticket_subject, ticket_status, ticket_assigned_to FROM tickets
+                                LEFT JOIN ticket_statuses ON ticket_status_id = ticket_status
+                                WHERE ticket_contact_id = $contact_id AND ticket_id  <> $ticket_id ORDER BY ticket_id DESC LIMIT 1";
+                            $prev_ticket_row = mysqli_fetch_assoc(mysqli_query($mysqli, $sql_prev_ticket));
+                            if ($prev_ticket_row) {
+                                $prev_ticket_id = intval($prev_ticket_row['ticket_id']);
+                                $prev_ticket_subject = nullable_htmlentities($prev_ticket_row['ticket_subject']);
+                                $prev_ticket_status = nullable_htmlentities($prev_ticket_row['ticket_status']);
+                                $prev_ticket_assigned_to = nullable_htmlentities($prev_ticket_row['ticket_assigned_to']);
+
+                                if ($prev_ticket_assigned_to == 0) {
+                                    $prev_ticket_assigned_to = 'Unassigned';
+                                } else {
+                                    $user_sql = "SELECT user_name FROM users WHERE user_id = $prev_ticket_assigned_to";
+                                    $user_row = mysqli_fetch_assoc(mysqli_query($mysqli, $user_sql));
+                                    $prev_ticket_assigned_to = nullable_htmlentities($user_row['user_name']);
+                                }
+
+                                $prev_ticket_status = getTicketStatusName($prev_ticket_status);
+                            }
+                            ?>
+                            <?php if ($prev_ticket_id) { ?>
+                            <tr>
+                                <td>Previous Ticket:</td>
+                                <td>
+                                        <div class="row">
+                                            <div class="col-6 col-md-12">
+                                                <a href="/pages/ticket.php?ticket_id=<?= $prev_ticket_id; ?>" title="View Ticket #<?= $prev_ticket_id; ?>">
+                                                    <?= $prev_ticket_subject; ?>
+                                                </a>
+                                            </div>
+                                            <div class="col-6 col-md-12">
+                                                <strong>Status:</strong> <?= $prev_ticket_status; ?>
+                                                <br>
+                                                <strong>Assigned to:</strong> <?= $prev_ticket_assigned_to; ?>
+                                            </div>
+                                        </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                    <!-- End Contact table -->
+
+                <?php } ?>
+
                 </div>
-                                <!-- Ticket Actions -->
-                                <?php
-                    if ($ticket_status_id != 5) {
-                        $close_ticket_button = true;
-                    }
-                    if ($ticket_billable) {
-                        $invoice_ticket_button = true;
-                    }
-
-                    if ($close_ticket_button || $invoice_ticket_button) {
-                ?>
-                    <div class="card card-body card-outline card-dark mb-2 d-print-none">
-                        <?php if (isset($invoice_ticket_button)) { ?>
-                        <a href="#" class="btn btn-primary btn-block mb-3 loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_invoice_add_modal.php?ticket_id=<?= $ticket_id; ?>&ticket_total_reply_time=<?= $ticket_total_reply_time; ?>">
-                            <i class="fas fa-fw fa-file-invoice mr-2"></i>Invoice Ticket
-                        </a>
-                        <?php } ?>
-                        <?php if (isset($close_ticket_button)) { ?>
-                        <a href="/post.php?close_ticket=<?= $ticket_id; ?>" class="btn btn-secondary btn-block confirm-link" id="ticket_close">
-                            <i class="fas fa-fw fa-gavel mr-2"></i>Close Ticket
-                        </a>
-                        <?php } ?>
-                    </div>
-                    <?php } ?>
-
-                <!-- End Ticket Actions -->
                 <!-- End Client row -->
                     <div class="row small">
                         <table class="me-2 table table-sm table-borderless table-striped table-hover table-responsive-md">
@@ -170,312 +232,141 @@
                                     <td>Assigned to:</td>
                                     <td><a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_assign_modal.php?ticket_id=<?= $ticket_id; ?>"><?= $ticket_assigned_to_display; ?></a></td>
                                 </tr>
+                                <?php if (empty($contact_id)) { ?> 
+                                    <tr>
+                                        <td>Contact:</td>
+                                        <td>
+                                            <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_contact_modal.php?ticket_id=<?= $ticket_id; ?>">Add Contact</a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                                 <tr>
-                                    <td>Category:</td>
-                                    <td><a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_category_modal.php?ticket_id=<?= $ticket_id; ?>"><?= $ticket_category_display; ?></a></td>
+                                    <td>
+                                        Watchers:
+                                    </td>
+                                    <td>
+                                    <?php if (empty($ticket_watcher_row))
+                                    {
+                                        ?>
+                                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_add_watcher_modal.php?ticket_id=<?= $ticket_id; ?>">
+                                            Add a Watcher
+                                        </a>
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        echo $ticket_watcher_row;
+                                    }
+                                    ?>
+                                    </td>
                                 </tr>
-
-
+                                <tr>
+                                    <td>Asset:</td>
+                                    <td>
+                                    <?php if (empty($asset_id))
+                                    {
+                                        ?>
+                                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_asset_modal.php?ticket_id=<?= $ticket_id; ?>">
+                                            Add an Asset
+                                        </a>
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        echo $asset_name;
+                                    }
+                                    ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Vendor:</td>
+                                    <td>
+                                    <?php if (empty($vendor_id))
+                                    {
+                                        ?>
+                                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_vendor_modal.php?ticket_id=<?= $ticket_id; ?>">
+                                            Add a Vendor
+                                        </a>
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        echo $vendor_name;
+                                    }
+                                    ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Products:</td>
+                                    <td>
+                                    <?php if (empty($ticket_products_display))
+                                    {
+                                        ?>
+                                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_add_product_modal.php?ticket_id=<?= $ticket_id; ?>">
+                                            Manage Products
+                                        </a>
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        echo $ticket_products_display;
+                                    }
+                                    ?>
+                                    </td>
+                                </tr>
+                                <!-- Ticket closure info -->
+                                <?php if ($ticket_status == "Closed") {
+                                    $sql_closed_by = mysqli_query($mysqli, "SELECT * FROM tickets, users WHERE ticket_closed_by = user_id");
+                                    $row = mysqli_fetch_array($sql_closed_by);
+                                    $ticket_closed_by_display = nullable_htmlentities($row['user_name']);
+                                    ?>
+                                    <tr>
+                                        <td>Closed by:</td>
+                                        <td><?= ucwords($ticket_closed_by_display); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Feedback:</td>
+                                        <td><?= $ticket_feedback; ?></td>
+                                    </tr>
+                                <?php } ?>
+                                <!-- END Ticket closure info -->
                             </tbody>
-
                         </table>
-                    </div>
 
-
-                    <!-- Ticket closure info -->
-                    <?php if ($ticket_status == "Closed") {
-                                $sql_closed_by = mysqli_query($mysqli, "SELECT * FROM tickets, users WHERE ticket_closed_by = user_id");
-                                $row = mysqli_fetch_array($sql_closed_by);
-                                $ticket_closed_by_display = nullable_htmlentities($row['user_name']);
-                                ?>
-                        <div class="mt-1">
-                            <i class="fa fa-fw fa-user text-secondary ml-1 mr-2"></i>Closed by:
-                            <?= ucwords($ticket_closed_by_display); ?>
-                        </div>
-                        <div class="mt-1">
-                            <i class="fa fa-fw fa-comment-dots text-secondary ml-1 mr-2"></i>Feedback:
-                            <?= $ticket_feedback; ?>
-                        </div>
-                    <?php } ?>
-                    <!-- END Ticket closure info -->
-
-                <!-- Contact card -->
-                <div class="card card-body card-outline mb-3">
-                    <h5 class="text-secondary">Contact</h5>
-                    <?php if (!empty($contact_id)) { ?>
-                    <div>
-                        <i class="fa fa-fw fa-user text-secondary ml-1 mr-2"></i><a class="loadModalContentBtn" href="#" data-bs-toggle="modal"
-                            data-bs-target="#dynamicModal" data-modal-file="ticket_edit_contact_modal.php?ticket_id=<?= $ticket_id; ?>"><strong><?= $contact_name; ?></strong>
-                        </a>
-                    </div>
+                                            <!-- Ticket Actions -->
                     <?php
-                                if (!empty($location_name)) { ?>
-                    <div class="mt-2">
-                        <i class="fa fa-fw fa-map-marker-alt text-secondary ml-1 mr-2"></i><?= $location_name; ?>
-                    </div>
-                    <?php }
-                                if (!empty($contact_email)) { ?>
-                    <div class="mt-2">
-                        <i class="fa fa-fw fa-envelope text-secondary ml-1 mr-2"></i><a
-                            href="mailto:<?= $contact_email; ?>"><?= $contact_email; ?></a>
-                    </div>
-                    <?php }
-                                if (!empty($contact_phone)) { ?>
-                    <div class="mt-2">
-                        <i class="fa fa-fw fa-phone text-secondary ml-1 mr-2"></i><a
-                            href="tel:<?= $contact_phone; ?>"><?= $contact_phone; ?></a>
-                    </div>
-                    <?php }
-                                if (!empty($contact_mobile)) { ?>
-                    <div class="mt-2">
-                        <i class="fa fa-fw fa-mobile-alt text-secondary ml-1 mr-2"></i><a
-                            href="tel:<?= $contact_mobile; ?>"><?= $contact_mobile; ?></a>
-                    </div>
-                    <?php } ?>
-                    <?php
-                            // Previous tickets
-                            $prev_ticket_id = $prev_ticket_subject = $prev_ticket_status = ''; // Default blank
-                            $sql_prev_ticket = "SELECT ticket_id, ticket_created_at, ticket_subject, ticket_status, ticket_assigned_to FROM tickets
-                                LEFT JOIN ticket_statuses ON ticket_status_id = ticket_status
-                                WHERE ticket_contact_id = $contact_id AND ticket_id  <> $ticket_id ORDER BY ticket_id DESC LIMIT 1";
-                            $prev_ticket_row = mysqli_fetch_assoc(mysqli_query($mysqli, $sql_prev_ticket));
-                            if ($prev_ticket_row) {
-                                $prev_ticket_id = intval($prev_ticket_row['ticket_id']);
-                                $prev_ticket_subject = nullable_htmlentities($prev_ticket_row['ticket_subject']);
-                                $prev_ticket_status = nullable_htmlentities($prev_ticket_row['ticket_status_name']);
-                            ?>
+                    if ($ticket_status_id != 5) {
+                        $close_ticket_button = true;
+                    }
+                    if ($ticket_billable) {
+                        $invoice_ticket_button = true;
+                    }
 
-                    <hr>
-                    <div>
-                        <i class="fa fa-fw fa-history text-secondary ml-1 mr-2"></i><b>Previous ticket:</b>
-                        <a
-                            href="ticket.php?ticket_id=<?= $prev_ticket_id; ?>"><?= $prev_ticket_subject; ?></a>
-                    </div>
-                    <div class="mt-1">
-                        <i class="fa fa-fw fa-hourglass-start text-secondary ml-1 mr-2"></i><strong>Status:</strong>
-                        <span class="text-success"><?= $prev_ticket_status; ?></span>
-                    </div>
-                    <?php } ?>
-                    <?php } else { ?>
-                    <div class="d-print-none">
-                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_contact_modal.php?ticket_id=<?= $ticket_id; ?>"><i
-                                class="fa fa-fw fa-plus mr-2"></i>Add a Contact</a>
-                    </div>
-                    <?php } ?>
-                </div>
-                <!-- End contact card -->
-
-                <!-- Ticket watchers card -->
-                <?php
-                    $sql_ticket_watchers = mysqli_query($mysqli, "SELECT * FROM ticket_watchers WHERE watcher_ticket_id = $ticket_id ORDER BY watcher_email DESC");
-                    if ($ticket_status_id !== 5 || mysqli_num_rows($sql_ticket_watchers) > 0) { ?>
-
-                    <div class="card card-body card-outline mb-3">
-                        <h5 class="text-secondary">Watchers</h5>
-
-                        <?php if ($ticket_status !== 5) { ?>
-                        <div class="d-print-none">
-                            <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_add_watcher_modal.php?ticket_id=<?= $ticket_id; ?>"
-                            ><i
-                                    class="fa fa-fw fa-plus mr-2"></i>Add a Watcher</a>
-                        </div>
-                        <?php } ?>
-
-                        <?php
-                                // Get Watchers
-                                while ($ticket_watcher_row = mysqli_fetch_array($sql_ticket_watchers)) {
-                                    $watcher_id = intval($ticket_watcher_row['watcher_id']);
-                                    $ticket_watcher_email = nullable_htmlentities($ticket_watcher_row['watcher_email']);
-                                    ?>
-                        <div class='mt-1'>
-                            <i class="fa fa-fw fa-eye text-secondary ml-1 mr-2"></i><?= $ticket_watcher_email; ?>
-                            <?php if ($ticket_status !== "Closed") { ?>
-                            <a class="confirm-link" href="/post.php?delete_ticket_watcher=<?= $watcher_id; ?>">
-                                <i class="fas fa-fw fa-times text-secondary ml-1"></i>
-                            </a>
-                            <?php }
-                                    ?>
-                        </div>
-                        <?php
-                            } ?>
-                        </div>
-                <?php } ?>
-                <!-- End Ticket watchers card -->
-                <!-- Ticket Details card -->
-                <!-- End Ticket details card -->
-                <!-- Asset card -->
-                <div class="card card-body card-outline mb-3">
-                    <h5 class="text-secondary">Asset</h5>
-
-                    <?php if ($asset_id == 0) { ?>
-
-                    <div class="d-print-none">
-                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_asset_modal.php?ticket_id=<?= $ticket_id; ?>"><i
-                                class="fa fa-fw fa-plus mr-2"></i>Add an Asset</a>
-                    </div>
-
-                    <?php } else { ?>
-
-                    <div>
-                        <a href='client_asset_details.php?client_id=<?= $client_id ?>&asset_id=<?= $asset_id ?>'><i
-                                class="fa fa-fw fa-desktop text-secondary ml-1 mr-2"></i><strong><?= $asset_name; ?></strong></a>
-                    </div>
-
-                    <?php if (!empty($asset_os)) { ?>
-                    <div class="mt-1">
-                        <i class="fab fa-fw fa-microsoft text-secondary ml-1 mr-2"></i><?= $asset_os; ?>
-                    </div>
-                    <?php }
-
-                                if (!empty($asset_ip)) { ?>
-                    <div class="mt-1">
-                        <i class="fa fa-fw fa-network-wired text-secondary ml-1 mr-2"></i><?= $asset_ip; ?>
-                    </div>
-                    <?php }
-
-                                if (!empty($asset_make)) { ?>
-                    <div class="mt-1">
-                        <i class="fa fa-fw fa-tag text-secondary ml-1 mr-2"></i>Model:
-                        <?= "$asset_make $asset_model"; ?>
-                    </div>
-                    <?php }
-
-                                if (!empty($asset_serial)) { ?>
-                    <div class="mt-1">
-                        <i class="fa fa-fw fa-barcode text-secondary ml-1 mr-2"></i>Service Tag:
-                        <?= $asset_serial; ?>
-                    </div>
-                    <?php }
-
-                                if (!empty($asset_warranty_expire)) { ?>
-                    <div class="mt-1">
-                        <i class="far fa-fw fa-calendar-alt text-secondary ml-1 mr-2"></i>Warranty expires:
-                        <strong><?= $asset_warranty_expire ?></strong>
-                    </div>
-                    <?php }
-
-                                if (!empty($asset_uri)) { ?>
-                    <div class="mt-1">
-                        <i class="fa fa-fw fa-globe text-secondary ml-1 mr-2"></i><a href="<?= $asset_uri; ?>"
-                            target="_blank" rel="noopener"><?= truncate($asset_uri, 25); ?></a>
-                    </div>
-                    <?php }
-
-                            if ($ticket_asset_count > 0) { ?>
-
-                    <button class="btn btn-block btn-light mt-2 d-print-none" data-bs-toggle="modal"
-                        data-bs-target="#assetTicketsModal">Service History (<?= $ticket_asset_count; ?>)</button>
-
-                    <div class="modal" id="assetTicketsModal" tabindex="-1">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content bg-dark">
-                                <div class="modal-header">
-                                    <h5 class="modal-title"><i class="fa fa-fw fa-desktop"></i> <?= $asset_name; ?>
-                                    </h5>
-                                    <button type="button" class="close text-white" data-bs-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
+                    if ($close_ticket_button || $invoice_ticket_button) {
+                ?>
+                    <div class="mt-3">
+                        <div class="row">
+                            <?php if (isset($invoice_ticket_button)) { ?>
+                                <div class="col">
+                                    <a href="#" class="btn btn-primary btn-block mb-3 loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_invoice_add_modal.php?ticket_id=<?= $ticket_id; ?>&ticket_total_reply_time=<?= $ticket_total_reply_time; ?>">
+                                        <i class="fas fa-fw fa-file-invoice mr-2"></i>Invoice Ticket
+                                    </a>
                                 </div>
-
-                                <div class="modal-body bg-white">
-                                    <?php
-                                                    // Query is run from client_assets.php
-                                                    while ($row = mysqli_fetch_array($sql_asset_tickets)) {
-                                                        $service_ticket_id = intval($row['ticket_id']);
-                                                        $service_ticket_prefix = nullable_htmlentities($row['ticket_prefix']);
-                                                        $service_ticket_number = intval($row['ticket_number']);
-                                                        $service_ticket_subject = nullable_htmlentities($row['ticket_subject']);
-                                                        $service_ticket_status = nullable_htmlentities($row['ticket_status']);
-                                                        $service_ticket_created_at = nullable_htmlentities($row['ticket_created_at']);
-                                                        $service_ticket_updated_at = nullable_htmlentities($row['ticket_updated_at']);
-                                                    ?>
-                                    <p>
-                                        <i class="fas fa-fw fa-ticket-alt"></i>
-                                        Ticket: <a
-                                            href="ticket.php?ticket_id=<?= $service_ticket_id; ?>"><?= "$service_ticket_prefix$service_ticket_number" ?></a>
-                                        <?= "on $service_ticket_created_at - <b>$service_ticket_subject</b> ($service_ticket_status)"; ?>
-                                    </p>
-                                    <?php
-                                                    }
-                                                    ?>
+                            <?php } ?>
+                            <?php if (isset($close_ticket_button)) { ?>
+                                <div class="col">
+                                    <a href="/post.php?close_ticket=<?= $ticket_id; ?>" class="btn btn-secondary btn-block confirm-link" id="ticket_close">
+                                        <i class="fas fa-fw fa-gavel mr-2"></i>Close Ticket
+                                    </a>
                                 </div>
-                                <div class="modal-footer bg-white">
-                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                </div>
-
-                            </div>
+                            <?php } ?>
                         </div>
-                    </div>
-
-                    <?php } // End Ticket asset Count
-                                ?>
-
-                    <?php } // End if asset_id == 0 else
-                            ?>
-
-                </div>
-                <!-- End Asset card -->
-                <!-- Vendor card -->
-                <div class="card card-body card-outline mb-3">
-                    <h5 class="text-secondary">Vendor</h5>
-                    <?php if (empty($vendor_id)) { ?>
-                    <div class="d-print-none">
-                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_vendor_modal.php?ticket_id=<?= $ticket_id; ?>"><i
-                                class="fa fa-fw fa-plus mr-2"></i>Add a Vendor</a>
-                    </div>
-                    <?php } else { ?>
-                    <div>
-                        <i
-                            class="fa fa-fw fa-building text-secondary ml-1 mr-2"></i><strong><?= $vendor_name; ?></strong>
-                    </div>
-                    <?php
-
-                                if (!empty($vendor_contact_name)) { ?>
-                    <div class="mt-1">
-                        <i class="fa fa-fw fa-user text-secondary ml-1 mr-2"></i><?= $vendor_contact_name; ?>
-                    </div>
-                    <?php }
-
-                                if (!empty($ticket_vendor_ticket_number)) { ?>
-                    <div class="mt-1">
-                        <i class="fa fa-fw fa-tag text-secondary ml-1 mr-2"></i><?= $ticket_vendor_ticket_number; ?>
-                    </div>
-                    <?php }
-
-                                if (!empty($vendor_email)) { ?>
-                    <div class="mt-1">
-                        <i class="fa fa-fw fa-envelope text-secondary ml-1 mr-2"></i><a
-                            href="mailto:<?= $vendor_email; ?>"><?= $vendor_email; ?></a>
-                    </div>
-                    <?php }
-
-                                if (!empty($vendor_phone)) { ?>
-                    <div class="mt-1">
-                        <i class="fa fa-fw fa-phone text-secondary ml-1 mr-2"></i><?= $vendor_phone; ?>
-                    </div>
-                    <?php }
-
-                                if (!empty($vendor_website)) { ?>
-                    <div class="mt-1">
-                        <i class="fa fa-fw fa-globe text-secondary ml-1 mr-2"></i><?= $vendor_website; ?>
                     </div>
                     <?php } ?>
 
-                    <?php } //End Else
-                            ?>
-                </div>
-                <!-- End Vendor card -->
-                <!-- Products card -->
-                <?php if ($config_module_enable_accounting == 1) { ?>
-                    <div class="card card-body card-outline mb-3">
-                        <h5 class="text-secondary">Products</h5>
-                        <div class="d-print-none">
-                            <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_add_product_modal.php?ticket_id=<?= $ticket_id; ?>"><i
-                                    class="fa fa-fw fa-plus mr-2"></i>Manage Products</a>
-                        </div>
-                        <?= $ticket_products_display; ?>
+                <!-- End Ticket Actions -->
                     </div>
-                <?php } ?>
+                </div>
             </div>
         </div>
     </div>

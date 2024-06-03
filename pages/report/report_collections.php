@@ -42,9 +42,9 @@
                         <option value="10" <?= $past_due_filter == 10 ? 'selected' : ''; ?>>10 Months</option>
                         <option value="11" <?= $past_due_filter == 11 ? 'selected' : ''; ?>>11 Months</option>
                         <option value="12" <?= $past_due_filter == 12 ? 'selected' : ''; ?>>12 Months</option>
-                    </select>                    
+                    </select>
                 </div>
-
+            </form>
         </div>
     </div>
     <div class="card-body p-0">
@@ -59,76 +59,62 @@
                             <th>Monthly Recurring Amount</th>
                             <th>Months Past Due</th>
                             <th>Past Due Balance</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
+                        <?php
                         $processed_clients = []; // Array to keep track of processed client IDs
 
-                            while ($row = mysqli_fetch_assoc($result_client_balance_report)) {
-                                $client_id = $row['client_id'];
-                                $client_name = $row['client_name'];
-                                $contact_phone = $row['contact_phone'];
+                        while ($row = mysqli_fetch_assoc($result_client_balance_report)) {
+                            $client_id = sanitizeInput($row['client_id']);
+                            $client_name = sanitizeInput($row['client_name']);
+                            $contact_phone = sanitizeInput($row['contact_phone']);
+                            $balance = getClientBalance($client_id);
+                            $monthly_recurring_amount = getClientRecurringInvoicesTotal($client_id);
+                            $past_due_balance = getClientPastDueBalance($client_id);
+                            $months_past_due = $monthly_recurring_amount > 0 ? ($past_due_balance / $monthly_recurring_amount) : 0;
 
-                                $balance = getClientBalance($client_id);
-                                $monthly_recurring_amount = getClientRecurringInvoicesTotal($client_id);
-                                $past_due_balance = getClientPastDueBalance($client_id);
-                                $months_past_due = $monthly_recurring_amount > 0 ? ($balance / $monthly_recurring_amount) - 1 : 0;
-
-
-                                // if number of months past due ends with .0 precision, 
-                                if (strpos(number_format($months_past_due, 1), ".0") !== false) {
-                                    if ($balance > $monthly_recurring_amount){
-                                        $months_past_due += .1;
-                                    }
-                                }
-
-                                // Skip if client has already been processed
-                                if (in_array($client_id, $processed_clients)) {
-                                    continue;
-                                }
-
-                                // Skip if client is less than 2 months past due
-
-                                if ($months_past_due < $past_due_filter || $months_past_due < .5) {
-                                    continue;
-                                }
-
-                                // Add client to processed clients
-                                array_push($processed_clients, $client_id);
-
-                                ?>
-
-                                <tr>
-                                    <td>
-                                        <a href="/pages/client/client_statement.php?client_id=<?= $client_id; ?>">
-                                            <?= $client_name; ?>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="tel:<?= $contact_phone; ?>">
-                                            <?= $contact_phone; ?>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <?= numfmt_format_currency($currency_format, $balance, $config_currency_code); ?>
-                                    </td>
-                                    <td>
-                                        <?= numfmt_format_currency($currency_format, $monthly_recurring_amount, $config_currency_code); ?>
-                                    </td>
-                                    <td>
-                                        <?= number_format($months_past_due, 1) ?>
-                                    </td>
-                                    <td>
-                                        <?= numfmt_format_currency($currency_format, $past_due_balance, $config_currency_code); ?>
-                                    </td>
-
-                                </tr>
-
-                                <?php
+                            // if number of months past due ends with .0 precision, add .1 to it
+                            if (strpos(number_format($months_past_due, 1), ".0") !== false || $balance > $monthly_recurring_amount) {
+                                $months_past_due += .1;
                             }
+
+                            // Skip if client is less than 2 months past due
+                                // or less than the past due filter
+                                // or if past due balance is 0
+                                // or if client has already been processed
+                            if ($months_past_due < $past_due_filter || $months_past_due < .5 || $past_due_balance == 0 || in_array($client_id, $processed_clients)) {
+                                continue;
+                            }
+
+                            // Add client to processed clients
+                            array_push($processed_clients, $client_id);
                         ?>
+                        <tr>
+                            <td>
+                                <a href="/pages/client/client_statement.php?client_id=<?= $client_id; ?>">
+                                    <?= $client_name; ?>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="tel:<?= $contact_phone; ?>">
+                                    <?= $contact_phone; ?>
+                                </a>
+                            </td>
+                            <td>
+                                <?= numfmt_format_currency($currency_format, $balance, $config_currency_code); ?>
+                            </td>
+                            <td>
+                                <?= numfmt_format_currency($currency_format, $monthly_recurring_amount, $config_currency_code); ?>
+                            </td>
+                            <td>
+                                <?= number_format($months_past_due, 1) ?>
+                            </td>
+                            <td>
+                                <?= numfmt_format_currency($currency_format, $past_due_balance, $config_currency_code); ?>
+                            </td>
+                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
