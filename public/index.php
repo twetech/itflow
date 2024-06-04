@@ -28,19 +28,40 @@ switch ($page) {
 
     case 'client':
         $controller = new ClientController($pdo);
-        $controller->index();
+        // Check if the action is to show a single client
+        if (isset($_GET['action']) && $_GET['action'] === 'show') {
+
+            if (!isset($_GET['client_id'])) {
+                http_response_code(404);
+                echo "Client not found.";
+                exit;
+            }
+
+            // Get the client_id from the query string
+            $client_id = intval($_GET['client_id']);
+
+            // Call the show method to display the client details
+            $controller->show($client_id);
+        } else {
+            $controller->index();
+        }
         break;
 
-    case 'support':
-        $controller = new SupportController();
-        $controller->index();
+    case 'ticket':
+        if (isset($_GET['ticket_id'])) {
+            $controller = new SupportController($pdo);
+            $controller->show($_GET['ticket_id']);
+        } 
+        if (isset($_GET['client_id'])) {
+            $controller = new SupportController($pdo);
+            $client_id = intval($_GET['client_id']);
+            $controller->index($client_id);
+        } else {
+            $controller = new SupportController($pdo);
+            $controller->index();
+        }
         break;
 
-    case 'accounting':
-        $controller = new AccountingController();
-        $controller->index();
-        break;
-    
 
 
     default:
