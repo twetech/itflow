@@ -1,7 +1,7 @@
 # Next Generation ERP for MSPs
 
 ## Introduction
-ITFlow-NG, better name pending, is a cutting-edge platform designed specifically for Managed Service Providers (MSPs). It integrates essential business processes into a single, robust solution, enhancing efficiency and providing deep insights into operational and financial performance.
+Nestogy is a cutting-edge platform designed specifically for Managed Service Providers (MSPs). It integrates essential business processes into a single, robust solution, enhancing efficiency and providing deep insights into operational and financial performance.
 
 ### Challenges Addressed
 
@@ -17,4 +17,4 @@ ITFlow-NG, better name pending, is a cutting-edge platform designed specifically
 - **Mobile Version**: A mobile optimized version on each page helps you get what you need where ever you may need it.
 - **Enhanced Search Functionality**: Type-ahead searching offers a more intuitive and quicker way to find information.
 - **Strategic Insights**: Greater emphasis on financial analytics helps in tracking and improving profit margins across various business aspects.
-- **Codebase Maintainability**: Refactoring into folders and standardized function use promotes easier maintenance and future upgrades.
+- **Codebase Maintainability**: Refactoring into an Object Oriented codebase, with a Model, View, Controller architechture to help with bloat and increase mainatainability.
