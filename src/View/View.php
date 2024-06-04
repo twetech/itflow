@@ -4,7 +4,7 @@
 namespace Twetech\Nestogy\View;
 
 class View {
-    public function render($template, $data = []) {
+    public function render($template, $data = [], $client_page = false) {
         extract($data);
         require "../src/View/header.php";
         require "../src/View/navbar.php";
