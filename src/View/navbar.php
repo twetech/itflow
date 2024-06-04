@@ -1,65 +1,69 @@
 <?php
 
 
-if (isset($client_page)) { 
+if ($client_page) { 
+
+    $client_id = $client['client_id'];
+    $client_name = $client['client_name'];
+
     $clientMenuItems = [
-    [
-        'title' => 'All Clients',
-        'icon' => 'bx bx-briefcase',
-        'link' => '/public/?page=clients'
-    ],
-    [
-        'title' => 'Client Overview',
-        'icon' => 'bx bx-stats',
-        'link' => '/pages/client/client_overview.php?client_id=' . $client_id
-    ],
-    [
-        'title' => 'Support',
-        'icon' => 'bx bx-support',
-        'children' => [
-            ['title' => 'Tickets', 'link' => '/public/?page=tickets&client_id=' . $client_id, 'icon' => 'bx bx-first-aid'],
-            
-            ['title' => 'Contacts', 'link' => '/pages/client/client_contacts.php?client_id=' . $client_id, 'icon' => 'bx bx-user'],
-            ['title' => 'Locations', 'link' => '/pages/client/client_locations.php?client_id=' . $client_id, 'icon' => 'bx bx-map'],
-            ['title' => 'Trips', 'link' => '/pages/client/client_trips.php?client_id=' . $client_id, 'icon' => 'bx bx-car'],
-            ['title' => 'Tasks', 'link' => '/pages/client/client_tasks.php?client_id=' . $client_id, 'icon' => 'bx bx-task'],
+        [
+            'title' => 'All Clients',
+            'icon' => 'bx bx-briefcase',
+            'link' => '/public/?page=client'
+        ],
+        [
+            'title' => 'Client Overview',
+            'icon' => 'bx bx-stats',
+            'link' => '/public/?page=client&action=show&client_id=' . $client_id
+        ],
+        [
+            'title' => 'Support',
+            'icon' => 'bx bx-support',
+            'children' => [
+                ['title' => 'Tickets', 'link' => '/public/?page=ticket&client_id=' . $client_id, 'icon' => 'bx bx-first-aid'],
+                
+                ['title' => 'Contacts', 'link' => '/pages/client/client_contacts.php?client_id=' . $client_id, 'icon' => 'bx bx-user'],
+                ['title' => 'Locations', 'link' => '/pages/client/client_locations.php?client_id=' . $client_id, 'icon' => 'bx bx-map'],
+                ['title' => 'Trips', 'link' => '/pages/client/client_trips.php?client_id=' . $client_id, 'icon' => 'bx bx-car'],
+                ['title' => 'Tasks', 'link' => '/pages/client/client_tasks.php?client_id=' . $client_id, 'icon' => 'bx bx-task'],
+            ]
+        ],
+        [
+            'title' => 'Documentation',
+            'icon' => 'bx bx-book',
+            'children' => [
+                ['title' => 'Assets', 'link' => '/pages/client/client_assets.php?client_id=' . $client_id, 'icon' => 'bx bx-barcode'],
+                
+                ['title' => 'Licenses', 'link' => '/pages/client/client_software.php?client_id=' . $client_id, 'icon' => 'bx bx-key'],
+                ['title' => 'Logins', 'link' => '/pages/client/client_logins.php?client_id=' . $client_id, 'icon' => 'bx bx-log-in'],
+                ['title' => 'Networks', 'link' => '/pages/client/client_networks.php?client_id=' . $client_id, 'icon' => 'bx bx-network-chart'],
+                ['title' => 'Services', 'link' => '/pages/client/client_services.php?client_id=' . $client_id, 'icon' => 'bx bx-server'],
+                ['title' => 'Vendors', 'link' => '/pages/client/client_vendors.php?client_id=' . $client_id, 'icon' => 'bx bx-user-voice'],
+                ['title' => 'Files', 'link' => '/pages/client/client_files.php?client_id=' . $client_id, 'icon' => 'bx bx-paperclip'],
+                ['title' => 'Documents', 'link' => '/pages/client/client_documents.php?client_id=' . $client_id, 'icon' => 'bx bx-file'],
+            ]
+        ],
+        [
+            'title' => 'Finance',
+            'icon' => 'bx bx-dollar',
+            'children' => [
+                ['title' => 'Invoices', 'link' => '/pages/client/client_invoices.php?client_id=' . $client_id, 'icon' => 'bx bx-receipt'],
+                ['title' => 'Quotes', 'link' => '/pages/client/client_quotes.php?client_id=' . $client_id, 'icon' => 'bx bx-message-square-detail'],
+                ['title' => 'Payments', 'link' => '/pages/client/client_payments.php?client_id=' . $client_id, 'icon' => 'bx bx-credit-card'],
+                ['title' => 'Statements', 'link' => '/pages/client/client_statement.php?client_id=' . $client_id, 'icon' => 'bx bx-file'],
+                ['title' => 'Credits', 'link' => '/pages/client/client_credits.php?client_id=' . $client_id, 'icon' => 'bx bx-money'],
+            ]
+        ],
+        [
+            'title' => 'Other',
+            'icon' => 'bx bx-plus',
+            'children' => [
+                ['title' => 'Bulk Email', 'link' => '/pages/client/client_bulk_email.php?client_id=' . $client_id, 'icon' => 'bx bx-mail-send'],
+                ['title' => 'Shared Links', 'link' => '/pages/client/client_shared_links.php?client_id=' . $client_id, 'icon' => 'bx bx-link'],
+                ['title' => 'Audit Logs', 'link' => '/pages/client/client_audit_logs.php?client_id=' . $client_id, 'icon' => 'bx bx-history']
+            ]
         ]
-    ],
-    [
-        'title' => 'Documentation',
-        'icon' => 'bx bx-book',
-        'children' => [
-            ['title' => 'Assets', 'link' => '/pages/client/client_assets.php?client_id=' . $client_id, 'icon' => 'bx bx-barcode'],
-            
-            ['title' => 'Licenses', 'link' => '/pages/client/client_software.php?client_id=' . $client_id, 'icon' => 'bx bx-key'],
-            ['title' => 'Logins', 'link' => '/pages/client/client_logins.php?client_id=' . $client_id, 'icon' => 'bx bx-log-in'],
-            ['title' => 'Networks', 'link' => '/pages/client/client_networks.php?client_id=' . $client_id, 'icon' => 'bx bx-network-chart'],
-            ['title' => 'Services', 'link' => '/pages/client/client_services.php?client_id=' . $client_id, 'icon' => 'bx bx-server'],
-            ['title' => 'Vendors', 'link' => '/pages/client/client_vendors.php?client_id=' . $client_id, 'icon' => 'bx bx-user-voice'],
-            ['title' => 'Files', 'link' => '/pages/client/client_files.php?client_id=' . $client_id, 'icon' => 'bx bx-paperclip'],
-            ['title' => 'Documents', 'link' => '/pages/client/client_documents.php?client_id=' . $client_id, 'icon' => 'bx bx-file'],
-        ]
-    ],
-    [
-        'title' => 'Finance',
-        'icon' => 'bx bx-dollar',
-        'children' => [
-            ['title' => 'Invoices', 'link' => '/pages/client/client_invoices.php?client_id=' . $client_id, 'icon' => 'bx bx-receipt'],
-            ['title' => 'Quotes', 'link' => '/pages/client/client_quotes.php?client_id=' . $client_id, 'icon' => 'bx bx-message-square-detail'],
-            ['title' => 'Payments', 'link' => '/pages/client/client_payments.php?client_id=' . $client_id, 'icon' => 'bx bx-credit-card'],
-            ['title' => 'Statements', 'link' => '/pages/client/client_statement.php?client_id=' . $client_id, 'icon' => 'bx bx-file'],
-            ['title' => 'Credits', 'link' => '/pages/client/client_credits.php?client_id=' . $client_id, 'icon' => 'bx bx-money'],
-        ]
-    ],
-    [
-        'title' => 'Other',
-        'icon' => 'bx bx-plus',
-        'children' => [
-            ['title' => 'Bulk Email', 'link' => '/pages/client/client_bulk_email.php?client_id=' . $client_id, 'icon' => 'bx bx-mail-send'],
-            ['title' => 'Shared Links', 'link' => '/pages/client/client_shared_links.php?client_id=' . $client_id, 'icon' => 'bx bx-link'],
-            ['title' => 'Audit Logs', 'link' => '/pages/client/client_audit_logs.php?client_id=' . $client_id, 'icon' => 'bx bx-history']
-        ]
-    ]
     ];
 } else {
     $menuItems = [
@@ -247,7 +251,7 @@ require_once "/var/www/portal.twe.tech/includes/shortcuts.php";
 //TODO: Implement notifications
 $num_notifications = 0;
 
-if (isset($client_page)) {
+if ($client_page) {
     $nav_title = 'TWE: '.$client_name;
 } else {
     $nav_title = 'TWE Technologies';
@@ -436,7 +440,7 @@ $nav_title_link = '/pages/dashboard.php';
                     <!-- Menu -->
                     <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0 d-print-none">
                         <div class="container-xxl d-flex h-100">
-                            <?php if (isset($client_page)) {
+                            <?php if ($client_page) {
                                 renderMenu($clientMenuItems);
                             } else {
                                 renderMenu($menuItems);
@@ -448,7 +452,7 @@ $nav_title_link = '/pages/dashboard.php';
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
 
-                    <?php if (isset($client_page)) { //if page is client page (client.php, client-*.php
+                    <?php if ($client_page) { //if page is client page (client.php, client-*.php
                         require_once "/var/www/portal.twe.tech/includes/inc_client_top_head.php";
                     }
                     ?>
@@ -458,7 +462,7 @@ $nav_title_link = '/pages/dashboard.php';
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/pages/dashboard.php">Home</a></li>
                                 
-                                <?php if (isset($client_page)) { ?>
+                                <?php if ($client_page) { ?>
                                     <li class="breadcrumb-item">
                                         <a href="/pages/client/client_overview.php?client_id=<?= $client_id ?>">
                                             <?= ucfirst($client_name) ?>
@@ -472,7 +476,7 @@ $nav_title_link = '/pages/dashboard.php';
                                     </li>
                                 <?php } ?>
 
-                                <li class="breadcrumb-item active" aria-current="page">PageName</li>
+                                <li class="breadcrumb-item active" aria-current="page"><?=ucwords($template)?></li>
                             </ol>
                         </nav>
                     </h4>
