@@ -314,19 +314,27 @@ function validateAccountantRole()
 
 function sanitizeInput($input)
 {
-    global $mysqli;
+    //Check what type of input we're dealing with
+    $type = gettype($input);
 
-    // Remove HTML and PHP tags
-    $input = strip_tags((string) $input);
-
-    // Remove white space from beginning and end of input
-    $input = trim($input);
-
-    // Escape special characters
-    $input = mysqli_real_escape_string($mysqli, $input);
-
-    // Return sanitized input
-    return $input;
+    //If it's an array, recursively sanitize each element
+    if ($type == "array") {
+        foreach ($input as $key => $value) {
+            $input[$key] = sanitizeInput($value);
+        }
+        return $input;
+    } else {
+        //If it's a string, sanitize it
+        if ($type == "string") {
+            $sanitized = htmlspecialchars($input);
+            $sanitized = strip_tags($sanitized);
+            $sanitized = trim($sanitized);
+            return $sanitized;
+        } else {
+            //If it's not a string, just return it
+            return $input;
+        }
+    }
 }
 
 function sanitizeForEmail($data)

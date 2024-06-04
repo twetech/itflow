@@ -36,7 +36,7 @@ $sql = mysqli_query(
     LEFT JOIN client_tags ON client_tags.client_tag_client_id = clients.client_id
     LEFT JOIN tags ON tags.tag_id = client_tags.client_tag_tag_id
     WHERE clients.client_archived_at IS NULL
-      AND clients.client_lead = $leads
+        AND clients.client_lead = $leads
     GROUP BY clients.client_id
     ORDER BY $sort $order
    

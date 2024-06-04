@@ -14,6 +14,7 @@ uploads/tmp/*
 uploads/tickets/*
 !uploads/tickets/index.php
 .idea/*
+config.php
 inlcudes/config.php
 includes/config/*
 plugins/htmlpurifier/standalone/HTMLPurifier/DefinitionCache/Serializer/HTML/*
@@ -24,3 +25,4 @@ plugins/htmlpurifier/standalone/HTMLPurifier/DefinitionCache/Serializer/CSS/*
 !plugins/htmlpurifier/standalone/HTMLPurifier/DefinitionCache/Serializer/CSS/.gitkeep
 .vscode/settings.json
 cron/*.log
+/vendor/

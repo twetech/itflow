@@ -2,7 +2,7 @@
 
 <?php
 $user_id = intval($_GET['user_id']);
-$sql_user = mysqli_query($mysqli, "SELECT * FROM users WHERE user_id = $user_id");
+$sql_user = mysqli_query($mysqli, "SELECT * FROM users LEFT JOIN user_settings ON user_settings.user_id = users.user_id WHERE users.user_id = $user_id");
 $row = mysqli_fetch_array($sql_user);
 
 $user_name = nullable_htmlentities($row['user_name']);
@@ -25,18 +25,18 @@ $user_config_force_mfa = nullable_htmlentities($row['user_config_force_mfa']);
                 </button>
             </div>
             <form action="/post.php" method="post" enctype="multipart/form-data" autocomplete="off">
+
+                <div class="modal-body bg-white">
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                 <input type="hidden" name="user_id" value="<?= $user_id; ?>">
-                <div class="modal-body bg-white">
-
                     <center class="mb-3">
                         <?php if (!empty($user_avatar)) { ?>
                             <img class="img-fluid" src="<?= "/uploads/users/$user_id/$user_avatar"; ?>">
                         <?php } else { ?>
                             <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-              <span class="fa fa-stack-1x text-white"><?= $user_initials; ?></span>
-            </span>
+                            <i class="fa fa-circle fa-stack-2x text-secondary"></i>
+                            <span class="fa fa-stack-1x text-white"><?= $user_initials; ?></span>
+                            </span>
                         <?php } ?>
                     </center>
 
