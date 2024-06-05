@@ -19,3 +19,9 @@ Nestogy is a cutting-edge platform designed specifically for Managed Service Pro
 - **Enhanced Search Functionality**: Type-ahead searching offers a more intuitive and quicker way to find information.
 - **Strategic Insights**: Greater emphasis on financial analytics helps in tracking and improving profit margins across various business aspects.
 - **Codebase Maintainability**: Refactoring into an Object Oriented codebase, with a Model, View, Controller architechture to help with bloat and increase mainatainability.
+
+## Paid Services Offered:
+- **Migration Services**: Migrate your data from ITFlow - Classic to Nestogy.
+- **Hosting Services**: Use our cloud servers to for your Nestogy account.
+
+Learn more about Nestogy at [nestogy.io](https://nestogy.io)
