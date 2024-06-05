@@ -1,4 +1,5 @@
 # Next Generation ERP for MSPs
+## Now Object Oriented!
 
 ## Introduction
 Nestogy is a cutting-edge platform designed specifically for Managed Service Providers (MSPs). It integrates essential business processes into a single, robust solution, enhancing efficiency and providing deep insights into operational and financial performance.
