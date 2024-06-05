@@ -44,46 +44,44 @@ if ($client_page) {
             'icon' => 'bx bx-support',
             'children' => [
                 ['title' => 'Tickets', 'link' => '/public/?page=ticket&client_id=' . $client_id, 'icon' => 'bx bx-first-aid'],
-                
-                ['title' => 'Contacts', 'link' => '/pages/client/client_contacts.php?client_id=' . $client_id, 'icon' => 'bx bx-user'],
-                ['title' => 'Locations', 'link' => '/pages/client/client_locations.php?client_id=' . $client_id, 'icon' => 'bx bx-map'],
-                ['title' => 'Trips', 'link' => '/pages/client/client_trips.php?client_id=' . $client_id, 'icon' => 'bx bx-car'],
-                ['title' => 'Tasks', 'link' => '/pages/client/client_tasks.php?client_id=' . $client_id, 'icon' => 'bx bx-task'],
+                ['title' => 'Contacts', 'link' => '/public/?page=contact&client_id=' . $client_id, 'icon' => 'bx bx-user'],
+                ['title' => 'Locations', 'link' => '/public/?page=location&client_id=' . $client_id, 'icon' => 'bx bx-map'],
+                ['title' => 'Trips', 'link' => '/public/?page=trips&client_id=' . $client_id, 'icon' => 'bx bx-car'],
+                ['title' => 'Projects', 'link' => '/public/?page=projects&client_id=' . $client_id, 'icon' => 'bx bx-task'],
             ]
         ],
         [
             'title' => 'Documentation',
             'icon' => 'bx bx-book',
             'children' => [
-                ['title' => 'Assets', 'link' => '/pages/client/client_assets.php?client_id=' . $client_id, 'icon' => 'bx bx-barcode'],
-                
-                ['title' => 'Licenses', 'link' => '/pages/client/client_software.php?client_id=' . $client_id, 'icon' => 'bx bx-key'],
-                ['title' => 'Logins', 'link' => '/pages/client/client_logins.php?client_id=' . $client_id, 'icon' => 'bx bx-log-in'],
-                ['title' => 'Networks', 'link' => '/pages/client/client_networks.php?client_id=' . $client_id, 'icon' => 'bx bx-network-chart'],
-                ['title' => 'Services', 'link' => '/pages/client/client_services.php?client_id=' . $client_id, 'icon' => 'bx bx-server'],
-                ['title' => 'Vendors', 'link' => '/pages/client/client_vendors.php?client_id=' . $client_id, 'icon' => 'bx bx-user-voice'],
-                ['title' => 'Files', 'link' => '/pages/client/client_files.php?client_id=' . $client_id, 'icon' => 'bx bx-paperclip'],
-                ['title' => 'Documents', 'link' => '/pages/client/client_documents.php?client_id=' . $client_id, 'icon' => 'bx bx-file'],
+                ['title' => 'Assets', 'link' => '/public/?page=documentation&documentation_type=asset&client_id=' . $client_id, 'icon' => 'bx bx-box'],
+                ['title' => 'Licenses', 'link' => '/public/?page=documentation&documentation_type=license&client_id=' . $client_id, 'icon' => 'bx bx-key'],
+                ['title' => 'Logins', 'link' => '/public/?page=documentation&documentation_type=login&client_id=' . $client_id, 'icon' => 'bx bx-log-in'],
+                ['title' => 'Networks', 'link' => '/public/?page=documentation&documentation_type=network&client_id=' . $client_id, 'icon' => 'bx bx-network-chart'],
+                ['title' => 'Services', 'link' => '/public/?page=documentation&documentation_type=service&client_id=' . $client_id, 'icon' => 'bx bx-server'],
+                ['title' => 'Vendors', 'link' => '/public/?page=documentation&documentation_type=vendor&client_id=' . $client_id, 'icon' => 'bx bx-user-voice'],
+                ['title' => 'Files', 'link' => '/public/?page=documentation&documentation_type=file&client_id=' . $client_id, 'icon' => 'bx bx-paperclip'],
+                ['title' => 'Documents', 'link' => '/public/?page=documentation&documentation_type=document&client_id=' . $client_id, 'icon' => 'bx bx-file'],
             ]
         ],
         [
             'title' => 'Finance',
             'icon' => 'bx bx-dollar',
             'children' => [
-                ['title' => 'Invoices', 'link' => '/pages/client/client_invoices.php?client_id=' . $client_id, 'icon' => 'bx bx-receipt'],
-                ['title' => 'Quotes', 'link' => '/pages/client/client_quotes.php?client_id=' . $client_id, 'icon' => 'bx bx-message-square-detail'],
-                ['title' => 'Payments', 'link' => '/pages/client/client_payments.php?client_id=' . $client_id, 'icon' => 'bx bx-credit-card'],
-                ['title' => 'Statements', 'link' => '/pages/client/client_statement.php?client_id=' . $client_id, 'icon' => 'bx bx-file'],
-                ['title' => 'Credits', 'link' => '/pages/client/client_credits.php?client_id=' . $client_id, 'icon' => 'bx bx-money'],
+                ['title' => 'Invoices', 'link' => '/public/?page=invoice&client_id=' . $client_id, 'icon' => 'bx bx-receipt'],
+                ['title' => 'Quotes', 'link' => '/public/?page=quote&client_id=' . $client_id, 'icon' => 'bx bx-message-square-detail'],
+                ['title' => 'Payments', 'link' => '/public/?page=payment&client_id=' . $client_id, 'icon' => 'bx bx-credit-card'],
+                ['title' => 'Statements', 'link' => '/public/?page=statement&client_id=' . $client_id, 'icon' => 'bx bx-file'],
+                ['title' => 'Credits', 'link' => '/public/?page=credit&client_id=' . $client_id, 'icon' => 'bx bx-money'],
             ]
         ],
         [
             'title' => 'Other',
             'icon' => 'bx bx-plus',
             'children' => [
-                ['title' => 'Bulk Email', 'link' => '/pages/client/client_bulk_email.php?client_id=' . $client_id, 'icon' => 'bx bx-mail-send'],
-                ['title' => 'Shared Links', 'link' => '/pages/client/client_shared_links.php?client_id=' . $client_id, 'icon' => 'bx bx-link'],
-                ['title' => 'Audit Logs', 'link' => '/pages/client/client_audit_logs.php?client_id=' . $client_id, 'icon' => 'bx bx-history']
+                ['title' => 'Bulk Email', 'link' => '/public/?page=bulk_email&client_id=' . $client_id, 'icon' => 'bx bx-mail-send'],
+                ['title' => 'Shared Links', 'link' => '/public/?page=shared_links&client_id=' . $client_id, 'icon' => 'bx bx-link'],
+                ['title' => 'Audit Logs', 'link' => '/public/?page=audit_logs&client_id=' . $client_id, 'icon' => 'bx bx-history']
             ]
         ]
     ];
@@ -98,7 +96,7 @@ if ($client_page) {
             'title' => 'Support',
             'icon' => 'bx bx-support',
             'children' => [
-                ['title' => 'Tickets', 'link' => '/public/?page=support', 'icon' => 'bx bx-first-aid'],
+                ['title' => 'Tickets', 'link' => '/public/?page=ticket', 'icon' => 'bx bx-first-aid'],
                 ['title' => 'Trips', 'link' => '/public/?page=trips', 'icon' => 'bx bx-car'],
                 ['title' => 'Projects', 'link' => '/public/?page=projects', 'icon' => 'bx bx-task'],
                 ['title' => 'Calendar', 'link' => '/public/?page=calendar', 'icon' => 'bx bx-calendar']
@@ -108,23 +106,22 @@ if ($client_page) {
             'title' => 'Sales',
             'icon' => 'bx bx-shopping-bag',
             'children' => [
-                ['title' => 'Quotes', 'link' => '/pages/quotes.php', 'icon' => 'bx bx-message-square-detail'],
-                ['title' => 'Invoices', 'link' => '/pages/invoices.php', 'icon' => 'bx bx-receipt'],
-                ['title' => 'Products', 'link' => '/pages/products.php', 'icon' => 'bx bx-box'],
-                
+                ['title' => 'Quotes', 'link' => '/public/?page=quote', 'icon' => 'bx bx-message-square-detail'],
+                ['title' => 'Invoices', 'link' => '/public/?page=invoice', 'icon' => 'bx bx-receipt'],
+                ['title' => 'Products', 'link' => '/public/?page=products', 'icon' => 'bx bx-box'],
             ]
         ],
         [
             'title' => 'Accounting',
             'icon' => 'bx bx-money-withdraw',
             'children' => [
-                ['title' => 'Recurring Invoices', 'link' => '/pages/recurring_invoices.php', 'icon' => 'bx bx-receipt'],
-                ['title' => 'Payments', 'link' => '/pages/payments.php', 'icon' => 'bx bx-credit-card'],
-                ['title' => 'Credits', 'link' => '/pages/credits.php', 'icon' => 'bx bx-money'],
-                ['title' => 'Expenses', 'link' => '/pages/expenses.php', 'icon' => 'bx bx-money'],
-                ['title' => 'Transfers', 'link' => '/pages/transfers.php', 'icon' => 'bx bx-transfer'],
-                ['title' => 'Accounts', 'link' => '/pages/accounts.php', 'icon' => 'bx bx-wallet'],
-                ['title' => 'Credits', 'link' => '/pages/credits.php', 'icon' => 'bx bx-money']
+                ['title' => 'Recurring Invoices', 'link' => '/public/?page=recurring_invoices', 'icon' => 'bx bx-receipt'],
+                ['title' => 'Payments', 'link' => '/public/?page=payment', 'icon' => 'bx bx-credit-card'],
+                ['title' => 'Credits', 'link' => '/public/?page=credit', 'icon' => 'bx bx-money'],
+                ['title' => 'Expenses', 'link' => '/public/?page=expense', 'icon' => 'bx bx-money'],
+                ['title' => 'Transfers', 'link' => '/public/?page=transfer', 'icon' => 'bx bx-transfer'],
+                ['title' => 'Accounts', 'link' => '/public/?page=accounts', 'icon' => 'bx bx-wallet'],
+                ['title' => 'Credits', 'link' => '/public/?page=credit', 'icon' => 'bx bx-money']
             ]
         ],
         [
@@ -132,51 +129,52 @@ if ($client_page) {
             'icon' => 'bx bx-bar-chart',
             'children' => [
                 ['title' => 'Financial', 'icon' => 'bx bx-dollar', 'children' => [
-                    ['title' => 'Income', 'link' => '/pages/report/report_income_summary.php', 'icon' => 'bx bx-box'],
-                    ['title' => 'Income By Client', 'link' => '/pages/report/report_income_by_client.php', 'icon' => 'bx bx bx-box'],
-                    ['title' => 'Recurring Income by Client' , 'link' => '/pages/report/report_recurring_by_client.php', 'icon' => 'bx bx-box'],
-                    ['title' => 'Expenses', 'link' => '/pages/report/report_expense_summary.php', 'icon' => 'bx bx-box'],
-                    ['title' => 'Expenses By Vendor', 'link' => '/pages/report/report_expenses_by_vendor.php', 'icon' => 'bx bx-box'],
-                    ['title' => 'Budgets', 'link' => '/pages/report/report_budget.php', 'icon' => 'bx bx-box'],
-                    ['title' => 'Profit & Loss', 'link' => '/pages/report/report_profit_loss.php', 'icon' => 'bx bx-box'],
-                    ['title' => 'Balance Sheet', 'link' => '/pages/report/report_balance_sheet.php', 'icon' => 'bx bx-box'],
-                    ['title' => 'Cash Flow', 'link' => '/pages/report/report_cash_flow.php', 'icon' => 'bx bx-box'],
-                    ['title' => 'Tax Summary', 'link' => '/pages/report/report_tax_summary.php', 'icon' => 'bx bx-box'],
-                    ['title' => 'Collections', 'link' => '/pages/report/report_collections.php', 'icon' => 'bx bx-box']
-                    ]],
-                    ['title' => 'Technical', 'icon' => 'bx bx-cog', 'children' => [
-                        ['title' => 'Unbilled Tickets', 'link' => '/pages/report/report_tickets_unbilled.php', 'icon' => 'bx bx-box'],
-                        ['title' => 'Tickets', 'link' => '/pages/report/report_tickets.php', 'icon' => 'bx bx-box'],
-                        ['title' => 'Tickets by Client', 'link' => '/pages/report/report_tickets_by_client.php', 'icon' => 'bx bx-box'],
-                        ['title' => 'Password Rotation', 'link' => '/pages/report/report_password_rotation.php', 'icon' => 'bx bx-box'],
-                        ['title' => 'All Assets', 'link' => '/pages/report/report_all_assets.php', 'icon' => 'bx bx-box'],
-                    ]]
+                    ['title' => 'Income', 'link' => '/public/?page=report&report=income_summary', 'icon' => 'bx bx-box'],
+                    ['title' => 'Income By Client', 'link' => '/public/?page=report&report=income_by_client', 'icon' => 'bx bx bx-box'],
+                    ['title' => 'Recurring Income by Client' , 'link' => '/public/?page=report&report=recurring_by_client', 'icon' => 'bx bx-box'],
+                    ['title' => 'Expenses', 'link' => '/public/?page=report&report=expense_summary', 'icon' => 'bx bx-box'],
+                    ['title' => 'Expenses By Vendor', 'link' => '/public/?page=report&report=expenses_by_vendor', 'icon' => 'bx bx-box'],
+                    ['title' => 'Budgets', 'link' => '/public/?page=report&report=budget', 'icon' => 'bx bx-box'],
+                    ['title' => 'Profit & Loss', 'link' => '/public/?page=report&report=profit_loss', 'icon' => 'bx bx-box'],
+                    ['title' => 'Balance Sheet', 'link' => '/public/?page=report&report=balance_sheet', 'icon' => 'bx bx-box'],
+                    ['title' => 'Cash Flow', 'link' => '/public/?page=report&report=cash_flow', 'icon' => 'bx bx-box'],
+                    ['title' => 'Tax Summary', 'link' => '/public/?page=report&report=tax_summary', 'icon' => 'bx bx-box'],
+                    ['title' => 'Collections', 'link' => '/public/?page=report&report=collections', 'icon' => 'bx bx-box']
+                    ]
+                ],
+                ['title' => 'Technical', 'icon' => 'bx bx-cog', 'children' => [
+                    ['title' => 'Unbilled Tickets', 'link' => '/public/?page=report&report=tickets_unbilled', 'icon' => 'bx bx-box'],
+                    ['title' => 'Tickets', 'link' => '/public/?page=report&report=tickets', 'icon' => 'bx bx-box'],
+                    ['title' => 'Tickets by Client', 'link' => '/public/?page=report&report=tickets_by_client', 'icon' => 'bx bx-box'],
+                    ['title' => 'Password Rotation', 'link' => '/public/?page=report&report=password_rotation', 'icon' => 'bx bx-box'],
+                    ['title' => 'All Assets', 'link' => '/public/?page=report&report=all_assets', 'icon' => 'bx bx-box'],
+                ]]
             ]
         ],
         [
             'title' => 'Administration',
             'icon' => 'bx bx-wrench',
             'children' => [
-                ['title' => 'Users', 'link' => '/pages/admin/admin_users.php', 'icon' => 'bx bx-user'],
-                ['title' => 'API Keys', 'link' => '/pages/admin/admin_api_keys.php', 'icon' => 'bx bx-key'],
+                ['title' => 'Users', 'link' => '/public/?page=admin&admin_page=users', 'icon' => 'bx bx-user'],
+                ['title' => 'API Keys', 'link' => '/public/?page=admin&admin_page=api_keys', 'icon' => 'bx bx-key'],
                 ['title' => 'Tags and Categories', 'icon' => 'bx bx-tag', 'children' => [
-                    ['title' => 'Tags', 'link' => '/pages/admin/admin_tags.php', 'icon' => 'bx bx-purchase-tag'],
-                    ['title' => 'Categories', 'link' => '/pages/admin/admin_categories.php', 'icon' => 'bx bx-category']
+                    ['title' => 'Tags', 'link' => '/public/?page=admin&admin_page=tags', 'icon' => 'bx bx-purchase-tag'],
+                    ['title' => 'Categories', 'link' => '/public/?page=admin&admin_page=categories', 'icon' => 'bx bx-category']
                 ]],
                 ['title' => 'Financial', 'icon' => 'bx bx-dollar', 'children' => [
-                    ['title' => 'Taxes', 'link' => '/pages/admin/admin_taxes.php', 'icon' => 'bx bx-bank'],
-                    ['title' => 'Account Types', 'link' => '/pages/admin/admin_account_types.php', 'icon' => 'bx bx-university']
+                    ['title' => 'Taxes', 'link' => '/public/?page=admin&admin_page=taxes', 'icon' => 'bx bx-bank'],
+                    ['title' => 'Account Types', 'link' => '/public/?page=admin&admin_page=account_types', 'icon' => 'bx bx-university']
                 ]],
                 ['title' => 'Templates', 'icon' => 'bx bx-file', 'children' => [
-                    ['title' => 'Vendor Templates', 'link' => '/pages/admin/admin_vendor_templates.php', 'icon' => 'bx bx-file'],
-                    ['title' => 'License Templates', 'link' => '/pages/admin/admin_license_templates.php', 'icon' => 'bx bx-file'],
-                    ['title' => 'Document Templates', 'link' => '/pages/admin/admin_document_templates.php', 'icon' => 'bx bx-file'],
+                    ['title' => 'Vendor Templates', 'link' => '/public/?page=admin&admin_page=vendor_templates', 'icon' => 'bx bx-file'],
+                    ['title' => 'License Templates', 'link' => '/public/?page=admin&admin_page=license_templates', 'icon' => 'bx bx-file'],
+                    ['title' => 'Document Templates', 'link' => '/public/?page=admin&admin_page=document_templates', 'icon' => 'bx bx-file'],
                 ]],
                 ['title' => 'Maintenance', 'icon' => 'bx bx-cog', 'children' => [
-                    ['title' => 'Mail Queue', 'link' => '/pages/admin/admin_mail_queue.php', 'icon' => 'bx bx-envelope'],
-                    ['title' => 'Audit Logs', 'link' => '/pages/admin/admin_audit_logs.php', 'icon' => 'bx bx-history'],
-                    ['title' => 'Backup', 'link' => '/pages/admin/admin_backup.php', 'icon' => 'bx bx-cloud-download'],
-                    ['title' => 'Debug', 'link' => '/pages/admin/admin_debug.php', 'icon' => 'bx bx-bug']
+                    ['title' => 'Mail Queue', 'link' => '/public/?page=admin&admin_page=mail_queue', 'icon' => 'bx bx-envelope'],
+                    ['title' => 'Audit Logs', 'link' => '/public/?page=admin&admin_page=audit_logs', 'icon' => 'bx bx-history'],
+                    ['title' => 'Backup', 'link' => '/public/?page=admin&admin_page=backup', 'icon' => 'bx bx-cloud-download'],
+                    ['title' => 'Debug', 'link' => '/public/?page=admin&admin_page=debug', 'icon' => 'bx bx-bug']
                 ]]
             ]
         ],
@@ -185,28 +183,28 @@ if ($client_page) {
             'icon' => 'bx bx-cog',
             'children' => [
                 ['title' => 'Modules', 'icon' => 'bx bx-checkbox', 'children' => [
-                    ['title' => 'Enabled Modules', 'link' => '/pages/settings/settings_modules.php', 'icon' => 'bx bx-checkbox-square'],
-                    ['title' => 'Invoice Module', 'link' => '/pages/settings/settings_invoice.php', 'icon' => 'bx bx-barcode'],
-                    ['title' => 'Ticket Module', 'link' => '/pages/settings/settings_ticket.php', 'icon' => 'bx bx-first-aid'],
-                    ['title' => 'Task Module', 'link' => '/pages/settings/settings_task.php', 'icon' => 'bx bx-task'],
-                    ['title' => 'Calendar Module', 'link' => '/pages/settings/settings_calendar.php', 'icon' => 'bx bx-calendar'],
-                    ['title' => 'Quote Module', 'link' => '/pages/settings/settings_quote.php', 'icon' => 'bx bx-message-square-detail'],
-                    ['title' => 'Expense Module', 'link' => '/pages/settings/settings_expense.php', 'icon' => 'bx bx-money'],
-                    ['title' => 'Transfer Module', 'link' => '/pages/settings/settings_transfer.php', 'icon' => 'bx bx-transfer'],
-                    ['title' => 'Online Payments Module', 'link' => '/pages/settings/settings_online_payments.php', 'icon' => 'bx bx-credit-card'],
-                    ['title' => 'Integrations', 'link' => '/pages/settings/settings_integrations.php', 'icon' => 'bx bx-plug'],
+                    ['title' => 'Enabled Modules', 'link' => '/public/?page=settings&settings_page=modules', 'icon' => 'bx bx-checkbox-square'],
+                    ['title' => 'Invoice Module', 'link' => '/public/?page=settings&settings_page=invoice', 'icon' => 'bx bx-barcode'],
+                    ['title' => 'Ticket Module', 'link' => '/public/?page=settings&settings_page=ticket', 'icon' => 'bx bx-first-aid'],
+                    ['title' => 'Task Module', 'link' => '/public/?page=settings&settings_page=task', 'icon' => 'bx bx-task'],
+                    ['title' => 'Calendar Module', 'link' => '/public/?page=settings&settings_page=calendar', 'icon' => 'bx bx-calendar'],
+                    ['title' => 'Quote Module', 'link' => '/public/?page=settings&settings_page=quote', 'icon' => 'bx bx-message-square-detail'],
+                    ['title' => 'Expense Module', 'link' => '/public/?page=settings&settings_page=expense', 'icon' => 'bx bx-money'],
+                    ['title' => 'Transfer Module', 'link' => '/public/?page=settings&settings_page=transfer', 'icon' => 'bx bx-transfer'],
+                    ['title' => 'Online Payments Module', 'link' => '/public/?page=settings&settings_page=online_payments', 'icon' => 'bx bx-credit-card'],
+                    ['title' => 'Integrations', 'link' => '/public/?page=settings&settings_page=integrations', 'icon' => 'bx bx-plug'],
                 ]],
                 ['title' => 'General', 'icon' => 'bx bx-cog', 'children' => [
-                    ['title' => 'Company', 'link' => '/pages/settings/settings_company.php', 'icon' => 'bx bx-building'],
-                    ['title' => 'Localization', 'link' => '/pages/settings/settings_localization.php', 'icon' => 'bx bx-globe'],
-                    ['title' => 'Security', 'link' => '/pages/settings/settings_security.php', 'icon' => 'bx bx-lock'],
-                    ['title' => 'Email', 'link' => '/pages/settings/settings_email.php', 'icon' => 'bx bx-envelope'],
-                    ['title' => 'Notifications', 'link' => '/pages/settings/settings_notifications.php', 'icon' => 'bx bx-bell'],
-                    ['title' => 'Custom Fields', 'link' => '/pages/settings/settings_custom_fields.php', 'icon' => 'bx bx-list-ul'],
-                    ['title' => 'Defaults', 'link' => '/pages/settings/settings_defaults.php', 'icon' => 'bx bx-cog'],
-                    ['title' => 'Integrations', 'link' => '/pages/settings/settings_integrations.php', 'icon' => 'bx bx-plug'],
-                    ['title' => 'Webhooks', 'link' => '/pages/settings/settings_webhooks.php', 'icon' => 'bx bx-link'],
-                    ['title' => 'AI', 'link' => '/pages/settings/settings_ai.php', 'icon' => 'bx bx-brain'],
+                    ['title' => 'Company', 'link' => '/public/?page=settings&settings_page=company', 'icon' => 'bx bx-building'],
+                    ['title' => 'Localization', 'link' => '/public/?page=settings&settings_page=localization', 'icon' => 'bx bx-globe'],
+                    ['title' => 'Security', 'link' => '/public/?page=settings&settings_page=security', 'icon' => 'bx bx-lock'],
+                    ['title' => 'Email', 'link' => '/public/?page=settings&settings_page=email', 'icon' => 'bx bx-envelope'],
+                    ['title' => 'Notifications', 'link' => '/public/?page=settings&settings_page=notifications', 'icon' => 'bx bx-bell'],
+                    ['title' => 'Custom Fields', 'link' => '/public/?page=settings&settings_page=custom_fields', 'icon' => 'bx bx-list-ul'],
+                    ['title' => 'Defaults', 'link' => '/public/?page=settings&settings_page=defaults', 'icon' => 'bx bx-cog'],
+                    ['title' => 'Integrations', 'link' => '/public/?page=settings&settings_page=integrations', 'icon' => 'bx bx-plug'],
+                    ['title' => 'Webhooks', 'link' => '/public/?page=settings&settings_page=webhooks', 'icon' => 'bx bx-link'],
+                    ['title' => 'AI', 'link' => '/public/?page=settings&settings_page=ai', 'icon' => 'bx bx-brain'],
                 ]]
             ]
         ]

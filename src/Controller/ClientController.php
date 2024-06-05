@@ -49,4 +49,60 @@ class ClientController {
         $view = new View();
         $view->render('client', $data, true);
     }
+    public function showContacts($client_id) {
+        $contactModel = new Contact($this->pdo);
+        $clientModel = new Client($this->pdo);
+        $rawContacts = $contactModel->getContacts($client_id);
+
+        $contacts = [];
+        foreach ($rawContacts as $contact) {
+            $contacts[] = [
+                $contact['contact_name'],
+                $contact['contact_email'],
+                $contact['contact_phone']
+            ];
+        }
+        $data = [
+            'card' => [
+                'title' => 'Contacts'
+            ],
+            'client_header' => $clientModel->getClientHeader($client_id)['client_header'],
+            'table' => [
+                'header_rows' => ['Name', 'Email', 'Phone'],
+                'body_rows' => $contacts
+            ]
+        ];
+
+        $view = new View();
+        $view->render('simpleTable', $data, true);
+    }
+    public function showLocations($client_id) {
+        $clientModel = new Client($this->pdo);
+        $rawLocations = $clientModel->getClientLocations($client_id);
+
+        $locations = [];
+        foreach ($rawLocations as $location) {
+            $locationAdress = $location['location_address'] . ', ' . $location['location_city'] . ', ' . $location['location_state'] . ' ' . $location['location_zip'];
+            $locations[] = [
+                $location['location_name'],
+                $locationAdress,
+                $location['location_phone'],
+                $location['location_hours']
+            ];
+        }
+        
+        $data = [
+            'card' => [
+                'title' => 'Locations'
+            ],
+            'client_header' => $clientModel->getClientHeader($client_id)['client_header'],
+            'table' => [
+                'header_rows' => ['Location Name', 'Address', 'Phone', 'Hours'],
+                'body_rows' => $locations
+            ]
+        ];
+
+        $view = new View();
+        $view->render('simpleTable', $data, true);
+    }
 }

@@ -23,13 +23,18 @@ class SupportController {
             $data = [
                 'client' => $client,
                 'client_header' => $clientModel->getClientHeader($client_id)['client_header'],
-                'tickets' => $supportModel->getTickets($client_id),
+                'tickets' => $supportModel->getOpenTickets($client_id),
                 'support_header_numbers' => $supportModel->getSupportHeaderNumbers($client_id)
             ];
-
-            error_log(print_r($data, true));
             
             $view->render('tickets', $data, true);
+        } else {
+            $supportModel = new Support($this->pdo);
+            $data = [
+                'tickets' => $supportModel->getOpenTickets(),
+                'support_header_numbers' => $supportModel->getSupportHeaderNumbers()
+            ];
+            $view->render('tickets', $data);
         }
 
     }

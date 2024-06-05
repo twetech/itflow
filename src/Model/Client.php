@@ -84,5 +84,10 @@ class Client {
         return $return;
 
     }
+    public function getClientLocations($client_id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM locations WHERE location_client_id = :client_id");
+        $stmt->execute(['client_id' => $client_id]);
+        return $stmt->fetchAll();
+    }
     
 }

@@ -8,7 +8,8 @@ use Twetech\Nestogy\Auth\Auth;
 use Twetech\Nestogy\Controller\HomeController;
 use Twetech\Nestogy\Controller\ClientController;
 use Twetech\Nestogy\Controller\SupportController;
-use Twetech\Nestogy\Controller\AccountingController;
+use Twetech\Nestogy\Controller\DocumentationController;
+use Twetech\Nestogy\View\View;
 
 
 // Simple routing logic
@@ -21,13 +22,14 @@ if (!Auth::check()) {
 
 switch ($page) {
 
-    case 'home':
-        $controller = new HomeController();
-        $controller->index();
+    case 'home': {
+        $home = new HomeController();
+        $home->index();
         break;
+    }
 
-    case 'client':
-        $controller = new ClientController($pdo);
+    case 'client': {
+        $client = new ClientController($pdo);
         // Check if the action is to show a single client
         if (isset($_GET['action']) && $_GET['action'] === 'show') {
 
@@ -41,31 +43,68 @@ switch ($page) {
             $client_id = intval($_GET['client_id']);
 
             // Call the show method to display the client details
-            $controller->show($client_id);
+            $client->show($client_id);
         } else {
-            $controller->index();
+            $client->index();
         }
-        break;
+    break;
+    }
 
-    case 'ticket':
+    case 'ticket': {
         if (isset($_GET['ticket_id'])) {
-            $controller = new SupportController($pdo);
-            $controller->show($_GET['ticket_id']);
+            $support = new SupportController($pdo);
+            $support->show($_GET['ticket_id']);
         } 
         if (isset($_GET['client_id'])) {
-            $controller = new SupportController($pdo);
+            $support = new SupportController($pdo);
             $client_id = intval($_GET['client_id']);
-            $controller->index($client_id);
+            $support->index($client_id);
         } else {
-            $controller = new SupportController($pdo);
-            $controller->index();
+            $support = new SupportController($pdo);
+            $support->index();
         }
         break;
-
-
-
-    default:
-        http_response_code(404);
-        echo "Page not found.";
+    }
+    
+    case 'contact': {
+        $client = new ClientController($pdo);
+        if (!isset($_GET['client_id'])) {
+            http_response_code(404);
+            echo "Client not found.";
+            exit;
+        }
+        $client_id = intval($_GET['client_id']);
+        $client->showContacts($client_id);
         break;
+    }
+
+    case 'location': {
+        $client = new ClientController($pdo);
+        if (!isset($_GET['client_id'])) {
+            http_response_code(404);
+            echo "Client not found.";
+            exit;
+        }
+        $client_id = intval($_GET['client_id']);
+        $client->showLocations($client_id);
+        break;
+    }
+
+    case 'documentation': {
+        $documentation = new DocumentationController($pdo);
+        if (isset($_GET['documentation_type'])) {
+            $documentation->show($_GET['documentation_type'], $_GET['client_id'] ?? false);
+        } else {
+            $documentation->index();
+        }
+        break;
+    }
+
+    default: {
+        $view = new View();
+        $view->error([
+            'title' => 'Oops! Page "'.$page.'" not found',
+            'message' => 'Well, this is awkward. The page you\'re looking for ran away with the circus. Try searching for something else or double-check that URL!'
+        ]);
+    }
 }
