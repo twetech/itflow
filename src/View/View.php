@@ -11,4 +11,8 @@ class View {
         require "../src/View/$template.php";
         require "../src/View/footer.php";
     }
+    public function error($message) {
+        extract($message);
+        require "../src/View/error.php";
+    }
 }
