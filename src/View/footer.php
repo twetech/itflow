@@ -168,6 +168,7 @@ $(function () {
     var datatable = $('.datatables-basic').DataTable({
         responsive: true,
         order: <?= $datatable_order ?>
+        <?= $datatable_settings ?>
     });
 
     datatable.on('init.dt', function () {
