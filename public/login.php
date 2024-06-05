@@ -18,10 +18,11 @@ if (isset($_POST['login'])) {
 
     if ($user) {
         if (isset($user['user_token'])) {
-            $token_field = '<div class="form-group mb-4">
-                                <label for="token">Token</label>
-                                <input type="text" class="form-control" placeholder="Token" name="token" required>
-                            </div>';
+            $token_field =
+                '<div class="form-group mb-4">
+                    <label for="token">Token</label>
+                    <input type="text" class="form-control" placeholder="2FA Token" name="token" required>
+                </div>';
         } else {
             Auth::login($user['user_id']);
             header('Location: index.php');
