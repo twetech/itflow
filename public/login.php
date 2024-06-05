@@ -3,6 +3,8 @@
 // public/login.php
 
 require '../bootstrap.php';
+require_once "/var/www/portal.twe.tech/includes/rfc6238.php";
+
 
 use Twetech\Nestogy\Auth\Auth;
 
@@ -15,8 +17,27 @@ if (isset($_POST['login'])) {
     $user = $auth->findUser($email, $password);
 
     if ($user) {
-        Auth::login($user['user_id']);
-        header('Location: /public/');
+        if (isset($user['user_token'])) {
+            $token_field = '<div class="form-group mb-4">
+                                <label for="token">Token</label>
+                                <input type="text" class="form-control" placeholder="Token" name="token" required>
+                            </div>';
+        } else {
+            Auth::login($user['user_id']);
+            header('Location: index.php');
+            exit;
+        }
+
+        if (isset($_POST['token'])) {
+            if (TokenAuth6238::verify($user['user_token'], $_POST['token'])) {
+                Auth::login($user['user_id']);
+                header('Location: index.php');
+                exit;
+            } else {
+                $response = 'Invalid token.';
+            }
+        }
+
     } else {
         $response = 'Invalid email or password.';
     }
