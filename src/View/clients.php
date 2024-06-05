@@ -1,4 +1,10 @@
 <!-- src/View/client.php -->
+<?php
+$datatable_settings = ",
+    columnDefs: [{ visible: false, targets: 0 }]";
+?>
+
+
 <div class="card">
     <header class="card-header d-flex align-items-center">
         <h3 class="card-title mt-2"><i class="fa fa-fw fa-user-friends mr-2"></i>Client Management</h3>
@@ -24,7 +30,6 @@
                     <tr>
                         <th style="display: none;">Accessed At</th>
                         <th data-priority="1">Name</th>
-                        <th>Tags</th>
                         <th data-priority="2">Primary Location</th>
                         <th>Primary Contact</th>
                         <th class="text-right " data-priority="3">Billing</th>
@@ -40,7 +45,7 @@
                         if (!empty($client_tags)) {
                             $client_tags_array = explode(',', $client_tags);
                             foreach ($client_tags_array as $tag) {
-                                $client_tags_display .= "<span class='badge bg-secondary'>$tag</span> ";
+                                $client_tags_display .= "<span class='badge bg-label-secondary'>$tag</span> ";
                             }
                         }
                         $client_created_at = sanitizeInput($client['client_created_at']);
@@ -56,15 +61,14 @@
                         $contact_extension = sanitizeInput($client['contact_extension']);
                         $contact_mobile = sanitizeInput($client['contact_mobile']);
                         $contact_email = sanitizeInput($client['contact_email']);
-                        // TODO: Add balance calculation
-                        $balance = 0;
-                        $amount_paid = 0;
+                        $balance = floatval($client['client_balance']);
+                        $amount_paid = floatval($client['client_payments']);
                         $recurring_monthly = 0;
                         $client_rate = floatval($client['client_rate']);
                         $balance_text_color = '';
-                        if ($balance < 0) {
+                        if ($balance > 0) {
                             $balance_text_color = 'text-danger';
-                        } elseif ($balance > 0) {
+                        } elseif ($balance < 0) {
                             $balance_text_color = 'text-success';
                         }
 
@@ -72,7 +76,7 @@
                         <tr>
                             <td style="display: none;"><?= $client_accessed_at; ?></td>
                             <td>
-                                <a href="/pages/client/client_overview.php?client_id=<?= $client_id; ?>">
+                                <a href="/public/?page=client&action=show&client_id=<?= $client_id; ?>">
                                     <h4><i class="bx bx-right-arrow me-1"></i><?= $client_name; ?></h4>
                                 </a>
 
@@ -84,15 +88,10 @@
                                     </div>
                                 <?php } ?>
 
-                                <?php
-                                if (!$session_mobile) {
-                                    if (!empty($client_tags_display)) { ?>
-                                        <div class="mt-1">
-                                            <?= $client_tags_display; ?>
-                                        </div>
+                                <div class="mt-1">
+                                    <?= $client_tags_display; ?>
+                                </div>
 
-                                <?php }
-                                } ?>
 
                                 <div class="mt-1 text-secondary">
                                     <small><strong>Created:</strong> <?= $client_created_at; ?></small>
@@ -120,9 +119,11 @@
 
                                 if (!empty($contact_phone)) { ?>
                                     <div class="mt-1">
-                                        <i class="fa fa-fw fa-phone text-secondary mr-2 mb-2"></i><?= $contact_phone; ?> <?php if (!empty($contact_extension)) {
-                                                                                                                                echo "x$contact_extension";
-                                                                                                                            } ?>
+                                        <i class="fa fa-fw fa-phone text-secondary mr-2 mb-2"></i>
+                                        <?= $contact_phone; ?>
+                                        <?php if (!empty($contact_extension)) {
+                                            echo "x$contact_extension";
+                                        } ?>
                                     </div>
                                 <?php }
 
@@ -142,18 +143,19 @@
                             <!-- Show Billing for Admin/Accountant roles only and if accounting module is enabled -->
                             <td class="text-right">
                                 <div class="mt-1">
-                                    <span class="text-secondary">Balance</span> <span class="<?= $balance_text_color; ?>"><?= numfmt_format_currency($GLOBALS['currency_format'], $balance, "USD"); ?></span>
+                                    <span class="text-secondary">Balance: </span> <span class="<?= $balance_text_color; ?>"><?= numfmt_format_currency($GLOBALS['currency_format'], $balance, "USD"); ?></span>
                                 </div>
                                 <div class="mt-1">
-                                    <span class="text-secondary">Paid</span> <?= numfmt_format_currency($GLOBALS['currency_format'], $amount_paid, "USD"); ?>
+                                    <span class="text-secondary">Paid (YTD):</span> <?= numfmt_format_currency($GLOBALS['currency_format'], $amount_paid, "USD"); ?>
                                 </div>
                                 <div class="mt-1">
-                                    <span class="text-secondary">Monthly</span> <?= numfmt_format_currency($GLOBALS['currency_format'], $recurring_monthly, "USD"); ?>
+                                    <span class="text-secondary">Monthly: </span> <?= numfmt_format_currency($GLOBALS['currency_format'], $recurring_monthly, "USD"); ?>
                                 </div>
                                 <div class="mt-1">
-                                    <span class="text-secondary">Hourly Rate</span> <?= numfmt_format_currency($GLOBALS['currency_format'], $client_rate, "USD"); ?>
+                                    <span class="text-secondary">Hourly Rate: </span> <?= numfmt_format_currency($GLOBALS['currency_format'], $client_rate, "USD"); ?>
                                 </div>
                             </td>
+
 
                         </tr>
                     <?php endforeach; ?>
