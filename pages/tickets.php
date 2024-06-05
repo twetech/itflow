@@ -358,6 +358,8 @@ $user_active_assigned_tickets = intval($row['total_tickets_assigned']);
                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_modal.php?ticket_id=<?= $ticket_id; ?>">Edit</a></li>
                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_delete_modal.php?ticket_id=<?= $ticket_id; ?>">Delete</a></li>
                                             </ul>
+                                        </div>
+                                    </td>
                                 </tr>
                             <?php
                                 }

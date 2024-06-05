@@ -259,8 +259,6 @@ function getClientAgeingBalance($client_id, $from, $to) {
         $invoice_ids[] = $row['invoice_id'];
     }
 
-    error_log(print_r($invoice_ids, true));
-
     // Get Balance for the invoices in the date range
     $balance = 0;
     foreach ($invoice_ids as $invoice_id) {
