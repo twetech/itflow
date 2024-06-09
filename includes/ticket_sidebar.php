@@ -97,27 +97,7 @@
                             <?php } ?>
                             <?php
                             // Previous tickets
-                            $prev_ticket_id = $prev_ticket_subject = $prev_ticket_status = ''; // Default blank
-                            $sql_prev_ticket = "SELECT ticket_id, ticket_created_at, ticket_subject, ticket_status, ticket_assigned_to FROM tickets
-                                LEFT JOIN ticket_statuses ON ticket_status_id = ticket_status
-                                WHERE ticket_contact_id = $contact_id AND ticket_id  <> $ticket_id ORDER BY ticket_id DESC LIMIT 1";
-                            $prev_ticket_row = mysqli_fetch_assoc(mysqli_query($mysqli, $sql_prev_ticket));
-                            if ($prev_ticket_row) {
-                                $prev_ticket_id = intval($prev_ticket_row['ticket_id']);
-                                $prev_ticket_subject = nullable_htmlentities($prev_ticket_row['ticket_subject']);
-                                $prev_ticket_status = nullable_htmlentities($prev_ticket_row['ticket_status']);
-                                $prev_ticket_assigned_to = nullable_htmlentities($prev_ticket_row['ticket_assigned_to']);
-
-                                if ($prev_ticket_assigned_to == 0) {
-                                    $prev_ticket_assigned_to = 'Unassigned';
-                                } else {
-                                    $user_sql = "SELECT user_name FROM users WHERE user_id = $prev_ticket_assigned_to";
-                                    $user_row = mysqli_fetch_assoc(mysqli_query($mysqli, $user_sql));
-                                    $prev_ticket_assigned_to = nullable_htmlentities($user_row['user_name']);
-                                }
-
-                                $prev_ticket_status = getTicketStatusName($prev_ticket_status);
-                            }
+                            $prev_ticket_id = false; //TODO: Add previous ticket ID to ticket table
                             ?>
                             <?php if ($prev_ticket_id) { ?>
                             <tr>
@@ -157,11 +137,11 @@
                             <tbody>
                                 <tr>
                                     <td>Priority:</td>
-                                    <td><?= $ticket_priority_display; ?></td>
+                                    <td><?= $ticket_priority; ?></td>
                                 </tr>
                                 <tr>
                                     <td>Status:</td>
-                                    <td><?= $ticket_status_display; ?></td>
+                                    <td><?= $ticket_status; ?></td>
                                 </tr>
                                 <tr>
                                     <td>Billable:</td>
@@ -208,9 +188,21 @@
                                         Collaborators:
                                     </td>
                                     <td>
-                                        <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_collaborators_modal.php?ticket_id=<?= $ticket_id; ?>">
-                                            <?= $ticket_collaborators; ?>
-                                        </a>
+                                        <?php
+                                        if (empty($ticket_collaborators)) {
+                                            ?>
+                                            <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_add_collaborator_modal.php?ticket_id=<?= $ticket_id; ?>">
+                                                Add a Collaborator
+                                            </a>
+                                            <?php
+                                        } else {
+                                            foreach ($ticket_collaborators as $collaborator) {
+                                                echo $collaborator;
+                                            }
+                                        }
+                                        ?>
+
+                                    
                                     </td>
                                 <tr>
                                     <td>Created:</td>
@@ -224,13 +216,13 @@
                                     <td>Scheduled:</td>
                                     <td>
                                         <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_schedule_modal.php?ticket_id=<?= $ticket_id; ?>">
-                                            <?= $ticket_scheduled_wording ?>
+                                            <?= $ticket_schedule ?>
                                         </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Assigned to:</td>
-                                    <td><a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_assign_modal.php?ticket_id=<?= $ticket_id; ?>"><?= $ticket_assigned_to_display; ?></a></td>
+                                    <td><a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_assign_modal.php?ticket_id=<?= $ticket_id; ?>"><?= $ticket_assigned_to; ?></a></td>
                                 </tr>
                                 <?php if (empty($contact_id)) { ?> 
                                     <tr>
