@@ -108,4 +108,38 @@ class Support {
             return $stmt->fetch();
         }
     }
+    public function getTicket($ticket_id) {
+        $stmt = $this->pdo->prepare(
+            'SELECT * FROM tickets
+            LEFT JOIN clients ON tickets.ticket_client_id = clients.client_id
+            LEFT JOIN users ON tickets.ticket_assigned_to = users.user_id
+            LEFT JOIN ticket_statuses ON tickets.ticket_status = ticket_statuses.ticket_status_id
+            LEFT JOIN contacts ON tickets.ticket_contact_id = contacts.contact_id
+            WHERE ticket_id = :ticket_id
+        ');
+        $stmt->execute(['ticket_id' => $ticket_id]);
+        return $stmt->fetch();
+    }
+
+    public function getTicketReplies($ticket_id) {
+        $stmt = $this->pdo->prepare(
+            'SELECT * FROM ticket_replies
+            LEFT JOIN users ON ticket_replies.ticket_reply_by = users.user_id
+            WHERE ticket_reply_ticket_id = :ticket_id
+            ORDER BY ticket_reply_created_at ASC
+        ');
+        $stmt->execute(['ticket_id' => $ticket_id]);
+        return $stmt->fetchAll();
+    }
+
+    public function getTicketCollaborators($ticket_id) {
+        $ticket_replies = $this->getTicketReplies($ticket_id);
+        $collaborators = [];
+        foreach ($ticket_replies as $reply) {
+            if (!in_array($reply['user_name'], $collaborators)) {
+                $collaborators[] = $reply['user_name'];
+            }
+        }
+        return $collaborators;
+    }
 }

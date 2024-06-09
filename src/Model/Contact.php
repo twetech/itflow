@@ -34,4 +34,11 @@ class Contact
         return $stmt->fetch();
     }
 
+    public function getContactLastTicket($contact_id)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM tickets WHERE ticket_contact_id = :contact_id ORDER BY ticket_created_at DESC LIMIT 1");
+        $stmt->execute(['contact_id' => $contact_id]);
+        return $stmt->fetch();
+    }
+
 }

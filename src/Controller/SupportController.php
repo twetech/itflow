@@ -12,6 +12,9 @@ class SupportController {
     public function __construct($pdo) {
         $this->pdo = $pdo;
     }
+    
+
+    //View all tickets, or view tickets for a specific client
     public function index($client_id = null) {
         $view = new View();
         if (isset($client_id)) {
@@ -38,8 +41,30 @@ class SupportController {
         }
 
     }
+
+    //View a specific ticket
     public function show($ticket_id) {
         $view = new View();
-        $view->render('ticket', ['ticket_id' => $ticket_id]);
+        $supportModel = new Support($this->pdo);
+        $clientModel = new Client($this->pdo);
+        $ticket = $supportModel->getTicket($ticket_id);
+
+        $data = [
+            'ticket' => $ticket,
+            'ticket_replies' => $supportModel->getTicketReplies($ticket_id),
+        ];
+        $data['ticket']['ticket_collaborators'] = $supportModel->getTicketCollaborators($ticket_id);
+
+
+        if (!empty($ticket['ticket_client_id'])) {
+            $client_id = $ticket['ticket_client_id'];
+            $data['client'] = $clientModel->getClient($client_id);
+            $data['client_header'] = $clientModel->getClientHeader($client_id)['client_header'];
+            $client_page = true;
+        } else {
+            $client_page = false;
+        }
+
+        $view->render('ticket', $data, $client_page);
     }
 }

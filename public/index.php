@@ -102,9 +102,19 @@ switch ($page) {
 
     default: {
         $view = new View();
+        $messages = [ // comedic messages to display when the page is not found
+            "Well, this is awkward. The page you're looking for ran away with the circus. Try searching for something else or double-check that URL!",
+            "Oh no! The page you're looking for is on vacation. Try searching for something else or double-check that URL!",
+            "Oh dear! The page you're looking for must be taking a nap. Try searching for something else or double-check that URL!",
+            "Oh snap! The page you're looking for is on a coffee break. Try searching for something else or double-check that URL!",
+            "Oh my! The page you're looking for must be in a meeting. Try searching for something else or double-check that URL!",
+            "Oh brother! The page you're looking for is at the gym. Try searching for something else or double-check that URL!",
+            "Yee Yee, the page you're looking for is at the rodeo. Try searching for something else or double-check that URL!"
+        ];
+        $message = $messages[array_rand($messages)];
         $view->error([
             'title' => 'Oops! Page "'.$page.'" not found',
-            'message' => 'Well, this is awkward. The page you\'re looking for ran away with the circus. Try searching for something else or double-check that URL!'
+            'message' => $message
         ]);
     }
 }
