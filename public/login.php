@@ -25,14 +25,12 @@ if (isset($_POST['login'])) {
                 </div>';
         } else {
             Auth::login($user['user_id']);
-            header('Location: index.php');
             exit;
         }
 
         if (isset($_POST['token'])) {
             if (TokenAuth6238::verify($user['user_token'], $_POST['token'])) {
                 Auth::login($user['user_id']);
-                header('Location: index.php');
                 exit;
             } else {
                 $response = 'Invalid token.';

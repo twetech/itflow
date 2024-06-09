@@ -54,7 +54,8 @@ switch ($page) {
         if (isset($_GET['ticket_id'])) {
             $support = new SupportController($pdo);
             $support->show($_GET['ticket_id']);
-        } 
+        }
+        
         if (isset($_GET['client_id'])) {
             $support = new SupportController($pdo);
             $client_id = intval($_GET['client_id']);

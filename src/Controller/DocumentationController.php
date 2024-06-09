@@ -30,11 +30,30 @@ class DocumentationController {
 
     public function show($documentation_type, $client_id = false) {
         $view = new View();
+        $auth = new Auth($this->pdo);
+        // Check if user has access to the documentation class
+        if (!$auth->checkClassAccess($_SESSION['user_id'], 'documentation', 'view')) {
+            // If user does not have access, display an error message
+            $view->error([
+                'title' => 'Access Denied',
+                'message' => 'You do not have permission to view documentation.'
+            ]);
+            return;
+        }
         $documentationModel = new Documentation($this->pdo);
         $client_page = false;
         $data = [];
 
         if ($client_id) {
+            // Check if user has access to the client
+            if (!$auth->checkClientAccess($_SESSION['user_id'], $client_id, 'view')) {
+                // If user does not have access, display an error message
+                $view->error([
+                    'title' => 'Access Denied',
+                    'message' => 'You do not have permission to view this client.'
+                ]);
+                return;
+            }
             $client_page = true;
             $client = new Client($this->pdo);
             $client_header = $client->getClientHeader($client_id);

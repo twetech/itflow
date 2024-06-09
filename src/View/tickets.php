@@ -24,7 +24,7 @@ $session_mobile = false;
         </h3>
         <div class="card-header-elements">
             <span class="badge rounded-pill bg-label-secondary p-2">Total: <?=$total_tickets_open + $total_tickets_closed?></span> |
-            <a href="<?= isset($client_id) ? "/public/?page=ticket?
+            <a href="<?= isset($client_id) ? "/pages/client/client_" : "/pages/" ?>tickets.php?status=Open&assigned=all<?= isset($client_id) ? "&client_id=$client_id" : "" ?>" class="badge rounded-pill bg-label-primary p-2">
                 Open: <?=$total_tickets_open?>
             </a> |
             <a href="<?= isset($client_id) ? "/pages/client/client_" : "/pages/" ?>tickets.php?status=5&assigned=all<?= isset($client_id) ? "&client_id=$client_id" : "" ?>" class="badge rounded-pill bg-label-danger p-2">
