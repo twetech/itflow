@@ -20,7 +20,7 @@ function createInvoiceItem(
     $category_id = $item['item_category_id'];
     $discount = $item['item_discount'];
     $product_id = $item['item_product_id'];
-    $subtotal = $price * $qty;
+    $subtotal = $price * $qty - $discount;
 
     // if discount ends in %, calculate discount amount
     if (substr($discount, -1) == '%') {
@@ -82,30 +82,30 @@ function createInvoiceItem(
         ");
     } elseif ($type == 'invoice') {
 
-    if ($tax_id > 0) {
-        $sql = mysqli_query($mysqli,"SELECT * FROM taxes WHERE tax_id = $tax_id");
-        $row = mysqli_fetch_array($sql);
-        $tax_percent = floatval($row['tax_percent']);
-        $tax_amount = $subtotal * $tax_percent / 100;
-    } else {
-        $tax_amount = 0;
-    }
+        if ($tax_id > 0) {
+            $sql = mysqli_query($mysqli,"SELECT * FROM taxes WHERE tax_id = $tax_id");
+            $row = mysqli_fetch_array($sql);
+            $tax_percent = floatval($row['tax_percent']);
+            $tax_amount = $subtotal * $tax_percent / 100;
+        } else {
+            $tax_amount = 0;
+        }
 
-    $total = $subtotal + $tax_amount - $discount;
+        $total = $subtotal + $tax_amount;
 
-    mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$name', item_description = '$description', item_quantity = $qty, item_product_id = $product_id, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_discount = $discount, item_order = $item_order, item_tax_id = $tax_id, item_invoice_id = $invoice_id, item_category_id = $category_id");
+        mysqli_query($mysqli,"INSERT INTO invoice_items SET item_name = '$name', item_description = '$description', item_quantity = $qty, item_product_id = $product_id, item_price = $price, item_subtotal = $subtotal, item_tax = $tax_amount, item_total = $total, item_discount = $discount, item_order = $item_order, item_tax_id = $tax_id, item_invoice_id = $invoice_id, item_category_id = $category_id");
 
 
-    //add up all line items
-    $sql = mysqli_query($mysqli,"SELECT * FROM invoice_items WHERE item_invoice_id = $invoice_id");
-    $invoice_total = 0;
-    while($row = mysqli_fetch_array($sql)) {
-        $item_total = floatval($row['item_total']);
-        $invoice_total += $item_total;
-    }
-    $new_invoice_amount = $invoice_total;
+        //add up all line items
+        $sql = mysqli_query($mysqli,"SELECT * FROM invoice_items WHERE item_invoice_id = $invoice_id");
+        $invoice_total = 0;
+        while($row = mysqli_fetch_array($sql)) {
+            $item_total = floatval($row['item_total']);
+            $invoice_total += $item_total;
+        }
+        $new_invoice_amount = $invoice_total;
 
-    mysqli_query($mysqli,"UPDATE invoices SET invoice_amount = $new_invoice_amount WHERE invoice_id = $invoice_id");
+        mysqli_query($mysqli,"UPDATE invoices SET invoice_amount = $new_invoice_amount WHERE invoice_id = $invoice_id");
     }
 }
 
@@ -150,8 +150,6 @@ function updateInvoiceItem(
     $category_id = $item['category_id'];
     $product_id = $item['product_id'];
 
-    $subtotal = $price * $qty;
-
     // if discount ends in %, calculate discount amount
     if (substr($discount, -1) == '%') {
         $discount = substr($discount, 0, -1);
@@ -161,6 +159,8 @@ function updateInvoiceItem(
     } else {
         $discount = floatval($discount);
     }
+
+    $subtotal = $price * $qty - $discount;
 
     if ($tax_id > 0) {
         $sql = mysqli_query($mysqli,"SELECT * FROM taxes WHERE tax_id = $tax_id");

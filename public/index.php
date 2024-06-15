@@ -62,6 +62,12 @@ switch ($page) {
             $support->index($client_id);
         } else {
             $support = new SupportController($pdo);
+            if(isset($_GET['status'])) {
+                $status = $_GET['status'];
+                $support->index(null, $status);
+            } else {
+                $support->index();
+            }
             $support->index();
         }
         break;

@@ -16,7 +16,7 @@ class SupportController {
         $this->pdo = $pdo;
     }
 
-    public function index($client_id = null) {
+    public function index($client_id = null, $status = null) {
     //View all tickets, or view tickets for a specific client
         $supportModel = new Support($this->pdo);
         $view = new View();
@@ -45,22 +45,36 @@ class SupportController {
             // Get client details
             $clientModel = new Client($this->pdo);
             $client = $clientModel->getClient($client_id);
-            // Assemble data to pass to the view
-            $data = [
-                'client' => $client,
-                'client_header' => $clientModel->getClientHeader($client_id)['client_header'],
-                'tickets' => $supportModel->getOpenTickets($client_id),
-                'support_header_numbers' => $supportModel->getSupportHeaderNumbers($client_id)
-            ];
+            // if client_id is set, view tickets for that client
+            if (isset($status) && $status == 5) {
+                $data = [
+                    'tickets' => $supportModel->getClosedTickets($client_id),
+                    'client' => $client,
+                    'support_header_numbers' => $supportModel->getSupportHeaderNumbers()
+                ];
+            } else {
+                $data = [
+                    'tickets' => $supportModel->getOpenTickets($client_id),
+                    'client' => $client,
+                    'support_header_numbers' => $supportModel->getSupportHeaderNumbers()
+                ];
+            }
             // Render the view
             $view->render('tickets', $data, true);
         } else {
         // If client_id is not set, view all tickets
-            // Assemble data to pass to the view
-            $data = [
-                'tickets' => $supportModel->getOpenTickets(),
-                'support_header_numbers' => $supportModel->getSupportHeaderNumbers()
-            ];
+            if (isset($status) && $status == 5) {
+                $data = [
+                    'tickets' => $supportModel->getClosedTickets(),
+                    'support_header_numbers' => $supportModel->getSupportHeaderNumbers()
+                ];
+            } else {
+                // Assemble data to pass to the view
+                $data = [
+                    'tickets' => $supportModel->getOpenTickets(),
+                    'support_header_numbers' => $supportModel->getSupportHeaderNumbers()
+                ];
+            }
             // Render the view
             $view->render('tickets', $data);
         }

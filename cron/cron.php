@@ -747,7 +747,8 @@ $sql_clients = mysqli_query($mysqli, "SELECT * FROM clients WHERE client_archive
 
 while ($row = mysqli_fetch_array($sql_clients)) {
     $client_id = intval($row['client_id']);
-
+    $client_name = sanitizeInput($row['client_name']);
+    $client_net_terms = intval($row['client_net_terms']);
 
     // Get the past due in months
     $months_past_due = getClientPastDueBalance($client_id);

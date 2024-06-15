@@ -45,6 +45,42 @@ class Support {
             return $tickets;
         }
     }
+    public function getClosedTickets($client_id = false) {
+        if ($client_id) {
+            $stmt = $this->pdo->prepare(
+                'SELECT * FROM tickets
+                LEFT JOIN clients ON tickets.ticket_client_id = clients.client_id
+                LEFT JOIN users ON tickets.ticket_assigned_to = users.user_id
+                LEFT JOIN ticket_statuses ON tickets.ticket_status = ticket_statuses.ticket_status_id
+                LEFT JOIN contacts ON tickets.ticket_contact_id = contacts.contact_id
+                WHERE ticket_client_id = :client_id
+                AND ticket_status = 5
+                ORDER BY ticket_created_at DESC
+            ');
+            $stmt->execute(['client_id' => $client_id]);
+            $tickets = $stmt->fetchAll();
+            foreach ($tickets as $key => $ticket) {
+                $tickets[$key]['ticket_last_response'] = $this->getLastResponse($ticket['ticket_id']);
+            }
+            return $tickets;
+        } else {
+            $stmt = $this->pdo->prepare(
+                'SELECT * FROM tickets
+                LEFT JOIN clients ON tickets.ticket_client_id = clients.client_id
+                LEFT JOIN users ON tickets.ticket_assigned_to = users.user_id
+                LEFT JOIN ticket_statuses ON tickets.ticket_status = ticket_statuses.ticket_status_id
+                LEFT JOIN contacts ON tickets.ticket_contact_id = contacts.contact_id
+                WHERE ticket_status = 5
+                ORDER BY ticket_created_at DESC
+            ');
+            $stmt->execute();
+            $tickets = $stmt->fetchAll();
+            foreach ($tickets as $key => $ticket) {
+                $tickets[$key]['ticket_last_response'] = $this->getLastResponse($ticket['ticket_id']);
+            }
+            return $tickets;
+        }
+    }
     private function getLastResponse($ticket_id) {
         $stmt = $this->pdo->prepare('SELECT ticket_reply_created_at FROM ticket_replies WHERE ticket_reply_ticket_id = :ticket_id ORDER BY ticket_reply_created_at DESC LIMIT 1');
         $stmt->execute(['ticket_id' => $ticket_id]);
@@ -120,7 +156,6 @@ class Support {
         $stmt->execute(['ticket_id' => $ticket_id]);
         return $stmt->fetch();
     }
-
     public function getTicketReplies($ticket_id) {
         $stmt = $this->pdo->prepare(
             'SELECT * FROM ticket_replies
@@ -131,7 +166,6 @@ class Support {
         $stmt->execute(['ticket_id' => $ticket_id]);
         return $stmt->fetchAll();
     }
-
     public function getTicketCollaborators($ticket_id) {
         $ticket_replies = $this->getTicketReplies($ticket_id);
         $collaborators = [];

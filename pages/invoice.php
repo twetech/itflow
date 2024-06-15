@@ -306,6 +306,7 @@ if (isset($_GET['invoice_id'])) {
                             $item_markup = 0;
                         }
 
+
                     ?>
 
                         <hr class="mx-n4" />
@@ -460,6 +461,10 @@ if (isset($_GET['invoice_id'])) {
                                 <div class="d-flex justify-content-between">
                                     <span class="w-px-100">Total:</span>
                                     <span class="fw-medium"><?=numfmt_format_currency($currency_format, $subtotal-$discount_total+$tax_total, $client_currency_code)?></span>
+                                    <?php
+
+
+                                    ?>
                                 </div>
                             </div>
                         </div>

@@ -12,5 +12,7 @@
             "email": "andrew@malsbury.tech"
         }
     ],
-    "require": {}
+    "require": {
+        "predis/predis": "^2.2"
+    }
 }
