@@ -83,8 +83,7 @@ if (isset($client_page)) {
             'children' => [
                 ['title' => 'Quotes', 'link' => '/pages/quotes.php', 'icon' => 'bx bx-message-square-detail'],
                 ['title' => 'Invoices', 'link' => '/pages/invoices.php', 'icon' => 'bx bx-receipt'],
-                ['title' => 'Products', 'link' => '/pages/products.php', 'icon' => 'bx bx-box'],
-                
+                ['title' => 'Products', 'link' => '/pages/products.php', 'icon' => 'bx bx-box']
             ]
         ],
         [
@@ -98,6 +97,16 @@ if (isset($client_page)) {
                 ['title' => 'Transfers', 'link' => '/pages/transfers.php', 'icon' => 'bx bx-transfer'],
                 ['title' => 'Accounts', 'link' => '/pages/accounts.php', 'icon' => 'bx bx-wallet'],
                 ['title' => 'Credits', 'link' => '/pages/credits.php', 'icon' => 'bx bx-money']
+            ]
+        ],
+        [
+            'title' => 'Human Resources',
+            'icon' => 'bx bx-user',
+            'children' => [
+                ['title' => 'Employees', 'link' => '/pages/employees.php', 'icon' => 'bx bx-user'],
+                ['title' => 'Payroll', 'link' => '/pages/employee_payroll.php', 'icon' => 'bx bx-dollar'],
+                ['title' => 'Time Tracking', 'link' => '/pages/employee_time_tracking.php', 'icon' => 'bx bx-time'],
+                ['title' => 'Leaves', 'link' => '/pages/employee_leaves.php', 'icon' => 'bx bx-calendar-star']
             ]
         ],
         [
@@ -431,6 +440,12 @@ $nav_title_link = '/pages/dashboard.php';
                                         <a class="dropdown-item" href="/pages/user/user_details.php">
                                             <i class="bx bx-user me-2"></i>
                                             <span class="align-middle">My Profile</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="employee_timeclock_modal.php?user_id=<?= $session_user_id ?>">
+                                            <i class="bx bx-time"></i>
+                                            <span class="align-middle">Time Clock</span>
                                         </a>
                                     </li>
                                     <li>

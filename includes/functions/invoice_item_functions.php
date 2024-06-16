@@ -20,7 +20,7 @@ function createInvoiceItem(
     $category_id = $item['item_category_id'];
     $discount = $item['item_discount'];
     $product_id = $item['item_product_id'];
-    $subtotal = $price * $qty - $discount;
+    $subtotal = $price * $qty;
 
     // if discount ends in %, calculate discount amount
     if (substr($discount, -1) == '%') {
@@ -31,6 +31,7 @@ function createInvoiceItem(
     } else {
         $discount = floatval($discount);
     }
+    $subtotal = $price * $qty - $discount;
 
     if ($type == 'recurring'){
         $recurring_id = $invoice_id;
@@ -149,6 +150,8 @@ function updateInvoiceItem(
     $quote_id = $item['quote_id'];
     $category_id = $item['category_id'];
     $product_id = $item['product_id'];
+
+    $subtotal = $price * $qty;
 
     // if discount ends in %, calculate discount amount
     if (substr($discount, -1) == '%') {
