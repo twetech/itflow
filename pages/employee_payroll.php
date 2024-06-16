@@ -10,6 +10,9 @@ $users = mysqli_query($mysqli,
 ");
 
 $month = isset($_GET['month']) ? $_GET['month'] : date('m');
+$total_hours_worked = 0;
+$total_billable_hours = 0;
+$total_pay = 0;
 ?>
 
 <div class="row">
@@ -17,6 +20,16 @@ $month = isset($_GET['month']) ? $_GET['month'] : date('m');
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title"><i class="fas fa-fw fa-user mr-2"></i>Employee Payroll</h3>
+                <form method="GET">
+                    <div class="form-group">
+                        <label for="month">Month</label>
+                        <select class="form-control" name="month" id="month" onchange="this.form.submit()">
+                            <?php for ($i = 1; $i <= 12; $i++) { ?>
+                                <option value="<?= $i; ?>" <?= $month == $i ? 'selected' : ''; ?>><?= date('F', strtotime('2021-' . $i . '-01')); ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </form>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">
@@ -113,7 +126,18 @@ $month = isset($_GET['month']) ? $_GET['month'] : date('m');
                                 <td><?= numfmt_format_currency($currency_format, $user['user_pay_rate'], $session_company_currency); ?></td>
                                 <td><?= $user['user_pay_type'] == 'hourly' ? numfmt_format_currency($currency_format, $user['user_pay_rate'] * $user_hours_worked, $session_company_currency) : numfmt_format_currency($currency_format, $user['user_pay_rate'], $session_company_currency); ?></td>
                             </tr>
-                        <?php } ?>
+                        <?php 
+                        $total_hours_worked += $user_hours_worked;
+                        $total_billable_hours += $user_reply_time;
+                        $total_pay += $user['user_pay_type'] == 'hourly' ? $user['user_pay_rate'] * $user_hours_worked : $user['user_pay_rate'];
+                        } ?>
+                        <tr>
+                            <td colspan="2" class="text-right"><strong>Total</strong></td>
+                            <td><strong><?= $total_hours_worked; ?></strong></td>
+                            <td><strong><?= $total_billable_hours . ' hours, $' . 125*$total_billable_hours; ?></strong></td>
+                            <td></td>
+                            <td><strong><?= numfmt_format_currency($currency_format, $total_pay, $session_company_currency); ?></strong></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
