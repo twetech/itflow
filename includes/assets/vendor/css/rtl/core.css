@@ -20672,14 +20672,14 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
   left: 0;
   z-index: 1;
   width: 100vw;
-  height: 100vh;
+  height: 50vh;
   background-color: #435971;
 }
 .content-backdrop.fade {
   opacity: 0;
 }
 .content-backdrop.show {
-  opacity: 0.5;
+  opacity: 0.9;
 }
 .layout-menu-fixed .content-backdrop {
   z-index: 10;

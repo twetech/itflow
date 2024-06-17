@@ -688,12 +688,13 @@ if (isset($_GET['search'])) {
 
     $sql = "SELECT * FROM";
     $client_sql = "clients WHERE client_name LIKE '%$search%' OR client_type LIKE '%$search%' OR client_notes LIKE '%$search%'";
-    $contact_sql = "contacts WHERE contact_name LIKE '%$search%' OR contact_email LIKE '%$search%' OR contact_phone LIKE '%$search%' OR contact_mobile LIKE '%$search%' OR contact_notes LIKE '%$search%'";
+    $contact_sql = "contacts, clients WHERE (contact_name LIKE '%$search%' OR contact_email LIKE '%$search%' OR contact_phone LIKE '%$search%' OR contact_mobile LIKE '%$search%' OR contact_notes LIKE '%$search%') AND contacts.contact_client_id = clients.client_id";
     $ticket_sql = "tickets WHERE ticket_subject LIKE '%$search%' OR ticket_number LIKE '%$search%' OR ticket_details LIKE '%$search%'";
     $document_sql = "documents WHERE document_name LIKE '%$search%'";
     $login_sql = "logins WHERE login_name LIKE '%$search%' or login_uri LIKE '%$search%'";
     $ticket_reply_sql = "ticket_replies WHERE reply_content LIKE '%$search%'";
     $asset_sql = "assets WHERE asset_name LIKE '%$search%' or asset_notes LIKE '%$search%' or asset_description LIKE '%$search%' OR asset_serial LIKE '%$search%' OR asset_mac LIKE '%$search%' or asset_make LIKE '%$search%' or asset_model LIKE '%$search%'";
+    $invoice_sql = "invoices WHERE invoice_number LIKE '%$search%' OR invoice_description LIKE '%$search%'";
 
     switch ($category) {
         case "clients":
@@ -706,7 +707,7 @@ if (isset($_GET['search'])) {
             break;
         case "tickets":
             $sql = $sql . " $ticket_sql";
-            $url = "/pages/client/ticket.php?ticket_id=";
+            $url = "/pages/ticket.php?ticket_id=";
             break;
         case "documents":
             $sql = $sql . " $document_sql";
@@ -724,6 +725,10 @@ if (isset($_GET['search'])) {
             $sql = $sql . " $asset_sql";
             $url = "/pages/client/client_assets.php?client_id=";
             break;
+        case "invoices":
+            $sql = $sql . " $invoice_sql";
+            $url = "/pages/invoices.php?invoice_id=";
+            break;
         default:
             $sql = $sql . " $client_sql UNION $contact_sql UNION $ticket_sql UNION $document_sql UNION $login_sql UNION $ticket_reply_sql UNION $asset_sql";
     }
@@ -733,15 +738,48 @@ if (isset($_GET['search'])) {
     // build an array of onjects, each object is a row from the query
     $response = [];
     while ($row = mysqli_fetch_array($result)) {
+        $url_id = $row['client_id'] ?? $row['contact_id'] ?? $row['ticket_id'] ?? $row['document_id'] ?? $row['login_id'] ?? $row['reply_id'] ?? $row['asset_id'];
+        error_log($url_id);
         $response[] = [
-            'name' => $row['client_name'] ?? $row['contact_name'] ?? $row['ticket_subject'] ?? $row['document_name'] ?? $row['login_name'] ?? $row['reply_content'] ?? $row['asset_name'],
-            'id' => $row['client_id'] ?? $row['contact_id'] ?? $row['ticket_id'] ?? $row['document_id'] ?? $row['login_id'] ?? $row['reply_id'] ?? $row['asset_id'],
-            'url' => $url . $row['client_id'] ?? $row['contact_id'] ?? $row['ticket_id'] ?? $row['document_id'] ?? $row['login_id'] ?? $row['reply_id'] ?? $row['asset_id'],
+            'name' => $row['contact_name'] ?? $row['ticket_subject'] ?? $row['document_name'] ?? $row['login_name'] ?? $row['reply_content'] ?? $row['asset_name'] ?? $row['client_name'],
+            'id' => $row['client_id'] ?? $row['client_id'] ?? $row['ticket_id'] ?? $row['document_id'] ?? $row['login_id'] ?? $row['reply_id'] ?? $row['asset_id'],
+            'url' => $url . $url_id
             
         ];
     }
 
     echo json_encode($response);
+}
 
+if (isset($_GET['plaid_link_token'])) {
+// Create a link token
+    $create_link_token_url = "https://sandbox.plaid.com/link/token/create";
+
+    $data = [
+        'client_id' => "$config_plaid_client_id",
+        'secret' => "$config_plaid_secret",
+        'client_name' => 'ITFlow',
+        'country_codes' => ['US'],
+        'language' => 'en',
+        'user' => [
+            'client_user_id' => '1'
+        ],
+        'products' => ['auth', 'transactions'],
+    ];
+
+    echo json_encode($data);
+
+    // send the request using php curl
+    $ch = curl_init($create_link_token_url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+    ]);
+
+    $result = curl_exec($ch);
+    curl_close($ch);
     
+    echo $result;
 }

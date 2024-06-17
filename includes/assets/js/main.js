@@ -440,6 +440,7 @@ if (typeof $ !== 'undefined') {
         toggler.on('click', function () {
             wrapper.toggleClass('d-none');
             input.focus();
+            $('.content-backdrop').addClass('show').removeClass('fade');
         });
     }
 
@@ -448,6 +449,7 @@ if (typeof $ !== 'undefined') {
             if (event.ctrlKey && event.which === 191) {
                 wrapper.toggleClass('d-none');
                 input.focus();
+                $('.content-backdrop').addClass('show').removeClass('fade');
             }
         });
     }
@@ -486,6 +488,7 @@ if (typeof $ !== 'undefined') {
             var loginsEngine = initializeBloodhound('logins');
             var ticketRepliesEngine = initializeBloodhound('ticketReplies');
             var assetsEngine = initializeBloodhound('assets');
+            var invoicesEngine = initializeBloodhound('invoices');
 
             // Function to prepare templates for each category
             function categoryTemplate(categoryName) {
@@ -504,7 +507,7 @@ if (typeof $ !== 'undefined') {
 
             // Initialize Typeahead with Templates
             $('.search-input').typeahead({
-                minLength: 3,
+                minLength: 2,
                 highlight: true
             }, 
             categoryTemplate('clients'),
@@ -513,7 +516,8 @@ if (typeof $ !== 'undefined') {
             categoryTemplate('documents'),
             categoryTemplate('logins'),
             categoryTemplate('ticketReplies'),
-            categoryTemplate('assets')
+            categoryTemplate('assets'),
+            categoryTemplate('invoices')
             );
 
             // Bindings for typeahead behavior

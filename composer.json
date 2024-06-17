@@ -13,6 +13,7 @@
         }
     ],
     "require": {
-        "predis/predis": "^2.2"
+        "predis/predis": "^2.2",
+        "tomorrow-ideas/plaid-sdk-php": "^1.0"
     }
 }

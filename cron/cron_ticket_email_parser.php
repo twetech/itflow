@@ -244,7 +244,7 @@ function addReply($from_email, $date, $subject, $ticket_number, $message, $attac
         mysqli_query($mysqli, "INSERT INTO ticket_replies SET ticket_reply = '$message_esc', ticket_reply_type = '$ticket_reply_type', ticket_reply_time_worked = '00:00:00', ticket_reply_by = $ticket_reply_contact, ticket_reply_ticket_id = $ticket_id");
         $reply_id = mysqli_insert_id($mysqli);
 
-        mkdirMissing('uploads/tickets/');
+        mkdirMissing('/var/www/portal.twe.tech/uploads/tickets/');
         foreach ($attachments as $attachment) {
             $att_name = $attachment->getName();
             $att_extarr = explode('.', $att_name);
@@ -252,9 +252,9 @@ function addReply($from_email, $date, $subject, $ticket_number, $message, $attac
 
             if (in_array($att_extension, $allowed_extensions)) {
                 $att_saved_filename = md5(uniqid(rand(), true)) . '.' . $att_extension;
-                $att_saved_path = "uploads/tickets/" . $ticket_id . "/" . $att_saved_filename;
-                $attachment->save("uploads/tickets/" . $ticket_id); // Save the attachment to the directory
-                rename("uploads/tickets/" . $ticket_id . "/" . $attachment->getName(), $att_saved_path); // Rename the saved file to the hashed name
+                $att_saved_path = "/var/www/portal.twe.tech/uploads/tickets/" . $ticket_id . "/" . $att_saved_filename;
+                $attachment->save("/var/www/portal.twe.tech/uploads/tickets/" . $ticket_id); // Save the attachment to the directory
+                rename("/var/www/portal.twe.tech/uploads/tickets/" . $ticket_id . "/" . $attachment->getName(), $att_saved_path); // Rename the saved file to the hashed name
 
                 $ticket_attachment_name = sanitizeInput($att_name);
                 $ticket_attachment_reference_name = sanitizeInput($att_saved_filename);
@@ -334,10 +334,9 @@ if ($messages->count() > 0) {
     foreach ($messages as $message) {
         $email_processed = false;
 
-
-        mkdirMissing('uploads/tmp/');
+        mkdirMissing('/var/www/portal.twe.tech/uploads/tmp/');
         $original_message_file = "processed-eml-" . randomString(200) . ".eml";
-        file_put_contents("uploads/tmp/{$original_message_file}", $message->getRawMessage());
+        file_put_contents("/var/www/portal.twe.tech/uploads/tmp/{$original_message_file}", $message->getRawMessage());
 
         $from_address = $message->getFrom();
         $from_name = sanitizeInput($from_address[0]->personal ?? 'Unknown');
@@ -393,6 +392,8 @@ if ($messages->count() > 0) {
                         $email_processed = true;
                         echo "Processed new ticket from new contact.\n";
                     }
+                } else {
+                    echo "Failed to process email - domain not found. \n" . $message->getFrom() . "\n";
                 }
             }
         }
@@ -401,12 +402,14 @@ if ($messages->count() > 0) {
             $message->setFlag(['Seen']);
             $message->move('ITFlow');
         } else {
-            echo "Failed to process email - flagging for manual review.";
-            $message->setFlag(['Flagged']);
+            echo "Failed to process email - flagging for manual review. \n" . $message->getSubject() . "\n";
+            $message->setFlag(['Seen']);
+            // Create a notification for manual review
+            mysqli_query($mysqli, "INSERT INTO notifications SET notification_type = 'Email', notification = 'Email parser: Failed to process email from $from_email', notification_action = 'email.php', notification_client_id = 0");
         }
 
-        if (file_exists("uploads/tmp/{$original_message_file}")) {
-            unlink("uploads/tmp/{$original_message_file}");
+        if (file_exists("/var/www/portal.twe.tech/uploads/tmp/{$original_message_file}")) {
+            unlink("/var/www/portal.twe.tech/uploads/tmp/{$original_message_file}");
         }
     }
 } else {

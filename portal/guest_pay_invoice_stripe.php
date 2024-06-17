@@ -324,8 +324,6 @@ if (isset($_GET['invoice_id'], $_GET['url_key']) && !isset($_GET['payment_intent
         mysqli_query($mysqli, "INSERT INTO history SET history_status = 'Paid', history_description = 'Gateway fees of $gateway_fee has been billed', history_invoice_id = $invoice_id");
     }
 
-    // Notify
-    mysqli_query($mysqli, "INSERT INTO notifications SET notification_type = 'Invoice Paid', notification = 'Invoice $invoice_prefix$invoice_number has been paid - $ip - $os - $browser', notification_action = 'invoice.php?invoice_id=$invoice_id', notification_client_id = $pi_client_id");
 
     // Logging
     $extended_log_desc = '';

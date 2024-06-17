@@ -18301,7 +18301,7 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
   opacity: 0;
 }
 .content-backdrop.show {
-  opacity: 0.5;
+  opacity: 0.9;
 }
 .layout-menu-fixed .content-backdrop {
   z-index: 10;

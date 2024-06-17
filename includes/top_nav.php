@@ -96,8 +96,8 @@ if (isset($client_page)) {
                 ['title' => 'Expenses', 'link' => '/pages/expenses.php', 'icon' => 'bx bx-money'],
                 ['title' => 'Transfers', 'link' => '/pages/transfers.php', 'icon' => 'bx bx-transfer'],
                 ['title' => 'Accounts', 'link' => '/pages/accounts.php', 'icon' => 'bx bx-wallet'],
-                ['title' => 'Credits', 'link' => '/pages/credits.php', 'icon' => 'bx bx-money']
-            ]
+                ['title' => 'Credits', 'link' => '/pages/credits.php', 'icon' => 'bx bx-money'],
+                ['title' => 'Reconciliation', 'link' => '/pages/reconcile.php', 'icon' => 'bx bx-check-square'],            ]
         ],
         [
             'title' => 'Human Resources',
@@ -271,7 +271,7 @@ if (isset($client_page)) {
 $nav_title_link = '/pages/dashboard.php';
 
 ?>
-
+<div class="content-backdrop fade"></div>
             
             <!-- Navbar -->
             <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme d-print-none" id="layout-navbar">
