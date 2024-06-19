@@ -45,7 +45,7 @@ function getPlaidLinkToken($client_user_id = 1) {
 }
 
 function syncPlaidTransactions($next_cursor = null) {
-    global $mysqli;
+    global $mysqli, $config_plaid_client_id, $config_plaid_secret;
 
     // Add plaid_sync row if it doesn't exist
     $sql = "SELECT * FROM plaid_sync WHERE sync_id = 1";
@@ -75,8 +75,8 @@ function syncPlaidTransactions($next_cursor = null) {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS =>'{
-        "client_id": "6644d4e32bfafb001b2e0727",
-        "secret": "182426403083d6477895672b89eb79",
+        "client_id": ' . $config_plaid_client_id . ',
+        "secret": ' . $config_plaid_secret . ',
         "access_token": "access-sandbox-d45c06d1-f54d-4abe-95dc-460cf515bf1c",
         "cursor": "' . $next_cursor . '"
         }',
