@@ -146,6 +146,7 @@ if (isset($client_page)) {
                     ['title' => 'Categories', 'link' => '/pages/admin/admin_categories.php', 'icon' => 'bx bx-category']
                 ]],
                 ['title' => 'Financial', 'icon' => 'bx bx-dollar', 'children' => [
+                    ['title' => 'Plaid', 'link' => '/pages/admin/plaid.php', 'icon' => 'bx bx-credit-card'],
                     ['title' => 'Taxes', 'link' => '/pages/admin/admin_taxes.php', 'icon' => 'bx bx-bank'],
                     ['title' => 'Account Types', 'link' => '/pages/admin/admin_account_types.php', 'icon' => 'bx bx-university']
                 ]],

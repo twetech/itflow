@@ -19,7 +19,10 @@ $total_pay = 0;
     <div class="col">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-fw fa-user mr-2"></i>Employee Payroll</h3>
+                <h3 class="card-title">
+                    <i class="fas fa-fw fa-user mr-2"></i>
+                    Employee Payroll
+                </h3>
                 <form method="GET">
                     <div class="form-group">
                         <label for="month">Month</label>
@@ -113,23 +116,45 @@ $total_pay = 0;
 
                             $user_hours_worked = round($user_hours_worked / 3600, 2);
                             $user_reply_time = round($user_reply_time / 3600, 2);
+                            //if user_max_hours is 0, show an infinity symbol
+                            if ($user['user_max_hours'] == 0) {
+                                $user['user_max_hours'] = '∞';
+                            }
                             ?>
                             <tr>
                                 <td><?= nullable_htmlentities($user['user_name']); ?></td>
-                                <td><?= $user['user_pay_type'] == 'salary' ? 'Salary' : 'Hourly'; ?></td>
+                                <td><?php switch ($user['user_pay_type']) {
+                                    case 'salary': echo 'Salary'; break;
+                                    case 'hourly': echo 'Hourly'; break;
+                                    case 'contractor': echo 'Contractor'; break;
+                                } ?></td>
                                 <td>
-                                    <?= $user['user_pay_type'] == 'hourly' ? $user_hours_worked : $user_hours_worked; ?>
+                                    <?= $user_hours_worked . ' / ' . $user['user_max_hours']; ?>
                                     <?php if ($time_running_icon) { ?><i class="fas fa-fw fa-stopwatch ml-2"></i><?php } ?>
                                     <?php if ($break_icon) { ?><i class="fas fa-fw fa-coffee ml-2"></i><?php } ?>
                                 </td>
                                 <td><?= $user_reply_time . ' hours, $' . 125*$user_reply_time; ?></td>
-                                <td><?= numfmt_format_currency($currency_format, $user['user_pay_rate'], $session_company_currency); ?></td>
-                                <td><?= $user['user_pay_type'] == 'hourly' ? numfmt_format_currency($currency_format, $user['user_pay_rate'] * $user_hours_worked, $session_company_currency) : numfmt_format_currency($currency_format, $user['user_pay_rate'], $session_company_currency); ?></td>
+                                <td><?= numfmt_format_currency($currency_format, $user['user_pay_rate'], $session_company_currency); ?>
+                                <?php if ($user['user_pay_type'] == 'hourly') { ?>/hr<?php }
+                                elseif ($user['user_pay_type'] == 'contractor') { ?>/billable hr<?php }
+                                else { ?>/mo<?php } ?></td>
+                                <td><?php
+                                if ($user['user_pay_type'] == 'hourly') {
+                                    $user_pay = $user['user_pay_rate'] * $user_hours_worked;
+                                    echo numfmt_format_currency($currency_format, $user_pay, $session_company_currency);
+                                } elseif ($user['user_pay_type'] == 'contractor') {
+                                    $user_pay = $user['user_pay_rate'] * $user_reply_time;
+                                    echo numfmt_format_currency($currency_format, $user_pay, $session_company_currency);
+                                } else {
+                                    $user_pay = $user['user_pay_rate'];
+                                    echo numfmt_format_currency($currency_format, $user['user_pay_rate'], $session_company_currency);
+                                }
+                                ?></td>
                             </tr>
                         <?php 
                         $total_hours_worked += $user_hours_worked;
                         $total_billable_hours += $user_reply_time;
-                        $total_pay += $user['user_pay_type'] == 'hourly' ? $user['user_pay_rate'] * $user_hours_worked : $user['user_pay_rate'];
+                        $total_pay += $user_pay;
                         } ?>
                         <tr>
                             <td colspan="2" class="text-right"><strong>Total</strong></td>

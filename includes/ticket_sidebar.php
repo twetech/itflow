@@ -216,7 +216,7 @@
                                     <td>Scheduled:</td>
                                     <td>
                                         <a class="loadModalContentBtn" href="#" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="ticket_edit_schedule_modal.php?ticket_id=<?= $ticket_id; ?>">
-                                            <?= $ticket_schedule ?>
+                                            <?= $ticket_schedule ? $ticket_schedule : 'Add Schedule'; ?>
                                         </a>
                                     </td>
                                 </tr>

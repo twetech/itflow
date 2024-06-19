@@ -59,9 +59,6 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/includes/assets/js/config.js"></script>
 
-    <!-- Loading -->
-    
-
     <!-- TinyMCE -->
     <script src="/includes/dist/vendor/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 

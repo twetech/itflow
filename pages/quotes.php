@@ -30,7 +30,7 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
         </div>
 
         <div class="card-body">
-            <div class="card-datatable table-responsive container-fluid  pt-0">                   
+            <div class="card-datatable table-responsive container-fluid  pt-0">
                 <table class="datatables-basic table border-top">
                     <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                     <tr>
@@ -88,11 +88,10 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli, "SELECT FOUND_ROWS()"));
                         } else {
                             $quote_badge_color = "secondary";
                         }
-
                         ?>
 
                         <tr>
-                            <td class="text-bold"><a href="/quote.php?quote_id=<?= $quote_id; ?>"><?= "$quote_prefix$quote_number"; ?></a></td>
+                            <td class="text-bold"><a href="/pages/quote.php?quote_id=<?= $quote_id; ?>"><?= "$quote_prefix$quote_number"; ?></a></td>
                             <td><?= $quote_scope_display; ?></td>
                             <td class="text-bold"><a href="/pages/client/client_quotes.php?client_id=<?= $client_id; ?>"><?= $client_name; ?></a></td>
                             <td class="text-right text-bold"><?= numfmt_format_currency($currency_format, $quote_amount, $quote_currency_code); ?></td>

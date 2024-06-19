@@ -5,10 +5,27 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$link_token = getPlaidLinkToken();
 
+if (!isset($_GET['oauth_state_id'])) {
+    // Get link token from Plaid API
+    $link_token = getPlaidLinkToken();
+    // Save link token to session
+    $_SESSION['link_token'] = $link_token;
+    $redirect_uri = "";
+} else {
+  $oauth_state_id = $_GET['oauth_state_id'];
+  $link_token = $_SESSION['link_token'];
+  $redirect_uri = "receivedRedirectUri: window.location.href,";
+}
+
+if ($link_token == null) {
+  echo "Error getting link token";
+} else {
 ?>
-
+  <button id="link-button" class="btn btn-primary">
+      Link Account
+  </button>
+<?php } ?>
 
 <script>
 
@@ -29,6 +46,7 @@ function sendPublicToken(public_token) {
 
 const handler = Plaid.create({
   token: "<?= $link_token ?>",
+  <?= $redirect_uri ?>
   onSuccess: function(public_token, metadata) {
     // Send the public_token to api to exchange for access_token
     sendPublicToken(public_token);
@@ -45,7 +63,9 @@ const handler = Plaid.create({
   },
 });
 
-handler.open();
+document.getElementById('link-button').addEventListener('click', function() {
+  handler.open();
+});
 </script>
 
 

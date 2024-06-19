@@ -251,6 +251,15 @@ function encryptLoginEntry($login_password_cleartext)
 
     return $iv . $ciphertext;
 }
+function encryptPlaidToken($token)
+{
+    return $token;
+}
+
+function decryptPlaidToken($token)
+{
+    return $token;
+}   
 
 function strtoAZaz09($string)
 {

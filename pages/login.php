@@ -1,7 +1,10 @@
 <?php
 
-// Enforce a Content Security Policy for security against cross-site scripting
+// Set the Content Security Policy header
+header("Content-Security-Policy: default-src 'self' https://cdn.plaid.com; script-src 'self' https://cdn.plaid.com/link/v2/stable/link-initialize.js; frame-src 'self' https://cdn.plaid.com; connect-src 'self' https://production.plaid.com;");
 
+// Set the Permissions Policy header
+header("Permissions-Policy: fullscreen=(self 'https://cdn.plaid.com' 'https://cdn-testing.plaid.com' 'https://secure.plaid.com' 'https://secure-testing.plaid.com' 'https://verify.plaid.com' 'https://verify-sandbox.plaid.com' 'https://verify-testing.plaid.com');");
 
 if (!file_exists('/var/www/portal.twe.tech/includes/config/config.php')) {
     header("Location: setup.php");

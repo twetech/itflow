@@ -15,7 +15,7 @@ require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
 
 require_once "/var/www/portal.twe.tech/includes/check_login.php";
 
-requireOnceAll("/var/www/portal.twe.tech/post");
+requireOnceAll("/var/www/portal.twe.tech/includes/post");
 
 
 

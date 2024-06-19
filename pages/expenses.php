@@ -33,11 +33,10 @@ $recurring_expense_count = $row['num'];
                 <button type="button" class="btn btn-label-primary loadModalContentBtn" data-bs-toggle="modal" data-bs-target="#dynamicModal" data-modal-file="expense_add_modal.php"><i class="fas fa-plus mr-2"></i>New Expense</button>
             </div>
         </div>
-
         <div class="card-body">
             <form id="bulkActions" action="/post.php" method="post">
                 <div class="card-datatable table-responsive pt-0">                      
-<table class="datatables-basic table border-top">
+                    <table class="datatables-basic table border-top">
                         <thead class="text-dark <?php if ($num_rows[0] == 0) { echo "d-none"; } ?>">
                         <tr>
                             <th><a class="text-dark" href="?<?= $url_query_strings_sort; ?>&sort=expense_date&order=<?= $disp; ?>">Date</a></th>

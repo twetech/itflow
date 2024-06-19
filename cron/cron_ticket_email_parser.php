@@ -109,6 +109,7 @@ function addTicket($contact_id, $contact_name, $contact_email, $client_id, $date
     mkdirMissing($att_dir);
 
     rename("/var/www/portal.twe.tech/uploads/tmp/{$original_message_file}", "{$att_dir}/{$original_message_file}");
+    error_log("Original message file: {$att_dir}/{$original_message_file}");
     $original_message_file_esc = mysqli_real_escape_string($mysqli, $original_message_file);
     mysqli_query($mysqli, "INSERT INTO ticket_attachments SET ticket_attachment_name = 'Original-parsed-email.eml', ticket_attachment_reference_name = '$original_message_file_esc', ticket_attachment_ticket_id = $id");
 
@@ -332,64 +333,81 @@ echo "Last run: " . date('Y-m-d H:i:s') . "\n";
 
 if ($messages->count() > 0) {
     foreach ($messages as $message) {
+        // Set email processed to false by default
         $email_processed = false;
 
+        // Create a temporary directory for attachments
         mkdirMissing('/var/www/portal.twe.tech/uploads/tmp/');
         $original_message_file = "processed-eml-" . randomString(200) . ".eml";
-        file_put_contents("/var/www/portal.twe.tech/uploads/tmp/{$original_message_file}", $message->getRawMessage());
-
+    
+        // Get the raw message and save it to a file
+        $raw_message = $message->getRawMessage();
+        if (empty($raw_message)) {
+            echo "Raw message is empty for message with subject: " . $message->getSubject() . "\n";
+            continue;
+        }
+        
+        // Save the raw message to a file
+        file_put_contents("/var/www/portal.twe.tech/uploads/tmp/{$original_message_file}", $raw_message);
+        echo "Raw message saved to: /var/www/portal.twe.tech/uploads/tmp/{$original_message_file}\n";
+        
+        // Parse the raw message file
         $from_address = $message->getFrom();
         $from_name = sanitizeInput($from_address[0]->personal ?? 'Unknown');
         $from_email = sanitizeInput($from_address[0]->mail ?? 'itflow-guest@example.com');
-
         $from_domain = explode("@", $from_email);
         $from_domain = sanitizeInput(end($from_domain));
-
         $subject = sanitizeInput($message->getSubject() ?? 'No Subject');
         $date = sanitizeInput($message->getDate() ?? date('Y-m-d H:i:s'));
         $message_body = $message->getHtmlBody() ?? $message->getTextBody() ?? '';
-
+        
+        // Check if the subject contains a ticket number
         if (preg_match("/\[$config_ticket_prefix\d+\]/", $subject, $ticket_number)) {
+            // Extract the ticket number from the subject
             preg_match('/\d+/', $ticket_number[0], $ticket_number);
+            // Get the ticket number as an integer
             $ticket_number = intval($ticket_number[0]);
-
+            // Add the reply to the ticket
             if (addReply($from_email, $date, $subject, $ticket_number, $message_body, $message->getAttachments())) {
+                // Set email processed to true
                 $email_processed = true;
+                // Output that the reply was processed
                 echo "Processed reply to ticket $config_ticket_prefix$ticket_number.\n";
             }
+        // Check if the email is from a known contact
         } else {
+            // Parse the email address and domain
             $from_email_esc = mysqli_real_escape_string($mysqli, $from_email);
             $any_contact_sql = mysqli_query($mysqli, "SELECT * FROM contacts WHERE contact_email = '$from_email_esc' LIMIT 1");
             $row = mysqli_fetch_array($any_contact_sql);
-
+            // If the contact exists, add a ticket
             if ($row) {
                 $contact_name = sanitizeInput($row['contact_name']);
                 $contact_id = intval($row['contact_id']);
                 $contact_email = sanitizeInput($row['contact_email']);
                 $client_id = intval($row['contact_client_id']);
-
                 if (addTicket($contact_id, $contact_name, $contact_email, $client_id, $date, $subject, $message_body, $message->getAttachments(), $original_message_file)) {
                     $email_processed = true;
                     echo "Processed new ticket from existing contact.\n";
                 }
+            // If the contact does not exist, check if the domain exists
             } else {
                 $from_domain_esc = mysqli_real_escape_string($mysqli, $from_domain);
                 $row = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT * FROM domains WHERE domain_name = '$from_domain_esc' LIMIT 1"));
-
+                // If the domain exists, create a new contact and add a ticket
                 if ($row && $from_domain == $row['domain_name']) {
                     $client_id = intval($row['domain_client_id']);
-
                     $password = password_hash(randomString(), PASSWORD_DEFAULT);
                     $contact_name = $from_name;
                     $contact_email = $from_email;
                     mysqli_query($mysqli, "INSERT INTO contacts SET contact_name = '".mysqli_real_escape_string($mysqli, $contact_name)."', contact_email = '".mysqli_real_escape_string($mysqli, $contact_email)."', contact_notes = 'Added automatically via email parsing.', contact_password_hash = '$password', contact_client_id = $client_id");
                     $contact_id = mysqli_insert_id($mysqli);
-
                     echo "Created new contact.\n";
                     mysqli_query($mysqli, "INSERT INTO logs SET log_type = 'Contact', log_action = 'Create', log_description = 'Email parser: created contact ".mysqli_real_escape_string($mysqli, $contact_name)."', log_client_id = $client_id");
-
                     if (addTicket($contact_id, $contact_name, $contact_email, $client_id, $date, $subject, $message_body, $message->getAttachments(), $original_message_file)) {
+                        // Set email processed to true
                         $email_processed = true;
+                        // Output that the ticket was processed
                         echo "Processed new ticket from new contact.\n";
                     }
                 } else {
@@ -397,25 +415,28 @@ if ($messages->count() > 0) {
                 }
             }
         }
-
         if ($email_processed) {
+            // Mark the email as read and move it to the ITFlow folder
             $message->setFlag(['Seen']);
             $message->move('ITFlow');
         } else {
+            // Output that the email failed to process
             echo "Failed to process email - flagging for manual review. \n" . $message->getSubject() . "\n";
             $message->setFlag(['Seen']);
             // Create a notification for manual review
             mysqli_query($mysqli, "INSERT INTO notifications SET notification_type = 'Email', notification = 'Email parser: Failed to process email from $from_email', notification_action = 'email.php', notification_client_id = 0");
         }
-
+        // Delete the original message file
         if (file_exists("/var/www/portal.twe.tech/uploads/tmp/{$original_message_file}")) {
-            unlink("/var/www/portal.twe.tech/uploads/tmp/{$original_message_file}");
+            // unlink("/var/www/portal.twe.tech/uploads/tmp/{$original_message_file}");
         }
     }
+// Output that no new emails were found
 } else {
     echo "No new emails found.\n";
 }
 
+// Expunge the mailbox and disconnect
 $client->expunge();
 $client->disconnect();
 

@@ -358,6 +358,8 @@ if (isset($_GET['decline_quote'])) {
 
 if (isset($_GET['email_quote'])) {
 
+    require "/var/www/portal.twe.tech/includes/get_settings.php";
+
     $quote_id = intval($_GET['email_quote']);
 
     $sql = mysqli_query($mysqli,"SELECT * FROM quotes
