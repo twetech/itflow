@@ -293,8 +293,10 @@ if (isset($_GET['ticket_id'])) {
             </div>
             <div class="card-body prettyContent" id="ticketDetails">
                 <div class="row">
-                    <div class="text-truncate">
-                        <?= $ticket_details; ?>
+                    <div class="col">
+                        <div class="text-wrap">
+                            <?= $ticket_details; ?>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -332,112 +334,117 @@ if (isset($_GET['ticket_id'])) {
                 </div>
                 <div class="collapse <?= !$session_mobile ? 'show' : ''; ?>">
                     <div class="card-body">
-                        <!-- Ticket replies -->
-                        <table class="datatables-basic table border-top">
-                            <thead>
-                                <tr>
-                                    <th data-priority="1">Reply</th>
-                                    <th>Time</th>
-                                    <th>Time Worked</th>
-                                    <th data-priority="2">By</th>
-                                    <?php if ($ticket_status_id != 5) {
-                                        echo "<th data-priority='3'>Actions</th>";
-                                    } ?>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    while ($row = mysqli_fetch_array($sql_ticket_replies)) {
-                                        $ticket_reply_id = intval($row['ticket_reply_id']);
-                                        $ticket_reply = $purifier->purify($row['ticket_reply']);
-                                        $ticket_reply_type = nullable_htmlentities($row['ticket_reply_type']);
-                                        $ticket_reply_created_at = nullable_htmlentities($row['ticket_reply_created_at']);
-                                        $ticket_reply_updated_at = nullable_htmlentities($row['ticket_reply_updated_at']);
-                                        $ticket_reply_by = intval($row['ticket_reply_by']);
-
-                                        if ($ticket_reply_type == "Client") {
-                                            $ticket_reply_by_display = nullable_htmlentities($row['contact_name']);
-                                            $user_initials = initials($row['contact_name']);
-                                            $user_avatar = nullable_htmlentities($row['contact_photo']);
-                                            $avatar_link = "/uploads/clients/$client_id/$user_avatar";
-                                        } else {
-                                            $ticket_reply_by_display = nullable_htmlentities($row['user_name']);
-                                            $user_id = intval($row['user_id']);
-                                            $user_avatar = nullable_htmlentities($row['user_avatar']);
-                                            $user_initials = initials($row['user_name']);
-                                            $avatar_link = "/uploads/users/$user_id/$user_avatar";
-                                            $ticket_reply_time_worked = date_create($row['ticket_reply_time_worked']);
-                                        }
-                                        $sql_ticket_reply_attachments = mysqli_query(
-                                            $mysqli,
-                                            "SELECT * FROM ticket_attachments
-                                            WHERE ticket_attachment_reply_id = $ticket_reply_id
-                                            AND ticket_attachment_ticket_id = $ticket_id"
-                                        );
-                                    ?>
-                                    <div class="card">
+                        <div class="row">
+                            <div class="col">
+                                <table class="datatables-basic table border-top">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <div class="prettyContent">
-                                                    <?= $ticket_reply; ?>
-                                                    <?php
-                                                        while ($ticket_attachment = mysqli_fetch_array($sql_ticket_reply_attachments)) {
-                                                            $name = nullable_htmlentities($ticket_attachment['ticket_attachment_name']);
-                                                            $ref_name = nullable_htmlentities($ticket_attachment['ticket_attachment_reference_name']);
-                                                            echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
-                                                        }
-                                                    ?>                                                        
-                                                </div>
-                                            </td>
-                                            <td class="date-time-ago">
-                                                <?= empty($ticket_reply_updated_at) ? $ticket_reply_created_at : $ticket_reply_updated_at; ?>
-                                            </td>
-                                            <td class="date-time-worked">
-                                                <?php if ($ticket_reply_type !== "Client") { ?>
-                                                    <?= date_format($ticket_reply_time_worked, 'H:i:s'); ?>
-                                                <?php } ?>
-                                            </td>
-                                            <td>
-                                                <?php if (!empty($user_avatar)) { ?>
-                                                <img src="<?= $avatar_link; ?>" alt="User Avatar"
-                                                    class="img-fluid mr-3 rounded-circle" width='40px'>
-                                                <?php } else { ?>
-                                                <span class="fa-stack fa-2x">
-                                                    <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-                                                    <span class="fa fa-stack-1x text-white"><?= $user_initials; ?></span>
-                                                </span>
-                                                <?php } ?>
-                                                <?= $ticket_reply_by_display; ?>
-                                            </td>
-                                            <?php if ($ticket_status_id != 5) { ?>
-                                            <td>
-                                                <!-- Dropdown for edit and archive -->
-                                                <div class="dropdown dropleft text-center d-print-none">
-                                                    <button class="btn btn-light btn-sm" type="button" id="dropdownMenuButton"
-                                                        aria-atomic="" data-bs-toggle="dropdown">
-                                                        <i class="fas fa-fw fa-ellipsis-v"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                            data-bs-target="#editTicketReplyModal<?= $ticket_reply_id; ?>">
-                                                            <i class="fas fa-fw fa-edit mr-2"></i>Edit
-                                                        </a>
-                                                        <a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                            data-bs-target="#archiveTicketReplyModal<?= $ticket_reply_id; ?>">
-                                                            <i class="fas fa-fw fa-archive mr-2"></i>Archive
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <?php } ?>
-
+                                            <th data-priority="1">Reply</th>
+                                            <th>Time</th>
+                                            <th>Time Worked</th>
+                                            <th data-priority="2">By</th>
+                                            <?php if ($ticket_status_id != 5) {
+                                                echo "<th data-priority='3'>Actions</th>";
+                                            } ?>
                                         </tr>
-                                    </div>
-                                    <?php
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            while ($row = mysqli_fetch_array($sql_ticket_replies)) {
+                                                $ticket_reply_id = intval($row['ticket_reply_id']);
+                                                $ticket_reply = $purifier->purify($row['ticket_reply']);
+                                                $ticket_reply_type = nullable_htmlentities($row['ticket_reply_type']);
+                                                $ticket_reply_created_at = nullable_htmlentities($row['ticket_reply_created_at']);
+                                                $ticket_reply_updated_at = nullable_htmlentities($row['ticket_reply_updated_at']);
+                                                $ticket_reply_by = intval($row['ticket_reply_by']);
+
+                                                if ($ticket_reply_type == "Client") {
+                                                    $ticket_reply_by_display = nullable_htmlentities($row['contact_name']);
+                                                    $user_initials = initials($row['contact_name']);
+                                                    $user_avatar = nullable_htmlentities($row['contact_photo']);
+                                                    $avatar_link = "/uploads/clients/$client_id/$user_avatar";
+                                                } else {
+                                                    $ticket_reply_by_display = nullable_htmlentities($row['user_name']);
+                                                    $user_id = intval($row['user_id']);
+                                                    $user_avatar = nullable_htmlentities($row['user_avatar']);
+                                                    $user_initials = initials($row['user_name']);
+                                                    $avatar_link = "/uploads/users/$user_id/$user_avatar";
+                                                    $ticket_reply_time_worked = date_create($row['ticket_reply_time_worked']);
+                                                }
+                                                $sql_ticket_reply_attachments = mysqli_query(
+                                                    $mysqli,
+                                                    "SELECT * FROM ticket_attachments
+                                                    WHERE ticket_attachment_reply_id = $ticket_reply_id
+                                                    AND ticket_attachment_ticket_id = $ticket_id"
+                                                );
+                                            ?>
+                                            <div class="card text-wrap">
+                                                <tr>
+                                                    <td>
+                                                        <div class="prettyContent text-wrap">
+                                                            <?= $ticket_reply; ?>
+                                                            <?php
+                                                                while ($ticket_attachment = mysqli_fetch_array($sql_ticket_reply_attachments)) {
+                                                                    $name = nullable_htmlentities($ticket_attachment['ticket_attachment_name']);
+                                                                    $ref_name = nullable_htmlentities($ticket_attachment['ticket_attachment_reference_name']);
+                                                                    echo "<hr><i class='fas fa-fw fa-paperclip text-secondary mr-1'></i>$name | <a href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name' download='$name'><i class='fas fa-fw fa-download mr-1'></i>Download</a> | <a target='_blank' href=/var/www/portal.twe.tech/uploads/tickets/$ticket_id/$ref_name'><i class='fas fa-fw fa-external-link-alt mr-1'></i>View</a>";
+                                                                }
+                                                            ?>                                                        
+                                                        </div>
+                                                    </td>
+                                                    <td class="date-time-ago">
+                                                        <?= empty($ticket_reply_updated_at) ? $ticket_reply_created_at : $ticket_reply_updated_at; ?>
+                                                    </td>
+                                                    <td class="date-time-worked">
+                                                        <?php if ($ticket_reply_type !== "Client") { ?>
+                                                            <?= date_format($ticket_reply_time_worked, 'H:i:s'); ?>
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php if (!empty($user_avatar)) { ?>
+                                                        <img src="<?= $avatar_link; ?>" alt="User Avatar"
+                                                            class="img-fluid mr-3 rounded-circle" width='40px'>
+                                                        <?php } else { ?>
+                                                        <span class="fa-stack fa-2x">
+                                                            <i class="fa fa-circle fa-stack-2x text-secondary"></i>
+                                                            <span class="fa fa-stack-1x text-white"><?= $user_initials; ?></span>
+                                                        </span>
+                                                        <?php } ?>
+                                                        <?= $ticket_reply_by_display; ?>
+                                                    </td>
+                                                    <?php if ($ticket_status_id != 5) { ?>
+                                                    <td>
+                                                        <!-- Dropdown for edit and archive -->
+                                                        <div class="dropdown dropleft text-center d-print-none">
+                                                            <button class="btn btn-light btn-sm" type="button" id="dropdownMenuButton"
+                                                                aria-atomic="" data-bs-toggle="dropdown">
+                                                                <i class="fas fa-fw fa-ellipsis-v"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                                    data-bs-target="#editTicketReplyModal<?= $ticket_reply_id; ?>">
+                                                                    <i class="fas fa-fw fa-edit mr-2"></i>Edit
+                                                                </a>
+                                                                <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                                    data-bs-target="#archiveTicketReplyModal<?= $ticket_reply_id; ?>">
+                                                                    <i class="fas fa-fw fa-archive mr-2"></i>Archive
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <?php } ?>
+
+                                                </tr>
+                                            </div>
+                                            <?php
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- Ticket replies -->
+
                     </div>
                 </div>
             </div>

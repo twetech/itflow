@@ -3,6 +3,7 @@
 require_once "/var/www/portal.twe.tech/includes/config/config.php";
 require_once "/var/www/portal.twe.tech/includes/functions/functions.php";
 
+// exchange public token for access token
 if (isset($_GET['public_token'])) {
   // recieve public token from front end via body of post request
   $input = file_get_contents('php://input');
@@ -10,7 +11,7 @@ if (isset($_GET['public_token'])) {
 
   $public_token = $data['public_token'];
 
-  error_log($public_token);
+  error_log("public_token:".$public_token);
 
   // exchange public token for access token
   $curl = curl_init();

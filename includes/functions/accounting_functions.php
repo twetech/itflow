@@ -46,26 +46,42 @@ function getPlaidLinkToken($client_user_id = 1) {
 
 function syncPlaidTransactions($next_cursor = null) {
     global $mysqli, $config_plaid_client_id, $config_plaid_secret;
-
-    // Add plaid_sync row if it doesn't exist
-    $sql = "SELECT * FROM plaid_sync WHERE sync_id = 1";
+    
+    // Get access token from database
+    $sql = "SELECT * FROM plaid_access_tokens WHERE client_id = 1";
     $result = mysqli_query($mysqli, $sql);
     if (mysqli_num_rows($result) == 0) {
-        $sql = "INSERT INTO plaid_sync SET sync_id = 1, next_cursor = 'None'";
-        $sync_sql = mysqli_query($mysqli, $sql);
+        error_log("Function: No access token found");
+        return "no_access_token";
     }
 
-    // Check for next cursor in database
+    $row = mysqli_fetch_assoc($result);
+    $access_token = $row['encrypted_access_token'];
+
+    $postfields = [
+        "client_id" => $config_plaid_client_id,
+        "secret" => $config_plaid_secret,
+        "access_token" => $access_token
+    ];
+
+    // Check for next cursor in database and set postfields accordingly
     if ($next_cursor == null) {
-        $sql = "SELECT * FROM plaid_sync WHERE sync_id = 1";
+        $sql = "SELECT * FROM plaid_sync WHERE client_id = 1";
         $result = mysqli_query($mysqli, $sql);
-        $row = mysqli_fetch_assoc($result);
-        $next_cursor = $row['next_cursor'] ?? false;
+        if (mysqli_num_rows($result) == 0) {
+            $sql = "INSERT INTO plaid_sync SET next_cursor = null, client_id = 1";
+            $cursor_sql = mysqli_query($mysqli, $sql);
+            $next_cursor = null;
+        } else {
+            $row = mysqli_fetch_assoc($result);
+            $next_cursor = $row['next_cursor'];
+            $postfields['cursor'] = $next_cursor;
+        }
     }
+    $postfields = json_encode($postfields);
 
     $curl = curl_init();
-
-    curl_setopt_array($curl, array(
+    $curl_array = array(
         CURLOPT_URL => 'https://sandbox.plaid.com/transactions/sync',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
@@ -74,159 +90,234 @@ function syncPlaidTransactions($next_cursor = null) {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS =>'{
-        "client_id": ' . $config_plaid_client_id . ',
-        "secret": ' . $config_plaid_secret . ',
-        "access_token": "access-sandbox-d45c06d1-f54d-4abe-95dc-460cf515bf1c",
-        "cursor": "' . $next_cursor . '"
-        }',
+        CURLOPT_POSTFIELDS => $postfields,
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/json'
-        ),
-    ));
-
+        )
+    );
+    curl_setopt_array($curl, $curl_array);
     $response = curl_exec($curl);
-
     curl_close($curl);
-
     $response = json_decode($response, true);
 
-    $accounts = $response['accounts'];
-    $added_transactions = $response['added'];
-    $modified_transactions = $response['modified'];
-    $removed_transactions = $response['removed'];
+    $accounts = $response['accounts'] ?? [];
+    $added_transactions = $response['added'] ?? '';
+    $modified_transactions = $response['modified'] ?? '';
+    $removed_transactions = $response['removed'] ?? '';
 
-    foreach ($added_transactions as $transaction) {
-        $account_id = $transaction['account_id'] ?? '';
-        $account_owner = $transaction['account_owner'] ?? '';
-        $amount = $transaction['amount'] ?? '';
-        $authorized_date = $transaction['authorized_date'] ?? '0000-00-00';
-        $category = $transaction['category'] ?? '';
-        $category_id = $transaction['category_id'] ?? '';
-        $date = $transaction['date'] ?? '0000-00-00';
-        $iso_currency_code = $transaction['iso_currency_code'] ?? '';
-        $merchant_name = sanitizeInput($transaction['merchant_name'] ?? '');
-        $name = sanitizeInput($transaction['name'] ?? '');
-        $payment_channel = $transaction['payment_channel'] ?? '';
-        $payment_meta = $transaction['payment_meta'] ?? '';
-        $pending = $transaction['pending'] == 'true' ? 1 : 0;
-        $pending_transaction_id = $transaction['pending_transaction_id'] ?? '';
-        $transaction_id = $transaction['transaction_id'] ?? '';
-        $transaction_type = $transaction['transaction_type'] ?? '';
+    if (is_array($accounts)) {
+        foreach ($accounts as $account) {
+            $account_id = $account['account_id'] ?? '';
+            $account_name = $account['official_name'] ?? '';
+            $account_type = $account['type'] ?? '';
+            $account_subtype = $account['subtype'] ?? '';
+            $account_currency_code = $account['balances']['iso_currency_code'] ?? '';
+            $account_balance_current = $account['balances']['current'] ?? '0';
+            $account_balance_available = $account['balances']['available'] ?? '0';
+            $account_balance_limit = $account['balances']['limit'] ?? '0';
+            $account_persistent_id = $account['persistent_account_id'] ?? '';
 
-        // Check if transaction already exists
-        $sql = "SELECT * FROM bank_transactions WHERE transaction_id = '$transaction_id'";
-        $result = mysqli_query($mysqli, $sql);
-        if (mysqli_num_rows($result) > 0) {
-            continue;
+            // Check if account already exists
+            $sql = "SELECT * FROM plaid_accounts WHERE plaid_persistent_account_id = '$account_persistent_id'";
+            $result = mysqli_query($mysqli, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                error_log("Account already exists: " . $account_persistent_id);
+                continue;
+            } else {
+                $sql = "INSERT INTO plaid_accounts SET
+                plaid_account_id = '$account_id',
+                plaid_official_name = '$account_name',
+                plaid_type = '$account_type',
+                plaid_subtype = '$account_subtype',
+                plaid_balance_iso_currency_code = '$account_currency_code',
+                plaid_balance_current = '$account_balance_current',
+                plaid_balance_available = '$account_balance_available',
+                plaid_balance_limit = '$account_balance_limit',
+                plaid_persistent_account_id = '$account_persistent_id'
+                ";
+                error_log($sql);
+                $account_sql = mysqli_query($mysqli, $sql);
+                if (!$account_sql) {
+                    error_log(mysqli_error($mysqli));
+                }
+                error_log("Added account: " . $account_persistent_id);
+            }
         }
-
-        // If category is an array, convert it to a string
-        if (is_array($category)) {
-            $category = implode(', ', $category);
-        }
-
-        // If payment_meta is an array, convert it to a string
-        if (is_array($payment_meta)) {
-            $payment_meta = implode(', ', $payment_meta);
-        }
-
-        $sql = "INSERT INTO bank_transactions SET
-        account_id = '$account_id',
-        account_owner = '$account_owner',
-        amount = '$amount',
-        authorized_date = '$authorized_date',
-        category = '$category',
-        category_id = '$category_id',
-        date = '$date',
-        iso_currency_code = '$iso_currency_code',
-        merchant_name = '$merchant_name',
-        name = '$name',
-        payment_channel = '$payment_channel',
-        payment_meta = '$payment_meta',
-        pending = '$pending',
-        pending_transaction_id = '$pending_transaction_id',
-        transaction_id = '$transaction_id',
-        transaction_type = '$transaction_type'
-        ";
-        $transaction_sql = mysqli_query($mysqli, $sql);
     }
 
-    foreach ($modified_transactions as $transaction) {
-        $account_id = $transaction['account_id'] ?? '';
-        $account_owner = $transaction['account_owner'] ?? '';
-        $amount = $transaction['amount'] ?? '';
-        $authorized_date = $transaction['authorized_date'] ?? '0000-00-00';
-        $category = $transaction['category'] ?? '';
-        $category_id = $transaction['category_id'] ?? '';
-        $date = $transaction['date'] ?? '0000-00-00';
-        $iso_currency_code = $transaction['iso_currency_code'] ?? '';
-        $merchant_name = sanitizeInput($transaction['merchant_name'] ?? '');
-        $name = sanitizeInput($transaction['name'] ?? '');
-        $payment_channel = $transaction['payment_channel'] ?? '';
-        $payment_meta = $transaction['payment_meta'] ?? '';
-        $pending = $transaction['pending'] == 'true' ? 1 : 0;
-        $pending_transaction_id = $transaction['pending_transaction_id'] ?? '';
-        $transaction_id = $transaction['transaction_id'] ?? '';
-        $transaction_type = $transaction['transaction_type'] ?? '';
+    if (is_array($added_transactions)){
+        foreach ($added_transactions as $transaction) {
+            $account_id = $transaction['account_id'] ?? '';
+            $account_owner = $transaction['account_owner'] ?? '';
+            $amount = $transaction['amount'] ?? '';
+            $authorized_date = $transaction['authorized_date'] ?? '0000-00-00';
+            $category = $transaction['category'] ?? '';
+            $category_id = $transaction['category_id'] ?? '';
+            $date = $transaction['date'] ?? '0000-00-00';
+            $iso_currency_code = $transaction['iso_currency_code'] ?? '';
+            $merchant_name = sanitizeInput($transaction['merchant_name'] ?? '');
+            $name = sanitizeInput($transaction['name'] ?? '');
+            $payment_channel = $transaction['payment_channel'] ?? '';
+            $payment_meta = $transaction['payment_meta'] ?? '';
+            $pending = $transaction['pending'] == 'true' ? 1 : 0;
+            $pending_transaction_id = $transaction['pending_transaction_id'] ?? '';
+            $transaction_id = $transaction['transaction_id'] ?? '';
+            $transaction_type = $transaction['transaction_type'] ?? '';
+    
+            // Check if transaction already exists
+            $sql = "SELECT * FROM bank_transactions WHERE transaction_id = '$transaction_id'";
+            $result = mysqli_query($mysqli, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                error_log("Transaction already exists: " . $transaction_id);
+                continue;
+            }
+    
+            // If category is an array, convert it to a string
+            if (is_array($category)) {
+                $category = implode(', ', $category);
+            }
+    
+            // If payment_meta is an array, convert it to a string
+            if (is_array($payment_meta)) {
+                $payment_meta = implode(', ', $payment_meta);
+            }
+    
+            $sql = "INSERT INTO bank_transactions SET
+            bank_account_id = '$account_id',
+            account_owner = '$account_owner',
+            amount = '$amount',
+            authorized_date = '$authorized_date',
+            category = '$category',
+            category_id = '$category_id',
+            date = '$date',
+            iso_currency_code = '$iso_currency_code',
+            merchant_name = '$merchant_name',
+            name = '$name',
+            payment_channel = '$payment_channel',
+            payment_meta = '$payment_meta',
+            pending = '$pending',
+            pending_transaction_id = '$pending_transaction_id',
+            transaction_id = '$transaction_id',
+            transaction_type = '$transaction_type'
+            ";
+            $transaction_sql = mysqli_query($mysqli, $sql);
 
-        // Check if transaction already exists
-        $sql = "SELECT * FROM bank_transactions WHERE transaction_id = '$transaction_id'";
-        $result = mysqli_query($mysqli, $sql);
-        if (mysqli_num_rows($result) == 0) {
-            continue;
+            if (!$transaction_sql) {
+                error_log(mysqli_error($mysqli));
+            }
+            error_log("Added transaction: " . $transaction_id);
         }
-
-        // If category is an array, convert it to a string
-        if (is_array($category)) {
-            $category = implode(', ', $category);
+        if ($response['has_more']) {
+            syncPlaidTransactions($next_cursor);
         }
-
-        // If payment_meta is an array, convert it to a string
-        if (is_array($payment_meta)) {
-            $payment_meta = implode(', ', $payment_meta);
-        }
-
-        $sql = "UPDATE bank_transactions SET
-        account_id = '$account_id',
-        account_owner = '$account_owner',
-        amount = '$amount',
-        authorized_date = '$authorized_date',
-        category = '$category',
-        category_id = '$category_id',
-        date = '$date',
-        iso_currency_code = '$iso_currency_code',
-        merchant_name = '$merchant_name',
-        name = '$name',
-        payment_channel = '$payment_channel',
-        payment_meta = '$payment_meta',
-        pending = '$pending',
-        pending_transaction_id = '$pending_transaction_id',
-        transaction_id = '$transaction_id',
-        transaction_type = '$transaction_type'
-        WHERE transaction_id = '$transaction_id'
-        ";
-        $transaction_sql = mysqli_query($mysqli, $sql);
     }
 
-    foreach ($removed_transactions as $transaction) {
-        $transaction_id = $transaction['transaction_id'] ?? '';
+    if (is_array($modified_transactions)) {
+        foreach ($modified_transactions as $transaction) {
+            $account_id = $transaction['account_id'] ?? '';
+            $account_owner = $transaction['account_owner'] ?? '';
+            $amount = $transaction['amount'] ?? '';
+            $authorized_date = $transaction['authorized_date'] ?? '0000-00-00';
+            $category = $transaction['category'] ?? '';
+            $category_id = $transaction['category_id'] ?? '';
+            $date = $transaction['date'] ?? '0000-00-00';
+            $iso_currency_code = $transaction['iso_currency_code'] ?? '';
+            $merchant_name = sanitizeInput($transaction['merchant_name'] ?? '');
+            $name = sanitizeInput($transaction['name'] ?? '');
+            $payment_channel = $transaction['payment_channel'] ?? '';
+            $payment_meta = $transaction['payment_meta'] ?? '';
+            $pending = $transaction['pending'] == 'true' ? 1 : 0;
+            $pending_transaction_id = $transaction['pending_transaction_id'] ?? '';
+            $transaction_id = $transaction['transaction_id'] ?? '';
+            $transaction_type = $transaction['transaction_type'] ?? '';
 
-        $sql = "DELETE FROM bank_transactions WHERE transaction_id = '$transaction_id'";
-        $transaction_sql = mysqli_query($mysqli, $sql);
+            // Check if transaction already exists
+            $sql = "SELECT * FROM bank_transactions WHERE transaction_id = '$transaction_id'";
+            $result = mysqli_query($mysqli, $sql);
+            if (mysqli_num_rows($result) == 0) {
+                continue;
+            }
+
+            // If category is an array, convert it to a string
+            if (is_array($category)) {
+                $category = implode(', ', $category);
+            }
+
+            // If payment_meta is an array, convert it to a string
+            if (is_array($payment_meta)) {
+                $payment_meta = implode(', ', $payment_meta);
+            }
+
+            $sql = "UPDATE bank_transactions SET
+            bank_account_id = '$account_id',
+            account_owner = '$account_owner',
+            amount = '$amount',
+            authorized_date = '$authorized_date',
+            category = '$category',
+            category_id = '$category_id',
+            date = '$date',
+            iso_currency_code = '$iso_currency_code',
+            merchant_name = '$merchant_name',
+            name = '$name',
+            payment_channel = '$payment_channel',
+            payment_meta = '$payment_meta',
+            pending = '$pending',
+            pending_transaction_id = '$pending_transaction_id',
+            transaction_id = '$transaction_id',
+            transaction_type = '$transaction_type'
+            WHERE transaction_id = '$transaction_id'
+            ";
+            $transaction_sql = mysqli_query($mysqli, $sql);
+        }
+    }
+
+    if (is_array($removed_transactions)) {
+        foreach ($removed_transactions as $transaction) {
+            $transaction_id = $transaction['transaction_id'] ?? '';
+
+            $sql = "DELETE FROM bank_transactions WHERE transaction_id = '$transaction_id'";
+            $transaction_sql = mysqli_query($mysqli, $sql);
+        }
     }
 
     $next_cursor = $response['next_cursor'] ?? null;
 
-    if ($response['has_more']) {
-        syncPlaidTransactions($next_cursor);
-    }
-
     // Update next cursor in database
-    $sql = "UPDATE plaid_sync SET next_cursor = '$next_cursor' WHERE sync_id = 1";
+    $sql = "UPDATE plaid_sync SET next_cursor = '$next_cursor' WHERE client_id = 1";
+    error_log($sql);
     $cursor_sql = mysqli_query($mysqli, $sql);
 
     return true;
+}
+
+function linkPlaidAccount($account_id, $plaid_account_id) {
+    global $mysqli;
+
+    $sql = "UPDATE accounts SET plaid_id = '$plaid_account_id' WHERE account_id = $account_id";
+    error_log($sql);
+    $result = mysqli_query($mysqli, $sql);
+
+    return $result;
+}
+
+function linkTransactionToPayment($transaction_id, $payment_id) {
+    global $mysqli;
+
+    $sql = "UPDATE payments SET plaid_transaction_id = '$transaction_id' WHERE payment_id = $payment_id";
+    error_log($sql);
+    $result = mysqli_query($mysqli, $sql);
+
+    return $result;
+}
+
+function linkTransactionToExpense($transaction_id, $expense_id) {
+    global $mysqli;
+
+    $sql = "UPDATE expenses SET plaid_transaction_id = '$transaction_id' WHERE expense_id = $expense_id";
+    error_log($sql);
+    $result = mysqli_query($mysqli, $sql);
+
+    return $result;
 }
 
 function getMonthlyTax($tax_name, $month, $year, $mysqli)

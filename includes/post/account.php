@@ -73,3 +73,56 @@ if (isset($_GET['delete_account'])) {
     referWithAlert("Account deleted", "success", "accounts.php");
 }
 
+if (isset($_POST['link_plaid_account'])) {
+    // Check if the user is an accountant
+    validateAccountantRole();
+
+    // Sanitize the input
+    $account_id = intval($_POST['account_id']);
+    $plaid_id = sanitizeInput($_POST['plaid_id']);
+
+    if (empty($account_id)) {
+        referWithAlert("Please select an account", "danger");
+    }
+
+    if (empty($plaid_id)) {
+        referWithAlert("Invalid Plaid account", "danger");
+    }
+
+    // Link the account
+    linkPlaidAccount($account_id, $plaid_id);
+
+    // Redirect to the referring page with a success message
+    referWithAlert("Account linked", "success");
+}
+
+if (isset($_POST['link_transaction'])) {
+    // Check if the user is an accountant
+    validateAccountantRole();
+
+    // Sanitize the input
+    $transaction_id = sanitizeInput($_POST['transaction_id']);
+
+    isset($_POST['payment_id']) ? $payment_id = intval($_POST['payment_id']) : $payment_id = null;
+    isset($_POST['expense_id']) ? $expense_id = intval($_POST['expense_id']) : $expense_id = null;
+
+    if (empty($payment_id) && empty($expense_id)) {
+        referWithAlert("Please select a payment or expense", "danger");
+    }
+
+    if (!empty($payment_id)) {
+        // Link the payment
+        error_log("POST: Linking transaction to payment");
+        error_log("Transaction ID: $transaction_id");
+        error_log("Payment ID: $payment_id");
+        linkTransactionToPayment($transaction_id, $payment_id);
+    } else {
+        // Link the expense
+        error_log("Linking transaction to expense");
+        error_log("Transaction ID: $transaction_id");
+        error_log("Expense ID: $expense_id");
+        linkTransactionToExpense($transaction_id, $expense_id);
+    }
+    referWithAlert("Transaction reconciled", "success");
+}
+

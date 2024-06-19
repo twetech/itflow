@@ -76,7 +76,7 @@ if (isset($_GET['invoice_id'])) {
     $company_website = nullable_htmlentities($row['company_website']);
     $company_logo = nullable_htmlentities($row['company_logo']);
     if (!empty($company_logo)) {
-        $company_logo_base64 = base64_encode(file_get_contents("/uploads/settings/$company_logo"));
+        $company_logo_base64 = base64_encode(file_get_contents("/var/www/portal.twe.tech/uploads/settings/$company_logo"));
     }
     $sql_history = mysqli_query($mysqli, "SELECT * FROM history WHERE history_invoice_id = $invoice_id ORDER BY history_id DESC");
 
