@@ -323,6 +323,7 @@ function validateAccountantRole()
 
 function sanitizeInput($input)
 {
+    global $mysqli;
     //Check what type of input we're dealing with
     $type = gettype($input);
 
@@ -338,10 +339,11 @@ function sanitizeInput($input)
             $sanitized = htmlspecialchars($input);
             $sanitized = strip_tags($sanitized);
             $sanitized = trim($sanitized);
+            $sanitized = mysqli_real_escape_string($mysqli, $sanitized);
             return $sanitized;
         } else {
             //If it's not a string, just return it
-            return $input;
+            return mysqli_real_escape_string($mysqli, $input);
         }
     }
 }

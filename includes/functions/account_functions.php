@@ -8,6 +8,10 @@ function createAccountType(
     $description
 ) {
 
+    $name = sanitizeInput($name);
+    $type = sanitizeInput($type);
+    $description = sanitizeInput($description);
+
     global $mysqli, $session_ip, $session_user_agent, $session_user_id;
 
     mysqli_query($mysqli,"INSERT INTO account_types SET account_type_parent = $type, account_type_name = '$name', account_type_description = '$description'");
@@ -22,6 +26,11 @@ function editAccountType(
     $description
 ) {
 
+    $account_type_id = intval($account_type_id);
+    $name = sanitizeInput($name);
+    $type = sanitizeInput($type);
+    $description = sanitizeInput($description);
+
     global $mysqli, $session_ip, $session_user_agent, $session_user_id;
 
     mysqli_query($mysqli,"UPDATE account_types SET account_type_parent = $type, account_type_name = '$name', account_type_description = '$description' WHERE account_type_id = $account_type_id");
@@ -33,6 +42,8 @@ function readAccountType(
     $account_type_id
 ) {
     global $mysqli;
+
+    $account_type_id = intval($account_type_id);
 
     $result = mysqli_query($mysqli,"SELECT * FROM account_types WHERE account_type_id = $account_type_id");
     return mysqli_fetch_assoc($result);
