@@ -3,10 +3,6 @@
 // Load Composer's autoloader
 require_once 'vendor/autoload.php';
 
-// Set up error reporting (for development)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 // Load configuration settings
 $config = require_once 'config.php';

@@ -2,9 +2,7 @@
 require_once "/var/www/portal.twe.tech/includes/inc_all_reports.php";
 
 validateAccountantRole();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 
 $year = isset($_GET['year']) ? intval($_GET['year']) : date('Y');
 $view = isset($_GET['view']) ? $_GET['view'] : 'monthly';

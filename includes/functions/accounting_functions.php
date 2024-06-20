@@ -5,6 +5,10 @@
 function getPlaidLinkToken($client_user_id = 1) {
     global $config_plaid_client_id, $config_plaid_secret;
 
+    validateAccountantRole();
+
+    $client_user_id = intval($client_user_id);
+
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
@@ -46,6 +50,10 @@ function getPlaidLinkToken($client_user_id = 1) {
 
 function syncPlaidTransactions($next_cursor = null) {
     global $mysqli, $config_plaid_client_id, $config_plaid_secret;
+
+    validateAccountantRole();
+
+    $next_cursor = sanitizeInput($next_cursor);
     
     // Get access token from database
     $sql = "SELECT * FROM plaid_access_tokens WHERE client_id = 1";
@@ -293,6 +301,11 @@ function syncPlaidTransactions($next_cursor = null) {
 function linkPlaidAccount($account_id, $plaid_account_id) {
     global $mysqli;
 
+    validateAccountantRole();
+
+    $account_id = sanitizeInput($account_id);
+    $plaid_account_id = sanitizeInput($plaid_account_id);
+
     $sql = "UPDATE accounts SET plaid_id = '$plaid_account_id' WHERE account_id = $account_id";
     error_log($sql);
     $result = mysqli_query($mysqli, $sql);
@@ -302,6 +315,11 @@ function linkPlaidAccount($account_id, $plaid_account_id) {
 
 function linkTransactionToPayment($transaction_id, $payment_id) {
     global $mysqli;
+
+    validateAccountantRole();
+
+    $transaction_id = sanitizeInput($transaction_id);
+    $payment_id = sanitizeInput($payment_id);
 
     $sql = "UPDATE payments SET plaid_transaction_id = '$transaction_id' WHERE payment_id = $payment_id";
     error_log($sql);
@@ -313,6 +331,11 @@ function linkTransactionToPayment($transaction_id, $payment_id) {
 function linkTransactionToExpense($transaction_id, $expense_id) {
     global $mysqli;
 
+    validateAccountantRole();
+
+    $transaction_id = sanitizeInput($transaction_id);
+    $expense_id = sanitizeInput($expense_id);
+
     $sql = "UPDATE expenses SET plaid_transaction_id = '$transaction_id' WHERE expense_id = $expense_id";
     error_log($sql);
     $result = mysqli_query($mysqli, $sql);
@@ -322,6 +345,10 @@ function linkTransactionToExpense($transaction_id, $expense_id) {
 
 function getMonthlyTax($tax_name, $month, $year, $mysqli)
 {
+    $tax_name = sanitizeInput($tax_name);
+    $month = intval($month);
+    $year = intval($year);
+
     // SQL to calculate monthly tax
     $sql = "SELECT SUM(item_tax) AS monthly_tax FROM invoice_items 
             LEFT JOIN invoices ON invoice_items.item_invoice_id = invoices.invoice_id
@@ -335,6 +362,11 @@ function getMonthlyTax($tax_name, $month, $year, $mysqli)
 
 function getQuarterlyTax($tax_name, $quarter, $year, $mysqli)
 {
+
+    $tax_name = sanitizeInput($tax_name);
+    $quarter = intval($quarter);
+    $year = intval($year);
+
     // Calculate start and end months for the quarter
     $start_month = ($quarter - 1) * 3 + 1;
     $end_month = $start_month + 2;
@@ -352,6 +384,9 @@ function getQuarterlyTax($tax_name, $quarter, $year, $mysqli)
 
 function getTotalTax($tax_name, $year, $mysqli)
 {
+    $tax_name = sanitizeInput($tax_name);
+    $year = intval($year);
+
     // SQL to calculate total tax
     $sql = "SELECT SUM(item_tax) AS total_tax FROM invoice_items 
             LEFT JOIN invoices ON invoice_items.item_invoice_id = invoices.invoice_id
@@ -365,6 +400,9 @@ function getTotalTax($tax_name, $year, $mysqli)
 
 function getMonthlyIncome($year, $month)
 {
+    $year = intval($year);
+    $month = intval($month);
+
     global $mysqli;
 
     $sql_month_query = $month == 13 ? "" : "AND MONTH(payment_date) = $month";
@@ -377,6 +415,10 @@ function getMonthlyIncome($year, $month)
 
 function getMonthlyPayments($year, $month)
 {
+
+    $year = intval($year);
+    $month = intval($month);
+
     global $mysqli;
 
     $sql_month_query = $month == 13 ? "" : "AND MONTH(payment_date) = $month";
@@ -389,6 +431,10 @@ function getMonthlyPayments($year, $month)
 
 function getMonthlyReceivables($year, $month)
 {
+
+    $year = intval($year);
+    $month = intval($month);
+
     global $mysqli;
 
     $sql_month_query = $month == 13 ? "" : "AND MONTH(invoice_date) = $month";
@@ -402,6 +448,9 @@ function getMonthlyReceivables($year, $month)
 function getMonthlyOutstandingInvoices($year, $month)
 {
     global $mysqli;
+
+    $year = intval($year);
+    $month = intval($month);
 
     // Corrected typo in the SQL query for 'invoice status' to 'invoice_status'
     $sql_month_query = $month == 13 ? "" : "AND MONTH(invoice_date) = $month";
@@ -421,6 +470,9 @@ function getUnbilledHours($year, $month)
 {
     global $mysqli;
 
+    $year = intval($year);
+    $month = intval($month);
+
     $sql_month_query = $month == 13 ? "" : "AND MONTH(ticket_created_at) = $month";
 
     $sql = "SELECT SUM(ticket_reply_time_worked) AS total_unbilled_hours FROM ticket_replies
@@ -439,6 +491,9 @@ function getUnbilledHours($year, $month)
 function getMonthlyProfit($year, $month)
 {
     global $mysqli;
+
+    $year = intval($year);
+    $month = intval($month);
 
     $sql_payment_month_query = $month == 13 ? "" : "AND MONTH(payment_date) = $month";
     $sql_expense_month_query = $month == 13 ? "" : "AND MONTH(expense_date) = $month";
@@ -462,6 +517,8 @@ function getAccountCurrencyCode($account_id)
 {
     global $mysqli;
 
+    $account_id = intval($account_id);
+
     $sql = mysqli_query($mysqli, "SELECT account_currency_code FROM accounts WHERE account_id = $account_id");
     $row = mysqli_fetch_array($sql);
     $account_currency_code = nullable_htmlentities($row['account_currency_code']);
@@ -471,6 +528,8 @@ function getAccountCurrencyCode($account_id)
 function calculateAccountBalance($account_id)
 {
     global $mysqli;
+
+    $account_id = intval($account_id);
 
     $sql_account = mysqli_query($mysqli, "SELECT * FROM accounts LEFT JOIN account_types ON accounts.account_type = account_types.account_type_id WHERE account_archived_at  IS NULL AND account_id = $account_id ORDER BY account_name ASC; ");
     $row = mysqli_fetch_array($sql_account);
@@ -505,6 +564,8 @@ function getClientRecurringInvoicesTotal($client_id)
 {
     global $mysqli;
 
+    $client_id = intval($client_id);
+
     $sql = "SELECT SUM(recurring_amount) AS recurring_total FROM recurring WHERE recurring_client_id = $client_id AND recurring_frequency = 'month'";
     $result = mysqli_query($mysqli, $sql);
     $row = mysqli_fetch_assoc($result);
@@ -522,6 +583,8 @@ function getClientRecurringInvoicesTotal($client_id)
 function getClientBalance($client_id, $credits = false) {
 
     global $mysqli;
+
+    $client_id = intval($client_id);
 
     //Add up all the payments for the invoice and get the total amount paid to the invoice
     $sql_invoice_amounts = mysqli_query($mysqli, "SELECT SUM(invoice_amount) AS invoice_amounts FROM invoices WHERE invoice_client_id = $client_id AND invoice_status NOT LIKE 'Draft' AND invoice_status NOT LIKE 'Cancelled'");
@@ -559,6 +622,10 @@ function getClientAgeingBalance($client_id, $from, $to) {
 
     global $mysqli;
 
+    $client_id = intval($client_id);
+    $from = intval($from);
+    $to = intval($to);
+
     // Get from and to dates for the ageing balance by subtracting the number of days from the current date
     $from_date = date('Y-m-d', strtotime('-' . $from . ' days'));
     $to_date = date('Y-m-d', strtotime('-' . $to . ' days'));
@@ -587,6 +654,9 @@ function getClientAgeingBalance($client_id, $from, $to) {
 }
 
 function getClientPastDueBalance($client_id, $credits = false) {
+
+    $client_id = intval($client_id);
+    $credits = boolval($credits);
 
     global $mysqli;
 
@@ -628,6 +698,8 @@ function getClientPastDueBalance($client_id, $credits = false) {
 
 function getClientPastDueMonths($client_id) {
 
+    $client_id = intval($client_id);
+
     $monthly = getClientRecurringInvoicesTotal($client_id);
     $balance = getClientPastDueBalance($client_id);
 
@@ -641,6 +713,14 @@ function getClientPastDueMonths($client_id) {
 
 function getMonthlyExpenses($year, $month, $number = false)
 {
+
+    $year = intval($year);
+    $month = intval($month);
+    if (!is_bool($number)) {
+        $number = false;
+    }
+
+
     global $mysqli;
 
     $sql_month_query = $month == 13 ? "" : "AND MONTH(expense_date) = $month";
@@ -659,6 +739,12 @@ function getMonthlyExpenses($year, $month, $number = false)
 function getMonthlyUnbilledHours($year, $month, $number = false)
 {
     global $mysqli;
+
+    $year = intval($year);
+    $month = intval($month);
+    if (!is_bool($number)) {
+        $number = false;
+    }
 
     $sql_month_query = $month == 13 ? "" : "AND MONTH(ticket_reply_created_at) = $month";
 
@@ -681,16 +767,28 @@ function getMonthlyUnbilledHours($year, $month, $number = false)
 
 function getMonthlyCalendarEvents($year, $month)
 {
+    global $mysqli;
+    $year = intval($year);
+    $month = intval($month);
     return 0;
 }
 
 function getMonthlyUnassignedTickets($year, $month)
 {
+    global $mysqli;
+    $year = intval($year);
+    $month = intval($month);
     return 0;
 }
 
 function getMonthlyInvoices($year, $month, $number = false)
 {
+    $year = intval($year);
+    $month = intval($month);
+    if (!is_bool($number)) {
+        $number = false;
+    }
+
     switch ($number) {
         case true:
             return getMonthlyInvoicesNumber($year, $month);
@@ -703,6 +801,9 @@ function getMonthlyInvoicesAmount($year, $month)
 {
     global $mysqli;
 
+    $year = intval($year);
+    $month = intval($month);
+
     $sql_month_query = $month == 13 ? "" : "AND MONTH(invoice_date) = $month";
 
     $sql = "SELECT SUM(invoice_amount) AS total_invoices FROM invoices WHERE YEAR(invoice_date) = $year $sql_month_query";
@@ -713,6 +814,9 @@ function getMonthlyInvoicesAmount($year, $month)
 
 function getMonthlyInvoicesNumber($year, $month)
 {
+    $month = intval($month);
+    $year = intval($year);
+
     global $mysqli;
 
     $sql_month_query = $month == 13 ? "" : "AND MONTH(invoice_date) = $month";
@@ -726,6 +830,9 @@ function getMonthlyInvoicesNumber($year, $month)
 function getMonthlyMarkup($year, $month)
 {
     global $mysqli;
+
+    $year = intval($year);
+    $month = intval($month);
 
     $sql_month_query = $month == 13 ? "" : "AND MONTH(invoice_date) = $month";
 
@@ -753,12 +860,19 @@ function getMonthlyMarkup($year, $month)
 }
 
 function clientSendDisconnect($client_id){
+
+    global $mysqli;
+    $client_id = intval($client_id);
     return false;
 }
 
 function getPaymentForCategoryAndMonth($category_id, $month, $year)
 {
     global $mysqli;
+
+    $category_id = intval($category_id);
+    $month = intval($month);
+    $year = intval($year);
 
     $sql_payments = mysqli_query($mysqli,
         "SELECT SUM(payment_amount) AS payment_amount_for_month
@@ -772,10 +886,11 @@ function getPaymentForCategoryAndMonth($category_id, $month, $year)
     return floatval($row['payment_amount_for_month']);
 }
 
-
 function getInvoiceBalance($invoice_id)
 {
     global $mysqli;
+
+    $invoice_id = intval($invoice_id);
 
     $invoice_id_int = intval($invoice_id);
     $sql_invoice = mysqli_query($mysqli, "SELECT * FROM invoices WHERE invoice_id = $invoice_id_int");

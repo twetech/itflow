@@ -2,9 +2,7 @@
 // Include your database setup
 require_once "/var/www/portal.twe.tech/includes/inc_all_reports.php";
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 
 // Get parameters
 $month = (int)$_GET['month'];

@@ -7,9 +7,6 @@ global $mysqli, $session_name, $session_ip, $session_user_agent, $session_user_i
  * ITFlow - GET/POST request handler for employees
  */
 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
 
 if (isset($_POST['link_employee'])) {
     $user_id = $_POST['user_id'];
